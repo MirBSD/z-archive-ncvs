@@ -1,0 +1,81 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.40.09;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.34;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.34;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@Known bugs in sudo version 1.6.8
+================================
+
+1) Sudo should have an option to log when removing "dangerous"
+   environment variables.
+
+2) On DUNIX in sia mode, hitting return at the prompt does not quit.
+
+3) In parse.lex, '@@' should not need to be a special character.
+   However, because lex does greedy matching, {WORD} will match
+   instead of the "^Defaults[:@@]?" line.
+
+4) In list mode (sudo -l), characters escaped with a backslash
+   are shown verbatim with the backslash.
+
+5) Because the parser only does a single pass it is possible to
+   make a sudoers file where the "defaults" options are set after
+   a user's entry has been validated, changing the permissions for
+   the user.  The work-around is to put all 'defaults' entries
+   before the "User privilege specification" section but after all
+   the "alias specifications".  In the future the parser will
+   converted to a two-pass parser.
+
+6) For the same reason as #5, changing the value of "ignore_dot" has
+   no effect (find_path() is called before sudoers is parsed).
+
+For a list of things that are not bugs but that I would like to
+add / fix, please see the TODO file.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

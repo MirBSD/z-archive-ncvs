@@ -1,0 +1,64 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: dact,v 1.1 2004/06/03 03:14:19 tedu Exp $
+
+#------------------------------------------------------------------------------
+# dact:  file(1) magic for DACT compressed files
+#
+0	long		0x444354C3	DACT compressed data
+>4	byte		>-1		(version %i.
+>5	byte		>-1		$BS%i.
+>6	byte		>-1		$BS%i)
+>7	long		>0		$BS, original size: %i bytes
+>15	long		>30		$BS, block size: %i bytes
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

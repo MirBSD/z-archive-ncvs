@@ -1,0 +1,97 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.46.41;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.50;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.50;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@# Example for use of GNU gettext.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# This file is in the public domain.
+#
+# Makefile configuration - processed by automake.
+
+# General automake options.
+AUTOMAKE_OPTIONS = foreign
+ACLOCAL_AMFLAGS = -I m4
+
+# The list of subdirectories containing Makefiles.
+SUBDIRS = m4 po
+
+# The list of programs that are built.
+bin_PASCALPROGRAMS = hello
+
+# The source files of the 'hello' program.
+hello_SOURCES = hello.pas
+
+# Additional files to be distributed.
+EXTRA_DIST = autogen.sh autoclean.sh
+
+# ---------------- General rules for compiling Pascal programs ----------------
+
+all-local: hello$(EXEEXT)
+
+# How to build the 'hello' program.
+hello$(EXEEXT) hello.rst: $(hello_SOURCES)
+	LOCALEDIR='@@localedir@@' $(PPC) $(hello_SOURCES)
+
+install-exec-local: all-local
+	$(mkinstalldirs) $(DESTDIR)$(bindir)
+	$(INSTALL_PROGRAM) hello$(EXEEXT) $(DESTDIR)$(bindir)/hello$(EXEEXT)
+
+installdirs-local:
+	$(mkinstalldirs) $(DESTDIR)$(bindir)
+
+uninstall-local:
+	rm -f $(DESTDIR)$(bindir)/hello$(EXEEXT)
+
+# Distribute the RST file because it's needed to generate POT files and can
+# only be rebuilt on those platforms to which the Pascal compiler is ported.
+EXTRA_DIST += hello.rst
+
+# The list of auxiliary files generated during the compilation.
+CLEANFILES = hello.o hello$(EXEEXT)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

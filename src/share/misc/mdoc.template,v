@@ -1,0 +1,89 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.33.48;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.03;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@.\"	$OpenBSD: mdoc.template,v 1.8 2003/07/16 07:48:19 jmc Exp $
+.\"
+.\" The following requests are required for all man pages.
+.Dd Month DD, YYYY
+.Dt NAME SECTION#
+.Os
+.Sh NAME
+.Nm program
+.Nd one line about what it does
+.Sh SYNOPSIS
+.\" For a program:  program [-abc] file ...
+.Nm program
+.Op Fl abc
+.Ar
+.Sh DESCRIPTION
+The
+.Nm
+utility processes files ...
+.\" The following requests should be uncommented and used where appropriate.
+.\" This next request is for sections 2 and 3 function return values only.
+.\" .Sh RETURN VALUES
+.\" This next request is for sections 1, 6, 7 & 8 only.
+.\" .Sh ENVIRONMENT
+.\" .Sh FILES
+.\" .Sh EXAMPLES
+.\" This next request is for section 4 only.
+.\" .Sh DIAGNOSTICS
+.\" The next request is for sections 2 and 3 error and signal handling only.
+.\" .Sh ERRORS
+.\" .Sh SEE ALSO
+.\" .Xr foobar 1
+.\" .Sh STANDARDS
+.\" .Sh HISTORY
+.\" .Sh AUTHORS
+.\" .Sh CAVEATS
+.\" .Sh BUGS
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

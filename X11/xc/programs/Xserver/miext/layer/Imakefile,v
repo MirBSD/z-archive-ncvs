@@ -1,0 +1,89 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.16.56;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.16.56;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/Xserver/miext/layer/Imakefile,v 1.4 2003/08/22 19:27:31 eich Exp $
+XCOMM
+XCOMM
+
+#define IHaveModules
+#include <Server.tmpl>
+
+#ifdef XFree86Version
+#if DoLoadableServer
+XFMODSRC = laymodule.c
+XFMODOBJ = laymodule.o
+#endif
+#endif
+
+#if BuildRender
+RENDERSRC = layerpict.c
+RENDEROBJ = layerpict.o
+#endif
+
+SRCS = layergc.c \
+       layerinit.c \
+       $(RENDERSRC) \
+       layerwin.c \
+       $(XFMODSRC)
+
+OBJS = layergc.o \
+       layerinit.o \
+       $(RENDEROBJ) \
+       layerwin.o \
+       $(XFMODOBJ)
+
+   INCLUDES = -I. -I../shadow -I../../mi -I../../fb -I../../include -I$(XINCLUDESRC) \
+	      -I$(FONTINCSRC) -I$(XF86SRC)/common $(EXTRAINCLUDES) \
+	      -I../../render -I$(EXTINCSRC)
+   LINTLIBS = ../../dix/llib-ldix.ln ../../os/llib-los.ln \
+	     ../../mi/llib-lmi.ln
+
+NormalLibraryObjectRule()
+LibraryModuleTarget(layer,$(OBJS))
+LintLibraryTarget(layer,$(SRCS))
+
+NormalLintTarget($(SRCS))
+
+InstallLibraryModule(layer,$(MODULEDIR),.)
+
+DependTarget()
+
+InstallDriverSDKLibraryModule(layer,$(DRIVERSDKMODULEDIR),.)
+InstallDriverSDKNonExecFile(layer.h,$(DRIVERSDKINCLUDEDIR))
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

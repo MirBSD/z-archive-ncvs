@@ -1,0 +1,98 @@
+head	1.3;
+access;
+symbols
+	texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	2005.01.07.00.48.55;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2005.01.07.00.35.19;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.06.23.31.21;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.06.23.31.21;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@no libtxi.a
+@
+text
+@# $Id: Makefile.am,v 1.5 2004/04/11 17:56:46 karl Exp $
+# Makefile.am for texinfo/makeinfo.
+# Run automake in .. to produce Makefile.in from this.
+#
+# This file is free software; as a special exception the author gives
+# unlimited permission to copy and/or distribute it, with or without
+# modifications, as long as this notice is preserved.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+bin_PROGRAMS = makeinfo
+
+INCLUDES = -I$(top_srcdir)/lib
+
+makeinfo_SOURCES = \
+  cmds.c cmds.h defun.c defun.h \
+  files.c files.h float.c float.h footnote.c footnote.h \
+  html.c html.h index.c index.h insertion.c insertion.h lang.c lang.h \
+  macro.c macro.h makeinfo.c makeinfo.h multi.c multi.h node.c node.h \
+  sectioning.c sectioning.h toc.c toc.h xml.c xml.h xref.c xref.h
+@
+
+
+1.2
+log
+@hax0r around autotools
+@
+text
+@a15 1
+LDADD = ../lib/libtxi.a
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d15 2
+a16 3
+localedir = $(datadir)/locale
+INCLUDES = -I$(top_srcdir)/lib -I../intl -DLOCALEDIR=\"$(localedir)\"
+LDADD = ../lib/libtxi.a $(LIBINTL)
+a23 4
+
+EXTRA_DIST = README
+
+SUBDIRS = tests
+@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

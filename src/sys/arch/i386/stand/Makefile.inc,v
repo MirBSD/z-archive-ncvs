@@ -1,0 +1,240 @@
+head	2.4;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.4
+date	2005.01.17.02.18.20;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.16.18.41.12;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.16.15.40.05;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.34.27;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.18;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.18;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.4
+log
+@make this thing survive the better part of a make build
+a plethora of weird protos, missing includes, undefined
+behaviour (real bugs though not the hard ones) and some
+cosmetics here which gcc 3.4 needs
+good for a start
+@
+text
+@# $MirBSD: src/sys/arch/i386/stand/Makefile.inc,v 2.3 2005/01/16 18:41:12 tg Exp $
+# $OpenBSD: Makefile.inc,v 1.35 2004/07/13 21:03:38 marc Exp $
+
+.ifndef MODSRC_SYS_ARCH_I386_STAND_MAKEFILE_INC
+MODSRC_SYS_ARCH_I386_STAND_MAKEFILE_INC=1
+
+.include <bsd.own.mk>
+
+V!=		print '\#include <sys/param.h>\nMirBSD' | ${CC} -E - \
+		    | tail -1 | sed s,0x,,
+_V=		\"${V}\"
+
+CFLAGS+=	-fno-stack-protector -ffreestanding \
+		-Os -Wall -Werror -Wno-packed ${DEBUG}
+CPPFLAGS+=	-I${S} -I${SADIR}/libsa -I. -Dmemmove=memcpy \
+		-I${.CURDIR} -D__BOOT_VER="${_V}" -Derrno=errno
+SACFLAGS=	-D_STANDALONE
+DEBUGLIBS=	no
+DEBUGFLAGS=
+# DEBUGFLAGS+=-DDEBUG
+# DEBUGFLAGS+=-DGIDT_DEBUG
+# DEBUGFLAGS+=-DBIOS_DEBUG
+# DEBUGFLAGS+=-DEXEC_DEBUG
+# DEBUGFLAGS+=-DALLOC_TRACE
+# DEBUGFLAGS+=-g -D_TEST
+# DEBUGFLAGS+=-DUNIX_DEBUG
+# DEBUGFLAGS+=-DBOOTP_DEBUG -DNETIF_DEBUG -DETHER_DEBUG
+# DEBUGFLAGS+=-DNFS_DEBUG -DRPC_DEBUG -DRARP_DEBUG
+LINKADDR=	0x40120
+LOADADDR=	0x40000
+HEAP_LIMIT=	0x90000
+BOOTREL=	0x60000
+LINKSEG=	${LINKADDR:S/0$//}
+LOADSEG=	${LOADADDR:S/0$//}
+CPPFLAGS+=	-DSA_LINKSEG=${LINKSEG} -DSA_LOADSEG=${LOADSEG}
+CPPFLAGS+=	-DSA_LINKADDR=${LINKADDR} -DSA_LOADADDR=${LOADADDR}
+
+CLEANFILES+=	machine
+
+.if empty(DEBUGFLAGS:M-D_TEST)
+SACFLAGS+=	-nostdinc -fno-builtin -fpack-struct
+SACFLAGS+=	-Dmemcmp=__builtin_memcmp -Dmemset=__builtin_memset
+.endif
+
+.if !make(libdep) && !make(sadep) && !make(salibdir) && !make(kernlibdir) && !make(obj)
+.BEGIN:
+	@@([ X$(S) == X -o -h machine ] || ln -s $(S)/arch/i386/include machine)
+.endif
+
+
+.if exists(${SADIR}/etc/assym.h)
+CPPFLAGS+=	-I${SADIR}/etc
+.else
+CPPFLAGS+=	-I${SADIR}/etc/${__objdir}
+.endif
+.if exists(${SADIR}/libsa/libsa.a)
+LIBSA=		${SADIR}/libsa/libsa.a
+.else
+LIBSA=		${SADIR}/libsa/${__objdir}/libsa.a
+.endif
+.if exists(${SADIR}/libz/libz.a)
+LIBZ=		${SADIR}/libz/libz.a
+.else
+LIBZ=		${SADIR}/libz/${__objdir}/libz.a
+.endif
+
+# NO_NET=no_net
+BINDIR=		/usr/mdec
+
+.endif
+@
+
+
+2.3
+log
+@with gcc 3.4, there's no way to re-enable a disabled builtin
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/sys/arch/i386/stand/Makefile.inc,v 2.2 2005/01/16 15:40:05 tg Exp $
+d14 2
+a15 2
+		-Os -Wall -Werror ${DEBUG}
+CPPFLAGS+=	-I${S} -I${SADIR}/libsa -I. \
+@
+
+
+2.2
+log
+@make obj fixes
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/sys/arch/i386/stand/Makefile.inc,v 2.1 2005/01/03 16:34:27 tg Exp $
+d13 1
+a13 1
+CFLAGS+=	-fno-stack-protector -ffreestanding -femit-memmove \
+d42 1
+a42 1
+SACFLAGS+=	-fbuiltin-memcmp -fbuiltin-memset
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/sys/arch/i386/stand/Makefile.inc,v 1.34 2004/11/16 16:50:11 tg Exp $
+d4 2
+a5 1
+.ifndef	SYS_ARCH_I386_STAND_MAKEFILE_INC
+d7 3
+a9 1
+V!=		print '\#include <sys/param.h>\nMirBSD' | gcc -E - \
+a12 2
+.include <bsd.own.mk>
+
+a69 1
+SYS_ARCH_I386_STAND_MAKEFILE_INC=done
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile.inc,v 1.35 2004/07/13 21:03:38 marc Exp $
+d4 14
+a17 5
+CFLAGS=${DEBUG} ${COPTS} -Os -Wall -Werror
+CFLAGS+=	-fno-stack-protector
+CPPFLAGS+=-I${S} -I${SADIR}/libsa -I. -I${.CURDIR} -Derrno=errno
+SACFLAGS=-D_STANDALONE
+DEBUGLIBS=no
+d28 9
+a36 6
+LINKADDR=0x40120
+LOADADDR=0x40000
+HEAP_LIMIT=0x90000
+BOOTREL=0x60000
+BOOTMAGIC=0xc001d00d
+#ROM_SIZE=32768
+d40 2
+a41 1
+SACFLAGS+=-nostdinc -fno-builtin -fpack-struct
+d51 1
+a51 1
+CPPFLAGS+=-I${SADIR}/etc
+d53 1
+a53 1
+CPPFLAGS+=-I${SADIR}/etc/${__objdir}
+d56 1
+a56 1
+LIBSA=${SADIR}/libsa/libsa.a
+d58 1
+a58 1
+LIBSA=${SADIR}/libsa/${__objdir}/libsa.a
+d61 1
+a61 1
+LIBZ=${SADIR}/libz/libz.a
+d63 1
+a63 1
+LIBZ=${SADIR}/libz/${__objdir}/libz.a
+d67 1
+a67 1
+BINDIR=	/usr/mdec
+d69 2
+a70 1
+MANSUBDIR=i386
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,66 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.00;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.10;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.10;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@The FAQ is no longer maintained with the sendmail release.  It is
+available at http://www.sendmail.org/faq/ .
+
+A plain-text version of the questions only, with URLs referring to
+the answers, is posted to comp.mail.sendmail on the 10th and 25th
+of each month.
+
+$Revision: 1.1.1.1 $, Last updated $Date: 2003/03/22 17:44:28 $
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 1
+a8 1
+$Revision: 1.4 $, Last updated $Date: 2001/09/11 19:02:47 $
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

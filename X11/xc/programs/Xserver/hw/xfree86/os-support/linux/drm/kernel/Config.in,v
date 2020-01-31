@@ -1,0 +1,56 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.15.39;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.15.39;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#
+# Drm device configuration
+#
+# This driver provides support for the
+# Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
+#
+
+tristate '  3dfx Banshee/Voodoo3+' CONFIG_DRM_TDFX
+#tristate '  3dlabs GMX 2000' CONFIG_DRM_GAMMA
+tristate '  ATI Rage 128' CONFIG_DRM_R128
+tristate '  ATI Radeon' CONFIG_DRM_RADEON
+dep_tristate '  Intel I810' CONFIG_DRM_I810 $CONFIG_AGP
+dep_tristate '  Intel 830M/845G/852GM/855GM/865G' CONFIG_DRM_I830 $CONFIG_AGP
+dep_tristate '  Matrox g200/g400' CONFIG_DRM_MGA $CONFIG_AGP
+tristate '  SiS' CONFIG_DRM_SIS
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

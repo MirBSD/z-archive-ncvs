@@ -1,0 +1,108 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.04.42;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.42;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@CHANGES
+COPYRIGHT
+FAQ.html
+FILES
+Imakefile
+Makefile.noX
+README.html
+README.AMIGA
+README.MSW
+namecvt
+lib
+lib/Imakefile
+lib/Makefile.noX
+lib/Makefile.AmigaGCC
+lib/Smakefile
+lib/Attrib.c
+lib/CrBufFrI.c
+lib/CrBufFrP.c
+lib/CrDatFrI.c
+lib/CrDatFrP.c
+lib/CrIFrBuf.c
+lib/CrIFrDat.c
+lib/CrIFrP.c
+lib/CrPFrBuf.c
+lib/CrPFrDat.c
+lib/CrPFrI.c
+lib/Image.c
+lib/Info.c
+lib/RdFToBuf.c
+lib/RdFToDat.c
+lib/RdFToI.c
+lib/RdFToP.c
+lib/WrFFrBuf.c
+lib/WrFFrDat.c
+lib/WrFFrI.c
+lib/WrFFrP.c
+lib/amigax.h
+lib/amigax.c
+lib/create.c
+lib/data.c
+lib/descrip.mms
+lib/hashtab.c
+lib/make.com
+lib/misc.c
+lib/parse.c
+lib/rgb.c
+lib/rgbtab.h
+lib/scan.c
+lib/simx.h
+lib/simx.c
+lib/xpm.h
+lib/XpmI.h
+lib/Xpm-def.cpp
+doc
+doc/xpm.PS
+sxpm
+sxpm/Imakefile
+sxpm/Makefile.noX
+sxpm/plaid.xpm
+sxpm/plaid_ext.xpm
+sxpm/plaid_mask.xpm
+sxpm/sxpm.c
+sxpm/sxpm.man
+cxpm
+cxpm/Imakefile
+cxpm/Makefile.noX
+cxpm/cxpm.c
+cxpm/cxpm.man
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

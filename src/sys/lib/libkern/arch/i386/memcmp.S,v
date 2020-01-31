@@ -1,0 +1,97 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.37.33;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.33.33;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.33.33;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: memcmp.S,v 1.1 2000/06/16 19:56:54 millert Exp $	*/
+
+/*
+ * Written by J.T. Conklin <jtc@@netbsd.org>.
+ * Public domain.
+ */
+
+#include <machine/asm.h>
+
+ENTRY(memcmp)
+	pushl	%edi
+	pushl	%esi
+	movl	12(%esp),%edi
+	movl	16(%esp),%esi
+	cld				/* set compare direction forward */
+
+	movl	20(%esp),%ecx		/* compare by words */
+	shrl	$2,%ecx
+	repe
+	cmpsl
+	jne	L5			/* do we match so far? */
+
+	movl	20(%esp),%ecx		/* compare remainder by bytes */
+	andl	$3,%ecx
+	repe
+	cmpsb
+	jne	L6			/* do we match? */
+
+	xorl	%eax,%eax		/* we match, return zero	*/
+	popl	%esi
+	popl	%edi
+	ret
+
+L5:	movl	$4,%ecx			/* We know that one of the next	*/
+	subl	%ecx,%edi		/* four pairs of bytes do not	*/
+	subl	%ecx,%esi		/* match.			*/
+	repe
+	cmpsb
+L6:	movzbl  -1(%edi),%eax		/* Perform unsigned comparison	*/
+	movzbl	-1(%esi),%edx
+	subl	%edx,%eax
+	popl	%esi
+	popl	%edi
+	ret
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

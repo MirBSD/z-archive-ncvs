@@ -1,0 +1,59 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.21.48.39;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.39;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.39;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@# This is a sample PAM configuration for Sun/Solaris
+# which does standard unix authentication against
+# the password in /etc/passwd or /etc/shadow.
+# The contents of this file should be inserted
+# at an appropriate position in /etc/pam.conf
+
+cvs     auth        required    /usr/lib/security/$ISA/pam_unix.so.1
+cvs     account     required    /usr/lib/security/$ISA/pam_unix.so.1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

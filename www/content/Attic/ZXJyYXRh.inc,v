@@ -1,0 +1,114 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.57;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@<small class="rcsid">$MirBSD: www/content/ZXJyYXRh.inc,v 1.1 2004/12/13 00:13:24 tg Exp $</small>
+<h1>Errata</h1>
+<!-- deleteme --><h2>Need People</h2>
+<p>We're in need of people who keep the website, especially this
+ page, up to date. Please contact the MirOS team by eMail.</p>
+<h2>Content</h2><!-- endof deleteme -->
+<p>This page attempts to identify known issues for -current users,
+ documenting why they should update to the latest snapshot, or even
+ by source to the HEAD branch.</p>
+<h3>Stable users</h3>
+<p>An equivalent page for <a href="/?errata-7">#7-stable</a> users
+ is available as well.</p>
+<h1>Corrigenda</h1><ul>
+<li>Emulation of pathnames for OpenBSD is not complete.</li>
+<li>sys_rusage() must be _compat'd due to time changes.</li>
+<li class="erecta">Snapshot <a href="/?clog-2004#snap1129">2004-11-29</a>
+	has been released.</li>
+<li class="greyed">... many omissions</li>
+<li>The MD5File() function in libc contains a bug, leading to problems
+	with package uninstalling. This is fixed in -current.</li>
+<li class="erecta">The <a href="/MirOS/BT/">Birthday Snapshot</a> and
+	<a href="/MirOS/distfiles/mirbsdksh-1.12.cpio.gz">mirbsdksh
+	1.12</a> fix all issues mentioned below, and a few others.</li>
+<li>OpenBSD Errata #15 and #16: ICMP DoS affects TCP; bridge fixes.</li>
+<li><strong style="color:#FF0000;">This list is not up to date!</strong></li>
+<li>Stuff fixed in the meantime: libz and libpng security bugs, upgraded
+	OpenSSH, tcpdump, the Linuxulator, gcc and rcdb (memory access),
+	ksh (signalling), random stuff and a bunch more.</li>
+<li>Some issues with <tt>newfs(8)</tt> have been fixed.</li>
+<li>A few absolutely minor issues have come up, but you ought to not
+	follow the HEAD branch until the next binary snapshots come out.</li>
+<li><tt>From: Ted Unangst &lt;tedu@@zeitbombe.org&gt;<br />
+	Message-ID: &lt;Pine.BSO.4.58.0405122052400.18115@@af.pbqrshfvbavf.pbz&gt;<br />
+	Subject: procfs vulnerability</tt><br /><br />
+	Incorrect bounds checking in several procfs functions could allow an
+	unprivileged malicious user to read arbitrary kernel memory, with the
+	potential to use this information to escalate privilege.<br /><br />
+	Fix: none yet. Workaround: <tt>umount /proc</tt>.</li>
+<li class="erecta">Corrigendum <a
+	href="/MirOS/BT/">2004-05-08</a> has been released; the issues
+	below are believed to be fixed except for the missing sync.</li>
+<li>The system hangs or crashes into <tt>ddb(4)</tt> after 1..60 minutes
+	of unattended work. Possible cause: random device.<br />
+	Fix (apparently): update kern/kern_timeout.c and dev/rnd.c</li>
+<li>MBR Bootmanager v2.68 did not start the default entry after 10 seconds.
+	Fix: update MBR to v2.69.</li>
+<li>Numerous backports from OpenBSD missing.<br />
+	Fix: none yet. We're working on importing OpenBSD into HEAD.</li>
+<li>libpng application-level crash CAN-2004-0421.<br />
+	Fix: apply patch from ports/graphics/png/ (in there for -stable)
+	or update libpng to CVS HEAD branch.</li>
+<li class="erecta">Snapshot 2004-05-02 has been released via
+	BitTorrent for the first time.</li>
+<li>XFree86 is broken (symbol not exported).<br />
+	Fix: cd /; tar xphzf /path/to/xf86-fixed.tgz</li>
+<li>libgcc.so.1.0 is missing unless you install egcs7.ngz.<br />
+	Fix: cd /; tar xphzf /path/to/noegcs7.tgz</li>
+<li class="erecta">Snapshot 2004-05-01 released, announced on front page.</li>
+</ul><p>Before that, there is no errata record available.</p>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+<small class="rcsid">$MirBSD: www/content/ZXJyYXRh.inc,v 1.13 2004/12/01 18:40:43 tg Exp $</small>
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

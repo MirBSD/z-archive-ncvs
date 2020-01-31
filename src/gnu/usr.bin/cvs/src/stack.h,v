@@ -1,0 +1,56 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.21.13.45;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.21.13.45;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ * Copyright (c) 2004, Free Software Foundation,
+ *                     Derek Price,
+ *                     & Ximbiot <http://ximbiot.com>.
+ * 
+ * You may distribute under the terms of the GNU General Public License as
+ * specified in the README file that comes with the CVS source distribution.
+ */
+
+void push (List *_stack, void *_elem);
+void *pop (List *_stack);
+void unshift (List *_stack, void *_elem);
+void *shift (List *_stack);
+void push_string (List *_stack, char *_elem);
+char *pop_string (List *_stack);
+void unshift_string (List *_stack, char *_elem);
+char *shift_string (List *_stack);
+int isempty (List *_stack);
+@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

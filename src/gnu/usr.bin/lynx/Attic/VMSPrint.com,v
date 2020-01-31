@@ -1,0 +1,66 @@
+head	1.2;
+access;
+symbols
+	lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.00.32.32;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.03.00.23.33;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.03.00.23.33;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke some unused files for Win32, VMS, DJGPP/DOS etc.
+@
+text
+@$!
+$! Lynx_Dir:VMSPrint.com  -  Alan J. Hirsh (hirsh@@atuk.aspentec.com)
+$! ---------------------
+$!	Lynx deletes temporary files on exit.  If your printer queue
+$!	is very busy such that Lynx is deleting the files before they
+$!	have been queued for printing, use PRINTER commands in lynx.cfg
+$!	which invoke this script.
+$!
+$! PRINTER:description for menu:@@Lynx_Dir\:VMSPrint queue_name %s:FALSE:58
+$!
+$! P1 = queue_name (e.g., sys$print)  P2 = temporary Lynx file (%s)
+$! ---------------------------------  -----------------------------
+$ copy 'P2' 'P2'_temp_print
+$ print/queue='P1'/delete 'P2'_temp_print
+$ exit
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

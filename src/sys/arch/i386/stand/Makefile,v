@@ -1,0 +1,103 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.34.27;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.18;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.18;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/sys/arch/i386/stand/Makefile,v 1.11 2004/08/02 17:56:40 tg Stab $
+# $OpenBSD: Makefile,v 1.11 2004/03/19 13:48:18 tom Exp $
+
+.if ${MACHINE} == "i386"
+  SUBDIR+= etc libsa libz pbr
+.endif
+  SUBDIR+= boot installboot
+  SUBDIR+= pxeboot
+
+TEST_DEVS= fd0 svnd0 svnd1
+
+.for _i in ${TEST_DEVS}
+test-${_i}:
+	${SUDO} mount /dev/${_i}a /mnt
+	${SUDO} cp /usr/mdec/boot /mnt
+	${SUDO} /usr/mdec/installboot -vh2 -s18 \
+	    /mnt/boot /usr/mdec/ffspbr ${_i}
+	${SUDO} umount /mnt
+
+zero-${_i}:
+	${SUDO} dd if=/dev/zero of=/dev/r${_i}a count=144 bs=10240
+
+prep-${_i}:
+	${SUDO} disklabel -rw ${_i} floppy
+	${SUDO} newfs -O -m 0 -o space -i 3000 -c 80 /dev/r${_i}a
+.endfor
+
+.include <bsd.subdir.mk>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile,v 1.11 2004/03/19 13:48:18 tom Exp $
+d5 1
+a5 1
+SUBDIR=	etc libsa libz mbr
+d7 2
+a8 1
+SUBDIR+= biosboot installboot boot pxeboot
+d10 17
+a26 12
+test-fd0:
+	sudo mount /dev/fd0a /mnt
+	sudo cp /usr/mdec/boot /mnt
+	sudo /usr/mdec/installboot -v /mnt/boot /usr/mdec/biosboot fd0
+	sudo umount /mnt
+
+zero-fd0:
+	sudo dd if=/dev/zero of=/dev/rfd0a count=144 bs=10240
+
+prep-fd0:
+	sudo disklabel -rw fd0 floppy
+	sudo newfs -O -m 0 -o space -i 3000 -c 80 /dev/rfd0a
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

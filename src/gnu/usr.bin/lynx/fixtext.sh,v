@@ -1,0 +1,48 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.03.00.23.34;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.34;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+
+# xgettext only processes literal strings.  Someone with a poor sense of humor
+# decided to ignore strings in preprocessor lines.  So we construct a fake
+# ".c" file with the definitions turned into literals.
+
+sed	-e 's/")/");/' \
+	-e 's/^#define[ 	]*\([^ 	]*\)[ 	]*gettext/char *\1 = gettext/' \
+	-e 's,^#define[ 	]*\([^ 	]*\)[ 	]*\\,/* #define \1 */char *\1 = \\,' \
+	$*
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

@@ -1,0 +1,65 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/etc/isdnd.sppp.sample,v 1.4 2003/06/06 20:26:34 tg Stab $
+#
+# This file is sufficient to be placed as /etc/isdn/isdnd.rc
+# in order to dial out using a 'ppp -ddial MirISDN' command.
+
+system
+
+acctall		= off
+acctfile	= /var/log/isdnd.acct
+useacctfile	= no
+monitor-allowed	= off
+ratesfile	= /etc/isdn/isdnd.rates
+holidayfile	= /dev/null
+rtprio		= 25
+
+entry
+
+name		= userppp0
+usrdevicename	= isdnbchan
+usrdeviceunit	= 0
+isdncontroller	= 0
+isdnchannel	= -1
+dialin-reaction	= ignore
+dialout-type	= normal
+b1protocol	= hdlc
+ratetype	= 0
+unitlength	= 600
+unitlengthsrc	= conf
+dialretries	= 1
+dialrandincr	= on
+recoverytime	= 25
+usedown		= off
+downtries	= 2
+downtime	= 30
+local-phone-incoming	= *
+remote-phone-incoming	= *
+remote-phone-dialout	= *
+local-phone-dialout	= 5506888
+remdial-handling	= first
+idletime-incoming	= 0
+idletime-outgoing	= 320
+@

@@ -1,0 +1,66 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.42.24;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.39;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.39;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: version.c,v 1.1 2003/05/12 19:28:22 camield Exp $	*/
+
+/*
+ * popa3d version information.
+ */
+
+char popa3d_version[] = "0.6.2";
+char popa3d_date[] = "$Date: 2003/05/21 19:26:47 $";
+char popa3d_id[] = "@@(#) $Id: version.c,v 1.1.1.1 2003/05/21 19:26:47 tg Stab $";
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 2
+a9 2
+char popa3d_date[] = "$Date: 2003/05/12 19:28:22 $";
+char popa3d_id[] = "@@(#) $Id: version.c,v 1.1 2003/05/12 19:28:22 camield Exp $";
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

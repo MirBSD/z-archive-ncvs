@@ -1,0 +1,77 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.48.34;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.05;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@Makefile
+po-gram-gen2.h
+.libs
+gettext
+msgcmp
+msgcomm
+msgfmt
+msgmerge
+msgunfmt
+ngettext
+xgettext
+msgattrib
+msgcat
+msgconv
+msgen
+msgexec
+msgfilter
+msggrep
+msginit
+msguniq
+hostname
+urlget
+user-email
+gettext.jar
+gnu.gettext.DumpResource
+gnu.gettext.GetURL
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

@@ -1,0 +1,72 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.03.00.23.42;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.42;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef LYCHARVALS_H
+#define LYCHARVALS_H 1
+
+#ifndef HTUTILS_H
+#include <HTUtils.h>
+#endif
+
+/*
+ * Use integer values for character constants rather than '\octal' form, since
+ * not all compilers agree that those will fit in a character, even when cast.
+ */
+#ifndef   CH_ESC
+#ifdef    EBCDIC
+#define CH_DEL           0x07
+#define CH_ESC           0x27
+#define CH_ESC_PAR       0x27
+#define CH_HICTL         0x3f
+#define CH_NBSP          0x41
+#define CH_SHY           0xca
+#define LYCharINTERRUPT1 0x03	/* Control-C */
+#define LYCharINTERRUPT2 0x2f	/* Control-G */
+#else /* EBCDIC */
+#define CH_ESC           0033
+#define CH_DEL           0177
+#define CH_ESC_PAR       0233
+#define CH_HICTL         0237
+#define CH_NBSP          0240
+#define CH_SHY           0255
+#define LYCharINTERRUPT1 0003	/* Control-C */
+#define LYCharINTERRUPT2 0007	/* Control-G */
+#endif /* EBCDIC */
+#endif /* CH_ESC */
+
+#endif /* LYCHARVALS_H */
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

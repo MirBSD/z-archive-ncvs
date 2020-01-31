@@ -1,0 +1,39 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.33.12;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/share/doc/usd/26.refer/Makefile,v 1.3 2004/05/23 15:57:18 tg Stab $
+# @@(#)Makefile	6.3 (Berkeley) 4/17/91
+
+# refer.mac should be typed on a 12 pitch Daisy wheel printer
+DIR=	usd/26.refer
+SRCS=	refer.bib
+MACROS=	-msU
+REFER=	refer -p biblio
+EXTRA=	biblio mx.doc refer.mac
+CLEANFILES=biblio.ig
+
+paper.ps: ${SRCS}
+	${REFER} ${SRCS} | ${ROFF} >${.TARGET}
+
+.include <bsd.doc.mk>
+@

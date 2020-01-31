@@ -1,0 +1,84 @@
+head     1.1;
+branch   1.1.15;
+access   ;
+symbols  start:1.1.15.1 mirbsd:1.1.15;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.03.18.18.29;  author tg;  state Exp;
+branches 1.1.15.1;
+next     ;
+
+1.1.15.1
+date     2005.01.03.18.18.29;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/ksh
+# $MirBSD: src/usr.bin/roff/nrcon/nrcon,v 1.4 2004/10/06 23:50:59 tg Exp $
+#-
+# Copyright (c) 2003, 2004
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+#
+# Licensee is hereby permitted to deal in this work without restric-
+# tion, including unlimited rights to use, publically perform, modi-
+# fy, merge, distribute, sell, give away or sublicence, provided the
+# above copyright notices, these terms and the disclaimer are retai-
+# ned in all redistributions, or reproduced in accompanying documen-
+# tation or other materials provided with binary redistributions.
+#
+# Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+# any kind, expressed or implied, to the maximum extent permitted by
+# applicable law, but with the warranty of being written without ma-
+# licious intent or gross negligence; in no event shall licensor, an
+# author or contributor be held liable for any damage, direct, indi-
+# rect or other, however caused, arising in any way out of the usage
+# of covered work, even if advised of the possibility of such damage.
+#-
+# Feed everything (stdin, parametres) to nroff -Tcol (though that could
+# be overridden...) and its output to col(1).
+
+if [[ $1 = -8 ]]; then
+	shift
+	F=
+	P=
+	while [[ $# -gt 0 ]]; do
+		if [[ $1 = @@(-)* ]]; then
+			P="$P $1"
+		else
+			F="$F $1"
+		fi
+		shift
+	done
+	cat $F \
+	    | /usr/libexec/nr8pre \
+	    | /usr/bin/nroff -Tcol $P | /usr/bin/col \
+	    | /usr/libexec/nr8post
+else
+	/usr/bin/nroff -Tcol "$@@" | /usr/bin/col
+fi
+@
+
+
+1.1.15.1
+log
+@our (old)roff, based upon 4.4BSD-Alpha code,
+copyrighted by AT&T, gratituously licenced to
+us under a 4-clause UCB-style licence by SCO
+(then Caldera)
+@
+text
+@@

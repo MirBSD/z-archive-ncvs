@@ -1,0 +1,85 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.06.22.13.44;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.04.46;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.04.46;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@/* chardata.h
+
+   Interface to some helper routines used to accumulate and check text
+   and attribute content.
+*/
+
+#ifndef XML_CHARDATA_H
+#define XML_CHARDATA_H 1
+
+#ifndef XML_VERSION
+#include "expat.h"                      /* need XML_Char */
+#endif
+
+
+typedef struct {
+    int count;                          /* # of chars, < 0 if not set */
+    XML_Char data[1024];
+} CharData;
+
+
+void CharData_Init(CharData *storage);
+
+void CharData_AppendString(CharData *storage, const char *s);
+
+void CharData_AppendXMLChars(CharData *storage, const XML_Char *s, int len);
+
+int CharData_CheckString(CharData *storage, const char *s);
+
+int CharData_CheckXMLChars(CharData *storage, const XML_Char *s);
+
+
+#endif  /* XML_CHARDATA_H */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

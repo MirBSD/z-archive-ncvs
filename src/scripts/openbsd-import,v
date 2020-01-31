@@ -1,0 +1,541 @@
+head	2.7;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.7
+date	2005.02.03.21.32.43;	author tg;	state Exp;
+branches;
+next	2.6;
+
+2.6
+date	2005.01.19.17.00.54;	author tg;	state Exp;
+branches;
+next	2.5;
+
+2.5
+date	2005.01.16.17.42.24;	author tg;	state Exp;
+branches;
+next	2.4;
+
+2.4
+date	2005.01.14.14.42.48;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2004.12.19.11.45.22;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2004.12.12.21.36.34;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.12.19.08.50;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.7
+log
+@add another ignored dir
+@
+text
+@#!/bin/ksh
+# $MirBSD: src/scripts/openbsd-import,v 2.6 2005/01/19 17:00:54 tg Exp $
+#-
+# Copyright (c) 2004, 2005
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+#
+# Licensee is hereby permitted to deal in this work without restric-
+# tion, including unlimited rights to use, publicly perform, modify,
+# merge, distribute, sell, give away or sublicence, provided all co-
+# pyright notices above, these terms and the disclaimer are retained
+# in all redistributions or reproduced in accompanying documentation
+# or other materials provided with binary redistributions.
+#
+# All advertising materials mentioning features or use of this soft-
+# ware must display the following acknowledgement:
+#	This product includes material provided by Thorsten Glaser.
+#
+# Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+# any kind, expressed or implied, to the maximum extent permitted by
+# applicable law, but with the warranty of being written without ma-
+# licious intent or gross negligence; in no event shall licensor, an
+# author or contributor be held liable for any damage, direct, indi-
+# rect or other, however caused, arising in any way out of the usage
+# of this work, even if advised of the possibility of such damage.
+
+IGNDIRS="\
+	./Makefile.cross \
+	./bin/chio \
+	./bin/csh \
+	./bin/domainname \
+	./bin/ksh \
+	./bin/rcp \
+	./bin/rmail \
+	./distrib/alpha \
+	./distrib/cats \
+	./distrib/crunch \
+	./distrib/hp300 \
+	./distrib/hppa \
+	./distrib/i386/cdfs \
+	./distrib/i386/cdfs-emu \
+	./distrib/i386/ramdiskA \
+	./distrib/i386/ramdiskB \
+	./distrib/i386/ramdiskC \
+	./distrib/i386/ramdisk_cd \
+	./distrib/luna88k \
+	./distrib/mac68k \
+	./distrib/mvme68k \
+	./distrib/mvme88k \
+	./distrib/mvmeppc \
+	./distrib/notes \
+	./distrib/sets \
+	./distrib/sgi \
+	./distrib/sparc64 \
+	./distrib/special/gzip \
+	./distrib/vax \
+	./distrib/zaurus \
+	./etc/afs \
+	./etc/amd \
+	./etc/bind \
+	./etc/etc.alpha \
+	./etc/etc.cats \
+	./etc/etc.hp300 \
+	./etc/etc.hppa \
+	./etc/etc.luna88k \
+	./etc/etc.mac68k \
+	./etc/etc.mvme68k \
+	./etc/etc.mvme88k \
+	./etc/etc.mvmeppc \
+	./etc/etc.sgi \
+	./etc/etc.sparc64 \
+	./etc/etc.svr4 \
+	./etc/etc.vax \
+	./etc/etc.zaurus \
+	./etc/kerberosV \
+	./etc/mail \
+	./games \
+	./gnu/egcs \
+	./gnu/lib \
+	./gnu/share \
+	./gnu/usr.bin/binutils \
+	./gnu/usr.bin/cvs \
+	./gnu/usr.bin/cxxfilt \
+	./gnu/usr.bin/gas \
+	./gnu/usr.bin/gcc \
+	./gnu/usr.bin/groff \
+	./gnu/usr.bin/ld \
+	./gnu/usr.bin/lynx \
+	./gnu/usr.bin/rcs \
+	./gnu/usr.bin/sendbug \
+	./gnu/usr.bin/texinfo \
+	./gnu/usr.sbin/mkhybrid \
+	./include/rpcsvc \
+	./kerberosIV \
+	./kerberosV \
+	./lib/csu \
+	./lib/i18n_module \
+	./lib/libarch/alpha \
+	./lib/libarch/arm \
+	./lib/libasn1 \
+	./lib/libc/arch/alpha \
+	./lib/libc/arch/arm \
+	./lib/libc/arch/hppa \
+	./lib/libc/arch/m68k \
+	./lib/libc/arch/m88k \
+	./lib/libc/arch/mips \
+	./lib/libc/arch/mips64 \
+	./lib/libc/arch/sparc64 \
+	./lib/libc/arch/vax \
+	./lib/libc/gmon \
+	./lib/libc/locale \
+	./lib/libc/md \
+	./lib/libc/nls \
+	./lib/libc/yp \
+	./lib/libcom_err \
+	./lib/libcurses++ \
+	./lib/libdes/asm \
+	./lib/libevent/compat \
+	./lib/libevent/sample \
+	./lib/libevent/test \
+	./lib/libexpat \
+	./lib/libgssapi \
+	./lib/libhdb \
+	./lib/libintl \
+	./lib/libkadm5clnt \
+	./lib/libkadm5srv \
+	./lib/libkafs \
+	./lib/libkrb5 \
+	./lib/libm/arch/alpha \
+	./lib/libm/arch/hppa \
+	./lib/libm/arch/mc68881 \
+	./lib/libm/arch/vax \
+	./lib/libm/noieee_src \
+	./lib/libpthread/arch/alpha \
+	./lib/libpthread/arch/arm \
+	./lib/libpthread/arch/hppa \
+	./lib/libpthread/arch/m68k \
+	./lib/libpthread/arch/m88k \
+	./lib/libpthread/arch/mips \
+	./lib/libpthread/arch/mips64 \
+	./lib/libpthread/arch/sparc64 \
+	./lib/libpthread/arch/vax \
+	./lib/libssl/crypto/arch/alpha \
+	./lib/libssl/crypto/arch/arm \
+	./lib/libssl/crypto/arch/hppa \
+	./lib/libssl/crypto/arch/m68k \
+	./lib/libssl/crypto/arch/m88k \
+	./lib/libssl/crypto/arch/mips \
+	./lib/libssl/crypto/arch/mips64 \
+	./lib/libssl/crypto/arch/sparc64 \
+	./lib/libssl/crypto/arch/vax \
+	./lib/libssl/src/MacOS \
+	./lib/libssl/src/VMS \
+	./lib/libssl/src/apps/demoCA \
+	./lib/libssl/src/apps/set \
+	./lib/libssl/src/bugs \
+	./lib/libssl/src/certs \
+	./lib/libssl/src/demos \
+	./lib/libssl/src/ms \
+	./lib/libssl/src/os2 \
+	./lib/libssl/src/shlib \
+	./lib/libssl/src/test \
+	./lib/libssl/src/times \
+	./lib/libssl/src/tools \
+	./lib/libssl/src/util \
+	./libexec/comsat \
+	./libexec/ld.so/alpha \
+	./libexec/ld.so/arm \
+	./libexec/ld.so/hppa \
+	./libexec/ld.so/mips \
+	./libexec/ld.so/mips64 \
+	./libexec/ld.so/sparc64 \
+	./libexec/lfs_cleanerd \
+	./libexec/login_kerberos \
+	./libexec/login_krb-or-pwd \
+	./libexec/login_krb4 \
+	./libexec/login_krb4-or-pwd \
+	./libexec/login_krb5 \
+	./libexec/login_krb5-or-pwd \
+	./libexec/rpc.yppasswdd \
+	./libexec/rshd \
+	./libexec/uucpd \
+	./lkm \
+	./regress \
+	./sbin/dumplfs \
+	./sbin/fsirand \
+	./sbin/mount_ados \
+	./sbin/mount_lfs \
+	./sbin/mount_xfs \
+	./sbin/newlfs \
+	./share/doc/psd/13.rcs \
+	./share/doc/usd/02.learn \
+	./share/doc/usd/30.rogue \
+	./share/ipsec \
+	./share/lkm \
+	./share/man/man0 \
+	./share/man/man4/man4.alpha \
+	./share/man/man4/man4.cats \
+	./share/man/man4/man4.hp300 \
+	./share/man/man4/man4.hppa \
+	./share/man/man4/man4.luna88k \
+	./share/man/man4/man4.mac68k \
+	./share/man/man4/man4.mvme68k \
+	./share/man/man4/man4.mvme88k \
+	./share/man/man4/man4.pegasos \
+	./share/man/man4/man4.sgi \
+	./share/man/man4/man4.sparc64 \
+	./share/man/man4/man4.vax \
+	./share/man/man4/man4.zaurus \
+	./share/man/man8/man8.alpha \
+	./share/man/man8/man8.cats \
+	./share/man/man8/man8.hp300 \
+	./share/man/man8/man8.hppa \
+	./share/man/man8/man8.luna88k \
+	./share/man/man8/man8.mac68k \
+	./share/man/man8/man8.mvme68k \
+	./share/man/man8/man8.mvme88k \
+	./share/man/man8/man8.pegasos \
+	./share/man/man8/man8.sgi \
+	./share/man/man8/man8.sparc64 \
+	./share/man/man8/man8.vax \
+	./share/man/man8/man8.zaurus \
+	./share/misc/pcvtfonts \
+	./share/pf \
+	./sys/adosfs \
+	./sys/arch/alpha \
+	./sys/arch/arm \
+	./sys/arch/cats \
+	./sys/arch/hp300 \
+	./sys/arch/hppa \
+	./sys/arch/i386/eisa \
+	./sys/arch/i386/stand/biosboot \
+	./sys/arch/i386/stand/cdboot \
+	./sys/arch/i386/stand/cdbr \
+	./sys/arch/i386/stand/mbr \
+	./sys/arch/luna88k \
+	./sys/arch/m68k \
+	./sys/arch/m88k \
+	./sys/arch/mac68k \
+	./sys/arch/mips64 \
+	./sys/arch/mvme68k \
+	./sys/arch/mvme88k \
+	./sys/arch/mvmeppc \
+	./sys/arch/sgi \
+	./sys/arch/sparc64 \
+	./sys/arch/vax \
+	./sys/arch/zaurus \
+	./sys/compat/aout \
+	./sys/compat/bsdos \
+	./sys/compat/freebsd \
+	./sys/compat/hpux \
+	./sys/compat/ibcs2 \
+	./sys/compat/m68k4k \
+	./sys/compat/netbsd \
+	./sys/compat/osf1 \
+	./sys/compat/sunos \
+	./sys/compat/svr4 \
+	./sys/compat/ultrix \
+	./sys/compat/vax1k \
+	./sys/dev/dec \
+	./sys/dev/eisa \
+	./sys/dev/hil \
+	./sys/dev/tc \
+	./sys/gnu \
+	./sys/lib/libkern/arch/mips64 \
+	./sys/netccitt \
+	./sys/netiso \
+	./sys/netns \
+	./sys/ufs/lfs \
+	./sys/xfs \
+	./usr.bin/apply \
+	./usr.bin/apropos \
+	./usr.bin/ar \
+	./usr.bin/asa \
+	./usr.bin/asn1_compile \
+	./usr.bin/banner \
+	./usr.bin/bdes \
+	./usr.bin/biff \
+	./usr.bin/cc \
+	./usr.bin/compile_et \
+	./usr.bin/compress/doc \
+	./usr.bin/cpp \
+	./usr.bin/cvs \
+	./usr.bin/elf2ecoff \
+	./usr.bin/error \
+	./usr.bin/from \
+	./usr.bin/fsplit \
+	./usr.bin/gencat \
+	./usr.bin/gprof \
+	./usr.bin/lam \
+	./usr.bin/learn \
+	./usr.bin/leave \
+	./usr.bin/mg \
+	./usr.bin/mkstr \
+	./usr.bin/nm \
+	./usr.bin/oldrdist \
+	./usr.bin/pmdb/arch/alpha \
+	./usr.bin/pmdb/arch/arm \
+	./usr.bin/pmdb/arch/hppa \
+	./usr.bin/pmdb/arch/m68k \
+	./usr.bin/pmdb/arch/m88k \
+	./usr.bin/pmdb/arch/mips64 \
+	./usr.bin/pmdb/arch/sparc64 \
+	./usr.bin/pmdb/arch/vax \
+	./usr.bin/ranlib \
+	./usr.bin/rdist \
+	./usr.bin/rdistd \
+	./usr.bin/rsh \
+	./usr.bin/size \
+	./usr.bin/strings \
+	./usr.bin/strip \
+	./usr.bin/sup \
+	./usr.bin/tn3270 \
+	./usr.bin/vacation \
+	./usr.bin/ypcat \
+	./usr.bin/ypmatch \
+	./usr.bin/ypwhich \
+	./usr.sbin/afs \
+	./usr.sbin/amd \
+	./usr.sbin/bind \
+	./usr.sbin/catman \
+	./usr.sbin/grfinfo \
+	./usr.sbin/hilinfo \
+	./usr.sbin/httpd/conf/ssl.crl \
+	./usr.sbin/httpd/conf/ssl.crt \
+	./usr.sbin/httpd/conf/ssl.csr \
+	./usr.sbin/httpd/conf/ssl.key \
+	./usr.sbin/httpd/conf/ssl.prm \
+	./usr.sbin/httpd/htdocs/manual/search \
+	./usr.sbin/httpd/icons/small \
+	./usr.sbin/httpd/src/lib \
+	./usr.sbin/httpd/src/regex \
+	./usr.sbin/kgmon \
+	./usr.sbin/mopd \
+	./usr.sbin/pkg \
+	./usr.sbin/pkg_add \
+	./usr.sbin/pkg_install \
+	./usr.sbin/ypbind \
+	./usr.sbin/yppoll \
+	./usr.sbin/ypserv \
+	./usr.sbin/ypset \
+"
+
+print -r -- '========= cvsim-base-obsd $MirBSD: src/scripts/openbsd-import,v 2.6 2005/01/19 17:00:54 tg Exp $ ========='
+if [[ $(basename $(pwd)) != src ]]; then
+	print Error: must be in src directory to commit.
+	exit 1
+fi
+
+case $1 in
+  20[0-9][0-9][0-1][0-9][0-2][0-9][0-5][0-9][0-5][0-9]) ;;
+  *)	print Error: tag is not in YYYYMMDDHHmm format.
+	exit 1
+	;;
+esac
+
+F=" "
+for i in $IGNDIRS; do
+	d=${i%/*}	# dirname
+	b=${i##*/}	# basename
+	I=$d/.cvsignore
+	case $F in
+	*@@( $I )*)
+		;;
+	*)
+		F="${F}${I} "
+		;;
+	esac
+	print $b >>$I
+done
+
+${DO_CVS:-cvs} -d /cvs import -I ! -I CVS src openbsd cvs-$1 2>&1
+
+rm -f $F
+print ========= Imported with Tag: cvs-$1 =========
+@
+
+
+2.6
+log
+@sync with actual to-import or to-not-import list
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/scripts/openbsd-import,v 2.5 2005/01/16 17:42:24 tg Exp $
+d98 1
+d343 1
+a343 1
+print -r -- '========= cvsim-base-obsd $MirBSD: src/scripts/openbsd-import,v 2.5 2005/01/16 17:42:24 tg Exp $ ========='
+@
+
+
+2.5
+log
+@un-kid
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/scripts/openbsd-import,v 2.4 2005/01/14 14:42:48 tg Exp $
+d4 1
+a4 1
+# Copyright (c) 2004
+d27 1
+d40 1
+d52 1
+d56 1
+d69 1
+d73 1
+d105 1
+d204 1
+d207 1
+d217 1
+d220 1
+d231 2
+d238 1
+d242 1
+d245 1
+d263 1
+d300 1
+d342 1
+a342 1
+print -r -- '========= cvsim-base-obsd $MirBSD: src/scripts/openbsd-import,v 2.4 2005/01/14 14:42:48 tg Exp $ ========='
+@
+
+
+2.4
+log
+@another dir we won't need in the future
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/scripts/openbsd-import,v 2.3 2004/12/19 11:45:22 tg Exp $
+d131 1
+d324 1
+a324 1
+print -r -- '========= cvsim-base-obsd $MirBSD: src/scripts/openbsd-import,v 2.3 2004/12/19 11:45:22 tg Exp $ ========='
+@
+
+
+2.3
+log
+@no libexpat from obsd, we've got it from vendor
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/scripts/openbsd-import,v 2.2 2004/12/12 21:36:34 tg Exp $
+d186 1
+d323 1
+a323 1
+print -r -- '========= cvsim-base-obsd $MirBSD: src/scripts/openbsd-import,v 2.2 2004/12/12 21:36:34 tg Exp $ ========='
+@
+
+
+2.2
+log
+@update list of ignored dirs
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/scripts/openbsd-import,v 2.1 2004/12/12 19:08:50 tg Exp $
+d112 1
+a112 1
+	./lib/libexpat/examples \
+d322 1
+a322 1
+print -r -- '========= cvsim-base-obsd $MirBSD: src/scripts/openbsd-import,v 2.1 2004/12/12 19:08:50 tg Exp $ ========='
+@
+
+
+2.1
+log
+@Copy over ocvs:src/scripts/ with slightly modified filenames
+and actualised contents
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/scripts/cvsim-src-openbsd,v 1.18 2004/12/12 18:02:28 tg Exp $
+d181 1
+d183 1
+d322 1
+a322 1
+print -r -- '========= cvsim-base-obsd $MirBSD: src/scripts/cvsim-src-openbsd,v 1.18 2004/12/12 18:02:28 tg Exp $ ========='
+@
+

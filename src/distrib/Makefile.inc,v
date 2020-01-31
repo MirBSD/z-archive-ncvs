@@ -1,0 +1,75 @@
+head	2.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.26.20.48.55;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.18.18.13.26;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.17.22.41.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@I think we can now build a floppy (systrace'd of course) with this.
+While here, fix the generated kernel's name.
+@
+text
+@# $MirBSD: src/distrib/Makefile.inc,v 2.2 2005/01/18 18:13:26 tg Exp $
+
+# XXX i386 ISO are broken ATM
+REL_NO_AUTOISO=	Yes
+
+# XXX sparc kernels and ramdisks are broken ATM
+# XXX macppc kernels and ramdisks are not even touched from OpenBSD
+.if ${MACHINE} != "i386"
+REL_NO_KERNEL=	Yes
+.endif
+@
+
+
+2.2
+log
+@I told you... these _are_ evil ways.
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/distrib/Makefile.inc,v 2.1 2005/01/17 22:41:58 tg Exp $
+d3 1
+a3 2
+# XXX i386 floppy kernel and ISO are broken ATM
+REL_NO_FLOPPY=	Yes
+@
+
+
+2.1
+log
+@some more general improvements (I hope)
+@
+text
+@d1 1
+a1 1
+# $MirBSD$
+d3 9
+a11 2
+# XXX kernels are broken ATM
+REL_NO_KERNEL=yes
+@
+

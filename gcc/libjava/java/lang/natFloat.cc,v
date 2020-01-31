@@ -1,0 +1,111 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@// @;
+
+
+1.1
+date	2005.01.04.17.25.30;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.25.30;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@// natFloat.cc - Implementation of java.lang.Float native methods.
+
+/* Copyright (C) 1998, 1999, 2001  Free Software Foundation
+
+   This file is part of libgcj.
+
+This software is copyrighted work licensed under the terms of the
+Libgcj License.  Please consult the file "LIBGCJ_LICENSE" for
+details.  */
+
+#include <config.h>
+
+#include <java/lang/Float.h>
+#include <jvm.h>
+
+union u
+{
+  jint l;
+  jfloat d;
+};
+
+jint 
+java::lang::Float::floatToIntBits(jfloat value)
+{
+  union u u;
+  u.d = value;
+  jint e = u.l & 0x7f800000;
+  jint f = u.l & 0x007fffff;
+
+  if (e == 0x7f800000 && f != 0)
+    u.l = 0x7fc00000;
+
+  return u.l;
+}
+
+jint 
+java::lang::Float::floatToRawIntBits(jfloat value)
+{
+  union u u;
+  u.d = value;  
+  return u.l;
+}
+
+jfloat 
+java::lang::Float::intBitsToFloat(jint bits)
+{
+  union u u;
+  u.l = bits;
+  return u.d;
+}
+
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

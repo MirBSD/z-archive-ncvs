@@ -1,0 +1,117 @@
+head	2.2;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.28.18.51.19;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.37.20;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.33.29;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.33.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@EISA? no macppc or amd64? weirdos
+@
+text
+@# $MirBSD: src/sys/kern/Make.tags.inc,v 2.1 2005/01/03 16:37:20 tg Exp $
+# $OpenBSD: Make.tags.inc,v 1.7 2002/07/15 21:29:16 mickey Exp $
+
+# Common files for "make tags".
+# Included by the Makefile for each architecture.
+
+# Put the ../sys stuff near the end so that subroutine definitions win when
+# there is a struct tag with the same name (eg., vmmeter).  The real
+# solution would probably be for ctags to generate "struct vmmeter" tags.
+
+COMM=	\
+	$S/altq/*.[ch] \
+	$S/compat/*/*.[ch] \
+	$S/conf/*.[ch] \
+	$S/crypto/*.[ch] \
+	$S/ddb/*.[ch] \
+	$S/dev/*.[ch] $S/dev/*/*.[ch] $S/dev/*/*/*.[ch] \
+	$S/isofs/*/*.[ch] \
+	$S/kern/*.[ch] \
+	$S/lib/libkern/*.[ch] \
+	$S/miscfs/*/*.[ch] \
+	$S/msdosfs/*.[ch] \
+	$S/net/*.[ch] \
+	$S/netatalk/*.[ch] \
+	$S/netinet/*.[ch] \
+	$S/netinet6/*.[ch] \
+	$S/netipx/*.[ch] \
+	$S/netisdn/*.[ch] \
+	$S/netnatm/*.[ch] \
+	$S/nfs/*.[ch] \
+	$S/ntfs/*.[ch] \
+	$S/scsi/*.[ch] \
+	$S/ufs/*/*.[ch] \
+	$S/uvm/*.[ch] \
+	$S/sys/*.[ch]
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/sys/kern/Make.tags.inc,v 1.2 2004/03/21 15:33:34 tg Stab $
+d28 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Make.tags.inc,v 1.7 2002/07/15 21:29:16 mickey Exp $
+d11 1
+a11 1
+COMM=	$S/adosfs/*.[ch] \
+a24 1
+	$S/netccitt/*.[ch] \
+a27 1
+	$S/netiso/*.[ch] \
+a28 1
+	$S/netns/*.[ch] \
+d30 1
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

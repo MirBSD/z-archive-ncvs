@@ -1,0 +1,77 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.17.43;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.17.43;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/xcursorgen/Imakefile,v 1.7 2002/12/23 11:05:23 herrb Exp $
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS="$(CDEBUGFLAGS)"
+
+        SUBDIRS = redglass whiteglass handhelds
+  DEFAULT_THEME = DefaultCursorTheme
+        ICONDIR = $(LIBDIR)/icons
+       THEMEDIR = $(ICONDIR)/default
+       INCLUDES = $(LIBPNGINC)
+        DEPLIBS = $(DEPXLIB)
+LOCAL_LIBRARIES = $(XCURSORLIB) $(XRENDERLIB) $(XLIB) $(LIBPNGLIB) \
+		  MathLibrary GzipLibrary
+           SRCS = xcursorgen.c
+           OBJS = xcursorgen.o
+
+ComplexProgramTarget(xcursorgen)
+LinkBuildBinary(ProgramTargetName(xcursorgen))
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+
+/*
+ * Create an index.theme file that references the
+ * default theme
+ */
+
+all:: index.theme
+
+index.theme:: Imakefile
+	echo '[Icon Theme]' > index.theme
+	echo 'Inherits=$(DEFAULT_THEME)' >> index.theme
+
+clean::
+	$(RM) index.theme
+
+InstallTarget(install,index.theme,$(INSTDATAFLAGS),$(THEMEDIR))
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

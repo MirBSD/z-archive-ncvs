@@ -1,0 +1,60 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.12.13.20.47.46;	author tg;	state Exp;
+branches;
+next	1.1;
+commitid	0439f3387e8d1051;
+
+1.1
+date	2005.12.13.20.43.42;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f3294b12e778;
+
+
+desc
+@@
+
+
+1.2
+log
+@add ChangeLog services
+@
+text
+@# The "checkoutlist" file is used to support additional version controlled
+# administrative files in $CVSROOT/CVSROOT, such as template files.
+#
+# The first entry on a line is a filename which will be checked out from
+# the corresponding RCS file in the $CVSROOT/CVSROOT directory.
+# The remainder of the line is an error message to use if the file cannot
+# be checked out.
+#
+# File format:
+#
+#	[<whitespace>]<filename>[<whitespace><error message>]<end-of-line>
+#
+# comment lines begin with '#'
+
+#cvs-genperm	Fatal: Unable to find CVS Repository permission fixup script!
+genlog		Fatal: Unable to find ChangeLog rotating output driver!
+mklogci		Fatal: Unable to find ChangeLog commit/import logger!
+#mklogtag	Fatal: Unable to find ChangeLog symbolic tag logger!
+tracker		Fatal: Unable to find ChangeLog directory list keeper!
+@
+
+
+1.1
+log
+@initial checkin
+@
+text
+@d14 6
+@
+
+

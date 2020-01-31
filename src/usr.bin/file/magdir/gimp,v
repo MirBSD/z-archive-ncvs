@@ -1,0 +1,91 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.54;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: gimp,v 1.1 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+# GIMP Gradient: file(1) magic for the GIMP's gradient data files
+# by Federico Mena <federico@@nuclecu.unam.mx>
+
+0       string          GIMP\ Gradient  GIMP gradient data
+
+#------------------------------------------------------------------------------
+# XCF:  file(1) magic for the XCF image format used in the GIMP developed
+#       by Spencer Kimball and Peter Mattis
+#       ('Bucky' LaDieu, nega@@vt.edu)
+
+0	string		gimp\ xcf	GIMP XCF image data,
+>9	string		file		version 0,
+>9	string		v		version
+>>10	string		>\0		%s,
+>14	belong		x		%lu x
+>18	belong		x		%lu,
+>22     belong          0               RGB Color
+>22     belong          1               Greyscale
+>22     belong          2               Indexed Color
+>22	belong		>2		Unknown Image Type.
+
+#------------------------------------------------------------------------------
+# XCF:  file(1) magic for the patterns used in the GIMP, developed
+#       by Spencer Kimball and Peter Mattis
+#       ('Bucky' LaDieu, nega@@vt.edu)
+
+20      string          GPAT            GIMP pattern data,
+>24     string          x               %s
+
+#------------------------------------------------------------------------------
+# XCF:  file(1) magic for the brushes used in the GIMP, developed
+#       by Spencer Kimball and Peter Mattis
+#       ('Bucky' LaDieu, nega@@vt.edu)
+
+20      string          GIMP            GIMP brush data
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

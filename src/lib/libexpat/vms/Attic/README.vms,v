@@ -1,0 +1,74 @@
+head	1.2;
+access;
+symbols
+	expat-1_95_8:1.1.16.1 expat:1.1.16;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.31.19;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.28.14;	author tg;	state Exp;
+branches
+	1.1.16.1;
+next	;
+
+1.1.16.1
+date	2005.01.08.20.28.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge
+@
+text
+@4-jun-2002	Craig A. Berry
+		Added rudimentary build procedures for 
+		OpenVMS based on work by Martin Vorlaender.
+
+
+You'll need MMS or its freeware equivalent MMK.  Just go to the 
+top-level directory and type
+
+$ MMS/DESCRIPTION=[.vms]
+ 
+  or
+
+$ MMK/DESCRIPTION=[.vms]
+
+You'll end up with the object library expat.olb.  For now, installation
+consists merely of copying the object library, include files, and
+documentation to a suitable location.  
+
+To-do list:
+
+	-- create a shareable image
+	-- build and run the tests and build the xmlwf utility
+	-- create an install target
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.16.1
+log
+@libexpat 1.95.8
+@
+text
+@@

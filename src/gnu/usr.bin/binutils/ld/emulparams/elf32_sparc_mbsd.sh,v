@@ -1,0 +1,31 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.13.20.14.17;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@start merging binutils
+@
+text
+@# $MirBSD: src/gnu/usr.bin/binutils/src/ld/emulparams/elf32_sparc_mbsd.sh,v 1.1 2004/10/08 04:22:38 tg Exp $
+
+. ${srcdir}/emulparams/elf32_sparc.sh
+
+# override MAXPAGESIZE to avoid cache aliasing.
+MAXPAGESIZE=0x100000
+
+. ${srcdir}/emulparams/elf_mbsd.sh
+@

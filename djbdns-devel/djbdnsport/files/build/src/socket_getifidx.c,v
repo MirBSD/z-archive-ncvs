@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.12.13.22.27.15;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f4ac1aff1455;
+
+
+desc
+@@
+
+
+1.1
+log
+@consolidate all added source files in a central directory
+so it can be reused by the v6-transport stuff
+@
+text
+@#include <sys/types.h>
+#include <sys/socket.h>
+#include <net/if.h>
+#include "socket.h"
+#include "haven2i.h"
+
+uint32 socket_getifidx(const char* ifname) {
+#ifdef HAVE_N2I
+  return if_nametoindex(ifname);
+#else
+  return 0;
+#endif
+}
+@

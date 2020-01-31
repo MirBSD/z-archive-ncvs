@@ -1,0 +1,67 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.22.50;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $OpenBSD: list.local,v 1.2 2004/03/21 18:43:20 deraadt Exp $
+
+# add local links; use bin/sh since instbin has already been unlinked
+#LINK	instbin					sbin/wicontrol
+#LINK	instbin					sbin/ancontrol
+#LINK	instbin					sbin/ccdconfig
+LINK	instbin					sbin/ping6
+LINK	instbin					sbin/rtsol
+
+LINK	instbin					sbin/dhclient
+
+# dhcp things
+SCRIPT	${DESTDIR}/sbin/dhclient-script 	sbin/dhclient-script
+SPECIAL chmod 755 sbin/dhclient-script
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

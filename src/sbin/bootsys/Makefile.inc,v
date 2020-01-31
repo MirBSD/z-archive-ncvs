@@ -1,0 +1,79 @@
+head	1.2;
+access;
+symbols
+	start:1.1.15.1 mirbsd:1.1.15;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.16.15.40.04;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.07.01.15.36;	author tg;	state Exp;
+branches
+	1.1.15.1;
+next	;
+
+1.1.15.1
+date	2005.01.07.01.15.36;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@make obj fixes
+@
+text
+@# $MirBSD: src/sbin/bootsys/Makefile.inc,v 1.1.15.1 2005/01/07 01:15:36 tg Exp $
+
+.ifndef	_MODSRC_SBIN_BOOTSYS_MAKEFILE_INC
+_MODSRC_SBIN_BOOTSYS_MAKEFILE_INC=1
+
+.include <bsd.own.mk>
+
+REAL_V!=	print '\#include <sys/param.h>\nMirBSD' | ${CC} -E - \
+		    | tail -1 | sed s,0x,,
+V?=		${REAL_V}
+
+# misc. variable settings
+BINDIR?=	/usr/mdec
+_V=		\"${V}\"
+CPPFLAGS+=	-D__BOOTSYS="${_V}"
+
+.include "../Makefile.inc"
+.endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/sbin/bootsys/Makefile.inc,v 1.7 2004/08/02 17:56:39 tg Stab $
+d3 2
+a4 2
+.ifndef	__BOOTSYS_MAKEFILE_INC
+__BOOTSYS_MAKEFILE_INC=1
+d6 3
+a8 1
+REAL_V!=	print '\#include <sys/param.h>\nMirBSD' | gcc -E - \
+@
+
+
+1.1.15.1
+log
+@the new-style bootloader in prenatal stage
+@
+text
+@@

@@ -1,0 +1,68 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.08;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.14;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@Everything in this directory (except this file) has been contributed.
+We will not fix bugs in these programs.  Contact the original author
+for assistance.
+
+Some of these are patches to sendmail itself.  You may need to take
+care -- some of the patches may be out of date with the latest release
+of sendmail.  Also, the previous comment applies -- patches belong to
+the original author, not to us.
+
+$Revision: 1.1.1.1 $, Last updated $Date: 2003/03/22 17:44:33 $
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d10 1
+a10 1
+$Revision: 1.4 $, Last updated $Date: 2001/09/11 19:02:48 $
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

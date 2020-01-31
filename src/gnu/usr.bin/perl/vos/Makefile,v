@@ -1,0 +1,76 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.48;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#
+# This Makefile can be used to update the config.alpha.h and
+# config.ga.h files *in UNIX* (in VOS the configure_perl.cm
+# is used).  Update the config.*.def files appropriately when
+# you add new symbols to Configure.  If you don't know VOS,
+# most of the time a safe guess for a symbol is 'undef'.
+#
+
+all:	config.alpha.h config.ga.h
+
+config.alpha.h:	config.alpha.def ../config_h.SH ../mv-if-diff
+	cp config.alpha.def config.def
+	perl config.pl
+	sh ../mv-if-diff config.h.new config.alpha.h
+	rm -f config.def config.h.new
+
+config.ga.h:	config.ga.def ../config_h.SH ../mv-if-diff
+	cp config.ga.def config.def
+	perl config.pl
+	sh ../mv-if-diff config.h.new config.ga.h
+	rm -f config.def config.h.new
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,130 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.25;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.47;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.47;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl
+
+BEGIN {
+    unless (-d 'blib') {
+	chdir 't' if -d 't';
+	@@INC = '../lib';
+	require Config; import Config;
+	keys %Config; # Silence warning
+	if ($Config{extensions} !~ /\bList\/Util\b/) {
+	    print "1..0 # Skip: List::Util was not built\n";
+	    exit 0;
+	}
+    }
+}
+
+BEGIN {
+  require Scalar::Util;
+
+  if (grep { /set_prototype/ } @@Scalar::Util::EXPORT_FAIL) {
+    print "1..0\n";
+    $skip=1;
+  }
+}
+
+eval <<'EOT' unless $skip;
+use Scalar::Util qw(set_prototype);
+
+print "1..13\n";
+$test = 0;
+
+sub proto_is ($$) {
+    $proto = prototype shift;
+    $expected = shift;
+    if (defined $expected) {
+	print "# Got $proto, expected $expected\nnot " if $expected ne $proto;
+    }
+    else {
+	print "# Got $proto, expected undef\nnot " if defined $proto;
+    }
+    print "ok ", ++$test, "\n";
+}
+
+sub f { }
+proto_is 'f' => undef;
+$r = set_prototype(\&f,'$');
+proto_is 'f' => '$';
+print "not " unless ref $r eq "CODE" and $r == \&f;
+print "ok ", ++$test, " - return value\n";
+set_prototype(\&f,undef);
+proto_is 'f' => undef;
+set_prototype(\&f,'');
+proto_is 'f' => '';
+
+sub g (@@) { }
+proto_is 'g' => '@@';
+set_prototype(\&g,undef);
+proto_is 'g' => undef;
+
+sub non_existent;
+proto_is 'non_existent' => undef;
+set_prototype(\&non_existent,'$$$');
+proto_is 'non_existent' => '$$$';
+
+sub forward_decl ($$$$);
+proto_is 'forward_decl' => '$$$$';
+set_prototype(\&forward_decl,'\%');
+proto_is 'forward_decl' => '\%';
+
+eval { &set_prototype( 'f', '' ); };
+print "not " unless $@@ =~ /^set_prototype: not a reference/;
+print "ok ", ++$test, " - error msg\n";
+eval { &set_prototype( \'f', '' ); };
+print "not " unless $@@ =~ /^set_prototype: not a subroutine reference/;
+print "ok ", ++$test, " - error msg\n";
+EOT
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

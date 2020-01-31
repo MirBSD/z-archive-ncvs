@@ -1,0 +1,62 @@
+head	1.2;
+access;
+symbols
+	libpng-1_2_8:1.1.17.1 libpng:1.1.17;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.37.35;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches
+	1.1.17.1;
+next	;
+
+1.1.17.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke junk
+@
+text
+@
+prefix=@@PREFIX@@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${exec_prefix}/include
+
+Name: libpng12
+Description: Loads and saves PNG files
+Version: 1.2.8
+Libs: -L${libdir} -lpng12 -lz -lm
+Cflags: -I${includedir}/libpng12
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.17.1
+log
+@libpng-1.2.8.tar.bz2
+@
+text
+@@

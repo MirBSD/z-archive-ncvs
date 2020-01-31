@@ -1,0 +1,70 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.05.07;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.05.07;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include <ft2build.h>
+#include FT_SYSTEM_MEMORY_H
+
+  static FT_Memory
+  ft_memory_new_default( FT_ULong  size )
+  {
+    return (FT_Memory) ft_malloc( size );
+  }
+  
+  static void
+  ft_memory_destroy_default( FT_Memory  memory )
+  {
+    ft_free( memory );
+  }
+
+  
+ /* notice that in normal builds, we use the ISO C library functions */
+ /* 'malloc', 'free' and 'realloc' directly..                        */
+ /*                                                                  */
+  static const FT_Memory_FuncsRec  ft_memory_funcs_default_rec = 
+  {
+    (FT_Memory_CreateFunc)  ft_memory_new_iso,
+    (FT_Memory_DestroyFunc) ft_memory_destroy_iso,
+    (FT_Memory_AllocFunc)   ft_malloc,
+    (FT_Memory_FreeFunc)    ft_free,
+    (FT_Memory_ReallocFunc) ft_realloc
+  };
+  
+  FT_APIVAR_DEF( const FT_Memory_Funcs )
+  ft_memory_funcs_default = &ft_memory_funcs_defaults_rec;
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

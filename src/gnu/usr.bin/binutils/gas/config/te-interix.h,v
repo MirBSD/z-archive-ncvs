@@ -1,0 +1,71 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.08.23.03.36;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.03.36;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#define TE_PE_DYN /* PE with dynamic linking (UNIX shared lib) support */
+#define TE_PE
+#define LEX_AT 1 /* can have @@'s inside labels */
+#define LEX_QM 3 /* can have ?'s in or begin labels */
+
+/* The PE format supports long section names.  */
+#define COFF_LONG_SECTION_NAMES
+
+#define GLOBAL_OFFSET_TABLE_NAME "__GLOBAL_OFFSET_TABLE_"
+
+/* Both architectures use these.  */
+#ifndef LOCAL_LABELS_FB
+#define LOCAL_LABELS_FB 1
+#endif
+
+#include "obj-format.h"
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

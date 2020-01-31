@@ -1,0 +1,121 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.04.06;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.06;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@.\" Troff/nroff macros for RFCs
+.\" Use ".so tmac.rfc" and nroff -ms rfc1234.t | fix.nawk
+.\" or nroff -ms tmac.rfc rfc1234.t | fix.nawk
+.\" or the obvious troff variants.
+.\" Registers (all strings):
+.\"	iL	Author's Last name
+.\"	iN	RFC number
+.\"	iD	Date
+.\"	iI	Author's Initial
+.\"	iO	Author's Organization (usually employer)
+.\"	iG	Author's Group (eg IETF WG)
+.\"---------------------------------------------------------------------------
+.\" Set up page header/footer stuff
+.ds RF [Page %]
+.ds LF \*(iL
+.ds CF
+.ie '\*(iN'DRAFT' .ds LH DRAFT
+.el .ds LH RFC \*(iN
+.ds RH \*(iD
+.ds CH
+.\"---------------------------------------------------------------------------
+.\" Online vs fully-formatted distinctions.
+.ie n \{\
+.\" Set up for online use.  While this is compatible with printing, it
+.\" is intended for producing "standard" RFC text files.
+.pl 10.0i
+.po 0
+.ll 7.2i
+.lt 7.2i
+.nr LL 7.2i
+.nr LT 7.2i
+.ad l
+.\" nroff normally does not put out ^Ls.  The FORMFEED below is part of a
+.\" hack involving "nroff|fix.nawk" or "nroff|fix.sed|fix.awk" to put
+.\" out pages that look like
+.\"	last line of page
+.\"	^L
+.\"	first line of new page
+.ds RF FORMFEED\*(RF
+.\}
+.el \{\
+.\" Set up for troff use.  Optimized for groff and my LJ-IIIP w/PostScript.
+.pl -.5i
+.\}
+.\"---------------------------------------------------------------------------
+.\" I don't like hyphenation.
+.hy 0
+.\" And stupid -ms tries to turn it back on, so defeat that...
+.de hy
+..
+.de dH
+.if '\*(iN'DRAFT' \{\
+This document is an Internet-Draft.  Internet-Drafts are
+working documents of the Internet Engineering Task Force
+(IETF), its areas, and its working groups.  Note that other
+groups may also distribute working documents as
+Internet-Drafts.
+
+Internet-Drafts are draft documents valid for a maximum of six
+months.  Internet-Drafts may be updated, replaced, or obsoleted
+by other documents at any time.  It is not appropriate to use
+Internet-Drafts as reference material or to cite them other
+than as a \*Qworking draft\*U or \*Qwork in progress.\*U
+
+To learn the current status of any Internet-Draft, please check
+the 1id-abstracts.txt listing contained in the Internet-Drafts
+Shadow Directories on ds.internic.net, nic.nordu.net,
+ftp.nisc.sri.com, or munnari.oz.au.
+
+This document is filed under \*Q\\$1\*U.
+.\}
+..
+.\"---------------------------------------------------------------------------
+.\" Put the standard header at the top of the first page.  Perhaps
+.\" this should be a macro which you must explicitly call.
+.br
+.tl `\*(iG``\*(iI \*(iL`
+.ie '\*(iN'DRAFT' .tl `INTERNET-DRAFT``\*(iO`
+.el .tl `Request for Comments: \*(iN``\*(iO`
+.tl ```\*(iD`
+.sp  2
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

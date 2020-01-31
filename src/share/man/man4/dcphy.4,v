@@ -1,0 +1,77 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@.\" @;
+
+
+2.1
+date	2005.01.03.16.33.19;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.50;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.50;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@.\"	$OpenBSD: dcphy.4,v 1.2 2004/02/10 15:10:49 mickey Exp $
+.\"
+.\" Michael Shalayeff, 2003. Public Domain.
+.\"
+.Dd August 23, 2003
+.Dt DCPHY 4
+.Os
+.Sh NAME
+.Nm dcphy
+.Nd Pseudo-driver for media support on DEC 21143 controllers
+.Sh SYNOPSIS
+.Cd "dcphy* at mii? phy ?"
+.Sh DESCRIPTION
+The
+.Nm
+driver handles media selection on the
+.Tn DEC 21143
+chip as it has no real MII interface.
+.Sh SEE ALSO
+.Xr dc 4 ,
+.Xr ifmedia 4 ,
+.Xr intro 4 ,
+.Xr mii 4 ,
+.Xr ifconfig 8
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

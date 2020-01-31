@@ -1,0 +1,63 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@\input texinfo
+@@setfilename top.info
+@@settitle top test
+
+@@c This traditional top node uses @@ifinfo for testing.
+@@c Therefore there will be warnings when processing with --html.
+@@c The solution is to use @@ifnottex instead.
+
+@@ifinfo
+@@node Top
+@@top Top test
+
+Typical top node.
+@@end ifinfo
+
+@@menu
+* Subnode::
+@@end menu
+
+@@node Subnode
+@@chapter Subnode
+
+Subnode.
+
+@@bye
+@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

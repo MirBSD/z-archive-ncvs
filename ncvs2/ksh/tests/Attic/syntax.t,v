@@ -1,0 +1,67 @@
+head	1.2;
+access;
+symbols
+	start:1.1.7.1 mirbsd:1.1.7;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.10.21.11.33.15;	author tg;	state dead;
+branches;
+next	1.1;
+commitid	275f4358cfde0f84;
+
+1.1
+date	2005.03.06.15.42.55;	author tg;	state Exp;
+branches
+	1.1.7.1;
+next	;
+
+1.1.7.1
+date	2005.03.06.15.42.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@* un-hook bin/ksh, usr.bin/xmlwf and lib/libexpat from the build
+  - expat as discussed with bsiegert@@ today on the phone
+  - ksh as announced earlier on the lists
+* un-hook lib/libexpat from make includes
+* remove /usr/include/{,open}ssl upgrade workaround from includes/Makefile
+* nuke old bin/ksh
+* nuke libexpat and xmlwf
+@
+text
+@name: syntax-1
+description:
+	Check that lone ampersand is a syntax error
+stdin:
+	 &
+expected-exit: e != 0
+expected-stderr-pattern:
+	/syntax error/
+---
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.7.1
+log
+@Import current state of MirbsdKsh
+@
+text
+@@

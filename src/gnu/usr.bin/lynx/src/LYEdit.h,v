@@ -1,0 +1,56 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.03.00.23.43;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.43;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef LYEDIT_H
+#define LYEDIT_H
+
+#ifndef HTUTILS_H
+#include <HTUtils.h>
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    extern BOOLEAN editor_can_position(void);
+    extern int edit_current_file(char *newfile, int cur, int lineno);
+    extern void edit_temporary_file(char *filename, const char *position, const char *message);
+
+#ifdef __cplusplus
+}
+#endif
+#endif				/* LYEDIT_H */
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

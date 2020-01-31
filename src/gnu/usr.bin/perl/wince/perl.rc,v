@@ -1,0 +1,91 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.26.54;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#include <windows.h>
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+1 ICON DISCARDABLE "perl.ico"
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 5,6,0,0
+ PRODUCTVERSION 5,6,0,0
+ FILEFLAGSMASK 0x3FL
+ FILEFLAGS 0x0L
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+	BLOCK "040904B0"
+	BEGIN
+	    VALUE "CompanyName", "Paranoyaxc Inc\0"
+	    VALUE "FileDescription", "Perl for WindowsCE\0"
+	    VALUE "FileVersion", "1, 0, 0, 0\0"
+	    VALUE "InternalName", "PerlCE\0"
+	    VALUE "LegalCopyright", "Copyright (C) Larry Wall\0"
+	    VALUE "OriginalFilename", "perl.exe"
+	    VALUE "ProductName", "Perl\0"
+	    VALUE "ProductVersion", "5, 7, 2, 0\0"
+	    VALUE "OLESelfRegister", "\0"
+	 END
+     END
+     BLOCK "VarFileInfo"
+     BEGIN
+         VALUE "Translation", 0x409, 1200
+     END
+END
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

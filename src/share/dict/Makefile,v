@@ -1,0 +1,153 @@
+head	2.3;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.18.16.03.03;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.08.20.05.22;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.32.27;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.37;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.37;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@descend into papers
+@
+text
+@# $MirBSD: src/share/dict/Makefile,v 2.2 2005/01/08 20:05:22 tg Exp $
+
+SUBDIR=	papers
+
+BINDIR=	/usr/share/dict
+NOMAN=	yes
+NOPROG=	yes
+FILES=	README connectives eign propernames web2 web2a
+GENF=	words
+
+CLEANFILES+=	${GENF}
+
+all: _SUBDIRUSE words
+
+words: ${.CURDIR}/eign ${.CURDIR}/web2 ${.CURDIR}/words
+	sort -df ${.ALLSRC} | uniq >$@@
+
+afterinstall:
+.for _i in ${FILES}
+	install -c -o ${DOCOWN} -g ${DOCGRP} -m ${DOCMODE} \
+	    ${.CURDIR}/${_i} ${DESTDIR}${BINDIR}/
+.endfor
+.for _i in ${GENF}
+	install -c -o ${DOCOWN} -g ${DOCGRP} -m ${DOCMODE} \
+	    ${_i} ${DESTDIR}${BINDIR}/
+.endfor
+
+.include <bsd.prog.mk>
+@
+
+
+2.2
+log
+@(mostly) documentation update and merge
+@
+text
+@d1 3
+a3 1
+# $MirBSD$
+d13 1
+a13 1
+all: words
+d18 1
+a18 1
+install:
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 3
+# $MirBSD: src/share/dict/Makefile,v 1.6 2004/11/30 17:04:17 tg Exp $
+# $OpenBSD: Makefile,v 1.2 2000/03/02 14:46:34 todd Exp $
+# from: @@(#)Makefile	5.1.1.1 (Berkeley) 5/7/91
+d3 3
+d7 18
+a24 18
+PAPERS=	INDEX Rbstjissue Rv7man
+NOOBJ=	yes
+SORTS=	${.CURDIR}/web2 ${.CURDIR}/words ${.CURDIR}/eign
+WORDS=	${DESTDIR}${BINDIR}/dict/words
+
+all clean cleandir depend lint tags:
+
+realinstall:
+	install -c -o ${BINOWN} -g ${BINGRP} -m 444 ${FILES} \
+	    ${DESTDIR}${BINDIR}/dict
+	install -c -o ${BINOWN} -g ${BINGRP} -m 444 ${PAPERS} \
+	    ${DESTDIR}${BINDIR}/dict/papers
+	-(cd ${DESTDIR}${BINDIR}/dict/papers && \
+	    ${DESTDIR}/usr/bin/mkey R* | \
+	    ${DESTDIR}/usr/bin/inv -v -h997 -n Ind; \
+	    chmod 444 Ind* )
+	sort -df ${SORTS} | uniq >${WORDS} && chmod 444 ${WORDS} && \
+	    chown ${BINOWN}:${BINGRP} ${WORDS}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 3
+a3 2
+#	$OpenBSD: Makefile,v 1.2 2000/03/02 14:46:34 todd Exp $
+#	from: @@(#)Makefile	5.1.1.1 (Berkeley) 5/7/91
+d5 5
+a9 5
+# Missing: connectives, words
+
+FILES=	README propernames web2 web2a
+NOOBJ=	noobj
+LINKS=	${BINDIR}/dict/web2 ${BINDIR}/dict/words
+d16 8
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

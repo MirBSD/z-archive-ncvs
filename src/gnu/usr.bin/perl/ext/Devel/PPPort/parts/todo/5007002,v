@@ -1,0 +1,56 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  cvs-200501160850:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.16.09.56.01;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.16.09.56.01;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@5.007002
+calloc                         # E
+getcwd_sv                      # U
+init_tm                        # U
+malloc                         # E
+mfree                          # U
+mini_mktime                    # U
+my_atof2                       # E
+my_strftime                    # E
+op_null                        # U
+realloc                        # E
+sv_2pv_flags                   # E
+sv_catpvn_flags                # U
+sv_catsv_flags                 # U
+sv_pvn_force_flags             # E
+sv_setsv_flags                 # U
+sv_utf8_upgrade_flags          # U
+swash_fetch                    # E (Perl_swash_fetch)
+@
+
+
+1.1.1.1
+log
+@Import a series of fixes and minor updates from OpenBSD
+@
+text
+@@

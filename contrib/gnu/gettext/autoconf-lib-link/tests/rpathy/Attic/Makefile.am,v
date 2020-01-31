@@ -1,0 +1,56 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.43.41;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.28;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.28;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@AUTOMAKE_OPTIONS = 1.5 foreign no-dependencies
+mkinstalldirs = $(SHELL) @@global_top_auxdir@@/mkinstalldirs
+lib_LTLIBRARIES = librpathy.la
+librpathy_la_SOURCES = rpathy.c
+librpathy_la_LDFLAGS = @@LTLIBRPATHX@@ -lc -no-undefined
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

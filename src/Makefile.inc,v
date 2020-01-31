@@ -1,0 +1,115 @@
+head	2.5;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.5
+date	2005.01.18.00.51.32;	author tg;	state Exp;
+branches;
+next	2.4;
+
+2.4
+date	2005.01.13.20.34.55;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.05.18.29.50;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.05.16.01.40;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.22.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.5
+log
+@rename systrace.policy to hide it from the casual ls
+(this helps since it can live in / for quite some time)
+@
+text
+@# $MirBSD: src/Makefile.inc,v 2.4 2005/01/13 20:34:55 tg Exp $
+
+.ifndef _MODSRC_MAKEFILE_INC
+_MODSRC_MAKEFILE_INC=1
+
+_STCMD=		/bin/systrace -e -i -a
+_STFILE_OBJ=	${BSDOBJDIR}/.policy.mk
+_STFILE_FSF=	${FSFOBJDIR}/.policy.mk
+_STFILE_DEST=	${DESTDIR}/.policy.mk
+_STCMD_OBJ=	${_STCMD} -f ${_STFILE_OBJ}
+_STCMD_FSF=	${_STCMD} -f ${_STFILE_FSF}
+_STCMD_DEST=	${_STCMD} -f ${_STFILE_DEST}
+
+.endif
+@
+
+
+2.4
+log
+@further merge and fix double-inclusion-protection
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/Makefile.inc,v 2.3 2005/01/05 18:29:50 tg Exp $
+d7 3
+a9 3
+_STFILE_OBJ=	${BSDOBJDIR}/systrace.policy
+_STFILE_FSF=	${FSFOBJDIR}/systrace.policy
+_STFILE_DEST=	${DESTDIR}/systrace.policy
+@
+
+
+2.3
+log
+@pasto
+@
+text
+@d1 4
+a4 1
+# $MirBSD: src/Makefile.inc,v 2.2 2005/01/05 16:01:40 tg Exp $
+d13 2
+@
+
+
+2.2
+log
+@support for systrace policy in ${FSFOBJDIR}, used by gcc
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/Makefile.inc,v 2.1 2005/01/03 16:22:25 tg Exp $
+d8 1
+a8 1
+_STCMD_FSF=	${_STCMD} -f ${_STFILE_OBJ}
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/Makefile.inc,v 1.1 2004/12/14 19:07:47 tg Exp $
+d5 1
+d8 1
+@
+

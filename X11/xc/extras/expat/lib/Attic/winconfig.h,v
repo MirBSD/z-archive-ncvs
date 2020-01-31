@@ -1,0 +1,83 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.06.22.13.44;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.04.46;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.04.46;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@/*================================================================
+** Copyright 2000, Clark Cooper
+** All rights reserved.
+**
+** This is free software. You are permitted to copy, distribute, or modify
+** it under the terms of the MIT/X license (contained in the COPYING file
+** with this distribution.)
+*/
+
+#ifndef WINCONFIG_H
+#define WINCONFIG_H
+
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#undef WIN32_LEAN_AND_MEAN
+
+#include <memory.h>
+#include <string.h>
+
+#define XML_NS 1
+#define XML_DTD 1
+#define XML_CONTEXT_BYTES 1024
+
+/* we will assume all Windows platforms are little endian */
+#define BYTEORDER 1234
+
+/* Windows has memmove() available. */
+#define HAVE_MEMMOVE
+
+#endif /* ndef WINCONFIG_H */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

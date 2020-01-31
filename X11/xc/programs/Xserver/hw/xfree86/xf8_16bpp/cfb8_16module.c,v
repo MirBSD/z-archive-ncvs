@@ -1,0 +1,77 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.16.27;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.16.27;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* $XFree86: xc/programs/Xserver/hw/xfree86/xf8_16bpp/cfb8_16module.c,v 1.1 1999/01/31 12:22:16 dawes Exp $ */
+
+#ifdef XFree86LOADER
+
+#include "xf86Module.h"
+
+static MODULESETUPPROTO(xf8_16bppSetup);
+
+static XF86ModuleVersionInfo VersRec =
+{
+        "xf8_16bpp",
+        MODULEVENDORSTRING,
+        MODINFOSTRING1,
+        MODINFOSTRING2,
+        XF86_VERSION_CURRENT,
+        1, 0, 0,
+        ABI_CLASS_ANSIC,                /* Only need the ansic layer */
+        ABI_ANSIC_VERSION,
+        NULL,
+        {0,0,0,0}       /* signature, to be patched into the file by a tool */
+};
+
+XF86ModuleData xf8_16bppModuleData = { &VersRec, xf8_16bppSetup, NULL };
+
+static pointer
+xf8_16bppSetup(pointer module, pointer opts, int *errmaj, int *errmin)
+{
+    if (!LoadSubModule(module, "cfb", NULL, NULL, NULL, NULL,
+			errmaj, errmin))
+        return NULL;
+    if (!LoadSubModule(module, "cfb16", NULL, NULL, NULL, NULL,
+			errmaj, errmin))
+        return NULL;
+    return (pointer)1;  /* non-NULL required to indicate success */
+}
+
+#endif
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

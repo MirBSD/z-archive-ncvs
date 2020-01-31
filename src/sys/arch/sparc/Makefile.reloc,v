@@ -1,0 +1,35 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.34.46;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/sys/arch/sparc/Makefile.reloc,v 1.4 2004/11/13 02:25:11 tg Exp $
+
+RELOC_TEST=	0x340000
+RELOC_SUN4=	0x240000
+RELOC_SUN4C=	0x380000
+RELOC_SUN4M=	0x440000
+
+# Note: a 'RELOC' value of 0x380000 seems to work on most machines
+RELOC?=		${RELOC_TEST}
+RELOC2!=	ksh -c 'typeset -i16 "x=16\#${RELOC_TEST:S/^0x//}"; \
+		  let x+=16\#40000; print "0x$${x\#16\#}" '
+@

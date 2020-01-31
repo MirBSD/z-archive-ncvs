@@ -1,0 +1,124 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.39;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.28;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.28;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@TYPEMAP
+
+B::OP		T_OP_OBJ
+B::UNOP		T_OP_OBJ
+B::BINOP	T_OP_OBJ
+B::LOGOP	T_OP_OBJ
+B::LISTOP	T_OP_OBJ
+B::PMOP		T_OP_OBJ
+B::SVOP		T_OP_OBJ
+B::PADOP	T_OP_OBJ
+B::PVOP		T_OP_OBJ
+B::LOOP		T_OP_OBJ
+B::COP		T_OP_OBJ
+
+B::SV		T_SV_OBJ
+B::PV		T_SV_OBJ
+B::IV		T_SV_OBJ
+B::NV		T_SV_OBJ
+B::PVMG		T_SV_OBJ
+B::PVLV		T_SV_OBJ
+B::BM		T_SV_OBJ
+B::RV		T_SV_OBJ
+B::GV		T_SV_OBJ
+B::CV		T_SV_OBJ
+B::HV		T_SV_OBJ
+B::AV		T_SV_OBJ
+B::IO		T_SV_OBJ
+B::FM		T_SV_OBJ
+
+B::MAGIC	T_MG_OBJ
+SSize_t		T_IV
+STRLEN		T_UV
+PADOFFSET	T_UV
+
+INPUT
+T_OP_OBJ
+	if (SvROK($arg)) {
+	    IV tmp = SvIV((SV*)SvRV($arg));
+	    $var = INT2PTR($type,tmp);
+	}
+	else
+	    croak(\"$var is not a reference\")
+
+T_SV_OBJ
+	if (SvROK($arg)) {
+	    IV tmp = SvIV((SV*)SvRV($arg));
+	    $var = INT2PTR($type,tmp);
+	}
+	else
+	    croak(\"$var is not a reference\")
+
+T_MG_OBJ
+	if (SvROK($arg)) {
+	    IV tmp = SvIV((SV*)SvRV($arg));
+	    $var = INT2PTR($type,tmp);
+	}
+	else
+	    croak(\"$var is not a reference\")
+
+OUTPUT
+T_OP_OBJ
+	sv_setiv(newSVrv($arg, cc_opclassname(aTHX_ (OP*)$var)), PTR2IV($var));
+
+T_SV_OBJ
+	make_sv_object(aTHX_ ($arg), (SV*)($var));
+
+
+T_MG_OBJ
+	sv_setiv(newSVrv($arg, "B::MAGIC"), PTR2IV($var));
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

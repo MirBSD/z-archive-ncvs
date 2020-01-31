@@ -1,0 +1,69 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.03.18;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.03.18;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM
+XCOMM  GNU Hurd shared library template
+XCOMM
+XCOMM $XFree86: xc/config/cf/gnuLib.tmpl,v 1.6 2003/11/04 01:59:31 dawes Exp $
+XCOMM
+
+#ifndef FixupLibReferences
+#define FixupLibReferences()						@@@@\
+XMULIBONLY = -lXmu							@@@@\
+XMULIB = $(XMULIBONLY) $(XTOOLLIB) $(XLIB)
+#endif
+
+#ifndef XawClientLibs
+#define XawClientLibs $(XAWLIB) $(XMULIBONLY) $(XTOOLLIB) $(XPMLIB) $(XLIB)
+#endif
+
+#define SharedX11Reqs
+#define SharedXlibi18nReqs $(LDPRELIB) $(XONLYLIB)
+#define SharedOldXReqs	$(LDPRELIB) $(XONLYLIB)
+#define SharedXtReqs	$(LDPRELIB) $(XONLYLIB) $(SMLIB) $(ICELIB)
+#define SharedXaw6Reqs	$(LDPRELIB) $(XMULIB) $(XTOOLLIB) $(XLIB)
+#define SharedXawReqs	$(LDPRELIB) $(XMULIB) $(XTOOLLIB) $(XPMLIB) $(XLIB)
+#define SharedXmuReqs	$(LDPRELIB) $(XTOOLLIB) $(XLIB)
+#define SharedXextReqs	$(LDPRELIB) $(XONLYLIB)
+#define SharedXiReqs	$(LDPRELIB) $(XLIB)
+#define SharedPexReqs	$(LDPRELIB) $(XONLYLIB) MathLibrary
+#define SharedXtstReqs	$(LDPRELIB) $(XLIB)
+#define SharedXieReqs	$(LDPRELIB) $(XONLYLIB)
+#define SharedSMReqs	$(LDPRELIB) $(ICELIB)
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

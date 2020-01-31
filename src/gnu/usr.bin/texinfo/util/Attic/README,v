@@ -1,0 +1,65 @@
+head	1.2;
+access;
+symbols
+	texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.07.00.21.59;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.06.23.31.22;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.06.23.31.22;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke unneeded files
+@
+text
+@$Id: README,v 1.5 2004/04/11 17:56:47 karl Exp $
+texinfo/util/README
+
+  Copyright (C) 2002 Free Software Foundation, Inc.
+
+  Copying and distribution of this file, with or without modification,
+  are permitted in any medium without royalty provided the copyright
+  notice and this notice are preserved.
+
+Assorted Texinfo-related programs and scripts.
+
+texindex, texi2dvi, and install-info get installed.
+The other items here are for your amusement and/or hacking pleasure.
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

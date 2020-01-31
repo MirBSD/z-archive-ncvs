@@ -1,0 +1,32 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.13.20.14.18;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@start merging binutils
+@
+text
+@# $MirBSD$
+
+LIB_PATH=/usr/lib
+
+PAD_RO=
+RODATA_PADSIZE=${MAXPAGESIZE}
+RODATA_ALIGN=". = ALIGN(${RODATA_PADSIZE}) + (. & (${RODATA_PADSIZE} - 1))"
+PAD_GOT=
+PAD_PLT=
+@

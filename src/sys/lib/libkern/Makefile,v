@@ -1,0 +1,115 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.37.29;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.33.32;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.33.32;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/sys/lib/libkern/Makefile,v 1.4 2004/12/11 16:50:15 tg Exp $
+# $OpenBSD: Makefile,v 1.17 2004/05/07 14:42:27 millert Exp $
+# $NetBSD: Makefile,v 1.31 1996/08/10 04:01:31 mycroft Exp $
+
+LIB=	kern
+NOPIC=	yes
+
+MACHINE=	${XMACHINE}
+MACHINE_ARCH=	${XMACHINE_ARCH}
+
+M=	${.CURDIR}/arch/${MACHINE_ARCH}
+
+CPPFLAGS=	-I$M ${KERNCPPFLAGS}
+
+.if exists ($M/Makefile.inc)
+.PATH:	$M
+.include "$M/Makefile.inc"
+.endif
+
+.if (${MACHINE_ARCH} != "alpha" && ${MACHINE} != "sgi" && \
+    ${MACHINE_ARCH} != "sparc64") && ${MACHINE} != "amd64"
+# Quad support
+SRCS+=	adddi3.c anddi3.c ashldi3.c ashrdi3.c cmpdi2.c divdi3.c iordi3.c \
+	lshldi3.c lshrdi3.c moddi3.c muldi3.c negdi2.c notdi2.c qdivrem.c \
+	subdi3.c  ucmpdi2.c udivdi3.c umoddi3.c xordi3.c
+.endif
+
+# Other stuff
+SRCS+=	getsn.c srandom.c bcd.c strchr.c taitime.c
+
+# Files to clean up
+CLEANFILES+= lib${LIB}.o lib${LIB}.po
+
+install:
+
+.include <bsd.lib.mk>
+
+lib${LIB}.o:: ${OBJS}
+	@@echo building standard ${LIB} library
+	@@rm -f lib${LIB}.o
+	@@${LD} -r -o lib${LIB}.o `${LORDER} ${OBJS} | tsort`
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 3
+a3 2
+#	$OpenBSD: Makefile,v 1.17 2004/05/07 14:42:27 millert Exp $
+#	$NetBSD: Makefile,v 1.31 1996/08/10 04:01:31 mycroft Exp $
+d6 1
+a6 1
+NOPIC=
+d29 1
+a29 1
+SRCS+=	getsn.c srandom.c bcd.c strchr.c
+a33 4
+# mcount cannot be compiled with profiling
+mcount.po: mcount.o
+	cp mcount.o mcount.po
+
+a41 6
+
+POBJS+=	${OBJS:.o=.po} mcount.po
+lib${LIB}.po:: ${POBJS}
+	@@echo building profiled ${LIB} library
+	@@rm -f lib${LIB}.po
+	@@${LD} -r -o lib${LIB}.po `${LORDER} ${POBJS} | tsort`
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

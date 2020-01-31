@@ -1,0 +1,126 @@
+head	1.2;
+access;
+symbols
+	cdk-4_9_11-20041224:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.21.50;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.08.04;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.20.08.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge
+@
+text
+@# $Id: Makefile.in,v 1.4 2003/11/27 12:03:41 tom Exp $
+#
+# Makefile for the cli directory.
+#
+SHELL		= /bin/sh
+
+prefix		= @@prefix@@
+exec_prefix	= @@exec_prefix@@
+
+srcdir		= @@srcdir@@
+VPATH		= $(srcdir)
+
+CC		= @@CC@@
+RM		= rm -f
+
+LIBS		= -l@@LIB_ROOTNAME@@ @@LIBS@@
+
+LIBTOOL		= @@LIBTOOL@@ @@ECHO_LT@@
+LIBTOOL_CLEAN	= @@LIB_CLEAN@@
+LIBTOOL_LINK	= @@LIB_LINK@@
+LINK		= $(LIBTOOL_LINK) $(CC)
+
+x		= @@EXEEXT@@
+o		= .@@OBJEXT@@
+
+CFLAGS		= @@CFLAGS@@ @@EXTRA_CFLAGS@@
+CPPFLAGS	= @@DEFS@@ -I../include -I$(srcdir)/../include -I. @@CPPFLAGS@@
+LDFLAGS		= -L.. @@LDFLAGS@@
+
+BINS	= \
+	cdkalphalist$x \
+	cdkcalendar$x \
+	cdkdialog$x \
+	cdkentry$x \
+	cdkfselect$x \
+	cdkitemlist$x \
+	cdklabel$x \
+	cdkmatrix$x \
+	cdkmentry$x \
+	cdkradio$x \
+	cdkscale$x \
+	cdkscroll$x \
+	cdkselection$x \
+	cdkslider$x \
+	cdktemplate$x \
+	cdkviewer$x
+
+LINKIT	= @@ECHO_LD@@$(LINK) $(CFLAGS) $(CPPFLAGS) $? -o $@@ $(LDFLAGS) $(LIBS)
+
+all : $(BINS)
+
+cdkalphalist$x :	cdkalphalist.c	; $(LINKIT)
+cdkcalendar$x :		cdkcalendar.c	; $(LINKIT)
+cdkdialog$x :		cdkdialog.c	; $(LINKIT)
+cdkentry$x :		cdkentry.c	; $(LINKIT)
+cdkfselect$x :		cdkfselect.c	; $(LINKIT)
+cdkitemlist$x :		cdkitemlist.c	; $(LINKIT)
+cdklabel$x :		cdklabel.c	; $(LINKIT)
+cdkmatrix$x :		cdkmatrix.c	; $(LINKIT)
+cdkmentry$x :		cdkmentry.c	; $(LINKIT)
+cdkradio$x :		cdkradio.c	; $(LINKIT)
+cdkscale$x :		cdkscale.c	; $(LINKIT)
+cdkscroll$x :		cdkscroll.c	; $(LINKIT)
+cdkselection$x :	cdkselection.c	; $(LINKIT)
+cdkslider$x :		cdkslider.c	; $(LINKIT)
+cdktemplate$x :		cdktemplate.c	; $(LINKIT)
+cdkviewer$x :		cdkviewer.c	; $(LINKIT)
+#
+# Standard clean directives.
+#
+clean::
+	- $(LIBTOOL_CLEAN) $(RM) *.o core $(BINS)
+
+distclean:: clean
+	$(RM) Makefile
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Tom Dickey's libcdk
+@
+text
+@@

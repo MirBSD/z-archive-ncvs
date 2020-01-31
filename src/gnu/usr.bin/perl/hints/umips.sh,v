@@ -1,0 +1,94 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.49;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.01;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.01;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# hints/umips.sh
+# 
+# Mips R3030 / Bruker AspectSation  running RISC/os (UMIPS) 4.52
+# compiling with gcc 2.7.2
+#
+# Created Sat Aug 17 00:17:15 MET DST 1996
+# by Guenter Schmidt  <gsc@@bruker.de> 
+#
+# uname -a output looks like this:
+# 	xxx xxx 4_52 umips mips
+
+# Speculative notes on getting cc to work added by
+# Andy Dougherty	<doughera@@lafayette.edu>
+# Tue Aug 20 21:51:49 EDT 1996
+    
+# Recommend the GNU C Compiler
+case "$cc" in 
+'')	echo 'gcc 2.7.2 (or later) is recommended.  Use Configure -Dcc=gcc' >&4
+	# The test with the native compiler not succeed:
+	# `sh  cflags libperl.a miniperlmain.o`  miniperlmain.c
+	#  CCCMD =  cc -c -I/usr/local/include -I/usr/include/bsd -DLANGUAGE_C -O   
+	# ccom: Error: ./mg.h, line 12: redeclaration of formal parameter, sv
+	# 	  int           (*svt_set)       (SV *sv, MAGIC* mg);
+	#       ------------------------------------------^
+	# ccom: Error: ./mg.h, line 12: redeclaration of formal parameter, mg
+	# This is probably a result of incomplete prototype support.
+	prototype=undef
+	;;
+esac
+
+#  POSIX support in RiscOS is not useable
+useposix='false'
+
+# Will give WHOA message, but the prototype are defined in the GCC inc dirs
+case "$cc" in
+*gcc*) d_shmatprototype='define' ;;
+esac
+
+glibpth="$glibpth /usr/lib/cmplrs/cc"
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

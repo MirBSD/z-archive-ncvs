@@ -1,0 +1,96 @@
+head	1.2;
+access;
+symbols
+	joe-3_1:1.1.3.1 tg:1.1.3;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.12.19.15.41.34;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.19.15.24.17;	author tg;	state Exp;
+branches
+	1.1.3.1;
+next	;
+
+1.1.3.1
+date	2004.12.19.15.24.17;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@* joe 3.1jupp2 minus generated files
+* clean up
+* whitespace
+@
+text
+@You can downlaod sources of the JOE editor by various ways. One of them is
+CVS. You have to have cvs package installed to properly access the CVS
+server. CVS package can be downloaded from http://www.cvshome.org/.
+
+Downloading of joe sources via CVS can be done by issuing following command:
+
+cvs -d :pserver:anonymous@@cvs.sourceforge.net:/cvsroot/joe-editor co joe-current
+
+To reduce bandwidth and needless updates, the CVS repository does not
+contain automatically-generated files, even when those files are normally
+present in the distribution tarballs.
+
+Therefore, if you're building from the CVS sources, you'll need to have GNU
+autoconf and GNU automake installed on your machine (these do the afore
+mentioned automatic generation). These packages are available from
+<ftp://ftp.gnu.org/pub/gnu/<package>/> and its mirrors (please choose one
+close to you), listed at <http://www.gnu.org/order/ftp.html>.
+
+!!! Important note !!!
+Versions of autoconf and automake used by maintainers and confirmed to do
+the right thing are:
+
+	automake version >= 1.8.4
+	autoconf version >= 2.59
+
+Failing to use above mentioned version may cause malfunction of building
+system or even malfunction of joe itself.
+
+In case you aren't used to running autoconf manually to generate the
+necessary configure script, here are necessary steps:
+
+	cd directory_with_sources
+	aclocal
+	autoheader
+	automake -a -c
+	autoconf
+
+Now you can build joe as you are used to with the downloaded .tar.gz
+package, ie.:
+
+	./configure
+	make
+	make install
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.3.1
+log
+@JOE's Own Editor 3.1 (released package)
+@
+text
+@@

@@ -1,0 +1,95 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.03.32;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.03.32;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@'\" e
+'\"! eqn | mmdoc
+'\"macro stdmacro
+.ds Vn Version 1.2
+.ds Dt 6 March 1997
+.ds Re Release 1.2.0
+.ds Dp May 02 11:53
+.ds Dm 37 getnurbsp
+.ds Xs 29302 3 getnurbsproperty.gl
+.TH GLUGETNURBSPROPERTY 3G
+.SH NAME
+.B "gluGetNurbsProperty
+\- get a NURBS property
+
+.SH C SPECIFICATION
+void \f3gluGetNurbsProperty\fP(
+GLUnurbs* \fInurb\fP,
+.nf
+.ta \w'\f3void \fPgluGetNurbsProperty( 'u
+	GLenum \fIproperty\fP,
+	GLfloat* \fIdata\fP )
+.fi
+
+.EQ
+delim $$
+.EN
+.SH PARAMETERS
+.TP \w'\fIproperty\fP\ \ 'u 
+\f2nurb\fP
+Specifies the NURBS object (created with \%\f3gluNewNurbsRenderer\fP).
+.TP
+\f2property\fP
+Specifies the property whose value is to be fetched. Valid values are
+\%\f3GLU_CULLING\fP,
+\%\f3GLU_SAMPLING_TOLERANCE\fP,
+\%\f3GLU_DISPLAY_MODE\fP, 
+\%\f3GLU_AUTO_LOAD_MATRIX\fP,
+\%\f3GLU_PARAMETRIC_TOLERANCE\fP,
+\%\f3GLU_SAMPLING_METHOD\fP,
+\%\f3GLU_U_STEP\fP,
+\%\f3GLU_V_STEP\fP and
+\%\f3GLU_NURBS_MODE\fP.
+.TP
+\f2data\fP
+Specifies a pointer to the location into which the value of the 
+named property is written.
+.SH DESCRIPTION
+\%\f3gluGetNurbsProperty\fP retrieves properties stored in a NURBS object. These
+properties affect the way that NURBS curves and surfaces
+are rendered. See the 
+\%\f3gluNurbsProperty\fP reference page for information about what the 
+properties are and what they do.
+.SH SEE ALSO
+\%\f3gluNewNurbsRenderer(3G)\fP, 
+\%\f3gluNurbsProperty(3G)\fP
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

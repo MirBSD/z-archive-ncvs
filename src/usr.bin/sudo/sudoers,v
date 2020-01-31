@@ -1,0 +1,99 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.40.16;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.38;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.38;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/usr.bin/sudo/sudoers,v 1.5 2004/10/14 20:50:54 tg Exp $
+# sudoers file.
+#
+# This file MUST be edited with the 'visudo' command as root.
+# See the sudoers man page for the details on how to write a sudoers file.
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# Defaults specification
+Defaults:root	!syslog
+Defaults:daemon	!syslog
+Defaults:%wheel	rootpw
+
+# Runas alias specification
+
+# User privilege specification
+root		ALL=(ALL) ALL
+
+# Uncomment to allow people in group wheel to run all commands
+%wheel		ALL=(ALL)	ALL
+
+# Same thing without a password
+# %wheel	ALL=(ALL)	NOPASSWD: ALL
+
+# Samples
+# %users	ALL=/sbin/mount /cdrom,/sbin/umount /cdrom
+# %users	localhost=/sbin/shutdown -h now
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a4 1
+#
+a5 1
+#
+d14 3
+d21 1
+a21 1
+root	ALL=(ALL) ALL
+d24 1
+a24 1
+# %wheel	ALL=(ALL)	ALL
+d30 2
+a31 2
+# %users  ALL=/sbin/mount /cdrom,/sbin/umount /cdrom
+# %users  localhost=/sbin/shutdown -h now
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

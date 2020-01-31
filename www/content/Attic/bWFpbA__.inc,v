@@ -1,0 +1,73 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.57;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@<small class="rcsid">$MirBSD: www/content/bWFpbA__.inc,v 1.1 2004/12/13 00:13:24 tg Exp $</small>
+<h1>The Mailing Lists</h1>
+
+<p>We've got a <a href="mailto:miros-discuss@@66h.42h.de">discussion
+ mailing list</a> and a CVS changes mailing list, both of which are
+ public. All subscribers of the CVS changes mailing list automatically
+ are on the discussion mailing list as well. In order to subscribe, send
+ a mail to <a href="mailto:postmaster@@66h.42h.de">the postmaster</a>.
+ We've also got an internal developers-only list, although our development
+ process is usually done in IRC entirely.</p>
+
+<p>The <tt>miros-discuss@@</tt> list is published bidirectionally as
+ <tt>gmane.os.miros.general</tt>, and <tt>miros-changes@@</tt> can be read
+ via <tt>gmane.os.miros.cvs</tt> now, see <a href="http://gmane.org/">their
+ website</a> for further information, or jump directly to the read interface
+ for the <a href="http://news.gmane.org/gmane.os.miros.general">discussion
+ list</a> or the <a href="http://news.gmane.org/gmane.os.miros.cvs">source
+ changes</a>.</p>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+<small class="rcsid">$MirBSD: www/content/c2VydnM_.inc,v 1.14 2004/11/04 06:57:45 tg Exp $</small>
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

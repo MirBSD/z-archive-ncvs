@@ -1,0 +1,97 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.30.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: hosts_ctl.c,v 1.1 1997/02/26 03:06:53 downsj Exp $	*/
+
+ /*
+  * hosts_ctl() combines common applications of the host access control
+  * library routines. It bundles its arguments then calls the hosts_access()
+  * access control checker. The host name and user name arguments should be
+  * empty strings, STRING_UNKNOWN or real data. If a match is found, the
+  * optional shell command is executed.
+  * 
+  * Restriction: this interface does not pass enough information to support
+  * selective remote username lookups or selective hostname double checks.
+  * 
+  * Author: Wietse Venema, Eindhoven University of Technology, The Netherlands.
+  */
+
+#ifndef lint
+#if 0
+static char sccsid[] = "@@(#) hosts_ctl.c 1.4 94/12/28 17:42:27";
+#else
+static char rcsid[] = "$OpenBSD: hosts_ctl.c,v 1.1 1997/02/26 03:06:53 downsj Exp $";
+#endif
+#endif
+
+#include <stdio.h>
+
+#include "tcpd.h"
+
+/* hosts_ctl - limited interface to the hosts_access() routine */
+
+int     hosts_ctl(daemon, name, addr, user)
+char   *daemon;
+char   *name;
+char   *addr;
+char   *user;
+{
+    struct request_info request;
+
+    return (hosts_access(request_init(&request,
+				      RQ_DAEMON, daemon,
+				      RQ_CLIENT_NAME, name,
+				      RQ_CLIENT_ADDR, addr,
+				      RQ_USER, user,
+				      0)));
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

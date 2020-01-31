@@ -1,0 +1,113 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.2
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.38;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches;
+next	1.1.1.2;
+
+1.1.1.2
+date	2005.01.16.09.55.50;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/bin/perl
+
+use File::Find;
+use Cwd;
+
+$VERSION="5.8.5";
+$EPOC_VERSION=1;
+
+
+sub filefound {
+
+  my $f = $File::Find::name;
+    
+  return if ( $f =~ /CVS|Unicode|unicore|CPAN|ExtUtils|IPC|User|DB.pm|\.a$|\.ld$|\.exists$|\.pod$|\.t$/i);
+  my $back = $f;
+
+  my $psiback = $back;
+
+  $psiback =~ s|.*/lib/|\\emx\\lib\\perl\\$VERSION\\|;
+  $psiback =~ s|/|\\|g;
+  print OUT "\"$back\"-\"!:$psiback\"\n"  if ( -f $f );
+}
+
+open OUT,">perl.pkg";
+
+print OUT "#{\"perl$VERSION\"},(0x100051d8),0,$EPOC_VERSION,0\n";
+print OUT "\"" . cwd . "/Artistic.txt\"-\"\",FT,TC\n";
+print OUT "\"" . cwd . "/perl\"-\"!:\\emx\\bin\\perl.exe\"\n";
+
+find(\&filefound, cwd.'/lib');
+
+open IN,  "<Artistic";
+open OUT, ">Artistic.txt";
+while (my $line = <IN>) {
+  chomp $line;
+  print OUT "$line\r\n";
+}
+
+close IN;
+close OUT;
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@
+
+
+1.1.1.2
+log
+@Import a series of fixes and minor updates from OpenBSD
+@
+text
+@d6 1
+a6 1
+$VERSION="5.8.6";
+@
+

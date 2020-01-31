@@ -1,0 +1,104 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.24.29;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Definitions of target machine for GNU compiler, for IBM S/390
+   Copyright (C) 2002, 2003 Free Software Foundation, Inc.
+   Contributed by Hartmut Penner (hpenner@@de.ibm.com) and
+                  Ulrich Weigand (uweigand@@de.ibm.com).
+
+This file is part of GCC.
+
+GCC is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 2, or (at your option) any later
+version.
+
+GCC is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+for more details.
+
+You should have received a copy of the GNU General Public License
+along with GCC; see the file COPYING.  If not, write to the Free
+Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.  */
+
+/* 256-bit integer mode is needed for STACK_SAVEAREA_MODE.  */
+INT_MODE (OI, 32);
+
+/* Add any extra modes needed to represent the condition code.  */
+
+CC_MODE (CCZ);
+CC_MODE (CCA);
+CC_MODE (CCAP);
+CC_MODE (CCAN);
+CC_MODE (CCL);
+CC_MODE (CCL1);
+CC_MODE (CCL2);
+CC_MODE (CCU);
+CC_MODE (CCUR);
+CC_MODE (CCS);
+CC_MODE (CCSR);
+CC_MODE (CCT);
+CC_MODE (CCT1);
+CC_MODE (CCT2);
+CC_MODE (CCT3);
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

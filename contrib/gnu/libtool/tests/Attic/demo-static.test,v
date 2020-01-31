@@ -1,0 +1,118 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.2
+	libtool-1_5_8:1.1.2.2
+	libtool-1_5-20040215:1.1.2.2
+	libtool-1_4_3:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.03.19.42.34;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.17.55.43;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.03.17.55.43;	author tg;	state Exp;
+branches;
+next	1.1.2.2;
+
+1.1.2.2
+date	2004.02.15.13.09.50;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@* MirOSify
+* bootstrap
+* nuke unneeded stuff
+@
+text
+@#! /bin/sh
+# demo-conf.test - try configuring the ../demo subdirectory
+
+# Test script header.
+need_prefix=yes
+if test -z "$srcdir"; then
+  srcdir=`echo "$0" | sed 's%/[^/]*$%%'`
+  test "$srcdir" = "$0" && srcdir=.
+  test "${VERBOSE+set}" != "set" && VERBOSE=yes
+fi
+. $srcdir/defs || exit 1
+
+# Maybe we have a VPATH build, in which case, create a new subdir.
+test -d ../demo || mkdir ../demo
+
+# Change to our build directory.
+cd ../demo || exit 1
+
+# Possibly clean up the distribution.
+if test -f Makefile; then
+  echo "= Running $make distclean in ../demo"
+  $make distclean
+fi
+rm -f config.cache
+
+# Configure the demonstration.
+echo "= Configuring in ../demo (prefix=$prefix) with --disable-shared"
+CONFIG_SITE=/dev/null/config/site ${CONFIG_SHELL-/bin/sh} $srcdir/../demo/configure --srcdir=$srcdir/../demo --prefix=$prefix --disable-shared || exit 1
+
+if egrep '^build_old_libs=yes' libtool > /dev/null &&
+   egrep '^build_libtool_libs=no' libtool > /dev/null; then :
+else rm -f Makefile && exit 77
+fi
+
+exit 0
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Libtool 1.4.3 (last of the 1.4 series)
+
+Requires to bootstrap:
+* autoconf 2.13-o
+* automake 1.4-p5
+or later.
+@
+text
+@@
+
+
+1.1.2.2
+log
+@libtool 1.5 branch from today
+@
+text
+@d28 1
+a28 1
+${CONFIG_SHELL-/bin/sh} $srcdir/../demo/configure --srcdir=$srcdir/../demo --prefix=$prefix --build=$host --disable-shared || exit 1
+d30 2
+a31 2
+if grep '^build_old_libs=yes' libtool > /dev/null &&
+   grep '^build_libtool_libs=no' libtool > /dev/null; then :
+@
+

@@ -1,0 +1,63 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.15.32;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.15.32;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# $FreeBSD$
+
+.PATH:	${.CURDIR}/..
+KMOD= 	mga
+NOMAN=	YES
+SRCS=		mga_drv.c mga_state.c mga_warp.c mga_dma.c mga_irq.c
+SRCS+=	device_if.h bus_if.h pci_if.h opt_drm.h
+CFLAGS+=	${DEBUG_FLAGS} -I. -I..
+
+.if defined(DRM_DEBUG)
+DRM_DEBUG_OPT= "\#define DRM_DEBUG 1"
+.endif
+
+.if !defined(DRM_NOLINUX)
+DRM_LINUX_OPT= "\#define DRM_LINUX 1"
+.endif
+
+opt_drm.h:
+	touch opt_drm.h
+	echo $(DRM_DEBUG_OPT) >> opt_drm.h
+	echo $(DRM_LINUX_OPT) >> opt_drm.h
+
+.include <bsd.kmod.mk>
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

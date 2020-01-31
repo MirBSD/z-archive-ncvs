@@ -1,0 +1,30 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.13.20.14.18;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@start merging binutils
+@
+text
+@# $MirBSD: src/gnu/usr.bin/binutils/src/ld/emulparams/elf_mbsd.sh,v 1.1 2004/10/08 04:22:38 tg Exp $
+
+. ${srcdir}/emulparams/elf_obsd.sh
+
+# Not. That's the BFD output format. MirOS BSD uses pretty
+# standard ELF, so no need to do that.
+#OUTPUT_FORMAT="${OUTPUT_FORMAT}-mirbsd"
+@

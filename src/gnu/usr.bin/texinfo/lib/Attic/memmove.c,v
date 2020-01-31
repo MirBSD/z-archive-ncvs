@@ -1,0 +1,79 @@
+head	1.2;
+access;
+symbols
+	texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.07.00.21.47;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.06.23.31.18;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.06.23.31.18;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke unneeded files
+@
+text
+@/* memmove.c -- copy memory.
+   Copy LENGTH bytes from SOURCE to DEST.  Does not null-terminate.
+   In the public domain.
+   By David MacKenzie <djm@@gnu.ai.mit.edu>.  */
+
+#if HAVE_CONFIG_H
+# include <config.h>
+#endif
+
+#include <stddef.h>
+
+void *
+memmove (void *dest0, void const *source0, size_t length)
+{
+  char *dest = dest0;
+  char const *source = source0;
+  if (source < dest)
+    /* Moving from low mem to hi mem; start at end.  */
+    for (source += length, dest += length; length; --length)
+      *--dest = *--source;
+  else if (source != dest)
+    {
+      /* Moving from hi mem to low mem; start at beginning.  */
+      for (; length; --length)
+	*dest++ = *source++;
+    }
+  return dest0;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

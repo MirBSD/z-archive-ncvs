@@ -1,0 +1,259 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.29;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.55;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@syntax anti-lint
+
+__END__
+-X
+# nolint: check compile time $^W is zapped
+BEGIN { $^W = 1 ;}
+$a = $b = 1 ;
+$a =+ 1 ;
+close STDIN ; print STDIN "abc" ;
+EXPECT
+########
+-X
+# nolint: check runtime $^W is zapped
+$^W = 1 ;
+close STDIN ; print STDIN "abc" ;
+EXPECT
+########
+-X
+# nolint: check runtime $^W is zapped
+{
+  $^W = 1 ;
+  close STDIN ; print STDIN "abc" ;
+}
+EXPECT
+########
+-X
+# nolint: check "no warnings" is zapped
+use warnings ;
+$a = $b = 1 ;
+$a =+ 1 ;
+close STDIN ; print STDIN "abc" ;
+EXPECT
+########
+-X
+# nolint: check "no warnings" is zapped
+{
+  use warnings ;
+  close STDIN ; print STDIN "abc" ;
+}
+EXPECT
+########
+-Xw
+# nolint: check combination of -w and -X
+{
+  $^W = 1 ;
+  close STDIN ; print STDIN "abc" ;
+}
+EXPECT
+########
+-X
+--FILE-- abc.pm
+use warnings 'syntax' ;
+my $a = 0;
+$a =+ 1 ;
+1;
+--FILE-- 
+use warnings 'uninitialized' ;
+use abc;
+my $a ; chop $a ;
+EXPECT
+########
+-X
+--FILE-- abc
+use warnings 'syntax' ;
+my $a = 0;
+$a =+ 1 ;
+1;
+--FILE-- 
+use warnings 'uninitialized' ;
+require "./abc";
+my $a ; chop $a ;
+EXPECT
+########
+-X
+--FILE-- abc.pm
+BEGIN {$^W = 1}
+my ($a, $b) = (0,0);
+$a =+ 1 ;
+1;
+--FILE-- 
+$^W = 1 ;
+use abc;
+my $a ; chop $a ;
+EXPECT
+########
+-X
+--FILE-- abc
+BEGIN {$^W = 1}
+my ($a, $b) = (0,0);
+$a =+ 1 ;
+1;
+--FILE-- 
+$^W = 1 ;
+require "./abc";
+my $a ; chop $a ;
+EXPECT
+########
+-X
+# Check scope of pragma with eval
+use warnings;
+{
+    no warnings ;
+    eval '
+        my $b ; chop $b ;
+    '; print STDERR $@@ ;
+    my $b ; chop $b ;
+}
+EXPECT
+
+########
+-X
+# Check scope of pragma with eval
+use warnings;
+{
+    no warnings ;
+    eval q[ 
+        use warnings 'uninitialized' ;
+        my $b ; chop $b ;
+    ]; print STDERR $@@;
+    my $b ; chop $b ;
+}
+EXPECT
+
+########
+-X
+# Check scope of pragma with eval
+no warnings;
+{
+    use warnings 'uninitialized' ;
+    eval '
+        my $b ; chop $b ;
+    '; print STDERR $@@ ;
+    my $b ; chop $b ;
+}
+EXPECT
+
+########
+-X
+# Check scope of pragma with eval
+no warnings;
+{
+    use warnings 'uninitialized' ;
+    eval '
+        no warnings ;
+        my $b ; chop $b ;
+    '; print STDERR $@@ ;
+    my $b ; chop $b ;
+}
+EXPECT
+
+########
+-X
+# Check scope of pragma with eval
+use warnings;
+{
+    no warnings ;
+    eval '
+        my $a =+ 1 ;
+    '; print STDERR $@@ ;
+    my $a =+ 1 ;
+}
+EXPECT
+
+########
+-X
+# Check scope of pragma with eval
+use warnings;
+{
+    no warnings ;
+    eval q[ 
+        use warnings 'syntax' ;
+        my $a =+ 1 ;
+    ]; print STDERR $@@;
+    my $a =+ 1 ;
+}
+EXPECT
+
+########
+-X
+# Check scope of pragma with eval
+no warnings;
+{
+    use warnings 'syntax' ;
+    eval '
+        my $a =+ 1 ;
+    '; print STDERR $@@;
+    my $a =+ 1 ;
+}
+EXPECT
+
+########
+-X
+# Check scope of pragma with eval
+no warnings;
+{
+    use warnings 'syntax' ;
+    eval '
+        no warnings ;
+        my $a =+ 1 ;
+    '; print STDERR $@@;
+    my $a =+ 1 ;
+}
+EXPECT
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

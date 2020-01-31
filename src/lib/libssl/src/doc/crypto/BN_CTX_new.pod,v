@@ -1,0 +1,106 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.30.40;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.58;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@=pod
+
+=head1 NAME
+
+BN_CTX_new, BN_CTX_init, BN_CTX_free - allocate and free BN_CTX structures
+
+=head1 SYNOPSIS
+
+ #include <openssl/bn.h>
+
+ BN_CTX *BN_CTX_new(void);
+
+ void BN_CTX_init(BN_CTX *c);
+
+ void BN_CTX_free(BN_CTX *c);
+
+=head1 DESCRIPTION
+
+A B<BN_CTX> is a structure that holds B<BIGNUM> temporary variables used by
+library functions. Since dynamic memory allocation to create B<BIGNUM>s
+is rather expensive when used in conjunction with repeated subroutine
+calls, the B<BN_CTX> structure is used.
+
+BN_CTX_new() allocates and initializes a B<BN_CTX>
+structure. BN_CTX_init() initializes an existing uninitialized
+B<BN_CTX>.
+
+BN_CTX_free() frees the components of the B<BN_CTX>, and if it was
+created by BN_CTX_new(), also the structure itself.
+If L<BN_CTX_start(3)|BN_CTX_start(3)> has been used on the B<BN_CTX>,
+L<BN_CTX_end(3)|BN_CTX_end(3)> must be called before the B<BN_CTX>
+may be freed by BN_CTX_free().
+
+
+=head1 RETURN VALUES
+
+BN_CTX_new() returns a pointer to the B<BN_CTX>. If the allocation fails,
+it returns B<NULL> and sets an error code that can be obtained by
+L<ERR_get_error(3)|ERR_get_error(3)>.
+
+BN_CTX_init() and BN_CTX_free() have no return values.
+
+=head1 SEE ALSO
+
+L<bn(3)|bn(3)>, L<ERR_get_error(3)|ERR_get_error(3)>, L<BN_add(3)|BN_add(3)>,
+L<BN_CTX_start(3)|BN_CTX_start(3)>
+
+=head1 HISTORY
+
+BN_CTX_new() and BN_CTX_free() are available in all versions on SSLeay
+and OpenSSL. BN_CTX_init() was added in SSLeay 0.9.1b.
+
+=cut
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

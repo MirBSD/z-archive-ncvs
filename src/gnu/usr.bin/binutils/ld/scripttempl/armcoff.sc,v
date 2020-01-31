@@ -1,0 +1,164 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.13.21.56.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.04.10;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.04.10;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@start merging
+* without generated files
+* docs are going to be built
+* untested ("minimal change" concept)
+* with assignment back to the FSF
+@
+text
+@# $MirBSD: src/gnu/usr.bin/binutils/src/ld/scripttempl/armcoff.sc,v 1.3 2004/09/16 22:28:13 tg Exp $
+#
+# Linker script for ARM COFF.
+# Based on i386coff.sc by Ian Taylor <ian@@cygnus.com>.
+test -z "$ENTRY" && ENTRY=_start
+if test -z "${DATA_ADDR}"; then
+  if test "$LD_FLAG" = "N" || test "$LD_FLAG" = "n"; then
+    DATA_ADDR=.
+  fi
+fi
+
+# These are substituted in as variables in order to get '}' in a shell
+# conditional expansion.
+CTOR='.ctor : {
+    *(SORT(.ctors.*))
+    *(.ctor)
+  }'
+DTOR='.dtor : {
+    *(SORT(.dtors.*))
+    *(.dtor)
+  }'
+
+cat <<EOF
+OUTPUT_FORMAT("${OUTPUT_FORMAT}", "${BIG_OUTPUT_FORMAT}", "${LITTLE_OUTPUT_FORMAT}")
+${LIB_SEARCH_DIRS}
+
+ENTRY(${ENTRY})
+
+SECTIONS
+{
+  /* We start at 0x8000 because gdb assumes it (see FRAME_CHAIN).
+     This is an artifact of the ARM Demon monitor using the bottom 32k
+     as workspace (shared with the FP instruction emulator if
+     present): */
+  .text ${RELOCATING+ 0x8000} : {
+    *(.init)
+    *(.text*)
+    *(.glue_7t)
+    *(.glue_7)
+    *(.rdata)
+    ${CONSTRUCTING+ ___CTOR_LIST__ = .; __CTOR_LIST__ = . ; 
+			LONG (-1); *(.ctors); *(.ctor); LONG (0); }
+    ${CONSTRUCTING+ ___DTOR_LIST__ = .; __DTOR_LIST__ = . ; 
+			LONG (-1); *(.dtors); *(.dtor);  LONG (0); }
+    *(.fini)
+    ${RELOCATING+ etext  =  .;}
+    ${RELOCATING+ _etext =  .;}
+  }
+  .data ${RELOCATING+${DATA_ADDR-0x40000 + (ALIGN(0x8) & 0xfffc0fff)}} : {
+    ${RELOCATING+  __data_start__ = . ;}
+    *(.data*)
+        
+    ${RELOCATING+*(.gcc_exc*)}
+    ${RELOCATING+___EH_FRAME_BEGIN__ = . ;}
+    ${RELOCATING+*(.eh_fram*)}
+    ${RELOCATING+___EH_FRAME_END__ = . ;}
+    ${RELOCATING+LONG(0);}
+    
+    ${RELOCATING+ __data_end__ = . ;}
+    ${RELOCATING+ edata  =  .;}
+    ${RELOCATING+ _edata  =  .;}
+  }
+  ${CONSTRUCTING+${RELOCATING-$CTOR}}
+  ${CONSTRUCTING+${RELOCATING-$DTOR}}
+  .bss ${RELOCATING+ ALIGN(0x8)} :
+  { 					
+    ${RELOCATING+ __bss_start__ = . ;}
+    *(.bss)
+    *(COMMON)
+    ${RELOCATING+ __bss_end__ = . ;}
+  }
+
+  ${RELOCATING+ end = .;}
+  ${RELOCATING+ _end = .;}
+  ${RELOCATING+ __end__ = .;}
+
+  .stab  0 ${RELOCATING+\(NOLOAD\)} : 
+  {
+    [ .stab ]
+  }
+  .stabstr  0 ${RELOCATING+\(NOLOAD\)} :
+  {
+    [ .stabstr ]
+  }
+}
+EOF
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+d77 1
+a77 1
+  .stab  0 ${RELOCATING+(NOLOAD)} : 
+d81 1
+a81 1
+  .stabstr  0 ${RELOCATING+(NOLOAD)} :
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

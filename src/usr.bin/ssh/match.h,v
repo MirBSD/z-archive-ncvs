@@ -1,0 +1,81 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501262100:1.1.1.1
+	cvs-200501201820:1.1.1.1
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.40.00;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.30;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.30;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: match.h,v 1.12 2002/03/01 13:12:10 markus Exp $	*/
+
+/*
+ * Author: Tatu Ylonen <ylo@@cs.hut.fi>
+ * Copyright (c) 1995 Tatu Ylonen <ylo@@cs.hut.fi>, Espoo, Finland
+ *                    All rights reserved
+ *
+ * As far as I am concerned, the code I have written for this software
+ * can be used freely for any purpose.  Any derived versions of this
+ * software must be clearly marked as such, and if the derived work is
+ * incompatible with the protocol description in the RFC file, it must be
+ * called by a name other than "ssh" or "Secure Shell".
+ */
+#ifndef MATCH_H
+#define MATCH_H
+
+int	 match_pattern(const char *, const char *);
+int	 match_pattern_list(const char *, const char *, u_int, int);
+int	 match_hostname(const char *, const char *, u_int);
+int	 match_host_and_ip(const char *, const char *, const char *);
+int	 match_user(const char *, const char *, const char *, const char *);
+char	*match_list(const char *, const char *, u_int *);
+
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,74 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.17.03;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.17.03;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/Xserver/record/module/Imakefile,v 1.2 2002/09/17 01:15:14 dawes Exp $
+XCOMM
+XCOMM
+XCOMM $XConsortium: Imakefile /main/3 1996/09/28 17:15:43 rws $
+
+#define IHaveModules
+#include <Server.tmpl>
+
+#if DoLoadableServer
+      MSRCS = recordmod.c
+      MOBJS = recordmod.o
+#endif
+
+       SRCS = record.c set.c $(MSRCS)
+       OBJS = record.o set.o $(MOBJS)
+   INCLUDES = -I.. -I../../include -I$(XINCLUDESRC) -I$(EXTINCSRC) \
+	-I$(SERVERSRC)/Xext
+   LINTLIBS = ../../dix/llib-ldix.ln
+    DEFINES = -DNDEBUG
+
+LinkSourceFile(recordmod.c,..)
+LinkSourceFile(record.c,..)
+LinkSourceFile(set.c,..)
+
+ModuleObjectRule()
+LibraryModuleTarget(record,$(OBJS))
+LintLibraryTarget(record,$(SRCS))
+NormalLintTarget($(SRCS))
+
+InstallLibraryModule(record,$(MODULEDIR),extensions)
+
+DependTarget()
+
+InstallDriverSDKLibraryModule(record,$(DRIVERSDKMODULEDIR),extensions)
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

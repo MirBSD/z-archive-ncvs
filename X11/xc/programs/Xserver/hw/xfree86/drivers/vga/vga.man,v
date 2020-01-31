@@ -1,0 +1,105 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @.\" @;
+
+
+1.1
+date     2004.12.15.18.14.27;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.14.27;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@.\" $XFree86: xc/programs/Xserver/hw/xfree86/drivers/vga/vga.man,v 1.3 2001/12/17 20:52:34 dawes Exp $ 
+.\" shorthand for double quote that works everywhere.
+.ds q \N'34'
+.TH VGA __drivermansuffix__ __vendorversion__
+.SH NAME
+vga \- Generic VGA video driver
+.SH SYNOPSIS
+.nf
+.B "Section \*qDevice\*q"
+.BI "  Identifier \*q"  devname \*q
+.B  "  Driver \*qvga\*q"
+\ \ ...
+.B EndSection
+.fi
+.SH DESCRIPTION
+.B vga 
+is an XFree86 driver for generic VGA video cards.  It can drive most
+VGA-compatible video cards, but only makes use of the basic standard
+VGA core that is common to these cards.  The driver supports depths 1, 4
+and 8.  All relevant visual types are supported at each depth.
+Multi-head configurations
+are supported in combination with some other drivers, but only when the
+.B vga
+driver is driving the primary head.
+.SH SUPPORTED HARDWARE
+The
+.B vga
+driver supports most VGA-compatible video cards.  There are some known
+exceptions, and those should be listed here.
+.SH CONFIGURATION DETAILS
+Please refer to XF86Config(__filemansuffix__) for general configuration
+details.  This section only covers configuration details specific to this
+driver.
+.PP
+The driver auto-detects the presence of VGA-compatible hardware.  The
+.B ChipSet
+name may optionally be specified in the config file
+.B \*qDevice\*q
+section, and will override the auto-detection:
+.PP
+.RS 4
+"generic"
+.RE
+.PP
+The driver will only use 64k of video memory for depth 1 and depth 8 operation,
+and 256k of video memory for depth 4 (this is the standard VGA limit).
+.PP
+When operating at depth 8, only a single built-in 320x200 video mode is
+available.  At other depths there is more flexibility regarding mode choice.
+.PP
+The following driver
+.B Options
+are supported:
+.TP
+.BI "Option \*qShadowFB\*q \*q" boolean \*q
+Enable or disable use of the shadow framebuffer layer.  Default: off.
+
+This option is recommended for performance reasons when running at depths
+1 and 4, especially when using modern PCI-based hardware.  It is required
+when using those depths in a multi-head configuration where one or more
+of the other screens is operating at a different depth.
+.SH "SEE ALSO"
+XFree86(1), XF86Config(__filemansuffix__), xf86config(1), Xserver(1), X(__miscmansuffix__)
+.SH AUTHORS
+Authors include: Marc La France, David Dawes, and Dirk Hohndel.
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

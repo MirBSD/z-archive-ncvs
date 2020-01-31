@@ -1,0 +1,90 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.40.38;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.45;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@Unused message id's (this is okay):
+001
+047
+050
+051
+052
+081
+176
+229
+288
+=========================
+MISSING ERROR MESSAGES (Please add!):
+=========================
+Extra error messages (just delete them):
+=========================
+MESSAGES WITH THE SAME MESSAGE ID's (FIX!):
+=========================
+Duplicate messages, both id and message (this is okay):
+   2 209 "El archivo est  vac¡o"
+   2 304 "Expansi¢n de shell fracasada"
+=========================
+Duplicate messages, just message (this is okay):
+   2 %s: %lu l¡neas, %lu caracteresX
+   2 %s: archivo de recuperaci¢n defectuosoX
+   2 Copiando archivo para recuperaci¢n...X
+   2 El buffer %s est  vac¡oX
+   2 InterrumpidoX
+   2 Las modificaciones no pueden recuperarse si la sesi¢n fallaX
+   2 No hay patr¢n anterior de b£squedaX
+   2 No se realiza log, no se puede deshacerX
+   2 determinar: opci¢n %s no es booleanoX
+   3 %s: eliminarX
+   3 Archivo modificado desde la £ltima escritura completa; escribir o usar ! para alterarX
+   4 Uso: %sX
+=========================
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,112 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.2
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.46;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.29;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.29;	author tg;	state Exp;
+branches;
+next	1.1.1.2;
+
+1.1.1.2
+date	2005.01.16.09.55.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@package Devel::PPPort; 
+sub bootstrap {}; 
+require "PPPort.pm";
+WriteFile("ppport.tmp");
+{
+    local $/;
+    my $old = '';
+    my $new = '';
+    $old = <FH> if open(FH, "ppport.h");	close FH;
+    $new = <FH> if open(FH, "ppport.tmp");	close FH;
+    if ($old ne $new) {
+	unlink("ppport.h");
+	rename("ppport.tmp", "ppport.h");
+    }
+    unlink("ppport.tmp");
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@
+
+
+1.1.1.2
+log
+@Import a series of fixes and minor updates from OpenBSD
+@
+text
+@a0 21
+################################################################################
+#
+#  ppport_h.PL -- generate ppport.h
+#
+################################################################################
+#
+#  $Revision: 3 $
+#  $Author: mhx $
+#  $Date: 2004/08/13 12:49:27 +0200 $
+#
+################################################################################
+#
+#  Version 3.x, Copyright (C) 2004, Marcus Holland-Moritz.
+#  Version 2.x, Copyright (C) 2001, Paul Marquess.
+#  Version 1.x, Copyright (C) 1999, Kenneth Albanowski.
+#
+#  This program is free software; you can redistribute it and/or
+#  modify it under the same terms as Perl itself.
+#
+################################################################################
+
+d4 14
+a17 2
+rename 'ppport.h', 'ppport.old' if -f 'ppport.h';
+unlink "ppport.old" if WriteFile("ppport.h") && -f 'ppport.h';
+@
+

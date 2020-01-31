@@ -1,0 +1,84 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@.\" @;
+
+
+2.1
+date	2005.01.03.16.33.24;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.51;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.51;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@.\"   $OpenBSD: rd.4,v 1.2 2004/03/21 19:47:59 miod Exp $
+.\"
+.\" This file is in the public domain.
+.\"
+.Dd May 14, 2001
+.Dt RD 4
+.Os
+.Sh NAME
+.Nm rd
+.Nd ramdisk driver
+.Sh SYNOPSIS
+.Cd "pseudo-device rd" Op Ar count
+.Sh DESCRIPTION
+The
+.Nm
+driver enables use of system or user memory as a disk.
+Memory for the disk must be allocated and initialized inside the
+kernel image at build-time using the
+.Nm rdsetroot
+tool.
+.Sh FILES
+.Bl -tag -width /dev/rrdXX -compact
+.It Pa "/dev/rd??"
+block mode ramdisk devices.
+.It Pa "/dev/rrd??"
+raw mode ramdisk devices.
+.El
+.Sh SEE ALSO
+The
+.Nm rdsetroot
+tool is available as part of the distribution toolset.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

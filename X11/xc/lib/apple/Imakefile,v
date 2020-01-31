@@ -1,0 +1,77 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.10.35;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.35;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/lib/apple/Imakefile,v 1.1 2003/08/12 23:47:10 torrey Exp $
+
+
+#define DoNormalLib NormalLibAppleWM
+#define DoSharedLib SharedLibAppleWM
+#define DoDebugLib DebugLibAppleWM
+#define DoProfileLib ProfileLibAppleWM
+#define LibName AppleWM
+#define SoRev SOAPPLEWMREV
+#define IncSubdir X11
+#define IncSubSubdir extensions
+
+#include <Threads.tmpl>
+
+#ifdef SharedAppleWMReqs
+REQUIREDLIBS = SharedAppleWMReqs
+#endif
+
+#if Malloc0ReturnsNull
+ALLOC_DEFINES = -DMALLOC_0_RETURNS_NULL
+#endif
+
+      DEFINES = $(ALLOC_DEFINES)
+     INCLUDES = -I$(XLIBSRC) -I$(EXTINCSRC)
+         SRCS = applewm.c
+         OBJS = applewm.o
+     LINTLIBS = $(LINTXLIB)
+
+HEADERS = applewm.h applewmstr.h
+
+#include <Library.tmpl>
+
+MANSUFFIX = $(LIBMANSUFFIX)
+
+InstallManPage(AppleWM,$(LIBMANDIR))
+
+DependTarget()
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

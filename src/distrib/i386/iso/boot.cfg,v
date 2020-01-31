@@ -1,0 +1,35 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.22.53;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@set timeout 0
+echo
+echo =========================================================
+echo # MirOS BSD v8 | (c) 2002, 2003, 2004 The MirOS Project #
+echo =========================================================
+echo 
+echo To boot the MirOS installation system, from which you can
+echo install, upgrade, back up or manually repair a MirOS sys-
+echo tem, type the following command at the boot prompt:
+echo 
+echo boot> boot /i386/bsd
+@

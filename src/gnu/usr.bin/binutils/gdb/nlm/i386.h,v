@@ -1,0 +1,57 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  gdb-20050107:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.23.04.23;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.23.04.23;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Register values.  All of these values *MUST* agree with tm.h */
+#define SP_REGNUM 4		/* Contains address of top of stack */
+#define PC_REGNUM 8		/* Contains program counter */
+#define DEPRECATED_FP_REGNUM 5		/* Virtual frame pointer */
+#define NUM_REGS 16		/* Number of machine registers */
+#define REGISTER_BYTES (NUM_REGS * 4) /* Total size of registers array */
+
+#define ExceptionPC ExceptionEIP
+#define DECR_PC_AFTER_BREAK 1	/* int 3 leaves PC pointing after insn */
+#define BREAKPOINT {0xcc}
+#define BREAKPOINT_SIZE (sizeof breakpoint_insn)
+
+#define StackFrame T_TSS_StackFrame
+@
+
+
+1.1.2.1
+log
+@The GNU Debugger 6.3.50-current, from
+ ftp://sources.redhat.com/pub/gdb/snapshots/current/gdb-weekly-6.3.50.20050107.tar.bz2
+
+only the gdb/ subdirectory, gdb/testsuite/ removed.
+
+Luckily, this time it doesn't depend on a different libbfd than
+the one we deliver with GNU binutils...
+@
+text
+@@

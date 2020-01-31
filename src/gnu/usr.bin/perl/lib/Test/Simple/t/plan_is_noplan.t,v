@@ -1,0 +1,123 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.40;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@BEGIN {
+    if( $ENV{PERL_CORE} ) {
+        chdir 't';
+        @@INC = ('../lib', 'lib');
+    }
+    else {
+        unshift @@INC, 't/lib';
+    }
+}
+
+# Can't use Test.pm, that's a 5.005 thing.
+package My::Test;
+
+BEGIN {
+    if( !$ENV{HARNESS_ACTIVE} && $ENV{PERL_CORE} ) {
+        print "1..0 # Skipped: Won't work with t/TEST\n";
+        exit 0;
+    }
+
+    # This feature requires a fairly new version of Test::Harness
+    require Test::Harness;
+    if( $Test::Harness::VERSION < 1.20 ) {
+        print "1..0 # Skipped: Need Test::Harness 1.20 or up\n";
+        exit(0);
+    }
+}
+
+print "1..2\n";
+
+my $test_num = 1;
+# Utility testing functions.
+sub ok ($;$) {
+    my($test, $name) = @@_;
+    my $ok = '';
+    $ok .= "not " unless $test;
+    $ok .= "ok $test_num";
+    $ok .= " - $name" if defined $name;
+    $ok .= "\n";
+    print $ok;
+    $test_num++;
+}
+
+
+package main;
+
+require Test::Simple;
+
+require Test::Simple::Catch;
+my($out, $err) = Test::Simple::Catch::caught();
+
+
+Test::Simple->import('no_plan');
+
+ok(1, 'foo');
+
+
+END {
+    My::Test::ok($$out eq <<OUT);
+ok 1 - foo
+1..1
+OUT
+
+    My::Test::ok($$err eq <<ERR);
+ERR
+
+    # Prevent Test::Simple from exiting with non zero
+    exit 0;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

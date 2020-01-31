@@ -1,0 +1,193 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@// @;
+
+
+1.2
+date	2005.01.06.23.20.31;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.03.19;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.03.19;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge X11 out of my feet
+@
+text
+@XCOMM!/bin/sh
+
+XCOMM
+XCOMM makedepend which uses 'gcc -M'
+XCOMM
+XCOMM $XFree86: xc/config/util/gccmdep.cpp,v 3.11 2003/06/15 16:53:11 tsi Exp $
+XCOMM
+XCOMM Based on mdepend.cpp and code supplied by Hongjiu Lu <hjl@@nynexst.com>
+XCOMM
+
+TMP=mdep$$.tmp
+TMPARG=${TMP}arg
+CC=CCCMD
+RM=RMCMD
+LN=LNCMD
+MV=MVCMD
+
+${RM} ${TMP} ${TMPARG}
+
+trap "${RM} ${TMP} ${TMPARG}; exit 1" 1 2 15
+trap "${RM} ${TMP} ${TMPARG}; exit 0" 0 1 2 13
+
+files=
+makefile=
+endmarker=
+magic_string='# DO NOT DELETE'
+append=n
+args=
+
+while [ $# != 0 ]; do
+    if [ "$endmarker"x != x -a "$endmarker" = "$1" ]; then
+	endmarker=
+    else
+	case "$1" in
+	    -D*|-I*|-U*)
+		args="$args '$1'"
+		;;
+	    -g*|-O*)
+		;;
+	    *)
+		if [ "$endmarker"x = x ]; then
+		    case $1 in
+XCOMM ignore these flags
+			-w|-o|-cc)
+			    shift
+			    ;;
+			-v)
+			    ;;
+			-s)
+			    magic_string="$2"
+			    shift
+			    ;;
+			-f*)
+			    if [ "$1" = "-f-" ]; then
+				makefile="-"
+			    elif [ "$1" = "-f" ]; then
+				makefile="$2"
+				shift
+			    else
+			    	echo "$1" | sed 's/^\-f//' >${TMPARG}
+				makefile="`cat ${TMPARG}`"
+			    fi
+			    ;;
+			--*)
+			    endmarker=`echo $1 | sed 's/^\-\-//'`
+			    if [ "$endmarker"x = x ]; then
+				endmarker="--"
+			    fi
+			    ;;
+			-a)
+			    append=y
+			    ;;
+			-*)
+			    echo "Unknown option '$1' ignored" 1>&2
+			    ;;
+			*)
+			    files="$files $1"
+			    ;;
+		    esac
+		fi
+		;;
+	esac
+    fi
+    shift
+done
+
+if [ x"$files" = x ]; then
+XCOMM Nothing to do
+    exit 0
+fi
+
+case "$makefile" in
+    '')
+	if [ -r makefile ]; then
+	    makefile=makefile
+	elif [ -r Makefile ]; then
+	    makefile=Makefile
+	else
+	    echo 'no makefile or Makefile found' 1>&2
+	    exit 1
+	fi
+	;;
+esac
+
+if [ X"$makefile" != X- ]; then
+    if [ x"$append" = xn ]; then
+        sed -e "/^$magic_string/,\$d" < $makefile > $TMP
+        echo "$magic_string" >> $TMP
+    else
+        cp $makefile $TMP
+    fi
+fi
+
+CMD="$CC -M $args $files"
+if [ X"$makefile" != X- ]; then
+    CMD="$CMD >> $TMP"
+fi
+eval $CMD
+if [ X"$makefile" != X- ]; then
+    $RM ${makefile}.bak
+    $MV $makefile ${makefile}.bak
+    $MV $TMP $makefile
+fi
+
+exit 0
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d12 1
+d18 1
+a18 1
+${RM} ${TMP}
+d20 2
+a21 2
+trap "${RM} ${TMP}*; exit 1" 1 2 15
+trap "${RM} ${TMP}*; exit 0" 1 2 13
+d60 2
+a61 3
+				echo "$1" | sed 's/^\-f//' >${TMP}arg
+				makefile="`cat ${TMP}arg`"
+				rm -f ${TMP}arg
+a124 1
+$RM ${TMP}*
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,72 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.21.49.03;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.53;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.53;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testzlib", "testzlib.vcproj", "{AA6666AA-E09F-4135-9C0C-4FE50C3C654B}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{AA6666AA-E09F-4135-9C0C-4FE50C3C654B}.Debug.ActiveCfg = Debug|Win32
+		{AA6666AA-E09F-4135-9C0C-4FE50C3C654B}.Debug.Build.0 = Debug|Win32
+		{AA6666AA-E09F-4135-9C0C-4FE50C3C654B}.Release.ActiveCfg = Release|Win32
+		{AA6666AA-E09F-4135-9C0C-4FE50C3C654B}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

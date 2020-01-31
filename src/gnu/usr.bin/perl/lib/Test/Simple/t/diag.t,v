@@ -1,0 +1,116 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.40;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!perl -w
+
+BEGIN {
+    if( $ENV{PERL_CORE} ) {
+        chdir 't';
+        @@INC = '../lib';
+    }
+}
+
+use strict;
+
+use Test::More tests => 7;
+
+my $Test = Test::More->builder;
+
+# now make a filehandle where we can send data
+my $output;
+tie *FAKEOUT, 'FakeOut', \$output;
+
+# force diagnostic output to a filehandle, glad I added this to
+# Test::Builder :)
+my @@lines;
+my $ret;
+{
+    local $TODO = 1;
+    $Test->todo_output(\*FAKEOUT);
+
+    diag("a single line");
+
+    push @@lines, $output;
+    $output = '';
+
+    $ret = diag("multiple\n", "lines");
+    push @@lines, split(/\n/, $output);
+}
+
+is( @@lines, 3,              'diag() should send messages to its filehandle' );
+like( $lines[0], '/^#\s+/', '    should add comment mark to all lines' );
+is( $lines[0], "# a single line\n",   '    should send exact message' );
+is( $output, "# multiple\n# lines\n", '    should append multi messages');
+ok( !$ret, 'diag returns false' );
+
+{
+    $Test->failure_output(\*FAKEOUT);
+    $output = '';
+    $ret = diag("# foo");
+}
+$Test->failure_output(\*STDERR);
+is( $output, "# # foo\n",   "diag() adds a # even if there's one already" );
+ok( !$ret,  'diag returns false' );
+
+package FakeOut;
+
+sub TIEHANDLE {
+	bless( $_[1], $_[0] );
+}
+
+sub PRINT {
+	my $self = shift;
+	$$self .= join('', @@_);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

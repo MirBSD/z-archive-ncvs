@@ -1,0 +1,194 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@.\" @;
+
+
+2.1
+date	2005.01.03.16.43.07;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.55;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@.\" $MirBSD: src/usr.sbin/vnconfig/vnconfig.8,v 1.3 2004/03/21 05:19:12 tg Stab $
+.\" $OpenBSD: vnconfig.8,v 1.19 2003/06/12 12:59:54 jmc Exp $
+.\"
+.\" Copyright (c) 1993 University of Utah.
+.\" Copyright (c) 1980, 1989, 1991, 1993
+.\"	The Regents of the University of California.  All rights reserved.
+.\"
+.\" This code is derived from software contributed to Berkeley by
+.\" the Systems Programming Group of the University of Utah Computer
+.\" Science Department.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\" 3. Neither the name of the University nor the names of its contributors
+.\"    may be used to endorse or promote products derived from this software
+.\"    without specific prior written permission.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\" SUCH DAMAGE.
+.\"
+.\"     @@(#)vnconfig.8	8.1 (Berkeley) 6/5/93
+.\"
+.Dd July 8, 1993
+.Dt VNCONFIG 8
+.Os
+.Sh NAME
+.Nm vnconfig
+.Nd "configure vnode disks for file swapping or pseudo file systems"
+.Sh SYNOPSIS
+.Nm vnconfig
+.Op Fl c
+.Op Fl vkr
+.Ar rawdev
+.Ar regular_file
+.Nm vnconfig Fl u
+.Op Fl vr
+.Ar rawdev
+.Sh DESCRIPTION
+The
+.Nm
+command configures vnode pseudo disk devices.
+It will associate (or disassociate) the special file
+.Ar rawdev
+with the regular file
+.Ar regular_file
+allowing the latter to be accessed as though it were a disk.
+Hence a regular file within the filesystem can be used for swapping
+or can contain a filesystem that is mounted in the name space.
+Both traditional devices,
+.Pa vnd ,
+and the cache-coherent devices,
+.Pa svnd ,
+are configured through
+.Nm vnconfig .
+.Pp
+If you read the regular file while using
+.Pa svnd ,
+you need to mount the
+.Pa svnd
+with the mount option
+.Ar sync
+to ensure consistency in the buffer cache.
+For normal operation this is not necessary.
+.Pp
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl c
+Configures the device.
+If successful, references to
+.Ar rawdev
+will access the contents of
+.Ar regular_file .
+This is the default operation.
+.It Fl k
+Associate an encryption key with the device.
+All data will be encrypted before it is written to the disk.
+Encryption only works with
+.Pa svnd .
+.It Fl r
+If the kernel supports it, don't write to the underlying file.
+This is supported since
+.Mx 7 .
+.It Fl u
+Unconfigures the device.
+If the device was configured read-only, you must use the
+.Fl r
+option while unconfiguring, or you will get an error.
+.It Fl v
+Print messages to stdout describing actions taken.
+.El
+.Pp
+If no action option is given,
+.Fl c
+is assumed.
+.Sh FILES
+.Bl -tag -width /etc/rvnd?? -compact
+.It Pa /dev/{,r}{,s}vnd*
+.El
+.Sh EXAMPLES
+Configure the vnode disk
+.Pa svnd0
+(all of its partitions become usable):
+.Pp
+.Dl # vnconfig svnd0 /tmp/diskimage
+.Pp
+Unconfigure the same device:
+.Pp
+.Dl # vnconfig -u svnd0
+.Sh SEE ALSO
+.Xr vnd 4 ,
+.Xr mount 8 ,
+.Xr swapon 8 ,
+.Xr umount 8
+.Sh BUGS
+This command should really be named
+.Nm vndconfig .
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+.\"	$OpenBSD: vnconfig.8,v 1.19 2003/06/12 12:59:54 jmc Exp $
+d47 1
+a47 1
+.Op Fl vk
+d51 1
+a51 1
+.Op Fl v
+d94 4
+d100 3
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

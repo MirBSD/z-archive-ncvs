@@ -1,0 +1,74 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.21.27.47;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.06.21.27.47;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/ksh
+
+[ "${DESTDIR}" ] || DESTDIR=$(pwd)/dest
+[ "${RELEASEDIR}" ] || RELEASEDIR=$(pwd)/rel
+
+[ -d ${DESTDIR} ] || {
+	echo "${DESTDIR} does not exist"
+	exit 1
+}
+
+[ -d ${RELEASEDIR} ] || {
+	echo "${RELEASEDIR} does not exist"
+	exit 1
+}
+
+ext=log
+log=`/bin/pwd`/snap
+if [ -f $log.$ext -o -f $log.$ext.gz ]
+then
+
+	i=0
+	while [	-f $log.$i.$ext -o -f $log.$i.$ext.gz ]
+	do
+		let i=i+1
+	done
+	log=$log.$i.$ext
+else
+	log=$log.$ext
+fi
+nohup sh -c "(echo \$\$ > ${log}.lock ; echo START: \$(date); make build && env RELEASEDIR=$RELEASEDIR DESTDIR=$DESTDIR make release; rm ${log}.lock; echo STOP: \$(date) ) > $log 2>&1 &"
+sleep 10
+while [ -f ${log}.lock ]
+do
+	tail -2 $log
+	sleep 120
+done
+@
+
+
+1.1.1.1
+log
+@Import the rest of the OpenBSD distrib/extra stuff
+@
+text
+@@

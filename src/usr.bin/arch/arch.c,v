@@ -1,0 +1,157 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.38.29;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.33.56;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.33.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * Copyright (c) 1994 SigmaSoft, Th. Lockert <tholo@@sigmasoft.com>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL
+ * THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include <sys/param.h>
+
+#include <err.h>
+#include <locale.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+__RCSID("$MirBSD: src/usr.bin/arch/arch.c,v 1.3 2004/05/23 18:46:07 tg Stab $");
+
+static void usage(void);
+
+static int machine;
+
+int
+main(int argc, char *argv[])
+{
+	extern char *__progname;
+	int short_form = 0, c;
+	char *arch, *opts;
+
+	setlocale(LC_ALL, "");
+
+	machine = strcmp(__progname, "machine") == 0;
+	if (machine) {
+		arch = MACHINE;
+		opts = "a";
+		short_form++;
+	} else {
+		arch = MACHINE_ARCH;
+		opts = "ks";
+	}
+	while ((c = getopt(argc, argv, opts)) != -1)
+		switch (c) {
+		case 'a':
+			arch = MACHINE_ARCH;
+			break;
+		case 'k':
+			arch = MACHINE;
+			break;
+		case 's':
+			short_form++;
+			break;
+		default:
+			usage();
+			/* NOTREACHED */
+		}
+	if (optind != argc) {
+		usage();
+		/* NOTREACHED */
+	}
+	if (!short_form)
+		fputs("MirBSD.", stdout);
+	fputs(arch, stdout);
+	fputc('\n', stdout);
+	exit(0);
+}
+
+static void
+usage(void)
+{
+	if (machine)
+		fprintf(stderr, "usage: machine [-a]\n");
+	else
+		fprintf(stderr, "usage: arch [-ks]\n");
+	exit(1);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a25 4
+#ifndef lint
+static char rcsid[] = "$OpenBSD: arch.c,v 1.11 2004/05/09 03:20:45 deraadt Exp $";
+#endif /* not lint */
+
+d35 2
+d78 2
+a79 4
+	if (!short_form) {
+		fputs("OpenBSD", stdout);
+		fputc('.', stdout);
+	}
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,89 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.38;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.52;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@BEGIN {
+    eval { require Config; import Config };
+    if ($@@) {
+	print "1..0 # Skip: no Config\n";
+	exit(0);
+    }
+}
+
+use Thread 'async';
+use Config;
+use Tie::Hash;
+
+sub start_here {
+    my $i;
+    print "In start_here with args: @@_\n";
+    for ($i = 1; $i <= 5; $i++) {
+	print "start_here: $i\n";
+	sleep 1;
+    }
+}
+
+async {
+    tie my(%h), 'Tie::StdHash';
+    %h = %Config;
+    print "running on $h{archname}\n";
+};
+
+print "Starting new thread now\n";
+$t = new Thread \&start_here, qw(foo bar baz);
+print "Started thread $t\n";
+for ($count = 1; $count <= 5; $count++) {
+    print "main: $count\n";
+    sleep 1;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

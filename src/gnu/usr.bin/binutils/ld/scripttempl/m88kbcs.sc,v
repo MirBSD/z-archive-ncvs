@@ -1,0 +1,126 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.13.21.56.56;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@start merging
+* without generated files
+* docs are going to be built
+* untested ("minimal change" concept)
+* with assignment back to the FSF
+@
+text
+@# $MirBSD: src/gnu/usr.bin/binutils/src/ld/scripttempl/m88kbcs.sc,v 1.3 2004/09/16 22:28:15 tg Exp $
+#
+# These are substituted in as variables in order to get '}' in a shell
+# conditional expansion.
+INIT='.init : { *(.init) }'
+FINI='.fini : { *(.fini) }'
+cat <<EOF
+OUTPUT_FORMAT("${OUTPUT_FORMAT}")
+OUTPUT_ARCH(${ARCH})
+ENTRY(__start)
+${RELOCATING+${LIB_SEARCH_DIRS}}
+
+SECTIONS 				
+{ 					
+  .text ${RELOCATING+ (0x20007 + SIZEOF_HEADERS) &~ 7} :
+    {
+      ${RELOCATING+ __.text.start = .};
+      ${RELOCATING+ __.init.start = .};
+      ${RELOCATING+ *(.init)}
+      ${RELOCATING+ __.init.end = .};
+      *(.text) 				
+      ${RELOCATING+ __.tdesc_start = .};
+      ${RELOCATING+ *(.tdesc)}
+      ${RELOCATING+ __.text_end = .}	;
+      ${RELOCATING+ __.initp.start = .};
+      ${RELOCATING+ __.initp.end = .};
+      ${RELOCATING+ __.fini_start = .};
+      ${RELOCATING+ *(.fini) }
+      ${RELOCATING+ __.fini_end = .};
+      ${RELOCATING+_etext = .};
+    }  					
+  .data ${RELOCATING+ NEXT (0x400000) + ((SIZEOF(.text) + ADDR(.text)) % 0x2000)} :
+    { 					
+      *(.data)
+      ${RELOCATING+_edata  =  .};
+    }  					
+  .bss ${RELOCATING+ SIZEOF(.data) + ADDR(.data)} :
+    { 		
+      *(.bss)	
+      *(COMMON) 	
+      ${RELOCATING+ _end = .};
+      ${RELOCATING+ __end = .};
+    }
+  ${RELOCATING- ${INIT}}
+  ${RELOCATING- ${FINI}}
+  .comment  0 ${RELOCATING+\(NOLOAD\)} : 
+  {
+    *(.comment)
+  }
+}
+EOF
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+d46 1
+a46 1
+  .comment  0 ${RELOCATING+(NOLOAD)} : 
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

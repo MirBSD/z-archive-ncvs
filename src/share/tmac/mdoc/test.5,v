@@ -1,0 +1,102 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@.\" @;
+
+
+2.1
+date	2005.01.03.16.33.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@.\" $MirBSD: src/share/tmac/mdoc/test.5,v 1.11 2004/12/05 12:06:55 tg Exp $
+.\"-
+.\" Copyright (c) 2004
+.\"	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+.\"
+.\" Licensee is hereby permitted to deal in this work without restric-
+.\" tion, including unlimited rights to use, publically perform, modi-
+.\" fy, merge, distribute, sell, give away or sublicence, provided the
+.\" above copyright notices, these terms and the disclaimer are retai-
+.\" ned in all redistributions, or reproduced in accompanying documen-
+.\" tation or other materials provided with binary redistributions.
+.\"
+.\" Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+.\" any kind, expressed or implied, to the maximum extent permitted by
+.\" applicable law, but with the warranty of being written without ma-
+.\" licious intent or gross negligence; in no event shall licensor, an
+.\" author or contributor be held liable for any damage, direct, indi-
+.\" rect or other, however caused, arising in any way out of the usage
+.\" of covered work, even if advised of the possibility of such damage.
+.\"-
+.Dd December 2, 2003
+.Dt TEST 5
+.Os
+.Sh NAME
+.Nm test
+.tm
+.Nd mdoc bugs regression test for nroff
+.Sh SYNOPSIS
+.Nm nroff Op -mandoc Pa test.5
+.Sh DESCRIPTION
+Below are test texts.
+The first one is a simple mdoc space error.
+.Pp
+.tm The following two lines should be identical:
+.tm MDOC-ERROR: bogus type 0 (can't set space '(') (#3779 or #39)
+The
+.Ar scheduler
+can get additional parameters with
+.Ar <scheduler> Ns Li (\& Ar <parameters> No ) .
+.tm
+.Sh SEE ALSO
+An advanced error \- cross references.
+.Pp
+.tm The following two lines should be identical:
+.tm Usage: .Xr manpage_name [section#] {.,;:?!()[]} (#3786 or #46)
+.Xr st 4
+.tm
+.Sh REFERENCES
+The following one is a hard case.
+.Pp
+.Bl -column minpasswordlen program xetcxmotd
+.tm The following two blocks of two lines should be identical:
+.tm MDOC-ERROR: bogus type 0 (can't set space '') (#3795 or #55)
+.tm MDOC-ERROR: bogus class 0 (can't determine 'Ta') (#3795 or #55)
+.It auth- Ns Ar type Ta list Ta "" Ta
+Allowed authentication styles for the authentication type
+.Ar type .
+.tm
+.El
+.Sh MORE TESTS
+This is
+.Mx
+OS.
+.Pp
+This is
+.Mx .
+.Pp
+This is
+.Mx 8
+OS.
+.Pp
+This is
+.Mx 8 .
+.Sh HISTORY
+The
+.Nm
+fake mdoc man page appeared in
+.Mx 8 .
+@

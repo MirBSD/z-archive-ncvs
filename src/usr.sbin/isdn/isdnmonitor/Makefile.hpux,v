@@ -1,0 +1,70 @@
+head     1.1;
+branch   1.1.5;
+access   ;
+symbols  cvs-200501031800:1.1.5.1 TNF:1.1.5;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.03.18.04.37;  author tg;  state Exp;
+branches 1.1.5.1;
+next     ;
+
+1.1.5.1
+date     2005.01.03.18.04.37;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# tested under HPUX 10.20 using HP's ANSI-C compiler
+
+CC	=	cc
+NAME	=	i4bmon
+DEST	=	/usr/local/bin
+MANDIR	=	/usr/local/man
+MANHPUX	=	man1
+CFLAGS	=	-g -z -Wc,-w1 -Ae -DDEBUG -lHcurses
+LFLAGS	=	-g -z -Wc,-w1 -Ae -lHcurses
+CFILES	=	main.c curses.c
+OFILES	=	main.o curses.o
+HFILES	=	monitor.h monprivate.h
+
+$(NAME):	$(OFILES)
+		$(CC) $(OFILES) $(LFLAGS) -o $(NAME)
+			
+$(OFILES):	$(HFILES)
+
+install:	$(NAME) $(MANFILE)
+		cp $(NAME) $(DEST)
+		strip $(DEST)/$(NAME)
+		chmod og-rw,a+x,u+rwx $(DEST)/$(NAME)
+		chown root $(DEST)/$(NAME)
+		chgrp bin $(DEST)/$(NAME)
+		cp $(MANFILE) $(MANDIR)/$(MANHPUX)
+		chmod a+r $(MANDIR)/$(MANHPUX)/$(MANFILE)
+
+clean:		
+		rm -f *.o $(NAME) trace core* lint.out
+
+#-------------------------- E O F ---------------------------------------------
+@
+
+
+1.1.5.1
+log
+@ISDN userland support code from TNF, NetBSD(TM)-current
+this will eventually replace our dated isdnd(8) port
+@
+text
+@@

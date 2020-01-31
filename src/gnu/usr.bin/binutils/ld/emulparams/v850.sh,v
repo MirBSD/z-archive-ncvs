@@ -1,0 +1,70 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.23.04.04;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.04.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@MACHINE=
+SCRIPT_NAME=v850
+OUTPUT_FORMAT="elf32-v850"
+TEXT_START_ADDR=0x100000
+ZDATA_START_ADDR=0x160
+ROZDATA_START_ADDR="ALIGN (4)"
+SDATA_START_ADDR="ALIGN (4)"
+ROSDATA_START_ADDR="ALIGN (4)"
+TDATA_START_ADDR="ALIGN (4)"
+CALL_TABLE_START_ADDR="ALIGN (4)"
+ARCH=v850
+MAXPAGESIZE=256
+ENTRY=_start
+EMBEDDED=yes
+TEMPLATE_NAME=elf32
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

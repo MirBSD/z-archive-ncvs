@@ -1,0 +1,55 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.17.35;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.17.35;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+echo '#####EOF#####' | cat $2 - $1 |
+awk -F: '\
+$1 == "#####EOF#####"	{ filling = 1; currentItem = 1; lastItem = NR; next; }
+filling != "1"	{ itemOrder[" " $1] = NR; name[NR] = $1; }
+filling == "1"	{ rate[itemOrder[$2]] = $1; }
+END	{
+	for (i = 1; i < lastItem; i++) {
+		if (rate[i] != "") {
+			printf ("%s: %s\n", rate[i], name[i]);
+		} else {
+			printf (" 0 trep @@ 0.0 msec (0.0/sec): %s\n", name[i]);
+		}
+	}
+	}'
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

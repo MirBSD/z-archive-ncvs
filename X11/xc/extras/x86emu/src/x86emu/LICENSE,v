@@ -1,0 +1,57 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.05.26;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.05.26;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@                         License information
+                         -------------------
+
+The x86emu library is under a BSD style license, comaptible
+with the XFree86 and X licenses used by XFree86. The
+original x86emu libraries were under the GNU General Public
+License. Due to license incompatibilities between the GPL
+and the XFree86 license, the original authors of the code
+decided to allow a license change. If you have submitted
+code to the original x86emu project, and you don't agree
+with the license change, please contact us and let you
+know. Your code will be removed to comply with your wishes.
+
+If you have any questions about this, please send email to
+x86emu@@linuxlabs.com or KendallB@@scitechsoft.com for
+clarification.
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

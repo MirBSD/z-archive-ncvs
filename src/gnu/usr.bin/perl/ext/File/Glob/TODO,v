@@ -1,0 +1,76 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.20;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@Some issues left to take care of:
+
+  o sane ~ handling on non-Unix platforms
+
+     Currently on non-Unix, when the glob code encounters a tilde glob
+     (.e.g ~user/foo or ~/.cshrc), it simply returns that pattern
+     without doing any expansion (meaning perl will weed it out since a
+     file of that name isn't likely to exist).
+
+     Please, if you have strong feelings about how tilde expansion
+     should be done on your favorite non-Unix platform(s), submit a
+     patch.
+
+  o path separator handling
+
+     Guido's code contains the assumption that the path separator is one
+     character (byte, probably) in length.  Win32 doesn't object to the
+     true slash as a separator.  I imagine MacPerl could change the SEP
+     cpp #define to ":".  I have no idea what it is for VMS.  Again, if
+     you have ideas and especially patches, please feel free to share
+     them.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

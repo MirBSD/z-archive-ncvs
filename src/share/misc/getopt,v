@@ -1,0 +1,90 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.33.47;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.03;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: getopt,v 1.7 2002/07/22 20:13:14 pvalchev Exp $	*/
+/*
+ * Main/getopt(3) fragment.
+ *
+ *	from: @@(#)getopt	5.3 (Berkeley) 3/28/94
+ */
+
+#include <sys/types.h>
+#include <stdlib.h>
+
+void usage(void);
+
+int
+main(int argc, char *argv[])
+{
+	int ch;
+
+	while ((ch = getopt(argc, argv, "abcf:")) != -1)
+		switch (ch) {
+		case '':
+			break;
+		case '?':
+		default:
+			usage();
+		}
+	argc -= optind;
+	argv += optind;
+}
+
+void
+usage(void)
+{
+	extern char *__progname;
+
+	(void)fprintf(stderr, "usage: %s [-abc] [-f file]\n", __progname);
+	exit(1);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

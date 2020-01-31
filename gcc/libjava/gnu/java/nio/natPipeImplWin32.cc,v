@@ -1,0 +1,98 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@// @;
+
+
+1.1
+date	2005.01.04.17.25.11;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.25.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@// natPipeImplWin32.cc
+
+/* Copyright (C) 2003  Free Software Foundation
+
+   This file is part of libgcj.
+
+This software is copyrighted work licensed under the terms of the
+Libgcj License.  Please consult the file "LIBGCJ_LICENSE" for
+details.  */
+
+#include <config.h>
+#include <platform.h>
+
+#include <errno.h>
+#include <string.h>
+#include <unistd.h>
+
+#include <gnu/java/nio/PipeImpl.h>
+//#include <gnu/java/nio/PipeImpl$SinkChannelImpl.h>
+//#include <gnu/java/nio/PipeImpl$SourceChannelImpl.h>
+#include <java/io/IOException.h>
+#include <java/nio/channels/spi/SelectorProvider.h>
+
+void
+gnu::java::nio::PipeImpl::nativeInit (::java::nio::channels::spi::SelectorProvider* /*provider*/)
+{
+  int filedes [2];
+
+  if (_Jv_pipe (filedes) < 0)
+    throw new ::java::io::IOException (JvNewStringUTF (strerror (errno)));
+
+  /* FIXME
+  source = new gnu::java::nio::PipeImpl$SourceChannelImpl
+    (this, provider, filedes [0]);
+  sink = new gnu::java::nio::PipeImpl$SinkChannelImpl
+    (this, provider, filedes [1]);
+  */
+}
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

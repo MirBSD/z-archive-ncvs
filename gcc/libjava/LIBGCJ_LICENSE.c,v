@@ -1,0 +1,30 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.04.18.05.34;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@The usual removal of dupes and unused stuff
+@
+text
+@/* $MirBSD$ */
+
+#define	MYNAME	 "libgcj"
+#define SGPLVER	 "v2"
+#define	MYGPLVER " if inheriting classes"
+
+#include "_gplwarn.c"
+@

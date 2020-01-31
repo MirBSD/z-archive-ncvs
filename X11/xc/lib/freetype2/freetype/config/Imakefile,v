@@ -1,0 +1,103 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.06.23.21.12;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.10.59;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.10.59;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge X11 out of my feet
+@
+text
+@XCOMM $XFree86: xc/lib/freetype2/freetype/config/Imakefile,v 1.13 2003/10/31 20:49:05 herrb Exp $
+
+FREETYPETOP = $(TOP)/extras/freetype2
+FREETYPESRC = $(FREETYPETOP)/src
+FREETYPEINC = $(FREETYPETOP)/include/freetype
+
+HEADERS= \
+        ftconfig.h \
+	ftheader.h \
+        ftmodule.h \
+        ftoption.h \
+        ftstdlib.h
+
+BuildIncludes($(HEADERS),freetype2/freetype/config,../../..)
+InstallMultipleFlags($(HEADERS),$(INCDIR)/freetype2/freetype/config,$(INSTINCFLAGS))
+
+#if 0
+LinkSourceFile(ftconfig.h,$(FREETYPEINC)/config)
+#else
+LinkSourceFile(ftconfig.h,$(FONTLIBSRC)/FreeType)
+#endif
+LinkSourceFile(ftheader.h,$(FREETYPEINC)/config)
+LinkSourceFile(ftmodule.h,$(FREETYPEINC)/config)
+LinkSourceFile(ftoption.h,$(FREETYPEINC)/config)
+LinkSourceFile(ftstdlib.h,$(FREETYPEINC)/config)
+
+XCOMM Build and install a configure-compatible freetype-config
+
+LinkSourceFile(freetype-config.in,$(FREETYPETOP)/builds/unix)
+
+FREETYPE_VERSION=Freetype2Version
+
+RPATH_CFLAG = HardCodeLibdirFlag
+
+freetype-config: freetype-config.in
+	sed -e s%@@prefix@@%$(PROJECTROOT)% -e s%@@exec_prefix@@%$(PROJECTROOT)% \
+	-e s%@@libdir@@%$(USRLIBDIR)%g -e s%@@includedir@@%$(INCDIR)%	\
+	-e s%@@ft_version@@%$(FREETYPE_VERSION)% -e s%@@LIBZ@@%-lz% \
+	-e s%@@hardcode_libdir_flag_spec@@%$(RPATH_CFLAG)% \
+	< freetype-config.in > $@@
+
+includes:: freetype-config
+
+InstallNamedProg(freetype-config,freetype-config,$(BINDIR))
+
+clean::
+	RemoveFile(freetype-config)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d38 1
+a38 1
+	-e s%@@ft_version@@%$(FREETYPE_VERSION)% -e s%@@LIBZ@@%% \
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

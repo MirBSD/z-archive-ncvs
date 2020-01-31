@@ -1,0 +1,89 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.1
+	libtool-1_5_8:1.1.2.1
+	libtool-1_5-20040215:1.1.2.1
+	libtool-1_4_3:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2004.02.03.19.42.30;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.17.56.00;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.03.17.56.00;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@* MirOSify
+* bootstrap
+* nuke unneeded stuff
+@
+text
+@/* sub.c -- trivial test library
+   Copyright (C) 1998-1999 Free Software Foundation, Inc.
+   Originally by Thomas Tanner <tanner@@ffii.org>
+   This file is part of GNU Libtool.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+USA. */
+
+#include <stdio.h>
+
+void
+sub()
+{
+  printf ("sub() called\n");
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Libtool 1.4.3 (last of the 1.4 series)
+
+Requires to bootstrap:
+* autoconf 2.13-o
+* automake 1.4-p5
+or later.
+@
+text
+@@

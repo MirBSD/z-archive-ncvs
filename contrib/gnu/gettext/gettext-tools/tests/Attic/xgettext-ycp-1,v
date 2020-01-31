@@ -1,0 +1,85 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.49.22;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.14;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@#!/bin/sh
+#
+# Plural test for YCP
+#
+
+tmpfiles=""
+trap 'rm -fr $tmpfiles' 1 2 3 15
+
+tmpfiles="$tmpfiles xg-y-1.ycp"
+cat <<EOF > xg-y-1.ycp
+title = sformat (_("%1 package", "%1 packages", num), num);
+EOF
+
+tmpfiles="$tmpfiles xg-y-1.po"
+: ${XGETTEXT=xgettext}
+${XGETTEXT} --omit-header --no-location -k:1,2 -d xg-y-1 xg-y-1.ycp
+test $? = 0 || { rm -fr $tmpfiles; exit 1; }
+
+tmpfiles="$tmpfiles xg-y-1.ok"
+cat <<EOF > xg-y-1.ok
+#, ycp-format
+msgid "%1 package"
+msgid_plural "%1 packages"
+msgstr[0] ""
+msgstr[1] ""
+EOF
+
+: ${DIFF=diff}
+${DIFF} xg-y-1.ok xg-y-1.po
+result=$?
+
+rm -fr $tmpfiles
+
+exit $result
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

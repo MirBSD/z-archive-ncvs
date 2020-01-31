@@ -1,0 +1,146 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.25.04;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.25.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Copyright (C) 2000  Free Software Foundation
+
+   This file is part of libgcj.
+
+This software is copyrighted work licensed under the terms of the
+Libgcj License.  Please consult the file "LIBGCJ_LICENSE" for
+details.  */
+
+package gnu.gcj.xlib;
+
+import gnu.gcj.RawData;
+
+/**
+ * A flyweight class that denotes an X11 screen.  Display and screen
+ * number is the only data kept by this class.  The real screen
+ * structure is stored in the display.  There may exist several
+ * objects denoting the same screen.
+ *
+ * @@author Rolf W. Rasmussen <rolfwr@@ii.uib.no>
+ */
+public final class Screen
+{
+  static final int UNKNOWN = -1;
+
+  Display display;
+  int screenNumber = UNKNOWN;
+  RawData structure;
+  
+  Screen(Display display, RawData screenStructure)
+  {
+    structure = screenStructure;
+    this.display = display;
+  }
+
+  public Screen(Display display)
+  {
+    this(display, display.getDefaultScreenNumber());
+  }
+
+  public Screen(Display display, int screenNumber)
+  {
+    this.display = display;
+    this.screenNumber = screenNumber;
+    initStructure();
+  }
+
+  public final Display getDisplay()
+  {
+    return display;
+  }
+
+  public Window getRootWindow()
+  {
+    int rootXID = getRootWindowXID();
+    return display.getWindow(rootXID);
+  }
+
+  public Visual getRootVisual()
+  {
+    RawData visualStructure = getRootVisualStructure();
+    int depth = getRootDepth();
+    return new Visual(visualStructure, this, depth);
+  }
+
+  private native RawData getRootVisualStructure();
+
+  public native int getRootDepth();
+  public native int getRootWindowXID();
+  public native int getDefaultColormapXID();
+
+  native void initStructure();
+
+  public Colormap getDefaultColormap()
+  {
+    return new Colormap(this, getDefaultColormapXID());
+  }
+  
+  public final int getScreenNumber()
+  {
+    if (screenNumber == UNKNOWN)
+      screenNumber = findScreenNumber();
+    return screenNumber;
+  }
+
+  public native int findScreenNumber();
+}
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

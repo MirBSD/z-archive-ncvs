@@ -1,0 +1,100 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.04.58;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.58;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+#
+# Call the 'configure' script located in 'builds/unix'.
+#
+# This should re-generate the following files:
+#
+#   config.mk
+#   Jamfile
+#   install
+#
+
+if test "x$GNUMAKE" = x; then
+  GNUMAKE=make
+fi
+
+if test -z "`$GNUMAKE -v 2>/dev/null | grep GNU`"; then
+  echo "Sorry, GNU make is required to build FreeType2." >&2
+  echo "Please try \`GNUMAKE=<GNU make command name> $0'." >&2
+  exit 1
+fi
+
+# Uh, oh.  This is taken from autoconf.  They know what they are doing...
+
+if expr a : '\(a\)' >/dev/null 2>&1; then
+  ft_expr=expr
+else
+  ft_expr=false
+fi
+
+ft2_dir=`(dirname "$0") 2>/dev/null ||
+$ft_expr X"$0" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+         X"$0" : 'X\(//\)[^/]' \| \
+         X"$0" : 'X\(//\)$' \| \
+         X"$0" : 'X\(/\)' \| \
+         .     : '\(.\)' 2>/dev/null ||
+echo X"$0" |
+    sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{ s//\1/; q; }
+         /^X\(\/\/\)[^/].*/{ s//\1/; q; }
+         /^X\(\/\/\)$/{ s//\1/; q; }
+         /^X\(\/\).*/{ s//\1/; q; }
+         s/.*/./; q'`
+
+abs_curr_dir=`pwd`
+abs_ft2_dir=`cd "$ft2_dir" && pwd`
+
+# build a dummy Makefile if we are not building in the source tree
+
+if test "$abs_curr_dir" != "$abs_ft2_dir"; then
+  echo "OBJ_DIR=$abs_curr_dir"          > Makefile
+  echo "TOP_DIR=$abs_ft2_dir"          >> Makefile
+  echo "OBJ_BUILD=$abs_curr_dir"       >> Makefile
+  echo "LIBTOOL=$abs_curr_dir/libtool" >> Makefile
+  echo "include $abs_ft2_dir/Makefile" >> Makefile
+fi
+
+# call make
+
+CFG="$@@" $GNUMAKE setup unix
+
+# eof
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,69 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.42.15;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.35;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.35;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/usr.sbin/memconfig/Makefile,v 1.2 2004/07/15 12:30:47 tg Stab $
+# $FreeBSD: src/usr.sbin/memcontrol/Makefile,v 1.2 1999/09/29 21:43:31 chris Exp $
+
+PROG=		memconfig
+MAN=		memconfig.8
+
+.include <bsd.prog.mk>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a3 1
+.if ${MACHINE} == "i386"
+a4 4
+.else
+NOPROG=yes
+.endif
+
+a5 1
+MANSUBDIR=i386
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

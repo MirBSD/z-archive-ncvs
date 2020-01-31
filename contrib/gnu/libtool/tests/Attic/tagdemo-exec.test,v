@@ -1,0 +1,101 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.1
+	libtool-1_5_8:1.1.2.1
+	LIBTOOL_1_5:1.1.2.1.0.2
+	libtool-1_5-20040215:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.15.13.32.51;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.15.13.09.51;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.15.13.09.51;	author tg;	state Exp;
+branches
+	1.1.2.1.2.1;
+next	;
+
+1.1.2.1.2.1
+date	2004.02.15.13.16.57;	author tg;	state dead;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@libtool 1.4 -> mirlibtool, back to the state of yesterday night
+(so we have a clean 1.4 in the branch LIBTOOL_1_4, and a working
+ 1.4 in head, which we might switch to LIBTOOL_1_5 once we get it
+ working in 2038)
+@
+text
+@#! /bin/sh
+# tagdemo-exec.test - check that programs in the ../tagdemo subdirectory are viable
+
+# Test script header.
+need_prefix=no
+if test -z "$srcdir"; then
+  srcdir=`echo "$0" | sed 's%/[^/]*$%%'`
+  test "$srcdir" = "$0" && srcdir=.
+  test "${VERBOSE+set}" != "set" && VERBOSE=yes
+fi
+. $srcdir/defs || exit 1
+
+if test -f ../tagdemo/tagdemo$EXEEXT; then :
+else
+  echo "You must run tagdemo-make.test before running $0" 1>&2
+  exit 77
+fi
+
+# Check to see if the programs really run.
+echo "Executing uninstalled programs in ../tagdemo"
+
+if ../tagdemo/tagdemo; then :
+else
+  echo "$0: cannot execute ../tagdemo/tagdemo" 1>&2
+  status=1
+fi
+
+exit $status
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@libtool 1.5 branch from today
+@
+text
+@@
+
+
+1.1.2.1.2.1
+log
+@we won't need them
+@
+text
+@@
+

@@ -1,0 +1,76 @@
+head	1.2;
+access;
+symbols
+	libpng-1_2_8:1.1.17.1 libpng:1.1.17;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.37.34;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches
+	1.1.17.1;
+next	;
+
+1.1.17.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke junk
+@
+text
+@#------------------------------------------------------------------------------
+VERSION = BWS.01
+#------------------------------------------------------------------------------
+!ifndef ROOT
+ROOT = $(MAKEDIR)\..
+!endif
+#------------------------------------------------------------------------------
+MAKE = $(ROOT)\bin\make.exe -$(MAKEFLAGS) -f$**
+DCC = $(ROOT)\bin\dcc32.exe $**
+BRCC = $(ROOT)\bin\brcc32.exe $**
+#------------------------------------------------------------------------------
+PROJECTS = libpngstat.lib libpng.dll
+#------------------------------------------------------------------------------
+default: $(PROJECTS)
+#------------------------------------------------------------------------------
+
+libpngstat.lib: libpngstat.bpr
+  $(ROOT)\bin\bpr2mak -t$(ROOT)\bin\deflib.bmk $**
+  $(ROOT)\bin\make -$(MAKEFLAGS) -f$*.mak
+
+libpng.dll: libpng.bpr
+  $(ROOT)\bin\bpr2mak $**
+  $(ROOT)\bin\make -$(MAKEFLAGS) -f$*.mak
+
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.17.1
+log
+@libpng-1.2.8.tar.bz2
+@
+text
+@@

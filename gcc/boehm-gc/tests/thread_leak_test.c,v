@@ -1,0 +1,100 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.04.17.24.49;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.49;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#define GC_LINUX_THREADS
+#include "leak_detector.h"
+#include <pthread.h>
+#include <stdio.h>
+
+void * test(void * arg) {
+    int *p[10];
+    int i;
+    GC_find_leak = 1; /* for new collect versions not compiled  */
+    /* with -DFIND_LEAK.                                        */
+    for (i = 0; i < 10; ++i) {
+        p[i] = malloc(sizeof(int)+i);
+    }
+    CHECK_LEAKS();
+    for (i = 1; i < 10; ++i) {
+        free(p[i]);
+    }
+}       
+
+#define NTHREADS 5
+
+main() {
+    int i;
+    pthread_t t[NTHREADS];
+    int code;
+
+    for (i = 0; i < NTHREADS; ++i) {
+	if ((code = pthread_create(t + i, 0, test, 0)) != 0) {
+    	    printf("Thread creation failed %d\n", code);
+        }
+    }
+    for (i = 0; i < NTHREADS; ++i) {
+	if ((code = pthread_join(t[i], 0)) != 0) {
+            printf("Thread join failed %lu\n", code);
+        }
+    }
+    CHECK_LEAKS();
+    CHECK_LEAKS();
+    CHECK_LEAKS();
+}
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

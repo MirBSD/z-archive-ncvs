@@ -1,0 +1,79 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.17;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.13;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.13;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl
+BEGIN {
+    use FileCache;
+    chdir 't' if -d 't';
+
+    #For tests within the perl distribution
+    @@INC = '../lib' if -d '../lib';
+    END;
+}
+END{
+  unlink('foo');
+}
+
+print "1..1\n";
+
+{# Test 4: that 2 arg format works, and that we cycle on mode change
+     cacheout '>', "foo";
+     print foo "foo 4\n";
+     cacheout '+>', "foo";
+     print foo "foo 44\n";
+     seek(foo, 0, 0);
+     print 'not ' unless <foo> eq "foo 44\n";
+     print "ok 1\n";
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

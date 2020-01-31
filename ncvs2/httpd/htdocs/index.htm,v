@@ -1,0 +1,85 @@
+head	1.2;
+access;
+symbols
+	start:1.1.7.1 mirbsd:1.1.7;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.03.22.20.08.30;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.03.06.16.46.48;	author tg;	state Exp;
+branches
+	1.1.7.1;
+next	;
+
+1.1.7.1
+date	2005.03.06.16.46.48;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Tim Bray says XML 1.1 is not very widely used.
+The W3C spec for XML 1.1 says "Programs which generate XML SHOULD generate
+XML 1.0, unless one of the specific features of XML 1.1 is required."
+
+So be it, then.
+
+While here, fix roff2htm.sh with regards to the MirBSD.org acquaintance
+and the new RCS ID / CVS ID policy.
+@
+text
+@﻿<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+ "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head>
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+ <title>MirOS httpd test page</title>
+</head><body>
+<h1>This webserver is up and running!</h1>
+<p>If you are the system administrator, read below on how to configure
+ your httpd. If not, please do not panic - someone just has configured
+ his UNIX&reg;-like operating system with the <a
+ href="http://mirbsd.de/">MirOS httpd</a> webserver.</p>
+<p>The <a href="manual/index.html">local documentation</a> of the ASF
+ Apache&trade; 1.3.x webserver, on which MirOS httpd is based, has
+ been included for reference. You ought to read the <a
+ href="manual/mod/mod_ssl/">SSL documentation</a> carefully, and also
+ might want to read the manpages <a
+ href="http://mirbsd.bsdadvocacy.org/man8/ssl.htm">ssl(8)</a> and <a
+ href="http://mirbsd.bsdadvocacy.org/man8/httpd.htm">httpd(8)</a>.</p>
+<p><small>$MirOS: src/usr.sbin/httpd/htdocs/index.htm,v 1.1.7.1 2005/03/06 16:46:48 tg Exp $</small></p>
+</body></html>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+﻿<?xml version="1.1"?>
+d20 1
+a20 1
+<p><small>$MirOS$</small></p>
+@
+
+
+1.1.7.1
+log
+@Add another couple of software they didn't have
+@
+text
+@@

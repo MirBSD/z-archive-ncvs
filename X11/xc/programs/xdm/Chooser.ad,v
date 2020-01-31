@@ -1,0 +1,86 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.18.25;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.18.25;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@! $XFree86: xc/programs/xdm/Chooser.ad,v 1.2 2001/04/06 02:16:25 dawes Exp $
+!
+*ShapeStyle:		Oval
+*cursor:		left_ptr
+*allowShellResize:	true
+*label.label:		XDMCP Host Menu
+*label.borderWidth:	0
+*label.skipAdjust:	true
+*paned*showGrip:	false
+!*viewport.horizDistance:	20
+!*viewport.height:	200
+*viewport.width:	400
+*viewport.height:	50
+*viewport.allowVert:	true
+*viewport.fromVert:	label
+*viewport.resizeable:	true
+*viewport.allowResize:	true
+
+*list.translations:	#override \
+	<BtnDown>:	Set() CheckWilling() \n\
+	<BtnUp>(2):	Accept()
+*list.defaultColumns:	1
+*list.forceColumns:	true
+
+*box.skipAdjust:	true
+*cancel.fromHoriz:	viewport
+*cancel.fromVert:	label
+*cancel.vertDistance:	100
+*cancel.bottom:		ChainBottom
+*cancel.top:		ChainBottom
+*cancel.left:		ChainRight
+*cancel.right:		ChainRight
+
+*accept.fromHoriz:	viewport
+*accept.fromVert:	cancel
+*accept.bottom:		ChainBottom
+*accept.top:		ChainBottom
+*accept.left:		ChainRight
+*accept.right:		ChainRight
+
+*cancel.translations:	#override \
+	<BtnUp>:		Cancel() unset()
+*accept.translations:	#override \
+	<BtnUp>:		Accept() unset()
+*ping.translations:	#override \
+	<BtnUp>:		Ping() unset()
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

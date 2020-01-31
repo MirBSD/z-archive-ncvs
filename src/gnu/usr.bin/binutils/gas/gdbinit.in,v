@@ -1,0 +1,94 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.23.03.05;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.03.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@dir @@srcdir@@
+dir .
+
+break as_warn
+break as_warn_where
+break as_bad
+break as_bad_where
+break as_fatal
+break as_perror
+break as_assert
+break as_abort
+
+define pe
+call print_expr ($)
+end
+
+document pe
+Print *$ as an expressionS, expanding parameters.
+end
+
+define ps
+call print_symbol_value ($)
+end
+
+document ps
+Print *$ as a symbolS, including expression value.
+end
+
+define pf
+call print_fixup ($)
+end
+
+document pf
+Print *$ as a fixS, including symbol value.
+end
+
+# Put this last, in case it fails.
+
+break abort
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

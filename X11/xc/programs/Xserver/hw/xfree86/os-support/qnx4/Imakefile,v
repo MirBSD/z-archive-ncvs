@@ -1,0 +1,77 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.15.48;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.15.48;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/Xserver/hw/xfree86/os-support/qnx4/Imakefile,v 1.8 2002/10/17 02:22:48 dawes Exp $
+
+#include <Server.tmpl>
+
+
+SRCS = qnx_io.c qnx_init.c qnx_utils.c ioperm_noop.c qnx_video.c \
+       qnx_VTsw.c qnx_kbd.c posix_tty.c qnx_mouse.c qnx_select.c \
+       libc_wrapper.c stdResource.c stdPci.c sigiostubs.c pm_noop.c \
+       kmod_noop.c agp_noop.c
+
+OBJS = qnx_io.o qnx_init.o qnx_utils.o ioperm_noop.o qnx_video.o \
+       qnx_VTsw.o qnx_kbd.o posix_tty.o qnx_mouse.o qnx_select.o \
+       libc_wrapper.o stdResource.o stdPci.o sigiostubs.o pm_noop.o \
+       kmod_noop.o agp_noop.o
+
+INCLUDES = -I$(XF86COMSRC) -I$(XF86OSSRC) -I. -I$(SERVERSRC)/include \
+           -I$(XINCLUDESRC)
+
+RESDEFINES = -DUSESTDRES
+
+DEFINES = $(RESDEFINES)
+
+SubdirLibraryRule($(OBJS))
+NormalLibraryObjectRule()
+
+
+LinkSourceFile(libc_wrapper.c,../shared)
+LinkSourceFile(posix_tty.c,../shared)
+LinkSourceFile(ioperm_noop.c,../shared)
+LinkSourceFile(stdResource.c,../shared)
+LinkSourceFile(stdPci.c,../shared)
+LinkSourceFile(sigiostubs.c,../shared)
+LinkSourceFile(pm_noop.c,../shared)
+LinkSourceFile(kmod_noop.c,../shared)
+LinkSourceFile(agp_noop.c,../shared)
+
+DependTarget()
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

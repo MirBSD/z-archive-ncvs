@@ -1,0 +1,63 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 tg:1.1.1;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.12.13.20.44.46;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+commitid        0439f32c6884c25e;
+
+1.1.1.1
+date     2005.12.13.20.44.46;  author tg;  state Exp;
+branches ;
+next     ;
+commitid        0439f32c6884c25e;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@$MirOS: ports/net/djbdns/patches/patch-src_taia_now_c,v 1.1.201.1 2005/05/14 23:21:05 tg Exp $
+--- src/taia_now.c.orig	Sun Feb 11 21:11:23 2001
++++ src/taia_now.c	Sat May 14 22:46:44 2005
+@@@@ -4,9 +4,19 @@@@
+ 
+ void taia_now(struct taia *t)
+ {
++#ifndef __TAI64_BIAS
+   struct timeval now;
++
+   gettimeofday(&now,(struct timezone *) 0);
+   tai_unix(&t->sec,now.tv_sec);
+   t->nano = 1000 * now.tv_usec + 500;
+   t->atto = 0;
++#else
++  tai64na_t v;
++
++  t->atto = 0;
++  taina_time(&v);
++  t->sec.x = v.secs;
++  t->nano = v.nano;
++#endif /* __TAI64_BIAS */
+ }
+@
+
+
+1.1.1.1
+log
+@Import ports/net/djbdns of snapshot
+@
+text
+@@

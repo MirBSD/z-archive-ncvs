@@ -1,0 +1,35 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.33.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/share/doc/usd/24.eqnguide/Makefile,v 1.2 2004/05/23 15:57:17 tg Stab $
+# @@(#)Makefile	5.1 (Berkeley) 6/30/90
+
+DIR=	usd/24.eqnguide
+SRCS=	g.mac g0 g1 g2 g3 g4 g5
+MACROS=	-msU
+
+paper.ps: ${SRCS}
+	${EQN} ${SRCS} | ${ROFF} >${.TARGET}
+
+.include <bsd.doc.mk>
+@

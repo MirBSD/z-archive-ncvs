@@ -1,0 +1,72 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.10.01;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.01;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ * UCS-2BE = UCS-2 big endian
+ */
+/* $XFree86: xc/lib/X11/lcUniConv/ucs2be.h,v 1.1 2000/11/28 17:25:09 dawes Exp $ */
+
+static int
+ucs2be_mbtowc (conv_t conv, ucs4_t *pwc, const unsigned char *s, int n)
+{
+  if (n >= 2) {
+    if (s[0] >= 0xd8 && s[0] < 0xe0) {
+      return RET_ILSEQ;
+    } else {
+      *pwc = (s[0] << 8) + s[1];
+      return 2;
+    }
+  }
+  return RET_TOOFEW(0);
+}
+
+static int
+ucs2be_wctomb (conv_t conv, unsigned char *r, ucs4_t wc, int n)
+{
+  if (wc < 0x10000 && !(wc >= 0xd800 && wc < 0xe000)) {
+    if (n >= 2) {
+      r[0] = (unsigned char) (wc >> 8);
+      r[1] = (unsigned char) wc;
+      return 2;
+    } else
+      return RET_TOOSMALL;
+  }
+  return RET_ILSEQ;
+}
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,75 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.06.22.13.48;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.05.26;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.05.26;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@/* utility definitions */
+#ifdef _POSIX2_RE_DUP_MAX
+#define	DUPMAX	_POSIX2_RE_DUP_MAX
+#else
+#define	DUPMAX	255
+#endif
+#define	INFINITY	(DUPMAX + 1)
+#define	NC		(CHAR_MAX - CHAR_MIN + 1)
+typedef unsigned char uch;
+
+/* switch off assertions (if not already off) if no REDEBUG */
+#ifndef REDEBUG
+#ifndef NDEBUG
+#define	NDEBUG	/* no assertions please */
+#endif
+#endif
+#include <assert.h>
+
+/* for old systems with bcopy() but no memmove() */
+#ifdef USEBCOPY
+#define	memmove(d, s, c)	bcopy(s, d, c)
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

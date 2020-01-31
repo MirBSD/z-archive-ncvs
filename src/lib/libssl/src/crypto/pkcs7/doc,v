@@ -1,0 +1,77 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.30.22;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.51;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.51;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@int PKCS7_set_content_type(PKCS7 *p7, int type);
+Call to set the type of PKCS7 object we are working on
+
+int PKCS7_SIGNER_INFO_set(PKCS7_SIGNER_INFO *p7i, X509 *x509, EVP_PKEY *pkey,
+	EVP_MD *dgst);
+Use this to setup a signer info
+There will also be functions to add signed and unsigned attributes.
+
+int PKCS7_add_signer(PKCS7 *p7, PKCS7_SIGNER_INFO *p7i);
+Add a signer info to the content.
+
+int PKCS7_add_certificae(PKCS7 *p7, X509 *x509);
+int PKCS7_add_crl(PKCS7 *p7, X509_CRL *x509);
+
+----
+
+p7=PKCS7_new();
+PKCS7_set_content_type(p7,NID_pkcs7_signed);
+
+signer=PKCS7_SINGNER_INFO_new();
+PKCS7_SIGNER_INFO_set(signer,x509,pkey,EVP_md5());
+PKCS7_add_signer(py,signer);
+
+we are now setup.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

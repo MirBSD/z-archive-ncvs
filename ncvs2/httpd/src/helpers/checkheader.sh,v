@@ -1,0 +1,79 @@
+head	1.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200512032330:1.1.1.1
+	cvs-200507211800:1.1.1.1
+	tg-mergetmp-3:1.1.1.1
+	cvs-200504170300:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.02.05.17.30.46;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2005.02.05.17.30.46;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+##
+##  checkheader.sh -- Check whether a C header file exists
+##  Initially written by Ralf S. Engelschall for the Apache
+##   configuration mechanism
+##
+#
+# This script falls under the Apache License.
+# See http://www.apache.org/docs/LICENSE
+
+
+header=$1
+rc=1
+if [ "x$CPP" = "x" ]; then
+    CPP='NOT-AVAILABLE'
+fi
+if [ "x$CPP" != "xNOT-AVAILABLE" ]; then
+    #   create a test C source
+    cat >conftest.c <<EOF
+#include <$header>
+Syntax Error
+EOF
+    (eval "$CPP conftest.c >/dev/null") 2>conftest.out
+    my_error=`grep -v '^ *+' conftest.out`
+    if [ "x$my_error" = "x" ]; then
+        rc=0
+    fi
+else
+    if [ -f "/usr/include/$header" ]; then
+        rc=0
+    fi
+fi
+rm -f conftest.*
+exit $rc
+    
+@
+
+
+1.1.1.1
+log
+@Import the OpenBSD foundation of MirOS BSD
+@
+text
+@@

@@ -1,0 +1,113 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.48.01;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.00;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.00;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@# -*- Makefile -*- for gettext-tools/misc
+
+#### Start of system configuration section. ####
+
+# Flags that can be set on the nmake command line:
+#   PREFIX=Some\Directory   Base directory for installation
+!if !defined(PREFIX)
+PREFIX = c:\usr
+!endif
+
+# Directories used by "make install":
+prefix = $(PREFIX)
+exec_prefix = $(prefix)
+datadir = $(prefix)\share
+emacsdir = $(datadir)\emacs
+lispdir = $(emacsdir)\site-lisp
+
+LN = copy
+RM = -del
+
+# Programs used by "make install":
+INSTALL = copy
+INSTALL_PROGRAM = copy
+INSTALL_DATA = copy
+
+#### End of system configuration section. ####
+
+SHELL = /bin/sh
+
+all :
+
+install : all force
+	-mkdir $(prefix)
+	-mkdir $(datadir)
+	-mkdir $(emacsdir)
+	-mkdir $(lispdir)
+	$(INSTALL_DATA) po-mode.el $(lispdir)\po-mode.el
+	$(INSTALL_DATA) po-compat.el $(lispdir)\po-compat.el
+
+installdirs : force
+	-mkdir $(prefix)
+	-mkdir $(datadir)
+	-mkdir $(emacsdir)
+	-mkdir $(lispdir)
+
+uninstall : force
+	$(RM) $(lispdir)\po-mode.el
+	$(RM) $(lispdir)\po-compat.el
+
+check : all
+
+mostlyclean : clean
+
+clean : force
+	$(RM) core
+
+distclean : clean
+	$(RM) Makefile
+
+maintainer-clean : distclean
+
+force :
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

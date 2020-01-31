@@ -1,0 +1,68 @@
+head	1.2;
+access;
+symbols
+	cvs-200408040940:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.26.15;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.09.42.11;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.09.42.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these three scripts have been rewritten by me, so move them
+out of the GNU dirs
+@
+text
+@SHELL=/usr/pkg/bin/bash
+UPLOAD=ftp://ftp-upload.gnu.org/incoming/ftp/
+
+all:
+	@@echo "Type 'make upload' to upload to the GNU FTP server."
+
+upload:
+	gpg --detach-sign config.guess 
+	gpg --detach-sign config.sub
+	echo "directory: config" | gpg --clearsign > config.guess.directive.asc
+	cp config.guess.directive.asc config.sub.directive.asc
+	ftp -a -u $(UPLOAD) config.{guess,sub}{,.sig,.directive.asc}
+	rm config.{guess,sub}{.sig,.directive.asc}
+
+check:
+	cd testsuite && sh config-sub.sh
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@update GNU config stuff from FSF, too
+@
+text
+@@

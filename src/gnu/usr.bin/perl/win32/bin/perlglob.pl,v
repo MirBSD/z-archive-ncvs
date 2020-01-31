@@ -1,0 +1,108 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.52;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!perl -w
+use File::DosGlob;
+$| = 1;
+while (@@ARGV) {
+    my $arg = shift;
+    my @@m = File::DosGlob::doglob(1,$arg);
+    print (@@m ? join("\0", sort @@m) : $arg);
+    print "\0" if @@ARGV;
+}
+__END__
+
+=head1 NAME
+
+perlglob.bat - a more capable perlglob.exe replacement
+
+=head1 SYNOPSIS
+
+    @@perlfiles = glob  "..\\pe?l/*.p?";
+    print <..\\pe?l/*.p?>;
+
+    # more efficient version
+    > perl -MFile::DosGlob=glob -e "print <../pe?l/*.p?>"
+
+=head1 DESCRIPTION
+
+This file is a portable replacement for perlglob.exe.  It
+is largely compatible with perlglob.exe (the Microsoft setargv.obj
+version) in all but one respect--it understands wildcards in
+directory components.
+
+It prints null-separated filenames to standard output.
+
+For details of the globbing features implemented, see
+L<File::DosGlob>.
+
+While one may replace perlglob.exe with this, usage by overriding
+CORE::glob with File::DosGlob::glob should be much more efficient,
+because it avoids launching a separate process, and is therefore
+strongly recommended.  See L<perlsub> for details of overriding
+builtins.
+
+=head1 AUTHOR
+
+Gurusamy Sarathy <gsar@@activestate.com>
+
+=head1 SEE ALSO
+
+perl
+
+File::DosGlob
+
+=cut
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

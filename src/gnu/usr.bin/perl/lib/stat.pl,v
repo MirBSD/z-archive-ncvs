@@ -1,0 +1,89 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.01;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@;# $RCSfile: stat.pl,v $$Revision: 1.1.1.2 $$Date: 2003/12/03 17:55:32 $
+
+;# Usage:
+;#	require 'stat.pl';
+;#	@@ary = stat(foo);
+;#	$st_dev = @@ary[$ST_DEV];
+;#
+$ST_DEV =	0 + $[;
+$ST_INO =	1 + $[;
+$ST_MODE =	2 + $[;
+$ST_NLINK =	3 + $[;
+$ST_UID =	4 + $[;
+$ST_GID =	5 + $[;
+$ST_RDEV =	6 + $[;
+$ST_SIZE =	7 + $[;
+$ST_ATIME =	8 + $[;
+$ST_MTIME =	9 + $[;
+$ST_CTIME =	10 + $[;
+$ST_BLKSIZE =	11 + $[;
+$ST_BLOCKS =	12 + $[;
+
+;# Usage:
+;#	require 'stat.pl';
+;#	do Stat('foo');		# sets st_* as a side effect
+;#
+sub Stat {
+    ($st_dev,$st_ino,$st_mode,$st_nlink,$st_uid,$st_gid,$st_rdev,$st_size,
+	$st_atime,$st_mtime,$st_ctime,$st_blksize,$st_blocks) = stat(shift(@@_));
+}
+
+1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+;# $RCSfile: stat.pl,v $$Revision: 1.7 $$Date: 2003/12/03 03:02:36 $
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

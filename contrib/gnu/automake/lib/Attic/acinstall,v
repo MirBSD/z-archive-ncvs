@@ -1,0 +1,103 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041000:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.10.27.38;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.10.06.25;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.10.06.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@we basically only want the GNU master files
+@
+text
+@#! /bin/sh
+
+# Install an aclocal-style M4 file.  A script is needed to do this
+# because we want to do serial-number checking; newer versions of
+# macro files should always be preferred.
+
+# Usage:
+#  acinstall file directory installprogram [install-args]...
+
+# Copyright 1996 Free Software Foundation, Inc.
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+
+file="$1"
+dir="$2"
+shift
+shift
+
+localserial=`grep '^# serial ' $file | sed -e 's/^# serial \([0-9][0-9]*\).*$/\1/; q'`
+if test -z "$localserial"; then
+   echo "acinstall: no serial number in $file" 1>&2
+   exit 1
+fi
+
+# Maybe if the installed file has no serial number we should just
+# assume it is ancient.
+instserial=`grep '^# serial ' $dir/$file | sed -e 's/^# serial \([0-9][0-9]*\).*$/\1/; q'`
+if test -z "$instserial"; then
+   echo "acinstall: no serial number in $dir/$file" 1>&2
+   exit 1
+fi
+
+if test $localserial -lt $instserial; then
+   # Installed file is newer.
+   exit 0
+fi
+
+# Install the file.
+$* $file $dir/$file
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU automake CVS-current from anoncvs@@subversions.gnu.org:/cvsroot/automake
+@
+text
+@@

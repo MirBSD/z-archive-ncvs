@@ -1,0 +1,82 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.13.12;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.13.12;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+
+# $XFree86: xc/programs/Xserver/hw/xfree86/drivers/confdrv.sh,v 1.2 1998/07/25 16:55:33 dawes Exp $
+#
+# This script generates drvConf.c
+#
+# usage: confdrv.sh driver1 driver2 ...
+#
+
+DRVCONF=./drvConf.c
+
+cat > $DRVCONF <<EOF
+/*
+ * This file is generated automatically -- DO NOT EDIT
+ */
+
+#include "xf86.h"
+
+extern DriverRec
+EOF
+Args="`echo $* | tr '[a-z]' '[A-Z]'`"
+set - $Args
+while [ $# -gt 1 ]; do
+  echo "	$1," >> $DRVCONF
+  shift
+done
+echo "	$1;" >> $DRVCONF
+cat >> $DRVCONF <<EOF
+
+DriverPtr xf86DriverList[] =
+{
+EOF
+for i in $Args; do
+  echo "	&$i," >> $DRVCONF
+done
+echo "};" >> $DRVCONF
+
+cat >> $DRVCONF <<EOF
+
+int xf86NumDrivers = sizeof(xf86DriverList) / sizeof(xf86DriverList[0]);
+
+EOF
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

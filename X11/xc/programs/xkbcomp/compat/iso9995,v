@@ -1,0 +1,124 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.18.56;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.18.56;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@// $Xorg: iso9995,v 1.3 2000/08/17 19:54:34 cpqbld Exp $
+
+// Fairly complete set of symbol interpretations 
+// to provide reasonable default behavior
+
+// $XFree86: xc/programs/xkbcomp/compat/iso9995,v 1.4 2003/05/15 13:31:57 pascal Exp $
+
+default partial xkb_compatibility "default"  {
+    virtual_modifiers LevelThree,AltGr;
+
+    interpret.repeat= False;
+    setMods.clearLocks= True;
+    latchMods.clearLocks= True;
+    latchMods.latchToLock= True;
+
+    interpret ISO_Lock+Any {
+	action= ISOLock(affect= all,modifiers=modMapMods);
+    };
+
+    interpret ISO_Level2_Latch+Shift {
+	useModMapMods= level1;
+	action= LatchMods(modifiers=Shift);
+    };
+
+    interpret ISO_Level3_Shift+Any {
+	useModMapMods= level1;
+	virtualModifier= LevelThree;
+	action= SetMods(modifiers=LevelThree);
+    };
+
+    interpret ISO_Level3_Shift {
+	action= SetMods(modifiers=LevelThree);
+    };
+
+    interpret ISO_Level3_Latch+Any {
+	useModMapMods= level1;
+	virtualModifier= LevelThree;
+	action= LatchMods(modifiers=LevelThree);
+    };
+
+    interpret ISO_Level3_Latch {
+	action= LatchMods(modifiers=LevelThree);
+    };
+
+    interpret ISO_Level3_Lock+Any {
+	useModMapMods= level1;
+	virtualModifier= LevelThree;
+	action= LockMods(modifiers=LevelThree);
+    };
+
+    interpret ISO_Level3_Lock {
+	action= LockMods(modifiers=LevelThree);
+    };
+
+    interpret ISO_Group_Latch {
+	useModMapMods= level1;
+	virtualModifier= AltGr;
+	action= LatchGroup(group=2);
+    };
+
+    interpret ISO_Next_Group {
+	useModMapMods= level1;
+	virtualModifier= AltGr;
+	action= LockGroup(group=+1);
+    };
+
+    interpret ISO_Prev_Group {
+	useModMapMods= level1;
+	virtualModifier= AltGr;
+	action= LockGroup(group=-1);
+    };
+    interpret ISO_First_Group {
+	action= LockGroup(group=1);
+    };
+
+    interpret ISO_Last_Group {
+	action= LockGroup(group=2);
+    };
+
+    indicator "Group 2" {
+	!allowExplicit;
+	groups= All-Group1;
+    };
+};
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

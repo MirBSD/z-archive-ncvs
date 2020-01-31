@@ -1,0 +1,140 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.24.34;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.34;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#! /bin/sh
+
+if [ $# -ne 2 ]
+then
+  echo "Usage: $0 <build-mach-triplet> <target-mach-triplet>"
+  exit 1
+fi
+
+build=$1
+machine=$2
+target=../fixinc.sh
+
+echo constructing ${target} for $machine to run on $build
+fixincludes="${machine}"
+
+# Choose one or two-process fix methodology.  Systems that cannot handle
+# bi-directional pipes must use the two process method.
+#
+case $build in
+	i?86-*-msdosdjgpp* | \
+	*-*-beos* )
+		MAKE="${MAKE} TARGETS=twoprocess"
+		CFLAGS="${CFLAGS} -DSEPARATE_FIX_PROC"
+		;;
+
+	vax-dec-bsd* )
+		CFLAGS="${CFLAGS} -Dexit=xexit -Datexit=xatexit"
+		MAKE="${MAKE} TARGETS=oneprocess"
+		;;
+
+	* )
+		MAKE="${MAKE} TARGETS=oneprocess"
+		;;
+esac
+
+# Check for special fix rules for particular targets
+case $machine in
+    alpha*-dec-*vms* | \
+    arm-semi-aof | \
+    hppa1.1-*-osf* | \
+    hppa1.1-*-bsd* | \
+    i370-*-openedition | \
+    i?86-moss-msdos* | \
+    i?86-*-moss* | \
+    i?86-*-pe | \
+    i?86-*-cygwin* | \
+    i?86-*-mingw32* | \
+    i?86-*-uwin* | \
+    i?86-*-interix* | \
+    powerpc-*-eabiaix* | \
+    powerpc-*-eabisim* | \
+    powerpc-*-eabi*    | \
+    powerpc-*-rtems*   | \
+    powerpcle-*-eabisim* | \
+    powerpcle-*-eabi* )
+        #  Don't do any fixing.
+        #
+        fixincludes=
+        ;;
+esac
+
+#  IF there is no include fixing,
+#  THEN create a no-op fixer and exit
+#
+if test -z "$fixincludes"
+then
+    (echo "#! /bin/sh" ; echo "exit 0" ) > ${target}
+    chmod 755 ${target}
+    exit 0
+fi
+
+#  OK.  We gotta make the thing.
+#  make and install either the binary or the default script
+
+defs="SHELL=\"$SHELL\" CC=\"$CC\" CFLAGS=\"$CFLAGS\" LDFLAGS=\"$LDFLAGS\" LIBERTY=\"$LIBERTY\""
+cmd="$MAKE ${defs} install-bin"
+echo $cmd
+eval $cmd
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

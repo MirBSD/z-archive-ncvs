@@ -1,0 +1,78 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.49.06;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.11;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@#! /bin/sh
+
+# Test a succeeding comparison.
+
+tmpfiles=""
+trap 'rm -fr $tmpfiles' 1 2 3 15
+
+tmpfiles="$tmpfiles mc-test1.in1 mc-test1.in2"
+cat <<EOF > mc-test1.in1
+msgid "one" msgstr "first"
+msgid "two" msgstr "second"
+msgid "three" msgstr "third"
+EOF
+
+cat <<EOF > mc-test1.in2
+msgid "three" msgstr ""
+msgid "one" msgstr ""
+msgid "two" msgstr ""
+EOF
+
+: ${MSGCMP=msgcmp}
+${MSGCMP} mc-test1.in1 mc-test1.in2 > /dev/null 2>&1
+result=$?
+
+rm -fr $tmpfiles
+
+exit $result
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

@@ -1,0 +1,78 @@
+head	2.2;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.09.19.36.56;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.27.50;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.30;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.30;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@merge over most userland fixes from ocvs
+@
+text
+@# $MirBSD: src/lib/libc/arch/powerpc/string/Makefile.inc,v 1.1.1.1.6.1 2004/12/28 18:42:15 tg Exp $
+# $NetBSD: Makefile.inc,v 1.1 1995/03/20 14:45:47 mycroft Exp $
+
+SRCS+=	bcmp.c bcopy.c bzero.c  ffs.c index.c memchr.c memcmp.c memset.c \
+	rindex.c strcat.c strcmp.c strcpy.c strcspn.c strlfun.c strlen.c \
+	strncat.c strncmp.c strncpy.c strpbrk.c strsep.c \
+	strspn.c strstr.c swab.c
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 2
+a2 1
+#	$NetBSD: Makefile.inc,v 1.1 1995/03/20 14:45:47 mycroft Exp $
+d5 1
+a5 1
+	rindex.c strcat.c strcmp.c strcpy.c strcspn.c strlcpy.c strlen.c \
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

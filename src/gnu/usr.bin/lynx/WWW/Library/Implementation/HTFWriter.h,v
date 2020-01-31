@@ -1,0 +1,68 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.03.00.23.34;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.34;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*                                                                     File Writer for libwww
+                                      C FILE WRITER
+
+   It is useful to have both FWriter and Writer for environments in which fdopen() doesn't
+   exist for example.
+
+ */
+#ifndef HTFWRITE_H
+#define HTFWRITE_H
+
+#include <HTStream.h>
+#include <HTFormat.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    extern HTStream *HTFWriter_new(FILE *fp);
+
+    extern HTStream *HTSaveAndExecute(HTPresentation *pres,
+				      HTParentAnchor *anchor,	/* Not used */
+				      HTStream *sink);
+
+    extern HTStream *HTSaveLocally(HTPresentation *pres,
+				   HTParentAnchor *anchor,	/* Not used */
+				   HTStream *sink);
+
+#ifdef __cplusplus
+}
+#endif
+#endif				/* HTFWRITE_H */
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

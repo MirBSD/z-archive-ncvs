@@ -1,0 +1,91 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.34.04;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#! /bin/sh
+#	$OpenBSD: yearistype.sh,v 1.7 2001/03/26 15:18:27 millert Exp $
+
+: '@@(#)yearistype.sh	7.7'
+
+case $#-$1 in
+	2-|2-0*|2-*[!0-9]*)
+		echo "$0: wild year - $1" >&2
+		exit 1 ;;
+esac
+
+case $#-$2 in
+	2-even)	
+		case $1 in
+			*[24680])			exit 0 ;;
+			*)				exit 1 ;;
+		esac ;;
+	2-nonpres|2-nonuspres)
+		case $1 in
+			*[02468][048]|*[13579][26])	exit 1 ;;
+			*)				exit 0 ;;
+		esac ;;
+	2-odd)	
+		case $1 in
+			*[13579])			exit 0 ;;
+			*)				exit 1 ;;
+		esac ;;
+	2-uspres)
+		case $1 in
+			*[02468][048]|*[13579][26])	exit 0 ;;
+			*)				exit 1 ;;
+		esac ;;
+	2-*)	
+		echo "$0: wild type - $2" >&2 ;;
+esac
+
+echo "$0: usage is $0 year even|odd|uspres|nonpres|nonuspres" >&2
+exit 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

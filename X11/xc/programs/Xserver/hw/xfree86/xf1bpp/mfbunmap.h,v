@@ -1,0 +1,149 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.16.12;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.16.12;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* $XFree86: xc/programs/Xserver/hw/xfree86/xf1bpp/mfbunmap.h,v 1.2 1998/07/25 16:59:25 dawes Exp $ */
+
+#ifdef _MFBMAP_H
+#undef _MFBMAP_H
+
+#undef InverseAlu
+#undef endtab
+#undef mask
+#undef mergeRopBits
+#undef mfbAllocatePrivates
+#undef mfbBSFuncRec
+#undef mfbBlackSolidFS
+#undef mfbBlackStippleFS
+#undef mfbBresD
+#undef mfbBresS
+#undef mfbChangeWindowAttributes
+#undef mfbCloseScreen
+#undef mfbCopyArea
+#undef mfbCopyPixmap
+#undef mfbCopyPlane
+#undef mfbCopyRotatePixmap
+#undef mfbCopyWindow
+#undef mfbCreateColormap
+#undef mfbCreateDefColormap
+#undef mfbCreateGC
+#undef mfbCreatePixmap
+#undef mfbCreateWindow
+#undef mfbDestroyColormap
+#undef mfbDestroyPixmap
+#undef mfbDestroyWindow
+#undef mfbDoBitblt
+#undef mfbDoBitbltCopy
+#undef mfbDoBitbltCopyInverted
+#undef mfbDoBitbltGeneral
+#undef mfbDoBitbltOr
+#undef mfbDoBitbltXor
+#undef mfbFillPolyBlack
+#undef mfbFillPolyInvert
+#undef mfbFillPolyWhite
+#undef mfbGCPrivateIndex
+#undef mfbGetImage
+#undef mfbGetSpans
+#undef mfbGetWindowPixmap
+#undef mfbHorzS
+#undef mfbImageGlyphBltBlack
+#undef mfbImageGlyphBltWhite
+#undef mfbInstallColormap
+#undef mfbInvertSolidFS
+#undef mfbInvertStippleFS
+#undef mfbLineSD
+#undef mfbLineSS
+#undef mfbListInstalledColormaps
+#undef mfbMapWindow
+#undef mfbPadPixmap
+#undef mfbPaintWindow
+#undef mfbPixmapToRegion
+#undef mfbPolyFillArcSolid
+#undef mfbPolyFillRect
+#undef mfbPolyGlyphBltBlack
+#undef mfbPolyGlyphBltInvert
+#undef mfbPolyGlyphBltWhite
+#undef mfbPolyPoint
+#undef mfbPositionWindow
+#undef mfbPushPixels
+#undef mfbPutImage
+#undef mfbQueryBestSize
+#undef mfbRealizeFont
+#undef mfbReduceRop
+#undef mfbRegisterCopyPlaneProc
+#undef mfbResolveColor
+#undef mfbRestoreAreas
+#undef mfbSaveAreas
+#undef mfbScreenInit
+#undef mfbSegmentSD
+#undef mfbSegmentSS
+#undef mfbSetScanline
+#undef mfbSetSpans
+#undef mfbSetWindowPixmap
+#undef mfbSolidBlackArea
+#undef mfbSolidInvertArea
+#undef mfbSolidPP
+#undef mfbSolidWhiteArea
+#undef mfbStippleBlackArea
+#undef mfbStippleInvertArea
+#undef mfbStippleWhiteArea
+#undef mfbTEGlyphBltBlack
+#undef mfbTEGlyphBltWhite
+#undef mfbTileAreaPPW
+#undef mfbTileAreaPPWCopy
+#undef mfbTileAreaPPWGeneral
+#undef mfbTileFS
+#undef mfbUninstallColormap
+#undef mfbUnmapWindow
+#undef mfbUnnaturalStippleFS
+#undef mfbUnnaturalTileFS
+#undef mfbUnrealizeFont
+#undef mfbValidateGC
+#undef mfbVertS
+#undef mfbWhiteSolidFS
+#undef mfbWhiteStippleFS
+#undef mfbWindowPrivateIndex
+#undef mfbXRotatePixmap
+#undef mfbYRotatePixmap
+#undef mfbZeroPolyArcSS
+#undef partmasks
+#undef rmask
+#undef starttab
+
+#endif
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

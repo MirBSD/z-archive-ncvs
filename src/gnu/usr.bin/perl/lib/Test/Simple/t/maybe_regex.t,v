@@ -1,0 +1,105 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.40;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/bin/perl -w
+
+BEGIN {
+    if( $ENV{PERL_CORE} ) {
+        chdir 't';
+        @@INC = ('../lib', 'lib');
+    }
+    else {
+        unshift @@INC, 't/lib';
+    }
+}
+
+use strict;
+use Test::More tests => 10;
+
+use Test::Builder;
+my $Test = Test::Builder->new;
+
+SKIP: {
+    skip "qr// added in 5.005", 3 if $] < 5.005;
+
+    # 5.004 can't even see qr// or it pukes in compile.
+    eval q{
+           my $r = $Test->maybe_regex(qr/^FOO$/i);
+           ok(defined $r, 'qr// detected');
+           ok(('foo' =~ /$r/), 'qr// good match');
+           ok(('bar' !~ /$r/), 'qr// bad match');
+          };
+    die $@@ if $@@;
+}
+
+{
+	my $r = $Test->maybe_regex('/^BAR$/i');
+	ok(defined $r, '"//" detected');
+	ok(('bar' =~ m/$r/), '"//" good match');
+	ok(('foo' !~ m/$r/), '"//" bad match');
+};
+
+{
+	my $r = $Test->maybe_regex('not a regex');
+	ok(!defined $r, 'non-regex detected');
+};
+
+
+{
+	my $r = $Test->maybe_regex('/0/');
+	ok(defined $r, 'non-regex detected');
+	ok(('f00' =~ m/$r/), '"//" good match');
+	ok(('b4r' !~ m/$r/), '"//" bad match');
+};
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

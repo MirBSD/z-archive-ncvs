@@ -1,0 +1,61 @@
+head	1.2;
+access;
+symbols
+	cvs-200507211800:1.1.1.1
+	tg-mergetmp-3:1.1.1.1
+	cvs-200504170300:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.03.06.15.46.02;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.02.05.17.30.36;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2005.02.05.17.30.36;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@the usual "let's remove a shitload of files"
+but less than last time, to reduce maintenance effort
+@
+text
+@    <div align="CENTER">
+      <img src="../images/sub.gif" alt="[APACHE DOCUMENTATION]" /> 
+
+      <h3>Apache HTTP Server Version 1.3</h3>
+    </div>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import the OpenBSD foundation of MirOS BSD
+@
+text
+@@

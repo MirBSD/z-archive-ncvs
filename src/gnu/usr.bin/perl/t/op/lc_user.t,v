@@ -1,0 +1,81 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.33;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.56;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@BEGIN {
+    chdir 't';
+    @@INC = '../lib';
+    require './test.pl';
+}
+
+plan tests => 4;
+
+sub ToUpper {
+    return <<END;
+0061	0063	0041
+END
+}
+
+is("\Ufoo\x{101}", "foo\x{101}", "no changes on 'foo'");
+is("\Ubar\x{101}", "BAr\x{101}", "changing 'ab' on 'bar' ");
+
+sub ToLower {
+    return <<END;
+0041		0061
+END
+}
+
+is("\LFOO\x{100}", "FOO\x{100}", "no changes on 'FOO'");
+is("\LBAR\x{100}", "BaR\x{100}", "changing 'A' on 'BAR' ");
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

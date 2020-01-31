@@ -1,0 +1,71 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.34.48;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.26;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.26;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: cons.h,v 1.1 2002/08/12 10:44:04 miod Exp $	*/
+
+struct consdev;
+struct zs_chanstate;
+
+extern void *zs_conschan;
+
+extern void nullcnprobe(struct consdev *);
+
+extern int  zs_getc(void *arg);
+extern void zs_putc(void *arg, int c);
+
+struct zschan *zs_get_chan_addr(int zsc_unit, int channel);
+
+#ifdef	KGDB
+void zs_kgdb_init(void);
+void zskgdb(struct zs_chanstate *);
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

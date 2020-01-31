@@ -1,0 +1,854 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.3
+	libtool-1_5_8:1.1.2.2
+	libtool-1_4_3:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.03.19.42.04;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.17.55.57;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.03.17.55.57;	author tg;	state Exp;
+branches;
+next	1.1.2.2;
+
+1.1.2.2
+date	2004.08.09.22.59.57;	author tg;	state Exp;
+branches;
+next	1.1.2.3;
+
+1.1.2.3
+date	2004.10.14.17.46.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@* MirOSify
+* bootstrap
+* nuke unneeded stuff
+@
+text
+@# Makefile.in generated automatically by automake 1.4-p5 from Makefile.am
+
+# Copyright (C) 1994, 1995-8, 1999, 2001 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+
+SHELL = @@SHELL@@
+
+srcdir = @@srcdir@@
+top_srcdir = @@top_srcdir@@
+VPATH = @@srcdir@@
+prefix = @@prefix@@
+exec_prefix = @@exec_prefix@@
+
+bindir = @@bindir@@
+sbindir = @@sbindir@@
+libexecdir = @@libexecdir@@
+datadir = @@datadir@@
+sysconfdir = @@sysconfdir@@
+sharedstatedir = @@sharedstatedir@@
+localstatedir = @@localstatedir@@
+libdir = @@libdir@@
+infodir = @@infodir@@
+mandir = @@mandir@@
+includedir = @@includedir@@
+oldincludedir = /usr/include
+
+DESTDIR =
+
+pkgdatadir = $(datadir)/@@PACKAGE@@
+pkglibdir = $(libdir)/@@PACKAGE@@
+pkgincludedir = $(includedir)/@@PACKAGE@@
+
+top_builddir = ..
+
+ACLOCAL = @@ACLOCAL@@
+AUTOCONF = @@AUTOCONF@@
+AUTOMAKE = @@AUTOMAKE@@
+AUTOHEADER = @@AUTOHEADER@@
+
+INSTALL = @@INSTALL@@
+INSTALL_PROGRAM = @@INSTALL_PROGRAM@@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_DATA = @@INSTALL_DATA@@
+INSTALL_SCRIPT = @@INSTALL_SCRIPT@@
+transform = @@program_transform_name@@
+
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+host_alias = @@host_alias@@
+host_triplet = @@host@@
+AS = @@AS@@
+CC = @@CC@@
+DLLTOOL = @@DLLTOOL@@
+ECHO = @@ECHO@@
+EXEEXT = @@EXEEXT@@
+LIBM = @@LIBM@@
+LIBTOOL = @@LIBTOOL@@
+LIBTOOL_DEPS = @@LIBTOOL_DEPS@@
+LN_S = @@LN_S@@
+MAKEINFO = @@MAKEINFO@@
+OBJDUMP = @@OBJDUMP@@
+OBJEXT = @@OBJEXT@@
+PACKAGE = @@PACKAGE@@
+RANLIB = @@RANLIB@@
+STATIC = @@STATIC@@
+STRIP = @@STRIP@@
+VERSION = @@VERSION@@
+
+AUTOMAKE_OPTIONS = no-dependencies foreign
+
+INCLUDES = -I$(top_srcdir)
+
+lib_LTLIBRARIES = libl4.la
+libl4_la_SOURCES = l4.c l4.h
+libl4_la_LIBADD = $(top_builddir)/l3/libl3.la $(LIBM)
+mkinstalldirs = $(SHELL) $(top_srcdir)/../mkinstalldirs
+CONFIG_CLEAN_FILES = 
+LTLIBRARIES =  $(lib_LTLIBRARIES)
+
+
+DEFS = @@DEFS@@ -I. -I$(srcdir) 
+CPPFLAGS = @@CPPFLAGS@@
+LDFLAGS = @@LDFLAGS@@
+LIBS = @@LIBS@@
+libl4_la_LDFLAGS = 
+libl4_la_DEPENDENCIES =  $(top_builddir)/l3/libl3.la
+libl4_la_OBJECTS =  l4.lo
+CFLAGS = @@CFLAGS@@
+COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS) -o $@@
+DIST_COMMON =  Makefile.am Makefile.in
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = gtar
+GZIP_ENV = --best
+SOURCES = $(libl4_la_SOURCES)
+OBJECTS = $(libl4_la_OBJECTS)
+
+all: all-redirect
+.SUFFIXES:
+.SUFFIXES: .S .c .lo .o .obj .s
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOMAKE) --foreign l4/Makefile
+
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$(subdir)/$@@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+
+mostlyclean-libLTLIBRARIES:
+
+clean-libLTLIBRARIES:
+	-test -z "$(lib_LTLIBRARIES)" || rm -f $(lib_LTLIBRARIES)
+
+distclean-libLTLIBRARIES:
+
+maintainer-clean-libLTLIBRARIES:
+
+install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+	@@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(libdir)
+	@@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo "$(LIBTOOL)  --mode=install $(INSTALL) $$p $(DESTDIR)$(libdir)/$$p"; \
+	    $(LIBTOOL)  --mode=install $(INSTALL) $$p $(DESTDIR)$(libdir)/$$p; \
+	  else :; fi; \
+	done
+
+uninstall-libLTLIBRARIES:
+	@@$(NORMAL_UNINSTALL)
+	list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	  $(LIBTOOL)  --mode=uninstall rm -f $(DESTDIR)$(libdir)/$$p; \
+	done
+
+.c.o:
+	$(COMPILE) -c $<
+
+# FIXME: We should only use cygpath when building on Windows,
+# and only if it is available.
+.c.obj:
+	$(COMPILE) -c `cygpath -w $<`
+
+.s.o:
+	$(COMPILE) -c $<
+
+.S.o:
+	$(COMPILE) -c $<
+
+mostlyclean-compile:
+	-rm -f *.o core *.core
+	-rm -f *.$(OBJEXT)
+
+clean-compile:
+
+distclean-compile:
+	-rm -f *.tab.c
+
+maintainer-clean-compile:
+
+.c.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.s.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.S.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+mostlyclean-libtool:
+	-rm -f *.lo
+
+clean-libtool:
+	-rm -rf .libs _libs
+
+distclean-libtool:
+
+maintainer-clean-libtool:
+
+libl4.la: $(libl4_la_OBJECTS) $(libl4_la_DEPENDENCIES)
+	$(LINK) -rpath $(libdir) $(libl4_la_LDFLAGS) $(libl4_la_OBJECTS) $(libl4_la_LIBADD) $(LIBS)
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $$unique $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags $(ETAGS_ARGS) $$tags  $$unique $(LISP) -o $$here/TAGS)
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
+
+subdir = l4
+
+distdir: $(DISTFILES)
+	@@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+	  if test -d $$d/$$file; then \
+	    cp -pr $$d/$$file $(distdir)/$$file; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	    || cp -p $$d/$$file $(distdir)/$$file || :; \
+	  fi; \
+	done
+info-am:
+info: info-am
+dvi-am:
+dvi: dvi-am
+check-am: all-am
+check: check-am
+installcheck-am:
+installcheck: installcheck-am
+install-exec-am: install-libLTLIBRARIES
+install-exec: install-exec-am
+
+install-data-am:
+install-data: install-data-am
+
+install-am: all-am
+	@@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+install: install-am
+uninstall-am: uninstall-libLTLIBRARIES
+uninstall: uninstall-am
+all-am: Makefile $(LTLIBRARIES)
+all-redirect: all-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+installdirs:
+	$(mkinstalldirs)  $(DESTDIR)$(libdir)
+
+
+mostlyclean-generic:
+
+clean-generic:
+
+distclean-generic:
+	-rm -f Makefile $(CONFIG_CLEAN_FILES)
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+
+maintainer-clean-generic:
+mostlyclean-am:  mostlyclean-libLTLIBRARIES mostlyclean-compile \
+		mostlyclean-libtool mostlyclean-tags \
+		mostlyclean-generic
+
+mostlyclean: mostlyclean-am
+
+clean-am:  clean-libLTLIBRARIES clean-compile clean-libtool clean-tags \
+		clean-generic mostlyclean-am
+
+clean: clean-am
+
+distclean-am:  distclean-libLTLIBRARIES distclean-compile \
+		distclean-libtool distclean-tags distclean-generic \
+		clean-am
+	-rm -f libtool
+
+distclean: distclean-am
+
+maintainer-clean-am:  maintainer-clean-libLTLIBRARIES \
+		maintainer-clean-compile maintainer-clean-libtool \
+		maintainer-clean-tags maintainer-clean-generic \
+		distclean-am
+	@@echo "This command is intended for maintainers to use;"
+	@@echo "it deletes files that may require special tools to rebuild."
+
+maintainer-clean: maintainer-clean-am
+
+.PHONY: mostlyclean-libLTLIBRARIES distclean-libLTLIBRARIES \
+clean-libLTLIBRARIES maintainer-clean-libLTLIBRARIES \
+uninstall-libLTLIBRARIES install-libLTLIBRARIES mostlyclean-compile \
+distclean-compile clean-compile maintainer-clean-compile \
+mostlyclean-libtool distclean-libtool clean-libtool \
+maintainer-clean-libtool tags mostlyclean-tags distclean-tags \
+clean-tags maintainer-clean-tags distdir info-am info dvi-am dvi check \
+check-am installcheck-am installcheck install-exec-am install-exec \
+install-data-am install-data install-am install uninstall-am uninstall \
+all-redirect all-am all installdirs mostlyclean-generic \
+distclean-generic clean-generic maintainer-clean-generic clean \
+mostlyclean distclean maintainer-clean
+
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Libtool 1.4.3 (last of the 1.4 series)
+
+Requires to bootstrap:
+* autoconf 2.13-o
+* automake 1.4-p5
+or later.
+@
+text
+@@
+
+
+1.1.2.2
+log
+@http://ftp.gnu.org/gnu/libtool/libtool-1.5.8.tar.gz
+@
+text
+@d1 1
+a1 2
+# Makefile.in generated by automake 1.8.5 from Makefile.am.
+# @@configure_input@@
+d3 1
+a3 2
+# Copyright (C) 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
+# 2003, 2004  Free Software Foundation, Inc.
+a12 1
+@@SET_MAKE@@
+d14 1
+a14 1
+SOURCES = $(libl4_la_SOURCES)
+d19 18
+d40 1
+d42 6
+a47 1
+am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
+d49 5
+a53 5
+install_sh_DATA = $(install_sh) -c -m 644
+install_sh_PROGRAM = $(install_sh) -c
+install_sh_SCRIPT = $(install_sh) -c
+INSTALL_HEADER = $(INSTALL_DATA)
+transform = $(program_transform_name)
+d60 1
+a61 38
+subdir = l4
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
+	$(top_srcdir)/configure.ac
+am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+	$(ACLOCAL_M4)
+mkinstalldirs = $(mkdir_p)
+CONFIG_CLEAN_FILES =
+am__installdirs = "$(DESTDIR)$(libdir)"
+libLTLIBRARIES_INSTALL = $(INSTALL)
+LTLIBRARIES = $(lib_LTLIBRARIES)
+am__DEPENDENCIES_1 =
+libl4_la_DEPENDENCIES = $(top_builddir)/l3/libl3.la \
+	$(am__DEPENDENCIES_1)
+am_libl4_la_OBJECTS = l4.lo
+libl4_la_OBJECTS = $(am_libl4_la_OBJECTS)
+DEFAULT_INCLUDES = -I. -I$(srcdir)
+depcomp =
+am__depfiles_maybe =
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) \
+	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
+	$(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(AM_LDFLAGS) $(LDFLAGS) -o $@@
+SOURCES = $(libl4_la_SOURCES)
+DIST_SOURCES = $(libl4_la_SOURCES)
+ETAGS = etags
+CTAGS = ctags
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ACLOCAL = @@ACLOCAL@@
+AMDEP_FALSE = @@AMDEP_FALSE@@
+AMDEP_TRUE = @@AMDEP_TRUE@@
+AMTAR = @@AMTAR@@
+AR = @@AR@@
+a62 4
+AUTOCONF = @@AUTOCONF@@
+AUTOHEADER = @@AUTOHEADER@@
+AUTOMAKE = @@AUTOMAKE@@
+AWK = @@AWK@@
+a63 11
+CCDEPMODE = @@CCDEPMODE@@
+CFLAGS = @@CFLAGS@@
+CPP = @@CPP@@
+CPPFLAGS = @@CPPFLAGS@@
+CXX = @@CXX@@
+CXXCPP = @@CXXCPP@@
+CXXDEPMODE = @@CXXDEPMODE@@
+CXXFLAGS = @@CXXFLAGS@@
+CYGPATH_W = @@CYGPATH_W@@
+DEFS = @@DEFS@@
+DEPDIR = @@DEPDIR@@
+a65 4
+ECHO_C = @@ECHO_C@@
+ECHO_N = @@ECHO_N@@
+ECHO_T = @@ECHO_T@@
+EGREP = @@EGREP@@
+a66 7
+F77 = @@F77@@
+FFLAGS = @@FFLAGS@@
+INSTALL_DATA = @@INSTALL_DATA@@
+INSTALL_PROGRAM = @@INSTALL_PROGRAM@@
+INSTALL_SCRIPT = @@INSTALL_SCRIPT@@
+INSTALL_STRIP_PROGRAM = @@INSTALL_STRIP_PROGRAM@@
+LDFLAGS = @@LDFLAGS@@
+a67 2
+LIBOBJS = @@LIBOBJS@@
+LIBS = @@LIBS@@
+a70 1
+LTLIBOBJS = @@LTLIBOBJS@@
+a74 6
+PACKAGE_BUGREPORT = @@PACKAGE_BUGREPORT@@
+PACKAGE_NAME = @@PACKAGE_NAME@@
+PACKAGE_STRING = @@PACKAGE_STRING@@
+PACKAGE_TARNAME = @@PACKAGE_TARNAME@@
+PACKAGE_VERSION = @@PACKAGE_VERSION@@
+PATH_SEPARATOR = @@PATH_SEPARATOR@@
+a75 2
+SET_MAKE = @@SET_MAKE@@
+SHELL = @@SHELL@@
+d79 1
+a79 44
+ac_ct_AR = @@ac_ct_AR@@
+ac_ct_AS = @@ac_ct_AS@@
+ac_ct_CC = @@ac_ct_CC@@
+ac_ct_CXX = @@ac_ct_CXX@@
+ac_ct_DLLTOOL = @@ac_ct_DLLTOOL@@
+ac_ct_F77 = @@ac_ct_F77@@
+ac_ct_OBJDUMP = @@ac_ct_OBJDUMP@@
+ac_ct_RANLIB = @@ac_ct_RANLIB@@
+ac_ct_STRIP = @@ac_ct_STRIP@@
+am__fastdepCC_FALSE = @@am__fastdepCC_FALSE@@
+am__fastdepCC_TRUE = @@am__fastdepCC_TRUE@@
+am__fastdepCXX_FALSE = @@am__fastdepCXX_FALSE@@
+am__fastdepCXX_TRUE = @@am__fastdepCXX_TRUE@@
+am__include = @@am__include@@
+am__leading_dot = @@am__leading_dot@@
+am__quote = @@am__quote@@
+bindir = @@bindir@@
+build = @@build@@
+build_alias = @@build_alias@@
+build_cpu = @@build_cpu@@
+build_os = @@build_os@@
+build_vendor = @@build_vendor@@
+datadir = @@datadir@@
+exec_prefix = @@exec_prefix@@
+host = @@host@@
+host_alias = @@host_alias@@
+host_cpu = @@host_cpu@@
+host_os = @@host_os@@
+host_vendor = @@host_vendor@@
+includedir = @@includedir@@
+infodir = @@infodir@@
+install_sh = @@install_sh@@
+libdir = @@libdir@@
+libexecdir = @@libexecdir@@
+localstatedir = @@localstatedir@@
+mandir = @@mandir@@
+mkdir_p = @@mkdir_p@@
+oldincludedir = @@oldincludedir@@
+prefix = @@prefix@@
+program_transform_name = @@program_transform_name@@
+sbindir = @@sbindir@@
+sharedstatedir = @@sharedstatedir@@
+sysconfdir = @@sysconfdir@@
+target_alias = @@target_alias@@
+d81 1
+d83 1
+a85 1
+libl4_la_LDFLAGS = -no-undefined
+d87 4
+a90 1
+all: all-am
+d92 23
+d116 18
+a133 30
+.SUFFIXES: .c .lo .o .obj
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
+	@@for dep in $?; do \
+	  case '$(am__configure_deps)' in \
+	    *$$dep*) \
+	      cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh \
+		&& exit 0; \
+	      exit 1;; \
+	  esac; \
+	done; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  l4/Makefile'; \
+	cd $(top_srcdir) && \
+	  $(AUTOMAKE) --foreign  l4/Makefile
+.PRECIOUS: Makefile
+Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
+	@@case '$?' in \
+	  *config.status*) \
+	    cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh;; \
+	  *) \
+	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@@ $(am__depfiles_maybe)'; \
+	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@@ $(am__depfiles_maybe);; \
+	esac;
+
+$(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+
+$(top_srcdir)/configure:  $(am__configure_deps)
+	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
+	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+d136 1
+a136 1
+	test -z "$(libdir)" || $(mkdir_p) "$(DESTDIR)$(libdir)"
+d139 2
+a140 3
+	    f="`echo $$p | sed -e 's|^.*/||'`"; \
+	    echo " $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(libdir)/$$f'"; \
+	    $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(libdir)/$$f"; \
+d146 2
+a147 4
+	@@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	    p="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(libdir)/$$p'"; \
+	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(libdir)/$$p"; \
+d150 13
+a162 10
+clean-libLTLIBRARIES:
+	-test -z "$(lib_LTLIBRARIES)" || rm -f $(lib_LTLIBRARIES)
+	@@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
+libl4.la: $(libl4_la_OBJECTS) $(libl4_la_DEPENDENCIES) 
+	$(LINK) -rpath $(libdir) $(libl4_la_LDFLAGS) $(libl4_la_OBJECTS) $(libl4_la_LIBADD) $(LIBS)
+d165 1
+d168 2
+d173 4
+a176 2
+.c.o:
+	$(COMPILE) -c $<
+d178 2
+a179 2
+.c.obj:
+	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+d181 2
+a182 2
+.c.lo:
+	$(LTCOMPILE) -c -o $@@ $<
+a190 2
+	-rm -f libtool
+uninstall-info-am:
+d192 5
+a196 8
+ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	mkid -fID $$unique
+d199 4
+a202 9
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+d204 4
+a207 8
+	if test -z "$(ETAGS_ARGS)$$tags$$unique"; then :; else \
+	  test -n "$$unique" || unique=$$empty_fix; \
+	  $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
+	    $$tags $$unique; \
+	fi
+ctags: CTAGS
+CTAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+d210 3
+a212 5
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+d214 6
+a219 8
+	test -z "$(CTAGS_ARGS)$$tags$$unique" \
+	  || $(CTAGS) $(CTAGSFLAGS) $(AM_CTAGSFLAGS) $(CTAGS_ARGS) \
+	     $$tags $$unique
+
+GTAGS:
+	here=`$(am__cd) $(top_builddir) && pwd` \
+	  && cd $(top_srcdir) \
+	  && gtags -i $(GTAGS_ARGS) $$here
+d222 7
+a228 1
+	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
+d231 2
+a232 15
+	@@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
+	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
+	list='$(DISTFILES)'; for file in $$list; do \
+	  case $$file in \
+	    $(srcdir)/*) file=`echo "$$file" | sed "s|^$$srcdirstrip/||"`;; \
+	    $(top_srcdir)/*) file=`echo "$$file" | sed "s|^$$topsrcdirstrip/|$(top_builddir)/|"`;; \
+	  esac; \
+	  if test -f $$file || test -d $$file; then d=.; else d=$(srcdir); fi; \
+	  dir=`echo "$$file" | sed -e 's,/[^/]*$$,,'`; \
+	  if test "$$dir" != "$$file" && test "$$dir" != "."; then \
+	    dir="/$$dir"; \
+	    $(mkdir_p) "$(distdir)$$dir"; \
+	  else \
+	    dir=''; \
+	  fi; \
+d234 1
+a234 4
+	    if test -d $(srcdir)/$$file && test $$d != $(srcdir); then \
+	      cp -pR $(srcdir)/$$file $(distdir)$$dir || exit 1; \
+	    fi; \
+	    cp -pR $$d/$$file $(distdir)$$dir || exit 1; \
+d237 2
+a238 2
+	    || cp -p $$d/$$file $(distdir)/$$file \
+	    || exit 1; \
+d241 4
+d247 3
+a249 6
+all-am: Makefile $(LTLIBRARIES)
+installdirs:
+	for dir in "$(DESTDIR)$(libdir)"; do \
+	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
+	done
+install: install-am
+d251 2
+a253 1
+uninstall: uninstall-am
+d257 10
+a267 6
+installcheck: installcheck-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) INSTALL_PROGRAM="$(INSTALL_STRIP_PROGRAM)" \
+	  install_sh_PROGRAM="$(INSTALL_STRIP_PROGRAM)" INSTALL_STRIP_FLAG=-s \
+	  `test -z '$(STRIP)' || \
+	    echo "INSTALL_PROGRAM_ENV=STRIPPROG='$(STRIP)'"` install
+d273 2
+a274 1
+	-rm -f $(CONFIG_CLEAN_FILES)
+d277 3
+a279 3
+	@@echo "This command is intended for maintainers to use"
+	@@echo "it deletes files that may require special tools to rebuild."
+clean: clean-am
+d281 1
+a281 2
+clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
+	mostlyclean-am
+d283 2
+a284 4
+distclean: distclean-am
+	-rm -f Makefile
+distclean-am: clean-am distclean-compile distclean-generic \
+	distclean-libtool distclean-tags
+d286 1
+a286 1
+dvi: dvi-am
+d288 4
+a291 1
+dvi-am:
+d293 1
+a293 1
+html: html-am
+d295 6
+a300 13
+info: info-am
+
+info-am:
+
+install-data-am:
+
+install-exec-am: install-libLTLIBRARIES
+
+install-info: install-info-am
+
+install-man:
+
+installcheck-am:
+a302 11
+	-rm -f Makefile
+maintainer-clean-am: distclean-am maintainer-clean-generic
+
+mostlyclean: mostlyclean-am
+
+mostlyclean-am: mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool
+
+pdf: pdf-am
+
+pdf-am:
+d304 12
+a315 1
+ps: ps-am
+a316 16
+ps-am:
+
+uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES
+
+.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
+	clean-libLTLIBRARIES clean-libtool ctags distclean \
+	distclean-compile distclean-generic distclean-libtool \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am install-exec \
+	install-exec-am install-info install-info-am \
+	install-libLTLIBRARIES install-man install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-info-am \
+	uninstall-libLTLIBRARIES
+@
+
+
+1.1.2.3
+log
+@http://ftp.gnu.org/gnu/libtool/libtool-1.5.10.tar.gz
+@
+text
+@d1 1
+a1 1
+# Makefile.in generated by automake 1.9.1 from Makefile.am.
+a38 1
+build_triplet = @@build@@
+d47 1
+a47 1
+mkinstalldirs = $(install_sh) -d
+a48 6
+am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
+am__vpath_adj = case $$p in \
+    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
+    *) f=$$p;; \
+  esac;
+am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+d62 1
+a62 1
+LTCOMPILE = $(LIBTOOL) --mode=compile --tag=CC $(CC) $(DEFS) \
+d66 1
+a66 1
+LINK = $(LIBTOOL) --mode=link --tag=CC $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+a147 2
+am__tar = @@am__tar@@
+am__untar = @@am__untar@@
+d220 1
+a220 1
+	    f=$(am__strip_dir) \
+d228 2
+a229 2
+	@@set -x; list='$(lib_LTLIBRARIES)'; for p in $$list; do \
+	  p=$(am__strip_dir) \
+d371 1
+a371 1
+	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+@
+
+

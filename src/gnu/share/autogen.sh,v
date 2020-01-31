@@ -1,0 +1,150 @@
+head	2.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.4
+date	2005.01.16.15.31.59;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.16.12.35.48;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.15.19.58.13;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.15.19.22.35;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.4
+log
+@provisions for 1.4
+@
+text
+@#!/bin/ksh
+# $MirBSD: src/gnu/share/autogen.sh,v 2.3 2005/01/16 12:35:48 tg Exp $
+#-
+# Copyright (c) 2004, 2005
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+#
+# Licensee is hereby permitted to deal in this work without restric-
+# tion, including unlimited rights to use, publicly perform, modify,
+# merge, distribute, sell, give away or sublicence, provided all co-
+# pyright notices above, these terms and the disclaimer are retained
+# in all redistributions or reproduced in accompanying documentation
+# or other materials provided with binary redistributions.
+#
+# Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+# any kind, expressed or implied, to the maximum extent permitted by
+# applicable law, but with the warranty of being written without ma-
+# licious intent or gross negligence; in no event shall licensor, an
+# author or contributor be held liable for any damage, direct, indi-
+# rect or other, however caused, arising in any way out of the usage
+# of this work, even if advised of the possibility of such damage.
+
+if [[ -z $AUTOCONF_VERSION ]]; then
+	AUTOCONF_VERSION=2.59
+	print Warning: AUTOCONF_VERSION unset!
+fi
+
+if [[ -z $AUTOMAKE_VERSION ]]; then
+	AUTOMAKE_VERSION=1.9
+	print Warning: AUTOMAKE_VERSION unset!
+fi
+
+export AUTOCONF_VERSION AUTOMAKE_VERSION
+
+[[ -n $GNUSYSTEM_AUX_DIR ]] || GNUSYSTEM_AUX_DIR=/usr/src/gnu/share
+
+AM_FLAGS=--miros
+[[ $AUTOMAKE_VERSION = 1.4 ]] && AM_FLAGS=
+
+[[ -e /tmp/empty ]] || print -n >/tmp/empty
+for a in ChangeLog ltmain.sh; do
+	[[ -e $a ]] || ln -s /tmp/empty $a
+done
+
+set -e
+set -x
+if [[ -d m4 ]]; then
+	aclocal --acdir=/usr/local/share/aclocal-$AUTOMAKE_VERSION -I m4
+elif [[ -d ../m4 ]]; then
+	aclocal --acdir=/usr/local/share/aclocal-$AUTOMAKE_VERSION -I ../m4
+else
+	aclocal --acdir=/usr/local/share/aclocal-$AUTOMAKE_VERSION -I .
+fi
+autoheader
+set +e
+automake --foreign -a $AM_FLAGS
+autoconf && chmod 664 configure
+[[ -e autom4te.cache ]] && rm -rf autom4te.cache
+find . -type l -print0 | xargs -0 rm
+exit 0
+@
+
+
+2.3
+log
+@I must've been joking or what
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/gnu/share/autogen.sh,v 2.2 2005/01/15 19:58:13 tg Exp $
+d36 3
+d55 1
+a55 1
+automake --foreign -a --miros
+@
+
+
+2.2
+log
+@sync
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/gnu/share/autogen.sh,v 2.1 2005/01/15 19:22:35 tg Exp $
+d44 1
+a44 1
+	aclocal --acdir=/usr/local/share/aclocal-1.9 -I m4
+d46 1
+a46 1
+	aclocal --acdir=/usr/local/share/aclocal-1.9 -I ../m4
+d48 1
+a48 1
+	aclocal --acdir=/usr/local/share/aclocal-1.9 -I .
+@
+
+
+2.1
+log
+@move autogen.sh from cvs to share and make more flexible
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/share/misc/licence.template,v 1.20 2004/12/03 16:18:37 tg Rel $
+d37 3
+a39 4
+[[ -e ChangeLog ]] || ln -s /tmp/empty ChangeLog
+[[ -e libtool.m4 ]] || ln -s $GNUSYSTEM_AUX_DIR/libtool.m4 .
+[[ -e m4salt.m4 ]] || ln -s $GNUSYSTEM_AUX_DIR/m4salt.m4 .
+[[ -e m4sugar.m4 ]] || ln -s $GNUSYSTEM_AUX_DIR/m4sugar.m4 .
+@
+

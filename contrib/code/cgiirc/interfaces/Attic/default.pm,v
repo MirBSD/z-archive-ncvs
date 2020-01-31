@@ -1,0 +1,297 @@
+head	2.3;
+access;
+symbols
+	cgiirc-0_5_5:1.1.3.2
+	cgiirc-0_5_4:1.1.3.1
+	tg:1.1.3;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.18.20.26.31;	author tg;	state dead;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.18.20.12.41;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.19.14.29.15;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches
+	1.1.3.1;
+next	;
+
+1.1.3.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches;
+next	1.1.3.2;
+
+1.1.3.2
+date	2005.01.18.20.03.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@nah, doesnt work like I would
+@
+text
+@package default;
+use vars qw/$standardheader/;
+use strict;
+$standardheader = <<EOF;
+<!--	MirCGIIRC details: mirabile <tg at 66h.42h.de>
+	This is GPLd free software, based upon CGI:IRC
+-->
+EOF
+
+sub new {
+   return bless {};
+}
+
+sub exists {
+   return 1 if defined &{__PACKAGE__ . '::' . $_[1]};
+}
+
+sub makeline {
+   my($self, $type, $target, $html) = @@_;
+   return "$html<br>\n";
+}
+
+sub lines {
+   my($self, @@lines);
+   unless(print @@lines) {
+      $::needtodie++;
+   }
+}
+
+sub header {
+   print "\n";
+}
+
+sub keepalive {
+   unless(print "<!-- nothing comment -->\r\n") {
+      $::needtodie++;
+   }
+}
+
+sub error {
+   my($self, $error) = @@_;
+   $self->line({}, '', $error);
+}
+
+sub form { 'DUMMY' }
+
+sub add { 'DUMMY' }
+
+sub del { 'DUMMY' }
+
+sub clear { 'DUMMY' }
+
+sub end { 'DUMMY' }
+
+sub options { 'DUMMY' }
+
+sub setoption { 'DUMMY' }
+
+# not supported by default interface
+sub ctcpping { 0 }
+sub ping { 0 }
+
+sub login {
+   my($self, $this, $interface, $copy, $config, $order, $items, $adv) = @@_;
+   my $notsupported = 0;
+   if($ENV{HTTP_USER_AGENT} =~ /konqueror.2|Mozilla\/4.\d+ \[|OmniWeb/i) {
+      $notsupported++;
+   }
+print <<EOF;
+$standardheader
+<html>
+<head>
+<link rel="SHORTCUT ICON" href="$config->{image_path}/favicon.ico">
+<script language="JavaScript"><!--
+EOF
+if($interface eq 'default') {
+print <<EOF;
+function setjs() {
+ if(navigator.product == 'Gecko') {
+   document.loginform["interface"].value = 'mozilla';
+ }else if(window.opera && document.childNodes) {
+   document.loginform["interface"].value = 'opera7';
+ }else if(navigator.appName == 'Microsoft Internet Explorer' &&
+    navigator.userAgent.indexOf("Mac_PowerPC") > 0) {
+    document.loginform["interface"].value = 'konqueror';
+ }else if(navigator.appName == 'Microsoft Internet Explorer' &&
+ document.getElementById && document.getElementById('ietest').innerHTML) {
+   document.loginform["interface"].value = 'ie';
+ }else if(navigator.appName == 'Konqueror') {
+    document.loginform["interface"].value = 'konqueror';
+ }else if(window.opera) {
+   document.loginform["interface"].value = 'opera';
+ }
+}
+function nickvalid() {
+   var nick = document.loginform.Nickname.value;
+   if(nick.match(/^[A-Za-z0-9\\[\\]\\{\\}^\\\\\\|\\_\\-\`]{1,32}\$/))
+      return true;
+   alert('Please enter a valid nickname');
+   document.loginform.Nickname.value = nick.replace(/[^A-Za-z0-9\\[\\]\\{\\}^\\\\\\|\\_\\-\`]/g, '');
+   return false;
+}
+EOF
+}else{ # dummy functions
+print <<EOF;
+function setjs() {
+   return true;
+}
+function nickvalid() {
+   return true;
+}
+EOF
+}
+print <<EOF;
+function setcharset() {
+	if(document.charset && document.loginform["Character set"])
+		document.loginform['Character set'].value = document.charset
+}
+//-->
+</script>
+<title>CGI:IRC Login</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" /></head>
+<body bgcolor="#ffffff" text="#000000" onload="setcharset();">
+EOF
+if($notsupported) {
+   print "<font size=\"+1\" color=\"red\">Your browser does not correctly support CGI:IRC, it might not work or other problems may occur. Please consider upgrading.</font>\n";
+}
+print <<EOF;
+<form method="post" action="$this" name="loginform" onsubmit="setjs();return nickvalid()">
+EOF
+print "<input type=\"hidden\" name=\"interface\" value=\"" .
+   ($interface eq 'default' ? 'nonjs' : $interface) . "\">\n";
+print <<EOF;
+<table border="0" cellpadding="5" cellspacing="0">
+<tr><td colspan="2" align="center" bgcolor="#c0c0dd"><b>CGI:IRC
+Login</b></td></tr>
+EOF
+for(@@$order) {
+   my $item = $$items{$_};
+   next unless defined $item;
+   print "<tr><td align=\"right\" bgcolor=\"#f1f1f1\">$_</td><td align=\"left\"
+bgcolor=\"#f1f1f1\">";
+   if(ref $item eq 'ARRAY') {
+      print "<select name=\"$_\" style=\"width: 100%\">";
+      print "<option>$_</option>" for @@$item;
+      print "</select>";
+   }elsif($item eq '-PASSWORD-') {
+      print "<input type=\"password\" name=\"$_\" value=\"\">";
+   }else{
+      my $tmp = '';
+      if($item =~ s/^-DISABLED- //) {
+         $tmp = " disabled=\"1\"";
+      }
+      print "<input type=\"text\" name=\"$_\" value=\"$item\"$tmp>";
+   }
+   print "</td></tr>\n";
+}
+print <<EOF;
+<tr><td align="left" bgcolor="#d9d9d9">
+EOF
+if($adv) {
+   print <<EOF;
+<small><a href="$this?adv=1">Advanced..</a></small>
+EOF
+}
+print <<EOF;
+</td><td align="right" bgcolor="#d9d9d9">
+<input type="submit" value="Login" style="background-color: #d9d9d9">
+</td></tr></table></form>
+
+<small id="ietest">$copy</small>
+</body></html>
+EOF
+}
+
+1;
+@
+
+
+2.2
+log
+@merge
+@
+text
+@@
+
+
+2.1
+log
+@*sigh* update to MirCGIIRC
+@
+text
+@d115 4
+d123 1
+a123 1
+<body bgcolor="#ffffff" text="#000000">
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d5 3
+a7 5
+<!-- This is part of CGI:IRC 0.5
+  == http://cgiirc.sourceforge.net/
+  == Copyright (C) 2000-2002 David Leadbeater <cgiirc\@@dgl.cx>
+  == Released under the GNU GPL
+  -->
+d118 1
+a118 1
+</head>
+d127 1
+a127 1
+print "<input type=\"hidden\" name=\"interface\" value=\"" . 
+@
+
+
+1.1.3.1
+log
+@Import cgiirc 0.5.4 (pristine) again
+@
+text
+@@
+
+
+1.1.3.2
+log
+@there's a new CGI::IRC out, with utf-8 supposedly, and fireschrott bugfixes
+@
+text
+@d7 1
+a7 1
+  == Copyright (C) 2000-2005 David Leadbeater <cgiirc\@@dgl.cx>
+a116 4
+function setcharset() {
+	if(document.charset && document.loginform["Character set"])
+		document.loginform['Character set'].value = document.charset
+}
+d121 1
+a121 1
+<body bgcolor="#ffffff" text="#000000" onload="setcharset();">
+@
+

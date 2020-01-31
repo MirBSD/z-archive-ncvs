@@ -1,0 +1,104 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.06.53;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+ <head>
+  <title>Testside Apache-installasjon</title>
+ </head>
+<!-- Background white, links blue (unvisited), navy (visited), red (active) -->
+ <body
+  bgcolor="#FFFFFF"
+  text="#000000"
+  link="#0000FF"
+  vlink="#000080"
+  alink="#FF0000"
+ >
+  <h1 align="CENTER">
+   Det gikk bra! Apache er nå installert på denne maskinen!
+  </h1>
+  <p>
+  Hvis du kan se denne siden har den eller de som driver dette nettstedet
+  installert <a href="http://www.apache.org/foundation/preFAQ.html">Apache Web server</a>.
+  Nå må denne testsiden erstattes med virkelig innhold.
+  </p>
+  <hr>
+  <blockquote>
+  Hvis du hadde ventet å se en annen side enn denne bør du  
+  <strong>ta kontakt med den som har ansvaret for nettstedet.</strong>
+   (Prøv å sende e-post til <samp>&lt;webmaster@@<em>domene</em>&gt;</samp>.)
+   Selv om dette nettstedet kjøres på Apache, har det ingen annen 
+   tilknytning til Apache-gruppen som har utviklet programvaren.
+   Vennligst ikke send post angående dette nettstedet eller dets
+   innhold til Apache-gruppens programmerere. I så fall vil din henvendelse
+   bli <strong><big>ignorert</big></strong>.  
+  </blockquote>   
+  <hr>
+  <p>
+  <a
+   href="manual/index.html"
+  >Dokumentasjon</a>
+  for Apache er inkludert i denne pakken.
+  </p>
+  <p>
+  Logoen under kan benyttes på en hvilken som helst maskin som kjører Apache.
+  Takk for at du benytter Apache!
+  </p>
+  <div align="CENTER">
+   <img src="apache_pb.gif" alt="">
+  </div>
+ </body>
+</html>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

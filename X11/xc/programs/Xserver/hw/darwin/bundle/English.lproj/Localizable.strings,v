@@ -1,0 +1,63 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.12.46;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.12.46;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* English localized versions of strings used by the Mac OS X front end. */
+/* $XFree86: xc/programs/Xserver/hw/darwin/bundle/English.lproj/Localizable.strings,v 1.4 2003/11/04 22:48:14 torrey Exp $ */
+
+/* Title of alert panel */
+"Quit X server?" = "Quit X server?";
+
+/* Text of alert panel */
+"Quitting the X server will terminate any running X Window System programs." = "Quitting the X server will terminate any running X Window System programs.";
+
+/* Quit */
+"Quit" = "Quit";
+
+/* Cancel */
+"Cancel" = "Cancel";
+
+/* Default keymapping file */
+"USA.keymapping" = "USA.keymapping";
+
+/* Default switch string */
+"Cmd-Opt-a" = "Cmd-Opt-a";
+
+/* Button title when changing switch key */
+"Press key" = "Press key";
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

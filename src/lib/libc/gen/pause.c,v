@@ -1,0 +1,79 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.28.04;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.40;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.40;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: pause.c,v 1.5 2004/05/18 02:05:52 jfb Exp $	*/
+
+/*
+ * Written by Todd C. Miller <Todd.Miller@@courtesan.com>
+ * Public domain.
+ */
+
+#if defined(LIBC_SCCS) && !defined(lint)
+static const char rcsid[] = "$OpenBSD: pause.c,v 1.5 2004/05/18 02:05:52 jfb Exp $";
+#endif /* LIBC_SCCS and not lint */
+
+#include <signal.h>
+#include <unistd.h>
+
+/*
+ * Backwards compatible pause(3).
+ */
+int
+pause(void)
+{
+	sigset_t mask;
+
+	return (sigprocmask(SIG_BLOCK, NULL, &mask) ? -1 : sigsuspend(&mask));
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,62 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.22.58;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$MirBSD: src/distrib/sparc/miniroot/Makefile.inc,v 1.5 2004/11/13 02:24:36 tg Exp $
+#	$OpenBSD: Makefile.inc,v 1.4 2001/09/04 22:24:41 deraadt Exp $
+
+RAWLABEL=
+IMAGESIZE?=	12288	# 6 MiB in 512 byte blocks
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d4 2
+a5 2
+RAWLABEL=	
+IMAGESIZE?=	12288	# 6MB in 512 byte blocks
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

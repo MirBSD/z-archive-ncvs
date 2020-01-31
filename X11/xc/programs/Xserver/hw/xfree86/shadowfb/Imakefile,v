@@ -1,0 +1,73 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.16.07;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.16.07;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/Xserver/hw/xfree86/shadowfb/Imakefile,v 1.4 2002/10/16 22:12:54 alanh Exp $
+
+#define IHaveModules
+#include <Server.tmpl>
+
+
+#if DoLoadableServer
+XFMODSRC = sfbmodule.c
+XFMODOBJ = sfbmodule.o
+#endif
+
+SRCS = 	shadow.c $(XFMODSRC)
+
+
+OBJS = 	shadow.o $(XFMODOBJ)
+
+INCLUDES = -I. -I$(SERVERSRC)/mi -I$(SERVERSRC)/include \
+	   -I$(XF86OSSRC) -I$(XF86COMSRC) -I$(XINCLUDESRC) -I$(FONTINCSRC) \
+           -I../../../render -I$(EXTINCSRC)
+
+
+ModuleObjectRule()
+LibraryModuleTarget(shadowfb,$(OBJS))
+LintLibraryTarget(shadowfb,$(SRCS))
+NormalLintTarget($(LINTDEFS) $(SRCS))
+
+InstallLibraryModule(shadowfb,$(MODULEDIR),.)
+
+DependTarget()
+
+InstallDriverSDKLibraryModule(shadowfb,$(DRIVERSDKMODULEDIR),.)
+
+InstallDriverSDKNonExecFile(shadowfb.h,$(DRIVERSDKINCLUDEDIR))
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

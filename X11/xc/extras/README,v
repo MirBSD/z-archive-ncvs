@@ -1,0 +1,57 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.04.07;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.07;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@This directory (xc/extras) contains packages that are maintained outside
+of XFree86, but which are included with the base XFree86 distribution.
+Each such package should be imported on its own vendor branch (see
+the README.XFree86 file in each subdirectory for specific 'cvs import'
+details).  'XFree86' RCS ident lines should only be added to files that
+have XFree86-specific changes.  Binary files should not normally be
+imported.
+
+Packages included here must be redistributable under conditions compatible
+with the XFree86 redistribution conditions (see
+xc/programs/Xserver/hw/xfree86/doc/COPYRIGHT for examples of compatible
+licences).
+
+
+
+$XFree86: xc/extras/README,v 1.2 1998/08/29 08:10:34 dawes Exp $
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

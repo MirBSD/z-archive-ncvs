@@ -1,0 +1,72 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.43.02;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.54;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.54;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@$6 !~ /^ack/ && $5 !~ /[SFR]/ 	{
+	# given a tcpdump ftp trace, output one line for each send
+	# in the form
+	#   <send time> <seq no>
+	# where <send time> is the time packet was sent (in seconds with
+	# zero at time of first packet) and <seq no> is the tcp sequence
+	# number of the packet divided by 1024 (i.e., Kbytes sent).
+	#
+	# convert time to seconds
+	n = split ($1,t,":")
+	tim = t[1]*3600 + t[2]*60 + t[3]
+	if (! tzero) {
+		tzero = tim
+		OFS = "\t"
+	}
+	# get packet sequence number
+	i = index($6,":")
+	printf "%7.2f\t%g\n", tim-tzero, substr($6,1,i-1)/1024
+	}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

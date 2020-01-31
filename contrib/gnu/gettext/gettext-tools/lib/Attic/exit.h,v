@@ -1,0 +1,83 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2004.08.04.11.47.22;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.55;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@/* exit() function.
+   Copyright (C) 1995, 2001 Free Software Foundation, Inc.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+
+#ifndef _EXIT_H
+#define _EXIT_H
+
+/* Get exit() declaration.  */
+#include <stdlib.h>
+
+/* Some systems do not define EXIT_*, even with STDC_HEADERS.  */
+#ifndef EXIT_SUCCESS
+# define EXIT_SUCCESS 0
+#endif
+#ifndef EXIT_FAILURE
+# define EXIT_FAILURE 1
+#endif
+
+#endif /* _EXIT_H */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

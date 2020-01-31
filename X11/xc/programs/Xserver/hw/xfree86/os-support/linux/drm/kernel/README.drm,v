@@ -1,0 +1,86 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.15.40;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.15.40;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@************************************************************
+* For the very latest on DRI development, please see:      *
+*     http://dri.sourceforge.net/                          *
+************************************************************
+
+The Direct Rendering Manager (drm) is a device-independent kernel-level
+device driver that provides support for the XFree86 Direct Rendering
+Infrastructure (DRI).
+
+The DRM supports the Direct Rendering Infrastructure (DRI) in four major
+ways:
+
+    1. The DRM provides synchronized access to the graphics hardware via
+       the use of an optimized two-tiered lock.
+
+    2. The DRM enforces the DRI security policy for access to the graphics
+       hardware by only allowing authenticated X11 clients access to
+       restricted regions of memory.
+
+    3. The DRM provides a generic DMA engine, complete with multiple
+       queues and the ability to detect the need for an OpenGL context
+       switch.
+
+    4. The DRM is extensible via the use of small device-specific modules
+       that rely extensively on the API exported by the DRM module.
+
+
+Documentation on the DRI is available from:
+    http://precisioninsight.com/piinsights.html
+
+For specific information about kernel-level support, see:
+
+    The Direct Rendering Manager, Kernel Support for the Direct Rendering
+    Infrastructure
+    http://precisioninsight.com/dr/drm.html
+
+    Hardware Locking for the Direct Rendering Infrastructure
+    http://precisioninsight.com/dr/locking.html
+
+    A Security Analysis of the Direct Rendering Infrastructure
+    http://precisioninsight.com/dr/security.html
+
+************************************************************
+* For the very latest on DRI development, please see:      *
+*     http://dri.sourceforge.net/                          *
+************************************************************
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

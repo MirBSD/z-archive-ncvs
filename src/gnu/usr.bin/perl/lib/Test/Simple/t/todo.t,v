@@ -1,0 +1,121 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.41;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!perl -w
+
+BEGIN {
+    if( $ENV{PERL_CORE} ) {
+        chdir 't';
+        @@INC = '../lib';
+    }
+}
+
+BEGIN {
+    require Test::Harness;
+    use Test::More;
+
+    if( $Test::Harness::VERSION < 1.23 ) {
+        plan skip_all => 'Need Test::Harness 1.23 or up';
+    }
+    else {
+        plan tests => 15;
+    }
+}
+
+$Why = 'Just testing the todo interface.';
+
+TODO: {
+    local $TODO = $Why;
+
+    fail("Expected failure");
+    fail("Another expected failure");
+}
+
+
+pass("This is not todo");
+
+
+TODO: {
+    local $TODO = $Why;
+
+    fail("Yet another failure");
+}
+
+pass("This is still not todo");
+
+
+TODO: {
+    local $TODO = "testing that error messages don't leak out of todo";
+
+    ok( 'this' eq 'that',   'ok' );
+
+    like( 'this', '/that/', 'like' );
+    is(   'this', 'that',   'is' );
+    isnt( 'this', 'this',   'isnt' );
+
+    can_ok('Fooble', 'yarble');
+    isa_ok('Fooble', 'yarble');
+    use_ok('Fooble');
+    require_ok('Fooble');
+}
+
+
+TODO: {
+    todo_skip "Just testing todo_skip", 2;
+
+    fail("Just testing todo");
+    die "todo_skip should prevent this";
+    pass("Again");
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,99 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.55;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@#!/bin/ksh
+# $MirBSD: www/wikipass.sh,v 1.1 2004/12/13 00:13:24 tg Exp $
+#-
+# Copyright (c) 2004
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+#
+# Licensee is hereby permitted to deal in this work without restric-
+# tion, including unlimited rights to use, publically perform, modi-
+# fy, merge, distribute, sell, give away or sublicence, provided the
+# above copyright notices, these terms and the disclaimer are retai-
+# ned in all redistributions, or reproduced in accompanying documen-
+# tation or other materials provided with binary redistributions.
+#
+# Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+# any kind, expressed or implied, to the maximum extent permitted by
+# applicable law, but with the warranty of being written without ma-
+# licious intent or gross negligence; in no event shall licensor, an
+# author or contributor be held liable for any damage, direct, indi-
+# rect or other, however caused, arising in any way out of the usage
+# of covered work, even if advised of the possibility of such damage.
+
+print 'Generation of crypt hashes via Perl'
+print '==================================='
+print
+read salt?'Salt (empty for automatic): '
+if [[ -z $salt ]]; then
+	pcmd="print join '', ('.', '/', 0..9, 'A'..'Z',"
+	pcmd="$pcmd 'a'..'z')[rand 64, rand 64];"
+	salt=$(perl -e "$pcmd")
+	print "Generated salt: '$salt'"
+fi
+pass=1
+ptwo=2
+while [[ $pass != $ptwo ]]; do
+	stty -echo
+	read pass?'Password (no echo): '; print
+	read ptwo?'Repeat Password: '; print
+	stty echo
+	[[ -z $pass || -z $ptwo ]] && exit 0
+done
+pcmd="print crypt '${pass}', '${salt}';"
+hash=$(perl -e "${pcmd}")
+print "Generated hash: '$hash'"
+exit 0
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/share/misc/licence.template,v 1.14 2004/08/15 15:29:11 tg Rel $
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

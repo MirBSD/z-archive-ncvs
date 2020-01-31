@@ -1,0 +1,56 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.03.00.23.40;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.40;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@<HTML>
+<TITLE>File Management Install Targets</TITLE>
+<!-- This is an example file for the Lynx dired "install" functionality.
+     Lynx needs to be compiled with dired support and OK_INSTALL defined.
+     For the dired "install" function to work, this file has to exist
+     in the HOME directory under the name ".installdirs.html" or (for
+     8+3, i.e. DOS-like, filesystems) "instdirs.htm".
+  -->
+<BODY>
+<H1>Install Target directories</H1>
+<UL>
+<LH>Choose destination:</LH>
+<LI><A HREF="LYNXDIRED://INSTALL_DEST/~/">install in Home directory</A>
+<LI><A HREF="LYNXDIRED://INSTALL_DEST/~/bin">install in ~/bin</A>
+<LI><A HREF="LYNXDIRED://INSTALL_DEST/tmp">install in /tmp</A>
+</UL>
+</BODY>
+</HTML>
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

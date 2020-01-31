@@ -1,0 +1,120 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.33;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.55;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl
+
+# There are few filetest operators that are portable enough to test.
+# See pod/perlport.pod for details.
+
+BEGIN {
+    chdir 't' if -d 't';
+    @@INC = '../lib';
+    require './test.pl';
+}
+
+use Config;
+plan(tests => 10);
+
+ok( -d 'op' );
+ok( -f 'TEST' );
+ok( !-f 'op' );
+ok( !-d 'TEST' );
+ok( -r 'TEST' );
+
+# make sure TEST is r-x
+eval { chmod 0555, 'TEST' or die "chmod 0555, 'TEST' failed: $!" };
+chomp ($bad_chmod = $@@);
+
+$oldeuid = $>;		# root can read and write anything
+eval '$> = 1';		# so switch uid (may not be implemented)
+
+print "# oldeuid = $oldeuid, euid = $>\n";
+
+SKIP: {
+    if (!$Config{d_seteuid}) {
+	skip('no seteuid');
+    } 
+    elsif ($Config{config_args} =~/Dmksymlinks/) {
+	skip('we cannot chmod symlinks');
+    }
+    elsif ($bad_chmod) {
+	skip( $bad_chmod );
+    }
+    else {
+	ok( !-w 'TEST' );
+    }
+}
+
+# Scripts are not -x everywhere so cannot test that.
+
+eval '$> = $oldeuid';	# switch uid back (may not be implemented)
+
+# this would fail for the euid 1
+# (unless we have unpacked the source code as uid 1...)
+ok( -r 'op' );
+
+# this would fail for the euid 1
+# (unless we have unpacked the source code as uid 1...)
+SKIP: {
+    if ($Config{d_seteuid}) {
+	ok( -w 'op' );
+    } else {
+	skip('no seteuid');
+    }
+}
+
+ok( -x 'op' ); # Hohum.  Are directories -x everywhere?
+
+is( "@@{[grep -r, qw(foo io noo op zoo)]}", "io op" );
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

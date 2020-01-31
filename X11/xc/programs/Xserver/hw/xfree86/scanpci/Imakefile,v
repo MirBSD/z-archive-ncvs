@@ -1,0 +1,98 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.16.01;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.16.01;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@
+XCOMM $XFree86: xc/programs/Xserver/hw/xfree86/scanpci/Imakefile,v 1.11 2002/12/23 01:46:17 dawes Exp $
+
+#if DoLoadableServer
+#define IHaveSubdirs
+SUBDIRS = module
+#endif
+
+#include <Server.tmpl>
+
+MODPATHDEFINES = -DDEFAULT_MODULE_PATH=\"$(MODULEDIR)\"
+   INCLUDES =	-I$(XF86SRC)/common -I$(XF86OSSRC) -I$(XF86OSSRC)/bus \
+		-I$(SERVERSRC)/include -I$(SERVERSRC)/os \
+		-I$(XINCLUDESRC) -I$(SERVERSRC)/Xext -I$(EXTINCSRC) \
+		-I$(SERVERSRC)/Xi \
+		-I$(FONTLIBSRC)/include -I$(XF86PARSERSRC) \
+		-I$(XF86SRC)/loader $(VGAINCLUDES) -I$(XF86SRC)/rac
+
+SRCS = xf86ScanPci.c xf86PciData.c
+
+NormalLibraryObjectRule()
+
+NormalLibraryTarget(scanpci,xf86ScanPci.o)
+
+NormalLibraryTarget(pcidata,xf86PciData.o)
+
+#if HasPerl5
+PCIIDSRCS = ../etc/pci.ids ../etc/extrapci.ids
+PCIIDS = pci.ids
+
+$(PCIIDS): $(PCIIDSRCS)
+	RemoveFile($@@)
+	cat $(PCIIDSRCS) > $@@
+
+includes:: xf86PciIds.h
+
+xf86PciIds.h: $(PCIIDS) pciid2c.pl ../common/xf86PciInfo.h
+	RemoveFile($@@)
+	RunPerlScript(pciid2c.pl, ../common/xf86PciInfo.h < $(PCIIDS) > $@@)
+
+clean::
+	RemoveFile($(PCIIDS))
+	RemoveFile(xf86PciIds.h)
+
+#else
+LinkFile(xf86PciIds.h,xf86PciStdIds.h)
+#endif
+
+LinkFile(xf86PciData.c,xf86ScanPci.c)
+
+SpecialCObjectRule(xf86PciData,NullParameter,-DPCIDATA)
+
+#if DoLoadableServer
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+#endif
+
+DependTarget()
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

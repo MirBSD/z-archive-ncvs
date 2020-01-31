@@ -1,0 +1,69 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.15.47;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.15.47;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XFree86 on NTO
+
+Status:
+Everything builds, and appears to work. Libraries are built as shared.
+
+Building:
+Buiding is done as cross-development from QNX4. What you'll need:
+
+QNX4 4.24+
+Neutrino 2.0 x86 runtime and development packages for QNX4 host.
+Various QNX4 utilities, such as pdksh, cpp etc.
+
+To build:
+
+type (from the xc/ directory)
+BOOTSTRAPCFLAGS="-D__QNXNTO__ -Di386 -D__GNUC__" make World 2>&1 | tee make.log
+
+you can also make PPC or MIPS clients (-DPPC or -DMIPS):
+BOOTSTRAPCFLAGS="-D__QNXNTO__ -DPPC -D__GNUC__" make World 2>&1 | tee make.log
+
+Let the build run, and then examine make.log for any errors.
+
+
+Note that we'll very soon be able to build X natively on NTO...
+
+Sebastien Marineau
+sebastien@@qnx.com
+
+$XFree86: xc/programs/Xserver/hw/xfree86/os-support/nto/README,v 1.2 1999/12/27 00:45:45 robin Exp $
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

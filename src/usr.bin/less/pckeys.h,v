@@ -1,0 +1,87 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.39.12;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.13;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.13;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * Copyright (C) 1984-2002  Mark Nudelman
+ *
+ * You may distribute under the terms of either the GNU General Public
+ * License or the Less License, as specified in the README file.
+ *
+ * For more information about less, or for information on how to 
+ * contact the author, see the README file.
+ */
+
+
+/*
+ * Definitions of keys on the PC.
+ * Special (non-ASCII) keys on the PC send a two-byte sequence,
+ * where the first byte is 0 and the second is as defined below.
+ */
+#define	PCK_SHIFT_TAB		'\017'
+#define	PCK_ALT_E		'\022'
+#define	PCK_CAPS_LOCK		'\072'
+#define	PCK_F1			'\073'
+#define	PCK_NUM_LOCK		'\105'
+#define	PCK_HOME		'\107'
+#define	PCK_UP			'\110'
+#define	PCK_PAGEUP		'\111'
+#define	PCK_LEFT		'\113'
+#define	PCK_RIGHT		'\115'
+#define	PCK_END			'\117'
+#define	PCK_DOWN		'\120'
+#define	PCK_PAGEDOWN		'\121'
+#define	PCK_INSERT		'\122'
+#define	PCK_DELETE		'\123'
+#define	PCK_CTL_LEFT		'\163'
+#define	PCK_CTL_RIGHT		'\164'
+#define	PCK_CTL_DELETE		'\223'
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

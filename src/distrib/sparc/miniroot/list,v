@@ -1,0 +1,99 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.22.58;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$MirBSD: src/distrib/sparc/miniroot/list,v 1.6 2004/11/13 02:24:36 tg Exp $
+#	$OpenBSD: list,v 1.29 2004/05/05 19:43:17 deraadt Exp $
+#	$NetBSD: list,v 1.2.4.2 1996/06/26 19:25:00 pk Exp $
+
+# Sparc extras
+LINK	instbin				sbin/disklabel
+LINK	instbin				sbin/dhclient
+LINK	instbin				usr/bin/grep usr/bin/egrep usr/bin/fgrep
+LINK	instbin				usr/bin/less usr/bin/more
+LINK	instbin				usr/sbin/installboot
+
+SRCDIRS	sys/arch/sparc/stand
+
+SYMLINK	/tmp	var/tmp
+
+# copy the MAKEDEV script and make some devices
+SCRIPT	${DESTDIR}/dev/MAKEDEV		dev/MAKEDEV
+SPECIAL	cd dev; sh MAKEDEV all
+
+# we need the contents of /usr/mdec
+COPYDIR	${DESTDIR}/usr/mdec		usr/mdec
+SPECIAL	rm -f usr/mdec/binstall		usr/mdec/installboot
+
+# copy the kernel
+COPY	bsd	bsd
+
+# various files that we need in /etc for the install
+SCRIPT	${DESTDIR}/etc/disktab		etc/disktab.shadow
+SYMLINK	/tmp/disktab.shadow		etc/disktab
+SYMLINK	/tmp/fstab.shadow		etc/fstab
+SYMLINK	/tmp/resolv.conf.shadow		etc/resolv.conf
+SYMLINK	/tmp/hosts			etc/hosts
+TERMCAP	vt100,vt220,dumb,sun		usr/share/misc/termcap
+
+# dhcp things
+SCRIPT    ${DESTDIR}/sbin/dhclient-script	sbin/dhclient-script
+SPECIAL	chmod 755 sbin/dhclient-script
+
+# and the installation tools
+SCRIPT	${ARCHDIR}/../install.md	install.md
+
+COPY	${DESTDIR}/usr/mdec/boot	boot
+SPECIAL sync; ${DESTDIR}/usr/mdec/binstall -v ffs ${TARGDIR}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d5 1
+a5 1
+# Sparc extra's
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,112 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.27.39;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.26;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.26;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: search.h,v 1.7 2004/07/08 21:15:11 millert Exp $	*/
+/*	$NetBSD: search.h,v 1.9 1995/08/08 21:14:45 jtc Exp $	*/
+
+/*
+ * Written by J.T. Conklin <jtc@@netbsd.org>
+ * Public domain.
+ */
+
+#ifndef _SEARCH_H_
+#define _SEARCH_H_
+
+#include <sys/cdefs.h>
+#include <machine/ansi.h>
+
+#ifdef	_BSD_SIZE_T_
+typedef	_BSD_SIZE_T_	size_t;
+#undef	_BSD_SIZE_T_
+#endif
+
+typedef struct entry {
+	char *key;
+	void *data;
+} ENTRY;
+
+typedef enum {
+	FIND, ENTER
+} ACTION;
+
+typedef enum {
+	preorder,
+	postorder,
+	endorder,
+	leaf
+} VISIT;
+
+__BEGIN_DECLS
+void	*bsearch(const void *, const void *, size_t, size_t,
+	    int (*)(const void *, const void *));
+int	 hcreate(size_t);
+void	 hdestroy(void);
+ENTRY	*hsearch(ENTRY, ACTION);
+
+void	*lfind(const void *, const void *, size_t *, size_t,
+	    int (*)(const void *, const void *));
+void	*lsearch(const void *, const void *, size_t *, size_t,
+	    int (*)(const void *, const void *));
+void	 insque(void *, void *);
+void	 remque(void *);
+
+void	*tdelete(const void *, void **,
+	    int (*)(const void *, const void *));
+void	*tfind(const void *, void * const *,
+	    int (*)(const void *, const void *));
+void	*tsearch(const void *, void **, 
+	    int (*)(const void *, const void *));
+void      twalk(const void *, void (*)(const void *, VISIT, int));
+__END_DECLS
+
+#endif /* !_SEARCH_H_ */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

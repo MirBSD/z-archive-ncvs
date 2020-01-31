@@ -1,0 +1,39 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.19.17.31.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@we'll need a cpp shell script shortly to distinguish
+between Reiser CPP (in base) and GNU CPP (in gcc-contrib)
+@
+text
+@#! /bin/sh -
+# $MirBSD$
+
+if [ -e /usr/bin/mcpp ]; then
+	exec /usr/bin/mcpp "$@@"
+fi
+
+if [ -e /usr/libexec/cpp ]; then
+	exec /usr/libexec/cpp "$@@"
+fi
+
+exec mcpp "$@@"
+
+echo exec of cpp failed: $?
+exit 1
+@

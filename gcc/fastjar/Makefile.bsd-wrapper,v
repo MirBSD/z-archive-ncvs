@@ -1,0 +1,65 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.09.21.14.12;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.09.21.06.30;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@* fix mostly safe uses of string functions
+  - 1 unsafe
+  - 1 funny
+  - 1 malloc abuse
+* better manpage build
+@
+text
+@# $MirBSD: gcc/fastjar/Makefile.bsd-wrapper,v 1.1 2005/01/09 21:06:30 tg Exp $
+
+.include <bsd.own.mk>
+.include "${GNUSYSTEM_AUX_DIR}/locations.mk"
+.include "../Makefile.inc"
+
+CFARGS+=	--prefix=/usr --libexecdir=/usr/lib --infodir=/usr/share/info \
+		--mandir=/usr/share/man --disable-generated-files-in-srcdir \
+		--disable-dependency-tracking --with-system-zlib
+FSFMAKE=	${XVARS} ${GMAKE} ${FSFMARGS} ${XARGS}
+XARGS+=		LIBIBERTY=-liberty BUILD_LIBIBERTY=
+CPPFLAGS+=	-I${GNU_LIBIBERTY_INC}
+INST_TARGET=	mkinstalldirs='${SHELL} ${GNUSYSTEM_AUX_DIR}/mkinstalldirs' \
+		INSTALL_MAN= install
+MAN=		jar.1 grepjar.1
+CLEANFILES+=	${MAN} fastjar.info
+
+${MAN}: do-build
+
+.include <bsd.cfwrap.mk>
+@
+
+
+1.1
+log
+@build (with gmake)
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/boehm-gc/Makefile.bsd-wrapper,v 1.7 2005/01/09 19:14:21 tg Exp $
+d18 2
+@
+

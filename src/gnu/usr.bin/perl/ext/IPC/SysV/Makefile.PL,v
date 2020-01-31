@@ -1,0 +1,95 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.24;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# This -*- perl -*- script makes the Makefile
+# $Id: Makefile.PL,v 1.1.1.2 2003/12/03 17:55:02 tg Stab $
+
+require 5.002;
+use ExtUtils::MakeMaker;
+
+#--- MY package
+
+sub MY::libscan
+{
+ my($self,$path) = @@_;
+
+ return '' 
+	if($path =~ m:/(RCS|CVS|SCCS)/: ||
+	   $path =~ m:[~%]$: ||
+	   $path =~ m:\.(orig|rej)$:
+	  );
+ 
+ $path;
+}
+
+WriteMakefile(
+	VERSION_FROM	=> "SysV.pm",
+	NAME      	=> "IPC::SysV",
+	MAN3PODS	=> {}, 	# Pods will be built by installman.
+ 
+	'dist'    	=> {COMPRESS => 'gzip -9f',
+			    SUFFIX   => 'gz', 
+			    DIST_DEFAULT => 'all tardist',
+			   },
+ 
+	'clean'   	=> {FILES => join(" ",
+					map { "$_ */$_ */*/$_" }
+					qw(*% *.html *.b[ac]k *.old))
+			   },
+	'macro'		=> { INSTALLDIRS => 'perl' },
+);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+# $Id: Makefile.PL,v 1.6 2003/12/03 03:02:31 millert Exp $
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,72 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.03.00.23.35;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.35;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef WWW_WAIT_H
+#define WWW_WAIT_H 1
+
+#include <HTUtils.h>
+
+#ifdef HAVE_SYS_WAIT_H
+#include <sys/wait.h>
+#endif
+
+#ifndef WEXITSTATUS
+# ifdef HAVE_TYPE_UNIONWAIT
+#  define	WEXITSTATUS(status)	(status.w_retcode)
+# else
+#  define	WEXITSTATUS(status)	(((status) & 0xff00) >> 8)
+# endif
+#endif
+
+#ifndef WTERMSIG
+# ifdef HAVE_TYPE_UNIONWAIT
+#  define	WTERMSIG(status)	(status.w_termsig)
+# else
+#  define	WTERMSIG(status)	((status) & 0x7f)
+# endif
+#endif
+
+#ifndef WSTOPSIG
+# ifdef HAVE_TYPE_UNIONWAIT
+#  define	WSTOPSIG(status)	(status.w_stopsig)
+# else
+#  define	WSTOPSIG(status)	WEXITSTATUS(status)
+# endif
+#endif
+
+#endif /* WWW_WAIT_H */
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

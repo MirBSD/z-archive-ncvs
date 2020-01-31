@@ -1,0 +1,448 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.2
+	libtool-1_5_8:1.1.2.2
+	libtool-1_4_3:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.07.23.06.23;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.17.55.39;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.03.17.55.39;	author tg;	state Exp;
+branches;
+next	1.1.2.2;
+
+1.1.2.2
+date	2004.08.09.23.00.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@who needs documentation, dupes (from GNUSYSTEM_AUX_DIR), ltdl anyways?
+@
+text
+@/* config-h.in.  Generated automatically from configure.in by autoheader.  */
+
+/* Define to empty if the keyword does not work.  */
+#undef const
+
+/* Define as __inline if that's what the C compiler calls it.  */
+#undef inline
+
+/* Define if you have the ANSI C header files.  */
+#undef STDC_HEADERS
+
+/* Define if you have the argz_append function.  */
+#undef HAVE_ARGZ_APPEND
+
+/* Define if you have the argz_create_sep function.  */
+#undef HAVE_ARGZ_CREATE_SEP
+
+/* Define if you have the argz_insert function.  */
+#undef HAVE_ARGZ_INSERT
+
+/* Define if you have the argz_next function.  */
+#undef HAVE_ARGZ_NEXT
+
+/* Define if you have the argz_stringify function.  */
+#undef HAVE_ARGZ_STRINGIFY
+
+/* Define if you have the bcopy function.  */
+#undef HAVE_BCOPY
+
+/* Define if you have the dlerror function.  */
+#undef HAVE_DLERROR
+
+/* Define if you have the index function.  */
+#undef HAVE_INDEX
+
+/* Define if you have the memcpy function.  */
+#undef HAVE_MEMCPY
+
+/* Define if you have the memmove function.  */
+#undef HAVE_MEMMOVE
+
+/* Define if you have the rindex function.  */
+#undef HAVE_RINDEX
+
+/* Define if you have the strchr function.  */
+#undef HAVE_STRCHR
+
+/* Define if you have the strcmp function.  */
+#undef HAVE_STRCMP
+
+/* Define if you have the strrchr function.  */
+#undef HAVE_STRRCHR
+
+/* Define if you have the <argz.h> header file.  */
+#undef HAVE_ARGZ_H
+
+/* Define if you have the <assert.h> header file.  */
+#undef HAVE_ASSERT_H
+
+/* Define if you have the <ctype.h> header file.  */
+#undef HAVE_CTYPE_H
+
+/* Define if you have the <dirent.h> header file.  */
+#undef HAVE_DIRENT_H
+
+/* Define if you have the <dl.h> header file.  */
+#undef HAVE_DL_H
+
+/* Define if you have the <dld.h> header file.  */
+#undef HAVE_DLD_H
+
+/* Define if you have the <dlfcn.h> header file.  */
+#undef HAVE_DLFCN_H
+
+/* Define if you have the <errno.h> header file.  */
+#undef HAVE_ERRNO_H
+
+/* Define if you have the <malloc.h> header file.  */
+#undef HAVE_MALLOC_H
+
+/* Define if you have the <memory.h> header file.  */
+#undef HAVE_MEMORY_H
+
+/* Define if you have the <ndir.h> header file.  */
+#undef HAVE_NDIR_H
+
+/* Define if you have the <stdio.h> header file.  */
+#undef HAVE_STDIO_H
+
+/* Define if you have the <stdlib.h> header file.  */
+#undef HAVE_STDLIB_H
+
+/* Define if you have the <string.h> header file.  */
+#undef HAVE_STRING_H
+
+/* Define if you have the <strings.h> header file.  */
+#undef HAVE_STRINGS_H
+
+/* Define if you have the <sys/dir.h> header file.  */
+#undef HAVE_SYS_DIR_H
+
+/* Define if you have the <sys/dl.h> header file.  */
+#undef HAVE_SYS_DL_H
+
+/* Define if you have the <sys/ndir.h> header file.  */
+#undef HAVE_SYS_NDIR_H
+
+/* Define if you have the <unistd.h> header file.  */
+#undef HAVE_UNISTD_H
+
+/* Define to the extension used for shared libraries, say, .so.  */
+#undef LTDL_SHLIB_EXT
+
+/* Define to the name of the environment variable that determines the dynamic library search path.  */
+#undef LTDL_SHLIBPATH_VAR
+
+/* Define to the system default library search path.  */
+#undef LTDL_SYSSEARCHPATH
+
+/* Define to the sub-directory in which libtool stores uninstalled libraries.  */
+#undef LTDL_OBJDIR
+
+/* Define if libtool can extract symbol lists from object files.  */
+#undef HAVE_PRELOADED_SYMBOLS
+
+/* Define if you have the shl_load function. */
+#undef HAVE_SHL_LOAD
+
+/* Define if you have the shl_load function. */
+#undef HAVE_SHL_LOAD
+
+/* Define if you have the libdl library or equivalent. */
+#undef HAVE_LIBDL
+
+/* Define if you have the libdl library or equivalent. */
+#undef HAVE_LIBDL
+
+/* Define if you have the libdl library or equivalent. */
+#undef HAVE_LIBDL
+
+/* Define if you have the GNU dld library. */
+#undef HAVE_DLD
+
+/* Define if dlsym() requires a leading underscore in symbol names.  */
+#undef NEED_USCORE
+
+/* Define if the OS needs help to load dependent libraries for dlopen().  */
+#undef LTDL_DLOPEN_DEPLIBS
+
+/* Define to a type to use for `error_t' if it is not otherwise available. */
+#undef error_t
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Libtool 1.4.3 (last of the 1.4 series)
+
+Requires to bootstrap:
+* autoconf 2.13-o
+* automake 1.4-p5
+or later.
+@
+text
+@@
+
+
+1.1.2.2
+log
+@http://ftp.gnu.org/gnu/libtool/libtool-1.5.8.tar.gz
+@
+text
+@d1 1
+a1 1
+/* config-h.in.  Generated from configure.ac by autoheader.  */
+d3 10
+a12 1
+/* Define to 1 if you have the `argz_append' function. */
+d15 1
+a15 1
+/* Define to 1 if you have the `argz_create_sep' function. */
+d18 1
+a18 4
+/* Define to 1 if you have the <argz.h> header file. */
+#undef HAVE_ARGZ_H
+
+/* Define to 1 if you have the `argz_insert' function. */
+d21 1
+a21 1
+/* Define to 1 if you have the `argz_next' function. */
+d24 1
+a24 1
+/* Define to 1 if you have the `argz_stringify' function. */
+d27 1
+a27 4
+/* Define to 1 if you have the <assert.h> header file. */
+#undef HAVE_ASSERT_H
+
+/* Define to 1 if you have the `bcopy' function. */
+d30 2
+a31 2
+/* Define to 1 if you have the `closedir' function. */
+#undef HAVE_CLOSEDIR
+d33 5
+a37 2
+/* Define to 1 if you have the <ctype.h> header file. */
+#undef HAVE_CTYPE_H
+d39 2
+a40 3
+/* Define to 1 if you have the <dirent.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_DIRENT_H
+d42 2
+a43 2
+/* Define if you have the GNU dld library. */
+#undef HAVE_DLD
+d45 2
+a46 2
+/* Define to 1 if you have the <dld.h> header file. */
+#undef HAVE_DLD_H
+d48 2
+a49 2
+/* Define to 1 if you have the `dlerror' function. */
+#undef HAVE_DLERROR
+d51 2
+a52 2
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+d54 2
+a55 2
+/* Define to 1 if you have the <dl.h> header file. */
+#undef HAVE_DL_H
+d57 2
+a58 2
+/* Define if you have the _dyld_func_lookup function. */
+#undef HAVE_DYLD
+d60 2
+a61 2
+/* Define to 1 if you have the <errno.h> header file. */
+#undef HAVE_ERRNO_H
+d63 2
+a64 2
+/* Define to 1 if the system has the type `error_t'. */
+#undef HAVE_ERROR_T
+d66 2
+a67 2
+/* Define to 1 if you have the `index' function. */
+#undef HAVE_INDEX
+d69 2
+a70 2
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+d72 2
+a73 2
+/* Define if you have the libdl library or equivalent. */
+#undef HAVE_LIBDL
+d75 2
+a76 2
+/* Define to 1 if you have the <mach-o/dyld.h> header file. */
+#undef HAVE_MACH_O_DYLD_H
+d78 1
+a78 1
+/* Define to 1 if you have the <malloc.h> header file. */
+d81 1
+a81 7
+/* Define to 1 if you have the `memcpy' function. */
+#undef HAVE_MEMCPY
+
+/* Define to 1 if you have the `memmove' function. */
+#undef HAVE_MEMMOVE
+
+/* Define to 1 if you have the <memory.h> header file. */
+d84 1
+a84 1
+/* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
+d87 1
+a87 19
+/* Define to 1 if you have the `opendir' function. */
+#undef HAVE_OPENDIR
+
+/* Define if libtool can extract symbol lists from object files. */
+#undef HAVE_PRELOADED_SYMBOLS
+
+/* Define to 1 if you have the `readdir' function. */
+#undef HAVE_READDIR
+
+/* Define to 1 if you have the `rindex' function. */
+#undef HAVE_RINDEX
+
+/* Define if you have the shl_load function. */
+#undef HAVE_SHL_LOAD
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdio.h> header file. */
+d90 1
+a90 1
+/* Define to 1 if you have the <stdlib.h> header file. */
+d93 2
+a94 2
+/* Define to 1 if you have the `strchr' function. */
+#undef HAVE_STRCHR
+d96 1
+a96 4
+/* Define to 1 if you have the `strcmp' function. */
+#undef HAVE_STRCMP
+
+/* Define to 1 if you have the <strings.h> header file. */
+d99 1
+a99 8
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the `strrchr' function. */
+#undef HAVE_STRRCHR
+
+/* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
+   */
+d102 1
+a102 1
+/* Define to 1 if you have the <sys/dl.h> header file. */
+d105 1
+a105 2
+/* Define to 1 if you have the <sys/ndir.h> header file, and it defines `DIR'.
+   */
+d108 2
+a109 2
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+d111 2
+a112 2
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+d114 2
+a115 2
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+d117 2
+a118 2
+/* Define if the OS needs help to load dependent libraries for dlopen(). */
+#undef LTDL_DLOPEN_DEPLIBS
+d120 1
+a120 2
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+d123 2
+a124 3
+/* Define to the name of the environment variable that determines the dynamic
+   library search path. */
+#undef LTDL_SHLIBPATH_VAR
+d126 2
+a127 2
+/* Define to the extension used for shared libraries, say, ".so". */
+#undef LTDL_SHLIB_EXT
+d129 2
+a130 2
+/* Define to the system default library search path. */
+#undef LTDL_SYSSEARCHPATH
+d132 2
+a133 2
+/* Define if dlsym() requires a leading underscore in symbol names. */
+#undef NEED_USCORE
+d135 2
+a136 2
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+d138 2
+a139 2
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+d141 2
+a142 2
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+d144 2
+a145 2
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+d147 2
+a148 8
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Define to empty if `const' does not conform to ANSI C. */
+#undef const
+a152 5
+/* Define to `__inline__' or `__inline' if that's what the C compiler
+   calls it, or to nothing if 'inline' is not supported under any name.  */
+#ifndef __cplusplus
+#undef inline
+#endif
+@
+

@@ -1,0 +1,275 @@
+head	2.4;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.4
+date	2005.01.16.18.18.52;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.16.18.16.14;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.14.14.15.20;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.33.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.4
+log
+@move dependency info to <bsd.own.mk>
+so it's pulled in early enough for the
+dep rules in <bsd.lib.mk> to work
+@
+text
+@# $MirBSD: src/share/mk/bsd.dep.mk,v 2.3 2005/01/16 18:16:14 tg Exp $
+# $OpenBSD: bsd.dep.mk,v 1.5 2003/08/07 11:24:03 espie Exp $
+# $NetBSD: bsd.dep.mk,v 1.12 1995/09/27 01:15:09 christos Exp $
+
+.if !defined(BSD_DEP_MK)
+BSD_DEP_MK=1
+
+# some of the rules involve .h sources, so remove them from mkdep line
+# add them to the beforedepend target
+.if !target(depend)
+depend: beforedepend .depend _SUBDIRUSE afterdepend
+.  if defined(SRCS)
+.depend: ${SRCS}
+	@@rm -f .depend
+	@@files="${.ALLSRC:M*.s} ${.ALLSRC:M*.S}"; \
+	if [[ $$files != " " ]]; then \
+		echo mkdep -a ${MKDEP} ${CFLAGS:M-[ID]*} \
+		    ${CPPFLAGS} ${AINC} $$files; \
+		CC="${CC}" mkdep -a ${MKDEP} ${CFLAGS:M-[ID]*} \
+		    ${CPPFLAGS} ${AINC} $$files; \
+	fi
+	@@files="${.ALLSRC:M*.c}"; \
+	if [[ $$files != "" ]]; then \
+		echo mkdep -a ${MKDEP} ${CFLAGS:M-[ID]*} \
+		    ${CPPFLAGS} $$files; \
+		CC="${CC}" mkdep -a ${MKDEP} ${CFLAGS:M-[ID]*} \
+		    ${CPPFLAGS} $$files; \
+	fi
+	@@files="${.ALLSRC:M*.cc} ${.ALLSRC:M*.C} ${.ALLSRC:M*.cxx}"; \
+	if [[ $$files != "  " ]]; then \
+		echo mkdep -a ${MKDEP} ${CXXFLAGS:M-[ID]*} \
+		    ${CPPFLAGS} $$files; \
+		CC="${CC}" mkdep -a ${MKDEP} ${CXXFLAGS:M-[ID]*} \
+		    ${CPPFLAGS} $$files; \
+	fi
+.  else
+.depend:
+.  endif
+.  if !target(beforedepend)
+beforedepend:
+.  endif
+.  if !target(afterdepend)
+afterdepend:
+.  endif
+.endif	# not target depend
+
+.if !target(tags)
+.  if defined(SRCS)
+tags: ${SRCS} _SUBDIRUSE
+	-cd ${.CURDIR}; ${CTAGS} -f /dev/stdout ${.ALLSRC:N*.h} | \
+	    sed "s;\${.CURDIR}/;;" >tags
+.  else
+tags:
+.  endif
+.endif
+
+.if defined(SRCS)
+cleandir: cleandepend
+cleandepend:
+	rm -f .depend ${.CURDIR}/tags
+.endif
+
+.if exists(${.CURDIR}/Makefile.bsd-wrapper)
+.depend: ${.CURDIR}/Makefile.bsd-wrapper
+.elif exists(${.CURDIR}/BSDmakefile)
+.depend: ${.CURDIR}/BSDmakefile
+.elif exists(${.CURDIR}/makefile)
+.depend: ${.CURDIR}/makefile
+.elif exists(${.CURDIR}/Makefile)
+.depend: ${.CURDIR}/Makefile
+.endif
+
+.PHONY: beforedepend depend afterdepend cleandepend
+
+.endif
+@
+
+
+2.3
+log
+@move DLL dependency info to <bsd.dep.mk>
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.dep.mk,v 2.2 2005/01/14 14:15:20 tg Exp $
+a74 64
+# this used to be in <bsd.prog.mk> but we need it
+# e.g. for depending DLLs on CSU objects
+
+.if ${OBJECT_FMT:U} == "ELF"
+CRTBEGIN?=	${DESTDIR}/usr/lib/crtbegin.o
+CRTEND?=	${DESTDIR}/usr/lib/crtend.o
+CRTI?=		${DESTDIR}/usr/lib/crti.o
+CRTN?=		${DESTDIR}/usr/lib/crtn.o
+.endif
+
+LIBCRT0?=	${DESTDIR}/usr/lib/crt0.o
+LIBC?=		${DESTDIR}/usr/lib/libc.a
+LIBCDK?=	${DESTDIR}/usr/lib/libcdk.a
+LIBCOMPAT?=	${DESTDIR}/usr/lib/libcompat.a
+LIBCRYPTO?=	${DESTDIR}/usr/lib/libcrypto.a
+LIBCURSES?=	${DESTDIR}/usr/lib/libcurses.a
+LIBDES?=	${DESTDIR}/usr/lib/libdes.a
+LIBEDIT?=	${DESTDIR}/usr/lib/libedit.a
+LIBEVENT?=	${DESTDIR}/usr/lib/libevent.a
+LIBEXPAT?=	${DESTDIR}/usr/lib/libexpat.a
+LIBF2C?=	${DESTDIR}/usr/lib/libg2c.a
+LIBFL?=		${DESTDIR}/usr/lib/libfl.a
+LIBFORM?=	${DESTDIR}/usr/lib/libform.a
+LIBFRTBEGIN?=	${DESTDIR}/usr/lib/libfrtbegin.a
+LIBG2C?=	${DESTDIR}/usr/lib/libg2c.a
+LIBGCC?=	${DESTDIR}/usr/lib/libgcc.a
+LIBGPC?=	${DESTDIR}/usr/lib/libgpc.a
+LIBKEYNOTE?=	${DESTDIR}/usr/lib/libkeynote.a
+LIBKVM?=	${DESTDIR}/usr/lib/libkvm.a
+LIBL?=		${DESTDIR}/usr/lib/libl.a
+LIBM?=		${DESTDIR}/usr/lib/libm.a
+LIBMENU?=	${DESTDIR}/usr/lib/libmenu.a
+LIBMILTER?=	${DESTDIR}/usr/lib/libmilter.a
+LIBOBJC?=	${DESTDIR}/usr/lib/libobjc.a
+LIBOLDCURSES?=	${DESTDIR}/usr/lib/libocurses.a
+LIBPANEL?=	${DESTDIR}/usr/lib/libpanel.a
+LIBPCAP?=	${DESTDIR}/usr/lib/libpcap.a
+LIBPERL?=	${DESTDIR}/usr/lib/libperl.a
+LIBPNG?=	${DESTDIR}/usr/lib/libpng.a
+LIBRPCSVC?=	${DESTDIR}/usr/lib/librpcsvc.a
+LIBRX?=		${DESTDIR}/usr/lib/librx.a
+LIBSECTOK?=	${DESTDIR}/usr/lib/libsectok.a
+LIBSKEY?=	${DESTDIR}/usr/lib/libskey.a
+LIBSSL?=	${DESTDIR}/usr/lib/libssl.a
+LIBTERMCAP?=	${DESTDIR}/usr/lib/libtermcap.a
+LIBTERMLIB?=	${DESTDIR}/usr/lib/libtermlib.a
+LIBUSB?=	${DESTDIR}/usr/lib/libusbhid.a
+LIBUTIL?=	${DESTDIR}/usr/lib/libutil.a
+LIBWRAP?=	${DESTDIR}/usr/lib/libwrap.a
+LIBY?=		${DESTDIR}/usr/lib/liby.a
+LIBZ?=		${DESTDIR}/usr/lib/libz.a
+
+.if (${MACHINE_ARCH} == "alpha" || ${MACHINE_ARCH} == "amd64" || \
+     ${MACHINE_ARCH} == "i386")
+LIBARCH?=	${DESTDIR}/usr/lib/lib${MACHINE_ARCH}.a
+.else
+LIBARCH?=
+.endif
+
+# old stuff
+LIBOSSAUDIO?=	${DESTDIR}/usr/lib/libossaudio.a
+LIBOTERMCAP?=	${DESTDIR}/usr/lib/libotermcap.a
+LIBRESOLV?=	${DESTDIR}/usr/lib/libresolv.a
+
+@
+
+
+2.2
+log
+@* protect from multiple inclusion
+* switch defaults to be suitable for gcc 3.4
+* remove crap
+* unify style a bit
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.dep.mk,v 2.1 2005/01/03 16:33:53 tg Exp $
+d75 64
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.dep.mk,v 1.10 2004/09/07 15:55:42 tg Exp $
+d5 3
+d74 2
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 3
+a3 2
+#	$OpenBSD: bsd.dep.mk,v 1.5 2003/08/07 11:24:03 espie Exp $
+#	$NetBSD: bsd.dep.mk,v 1.12 1995/09/27 01:15:09 christos Exp $
+d6 1
+d13 5
+a17 3
+	if [ "$$files" != " " ]; then \
+	  echo mkdep -a ${MKDEP} ${CFLAGS:M-[ID]*} ${CPPFLAGS} ${AINC} $$files;\
+	  mkdep -a ${MKDEP} ${CFLAGS:M-[ID]*} ${CPPFLAGS} ${AINC} $$files; \
+d20 5
+a24 3
+	if [ "$$files" != "" ]; then \
+	  echo mkdep -a ${MKDEP} ${CFLAGS:M-[ID]*} ${CPPFLAGS} $$files; \
+	  mkdep -a ${MKDEP} ${CFLAGS:M-[ID]*} ${CPPFLAGS} $$files; \
+d27 5
+a31 3
+	if [ "$$files" != "  " ]; then \
+	  echo mkdep -a ${MKDEP} ${CXXFLAGS:M-[ID]*} ${CPPFLAGS} $$files; \
+	  mkdep -a ${MKDEP} ${CXXFLAGS:M-[ID]*} ${CPPFLAGS} $$files; \
+d42 1
+a42 1
+.endif
+d48 1
+a48 1
+	    sed "s;\${.CURDIR}/;;" > tags
+d60 10
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

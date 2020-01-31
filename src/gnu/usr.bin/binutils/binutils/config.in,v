@@ -1,0 +1,474 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.16.14.08.24;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.01.44;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.01.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@I'm still unsure if I should really believe that this one works
+with autoconf 2.59 and automake 1.9, instead of the recommended
+autoconf 2.13 and automake 1.4(without -p6!)...
+@
+text
+@/* config.in.  Generated from configure.in by autoheader.  */
+
+/* Define to one of `_getb67', `GETB67', `getb67' for Cray-2 and Cray-YMP
+   systems. This function is required for `alloca.c' support on those systems.
+   */
+#undef CRAY_STACKSEG_END
+
+/* Define to 1 if using `alloca.c'. */
+#undef C_ALLOCA
+
+/* Suffix used for executables, if any. */
+#undef EXECUTABLE_SUFFIX
+
+/* Define to 1 if you have `alloca', as a function or macro. */
+#undef HAVE_ALLOCA
+
+/* Define to 1 if you have <alloca.h> and it should be used (not on Ultrix).
+   */
+#undef HAVE_ALLOCA_H
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Does the platform use an executable suffix? */
+#undef HAVE_EXECUTABLE_SUFFIX
+
+/* Define to 1 if you have the <fcntl.h> header file. */
+#undef HAVE_FCNTL_H
+
+/* Is fopen64 available? */
+#undef HAVE_FOPEN64
+
+/* Define to 1 if you have the `getc_unlocked' function. */
+#undef HAVE_GETC_UNLOCKED
+
+/* Does <utime.h> define struct utimbuf? */
+#undef HAVE_GOOD_UTIME_H
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the `mkdtemp' function. */
+#undef HAVE_MKDTEMP
+
+/* Define to 1 if you have the `mkstemp' function. */
+#undef HAVE_MKSTEMP
+
+/* Define to 1 if you have the `sbrk' function. */
+#undef HAVE_SBRK
+
+/* Define to 1 if you have the `setmode' function. */
+#undef HAVE_SETMODE
+
+/* Is stat64 available? */
+#undef HAVE_STAT64
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the `strcoll' function. */
+#undef HAVE_STRCOLL
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the <sys/file.h> header file. */
+#undef HAVE_SYS_FILE_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have <sys/wait.h> that is POSIX.1 compatible. */
+#undef HAVE_SYS_WAIT_H
+
+/* Is the type time_t defined in <time.h>? */
+#undef HAVE_TIME_T_IN_TIME_H
+
+/* Is the type time_t defined in <sys/types.h>? */
+#undef HAVE_TIME_T_IN_TYPES_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the `utimes' function. */
+#undef HAVE_UTIMES
+
+/* Define if environ is not declared in system header files. */
+#undef NEED_DECLARATION_ENVIRON
+
+/* Define if fprintf is not declared in system header files. */
+#undef NEED_DECLARATION_FPRINTF
+
+/* Define if getenv is not declared in system header files. */
+#undef NEED_DECLARATION_GETENV
+
+/* Define if sbrk is not declared in system header files. */
+#undef NEED_DECLARATION_SBRK
+
+/* Define if strstr is not declared in system header files. */
+#undef NEED_DECLARATION_STRSTR
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* If using the C implementation of alloca, define if you know the
+   direction of stack growth for your system; otherwise it will be
+   automatically deduced at run-time.
+	STACK_DIRECTION > 0 => grows toward higher addresses
+	STACK_DIRECTION < 0 => grows toward lower addresses
+	STACK_DIRECTION = 0 => direction of growth unknown */
+#undef STACK_DIRECTION
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Configured target name. */
+#undef TARGET
+
+/* Define to 1 if user symbol names have a leading underscore, 0 if not. */
+#undef TARGET_PREPENDS_UNDERSCORE
+
+/* Use b modifier when opening binary files? */
+#undef USE_BINARY_FOPEN
+
+/* Version number of package */
+#undef VERSION
+
+/* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
+   `char[]'. */
+#undef YYTEXT_POINTER
+
+/* Enable LFS */
+#undef _LARGEFILE64_SOURCE
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+/* config.in.  Generated automatically from configure.in by autoheader.  */
+d3 6
+a8 1
+/* Define if using alloca.c.  */
+d11 2
+a12 2
+/* Define to empty if the keyword does not work.  */
+#undef const
+d14 1
+a14 5
+/* Define to one of _getb67, GETB67, getb67 for Cray-2 and Cray-YMP systems.
+   This function is required for alloca.c support on those systems.  */
+#undef CRAY_STACKSEG_END
+
+/* Define if you have alloca, as a function or macro.  */
+d17 2
+a18 1
+/* Define if you have <alloca.h> and it should be used (not on Ultrix).  */
+d21 2
+a22 2
+/* Define if you have a working `mmap' system call.  */
+#undef HAVE_MMAP
+d24 2
+a25 2
+/* Define if you have <sys/wait.h> that is POSIX.1 compatible.  */
+#undef HAVE_SYS_WAIT_H
+d27 2
+a28 2
+/* Define as __inline if that's what the C compiler calls it.  */
+#undef inline
+d30 2
+a31 2
+/* Define to `long' if <sys/types.h> doesn't define.  */
+#undef off_t
+d33 2
+a34 2
+/* Define to `unsigned' if <sys/types.h> doesn't define.  */
+#undef size_t
+d36 2
+a37 29
+/* If using the C implementation of alloca, define if you know the
+   direction of stack growth for your system; otherwise it will be
+   automatically deduced at run-time.
+ STACK_DIRECTION > 0 => grows toward higher addresses
+ STACK_DIRECTION < 0 => grows toward lower addresses
+ STACK_DIRECTION = 0 => direction of growth unknown
+ */
+#undef STACK_DIRECTION
+
+/* Define if you have the ANSI C header files.  */
+#undef STDC_HEADERS
+
+/* Define if lex declares yytext as a char * by default, not a char[].  */
+#undef YYTEXT_POINTER
+
+/* Define if you have the __argz_count function.  */
+#undef HAVE___ARGZ_COUNT
+
+/* Define if you have the __argz_next function.  */
+#undef HAVE___ARGZ_NEXT
+
+/* Define if you have the __argz_stringify function.  */
+#undef HAVE___ARGZ_STRINGIFY
+
+/* Define if you have the dcgettext function.  */
+#undef HAVE_DCGETTEXT
+
+/* Define if you have the getc_unlocked function.  */
+#undef HAVE_GETC_UNLOCKED
+d39 2
+a40 2
+/* Define if you have the getcwd function.  */
+#undef HAVE_GETCWD
+d42 2
+a43 2
+/* Define if you have the getpagesize function.  */
+#undef HAVE_GETPAGESIZE
+d45 2
+a46 2
+/* Define if you have the munmap function.  */
+#undef HAVE_MUNMAP
+d48 2
+a49 2
+/* Define if you have the putenv function.  */
+#undef HAVE_PUTENV
+d51 1
+a51 1
+/* Define if you have the sbrk function.  */
+d54 1
+a54 7
+/* Define if you have the setenv function.  */
+#undef HAVE_SETENV
+
+/* Define if you have the setlocale function.  */
+#undef HAVE_SETLOCALE
+
+/* Define if you have the setmode function.  */
+d57 2
+a58 2
+/* Define if you have the stpcpy function.  */
+#undef HAVE_STPCPY
+d60 2
+a61 2
+/* Define if you have the strcasecmp function.  */
+#undef HAVE_STRCASECMP
+d63 2
+a64 2
+/* Define if you have the strchr function.  */
+#undef HAVE_STRCHR
+d66 1
+a66 1
+/* Define if you have the strcoll function.  */
+d69 2
+a70 5
+/* Define if you have the utimes function.  */
+#undef HAVE_UTIMES
+
+/* Define if you have the <argz.h> header file.  */
+#undef HAVE_ARGZ_H
+d72 1
+a72 19
+/* Define if you have the <fcntl.h> header file.  */
+#undef HAVE_FCNTL_H
+
+/* Define if you have the <limits.h> header file.  */
+#undef HAVE_LIMITS_H
+
+/* Define if you have the <locale.h> header file.  */
+#undef HAVE_LOCALE_H
+
+/* Define if you have the <malloc.h> header file.  */
+#undef HAVE_MALLOC_H
+
+/* Define if you have the <nl_types.h> header file.  */
+#undef HAVE_NL_TYPES_H
+
+/* Define if you have the <stdlib.h> header file.  */
+#undef HAVE_STDLIB_H
+
+/* Define if you have the <string.h> header file.  */
+d75 1
+a75 4
+/* Define if you have the <strings.h> header file.  */
+#undef HAVE_STRINGS_H
+
+/* Define if you have the <sys/file.h> header file.  */
+d78 2
+a79 2
+/* Define if you have the <sys/param.h> header file.  */
+#undef HAVE_SYS_PARAM_H
+d81 2
+a82 2
+/* Define if you have the <unistd.h> header file.  */
+#undef HAVE_UNISTD_H
+d84 2
+a85 2
+/* Define if you have the <values.h> header file.  */
+#undef HAVE_VALUES_H
+d87 2
+a88 2
+/* Name of package */
+#undef PACKAGE
+d90 2
+a91 2
+/* Version number of package */
+#undef VERSION
+d93 2
+a94 2
+/* Define if you have the stpcpy function */
+#undef HAVE_STPCPY
+d96 2
+a97 2
+/* Define if your locale.h file contains LC_MESSAGES. */
+#undef HAVE_LC_MESSAGES
+d99 2
+a100 2
+/* Define to 1 if NLS is requested */
+#undef ENABLE_NLS
+d102 2
+a103 2
+/* Define as 1 if you have gettext and don't want to use GNU gettext. */
+#undef HAVE_GETTEXT
+d105 2
+a106 2
+/* Does the platform use an executable suffix? */
+#undef HAVE_EXECUTABLE_SUFFIX
+d108 2
+a109 2
+/* Suffix used for executables, if any. */
+#undef EXECUTABLE_SUFFIX
+d111 2
+a112 2
+/* Is fopen64 available? */
+#undef HAVE_FOPEN64
+d114 2
+a115 2
+/* Is stat64 available? */
+#undef HAVE_STAT64
+d117 2
+a118 2
+/* Enable LFS */
+#undef _LARGEFILE64_SOURCE
+d120 2
+a121 2
+/* Is the type time_t defined in <time.h>? */
+#undef HAVE_TIME_T_IN_TIME_H
+d123 2
+a124 2
+/* Is the type time_t defined in <sys/types.h>? */
+#undef HAVE_TIME_T_IN_TYPES_H
+d126 2
+a127 2
+/* Does <utime.h> define struct utimbuf? */
+#undef HAVE_GOOD_UTIME_H
+d129 2
+a130 2
+/* Define if fprintf is not declared in system header files. */
+#undef NEED_DECLARATION_FPRINTF
+d132 7
+a138 2
+/* Define if strstr is not declared in system header files. */
+#undef NEED_DECLARATION_STRSTR
+d140 2
+a141 2
+/* Define if sbrk is not declared in system header files. */
+#undef NEED_DECLARATION_SBRK
+d143 2
+a144 2
+/* Define if getenv is not declared in system header files. */
+#undef NEED_DECLARATION_GETENV
+d146 2
+a147 2
+/* Define if environ is not declared in system header files. */
+#undef NEED_DECLARATION_ENVIRON
+d152 2
+a153 2
+/* Configured target name. */
+#undef TARGET
+d155 3
+a157 2
+/* Define to 1 if user symbol names have a leading underscore, 0 if not. */
+#undef TARGET_PREPENDS_UNDERSCORE
+d159 2
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

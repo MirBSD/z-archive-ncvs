@@ -1,0 +1,146 @@
+head	1.3;
+access;
+symbols
+	start:1.1.1.1 tg:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	2005.12.14.02.09.41;	author tg;	state Exp;
+branches;
+next	1.2;
+commitid	0439f7edee492750;
+
+1.2
+date	2005.12.13.22.18.55;	author tg;	state Exp;
+branches;
+next	1.1;
+commitid	0439f48ca142fd18;
+
+1.1
+date	2005.12.13.20.44.46;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+commitid	0439f32c6884c25e;
+
+1.1.1.1
+date	2005.12.13.20.44.46;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f32c6884c25e;
+
+
+desc
+@@
+
+
+1.3
+log
+@Add support for the IPv6 transport module to communicate,
+as a client, with IPv4 transport name servers as well.
+
+WFM
+@
+text
+@$MirOS: ports/net/djbdns/patches/patch-src_dns_h,v 1.1.201.1 2005/05/14 23:21:02 tg Exp $
+--- src/dns.h.orig	Sun Feb 11 21:11:23 2001
++++ src/dns.h	Wed Dec 14 01:59:28 2005
+@@@@ -20,6 +20,7 @@@@
+ #define DNS_T_SIG "\0\30"
+ #define DNS_T_KEY "\0\31"
+ #define DNS_T_AAAA "\0\34"
++#define DNS_T_IXFR "\0\373"
+ #define DNS_T_AXFR "\0\374"
+ #define DNS_T_ANY "\0\377"
+ 
+@@@@ -35,7 +36,8 @@@@ struct dns_transmit {
+   struct taia deadline;
+   unsigned int pos;
+   const char *servers;
+-  char localip[4];
++  char localip[16];
++  unsigned int scope_id;
+   char qtype[2];
+ } ;
+ 
+@@@@ -43,6 +45,7 @@@@ extern void dns_random_init(const char *
+ extern unsigned int dns_random(unsigned int);
+ 
+ extern void dns_sortip(char *,unsigned int);
++extern void dns_sortip6(char *,unsigned int);
+ 
+ extern void dns_domain_free(char **);
+ extern int dns_domain_copy(char **,const char *);
+@@@@ -68,10 +71,13 @@@@ extern struct dns_transmit dns_resolve_t
+ 
+ extern int dns_ip4_packet(stralloc *,const char *,unsigned int);
+ extern int dns_ip4(stralloc *,const stralloc *);
++extern int dns_ip6_packet(stralloc *,char *,unsigned int);
++extern int dns_ip6(stralloc *,stralloc *);
+ extern int dns_name_packet(stralloc *,const char *,unsigned int);
+ extern void dns_name4_domain(char *,const char *);
+ #define DNS_NAME4_DOMAIN 31
+ extern int dns_name4(stralloc *,const char *);
++extern int dns_name6(stralloc *,const char *);
+ extern int dns_txt_packet(stralloc *,const char *,unsigned int);
+ extern int dns_txt(stralloc *,const stralloc *);
+ extern int dns_mx_packet(stralloc *,const char *,unsigned int);
+@@@@ -80,5 +86,13 @@@@ extern int dns_mx(stralloc *,const stral
+ extern int dns_resolvconfrewrite(stralloc *);
+ extern int dns_ip4_qualify_rules(stralloc *,stralloc *,const stralloc *,const stralloc *);
+ extern int dns_ip4_qualify(stralloc *,stralloc *,const stralloc *);
++extern int dns_ip6_qualify_rules(stralloc *,stralloc *,const stralloc *,const stralloc *);
++extern int dns_ip6_qualify(stralloc *,stralloc *,const stralloc *);
++
++#define DNS_IP6_INT 0
++#define DNS_IP6_ARPA 1
++
++extern int dns_name6_domain(char *,const char *,int);
++#define DNS_NAME6_DOMAIN (4*16+11)
+ 
+ #endif
+@
+
+
+1.2
+log
+@* update to fefe's djbdns-1.05-test23.diff
+  with djbdns-1.05-ixfr.diff
+* slightly change naming of v6-transport binaries
+@
+text
+@d3 1
+a3 1
++++ src/dns.h	Tue Dec 13 21:08:13 2005
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 1
+a3 1
++++ src/dns.h	Sat May 14 22:27:17 2005
+d30 1
+a30 1
+@@@@ -68,6 +71,8 @@@@ extern struct dns_transmit dns_resolve_t
+d39 6
+a44 1
+@@@@ -80,5 +85,10 @@@@ extern int dns_mx(stralloc *,const stral
+d51 5
+a55 2
++extern int dns_name6_domain(char *,char *);
++#define DNS_NAME6_DOMAIN (4*16+10)
+@
+
+
+1.1.1.1
+log
+@Import ports/net/djbdns of snapshot
+@
+text
+@@

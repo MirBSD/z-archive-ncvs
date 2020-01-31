@@ -1,0 +1,95 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.04.17.24.52;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* STARTUP PROCEDURE FOR UNIX FORTRAN PROGRAMS */
+
+#include <stdio.h>
+#include "signal1.h"
+
+#include <stdlib.h>
+
+extern void f_exit (void);
+#ifndef NO_ONEXIT
+#define ONEXIT atexit
+extern int atexit (void (*)(void));
+#endif
+
+extern void f_init (void);
+extern int MAIN__ (void);
+extern void f_setarg (int, char **);
+extern void f_setsig (void);
+
+int
+main (int argc, char **argv)
+{
+  f_setarg (argc, argv);
+  f_setsig ();
+  f_init ();
+#ifndef NO_ONEXIT
+  ONEXIT (f_exit);
+#endif
+  MAIN__ ();
+#ifdef NO_ONEXIT
+  f_exit ();
+#endif
+  exit (0);			/* exit(0) rather than return(0) to bypass Cray bug */
+  return 0;			/* For compilers that complain of missing return values; */
+  /* others will complain that this is unreachable code. */
+}
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

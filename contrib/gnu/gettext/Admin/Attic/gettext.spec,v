@@ -1,0 +1,87 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@-- @;
+
+
+1.2
+date	2004.08.04.11.43.04;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@Description: Library and tools for message translation.
+Name: gettext
+Version: 0.10.23
+Release: 1
+Copyright: GPL
+Group: Development/Libraries
+Source: ftp://alpha.gnu.org/gnu/gettext-0.10.23.tar.gz
+Packager: Ulrich Drepper <drepper@@cygnus.com>
+Buildprefix: /tmp
+
+%prep
+%setup
+
+%build
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS=-s configure --with-included-gettext --prefix=/usr/local
+make
+
+%install
+make install prefix=$RPM_BUILDPREFIX
+
+%files
+%doc ABOUT-NLS
+%doc NEWS
+
+/usr/local/bin/gettext
+/usr/local/bin/msgcmp
+/usr/local/bin/msgfmt
+/usr/local/bin/msgmerge
+/usr/local/bin/msgunfmt
+/usr/local/bin/xgettext
+/usr/local/include/libintl.h
+/usr/local/lib/libintl.a
+/usr/local/info/gettext*
+/usr/local/share/locale/*/LC_MESSAGES/gettext.mo
+/usr/local/share/gettext
+/usr/local/share/emacs/site-lisp/po-mode.elc
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

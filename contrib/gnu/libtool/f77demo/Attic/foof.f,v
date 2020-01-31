@@ -1,0 +1,86 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.1
+	libtool-1_5_8:1.1.2.1
+	LIBTOOL_1_5:1.1.2.1.0.2
+	libtool-1_5-20040215:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@c @;
+
+
+1.2
+date	2004.02.15.13.32.45;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.15.13.09.45;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.15.13.09.45;	author tg;	state Exp;
+branches
+	1.1.2.1.2.1;
+next	;
+
+1.1.2.1.2.1
+date	2004.02.15.13.16.51;	author tg;	state dead;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@libtool 1.4 -> mirlibtool, back to the state of yesterday night
+(so we have a clean 1.4 in the branch LIBTOOL_1_4, and a working
+ 1.4 in head, which we might switch to LIBTOOL_1_5 once we get it
+ working in 2038)
+@
+text
+@C 
+C This program is free software; you can redistribute it and/or
+C modify it under the terms of the GNU General Public License
+C as published by the Free Software Foundation; either version 2
+C of the License, or (at your option) any later version.
+C 
+
+      subroutine fsub(arg,res)
+      implicit none
+      integer*4 arg,res
+      res=arg*2
+      return
+      end
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@libtool 1.5 branch from today
+@
+text
+@@
+
+
+1.1.2.1.2.1
+log
+@we won't need them
+@
+text
+@@
+

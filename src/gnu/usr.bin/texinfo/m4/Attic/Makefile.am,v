@@ -1,0 +1,75 @@
+head	1.2;
+access;
+symbols
+	texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.07.00.21.48;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.06.23.31.14;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.06.23.31.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke unneeded files
+@
+text
+@EXTRA_DIST = intmax.m4 longdouble.m4 longlong.m4 printf-posix.m4 signed.m4 size_max.m4 wchar_t.m4 wint_t.m4 xsize.m4  nls.m4 po.m4  \
+  check-decl.m4 \
+  codeset.m4 \
+  gettext.m4 \
+  glibc21.m4 \
+  iconv.m4 \
+  intdiv0.m4 \
+  inttypes-pri.m4 \
+  inttypes.m4 \
+  inttypes_h.m4 \
+  isc-posix.m4 \
+  lcmessage.m4 \
+  lib-ld.m4 \
+  lib-link.m4 \
+  lib-prefix.m4 \
+  mkstemp.m4 \
+  onceonly.m4 \
+  onceonly_2_57.m4 \
+  prereq.m4 \
+  progtest.m4 \
+  stdint_h.m4 \
+  strcase.m4 \
+  uintmax_t.m4 \
+  ulonglong.m4
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

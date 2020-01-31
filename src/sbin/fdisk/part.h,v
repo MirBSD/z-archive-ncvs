@@ -1,0 +1,113 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.31.20;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.19;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.19;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/**	$MirBSD: src/sbin/fdisk/part.h,v 1.3 2004/10/14 20:50:51 tg Exp $ */
+/*	$OpenBSD: part.h,v 1.13 2004/08/03 09:22:03 otto Exp $	*/
+
+/*
+ * Copyright (c) 1997 Tobias Weingartner
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#ifndef _PART_H
+#define _PART_H
+
+/* Partition type */
+typedef struct _prt_t {
+	u_int32_t shead, scyl, ssect;
+	u_int32_t ehead, ecyl, esect;
+	u_int32_t bs;
+	u_int32_t ns;
+	unsigned char flag;
+	unsigned char id;
+} prt_t;
+
+/* Prototypes */
+void	PRT_printall(void);
+const char *PRT_ascii_id(int);
+void PRT_parse(disk_t *, void *, off_t, off_t, prt_t *);
+void PRT_make(prt_t *, off_t, off_t, void *);
+void PRT_print(int, prt_t *, char *, int);
+
+/* This does CHS -> bs/ns */
+void PRT_fix_BN(disk_t *, prt_t *, int);
+
+/* This does bs/ns -> CHS */
+void PRT_fix_CHS(disk_t *, prt_t *);
+
+#endif /* _PART_H */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d47 1
+a47 1
+void PRT_print(int, prt_t *, char *);
+a55 1
+
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

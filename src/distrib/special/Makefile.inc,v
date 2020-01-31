@@ -1,0 +1,70 @@
+head	2.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.17.22.42.00;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.13.20.35.00;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.22.59;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@some more general improvements (I hope)
+@
+text
+@# $MirBSD: src/distrib/special/Makefile.inc,v 2.2 2005/01/13 20:35:00 tg Exp $
+
+.ifndef _MODSRC_DISTRIB_SPECIAL_MAKEFILE_INC
+_MODSRC_DISTRIB_SPECIAL_MAKEFILE_INC=1
+
+.include <bsd.own.mk>
+.include "../Makefile.inc"
+
+COPTS+=		-Os
+
+.endif
+@
+
+
+2.2
+log
+@further merge and fix double-inclusion-protection
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/distrib/special/Makefile.inc,v 2.1 2005/01/03 16:22:59 tg Exp $
+d7 1
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 4
+a4 1
+# $MirBSD: src/distrib/special/Makefile.inc,v 1.1 2004/04/30 17:06:31 tg Stab $
+d9 2
+@
+

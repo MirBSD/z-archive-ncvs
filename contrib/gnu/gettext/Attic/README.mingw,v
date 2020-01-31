@@ -1,0 +1,61 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.43.02;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@Installation on Mingw32:
+
+See file INSTALL.
+
+When configuring with the default options, the build will attempt to create
+shared libraries and fail because libtool 1.4.3 does not support shared
+libraries on Mingw32.  To remedy:
+  - Either configure with option --disable-shared, to create non-shared
+    libraries only.
+  - Or update this package with the libtool CVS, and configure normally.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

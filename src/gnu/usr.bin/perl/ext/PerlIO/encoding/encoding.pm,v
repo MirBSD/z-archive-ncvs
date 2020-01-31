@@ -1,0 +1,105 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.31;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.48;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.48;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@package PerlIO::encoding;
+use strict;
+our $VERSION = '0.07';
+our $DEBUG = 0;
+$DEBUG and warn __PACKAGE__, " called by ", join(", ", caller), "\n";
+
+#
+# Equivalent of this is done in encoding.xs - do not uncomment.
+#
+# use Encode ();
+
+use XSLoader ();
+XSLoader::load(__PACKAGE__, $VERSION);
+
+our $fallback = Encode::PERLQQ()|Encode::WARN_ON_ERR();
+
+1;
+__END__
+
+=head1 NAME
+
+PerlIO::encoding - encoding layer
+
+=head1 SYNOPSIS
+
+  open($f, "<:encoding(foo)", "infoo");
+  open($f, ">:encoding(bar)", "outbar");
+
+  use Encode qw(:fallbacks);
+  $PerlIO::encoding::fallback = FB_PERLQQ;
+
+=head1 DESCRIPTION
+
+Open a filehandle with a transparent encoding filter.
+
+On input, convert the bytes expected to be in the specified
+character set and encoding to Perl string data (Unicode and
+Perl's internal Unicode encoding, UTF-8).  On output, convert
+Perl string data into the specified character set and encoding.
+
+When the layer is pushed the current value of C<$PerlIO::encoding::fallback>
+is saved and used as the check argument when calling the Encodings
+encode and decode.
+
+=head1 SEE ALSO
+
+L<open>, L<Encode>, L<perlfunc/binmode>, L<perluniintro>
+
+=cut
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,135 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.16.16;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.16.16;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* $XFree86: xc/programs/Xserver/hw/xfree86/xf4bpp/ppcArea.c,v 1.4 2003/02/18 21:29:59 tsi Exp $ */
+/*
+ * Copyright IBM Corporation 1987,1988,1989
+ *
+ * All Rights Reserved
+ *
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appear in all copies and that 
+ * both that copyright notice and this permission notice appear in
+ * supporting documentation, and that the name of IBM not be
+ * used in advertising or publicity pertaining to distribution of the
+ * software without specific, written prior permission.
+ *
+ * IBM DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING
+ * ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL
+ * IBM BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR
+ * ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+ * WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+ * ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
+ * SOFTWARE.
+ *
+*/
+/* $XConsortium: ppcArea.c /main/4 1996/02/21 17:57:02 kaleb $ */
+
+/* 
+ * ppc solid area fill
+ *
+ * Tom Paquin 8/87 
+ */
+
+#include "xf4bpp.h"
+#include "mfbmap.h"
+#include "mfb.h"
+#include "ppcGCstr.h"
+#include "ibmTrace.h"
+
+void
+xf4bppFillArea( pWin, nboxes, pBox, pGC )
+    register WindowPtr pWin ;
+    register int nboxes ;
+    register BoxPtr pBox ;
+    GCPtr	pGC ;
+{
+register int x, y, w, h ;
+int alu ;
+unsigned long int fg, bg, pm ;
+int xSrc, ySrc ;
+PixmapPtr pPixmap ;
+ppcPrivGC *pPrivGC = pGC->devPrivates[mfbGCPrivateIndex].ptr;
+
+TRACE( ( "xf4bppFillArea(0x%x,%d,0x%x,0x%x)\n", pWin, nboxes, pBox, pGC ) ) ;
+
+if ( ( alu = pPrivGC->colorRrop.alu ) == GXnoop || !nboxes )
+	return ;
+
+xSrc = pGC->patOrg.x + pWin->drawable.x ;
+ySrc = pGC->patOrg.y + pWin->drawable.y ;
+
+pm = pPrivGC->colorRrop.planemask ;
+fg = pPrivGC->colorRrop.fgPixel ;
+bg = pPrivGC->colorRrop.bgPixel ;
+
+nboxes++ ;
+switch ( pPrivGC->colorRrop.fillStyle ) {
+	case FillTiled:
+		for ( pPixmap = pGC->tile.pixmap ; --nboxes ; pBox++ )
+			if ( ( w = pBox->x2 - ( x = pBox->x1 ) )
+			  && ( h = pBox->y2 - ( y = pBox->y1 ) ) )
+				xf4bppTileRect( pWin, pPixmap, alu, pm,
+					     x, y, w, h, xSrc, ySrc ) ;
+		break ;
+	case FillOpaqueStippled:
+		for ( pPixmap = pGC->stipple ; --nboxes ; pBox++ )
+			if ( ( w = pBox->x2 - ( x = pBox->x1 ) )
+			  && ( h = pBox->y2 - ( y = pBox->y1 ) ) )
+				xf4bppOpaqueStipple( pWin, pPixmap, fg, bg, alu, pm,
+					     x, y, w, h, xSrc, ySrc ) ;
+		break ;
+	case FillStippled:
+		for ( pPixmap = pGC->stipple ; --nboxes ; pBox++ )
+			if ( ( w = pBox->x2 - ( x = pBox->x1 ) )
+			  && ( h = pBox->y2 - ( y = pBox->y1 ) ) )
+				xf4bppFillStipple( pWin, pPixmap, fg, alu, pm,
+					     x, y, w, h, xSrc, ySrc ) ;
+		break ;
+	case FillSolid:
+		for ( ; --nboxes ; pBox++ )
+			if ( ( w = pBox->x2 - ( x = pBox->x1 ) )
+			  && ( h = pBox->y2 - ( y = pBox->y1 ) ) )
+				xf4bppFillSolid( pWin, fg, alu, pm, x, y, w, h ) ;
+		break ;
+}
+
+}
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

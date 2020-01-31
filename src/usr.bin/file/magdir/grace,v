@@ -1,0 +1,74 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.54;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: grace,v 1.1 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+# ACE/gr and Grace type files - PLEASE DO NOT REMOVE THIS LINE
+#
+# ACE/gr binary
+0	string	\000\000\0001\000\000\0000\000\000\0000\000\000\0002\000\000\0000\000\000\0000\000\000\0003		old ACE/gr binary file
+>39	byte	>0			- version %c
+# ACE/gr ascii
+0	string	#\ xvgr\ parameter\ file	ACE/gr ascii file
+0	string	#\ xmgr\ parameter\ file	ACE/gr ascii file
+0	string	#\ ACE/gr\ parameter\ file	ACE/gr ascii file
+# Grace projects
+0	string	#\ Grace\ project\ file		Grace project file
+>23	string	@@version\  			(version
+>>32	byte	>0 				%c
+>>33	string	>\0 				\b.%.2s
+>>35	string	>\0 				\b.%.2s)
+# ACE/gr fit description files
+0	string	#\ ACE/gr\ fit\ description\ 	ACE/gr fit description file
+# end of ACE/gr and Grace type files - PLEASE DO NOT REMOVE THIS LINE
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

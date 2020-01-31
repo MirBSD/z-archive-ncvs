@@ -1,0 +1,104 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.05.18;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.05.18;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#
+# $Date: 2004/03/05 21:57:48 $ $Revision: 1.1.9.2 $
+# $Header: /ocvs/src/X-Window/xc/extras/ogl-sample/main/doc/man/manglu/ftn/Distfile,v 1.1.9.2 2004/03/05 21:57:48 tg Exp $
+#
+
+DISTDIR_SI = /xc/doc/man/GL/glu_ftn
+
+DISTFILES_SI = \
+	Imakefile \
+	fglubegincurve.3gl \
+	fglubeginpolygon.3gl \
+	fglubeginsurface.3gl \
+	fglubegintrim.3gl \
+	fglubuild1dmipmaplevels.3gl \
+	fglubuild1dmipmaps.3gl \
+	fglubuild2dmipmaplevels.3gl \
+	fglubuild2dmipmaps.3gl \
+	fglubuild3dmipmaplevels.3gl \
+	fglubuild3dmipmaps.3gl \
+	fglucheckextension.3gl \
+	fglucylinder.3gl \
+	fgludeletenurbsrenderer.3gl \
+	fgludeletequadric.3gl \
+	fgludeletetess.3gl \
+	fgludisk.3gl \
+	fgluerrorstring.3gl \
+	fglugetnurbsproperty.3gl \
+	fglugetstring.3gl \
+	fglugettessproperty.3gl \
+	fgluloadsamplingmatrices.3gl \
+	fglulookat.3gl \
+	fglunewnurbsrenderer.3gl \
+	fglunewquadric.3gl \
+	fglunewtess.3gl \
+	fglunextcontour.3gl \
+	fglunurbscallback.3gl \
+	fglunurbscallbackdata.3gl \
+	fglunurbscallbackdataext.3gl \
+	fglunurbscurve.3gl \
+	fglunurbsproperty.3gl \
+	fglunurbssurface.3gl \
+	fgluortho2d.3gl \
+	fglupartialdisk.3gl \
+	fgluperspective.3gl \
+	fglupickmatrix.3gl \
+	fgluproject.3gl \
+	fglupwlcurve.3gl \
+	fgluquadriccallback.3gl \
+	fgluquadricdrawstyle.3gl \
+	fgluquadricnormals.3gl \
+	fgluquadricorientation.3gl \
+	fgluquadrictexture.3gl \
+	fgluscaleimage.3gl \
+	fglusphere.3gl \
+	fglutessbegincontour.3gl \
+	fglutessbeginpolygon.3gl \
+	fglutesscallback.3gl \
+	fglutessendpolygon.3gl \
+	fglutessnormal.3gl \
+	fglutessproperty.3gl \
+	fglutessvertex.3gl \
+	fgluunproject.3gl \
+	fgluunproject4.3gl \
+	$(NULL)
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

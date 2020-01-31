@@ -1,0 +1,265 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.57;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@<small class="rcsid">$MirBSD: www/content/ZmVhdHVyZXM_.inc,v 1.1 2004/12/13 00:13:24 tg Exp $</small>
+<p class="admin">ATTN: Candidate for moving into MirWiki!</p>
+<h1>Caveats</h1>
+<!-- deleteme --><h2>Need People</h2>
+<p>We're in need of people who keep the website, especially this
+ page, up to date. Please contact the MirOS team by eMail.</p>
+<h2>Content</h2><!-- endof deleteme --><ul>
+<li><a href="/?ports">MirPorts</a> have changed, read on for more.</li>
+<li>You cannot access a cvs 1.11 repository with 1.12 and vice
+ versa. cvs 1.12 refuses to do so, but cvs 1.11 is unsafe.</li>
+<li>MirOS-current is <strong>not binary compatible</strong> with
+ older binaries. An OpenBSD emulation will be provided later.</li>
+<li>SSH root logins, SSHv1 and SSHv2-DSA are disabled by default
+ in the current version of MirOS.</li>
+<li>FTP (if enabled by admin) allows only S/Key, no plain text
+ passwords, by default (login.conf).</li>
+<li>SPARC /etc/syslog.conf has an error in MirOS BSD #7ter. Remove the
+ line containing <tt>ttyC4</tt> with the editor. This is fixed in the
+ current version.</li>
+<li>When moving the disklabel partition into an extended partition,
+ you must take care of loading the first-stage boot loader (pbr_ffs)
+ yourself - for example by chaining into it from NTLDR.</li>
+<li>This website is out of date with respect to -current.</li>
+<li>A possible hole in OpenIPF state-keeping (discovered by <a
+ href="http://archives.neohapsis.com/archives/fulldisclosure/2004-01/0059.html">Darren
+ Reed</a>)<br />Summary: States are created on one interface by a rule,
+ but matched on any interface. Use <tt>(if-bound)</tt> in -current. Avoid
+ using <tt>keep/modulate state</tt> in #7 and older.</li>
+<li><tt>ed(1)</tt> is the standard EDITOR...</li>
+<li>Users in the wheel group can su to root by default, that's why they
+ can sudo to root now, too.</li>
+<li>Default routes are <em>not</em> preserved when set in the installer,
+ and must be set in <a href="/man5/hostname.if.htm">hostname.if(5)</a>,
+ not <tt>/etc/mygate</tt> which is ignored.</li>
+<li>-current users: you should really read the ChangeLog files, or the
+ CVS mails. There is a lot of changes.</li>
+</ul>
+<h1>Features of MirOS BSD</h1>
+<p>This is a more or less complete list of selected differences between
+ OpenBSD 3.4-current and MirOS BSD current:</p><ul>
+<li>Improvements in the CVS infrastructure.</li>
+<li>Slim base system: documentation and programmes that are considered
+ not basic, or bloated, unnecessary or have a licence considered not free
+ enough, have been removed or moved to the MirPorts framework to be
+ installed later. Among these are: Kerberos IV, Kerberos V, NIS/YP, BIND 9,
+ AFS/Arla, AMD, NLS/Locale/I18N; the C++, Fortran and Objective-C compilers
+ of the GNU C Compiler suite 2.95.3 and everything that was licensed under
+ the GNU Free Documentation License which declared front or back cover texts
+ or invariant sections. Easy shortcuts have been added for people who want to
+ rebuild their base system with SENDMAIL SASL or without sendmail, apache, the
+ documentation, games, perl, ...</li>
+<li>Several GNU utilities have been replaced by their BSD UNIX&reg;
+ counterparts from AT&amp;T UNIX&reg; up to 32V, which was released by Caldera
+ International, Inc. (now known as The SCO group) in 1999 under a four-clause
+ UCB-style open source certified licence, in order to enable the customer to
+ do with MirOS what he wants. Among these are: Groff, BC/DC, GZip, Diff.</li>
+<li>Unused files (documentary, ChangeLogs, VMS and Win32 code) has been
+ removed to speed up retrieving and updating the source tree.</li>
+<li>Except for the compiler for the C Language, gcc 2.95 has been removed
+ from the base system. The C compiler is installed as <tt>pgcc(1)</tt>
+ fall-back compiler only. The entire base system has been made
+ compilable using the fallback compiler only. No C++ code is left.
+ Deprecated functions (such as strcpy() and bzero()) have been nuked from
+ being used in most of the codebase.</li>
+<li>The system compiler is now GCC 3.2.3 with the Propolice stack protector
+ enabled, which yields a huge security improvement about stock systems.</li>
+<li>Since MirOS currently targets machines with an 80486DX CPU and more than
+ 32 MiB RAM only, and in the future will run on Pentium-class machines only.
+ The sparc version has been tested on two SPARCstation 20.
+ The XFree86 3.3.6 subsystem, the X11R5 and any non-i386 code have been
+ removed from the tree as a consequence.</li>
+<li>This eliminates potential bug sources in the base system and improves
+ system stability as well as performance.</li>
+<li>The Apache web server has been updated to the latest 1.3 release and
+ comes with integrated support for the IPv6 Internet Protocol.</li>
+<li>GNU libiberty has been updated to latest code from GCC 3.3.1 and GNU
+ binutils 2.14. The GNU binutils used in-tree have been updated to 2.14.</li>
+<li>The popular X11 Window Manager <tt>evilwm(1)</tt> has been updated to
+ the latest version and enhanced. It is installed by default, although the
+ OpenBSD <tt>fvwm(1)</tt> environment is still enabled bt default.</li>
+<li>The licence for distributing the BSD d&aelig;mon and the Linux penguin
+ has been obtained, so these pictures were not removed from XFree86.</li>
+<li>The popular web browser <tt>lynx(1)</tt> has been updated to the latest
+ development snapshot and fixed; some fixes and enhancements have been
+ submitted upstream and even integrated.</li>
+<li>All of the in-tree GNU software has common scripts such as a top-level
+ master configure, install-sh, mkinstalldirs (from BSD) and friends moved to
+ ${GNUSYSTEM_AUX_DIR} at a central place in the tree.</li>
+<li>The i386 MBR (master boot record) and PBR (first-stage boot loader / partition
+ boot record) code has been rewritten from scratch using the GNU assembler's
+ new <tt>intel_syntax,noprefix</tt> mode. Thus it documents said mode now,
+ because the GNU documentation is inaccurate and partially wrong.</li>
+<li>The i386 boot code (MBR, PBR, /boot) has been extended by support for LBA and
+ single-sector CHS access mode, thus supporting drives larger than 8 Gigabyte
+ as well as Soekris systems and other computers with an old or broken BIOS.</li>
+<li>The i386 MBR code has an optional (enabled by default) boot manager integrated
+ which facilitates booting the default partition, a chosen primary partition
+ on the first hard disc, or chaining to the first floppy drive. After a
+ time-out of 10 seconds it boots the default partition.<br />The
+ non-bootmanager MBR code can be installed by executing:<pre>
+
+		# fdisk -ef /nonexistent wd0
+		fdisk: 1&gt; u
+		fdisk: 1&gt; w
+		fdisk: 1&gt; q
+ </pre></li>
+<li>Totally rewritten initialization code of the second-stage boot loader,
+ <tt>/usr/mdec/boot</tt>, allowing to use it as the boot image of an
+ &quot;El Torito&quot; bootable CD-ROM in &quot;No Emulation&quot; mode
+ despite it being an ELF executable loadable by the classic PBR.<br />
+ The new boot code is also capable of loading nearly any kernel directly
+ from an ISO9660 filesystem (i.e. CD-ROM device) using the El Torito BIOS
+ interface.<br /><!-- XXX -->In the future, it will also be capable of
+ chaining the boot to floppy images provided on the disc.</li>
+<li>The new boot code is also directly executable as an MS-DOS .com file.
+ It also handles moving the disklabel partition (type 0x27) into an
+ extended partition.</li>
+<li>Integrated bootstrap ability over the network using our unique
+ sysutils/pxegrub port, based upon work done by Cedric Berger. This is a
+ hacked variant of GNU Grub, which can load the usual suspectives of
+ kernels (Linux, GNU HURD) from any medium known to work before, as well
+ as load MirBSD kernels via the network using DHCP and TFTP. The GRUB itself
+ can be loaded via PXE or Etherboot, or from a floppy disc.</li>
+<li>Network-bootable bsd.rd.net kernel for SPARC, eliminating the need for
+ more than a RARP and TFTP d&aelig;mon on the source side.</li>
+<li>Support for nearly everything the GENERIC kernel supports on the CD-ROM
+ (bsd.rd) installation kernel to facilitate using it as a chroot(2) rescue
+ and emergency system.</li>
+<li>Installation support using FAT, ext2, ext3, UFS1 ffs, NTFS, HTTP, FTP,
+ NFS as source medium. Support for PPP with kernel-mode pppd(8) on the 1440Ki
+ floppy, and PPP with user-mode ppp(8) supporting ISDN SyncPPP and HDLC,
+ PPP, PPPoE, PPPoA on the 2880Ki floppy/CD-ROM. Integrated support for setting
+ up a RAID root system and installing to it.</li>
+<li>Own set of boot floppies, kernel structured like GENERIC.</li>
+<li>Support for disabling <tt>fsck(8)</tt> for ffs filesystems with softdep
+ enabled (default in the MirBSD installer) in <tt>/etc/fstab</tt>.
+ Includes automatic sorting of the fstab file implemented in korn shell.</li>
+<li>Regular synchronization of the base system and MirPorts with OpenBSD.</li>
+<li>Highly improved set of shell script infrastructure using security
+ features of the Korn shell, which is <tt>/bin/sh</tt> in MirOS. Automatic
+ discovery of IDE hard disc drives which need their write cache disabled.</li>
+<li>Import of enhancements from NetBSD, FreeBSD and MicroBSD:</li>
+<li>Improvements for the ELF executable format from NetBSD, leading to
+ support for recent Wine (MS Windows&reg;) emulators.</li>
+<li>Full ISDN BRI (64k*2) and PRI (T1-1536kbps and E1-2048kbps) support
+ (no PRI/PMX device drivers yet) and isdnd(8) userland tool from NetBSD,
+ but with unsafe string functions such as sprintf(3) removed and replaced
+ by their safe counterparts (snprintf(3), strlcpy/strlcat(3)).</li>
+<li>Privacy improvements: root can forbid "ps a" and "ps e" (show all users
+ the processes of all users, or the environment attached to a process)</li>
+<li>Allow mknod() to succeed within a chroot() unless disabled in the kernel
+ configuration. This allows much cleaner release builds.</li>
+<li>The <tt>CTM</tt> package, growfs(8) and ffsinfo(8), as well as some
+ minor files from FreeBSD.</li>
+<li>Improved wtf(1) originated from NetBSD wtf(6) with a huge acronyme
+ database in two languages.</li>
+<li>Always initialize variables in the kernel to 0 (from MicroBSD).</li>
+<li>Integrated tinyirc and ssfe programmes (GNU) and dict (NPL) in the
+ base system, facilitating easy support in the Freenode or OFTC IRC network.
+ Replaced unsafe string functions in these with safe counterparts.</li>
+<li><tt>host(1)</tt> including a nslookup fallback compatibility script
+ from the audited (prior) OpenBSD BIND4 versions.</li>
+<li>hd(1) as variant of hexdump(1) with MS-DOS-alike display.</li>
+<li>Lynx SSL improvements; install a bunch of well-known X509v3 Root CA
+ certificates for lynx and sendmail by default.</li>
+<li>sendmail comes with STARTTLS up and running by default using a snake-oil
+ certificate, suggested by Thorsten Glaser and discussed with members of the
+ Chaos Computer Club and Trash.net. Read starttls(8) to find out more!</li>
+<li>DRI support in the X-Window subsystem. No DRM yet, though.</li>
+<li>Supplied sample files: <a href="http://www.ifross.de/">ifrOSS</a> approved
+ licence template to be used for newly written code in MirOS. Sample X-Window
+ environment and OpenSSL CA configuration files.</li>
+<li>Much enhanced COPYRIGHT file, including a summary of all advertising
+ clauses that have existed in the project tree. ASCII-Art of MirOS related
+ pictures. Acknowledgement to use the BSD d&aelig;mon for the project from
+ Marshall Kirk McKusick. Install GNU licenses by default, too.</li>
+<li>Infrastructure for supporting more than one underlying kernel/libc
+ (base OS) combination, which will eventually lead to MirLinux.</li>
+<li>Manpage fixes and enhancements, date display fixed and unified between
+ tmac.an.old and tmac.mdoc; Makefile enhancements (make foo.E generates a
+ preprocessed source file); what is now MirOS/MirPorts and started as
+ OpenBSD-current-mirabile is more than one year old! - Updated papers, USD,
+ PSD and SMM documentation from 4.4BSD-Alpha under the Caldera license.</li>
+<li>Configuration files change: A lot of &quot;dotfiles&quot; such as
+ <tt>~/.ssh</tt> have been moved (for example to <tt>~/.etc/ssh</tt>).
+ More &quot;local&quot; files are supported (for example /etc/mk.conf.local,
+ /etc/profile.local, /etc/changelist.local). More files are installed and
+ enabled by default (for example /etc/profile, ~/.etc/ssh/known_hosts,
+ /etc/mk.conf). Porters are suggested to fix their ports to obey to the
+ <tt>~/.etc/</tt> structure, too.</li>
+<li>Ports tree (MirPorts subsystem) enhancements:</li>
+<li>&quot;Plug-In&quot; support for <tt>gcc 3.2.3</tt> in /etc/mk.conf for
+ compiling software using the MirPorts framework.
+ Plans for using gcc 3.x as system compiler already exist.</li>
+<li>New or enhanced ports, for example: djbdns (IPv6, VeriSign, fixes);
+ Wine/WineX/XoverOffice/ReWind; CUPS; Pine; sIRC; PGP 2.6.3in; RealPlayer;
+ mPlayer; DJB daemontools; Midnight Commander; CenterICQ; p5-Socket6 (for
+ IPv6 sockets in perl), JOE's Own Editor v2.8, the SixXS public beta IPv6
+ tunnel heartbeat client, a <strong>working K Desktop Environment, version
+ 3.1.1</strong> and <strong>the GNU GNOME desktop suite and developer's
+ framework, version 2.4</strong>.</li>
+<li>Unused, broken or old ports have been removed. There is a total of
+ <strong>2529 ports available</strong> through the MirPorts framework,
+ several more than under OpenBSD 3.4, but not all could have been tested.</li>
+<li>Some ports removed from OpenBSD for (to me apparently) political or broken-ness reasons
+ have been resurrected: ucspi-tcp, sunjdk-1.1, flashplugin for example.</li>
+<li>A whole lot of minor optimizations and cleanup</li>
+<li>Support and development via IRC and Usenet, not through ancient ICB.</li>
+<li>And no remote holes in the default maintainer in ONE year! ;-)</li>
+</ul>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+<small class="rcsid">$MirBSD: www/content/ZmVhdHVyZXM_.inc,v 1.25 2004/11/12 18:04:49 tg Exp $</small>
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

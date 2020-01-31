@@ -1,0 +1,61 @@
+head     1.1;
+branch   1.1.3;
+access   ;
+symbols  joe-3_1:1.1.3.1 tg:1.1.3;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.19.15.24.17;  author tg;  state Exp;
+branches 1.1.3.1;
+next     ;
+
+1.1.3.1
+date     2004.12.19.15.24.17;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ *	Help system
+ *	Copyright
+ *		(C) 1992 Joseph H. Allen
+ *		(C) 2001 Marek 'Marx' Grac
+ *
+ *	This file is part of JOE (Joe's Own Editor)
+ */
+#ifndef _JOE_HELP_H
+#define _JOE_HELP_H 1
+
+#include "config.h"
+#include "types.h"
+
+void help_display PARAMS((SCREEN *t));		/* display text in help window */
+int help_on PARAMS((SCREEN *t));		/* turn help on */
+int help_init PARAMS((unsigned char *filename));/* load help file */
+
+int u_help PARAMS((BASE *base));		/* toggle help on/off */
+int u_help_next PARAMS((BASE *base));		/* goto next help screen */
+int u_help_prev PARAMS((BASE *base));		/* goto prev help screen */
+
+#endif
+@
+
+
+1.1.3.1
+log
+@JOE's Own Editor 3.1 (released package)
+@
+text
+@@

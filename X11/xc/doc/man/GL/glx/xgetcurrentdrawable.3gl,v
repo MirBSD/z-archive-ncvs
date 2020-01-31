@@ -1,0 +1,68 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.03.32;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.03.32;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@'\"macro stdmacro
+.ds Vn Version 1.2
+.ds Dt 6 March 1997
+.ds Re Release 1.2.0
+.ds Dp Feb 16 02:56
+.ds Dm  Feb 10 17:2
+.ds Xs 49921 2 xgetcurrentdrawable.gl
+.TH GLXGETCURRENTDRAWABLE
+.SH NAME
+glXGetCurrentDrawable
+\- return the current drawable
+
+.SH C SPECIFICATION
+GLXDrawable \f3glXGetCurrentDrawable\fP( void )
+.nf
+.fi
+
+.SH DESCRIPTION
+\f3glXGetCurrentDrawable\fP returns the current drawable,
+as specified by \f3glXMakeCurrent\fP.
+If there is no current drawable,
+\f3None\fP is returned.
+.P
+\f3glXGetCurrentDrawable\fP returns client-side information.
+It does not make a round trip to the server.
+.SH SEE ALSO
+\f3glXCreateGLXPixmap\fP,
+\f3glXMakeCurrent\fP
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

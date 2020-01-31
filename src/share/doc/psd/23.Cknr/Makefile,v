@@ -1,0 +1,31 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.32.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/share/doc/psd/23.Cknr/Makefile,v 1.2 2004/12/09 22:48:35 tg Exp $
+
+DIR=	psd/23.Cknr
+SRCS=	cman0 cman1 cman2 cman3 cman4 cman5 cman6
+MACROS=	-ms
+
+.include <bsd.doc.mk>
+@

@@ -1,0 +1,87 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.57;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@<small class="rcsid">$MirBSD: www/content/YWJvdXQtbG9nbw__.inc,v 1.1 2004/12/13 00:13:24 tg Exp $</small>
+<p class="admin">ATTN: Candidate for moving into MirWiki!</p>
+<h1>The MirOS, Linux, BSD Logos</h1>
+<h3 id="miroslogo">The new MirOS logo</h3>
+<p>We are discussing about a new logo (a Schabrackentapir with a d&aelig;mon
+ sitting on it, having a penguin picked up with his fork ;-), but in our
+ opinion, having functional code is more important than a lousy website.</p>
+<h3 id="cutedaemon">The BSD d&aelig;mon</h3>
+<img src="pics/daemon.png" alt="Daemon" />
+<p>The BSD d&aelig;mon picture is Copyright &copy; 1988 by Marshall Kirk
+ McKusick. All Rights Reserved. Individuals may use the d&aelig;mon for
+ their personal use within the bounds of good taste. When reasonably
+ possible, this text is to be included.<br />If you want to mass produce
+ the d&aelig;mon, for example on CDROM or T-Shirts, you need permission in
+ advance. Permission to use it may be obtained from: <a
+ href="http://www.mckusick.com/beastie/index.html">Marshall Kirk
+ McKusick</a>, 1614 Oxford St, Berkeley, CA 94709-1608, USA or at
+ <a href="mailto:mckusick@@mckusick.com">&lt;mckusick@@mckusick.com&gt;</a>.</p>
+<h3 id="insanepenguin">The Linux penguin</h3>
+<img src="pics/pinguin.png" alt="Penguin" />
+<p>The &quot;Tux&quot; image is provided under the following notice: Permission
+ to use and/or modify this image is granted, provided you acknowledge <a
+ href="mailto:lewing@@isc.tamu.edu">&lt;lewing@@isc.tamu.edu&gt;</a> and <a
+ href="http://www.isc.tamu.edu/~lewing/gimp/">The GIMP</a> if asked.</p>
+<h3 id="miscimages">misc &amp; images</h3>
+<p>The 404 images are from the original site. The images used in CVSweb come
+ with MirOS httpd 3.30A from the base system and have popped up first in
+ NCSA Mosaic; they are public domain. The &quot;systemagic&quot; blowfish
+ comes from the OpenBSD people.</p>
+<p>Microsoft&reg; is a registered trademark of Microsoft Corp. in the USA and
+ other countries; Windows might be too, but &quot;Interix&quot; definitively
+ is not.</p>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+<small class="rcsid">$MirBSD: www/content/YWJvdXQtbG9nbw__.inc,v 1.5 2004/11/12 17:54:21 tg Exp $</small>
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

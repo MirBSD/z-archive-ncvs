@@ -1,0 +1,110 @@
+head	1.2;
+access;
+symbols
+	libpng-1_2_8:1.1.17.1 libpng:1.1.17;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.37.34;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches
+	1.1.17.1;
+next	;
+
+1.1.17.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke junk
+@
+text
+@Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "libpng"=".\libpng.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name zlib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "pngtest"=".\pngtest.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libpng
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "zlib"="..\..\..\zlib\projects\visualc6\zlib.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.17.1
+log
+@libpng-1.2.8.tar.bz2
+@
+text
+@@

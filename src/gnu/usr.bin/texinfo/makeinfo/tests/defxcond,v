@@ -1,0 +1,54 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+# Test conditionalized @@deffnx.
+# Report from: Akim Demaille <akim@@epita.fr>, 14 Aug 2003 12:10:37 +0200.
+
+unset TEXINFO_OUTPUT
+: ${srcdir=.}
+
+test=defxcond
+
+../makeinfo -Dbar -o $test.out $srcdir/$test.txi || exit 1
+grep ' -- bar:' $test.out >/dev/null || exit 2
+
+../makeinfo -Ubar -o $test.out $srcdir/$test.txi || exit 3
+grep ' -- bar:' $test.out >/dev/null && exit 4
+
+rm -f $test.out
+@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

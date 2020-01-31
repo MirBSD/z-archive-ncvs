@@ -1,0 +1,95 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041000:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.10.28.02;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.10.06.28;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.10.06.28;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@we basically only want the GNU master files
+@
+text
+@#! /bin/sh
+# Copyright (C) 2002  Free Software Foundation, Inc.
+#
+# This file is part of GNU Automake.
+#
+# GNU Automake is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# GNU Automake is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Automake; see the file COPYING.  If not, write to
+# the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+# Boston, MA 02111-1307, USA.
+
+# Make sure commented variables are output near their comments.
+
+. ./defs || exit 1
+
+cat >> configure.in <<'EOF'
+AC_OUTPUT
+EOF
+
+cat > Makefile.am << 'EOF'
+# UnIqUe_COPYRIGHT_BOILERPLATE
+
+# UnIqUe_MUMBLE_COMMENT
+mumble = UnIqUe_MUMBLE_VALUE
+EOF
+
+set -e
+$ACLOCAL
+$AUTOMAKE
+# UnIqUe_COPYRIGHT_BOILERPLATE should appear near the top of the file
+test `sed -n -e '1,/UnIqUe_COPYRIGHT_BOILERPLATE/p' Makefile.in \
+      | wc -l` -le 30
+# UnIqUe_MUMBLE_COMMENT should appear right before the mumble declaration.
+test `sed -n -e '/UnIqUe_MUMBLE_COMMENT/,/UnIqUe_MUMBLE_VALUE/p' Makefile.in \
+      | wc -l` -eq 2
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU automake CVS-current from anoncvs@@subversions.gnu.org:/cvsroot/automake
+@
+text
+@@

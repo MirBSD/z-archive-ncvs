@@ -1,0 +1,82 @@
+head	1.2;
+access;
+symbols
+	LIBTOOL_1_5:1.1.2.1.0.2
+	libtool-1_5-20040215:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.15.13.32.37;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.15.13.09.41;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.15.13.09.41;	author tg;	state Exp;
+branches
+	1.1.2.1.2.1;
+next	;
+
+1.1.2.1.2.1
+date	2004.02.15.13.30.25;	author tg;	state dead;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@libtool 1.4 -> mirlibtool, back to the state of yesterday night
+(so we have a clean 1.4 in the branch LIBTOOL_1_4, and a working
+ 1.4 in head, which we might switch to LIBTOOL_1_5 once we get it
+ working in 2038)
+@
+text
+@In order to port libtool to a new platform, start by reading the node
+`New ports' in the info document (i.e., the libtool manual).
+
+If you find that any porting documentation is missing, please
+complain! :-) Complaints with patches and improvements to the
+documentation, or to libtool itself, are more than welcome.  :-) :-)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@libtool 1.5 branch from today
+@
+text
+@@
+
+
+1.1.2.1.2.1
+log
+@"automatic" merge
+
+this is broken. we don't want this.
+libtool.m4 isn't even similar to that from 1.4
+
+so use 1.4 instead for mirlibtool, for now
+@
+text
+@@
+

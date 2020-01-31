@@ -1,0 +1,155 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.46;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.29;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * Written by J.T. Conklin <jtc@@netbsd.org>.
+ * Public domain.
+ */
+
+#include <machine/asm.h>
+
+	.text
+#if defined(LIBC_SCCS)
+	.asciz "$MirBSD: src/lib/libc/arch/i386/string/swab.S,v 1.2 2003/04/24 14:22:05 tg Stab $"
+#endif
+
+/*
+ * On the i486, this code is negligibly faster than the code generated
+ * by gcc at about half the size.  If my i386 databook is correct, it
+ * should be considerably faster than the gcc code on a i386.
+ */
+
+ENTRY(swab)
+	pushl	%esi
+	pushl	%edi
+	movl	12(%esp),%esi
+	movl	16(%esp),%edi
+	movl	20(%esp),%ecx
+
+	cld				# set direction forward
+
+	shrl	$1,%ecx
+	testl	$7,%ecx			# copy first group of 1 to 7 words
+	jz	L2			# while swaping alternate bytes.
+	.align	2,0x90
+L1:	lodsw
+	xchgb	%ah,%al
+	stosw
+	decl	%ecx
+	testl	$7,%ecx
+	jnz	L1
+
+L2:	shrl	$3,%ecx			# copy remainder 8 words at a time
+	jz	L4			# while swapping alternate bytes.
+	.align	2,0x90
+L3:	lodsw
+	xchgb	%ah,%al
+	stosw
+	lodsw
+	xchgb	%ah,%al
+	stosw
+	lodsw
+	xchgb	%ah,%al
+	stosw
+	lodsw
+	xchgb	%ah,%al
+	stosw
+	lodsw
+	xchgb	%ah,%al
+	stosw
+	lodsw
+	xchgb	%ah,%al
+	stosw
+	lodsw
+	xchgb	%ah,%al
+	stosw
+	lodsw
+	xchgb	%ah,%al
+	stosw
+	decl	%ecx
+	jnz	L3
+
+L4:	popl	%edi
+	popl	%esi
+	ret
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 1
+d10 1
+a10 2
+	.text
+	.asciz "$OpenBSD: swab.S,v 1.2 1996/08/19 08:13:24 tholo Exp $"
+d33 1
+a33 1
+	rorw	$8,%ax
+d43 1
+a43 1
+	rorw	$8,%ax
+d46 1
+a46 1
+	rorw	$8,%ax
+d49 1
+a49 1
+	rorw	$8,%ax
+d52 1
+a52 1
+	rorw	$8,%ax
+d55 1
+a55 1
+	rorw	$8,%ax
+d58 1
+a58 1
+	rorw	$8,%ax
+d61 1
+a61 1
+	rorw	$8,%ax
+d64 1
+a64 1
+	rorw	$8,%ax
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

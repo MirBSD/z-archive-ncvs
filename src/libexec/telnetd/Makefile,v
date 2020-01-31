@@ -1,0 +1,85 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.31.12;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.15;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$MirBSD: src/libexec/telnetd/Makefile,v 1.4 2003/07/06 20:21:55 tg Stab $
+#	$OpenBSD: Makefile,v 1.20 2003/07/02 22:44:12 deraadt Exp $
+#	from: @@(#)Makefile	8.2 (Berkeley) 12/15/93
+#	$NetBSD: Makefile,v 1.6 1996/02/24 01:22:12 jtk Exp $
+
+PROG=	telnetd
+
+CFLAGS+=-DLINEMODE -DKLUDGELINEMODE -DUSE_TERMIO -DDIAGNOSTICS
+CFLAGS+=-DOLD_ENVIRON -DENV_HACK -I${.CURDIR} -Wall -Werror
+CFLAGS+= -DHAS_CGETENT -Wno-unused
+SRCS=	authenc.c global.c slc.c state.c sys_term.c telnetd.c \
+	termstat.c utility.c mini_inetd.c socket.c \
+	auth.c encrypt.c genget.c misc.c
+DPADD=	${LIBUTIL} ${LIBCURSES}
+LDADD+=	-lutil -lcurses 
+MAN=	telnetd.8
+
+.include <bsd.prog.mk>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile,v 1.21 2003/07/15 19:02:19 deraadt Exp $
+d9 1
+a9 1
+CFLAGS+=-DOLD_ENVIRON -DENV_HACK -I${.CURDIR} -Wall
+a17 8
+.include <bsd.own.mk> # for KERBEROS
+
+.if (${KERBEROS5:L} == "yes")
+CFLAGS+=-DENCRYPTION -DAUTHENTICATION -I${.CURDIR}/../../lib
+DPADD+=	${LIBKRB5} ${LIBASN1} ${LIBCRYPTO} ${LIBDES}
+LDADD+=	-lkrb5 -lasn1 -lcrypto -ldes
+.endif
+
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

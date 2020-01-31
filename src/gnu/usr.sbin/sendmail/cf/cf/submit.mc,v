@@ -1,0 +1,94 @@
+head	2.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.04;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.11;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@divert(-1)
+#
+# $MirBSD: src/gnu/usr.sbin/sendmail/cf/cf/submit.mc,v 1.6 2004/11/20 00:34:11 tg Exp $
+#
+# Copyright (c) 2004
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+# Copyright (c) 2001-2003 Sendmail, Inc. and its suppliers.
+#	All rights reserved.
+#
+# By using this file, you agree to the terms and conditions set
+# forth in the LICENSE file which can be found at the top level of
+# the sendmail distribution.
+#
+#
+
+#
+#  This is the prototype file for a set-group-ID sm-msp sendmail that
+#  acts as a initial mail submission program.
+#
+
+divert(0)dnl
+VERSIONID(`$MirBSD: src/gnu/usr.sbin/sendmail/cf/cf/submit.mc,v 1.6 2004/11/20 00:34:11 tg Exp $')
+VERSIONID(`$Sendmail: submit.mc,v 8.13 2003/09/10 22:12:48 ca Exp $')
+define(`confCF_VERSION', `Submit')dnl
+define(`__OSTYPE__',`')dnl dirty hack to keep proto.m4 from complaining
+define(`_USE_DECNET_SYNTAX_', `1')dnl support DECnet
+define(`confTIME_ZONE', `USE_TZ')dnl
+define(`confBIND_OPTS', `WorkAroundBrokenAAAA')dnl
+define(`confDONT_INIT_GROUPS', `True')dnl
+define(`confEIGHT_BIT_HANDLING', `mimefy')dnl
+define(`_DEF_SMTP_MAILER_FLAGS', `LmDFMuX')dnl
+define(`SMTP_MAILER_FLAGS', `67E')dnl
+FEATURE(`accept_unresolvable_domains')dnl
+FEATURE(`msp', `[IPv6:::1]')dnl
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 4
+d22 1
+d30 3
+d34 1
+a34 1
+FEATURE(`msp', `[127.0.0.1]')dnl
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

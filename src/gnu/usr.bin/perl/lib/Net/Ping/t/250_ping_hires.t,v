@@ -1,0 +1,118 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.31;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.21;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.21;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# Test to make sure hires feature works.
+
+BEGIN {
+  if ($ENV{PERL_CORE}) {
+    unless ($ENV{PERL_TEST_Net_Ping}) {
+      print "1..0 # Skip: network dependent test\n";
+        exit;
+    }
+    chdir 't' if -d 't';
+    @@INC = qw(../lib);
+  }
+  unless (eval "require Socket") {
+    print "1..0 \# Skip: no Socket\n";
+    exit;
+  }
+  unless (eval "require Time::HiRes") {
+    print "1..0 \# Skip: no Time::HiRes\n";
+    exit;
+  }
+  unless (getservbyname('echo', 'tcp')) {
+    print "1..0 \# Skip: no echo port\n";
+    exit;
+  }
+}
+
+use Test;
+use Net::Ping;
+plan tests => 8;
+
+# Everything loaded fine
+ok 1;
+
+my $p = new Net::Ping "tcp";
+
+# new() worked?
+ok !!$p;
+
+# Default is to not use Time::HiRes
+ok !$Net::Ping::hires;
+
+# Enable hires
+$p -> hires();
+ok $Net::Ping::hires;
+
+# Make sure disable works
+$p -> hires(0);
+ok !$Net::Ping::hires;
+
+# Enable again
+$p -> hires(1);
+ok $Net::Ping::hires;
+
+# Test on the default port
+my ($ret, $duration) = $p -> ping("localhost");
+
+# localhost should always be reachable, right?
+ok $ret;
+
+# It is extremely likely that the duration contains a decimal
+# point if Time::HiRes is functioning properly, except when it
+# it is fast enough to be "zero".
+print "# duration=[$duration]\n";
+ok $duration =~ /\.|^0$/;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

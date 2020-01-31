@@ -1,0 +1,83 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.23.01.49;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.01.49;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@dnl Usage: TL_AC_GCC_VERSION(TOPSRCDIR)
+dnl
+dnl Set up the variables:
+dnl
+dnl     gcc_version_trigger: pathname of gcc's version.c, if available
+dnl     gcc_version_full: full gcc version string
+dnl     gcc_version: the first "word" in $gcc_version_full
+dnl
+dnl TOPSRCDIR is the top-level source directory.
+AC_DEFUN([TL_AC_GCC_VERSION],
+[
+changequote(,)dnl
+if test "${with_gcc_version_trigger+set}" = set; then
+  gcc_version_trigger=$with_gcc_version_trigger
+else
+  gcc_version_trigger=$1/gcc/version.c
+fi
+if test -f "${gcc_version_trigger}"; then
+  gcc_version_full=`grep version_string "${gcc_version_trigger}" | sed -e 's/.*"\([^"]*\)".*/\1/'`
+else
+  gcc_version_full=`$CC -v 2>&1 | sed -n 's/^gcc version //p'`
+fi
+gcc_version=`echo ${gcc_version_full} | sed -e 's/\([^ ]*\) .*/\1/'`
+changequote([,])dnl
+AC_SUBST(gcc_version_trigger)
+AC_SUBST(gcc_version_full)
+AC_SUBST(gcc_version)
+])dnl
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

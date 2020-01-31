@@ -1,0 +1,78 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@\input texinfo
+@@setfilename cond.info
+
+@@node Top
+
+@@html
+This is html text.
+@@end html
+
+@@ifhtml
+This is ifhtml text.
+@@end ifhtml
+
+@@ifnothtml
+This is ifnothtml text.
+@@end ifnothtml
+
+
+@@ifinfo
+This is ifinfo text.
+@@end ifinfo
+
+@@ifnotinfo
+This is ifnotinfo text.
+@@end ifnotinfo
+
+
+@@tex
+This is tex text.
+@@end tex
+
+@@iftex
+This is iftex text.
+@@end iftex
+
+@@ifnottex
+This is ifnottex text.
+@@end ifnottex
+
+@@bye
+@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

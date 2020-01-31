@@ -1,0 +1,89 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.50;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.31;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.31;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@use ExtUtils::MakeMaker;
+
+WriteMakefile(
+    NAME => 'DynaLoader',
+    LINKTYPE	=> 'static',
+    DEFINE	=> '-DPERL_CORE -DLIBC="$(LIBC)"',
+    MAN3PODS 	=> {}, 	# Pods will be built by installman.
+    SKIP	=> [qw(dynamic dynamic_lib dynamic_bs)],
+    XSPROTOARG => '-noprototypes', 		# XXX remove later?
+    VERSION_FROM => 'DynaLoader_pm.PL',
+    PL_FILES	=> {'DynaLoader_pm.PL'=>'DynaLoader.pm',
+		    'XSLoader_pm.PL'=>'XSLoader.pm'},
+    PM		=> {'DynaLoader.pm' => '$(INST_LIBDIR)/DynaLoader.pm',
+		    'XSLoader.pm' => '$(INST_LIBDIR)/XSLoader.pm'},
+    depend      => {'DynaLoader.o' => 'dlutils.c'},
+    clean	=> {FILES => 'DynaLoader.c DynaLoader.xs DynaLoader.pm ' .
+			     'XSLoader.pm'},
+);
+
+sub MY::postamble {
+	'
+DynaLoader.xs: $(DLSRC)
+	$(RM_F) $@@
+	$(CP) $? $@@
+
+# Perform very simple tests just to check for major gaffs.
+# We can\'t do much more for platforms we are not executing on.
+test-xs:
+	for i in dl_*xs; \
+	    do $(PERL) -I$(PERL_ARCHLIB) -I$(PERL_LIB) $(XSUBPP) $(XSUBPPARGS) $$i > /dev/null; \
+	done
+';
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

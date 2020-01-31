@@ -1,0 +1,126 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.03.19;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.03.19;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* -*- Makefile -*- */
+XCOMM Code converter template of X-TT
+XCOMM $XFree86: xc/config/cf/xttMod.tmpl,v 1.6 2001/04/23 21:41:43 dawes Exp $ */
+
+#ifdef IHaveModules
+/* New designed XFree86 module */
+
+#include <Server.tmpl>
+
+INCLUDES = -I.. -I../.. -I$(FONTINCSRC) -I../../../include \
+           -I$(TOP)/include -I$(SERVERSRC)/include \
+           -I$(FTSOURCEDIR)/lib -I$(FTSOURCEDIR)/lib/extend \
+           -I$(FTSOURCEDIR)/lib/arch/unix -I$(XTTSOURCEDIR)
+
+#if 0
+LinkSourceFile(xttversion.h,$(XTTSOURCEDIR))
+LinkSourceFile(xttcommon.h,$(XTTSOURCEDIR))
+LinkSourceFile(xttcconv.h,$(XTTSOURCEDIR))
+LinkSourceFile(xttcconvP.h,$(XTTSOURCEDIR))
+LinkSourceFile(xttcap.h,$(XTTSOURCEDIR))
+#endif
+
+DEFINES = -DFONTMODULE -DMODNAME=$(MODULENAME) $(XTT_DEBUG_DEF)
+
+ModuleObjectRule()
+LibraryModuleTarget($(MODULENAME),$(OBJS))
+InstallLibraryModule($(MODULENAME),$(MODULEDIR),codeconv)
+
+DependTarget()
+
+InstallDriverSDKLibraryModule($(MODULENAME),$(DRIVERSDKMODULEDIR),codeconv)
+
+# else
+/* dlopen based code converter */
+
+#if DoLoadableServer && BuildServer
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS="$(CDEBUGFLAGS)"
+SUBDIRS = module
+#endif
+
+#if 0
+
+DEFINES = -DMODNAME=$(MODULENAME) $(XTT_DEBUG_DEF)
+
+INCLUDES = -I./ -I../ -I../../ -I$(TOP)/lib/font/include -I$(FTSOURCEDIR)/lib \
+		-I$(SERVERSRC)/include -I$(XTOP)/include -I$(FONTINCSRC)
+
+CCONV_MODULE_FILE = Concat(ModuleName,.so)
+
+#define DoNormalLib NormalLibFont
+#define DoSharedLib SharedLibFont
+#define DoDebugLib DebugLibFont
+#define DoProfileLib ProfileLibFont
+#include <Library.tmpl>
+LibraryObjectRule()
+
+SubdirLibraryRule($(OBJS))
+NormalLintTarget($(SRCS))
+
+#ifndef SharedDepModuleTarget
+AllTarget($(CCONV_MODULE_FILE))
+
+$(CCONV_MODULE_FILE): $(OBJS)
+        $(RM) $@@~
+        $(CC) -o $@@~ $(SHLIBLDFLAGS) $(OBJS) $(REQUIREDLIBS)
+        $(RM) $@@
+        $(MV) $@@~ $@@
+
+clean::
+        $(RM) $(CCONV_MODULE_FILE)
+#else	
+SharedDepModuleTarget($(CCONV_MODULE_FILE),$(OBJS),$(OBJS))
+#endif
+
+#endif /* 0 */
+
+#if DoLoadableServer && BuildServer
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+#endif
+
+DependTarget()
+#endif
+
+/* end of file */
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,91 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.18.24;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.18.24;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+* $XConsortium: Dvi.h,v 1.5 91/07/25 21:33:53 keith Exp $
+*/
+/* $XFree86: xc/programs/xditview/Dvi.h,v 1.3 2000/12/04 21:01:01 dawes Exp $ */
+
+#ifndef _XtDvi_h
+#define _XtDvi_h
+
+/***********************************************************************
+ *
+ * Dvi Widget
+ *
+ ***********************************************************************/
+
+/* Parameters:
+
+ Name		     Class		RepType		Default Value
+ ----		     -----		-------		-------------
+ background	     Background		pixel		White
+ foreground	     Foreground		Pixel		Black
+ fontMap	     FontMap		char *		...
+ pageNumber	     PageNumber		int		1
+*/
+
+#define XtNfontMap	"fontMap"
+#define XtNpageNumber	"pageNumber"
+#define XtNlastPageNumber   "lastPageNumber"
+#define XtNnoPolyText	"noPolyText"
+#define XtNseek		"seek"
+#define XtNscreenResolution "screenResolution"
+#define XtNpageWidth	"pageWidth"
+#define XtNpageHeight	"pageHeight"
+#define XtNsizeScale	"sizeScale"
+
+#define XtCFontMap	"FontMap"
+#define XtCPageNumber	"PageNumber"
+#define XtCLastPageNumber   "LastPageNumber"
+#define XtCNoPolyText	"NoPolyText"
+#define XtCSeek		"Seek"
+#define XtCScreenResolution "ScreenResolution"
+#define XtCPageWidth	"PageWidth"
+#define XtCPageHeight	"PageHeight"
+#define XtCSizeScale	"SizeScale"
+
+typedef struct _DviRec *DviWidget;  /* completely defined in DviPrivate.h */
+typedef struct _DviClassRec *DviWidgetClass;    /* completely defined in DviPrivate.h */
+
+extern WidgetClass dviWidgetClass;
+
+#endif /* _XtDvi_h */
+/* DON'T ADD STUFF AFTER THIS #endif */
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

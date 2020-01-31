@@ -1,0 +1,83 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@:: @;
+
+
+2.1
+date	2005.01.03.16.23.34;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.56;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@@@echo off
+@@rem AUTHOR: sgp
+@@rem CREATED: 24th July 2000
+@@rem LAST REVISED: 6th April 2001
+@@rem Batch file to set the path to NetWare SDK
+@@rem This file is called from SetNWBld.bat. 
+
+if "%1" == "/now" goto now
+if "%1" == "" goto Usage
+if "%1" == "/?" goto usage
+if "%1" == "/h" goto usage
+
+set NLMSDKBASE=%1
+echo NLMSDKBASE set to %1
+
+goto exit
+
+:now
+@@echo NLMSDKBASE=%NLMSDKBASE%
+goto exit
+
+:Usage
+ @@echo on
+ @@echo "Usage: setnlmsdk <path to NetWare sdk>"
+ @@echo "Usage: setnlmsdk /now" - To display current setting
+ @@echo Ex. setnlmsdk e:\sdkcd14\nwsdk
+
+:exit
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

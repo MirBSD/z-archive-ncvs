@@ -1,0 +1,94 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.29.46;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.41;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.41;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#include <openssl/bn.h>
+#include <openssl/rand.h>
+
+static int Rand(n)
+{
+    unsigned char x[2];
+    RAND_pseudo_bytes(x,2);
+    return (x[0] + 2*x[1]);
+}
+
+static void bug(char *m, BIGNUM *a, BIGNUM *b)
+{
+    printf("%s!\na=",m);
+    BN_print_fp(stdout, a);
+    printf("\nb=");
+    BN_print_fp(stdout, b);
+    printf("\n");
+    fflush(stdout);
+}
+
+main()
+{
+    BIGNUM *a=BN_new(), *b=BN_new(), *c=BN_new(), *d=BN_new(),
+	*C=BN_new(), *D=BN_new();
+    BN_RECP_CTX *recp=BN_RECP_CTX_new();
+    BN_CTX *ctx=BN_CTX_new();
+
+    for(;;) {
+	BN_pseudo_rand(a,Rand(),0,0);
+	BN_pseudo_rand(b,Rand(),0,0);
+	if (BN_is_zero(b)) continue;
+
+	BN_RECP_CTX_set(recp,b,ctx);
+	if (BN_div(C,D,a,b,ctx) != 1)
+	    bug("BN_div failed",a,b);
+	if (BN_div_recp(c,d,a,recp,ctx) != 1)
+	    bug("BN_div_recp failed",a,b);
+	else if (BN_cmp(c,C) != 0 || BN_cmp(c,C) != 0)
+	    bug("mismatch",a,b);
+    }
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

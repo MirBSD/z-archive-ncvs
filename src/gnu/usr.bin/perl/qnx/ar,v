@@ -1,0 +1,88 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.21;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.52;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#! /bin/sh
+#__USAGE
+#%C	key library name ...
+#	Crude cover for wlib to be compatible with ar
+#	Supports the following key letters:
+#	qcru
+#	ru  replace existing modules. u indicates only replace
+#	    those which are newer
+#	c   create the library (kinda moot)
+#	q   quickly append to the end.
+#
+#This is a crude cover, but it has proved sufficient for many
+#ports. Rather than attempt to implement subtleties of the
+#ar syntax, I simply create a new library under all
+#circumstances. A much more thorough cover is available from
+#http://www.fdma.com/pub/qnx/porting/ar
+#
+#Note that Watcom 10.6 supports ar directly, so this
+#cover is not necessary.
+#
+#Increased the record size to 32 to accomodate a large library
+#in the perl 5.003 distribution
+#
+#Submitted by Norton T. Allen (allen@@huarp.harvard.edu)
+
+if [ $# -lt 3 ]; then
+  use $0
+  exit 1
+fi
+shift
+library=$1
+shift
+wlib -p=32 -n $library `for i in $*; do echo "+$i \\c"; done`
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

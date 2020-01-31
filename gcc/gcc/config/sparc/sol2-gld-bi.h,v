@@ -1,0 +1,96 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.04.17.24.30;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.30;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Definitions of target machine for GCC, for bi-arch SPARC
+   running Solaris 2 using the GNU linker.  */
+
+#undef LINK_ARCH32_SPEC
+#define LINK_ARCH32_SPEC \
+  LINK_ARCH32_SPEC_BASE "%{!static: -rpath-link %R/usr/lib}"
+
+#undef LINK_ARCH64_SPEC
+#define LINK_ARCH64_SPEC \
+  LINK_ARCH64_SPEC_BASE "%{!static: -rpath-link %R/usr/lib/sparcv9}"
+
+#undef LINK_ARCH_SPEC
+#if DISABLE_MULTILIB
+#if DEFAULT_ARCH32_P
+#define LINK_ARCH_SPEC "\
+%{m32:-m elf32_sparc %(link_arch32)} \
+%{m64:%edoes not support multilib} \
+%{!m32:%{!m64:%(link_arch_default)}} \
+"
+#else
+#define LINK_ARCH_SPEC "\
+%{m32:%edoes not support multilib} \
+%{m64:-m elf64_sparc %(link_arch64)} \
+%{!m32:%{!m64:%(link_arch_default)}} \
+"
+#endif
+#else
+#define LINK_ARCH_SPEC "\
+%{m32:-m elf32_sparc %(link_arch32)} \
+%{m64:-m elf64_sparc %(link_arch64)} \
+%{!m32:%{!m64:%(link_arch_default)}} \
+"
+#endif
+
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

@@ -1,0 +1,42 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.21.52.18;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.06.21.52.18;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#define flipped_gray_width 4
+#define flipped_gray_height 2
+static unsigned char flipped_gray_bits[] = {
+   0x07, 0x0d};
+@
+
+
+1.1.1.1
+log
+@Import programmes new to OpenBSD's X-Window subsystem
+@
+text
+@@

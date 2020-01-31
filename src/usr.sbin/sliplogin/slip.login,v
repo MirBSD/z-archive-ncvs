@@ -1,0 +1,74 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.42.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.51;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.51;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/bin/sh -
+#
+#	$NetBSD: slip.login,v 1.3 1994/06/30 07:50:26 cgd Exp $
+#	@@(#)slip.login	5.1 (Berkeley) 7/1/90
+
+#
+# generic login file for a slip line.  sliplogin invokes this with
+# the parameters:
+#      1        2         3        4          5         6     7-n
+#   slipunit ttyspeed loginname local-addr remote-addr mask opt-args
+#
+UNIT=$1
+LOCALADDR=$4
+REMOTEADDR=$5
+NETMASK=$6
+shift 6
+OPTARGS=$*
+
+/sbin/ifconfig sl${UNIT} inet ${LOCALADDR} ${REMOTEADDR} netmask ${NETMASK} \
+    ${OPTARGS}
+exit
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

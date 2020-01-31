@@ -1,0 +1,123 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.13.21.56.54;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@start merging
+* without generated files
+* docs are going to be built
+* untested ("minimal change" concept)
+* with assignment back to the FSF
+@
+text
+@# $MirBSD: src/gnu/usr.bin/binutils/src/ld/scripttempl/i386coff.sc,v 1.3 2004/09/16 22:28:15 tg Exp $
+#
+# Linker script for 386 COFF.  This works on SVR3.2 and SCO Unix 3.2.2.
+# Ian Taylor <ian@@cygnus.com>.
+test -z "$ENTRY" && ENTRY=_start
+# These are substituted in as variables in order to get '}' in a shell
+# conditional expansion.
+INIT='.init : { *(.init) }'
+FINI='.fini : { *(.fini) }'
+cat <<EOF
+OUTPUT_FORMAT("${OUTPUT_FORMAT}")
+${LIB_SEARCH_DIRS}
+
+ENTRY(${ENTRY})
+
+SECTIONS
+{
+  .text ${RELOCATING+ SIZEOF_HEADERS} : {
+    ${RELOCATING+ *(.init)}
+    *(.text)
+    ${RELOCATING+ *(.fini)}
+    ${RELOCATING+ etext  =  .};
+  }
+  .data ${RELOCATING+ 0x400000 + (. & 0xffc00fff)} : {
+    *(.data)
+    ${RELOCATING+ edata  =  .};
+  }
+  .bss ${RELOCATING+ SIZEOF(.data) + ADDR(.data)} :
+  { 					
+    *(.bss)
+    *(COMMON)
+    ${RELOCATING+ end = .};
+  }
+  ${RELOCATING- ${INIT}}
+  ${RELOCATING- ${FINI}}
+  .stab  0 ${RELOCATING+\(NOLOAD\)} : 
+  {
+    [ .stab ]
+  }
+  .stabstr  0 ${RELOCATING+\(NOLOAD\)} :
+  {
+    [ .stabstr ]
+  }
+}
+EOF
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+d36 1
+a36 1
+  .stab  0 ${RELOCATING+(NOLOAD)} : 
+d40 1
+a40 1
+  .stabstr  0 ${RELOCATING+(NOLOAD)} :
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

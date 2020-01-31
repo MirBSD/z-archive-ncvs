@@ -1,0 +1,104 @@
+head	1.2;
+access;
+symbols
+	cdk-4_9_11-20041224:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.21.51;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.08.05;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.20.08.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge
+@
+text
+@#!/bin/sh
+
+#
+# Description:
+#		This demonstrates the CDK command line
+# interface to the multiple line entry widget.
+#
+
+#
+# Create some global variables.
+#
+CDK_MENTRY="../cdkmentry"
+CDK_LABEL="../cdklabel"
+output="/tmp/mentry_output.$$"
+tmp="/tmp/tmp.$$"
+
+#
+# Create the title.
+#
+title="<C>Type in a short message."
+buttons=" OK 
+ Cancel "
+
+#
+# Create the mentry box.
+#
+${CDK_MENTRY} -s 5 -v 10 -f 20 -T "${title}" -B "${buttons}" -F '_' -O ${output}
+selected=$?
+if [ $selected -lt 0 ]; then
+   exit;
+fi
+answer=`cat ${output}`
+
+#
+# Create the message for the label widget.
+#
+echo "<C>Here is the message you typed in" > ${tmp}
+echo " " >> ${tmp}
+echo "<C></R>${answer}" >> ${tmp}
+echo " " >> ${tmp}
+echo "<C>You chose button #${selected}" >> ${tmp}
+echo " " >> ${tmp}
+echo "<C>Hit </R>space<!R> to continue." >> ${tmp}
+
+#
+# Create the label widget to display the information.
+#
+${CDK_LABEL} -f ${tmp} -p " "
+
+#
+# Clean up.
+#
+rm -f ${tmp} ${output}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Tom Dickey's libcdk
+@
+text
+@@

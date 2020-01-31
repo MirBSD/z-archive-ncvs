@@ -1,0 +1,149 @@
+head	1.2;
+access;
+symbols
+	gdb-20050107:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.13.20.13.40;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.02.50;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.50;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@start merging binutils
+@
+text
+@2005-01-05  Andreas Schwab  <schwab@@suse.de>
+
+	* ia64-tdep.c: Include "osabi.h".
+	(native_find_global_pointer): Delete.
+	(ia64_find_global_pointer): Renamed from
+	generic_elf_find_global_pointer.
+	(FIND_GLOBAL_POINTER): Delete.  Change all users to call
+	ia64_find_global_pointer instead.
+	(ia64_gdbarch_init): Call gdbarch_init_osabi.  Remove references
+	to ia64_linux_sigcontext_register_address and
+	ia64_linux_write_pc.  Don't set tdep->find_global_pointer.
+	(_initialize_ia64_tdep): Call gdbarch_register instead of
+	deprecated register_gdbarch_init.
+	(struct gdbarch_tdep): Remove find_global_pointer field and move
+	to ...
+	* ia64-tdep.h (struct gdbarch_tdep): ... here.
+	(ia64_linux_sigcontext_register_address): Remove declaration.
+	(ia64_linux_getunwind_table): Likewise.
+	(ia64_linux_write_pc): Likewise.
+	* ia64-linux-tdep.c: Include "osabi.h".
+	(ia64_linux_sigcontext_register_address): Make static.
+	(ia64_linux_write_pc): Likewise.
+	(ia64_linux_init_abi): New.
+	(_initialize_ia64_linux_tdep): New.
+	* Makefile.in (ia64-tdep.o, ia64-linux-tdep.o): Depend on
+	$(osabi_h).
+
+2005-01-05  Kevin Buettner  <kevinb@@redhat.com>
+
+	* ia64-tdep.c (ia64_gdbarch_init): Eliminate dependency on 
+	functions in ia64-aix-tdep.c.
+	* ia64-tdep.h (ia64_aix_sigcontext_register_address): Remove
+	function defined in ia64-aix-tdep.c.
+	* ia64-aix-tdep.c: Remove file.
+	* config/ia64/linux.mt (TDEPFILES): Remove ia64-aix-tdep.o from
+	this list.
+	* Makefile.in (ia64-aix-tdep.o): Delete.
+
+2005-01-05  Baurjan Ismagulov  <ibr@@ata.cs.hun.edu.tr>
+
+	Committed by Andrew Cagney.
+	* ada-valprint.c, aix-thread.c, alpha-nat.c: I18n markup.
+	* alphabsd-nat.c, alphanbsd-tdep.c, amd64-linux-nat.c: I18n markup.
+	* amd64-tdep.c,	amd64bsd-nat.c, amd64fbsd-nat.c: I18n markup.
+	* arch-utils.c, arm-linux-nat.c, arm-tdep.c: I18n markup.
+	* armnbsd-nat.c, armnbsd-tdep.c, auxv.c, avr-tdep.c: I18n markup.
+	* aix-thread.c (_initialize_aix_thread): Get rid of the
+	deprecated_add_show_from_set call.
+	* alpha-tdep.c (_initialize_alpha_tdep): Ditto.
+	* arm-tdep.c (_initialize_arm_tdep): Ditto.
+	* command.h (add_setshow_enum_cmd): Add arguments for returning
+	new list elements.
+	* cli/cli-decode.c (add_setshow_enum_cmd): Ditto.
+	* mips-tdep.c (_initialize_mips_tdep): Modify calls to
+	add_setshow_enum_cmd.
+
+2005-01-04  Mark Kettenis  <kettenis@@gnu.org>
+
+	* configure.host (ia64-*-aix*): Remove.
+	* configure.tgt (ia64-*-aix*): Remove.
+	* config/ia64/aix.mh: Remove file.
+	* config/ia64/aix.mt: Remove file.
+	* config/ia64/tm-aix.h: Remove file.
+	* ia64-aix-nat.c: Remove file.
+	* Makefile.in (ia64-aix-nat.o): Remove dependency.
+
+	* config/m88k/obsd.mh (NATDEPFILES): Really remove inf-child.o.
+	Add back inf-ptrace.o.
+
+2005-01-04  Andrew Cagney  <cagney@@gnu.org>
+
+	* version.in: Change format from 6.3.50_2005-01-04-cvs to
+	6.3.50.20050104-cvs.
+
+2005-01-04  Andreas Schwab  <schwab@@suse.de>
+
+	* breakpoint.c (break_command_1): Always free err_msg before
+	returning when an exception was caught.
+
+2005-01-01  Joel Brobecker  <brobecker@@gnat.com>
+
+        * hppa-tdep.c (prologue_inst_adjust_sp): Fix small confusion
+        in register number for addil instruction.
+
+For older changes see ChangeLog-2004.
+
+Local Variables:
+mode: change-log
+left-margin: 8
+fill-column: 74
+version-control: never
+End:
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@The GNU Debugger 6.3.50-current, from
+ ftp://sources.redhat.com/pub/gdb/snapshots/current/gdb-weekly-6.3.50.20050107.tar.bz2
+
+only the gdb/ subdirectory, gdb/testsuite/ removed.
+
+Luckily, this time it doesn't depend on a different libbfd than
+the one we deliver with GNU binutils...
+@
+text
+@@

@@ -1,0 +1,95 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.21.52.27;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.06.21.52.27;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* XPM */
+static char * image_name[] = {
+/* width height ncolors cpp */
+"100 48 3 1",
+/* colors */
+" 	c Black",
+".	c Red",
+"X	c SteelBlue",
+/* pixels */
+"                                                                                                    ",
+"                                                                                                    ",
+"  ...................                                  .....                                        ",
+"   ...................                                .....                                         ",
+"    ...................                              .....                                          ",
+"     ...................                            .....                                           ",
+"      ...................                          .....                                            ",
+"       ...................                        .....                                             ",
+"        ...................                      .....                        XXXXXXXXXX            ",
+"         ...................                    .....                       XXXXXXXXXXXXXX          ",
+"          ...................                  .....                      XXXXXXXXXXXXXXXXXX        ",
+"           ...................                .....                       XXXXXXXXXXXXXXXXXX        ",
+"            ...................              .....                       XXXXXXXXXXXXXXXXXXXX       ",
+"             ...................            .....                        XXXXXXXXXXXXXXXXXXXX       ",
+"              ...................          .....                        XXXXXXXXX    XXXXXXXXX      ",
+"               ...................        .....                         XXXXXXXX      XXXXXXXX      ",
+"                ...................      .....                          XXXXXXX        XXXXXXX      ",
+"                 ...................    .....                           XXXXXX          XXXXXX      ",
+"                  ..................   .....                            XXXXXX          XXXXXX      ",
+"                   ................   .....                             XXXXXX          XXXXXX      ",
+"                    ..............   .....                              XXXXXX          XXXXXX      ",
+"                     ............   .....                               XXXXXX          XXXXXX      ",
+"                      ..........   ......                               XXXXXX          XXXXXX      ",
+"                       ........   ........                                                          ",
+"                        ......   ..........                         XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  ",
+"                        .....   ............                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  ",
+"                       .....   ..............                       XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  ",
+"                      .....   ................                      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  ",
+"                     .....   ..................                     XXXXXXXXXX  XXXXXX  XXXXXXXXXX  ",
+"                    .....    ...................                    XXXXXXXXXX  XXXXXX  XXXXXXXXXX  ",
+"                   .....      ...................                   XXXX  XXXX          XXXX  XXXX  ",
+"                  .....        ...................                  XXXX  XXXX          XXXX  XXXX  ",
+"                 .....          ...................                 XXXX  XXXX  XXXXXX  XXXX  XXXX  ",
+"                .....            ...................                XXXX  XXXX  XXXXXX  XXXX  XXXX  ",
+"               .....              ...................               XXXX  XXXX          XXXX  XXXX  ",
+"              .....                ...................              XXXX  XXXX          XXXX  XXXX  ",
+"             .....                  ...................             XXXX  XXXX  XXXXXX  XXXX  XXXX  ",
+"            .....                    ...................            XXXX  XXXX  XXXXXX  XXXX  XXXX  ",
+"           .....                      ...................           XXXX  XXXX          XXXX  XXXX  ",
+"          .....                        ...................          XXXX  XXXX          XXXX  XXXX  ",
+"         .....                          ...................         XXXX  XXXX  XXXXXX  XXXX  XXXX  ",
+"        .....                            ...................        XXXX  XXXX  XXXXXX  XXXX  XXXX  ",
+"       .....                              ...................       XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  ",
+"      .....                                ...................      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  ",
+"     .....                                  ...................     XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  ",
+"    .....                                    ...................    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  ",
+"                                                                                                    ",
+"                                                                                                    "};
+@
+
+
+1.1.1.1
+log
+@Import programmes new to OpenBSD's X-Window subsystem
+@
+text
+@@

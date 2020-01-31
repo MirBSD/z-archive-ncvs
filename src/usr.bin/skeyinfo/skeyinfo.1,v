@@ -1,0 +1,103 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@.\" @;
+
+
+2.1
+date	2005.01.03.16.39.52;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.26;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.26;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@.\" $OpenBSD: skeyinfo.1,v 1.7 2003/06/10 09:12:11 jmc Exp $
+.\"
+.Dd May 16, 2002
+.Dt SKEYINFO 1
+.Os
+.Sh NAME
+.Nm skeyinfo
+.Nd obtain the next S/Key challenge for a user
+.Sh SYNOPSIS
+.Nm skeyinfo
+.Op Fl v
+.Op Ar user
+.Sh DESCRIPTION
+.Nm
+prints out the next S/Key challenge for the specified user or for the
+current user if no user is specified.
+.Pp
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl v
+Print the hash algorithm as well.
+.El
+.Sh FILES
+.Bl -tag -width /etc/skey
+.It Pa /etc/skey
+directory containing user entries for S/Key
+.El
+.Sh EXAMPLES
+% skey -n <number of passwords to print> `skeyinfo` | lpr
+.Pp
+This would print out a list of S/Key passwords for use over
+an untrusted network (perhaps for use at a conference).
+.Sh ERRORS
+.Bl -tag -width Ds
+.It cannot open /etc/skey/user
+The user does not have an entry in
+.Pa /etc/skey
+or access to the S/Key database has been disabled.
+The database can be enabled with the
+.Xr skeyinit 1
+program.
+.It user is not listed in /etc/skey
+The S/Key database is enabled but the user does not have an entry in it.
+The
+.Xr skeyinit 1
+program can be used to create an entry for the user.
+.El
+.Sh SEE ALSO
+.Xr skey 1 ,
+.Xr skeyinit 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

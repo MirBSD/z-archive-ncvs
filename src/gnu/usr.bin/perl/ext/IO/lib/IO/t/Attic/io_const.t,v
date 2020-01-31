@@ -1,0 +1,89 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.04.34;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@
+BEGIN {
+    unless(grep /blib/, @@INC) {
+	chdir 't' if -d 't';
+	@@INC = '../lib';
+    }
+}
+
+use Config;
+
+BEGIN {
+    if($ENV{PERL_CORE}) {
+        if ($Config{'extensions'} !~ /\bIO\b/) {
+            print "1..0 # Skip: IO extension not compiled\n";
+            exit 0;
+        }
+    }
+}
+
+use IO::Handle;
+
+print "1..6\n";
+my $i = 1;
+foreach (qw(SEEK_SET SEEK_CUR SEEK_END     _IOFBF    _IOLBF    _IONBF)) {
+    my $d1 = defined(&{"IO::Handle::" . $_}) ? 1 : 0;
+    my $v1 = $d1 ? &{"IO::Handle::" . $_}() : undef;
+    my $v2 = IO::Handle::constant($_);
+    my $d2 = defined($v2);
+
+    print "not "
+	if($d1 != $d2 || ($d1 && ($v1 != $v2)));
+    print "ok ",$i++,"\n";
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

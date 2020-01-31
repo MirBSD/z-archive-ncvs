@@ -1,0 +1,106 @@
+head	2.3;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.13.20.36.27;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.08.19.25.34;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.38.28;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.33.56;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.33.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@further merge and fix double-inclusion-protection
+@
+text
+@# $MirBSD: src/usr.bin/Makefile.inc,v 2.2 2005/01/08 19:25:34 tg Exp $
+# $OpenBSD: Makefile.inc,v 1.2 1996/06/26 05:31:08 deraadt Exp $
+
+.ifndef _MODSRC_USR_BIN_MAKEFILE_INC
+_MODSRC_USR_BIN_MAKEFILE_INC=1
+
+BINDIR?=	/usr/bin
+
+.if !defined(EXPERIMENTAL)
+CFLAGS+=	-Werror
+.endif
+
+.endif
+@
+
+
+2.2
+log
+@protect against multiple inclusion (prevents CFLAGS from growing infinitely)
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/usr.bin/Makefile.inc,v 2.1 2005/01/03 16:38:28 tg Exp $
+d5 1
+a12 1
+_MODSRC_USR_BIN_MAKEFILE_INC=1
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/usr.bin/Makefile.inc,v 1.4 2004/12/03 22:58:39 tg Exp $
+d4 2
+d11 3
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile.inc,v 1.2 1996/06/26 05:31:08 deraadt Exp $
+d5 4
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

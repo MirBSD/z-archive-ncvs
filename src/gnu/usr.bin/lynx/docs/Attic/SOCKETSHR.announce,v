@@ -1,0 +1,118 @@
+head	1.2;
+access;
+symbols
+	lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.00.32.35;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.03.00.23.37;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.03.00.23.37;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke some unused files for Win32, VMS, DJGPP/DOS etc.
+@
+text
+@LYNX SUPPORT FOR SOCKETSHR/NETLIB			28-AUG-1996
+---------------------------------
+
+
+What is SocketShr?
+------------------
+
+SOCKETSHR is Eckhart Meyer's socket library interface to the MadGoat NETLIB
+package, which provides a vendor-independent interface to the VMS TCP/IP
+transports.  Using this, the same image will run over any of the available
+packages, including UCX, Multinet, CMU, Pathway access and TCPWARE.
+
+SocketShr and NETLIB are separately available libraries that MUST be installed
+before LYNX can use them.
+
+
+How to get NETLIB and SOCKETSHR
+-------------------------------
+
+FTP:
+
+   ftp://ftp.kcl.ac.uk/default/socketshr.*
+   ftp://ftp.wku.edu/fileserv/socketshr.zip
+   ftp://ftp.spc.edu/macro32/savesets/socketshr.zip
+
+   ftp://ftp.kcl.ac.uk/madgoat/netlib.*
+   ftp://ftp.wku.edu/madgoat/netlib017.zip
+   ftp://ftp.spc.edu/macro32/savesets/netlib017.zip
+
+
+By E-Mail:
+   send the following commands in a mail message:
+
+     SEND SOCKETSHR.PACKAGE
+     SEND NETLIB.PACKAGE
+
+   To:
+     vmsserv @@ kcl.ac.uk
+
+Other server's may also contain these packages.
+
+NETLIB is copyright of MadGoat Software; SOCKETSHR is copyright of Eckhart
+meyer.
+
+
+Preliminary Setup of SOCKETSHR
+------------------------------
+
+Once SOCKETSHR has been installed, TWO logical names should be defined:
+
+    SOCKETSHR 		Point to the appropriate shareable image
+    SOCKETSHR_LIBRARY	Point to the directory containing SOCKETSHR.H
+    			and IOCTL.H
+
+Both should be defined /system /exec
+
+
+Building LYNX
+-------------
+
+Run the BUILD.COM procedures and select the SOCKETSHR_TCP option.  This will
+build an image that will run over the SOCKETSHR/NETLIB routines.
+
+
+Andy Harper
+Kings College London
+A.Harper@@bay.cc.kcl.ac.uk
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

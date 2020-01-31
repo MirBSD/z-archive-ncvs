@@ -1,0 +1,275 @@
+head	1.10;
+access;
+symbols
+	MIRLIBTOOL_I:1.6
+	LIBTOOL_1_5:1.5.0.4
+	LIBTOOL_1_4:1.5.0.2;
+locks; strict;
+comment	@# @;
+
+
+1.10
+date	2004.12.10.16.37.43;	author tg;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2004.08.10.01.18.01;	author tg;	state Stab;
+branches;
+next	1.8;
+
+1.8
+date	2004.07.15.08.46.03;	author tg;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2004.07.15.08.27.47;	author tg;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2004.02.16.12.26.13;	author tg;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2004.02.15.00.10.09;	author tg;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2004.02.14.19.51.45;	author tg;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2004.02.07.23.20.41;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2004.02.07.23.04.24;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.19.41.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.10
+log
+@regen (with more current tools)
+@
+text
+@# $MirBSD: contrib/gnu/libtool/BSDmakefile,v 1.9 2004/08/10 01:18:01 tg Stab $
+
+.include <bsd.own.mk>
+
+all:
+	cd ${.CURDIR}/obj && CONFIG_SHELL=${SHELL} ${SHELL} ./configure \
+	    && ${MAKE} ./ltmain.sh libtoolize
+
+obj:
+	cd ${.CURDIR} && mkdir -p obj
+	cd ${.CURDIR}/obj && \
+	    lndir -e obj ${.CURDIR} && rm -f BSDmakefile ltmain.sh libtoolize
+	for i in config.{guess,sub} install-sh missing mkinstalldirs; do \
+		cp ${GNUSYSTEM_AUX_DIR}/$$i ${.CURDIR}/obj; done
+	cd ${.CURDIR}/obj && ln -s libtool.m4 aclocal.m4
+
+clean:
+	-rm -f ${.CURDIR}/{config.{guess,sub},ac{local,include}.m4,configure.in}
+	-rm -rf ${.CURDIR}/obj ${.CURDIR}/{COPYING,INSTALL}
+
+install:
+	# Nothing to do...
+
+do-bootstrap:
+	cd ${.CURDIR} && ${MAKE} clean
+	for i in config.{guess,sub} install-sh missing mkinstalldirs; do \
+		cp ${GNUSYSTEM_AUX_DIR}/$$i ${.CURDIR}/; done
+	cd ${.CURDIR} && env AUTOCONF_VERSION=2.13 AUTOMAKE_VERSION=1.4 \
+	    ${SHELL} ./bootstrap
+	cd ${.CURDIR} && rm config.{guess,sub} install-sh missing ChangeLog \
+	    mkinstalldirs aclocal.m4 COPYING INSTALL NEWS README AUTHORS
+	cd ${.CURDIR} && ${MAKE} obj && ${MAKE}
+	cp ${.CURDIR}/obj/ltmain.sh ${.CURDIR}/obj/libtoolize ${.CURDIR}/
+	cd ${.CURDIR} && chmod 664 ltmain.sh libtoolize
+	cd ${.CURDIR} && ${MAKE} clean
+	for file in ${.CURDIR}/{ltmain.sh,libtoolize,Makefile.in}; do \
+		print "/\\\$$""MirBSD:/ka\n'at'a-1\n'as/\\\$$/_/\nwq" \
+		    | ed -s $$file; \
+	done
+
+.PHONY:	all obj clean install do-bootstrap
+@
+
+
+1.9
+log
+@fix final stuff; regenerate
+@
+text
+@d1 1
+a1 1
+# $MirBSD: contrib/gnu/libtool/BSDmakefile,v 1.8 2004/07/15 08:46:03 tg Exp $
+d28 2
+a29 1
+	cd ${.CURDIR} && env AUTOCONF_VERSION=2.13 ${SHELL} ./bootstrap
+@
+
+
+1.8
+log
+@regenerate (and fix regen process)
+@
+text
+@d1 1
+a1 1
+# $MirBSD: contrib/gnu/libtool/BSDmakefile,v 1.7 2004/07/15 08:27:47 tg Exp $
+d18 1
+a18 1
+	-rm -f ${.CURDIR}/{config.{guess,sub},aclocal.m4}
+d35 1
+a35 2
+	for file in ${.CURDIR}/ltmain.sh ${.CURDIR}/libtoolize \
+	    ${.CURDIR}/Makefile.in ${.CURDIR}/acinclude.m4; do \
+@
+
+
+1.7
+log
+@* some fixes from jakemsr for the relink issue
+  (need testing)
+* apply same or similar fix at other places
+* prettify makefile
+* fix RCS IDs
+@
+text
+@d1 1
+a1 1
+# $MirBSD: contrib/gnu/libtool/BSDmakefile,v 1.6 2004/02/16 12:26:13 tg Exp $
+d35 5
+a39 3
+.for _i in ${.CURDIR}/ltmain.sh ${.CURDIR}/libtoolize
+	print "/\\\$$""MirBSD:/ka\n'at.-1\n'as/\\\$$/_/\nwq" | ed -s ${_i}
+.endfor
+@
+
+
+1.6
+log
+@simplify and correct
+nuke junk
+nuke generated junk
+@
+text
+@d1 1
+a1 1
+# $MirBSD: BSDmakefile,v 1.5 2004/02/15 00:10:09 tg Exp $
+a3 1
+SH?=	/bin/sh
+d6 1
+a6 1
+	cd ${.CURDIR}/obj && ${SH} ./configure \
+d28 1
+a28 1
+	cd ${.CURDIR} && env AUTOCONF_VERSION=2.13 ${SH} ./bootstrap
+d35 3
+@
+
+
+1.5
+log
+@<benz> mirlibtoolify
+@
+text
+@d1 1
+a1 1
+# $MirBSD: BSDmakefile,v 1.4 2004/02/14 19:51:45 tg Exp $
+d30 2
+a31 2
+	cd ${.CURDIR} && rm config.{guess,sub} install-sh missing \
+	    mkinstalldirs aclocal.m4
+@
+
+
+1.4
+log
+@clean up all generated files
+correct whitespace usage
+don't relink libs when installing, on mirbsd/ekkobsd/openbsd
+@
+text
+@d1 1
+a1 1
+# $MirBSD: BSDmakefile,v 1.3 2004/02/07 23:20:41 tg Exp $
+d7 2
+a8 2
+	cd ${.CURDIR}/obj && ${SH} ./configure && ${MAKE} ./ltmain.sh
+	@@echo "Now copy ${.CURDIR}/obj/ltmain.sh"
+d13 1
+a13 1
+	    lndir -e obj ${.CURDIR} && rm BSDmakefile
+d33 2
+a34 1
+	cp ${.CURDIR}/obj/ltmain.sh ${.CURDIR}
+@
+
+
+1.3
+log
+@even better
+@
+text
+@d1 1
+a1 1
+# $MirBSD: BSDmakefile,v 1.2 2004/02/07 23:04:24 tg Exp $
+d20 1
+a20 1
+	-rm -rf ${.CURDIR}/obj
+@
+
+
+1.2
+log
+@who needs documentation, dupes (from GNUSYSTEM_AUX_DIR), ltdl anyways?
+@
+text
+@d1 1
+a1 1
+# $MirBSD: BSDmakefile,v 1.1 2004/02/03 19:41:15 tg Exp $
+d16 1
+d19 1
+a19 2
+	-rm -f ${.CURDIR}/config.guess ${.CURDIR}/config.sub
+	-rm -f ${.CURDIR}/doc/texinfo.tex
+d27 2
+d30 2
+@
+
+
+1.1
+log
+@* MirOSify
+* bootstrap
+* nuke unneeded stuff
+@
+text
+@d1 1
+a1 1
+# $MirBSD$
+d13 3
+a15 3
+	    lndir -e obj ${.CURDIR} && \
+	    rm BSDmakefile && \
+	    cp ${.CURDIR}/../config/config.{guess,sub} .
+@
+

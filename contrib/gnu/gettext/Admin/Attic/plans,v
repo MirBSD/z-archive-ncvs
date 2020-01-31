@@ -1,0 +1,101 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.43.04;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@Things we plan to do. Comments welcome.
+
+- Documentation: Distinguish more clearly between gettext/xgettext,
+  the Translation Project for GNU packages, and the PO mode.
+
+- KDE wants a kind of gettext2("role","msg")  function whose key is the
+  concatenation of "role" and "msg" but whose default value is only "msg".
+
+- Look at Christian Robottom Reis's manual:
+  http://www.async.com.br/~kiko/gettext.html
+
+- KBabel:
+  http://i18n.kde.org/translation-howto/gui-specialized-apps.html
+  http://i18n.kde.org/tools/kbabel/
+
+- Tool to help people to correct msgid strings:
+  1. Program to move msgstr contents to msgid contents,
+  2. Program to update the translations accordingly, much like msgmerge.
+
+- Refer also to the GNOME translation project http://www.klid.dk/gnome/ ?
+
+- Mention Qt linguist (part of Qt 3)
+
+- Easier delivery of PO directory for maintainer! Add a target for incoming
+  PO files
+
+- Qt 3.0 compatibility:
+  - .ts, .qph catalogs
+  - .qm binary catalogs
+
+- Add logging to libintl, in order to catch each of these problems:
+>         - if the directory that was argument to bindtextdomain is usable
+>         - what catalogs are installed there
+>         - if the language , that is requested by LC_ALL or some other
+>                 variable is really there ...
+>         - if program tries to translate some message, it doesn't really know 
+>                 if it really get translated ... And if requested more than 
+>                 one language , you have no way to realize into what
+>                 language, it had been really translated !!!!!!!
+
+- msgdiff
+
+- automake integration: Add to "make dist" an invocation of
+  "intltool-update --maintain", parametrized through a few variables that
+  specify
+    - where to look for i18n files,
+    - which file types are to be considered by i18n,
+    - which files are explicitly not i18n (e.g. generated files like
+      src/po-gram-gen.c)
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

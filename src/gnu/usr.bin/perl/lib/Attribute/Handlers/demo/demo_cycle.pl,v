@@ -1,0 +1,80 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.02;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@package Selfish;
+
+sub TIESCALAR {
+	use Data::Dumper 'Dumper';
+	print Dumper [ \@@_ ];
+	bless [ @@_[1..$#_] ], $_[0];
+}
+
+sub FETCH {
+	use Data::Dumper 'Dumper';
+	Dumper [ @@{$_[0]} ];
+}
+
+package main;
+
+use Attribute::Handlers autotieref => { Selfish => Selfish };
+
+my $next : Selfish("me");
+print "$next\n";
+
+my $last : Selfish("you","them","who?");
+print "$last\n";
+
+my $other : Selfish(["you","them","who?"]);
+print "$other\n";
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

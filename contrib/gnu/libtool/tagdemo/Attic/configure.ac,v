@@ -1,0 +1,159 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.1
+	libtool-1_5_8:1.1.2.1
+	LIBTOOL_1_5:1.1.2.1.0.2
+	libtool-1_5-20040215:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.15.13.32.50;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.15.13.09.48;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.15.13.09.48;	author tg;	state Exp;
+branches
+	1.1.2.1.2.1;
+next	;
+
+1.1.2.1.2.1
+date	2004.02.15.13.16.56;	author tg;	state dead;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@libtool 1.4 -> mirlibtool, back to the state of yesterday night
+(so we have a clean 1.4 in the branch LIBTOOL_1_4, and a working
+ 1.4 in head, which we might switch to LIBTOOL_1_5 once we get it
+ working in 2038)
+@
+text
+@## Process this file with autoconf to create configure. -*- autoconf -*-
+# Copyright 2001  Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+# 02111-1307  USA
+
+AC_PREREQ(2.50)
+
+
+## ------------------------ ##
+## Autoconf initialisation. ##
+## ------------------------ ##
+AC_INIT([tagdemo], [0.1], [bug-libtool@@gnu.org])
+AC_CONFIG_SRCDIR([foo.cpp])
+
+AC_CANONICAL_TARGET
+
+
+## ------------------------ ##
+## Automake Initialisation. ##
+## ------------------------ ##
+AM_INIT_AUTOMAKE(AC_PACKAGE_TARNAME, AC_PACKAGE_VERSION)
+
+
+## ---------------- ##
+## Compiler checks. ##
+## ---------------- ##
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_CC_C_O
+
+AC_PROG_CXX
+AC_PROG_CXXCPP
+
+# As of the writing of this demo, GNU Autoconf's AC_OBJEXT and
+# AC_EXEEXT macros only works for C compilers!
+# Libtool's setup macro calls AC_OBJEXT and AC_EXEEXT without setting
+# the test language to C.  We do it before any libtool setup macros are
+# called so that the proper values are cached beforehand.  We also do
+# it before any linker flags (LDFLAGS) are set so that C++ specific
+# ones don't break the tests.
+AC_LANG_PUSH([C])
+AC_OBJEXT
+AC_EXEEXT
+AC_LANG_POP
+
+
+## ----------------------- ##
+## Libtool initialisation. ##
+## ----------------------- ##
+
+# Set the test language to C++.
+AC_LANG([C++])
+AM_PROG_LIBTOOL
+
+
+## ---------------------------- ##
+## C headers required by cdemo. ##
+## ---------------------------- ##
+AC_CHECK_HEADERS([math.h])
+
+
+## ---------------------------- ##
+## Libraries required by cdemo. ##
+## ---------------------------- ##
+AC_CHECK_LIBM
+AC_SUBST([LIBM])
+
+
+## -------- ##
+## Outputs. ##
+## -------- ##
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@libtool 1.5 branch from today
+@
+text
+@@
+
+
+1.1.2.1.2.1
+log
+@we won't need them
+@
+text
+@@
+

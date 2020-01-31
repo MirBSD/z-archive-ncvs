@@ -1,0 +1,45 @@
+head     1.1;
+branch   1.1.6;
+access   ;
+symbols  cvs-200501081900:1.1.6.1 freebsd:1.1.6;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.08.19.05.41;  author tg;  state Exp;
+branches 1.1.6.1;
+next     ;
+
+1.1.6.1
+date     2005.01.08.19.05.41;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/usr/local/bin/tclsh
+
+set CTMname	ports-cur
+set CTMref	/usr/ports
+set CTMignore	{/CVS$|/CVS/|^distfiles}
+set CTMbogus	{\\.core$|/#cvs|/\\.#}
+set CTMmail	ctm-ports-cur@@freebsd.org
+@
+
+
+1.1.6.1
+log
+@CTM from FreeBSD
+@
+text
+@@

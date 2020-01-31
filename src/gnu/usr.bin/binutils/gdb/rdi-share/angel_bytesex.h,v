@@ -1,0 +1,86 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  gdb-20050107:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.23.04.31;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.23.04.31;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* 
+ * Copyright (C) 1995 Advanced RISC Machines Limited. All rights reserved.
+ * 
+ * This software may be freely used, copied, modified, and distributed
+ * provided that the above copyright notice is preserved in all copies of the
+ * software.
+ */
+
+/*
+  Title:     Code to support byte-sex independence
+  Copyright: (C) 1991, Advanced RISC Machines Ltd., Cambridge, England.
+*/
+/*
+ * RCS $Revision: 1.1 $
+ * Checkin $Date: 1999/11/01 15:29:57 $
+ */
+
+#ifndef angel_bytesex_h
+#define angel_bytesex_h
+
+#include "host.h"
+
+void bytesex_reverse(int yes_or_no);
+/*
+ * Turn sex-reversal on or off - 0 means off, non-0 means on.
+ */
+
+int bytesex_reversing(void);
+/*
+ * Return non-0 if reversing the byte sex, else 0.
+ */
+
+int32 bytesex_hostval(int32 v);
+/*
+ * Return v or byte-reversed v, according to whether sex-reversval
+ * is on or off.
+ */
+
+int32 bytesex_hostval_16(int32 v);
+/* Return v or byte-reversed v for a 16 bit value */
+
+#endif
+@
+
+
+1.1.2.1
+log
+@The GNU Debugger 6.3.50-current, from
+ ftp://sources.redhat.com/pub/gdb/snapshots/current/gdb-weekly-6.3.50.20050107.tar.bz2
+
+only the gdb/ subdirectory, gdb/testsuite/ removed.
+
+Luckily, this time it doesn't depend on a different libbfd than
+the one we deliver with GNU binutils...
+@
+text
+@@

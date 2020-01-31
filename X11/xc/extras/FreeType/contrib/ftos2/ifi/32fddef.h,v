@@ -1,0 +1,93 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.04.07;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.07;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*********************************************************************\
+* Module Name: 32FDDEF.H
+*
+* OS/2 Intelligent Font Interface
+*
+* Copyright (c) 1989,1994  IBM Corporation
+* Copyright (c) 1989  Microsoft Corporation
+*
+\*********************************************************************/
+#ifndef     __32FDDEF_H__
+#define     __32FDDEF_H__
+
+/* Typedef the Font Driver 32 Bit entry points  */
+
+/* FdLoadFontFile */
+typedef HFF  (* _syscall PFDLFF)(PSZ pszFileName);
+
+/* FdQueryFaces */
+typedef LONG (* _syscall PFDQF)(HFF hff, PIFIMETRICS pifim,
+                                 ULONG cMetricLen, ULONG cFontCount,
+                                 ULONG cStart);
+/* FdConvertFontFile */
+typedef LONG (* _syscall PFDCFF)(PSZ pszSrc, PSZ pszDestDir,
+                                  PSZ pszName);
+
+/* FdClaimFontFile */
+typedef LONG (* _syscall PFDCLF)(PSZ pszFileName);
+
+/* FdUnloadFontFile  */
+typedef LONG (* _syscall PFDUFF)(HFF hff);
+
+/* FdOpenFontContext */
+typedef HFC  (* _syscall PFDOFC)(HFF hff, ULONG ulFont);
+
+/* FdSetFontContext  */
+typedef LONG (* _syscall PFDSFC)(HFC hfc, PCONTEXTINFO pci);
+
+/* FdCloseFontContext */
+typedef LONG (* _syscall PFDCFC)(HFC hfc);
+
+/* FdQueryFaceAttr */
+typedef LONG (* _syscall PFDQFA)(HFC hfc, ULONG iQuery, PBYTE pBuffer,
+                                  ULONG cb, PGLYPH pagi, GLYPH gistart);
+
+/* FdQueryCharAttr */
+typedef LONG (* _syscall PFDQCA)(HFC hfc, PCHARATTR pCharAttr,
+                                  PBITMAPMETRICS pbmm);
+
+/* FdQueryFullFaces */
+typedef LONG (* _syscall PFDQFF)(HFF hff, PVOID pBuf, PULONG cBufLen,
+                                  PULONG cFontCount, ULONG cStart);
+#endif
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

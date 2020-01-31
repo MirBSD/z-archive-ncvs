@@ -1,0 +1,64 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.49.26;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.14;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@; These exports are for backward compatibility with older ports
+; of gettext for OS/2 that export everything by ordinals.
+  _$gettext=gettext                   @@1 NONAME
+  _$gettext__=gettext__               @@2 NONAME
+  _$dgettext=dgettext                 @@3 NONAME
+  _$dgettext__=dgettext__             @@4 NONAME
+  _$dcgettext=dcgettext               @@5 NONAME
+  _$dcgettext__=dcgettext__           @@6 NONAME
+  _$textdomain=textdomain             @@7 NONAME
+  _$textdomain__=textdomain__         @@8 NONAME
+  _$bindtextdomain=bindtextdomain     @@9 NONAME
+  _$bindtextdomain__=bindtextdomain__ @@10 NONAME
+  _$_nl_msg_cat_cntr=_nl_msg_cat_cntr @@11 NONAME
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

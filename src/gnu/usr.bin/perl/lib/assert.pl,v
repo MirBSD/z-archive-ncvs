@@ -1,0 +1,110 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.56;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.02;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.02;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# assert.pl
+# tchrist@@convex.com (Tom Christiansen)
+# 
+# Usage:
+# 
+#     &assert('@@x > @@y');
+#     &assert('$var > 10', $var, $othervar, @@various_info);
+# 
+# That is, if the first expression evals false, we blow up.  The
+# rest of the args, if any, are nice to know because they will
+# be printed out by &panic, which is just the stack-backtrace
+# routine shamelessly borrowed from the perl debugger.
+
+sub assert {
+    &panic("ASSERTION BOTCHED: $_[$[]",$@@) unless eval $_[$[];
+} 
+
+sub panic {
+    package DB;
+
+    select(STDERR);
+
+    print "\npanic: @@_\n";
+
+    exit 1 if $] <= 4.003;  # caller broken
+
+    # stack traceback gratefully borrowed from perl debugger
+
+    local $_;
+    my $i;
+    my ($p,$f,$l,$s,$h,$a,@@a,@@frames);
+    for ($i = 0; ($p,$f,$l,$s,$h,$w) = caller($i); $i++) {
+	@@a = @@args;
+	for (@@a) {
+	    if (/^StB\000/ && length($_) == length($_main{'_main'})) {
+		$_ = sprintf("%s",$_);
+	    }
+	    else {
+		s/'/\\'/g;
+		s/([^\0]*)/'$1'/ unless /^-?[\d.]+$/;
+		s/([\200-\377])/sprintf("M-%c",ord($1)&0177)/eg;
+		s/([\0-\37\177])/sprintf("^%c",ord($1)^64)/eg;
+	    }
+	}
+	$w = $w ? '@@ = ' : '$ = ';
+	$a = $h ? '(' . join(', ', @@a) . ')' : '';
+	push(@@frames, "$w&$s$a from file $f line $l\n");
+    }
+    for ($i=0; $i <= $#frames; $i++) {
+	print $frames[$i];
+    }
+    exit 1;
+} 
+
+1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

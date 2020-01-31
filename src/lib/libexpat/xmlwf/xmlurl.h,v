@@ -1,0 +1,51 @@
+head     1.1;
+branch   1.1.16;
+access   ;
+symbols  expat-1_95_8:1.1.16.1 expat:1.1.16;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.20.28.14;  author tg;  state Exp;
+branches 1.1.16.1;
+next     ;
+
+1.1.16.1
+date     2005.01.08.20.28.14;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifdef __cplusplus
+extern "C" {
+#endif
+
+int XML_URLInit();
+void XML_URLUninit();
+int XML_ProcessURL(XML_Parser parser,
+                   const XML_Char *url,
+                   unsigned flags);
+
+#ifdef __cplusplus
+}
+#endif
+@
+
+
+1.1.16.1
+log
+@libexpat 1.95.8
+@
+text
+@@

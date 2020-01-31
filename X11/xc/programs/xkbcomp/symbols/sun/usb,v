@@ -1,0 +1,68 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.19.16;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.19.16;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@// $XFree86: xc/programs/xkbcomp/symbols/sun/usb,v 1.1 2003/10/09 11:45:27 pascal Exp $
+//
+// Additional keys for Sun USB keyboard
+
+xkb_symbols "sun_usb" {
+
+    key <STOP> { [ Cancel	],	[ F11	]	};
+    key <AGAI> { [ Redo		],	[ F12	]	};
+    key <PROP> { [ SunProps	],	[ F13	]	};
+    key <UNDO> { [ Undo		],	[ F14	]	};
+    key <FRNT> { [ SunFront	],	[ F15	]	};
+    key <COPY> { [ SunCopy	],	[ F16	]	};
+    key <OPEN> { [ SunOpen	],	[ F17	]	};
+    key <PAST> { [ SunPaste	],	[ F18	]	};
+    key <FIND> { [ Find		],	[ F19	]	};
+    key <CUT>  { [ SunCut	],	[ F20	]	};
+    key <HELP> { [ Help		]	};
+
+    key <MUTE> { [  SunAudioMute,	SunVideoDegauss		]	};
+    key <VOL-> { [  SunAudioLowerVolume,SunVideoLowerBrightness ]	};
+    key <VOL+> { [  SunAudioRaiseVolume,SunVideoRaiseBrightness	]	};
+    key <POWR> { [  SunPowerSwitch,	SunPowerSwitchShift	]	};
+
+    key <LMTA> { [	Meta_L		]	};
+    key <RMTA> { [	Meta_R		]	};
+    key <COMP> { [	Multi_key	]	};
+};
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

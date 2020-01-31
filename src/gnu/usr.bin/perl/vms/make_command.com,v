@@ -1,0 +1,76 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.42;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.01;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.01;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@$! MAKE_COMMAND.COM
+$! Record MM[SK]/Make parameters in configuration report
+$!
+$! Author:  Peter Prymmer <pvhp@@lns62.lns.cornell.edu>
+$! Version: 1.0  18-Jan-1996
+$!
+$! DCL usage (choose one):
+$!      @@MAKE_COMMAND                      !or
+$!      @@MAKE_COMMAND/OUTPUT=MYCONFIG.OUT
+$!------------------------------------------------
+$ $mms = "'"+p1
+$ $makeline = p2+" "+p3+" "+p4+" "+p5+" "+p6+" "+p7+" "+p8
+$quotable:
+$ if f$locate("""",$makeline).lt.f$length($makeline)
+$   then
+$   $makeline = $makeline - """"
+$   goto quotable
+$ endif
+$ $makeline = f$edit($makeline,"COMPRESS,TRIM")
+$ write sys$output " make_cmd=''$mms'"+" ''$makeline''"
+$!------------------------------------------------
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

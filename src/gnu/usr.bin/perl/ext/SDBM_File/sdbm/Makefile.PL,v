@@ -1,0 +1,108 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.32;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.49;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.49;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@use ExtUtils::MakeMaker;
+
+my $define = '-DSDBM -DDUFF';
+$define .= ' -DWIN32 -DPERL_STATIC_SYMS' if ($^O eq 'MSWin32');
+
+if ($^O eq 'VMS') {  # Old VAXC compiler can't handle Duff's device
+    require Config;
+    $define =~ s/\s+-DDUFF// if $Config::Config{'vms_cc_type'} eq 'vaxc';
+}
+
+WriteMakefile(
+    NAME      => 'sdbm', # (doesn't matter what the name is here) oh yes it does
+#    LINKTYPE  => 'static',
+    DEFINE    => $define,
+    INC       => '-I$(PERL_INC)', # force PERL_INC dir ahead of system -I's
+    SKIP      => [qw(dynamic dynamic_lib dlsyms)],
+    OBJECT    => '$(O_FILES)',
+    clean     => {'FILES' => 'dbu libsdbm.a dbd dba dbe x-dbu *.dir *.pag'},
+    H         => [qw(tune.h sdbm.h pair.h $(PERL_INC)/config.h)],
+    C         => [qw(sdbm.c pair.c hash.c)]
+);
+
+sub MY::constants {
+    package MY;
+    my $self = shift;
+
+    $self->{INST_STATIC} = 'libsdbm$(LIB_EXT)';
+
+    return $self->SUPER::constants();
+}
+
+sub MY::top_targets {
+    my $r = '
+all :: static
+	$(NOECHO) $(NOOP)
+
+config ::
+	$(NOECHO) $(NOOP)
+
+lint:
+	lint -abchx $(LIBSRCS)
+
+';
+    $r .= '
+# This is a workaround, the problem is that our old GNU make exports
+# variables into the environment so $(MYEXTLIB) is set in here to this
+# value which can not be built.
+sdbm/libsdbm.a:
+	$(NOECHO) $(NOOP)
+' unless $^O eq 'VMS';
+
+    return $r;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

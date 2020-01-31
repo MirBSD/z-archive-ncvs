@@ -1,0 +1,69 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.21.48.39;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.39;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.39;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@Makefile
+clmerge
+cln_hist
+commit_prep
+cvs2vendor
+cvs_acls
+debug_check_log
+log
+log_accum
+mfpipe
+newcvsroot
+pvcs2rcs
+rcs-to-cvs
+rcs2log
+rcslock
+sccs2rcs
+validate_repo
+sandbox_status
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

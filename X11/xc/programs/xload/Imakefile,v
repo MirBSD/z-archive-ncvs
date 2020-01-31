@@ -1,0 +1,100 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.06.23.22.00;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.19.18;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.19.18;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge X11 out of my feet
+@
+text
+@XCOMM $XConsortium: Imakefile /main/30 1996/03/09 09:37:57 kaleb $
+XCOMM $XFree86: xc/programs/xload/Imakefile,v 1.8 2003/10/24 20:38:21 tsi Exp $
+        DEPLIBS = XawClientDepLibs
+LOCAL_LIBRARIES = XawClientLibs
+
+#if defined(i386MachArchitecture) && !defined(GNUMachArchitecture)
+  SYS_LIBRARIES = -lsys
+#elif defined(SGIArchitecture) && \
+     !defined(MipsN32Architecture) && !defined(Mips64Architecture) \
+	&& !defined(OpenBSDArchitecture)
+  SYS_LIBRARIES = -lmld
+#elif defined(SonyArchitecture)
+  SYS_LIBRARIES = -lmld
+#elif defined(SunArchitecture) && SystemV4
+  SYS_LIBRARIES = -lkvm -lelf
+#elif defined(SVR4Architecture)
+  SYS_LIBRARIES = -lelf
+#elif defined(OsfArchitecture)
+  SYS_LIBRARIES = -lld
+#elif defined(BSDOSArchitecture) && \
+     !defined(NetBSDArchitecture) && !defined(OpenBSDArchitecture)
+  SYS_LIBRARIES = -lutil -lkvm
+#endif
+           SRCS = xload.c get_load.c get_rload.c
+           OBJS = xload.o get_load.o get_rload.o
+ OSMAJORVERSION = OSMajorVersion
+ OSMINORVERSION = OSMinorVersion
+      DEFINES = -DOSMAJORVERSION=$(OSMAJORVERSION) \
+		-DOSMINORVERSION=$(OSMINORVERSION)
+
+AllTarget(ProgramTargetName(xload))
+NormalProgramTarget(xload,$(OBJS),$(DEPLIBS),$(LOCAL_LIBRARIES),NullParameter)
+
+#if !InstallXloadSetGID
+InstallProgram(xload,$(BINDIR))
+#else
+InstallProgramWithFlags(xload,$(BINDIR),$(INSTKMEMFLAGS))
+#endif
+
+InstallAppDefaults(XLoad)
+
+InstallManPage(xload,$(MANDIR))
+
+DependTarget()
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d9 2
+a10 1
+     !defined(MipsN32Architecture) && !defined(Mips64Architecture)
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

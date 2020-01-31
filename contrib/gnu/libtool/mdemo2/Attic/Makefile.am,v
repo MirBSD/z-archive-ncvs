@@ -1,0 +1,97 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.1
+	libtool-1_5_8:1.1.2.1
+	LIBTOOL_1_5:1.1.2.1.0.2
+	libtool-1_5-20040215:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.15.13.32.48;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.15.13.09.48;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.15.13.09.48;	author tg;	state Exp;
+branches
+	1.1.2.1.2.1;
+next	;
+
+1.1.2.1.2.1
+date	2004.02.15.13.16.54;	author tg;	state dead;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@libtool 1.4 -> mirlibtool, back to the state of yesterday night
+(so we have a clean 1.4 in the branch LIBTOOL_1_4, and a working
+ 1.4 in head, which we might switch to LIBTOOL_1_5 once we get it
+ working in 2038)
+@
+text
+@## Process this file with automake to produce Makefile.in
+
+AUTOMAKE_OPTIONS = no-dependencies foreign
+
+INCLUDES = -I$(top_srcdir)/../libltdl
+
+EXTRA_DIST = acinclude.m4
+
+bin_PROGRAMS = mdemo2 mdemo2_static
+
+# Create a version of mdemo2 that links a library that does dlopen.
+mdemo2_SOURCES = main.c
+mdemo2_LDFLAGS = -export-dynamic "-dlopen" force
+mdemo2_LDADD = ../mdemo/libmlib.la
+
+# Create a statically linked version of mdemo.
+mdemo2_static_SOURCES = $(mdemo2_SOURCES)
+mdemo2_static_LDFLAGS = $(STATIC) $(mdemo2_LDFLAGS)
+mdemo2_static_LDADD = $(mdemo2_LDADD)
+mdemo2_static_DEPENDENCIES = $(mdemo2_DEPENDENCIES)
+
+$(OBJECTS): libtool
+libtool: $(LIBTOOL_DEPS)
+	$(SHELL) ./config.status --recheck
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@libtool 1.5 branch from today
+@
+text
+@@
+
+
+1.1.2.1.2.1
+log
+@we won't need them
+@
+text
+@@
+

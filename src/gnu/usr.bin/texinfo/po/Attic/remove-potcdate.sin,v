@@ -1,0 +1,70 @@
+head	1.2;
+access;
+symbols
+	texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.07.00.21.55;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.06.23.31.14;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.06.23.31.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke unneeded files
+@
+text
+@# Sed script that remove the POT-Creation-Date line in the header entry
+# from a POT file.
+#
+# The distinction between the first and the following occurrences of the
+# pattern is achieved by looking at the hold space.
+/^"POT-Creation-Date: .*"$/{
+x
+# Test if the hold space is empty.
+s/P/P/
+ta
+# Yes it was empty. First occurrence. Remove the line.
+g
+d
+bb
+:a
+# The hold space was nonempty. Following occurrences. Do nothing.
+x
+:b
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

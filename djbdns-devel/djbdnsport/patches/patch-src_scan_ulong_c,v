@@ -1,0 +1,43 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.12.14.00.03.18;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f6152767f69a;
+
+
+desc
+@@
+
+
+1.1
+log
+@build it with -Wall -Werror
+@
+text
+@$MirOS$
+--- src/scan_ulong.c.orig	Sun Feb 11 21:11:23 2001
++++ src/scan_ulong.c	Tue Dec 13 23:56:03 2005
+@@@@ -1,5 +1,15 @@@@
+ #include "scan.h"
+ 
++unsigned int scan_uint32(const char *s,uint32_t *u)
++{
++  unsigned long t;
++  int rv;
++
++  rv = scan_ulong(s,&t);
++  *u = t;
++  return rv;
++}
++
+ unsigned int scan_ulong(register const char *s,register unsigned long *u)
+ {
+   register unsigned int pos = 0;
+@

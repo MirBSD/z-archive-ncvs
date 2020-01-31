@@ -1,0 +1,75 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.54;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: encore,v 1.2 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+# encore:  file(1) magic for Encore machines
+#
+# XXX - needs to have the byte order specified (NS32K was little-endian,
+# dunno whether they run the 88K in little-endian mode or not).
+#
+0	short		0x154		Encore
+>20	short		0x107		executable
+>20	short		0x108		pure executable
+>20	short		0x10b		demand-paged executable
+>20	short		0x10f		unsupported executable
+>12	long		>0		not stripped
+>22	short		>0		- version %ld
+>22	short		0		-
+#>4	date		x		stamp %s
+0	short		0x155		Encore unsupported executable
+>12	long		>0		not stripped
+>22	short		>0		- version %ld
+>22	short		0		-
+#>4	date		x		stamp %s
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,68 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@\input texinfo.tex    @@c -*-texinfo-*-
+
+@@setfilename node-whitespace.info
+
+@@c Makeinfo should collapse whitespace in node names.
+
+@@ifnottex
+
+@@node Top
+@@top Whitespace in Node Names
+
+@@end ifnottex
+
+@@menu
+* Chap  1.3  ::
+* Chap  1.4  :Chap  1.4.
+@@end menu
+
+@@node Chap  1.3
+@@chapter Chap 1.3
+
+Can I reach here?
+
+@@node Chap      1.4
+@@chapter Another space test
+
+How about here?
+@@xref{Chap      1.3}.
+
+@@bye
+@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

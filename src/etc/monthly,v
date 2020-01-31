@@ -1,0 +1,80 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.05;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/bin/ksh
+#	$MirBSD: src/etc/monthly,v 1.2 2004/10/09 01:36:21 tg Exp $
+#	$OpenBSD: monthly,v 1.5 1998/02/02 23:08:57 millert Exp $
+
+if [ -f /etc/monthly.local ];then
+	echo ""
+	echo "Running monthly.local:"
+	. /etc/monthly.local
+else
+	echo "Nothing to do!"
+fi
+
+echo ""
+echo "Doing login accounting:"
+ac -p | sort -nr +1
+
+echo "."
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#!/bin/sh -
+d13 3
+a15 3
+# echo ""
+# echo "Doing login accounting:"
+# ac -p | sort -nr +1
+d17 1
+a17 1
+#echo "."
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

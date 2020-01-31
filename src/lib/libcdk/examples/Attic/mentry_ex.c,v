@@ -1,0 +1,125 @@
+head	1.2;
+access;
+symbols
+	cdk-4_9_11-20041224:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.20.21.51;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.08.05;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.20.08.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge
+@
+text
+@/* $Id: mentry_ex.c,v 1.8 2004/08/28 00:53:46 tom Exp $ */
+
+#include <cdk.h>
+
+#ifdef HAVE_XCURSES
+char *XCursesProgramName = "mentry_ex";
+#endif
+
+int main (int argc, char **argv)
+{
+   /* Declare variables. */
+   CDKSCREEN *cdkscreen = 0;
+   CDKMENTRY *widget = 0;
+   WINDOW *cursesWin = 0;
+   char *info = 0;
+   char *label = "</R>Message";
+   char *title = "<C></5>Enter a message.<!5>";
+
+   CDK_PARAMS params;
+
+   CDKparseParams (argc, argv, &params, "w:h:l:" CDK_MIN_PARAMS);
+
+   /* Set up CDK. */
+   cursesWin = initscr ();
+   cdkscreen = initCDKScreen (cursesWin);
+
+   /* Start CDK Colors. */
+   initCDKColor ();
+
+   /* Set up the multi-line entry field. */
+   widget = newCDKMentry (cdkscreen,
+			  CDKparamValue (&params, 'X', CENTER),
+			  CDKparamValue (&params, 'Y', CENTER),
+			  title, label, A_BOLD, '.', vMIXED,
+			  CDKparamValue (&params, 'w', 20),
+			  CDKparamValue (&params, 'h', 5),
+			  CDKparamValue (&params, 'l', 20),
+			  0,
+			  CDKparamValue (&params, 'N', TRUE),
+			  CDKparamValue (&params, 'S', FALSE));
+
+   /* Is the object null? */
+   if (widget == 0)
+   {
+      /* Shut down CDK. */
+      destroyCDKScreen (cdkscreen);
+      endCDK ();
+
+      /* Print out a message. */
+      printf ("Oops. Can not create CDK object. Is the window too small?\n");
+      exit (EXIT_FAILURE);
+   }
+
+   /* Draw the CDK screen. */
+   refreshCDKScreen (cdkscreen);
+
+   /* Set what ever was given from the command line. */
+   setCDKMentry (widget, argv[optind], 0, TRUE);
+
+   /* Activate this thing. */
+   activateCDKMentry (widget, 0);
+   info = strdup (widget->info);
+
+   /* Clean up. */
+   destroyCDKMentry (widget);
+   destroyCDKScreen (cdkscreen);
+   endCDK ();
+
+   /* Spit out the results. */
+   printf ("\n\n\n");
+   printf ("Your message was : <%s>\n", info);
+   free (info);
+   exit (EXIT_SUCCESS);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Tom Dickey's libcdk
+@
+text
+@@

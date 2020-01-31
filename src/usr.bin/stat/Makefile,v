@@ -1,0 +1,76 @@
+head	1.2;
+access;
+symbols
+	cvs-200501121800:1.1.5.1 TNF:1.1.5;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.12.18.02.50;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.12.18.00.41;	author tg;	state Exp;
+branches
+	1.1.5.1;
+next	;
+
+1.1.5.1
+date	2005.01.12.18.00.41;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Our
+.Xr readlink 1
+has
+.Fl f ,
+their
+.Nm readlink
+hasn't, so don't install and keep our native.
+@
+text
+@# $MirBSD$
+# $NetBSD: Makefile,v 1.7 2003/07/25 03:21:17 atatat Exp $
+
+PROG=	stat
+
+# not for us, our readlink(1) is superiour
+#LINKS=	${BINDIR}/stat ${BINDIR}/readlink
+#MLINKS=	stat.1 readlink.1
+
+.include <bsd.prog.mk>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$NetBSD: Makefile,v 1.7 2003/07/25 03:21:17 atatat Exp $
+d6 3
+a8 4
+.if !defined(HOSTPROG)
+LINKS=	${BINDIR}/stat ${BINDIR}/readlink
+MLINKS=	stat.1 readlink.1
+.endif
+@
+
+
+1.1.5.1
+log
+@NetBSD(tm)'s stat(1) and their readlink(1)
+@
+text
+@@

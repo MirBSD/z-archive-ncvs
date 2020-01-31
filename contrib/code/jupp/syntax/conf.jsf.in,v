@@ -1,0 +1,62 @@
+head     1.1;
+branch   1.1.3;
+access   ;
+symbols  joe-3_1:1.1.3.1 tg:1.1.3;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.19.15.24.17;  author tg;  state Exp;
+branches 1.1.3.1;
+next     ;
+
+1.1.3.1
+date     2004.12.19.15.24.17;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# JOE syntax highlight file for typical UNIX configuration files
+
+=Idle
+=Comment 	green
+=String 	cyan
+=Escape 	bold cyan
+
+:idle Idle
+	*		idle
+	"#"		comment		recolor=-1
+	"\""		string		recolor=-1
+
+:comment Comment
+	*		comment
+	"\n"		idle
+
+:string String
+	*		string
+	"\""		idle
+	"\\"		string_escape	recolor=-1
+
+:string_escape Escape
+	*		string
+	"\n"		string		recolor=-2
+@
+
+
+1.1.3.1
+log
+@JOE's Own Editor 3.1 (released package)
+@
+text
+@@

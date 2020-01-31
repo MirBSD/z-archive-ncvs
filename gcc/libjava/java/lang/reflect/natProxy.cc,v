@@ -1,0 +1,98 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@// @;
+
+
+1.1
+date	2005.01.04.17.25.30;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.25.30;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@// natProxy.cc - Native code for Proxy class.
+
+/* Copyright (C) 2002  Free Software Foundation
+
+   This file is part of libgcj.
+
+This software is copyrighted work licensed under the terms of the
+Libgcj License.  Please consult the file "LIBGCJ_LICENSE" for
+details.  */
+
+#include <config.h>
+
+#include <gcj/cni.h>
+#include <jvm.h>
+
+#include <java/lang/Class.h>
+#include <java/lang/ClassLoader.h>
+#include <java/lang/reflect/Proxy.h>
+#include <java/lang/reflect/Proxy$ProxyData.h>
+
+::java::lang::Class *
+java::lang::reflect::Proxy::getProxyClass0 (::java::lang::ClassLoader *, JArray< ::java::lang::Class *> *)
+{
+  return 0;
+}
+
+::java::lang::reflect::Proxy$ProxyData *
+java::lang::reflect::Proxy::getProxyData0 (::java::lang::ClassLoader *, JArray< ::java::lang::Class *> *)
+{
+  return 0;
+}
+
+::java::lang::Class *
+java::lang::reflect::Proxy::generateProxyClass0 (::java::lang::ClassLoader *, 
+						 ::java::lang::reflect::Proxy$ProxyData *)
+{
+  return 0;
+}
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

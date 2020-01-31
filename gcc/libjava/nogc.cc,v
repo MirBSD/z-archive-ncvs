@@ -1,0 +1,227 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@// @;
+
+
+1.1
+date	2005.01.04.17.25.02;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.25.02;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@// nogc.cc - Implement null garbage collector.
+
+/* Copyright (C) 1998, 1999, 2000, 2001, 2002  Free Software Foundation
+
+   This file is part of libgcj.
+
+This software is copyrighted work licensed under the terms of the
+Libgcj License.  Please consult the file "LIBGCJ_LICENSE" for
+details.  */
+
+#include <config.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <gcj/cni.h>
+#include <jvm.h>
+
+// Total amount of memory allocated.
+static long total = 0;
+
+void *
+_Jv_BuildGCDescr(jclass)
+{
+  return 0;
+}
+
+void *
+_Jv_AllocObj (jsize size, jclass klass)
+{
+  total += size;
+  void *obj = calloc (size, 1);
+  if (!obj) _Jv_ThrowNoMemory();
+  *((_Jv_VTable **) obj) = klass->vtable;
+  return obj;
+}
+
+void *
+_Jv_AllocPtrFreeObj (jsize size, jclass klass)
+{
+  total += size;
+  void *obj = calloc (size, 1);
+  if (!obj) _Jv_ThrowNoMemory();
+  *((_Jv_VTable **) obj) = klass->vtable;
+  return obj;
+}
+
+void *
+_Jv_AllocArray (jsize size, jclass klass)
+{
+  total += size;
+  void *obj = calloc (size, 1);
+  if (!obj) _Jv_ThrowNoMemory();
+  *((_Jv_VTable **) obj) = klass->vtable;
+  return obj;
+}
+
+void *
+_Jv_AllocBytes (jsize size)
+{
+  total += size;
+  void *obj = calloc (size, 1);
+  if (!obj) _Jv_ThrowNoMemory();
+  return obj;
+}
+
+void *
+_Jv_AllocRawObj (jsize size)
+{
+  total += size;
+  return calloc (size, 1);
+}
+
+void
+_Jv_RegisterFinalizer (void *, _Jv_FinalizerFunc *)
+{
+  // FIXME: should actually register so that finalizers can be run on
+  // exit.
+}
+
+void
+_Jv_RunFinalizers (void)
+{
+}
+
+void
+_Jv_RunAllFinalizers (void)
+{
+  // FIXME: should still run all finalizers.
+}
+
+void
+_Jv_GCInitializeFinalizers (void (*) (void))
+{
+}
+
+void
+_Jv_RunGC (void)
+{
+}
+
+long
+_Jv_GCTotalMemory (void)
+{
+  return total;
+}
+
+long
+_Jv_GCFreeMemory (void)
+{
+  return 0;
+}
+
+void
+_Jv_GCSetInitialHeapSize (size_t)
+{
+}
+
+void
+_Jv_GCSetMaximumHeapSize (size_t)
+{
+}
+
+void
+_Jv_DisableGC (void)
+{
+}
+
+void
+_Jv_EnableGC (void)
+{
+}
+
+void
+_Jv_InitGC (void)
+{
+}
+
+void
+_Jv_GCRegisterDisappearingLink (jobject *)
+{
+}
+
+jboolean
+_Jv_GCCanReclaimSoftReference (jobject)
+{
+  // For now, always reclaim soft references.  FIXME.
+  return true;
+}
+
+#ifdef JV_HASH_SYNCHRONIZATION
+void *
+_Jv_AllocTraceOne (jsize size /* includes vtable slot */) 
+{
+  void *obj = calloc(size, 1);
+  if (!obj) _Jv_ThrowNoMemory();
+  return result;
+}
+
+void *
+_Jv_AllocTraceTwo (jsize size /* includes vtable slot */) 
+{
+  void *obj = calloc(size, 1);
+  if (!obj) _Jv_ThrowNoMemory();
+  return result;
+}
+#endif /* JV_HASH_SYNCHRONIZATION */
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

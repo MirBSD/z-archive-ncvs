@@ -1,0 +1,70 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: zyxel,v 1.2 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+# zyxel:  file(1) magic for ZyXEL modems
+#
+# From <rob@@pe1chl.ampr.org>
+# These are the /etc/magic entries to decode datafiles as used for the
+# ZyXEL U-1496E DATA/FAX/VOICE modems.  (This header conforms to a
+# ZyXEL-defined standard)
+
+0	string		ZyXEL\002	ZyXEL voice data
+>10	byte		0		- CELP encoding
+>10	byte&0x0B	1		- ADPCM2 encoding
+>10	byte&0x0B	2		- ADPCM3 encoding
+>10	byte&0x0B	3		- ADPCM4 encoding
+>10	byte&0x0B	8		- New ADPCM3 encoding
+>10	byte&0x04	4		with resync
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

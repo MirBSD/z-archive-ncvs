@@ -1,0 +1,88 @@
+head	2.2;
+access;
+symbols
+	mksh-R19:2.1
+	cvs-200412101800:1.1.15.1
+	mirbsd:1.1.15;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2004.12.13.16.50.52;	author tg;	state dead;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.10.18.09.44;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.10.18.08.08;	author tg;	state Exp;
+branches
+	1.1.15.1;
+next	;
+
+1.1.15.1
+date	2004.12.10.18.08.08;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@nuke some dead code
+@
+text
+@Tests can be assigned categories to restrict what program they
+are applied to (eg, pdksh, ksh88, etc.).  The following are
+a list of names to be used for various shells (to keep things
+consistent):
+
+    sh		generic		any v7 bourne shell like thing
+    sh-v	generic		any system V bourne shell like thing
+    ksh		generic		any ksh
+    posix	generic		basic posix shell
+    posix-upu	generic		'user portability utility' options
+    sh-v7	specific	the real v7 bourne shell
+    sh-sysv	specific	the real sysv bourne shell
+    pdksh	specific	public domain ksh
+    ksh88	specific	at&t ksh88
+    ksh93	specific	at&t ksh93
+    bash	specific	GNU bourne-again shell
+
+The idea is to categorize all the tests according to the 'best match'
+(most generic thing).  All generics that apply should be specified.
+Generally, at most one specific shell will be given.
+
+At the moment, most (all) tests have not been categorized (any volunteers?).
+@
+
+
+2.1
+log
+@bump to mksh R19
+@
+text
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.15.1
+log
+@Import mirbsdksh-HEAD into new CVS
+@
+text
+@@

@@ -1,0 +1,94 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2004.08.04.11.47.21;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.55;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@/* Use of program name in error-reporting functions.
+   Copyright (C) 2001-2003 Free Software Foundation, Inc.
+   Written by Bruno Haible <haible@@clisp.cons.org>, 2001.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+
+
+#ifdef HAVE_CONFIG_H
+# include "config.h"
+#endif
+
+/* Specification.  */
+#include "error-progname.h"
+
+#include <stdio.h>
+
+#include "progname.h"
+
+
+/* Indicates whether errors and warnings get prefixed with program_name.
+   Default is true.  */
+bool error_with_progname = true;
+
+/* Print program_name prefix on stderr if and only if error_with_progname
+   is true.  */
+void
+maybe_print_progname ()
+{
+  if (error_with_progname)
+    fprintf (stderr, "%s: ", program_name);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

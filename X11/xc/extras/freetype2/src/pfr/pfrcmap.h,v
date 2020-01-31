@@ -1,0 +1,86 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.05.10;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.05.10;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/***************************************************************************/
+/*                                                                         */
+/*  pfrcmap.h                                                              */
+/*                                                                         */
+/*    FreeType PFR cmap handling (specification).                          */
+/*                                                                         */
+/*  Copyright 2002 by                                                      */
+/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */
+/*                                                                         */
+/*  This file is part of the FreeType project, and may only be used,       */
+/*  modified, and distributed under the terms of the FreeType project      */
+/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */
+/*  this file you indicate that you have read the license and              */
+/*  understand and accept it fully.                                        */
+/*                                                                         */
+/***************************************************************************/
+
+
+#ifndef __PFRCMAP_H__
+#define __PFRCMAP_H__
+
+#include <ft2build.h>
+#include FT_INTERNAL_OBJECTS_H
+#include "pfrtypes.h"
+
+
+FT_BEGIN_HEADER
+
+  typedef struct  PFR_CMapRec_
+  {
+    FT_CMapRec  cmap;
+    FT_UInt     num_chars;
+    PFR_Char    chars;
+  
+  } PFR_CMapRec, *PFR_CMap;
+
+
+  FT_CALLBACK_TABLE const FT_CMap_ClassRec  pfr_cmap_class_rec;
+
+FT_END_HEADER
+
+
+#endif /* __PFRCMAP_H__ */
+
+
+/* END */
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

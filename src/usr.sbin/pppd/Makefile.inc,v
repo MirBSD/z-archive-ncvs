@@ -1,0 +1,55 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.27.18.05.30;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.19.18.42.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@protect against multiple inclusion
+@
+text
+@# $MirBSD: src/usr.sbin/pppd/Makefile.inc,v 1.1 2005/01/19 18:42:11 tg Exp $
+
+.ifndef _MODSRC_USR_SBIN_PPPD_MAKEFILE_INC
+_MODSRC_USR_SBIN_PPPD_MAKEFILE_INC=1
+
+.include "../Makefile.inc"
+
+.endif
+@
+
+
+1.1
+log
+@another bunch of fixes
+- some link-time poisoned-function uses (mostly bcmp, the strcpy in
+  gnu are too numerous)
+- some compile-time problems caused by nonexistence of -Werror due to
+  an errorneus Makefile.inc in a subdir'd
+
+bump system version, it's going to be on herc soonish...
+@
+text
+@d1 4
+a4 1
+# $MirBSD$
+d7 2
+@
+

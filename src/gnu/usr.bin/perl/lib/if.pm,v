@@ -1,0 +1,107 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.58;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@package if;
+
+our $VERSION = '0.03';
+
+sub work {
+  my $method = shift() ? 'import' : 'unimport';
+  return unless shift;		# CONDITION
+
+  my $p = $_[0];		# PACKAGE
+  (my $file = "$p.pm") =~ s!::!/!g;
+  require $file or die;
+
+  my $m = $p->can($method);
+  goto &$m if $m;
+}
+
+sub import   { shift; unshift @@_, 1; goto &work }
+sub unimport { shift; unshift @@_, 0; goto &work }
+
+1;
+__END__
+
+=head1 NAME
+
+if - C<use> a Perl module if a condition holds
+
+=head1 SYNOPSIS
+
+  use if CONDITION, MODULE => ARGUMENTS;
+
+=head1 DESCRIPTION
+
+The construct
+
+  use if CONDITION, MODULE => ARGUMENTS;
+
+has no effect unless C<CONDITION> is true.  In this case the effect is
+the same as of
+
+  use MODULE ARGUMENTS;
+
+=head1 BUGS
+
+The current implementation does not allow specification of the
+required version of the module.
+
+=head1 AUTHOR
+
+Ilya Zakharevich L<mailto:perl-module-if@@ilyaz.org>.
+
+=cut
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

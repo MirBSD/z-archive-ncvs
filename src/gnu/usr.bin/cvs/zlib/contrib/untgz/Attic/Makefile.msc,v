@@ -1,0 +1,68 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.21.49.03;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.53;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.53;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@CC=cl
+CFLAGS=-MD
+
+untgz.exe: untgz.obj ..\..\zlib.lib
+	$(CC) $(CFLAGS) untgz.obj ..\..\zlib.lib
+
+untgz.obj: untgz.c ..\..\zlib.h
+	$(CC) $(CFLAGS) -c -I..\.. untgz.c
+
+..\..\zlib.lib:
+	cd ..\..
+	$(MAKE) -f win32\makefile.msc
+	cd contrib\untgz
+
+clean:
+	-del untgz.obj
+	-del untgz.exe
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

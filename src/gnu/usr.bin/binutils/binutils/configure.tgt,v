@@ -1,0 +1,81 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.23.01.44;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.01.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# This is the binutils target specific file.  This is invoked by the
+# autoconf generated configure script.  Putting it in a separate shell
+# file lets us skip running autoconf when modifying target specific
+# information.
+
+# This file switches on the shell variable ${targ}, and sets the
+# following shell variables:
+# targ_emul		name of emulation to use
+# targ_emul_vector	name of vector to use
+
+case "${targ}" in
+    powerpc-*-aix5* | rs6000-*-aix5*)
+	targ_emul=aix 
+	targ_emul_vector=bin_aix5_emulation 
+        ;;
+
+    powerpc-*-aix4.3* | rs6000-*-aix4.3*)
+	targ_emul=aix 
+        targ_emul_vector=bin_aix_emulation 
+        ;;
+
+    *)
+        targ_emul=vanilla 
+        targ_emul_vector=bin_vanilla_emulation 
+        ;;
+esac
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

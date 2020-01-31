@@ -1,0 +1,109 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@.\" @;
+
+
+2.1
+date	2005.01.03.16.33.18;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.47;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.47;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@.\"	$OpenBSD: ami.4,v 1.19 2004/04/07 11:36:27 jmc Exp $
+.\"
+.\" Michael Shalayeff, 2001. Public Domain.
+.\"
+.Dd February 27, 2004
+.Dt AMI 4
+.Os
+.Sh NAME
+.Nm ami
+.Nd American Megatrends Inc. MegaRAID Controllers
+.Sh SYNOPSIS
+.Cd "ami* at pci? dev ? function ?"
+.Cd "scsibus* at ami?"
+.Sh DESCRIPTION
+The
+.Nm
+driver provides support for the MegaRAID family of RAID controllers,
+including:
+.Pp
+.Bl -tag -width Ds -offset indent -compact
+.It Dell PERC2/DC, PERC3/DC, PERC3/DCL, PERC3/QC, PERC3/SC,
+.It Dell PERC4/DC, PERC4/SC, PERC4/Di, PERC4/Si, and CERC
+.It Hewlett-Packard 438, 466, and T[567]
+.It LSI/AMI MegaRAID
+.It LSI/Symbios 523 SATA
+.El
+.Pp
+These controllers support RAID 0, RAID 1, RAID 5, JBOD,
+and superpositions of those configurations.
+.Pp
+Some cards support both I2O and a so-called `Mass Storage' mode
+of operation.
+This driver only supports the `Mass Storage' mode; I2O mode is supported
+by the
+.Xr iop 4
+driver.
+.Pp
+Although the controllers are actual RAID controllers,
+the driver makes them look just like SCSI controllers.
+All RAID configuration is done through the controllers' BIOSes.
+.Sh SEE ALSO
+.Xr intro 4 ,
+.Xr iop 4 ,
+.Xr pci 4 ,
+.Xr scsi 4 ,
+.Xr sd 4
+.Sh HISTORY
+The
+.Nm
+driver first appeared in
+.Ox 2.9 .
+.Sh AUTHORS
+The
+.Nm
+driver was written by
+.An Michael Shalayeff Aq mickey@@openbsd.org .
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

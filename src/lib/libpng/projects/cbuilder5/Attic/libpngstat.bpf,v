@@ -1,0 +1,72 @@
+head	1.2;
+access;
+symbols
+	libpng-1_2_8:1.1.17.1 libpng:1.1.17;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.37.34;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches
+	1.1.17.1;
+next	;
+
+1.1.17.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke junk
+@
+text
+@USEUNIT("..\..\png.c");
+USEUNIT("..\..\pngerror.c");
+USEUNIT("..\..\pngget.c");
+USEUNIT("..\..\pngmem.c");
+USEUNIT("..\..\pngpread.c");
+USEUNIT("..\..\pngread.c");
+USEUNIT("..\..\pngrio.c");
+USEUNIT("..\..\pngrtran.c");
+USEUNIT("..\..\pngrutil.c");
+USEUNIT("..\..\pngset.c");
+USEUNIT("..\..\pngtrans.c");
+USEUNIT("..\..\pngwio.c");
+USEUNIT("..\..\pngwrite.c");
+USEUNIT("..\..\pngwtran.c");
+USEUNIT("..\..\pngwutil.c");
+USELIB("..\..\..\zlib\zlib.lib");
+//---------------------------------------------------------------------------
+#define Library
+
+// To add a file to the library use the Project menu 'Add to Project'.
+
+ @
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.17.1
+log
+@libpng-1.2.8.tar.bz2
+@
+text
+@@

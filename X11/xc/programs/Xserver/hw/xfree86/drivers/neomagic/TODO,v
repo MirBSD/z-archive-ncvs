@@ -1,0 +1,60 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.13.40;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.13.40;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@1. Acceleration:
+ 
+   a. Limitations from 3.3 apply.
+   b. No CPU to Screen color expand. Chipset requires SCANLINE_PAD_BYTE
+      XAA only supports SCANLINE_PAD_WORD
+
+2. Driver itself:
+
+   a. VL bus probe might be too intrusive
+   b. min clock guessed 11.0 MHz
+   c. guessed: interlace allowed only when external display is enabled.
+   d. display pitch guessed to be 8 bit.
+
+3. I2C Support:
+
+   a. Readback of clockline not implemented. 
+
+
+
+$XFree86: xc/programs/Xserver/hw/xfree86/drivers/neomagic/TODO,v 1.1 1999/04/17 07:06:16 dawes Exp $
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

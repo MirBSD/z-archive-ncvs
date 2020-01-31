@@ -1,0 +1,103 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.05.18;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.05.18;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#
+# $Date: 2004/03/05 21:57:50 $ $Revision: 1.1.9.2 $
+# $Header: /ocvs/src/X-Window/xc/extras/ogl-sample/main/doc/man/manglu/html_ftn/Distfile,v 1.1.9.2 2004/03/05 21:57:50 tg Exp $
+#
+
+DISTDIR_SI = /xc/doc/hardcopy/GL/html/glu_ftn
+
+DISTFILES_SI = \
+	fglubegincurve.html \
+	fglubeginpolygon.html \
+	fglubeginsurface.html \
+	fglubegintrim.html \
+	fglubuild1dmipmaplevels.html \
+	fglubuild1dmipmaps.html \
+	fglubuild2dmipmaplevels.html \
+	fglubuild2dmipmaps.html \
+	fglubuild3dmipmaplevels.html \
+	fglubuild3dmipmaps.html \
+	fglucheckextension.html \
+	fglucylinder.html \
+	fgludeletenurbsrenderer.html \
+	fgludeletequadric.html \
+	fgludeletetess.html \
+	fgludisk.html \
+	fgluerrorstring.html \
+	fglugetnurbsproperty.html \
+	fglugetstring.html \
+	fglugettessproperty.html \
+	fgluloadsamplingmatrices.html \
+	fglulookat.html \
+	fglunewnurbsrenderer.html \
+	fglunewquadric.html \
+	fglunewtess.html \
+	fglunextcontour.html \
+	fglunurbscallback.html \
+	fglunurbscallbackdata.html \
+	fglunurbscallbackdataext.html \
+	fglunurbscurve.html \
+	fglunurbsproperty.html \
+	fglunurbssurface.html \
+	fgluortho2d.html \
+	fglupartialdisk.html \
+	fgluperspective.html \
+	fglupickmatrix.html \
+	fgluproject.html \
+	fglupwlcurve.html \
+	fgluquadriccallback.html \
+	fgluquadricdrawstyle.html \
+	fgluquadricnormals.html \
+	fgluquadricorientation.html \
+	fgluquadrictexture.html \
+	fgluscaleimage.html \
+	fglusphere.html \
+	fglutessbegincontour.html \
+	fglutessbeginpolygon.html \
+	fglutesscallback.html \
+	fglutessendpolygon.html \
+	fglutessnormal.html \
+	fglutessproperty.html \
+	fglutessvertex.html \
+	fgluunproject.html \
+	fgluunproject4.html \
+	$(NULL)
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,105 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.06;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$MirBSD: src/etc/rc.securelevel,v 1.2 2003/10/01 16:15:59 tg Stab $
+#	$OpenBSD: rc.securelevel,v 1.14 2000/07/13 16:26:13 millert Exp $
+#
+# site-specific startup actions, daemons, and other things which
+# can be done BEFORE your system goes into securemode.  For actions
+# which should be done AFTER your system has gone into securemode
+# please see /etc/rc.local
+
+# This is the desired security level
+# XXX
+# XXX it is not really acceptable to put this value in a configuration
+# XXX file, because locking it down requires immutability on about
+# XXX 5 files instead of 2 (the kernel and init)
+# XXX
+securelevel=1
+
+WARN=""
+
+echo -n 'starting pre-securelevel daemons:'
+
+# Securelevel > 1 does not allow the clock to be set backwards
+if [[ $securelevel -gt 1 && $ntpdate_flags != NO \
+    && -x /usr/local/sbin/ntpdate ]]; then
+	echo -n ' ntpdate'
+	/usr/local/sbin/ntpdate -b $ntpdate_flags >/dev/null
+	WARN="${WARN}\nwarning: Do not use ntpdate, use rdate(8) instead!"
+fi
+
+if [[ $ntpd == YES && -x /usr/local/sbin/tickadj \
+    && -e /etc/ntp.conf ]]; then
+       echo -n ' tickadj';	/usr/local/sbin/tickadj -Aq
+	WARN="${WARN}\nwarning: tickadj started, but the xntpd suite is"
+	WARN="${WARN} broken\n    and the maintainer refuses to fix it!"
+fi
+
+echo '.'
+
+[[ -n $WARN ]] && echo "$WARN" | tail -n +2
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d17 2
+d22 2
+a23 2
+if [ $securelevel -gt 1 -a X"${ntpdate_flags}" != X"NO" \
+    -a -x /usr/local/sbin/ntpdate ]; then
+d25 2
+a26 1
+	/usr/local/sbin/ntpdate -b ${ntpdate_flags} >/dev/null
+d29 2
+a30 2
+if [ X"${ntpd}" == X"YES" -a -x /usr/local/sbin/tickadj \
+    -a -e /etc/ntp.conf ]; then
+d32 2
+d37 2
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

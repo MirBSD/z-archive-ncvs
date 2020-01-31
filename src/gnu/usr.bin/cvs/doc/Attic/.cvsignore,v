@@ -1,0 +1,94 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.21.48.39;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.40;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.40;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@*.dvi
+Makefile
+cvs-paper.pdf
+cvs-paper.ps
+cvs.aux
+cvs.cp
+cvs.cps
+cvs.dvi
+cvs.fn
+cvs.fns
+cvs.info
+cvs.info-*
+cvs.ky
+cvs.log
+cvs.pdf
+cvs.pg
+cvs.ps
+cvs.tmp
+cvs.toc
+cvs.tp
+cvs.txt
+cvs.vr
+cvs.vrs
+cvsclient.info
+cvsclient.aux
+cvsclient.cp
+cvsclient.cps
+cvsclient.dvi
+cvsclient.fn
+cvsclient.info
+cvsclient.info-*
+cvsclient.ky
+cvsclient.log
+cvsclient.pdf
+cvsclient.pg
+cvsclient.ps
+cvsclient.toc
+cvsclient.tp
+cvsclient.txt
+cvsclient.vr
+getdate-cvs.texi
+stamp-gdt
+mkman
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

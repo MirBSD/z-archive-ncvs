@@ -1,0 +1,75 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.45;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.29;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * Written by J.T. Conklin, Apr 4, 1995
+ * Public domain.
+ */
+
+#include <machine/asm.h>
+
+	.text
+#if defined(LIBC_SCCS)
+	.asciz "$OpenBSD: fpgetround.S,v 1.2 1996/08/19 08:12:23 tholo Exp $"
+#endif
+
+ENTRY(fpgetround)
+	subl $4,%esp
+	fnstcw (%esp)
+	movl (%esp),%eax
+	rorl $10,%eax
+	andl $3,%eax
+	addl $4,%esp
+	ret
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 1
+a9 1
+	.text
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

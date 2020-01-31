@@ -1,0 +1,139 @@
+head	1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.04.18.04.41;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.04.17.24.44;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@The usual removal of dupes and unused stuff
+@
+text
+@#
+# Default target
+#
+
+default: gc.o
+
+include ../config/common.mk
+
+#
+# compilation flags, etc.
+#
+
+
+CPPFLAGS = $(INCLUDE) $(CONFIG_CPPFLAGS) \
+	-DPCR_NO_RENAME -DPCR_NO_HOSTDEP_ERR
+#CFLAGS	= -DPCR -DSILENT $(CONFIG_CFLAGS)
+CFLAGS	= -DPCR $(CONFIG_CFLAGS)
+SPECIALCFLAGS = 	# For code involving asm's
+
+ASPPFLAGS  = $(INCLUDE) $(CONFIG_ASPPFLAGS) \
+	-DPCR_NO_RENAME -DPCR_NO_HOSTDEP_ERR -DASM
+
+ASFLAGS	= $(CONFIG_ASFLAGS)
+
+LDRFLAGS = $(CONFIG_LDRFLAGS)
+
+LDFLAGS = $(CONFIG_LDFLAGS)
+
+#
+#
+#
+#
+# BEGIN PACKAGE-SPECIFIC PART
+#
+#
+#
+#
+
+# Fix to point to local pcr installation directory.
+PCRDIR= ..
+
+COBJ= alloc.o reclaim.o allchblk.o misc.o os_dep.o mark_rts.o headers.o mark.o obj_map.o pcr_interface.o blacklst.o finalize.o new_hblk.o real_malloc.o dyn_load.o dbg_mlc.o malloc.o stubborn.o checksums.o solaris_threads.o typd_mlc.o ptr_chck.o mallocx.o
+
+CSRC= reclaim.c allchblk.c misc.c alloc.c mach_dep.c os_dep.c mark_rts.c headers.c mark.c obj_map.c pcr_interface.c blacklst.c finalize.c new_hblk.c real_malloc.c dyn_load.c dbg_mlc.c malloc.c stubborn.c checksums.c solaris_threads.c typd_mlc.c ptr_chck.c mallocx.c
+
+SHELL= /bin/sh
+
+default: gc.o
+
+gc.o: $(COBJ) mach_dep.o
+	$(LDR) $(CONFIG_LDRFLAGS) -o gc.o $(COBJ) mach_dep.o
+
+
+mach_dep.o: mach_dep.c mips_mach_dep.s rs6000_mach_dep.s if_mach if_not_there
+	rm -f mach_dep.o
+	./if_mach MIPS "" as -o mach_dep.o mips_mach_dep.s
+	./if_mach RS6000 "" as -o mach_dep.o rs6000_mach_dep.s
+	./if_mach ALPHA "" as -o mach_dep.o alpha_mach_dep.s
+	./if_mach SPARC SUNOS5 as -o mach_dep.o sparc_mach_dep.s
+	./if_not_there mach_dep.o $(CC) -c $(SPECIALCFLAGS) mach_dep.c
+
+if_mach: if_mach.c gcconfig.h
+	$(CC) $(CFLAGS) -o if_mach if_mach.c
+
+if_not_there: if_not_there.c
+	$(CC) $(CFLAGS) -o if_not_there if_not_there.c
+
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

@@ -1,0 +1,124 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.44;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.52;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@use warnings;
+
+BEGIN {
+#    chdir 't' if -d 't';
+#    push @@INC ,'../lib';
+    require Config; import Config;
+    unless ($Config{'useithreads'}) {
+        print "1..0 # Skip: no useithreads\n";
+        exit 0;
+    }
+}
+
+
+sub ok {
+    my ($id, $ok, $name) = @@_;
+
+    $name = '' unless defined $name;
+    # You have to do it this way or VMS will get confused.
+    print $ok ? "ok $id - $name\n" : "not ok $id - $name\n";
+
+    printf "# Failed test at line %d\n", (caller)[2] unless $ok;
+
+    return $ok;
+}
+
+use ExtUtils::testlib;
+use strict;
+BEGIN { print "1..11\n" };
+use threads;
+use threads::shared;
+ok(1,1,"loaded");
+
+my $sv;
+share($sv);
+$sv = "hi";
+my @@av;
+share(@@av);
+push @@av, $sv;
+ok(2, $av[0] eq "hi");
+push @@av, "foo";
+ok(3, $av[1] eq 'foo');
+my $av = threads->create(sub {	
+    my $av;	
+    my @@av2;
+    share($av);
+    share(@@av2);
+    $av = \@@av2;
+    push @@$av, "bar", \@@av;
+    return $av;
+})->join();
+ok(4,$av->[0] eq "bar");
+ok(5,$av->[1]->[0] eq 'hi');
+threads->create(sub { $av[0] = "hihi" })->join();
+ok(6,$av->[1]->[0] eq 'hihi');
+ok(7, pop(@@{$av->[1]}) eq "foo");
+ok(8, scalar(@@{$av->[1]}) == 1);
+threads->create(sub { @@$av = () })->join();
+threads->create(sub { ok(9, scalar @@$av == 0)})->join();
+threads->create(sub { unshift(@@$av, threads->create(sub { my @@array; share(@@array); return \@@array})->join())})->join();
+ok(10, ref($av->[0]) eq 'ARRAY');
+threads->create(sub { push @@{$av->[0]}, \@@av })->join();
+threads->create(sub { $av[0] = 'testtest'})->join();
+threads->create(sub { ok(11, $av->[0]->[0]->[0] eq 'testtest')})->join();
+
+
+
+
+
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,68 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.16.57;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.16.57;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/Xserver/miext/rootless/accel/Imakefile,v 1.1 2003/10/24 00:33:15 torrey Exp $
+
+#include <Server.tmpl>
+
+SRCS =  rlBlt.c \
+        rlCopy.c \
+        rlFill.c \
+        rlFillRect.c \
+        rlFillSpans.c \
+        rlGlyph.c \
+        rlSolid.c
+
+OBJS =  rlBlt.o \
+        rlCopy.o \
+        rlFill.o \
+        rlFillRect.o \
+        rlFillSpans.o \
+        rlGlyph.o \
+        rlSolid.o
+
+INCLUDES = -I. -I$(SERVERSRC)/fb -I$(SERVERSRC)/mi -I$(SERVERSRC)/include \
+           -I$(XINCLUDESRC) -I$(FONTINCSRC) -I$(SERVERSRC)/render \
+           -I$(EXTINCSRC) -I$(SERVERSRC)/Xext -I..
+
+NormalLibraryObjectRule()
+LibraryModuleTarget(rlAccel,$(OBJS))
+
+DependTarget()
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

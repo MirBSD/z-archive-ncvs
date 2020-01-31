@@ -1,0 +1,799 @@
+head	1.30;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.30
+date	2005.01.26.20.39.06;	author tg;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2005.01.19.20.48.21;	author tg;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2005.01.19.17.48.19;	author tg;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2005.01.19.17.41.32;	author tg;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2005.01.19.16.10.37;	author tg;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2005.01.19.15.42.47;	author tg;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2005.01.16.06.27.57;	author tg;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2005.01.09.21.48.02;	author tg;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2005.01.09.21.03.28;	author tg;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2005.01.09.20.38.16;	author tg;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2005.01.09.20.16.32;	author tg;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2005.01.09.19.03.14;	author tg;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2005.01.05.17.57.53;	author tg;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2005.01.05.16.39.49;	author tg;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2005.01.05.16.35.08;	author tg;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2005.01.05.16.04.18;	author tg;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2005.01.05.10.34.11;	author tg;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2005.01.05.08.57.17;	author tg;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2005.01.05.08.09.23;	author tg;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2005.01.05.08.01.50;	author tg;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2005.01.05.06.10.26;	author tg;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2005.01.05.05.32.19;	author tg;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2005.01.05.05.16.44;	author tg;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2005.01.05.04.47.43;	author tg;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2005.01.05.04.36.28;	author tg;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2005.01.05.03.17.23;	author tg;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2005.01.05.03.14.52;	author tg;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2005.01.05.02.19.24;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2005.01.04.21.09.19;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.04.20.51.02;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.30
+log
+@remove /usr/libexec/cpp here, it's non-ANSI now
+@
+text
+@# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.29 2005/01/19 20:48:21 tg Exp $
+
+.include <bsd.own.mk>
+.include "${GNUSYSTEM_AUX_DIR}/locations.mk"
+.include "../Makefile.inc"
+
+GCCVERSION=	3.4.4
+CPPFLAGS+=	-I${GNU_LIBIBERTY_INC} -DMIRBSD_NATIVE
+
+MAN=		doc/cpp.1 doc/mgcc.1 doc/gcov.1
+INFO=		doc/cpp.info doc/cppinternals.info doc/gcc.info doc/gccint.info
+
+.ifndef NO_ADA
+INFO+=		doc/gnat-style.info doc/gnat_rm.info doc/gnat_ugn_unw.info
+.endif
+
+.ifndef NO_CXX
+MLINKS=		mgcc.1 g++.1
+.endif
+
+.ifndef NO_F77
+MAN+=		doc/g77.1
+INFO+=		doc/g77.info
+.endif
+
+.ifndef NO_JAVA
+MAN+=		doc/gcj.1 doc/gcjh.1 doc/gij.1 doc/jcf-dump.1 \
+		doc/jv-convert.1 doc/jv-scan.1 doc/rmic.1 doc/rmiregistry.1
+INFO+=		doc/gcj.info
+.endif
+
+ALL_TARGET?=
+INST_TARGET=	INSTALL_TARGET='install-common $$(INSTALL_HEADERS) \
+		$$(INSTALL_LIBGCC) lang.install-normal' install
+FSFMAKE=	ulimit -dS 245760; PATH=${FSFOBJDIR}/lbin:$$PATH \
+		${XVARS} ${GMAKE} ${FSFMARGS} ${XARGS}
+FSFMARGS+=	MAKE=${GMAKE}
+
+__LANGS=	--enable-languages=c
+.ifndef NO_ADA
+__LANGS:=	${__LANGS},ada
+.endif
+.ifndef NO_CXX
+__LANGS:=	${__LANGS},c++
+.endif
+.ifndef NO_OBJC
+__LANGS:=	${__LANGS},objc
+.endif
+.ifndef NO_F77
+__LANGS:=	${__LANGS},f77
+.endif
+.ifndef NO_JAVA
+__LANGS:=	${__LANGS},java
+.endif
+
+BOOT_CFLAGS?=	${FSFCFLAGS}
+XARGS+=		BISON=yacc LIBIBERTY_HDRS="${GNU_LIBIBERTY_INC}" \
+		BUILD_LIBIBERTY="-liberty" LIBIBERTY="-liberty" \
+		SUB_LIBERTY="-liberty" STMP_FIXINC=stmp-fixinc-fake \
+		extrapartsdir='/usr/lib' BOOT_CFLAGS="${BOOT_CFLAGS}" \
+		CFLAGS="${FSFCFLAGS}" GNATLIBCFLAGS="${BOOT_CFLAGS}" \
+		HOST_CC="${HOSTCC}" HOST_CFLAGS="${HOSTCFLAGS}"
+
+CFARGS+=	--prefix=/usr --libexecdir=/usr/lib --infodir=/usr/share/info \
+		--mandir=/usr/share/man --disable-generated-files-in-srcdir \
+		--disable-threads --disable-objc-gc --disable-shared \
+		--enable-stack-protector=yes --enable-sjlj-exceptions \
+		--with-local-prefix=/usr --disable-nls --with-system-zlib \
+		--with-gxx-include-dir=/usr/include/gxx ${__LANGS}
+
+CLEANFILES+=	gcclink ${MAN} ${INFO} doc/fsf-funding.7 doc/gccinstall.info \
+		doc/gfdl.7 doc/gnat_ugn_unw.texi doc/gpl.7 doc/gcc.1 \
+		gcov-iov.h gengtype-lex.c gengtype-yacc.c gengtype-yacc.h \
+		gpr2make gprcmd
+
+# For Ada (native/host gnatmake)
+config.status: gcclink
+
+gcclink:
+.if ${CC} != "gcc"
+	test -d lbin || mkdir lbin
+	-rm -f lbin/gcc
+	ln -s $$(whence -p ${CC}) lbin/gcc
+.endif
+	touch $@@
+
+tconfig.h:	prereq
+	cd ${FSFOBJDIR} && ${FSFMAKE} $@@
+
+tree-check.h:	prereq
+	cd ${FSFOBJDIR} && ${FSFMAKE} $@@
+
+all-quick:
+	cd ${FSFOBJDIR} && ${FSFMAKE} ${ALL_TARGET}
+
+pre-install:
+	mkdir -p ${DESTDIR}/usr/lib/gcc/${GCCTARGET}/${GCCVERSION}
+
+${MAN}: do-build
+
+doc/gcc.1: do-build
+
+doc/mgcc.1: doc/gcc.1
+	cp doc/gcc.1 doc/mgcc.1
+
+post-install:
+.for _i in ${INFO}
+	${INSTALL} ${INSTALL_COPY} -o ${MANOWN} -g ${MANGRP} -m ${MANMODE} \
+	    ${_i} ${DESTDIR}/usr/share/info/
+.endfor
+	${INSTALL} ${INSTALL_COPY} ${INSTALL_STRIP} -m ${BINMODE} \
+	    -o ${BINOWN} -g ${BINGRP} cpp ${DESTDIR}/usr/bin/mcpp
+	${INSTALL} ${INSTALL_COPY} ${INSTALL_STRIP} -m ${BINMODE} \
+	    -o ${BINOWN} -g ${BINGRP} xgcc ${DESTDIR}/usr/bin/mgcc
+	chown -R ${BINOWN}:${BINGRP} \
+	    ${DESTDIR}/usr/lib/gcc/${GCCTARGET}/${GCCVERSION}
+
+pre-clean:
+	-rm -rf ada lbin
+
+.PHONY: all-quick
+
+.include <bsd.cfwrap.mk>
+@
+
+
+1.29
+log
+@of course, installing xgcc as cpp won't work
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.28 2005/01/19 17:48:19 tg Exp $
+a114 3
+	# warning: for now only!
+	${INSTALL} ${INSTALL_COPY} ${INSTALL_STRIP} -m ${BINMODE} \
+	    -o ${BINOWN} -g ${BINGRP} cpp ${DESTDIR}/usr/libexec/cpp
+@
+
+
+1.28
+log
+@for now, install as /usr/libexec/cpp too, until Reiser CPP is ready
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.27 2005/01/19 17:41:32 tg Exp $
+d117 1
+a117 1
+	    -o ${BINOWN} -g ${BINGRP} xgcc ${DESTDIR}/usr/libexec/cpp
+@
+
+
+1.27
+log
+@fix make b-r
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.26 2005/01/19 16:10:37 tg Exp $
+d115 3
+@
+
+
+1.26
+log
+@install gcc(1) manpage as mgcc(1) because that's the name of
+the executable, because theo says we do so ;)
+
+don't move mcpp because reiser cpp hasn't got a manpage :(
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.25 2005/01/19 15:42:47 tg Exp $
+d18 1
+a18 1
+MLINKS=		gcc.1 g++.1
+d104 1
+a104 1
+	cp $> $@@
+@
+
+
+1.25
+log
+@install GNU cpp as /usr/bin/mcpp like gcc
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.24 2005/01/16 06:27:57 tg Exp $
+d10 1
+a10 1
+MAN=		doc/cpp.1 doc/gcc.1 doc/gcov.1
+d72 3
+a74 2
+		doc/gfdl.7 doc/gnat_ugn_unw.texi doc/gpl.7 gcov-iov.h \
+		gengtype-lex.c gengtype-yacc.c gengtype-yacc.h gpr2make gprcmd
+d101 5
+@
+
+
+1.24
+log
+@disable always-propolice, it's suspected to be a problem source
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.23 2005/01/09 21:48:02 tg Exp $
+d106 1
+a106 3
+	    -o ${BINOWN} -g ${BINGRP} cpp ${DESTDIR}/usr/libexec/cpp
+	-rm -f ${DESTDIR}/usr/bin/cpp
+	ln -sf ../libexec/cpp ${DESTDIR}/usr/bin/cpp
+@
+
+
+1.23
+log
+@fix dependency of manpages, along with fastjar
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.22 2005/01/09 21:03:28 tg Exp $
+d67 1
+a67 1
+		--enable-stack-protector=always --enable-sjlj-exceptions \
+@
+
+
+1.22
+log
+@make $GMAKE avail to all
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.21 2005/01/09 20:38:16 tg Exp $
+d98 1
+a98 1
+${MANALL}: do-build
+@
+
+
+1.21
+log
+@sync list of installed files and manuals
+sync cleanfiles
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.20 2005/01/09 20:16:32 tg Exp $
+a34 1
+GMAKE?=		/usr/local/bin/gmake
+@
+
+
+1.20
+log
+@chown to root:bin after installation
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.19 2005/01/09 19:03:14 tg Exp $
+d11 7
+d19 12
+a30 1
+INFO=		cpp.info cppinternals.info gcc.info gccint.info
+d72 3
+a74 9
+CLEANFILES+=	gcclink doc/cpp.1 doc/cpp.info doc/cppinternals.info \
+		doc/gnat_ugn_unw.texi doc/gnat_ugn_unw.info doc/gnat_rm.info \
+		doc/gnat-style.info gpr2make gprcmd configargs.h \
+		doc/fsf-funding.7 doc/gcc.1 doc/gcc.info doc/gccinstall.info \
+		doc/g77.1 doc/g77.info doc/gcj.1 doc/gcj.info doc/gcjh.1 \
+		doc/gij.1 doc/jcf-dump.1 doc/jv-convert.1 doc/jv-scan.1 \
+		doc/rmic.1 doc/rmiregistry.1 doc/gccint.info doc/gcov.1 \
+		doc/gfdl.7 doc/gpl.7 gcov-iov.h gengtype-lex.c \
+		gengtype-yacc.c gengtype-yacc.h
+d104 1
+a104 1
+	    doc/${_i} ${DESTDIR}/usr/share/info/
+@
+
+
+1.19
+log
+@sync CLEANFILES (gcj, f77)
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.18 2005/01/05 17:57:53 tg Exp $
+d100 2
+@
+
+
+1.18
+log
+@evil plans: -fstack-protector-all default, as it used to be
+still disabled for Ada for good reasons ;)
+
+<mira> benz: -fstack-protector-all wieder als default, wie früher?
+<benz> jo
+agreed bsiegert@@
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.17 2005/01/05 16:39:49 tg Exp $
+d58 5
+a62 2
+		doc/gccint.info doc/gcov.1 doc/gfdl.7 doc/gpl.7 gcov-iov.h \
+		gengtype-lex.c gengtype-yacc.c gengtype-yacc.h
+@
+
+
+1.17
+log
+@* one more cleanfile
+* stupid typo prevented --enable-stack-protector
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.16 2005/01/05 16:35:08 tg Exp $
+d50 1
+a50 1
+		--enable-stack-protector --enable-sjlj-exceptions \
+@
+
+
+1.16
+log
+@switches for the languages, and add java(tm) and f77
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.15 2005/01/05 16:04:18 tg Exp $
+d54 1
+a54 1
+CLEANFILES+=	doc/cpp.1 doc/cpp.info doc/cppinternals.info \
+@
+
+
+1.15
+log
+@bring this thing into a pretty usable shape
+as a bonus, if ${DESTDIR}/systrace.policy is generated
+by us, it's removed by us on make cleandir as well
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.14 2005/01/05 10:34:11 tg Exp $
+d5 1
+a7 1
+__LANGS=	--enable-languages=c,ada,c++,objc
+d22 17
+@
+
+
+1.14
+log
+@my baby seems to build so far quite fine
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.13 2005/01/05 08:57:17 tg Exp $
+d45 3
+a47 1
+prereq:
+d53 1
+@
+
+
+1.13
+log
+@deep magic: during core gcc build, some Ada stuff is built using
+just gnatmake -q; the (installed) gnatmake assumes gcc is being
+used and named "gcc" - changable with --GCC= but they don't.
+
+the least intrusive way, besides renaming mgcc to gcc, is to have
+a symlink for the time of building. everything else works as is.
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.12 2005/01/05 08:09:23 tg Exp $
+d10 4
+a63 3
+MAN=		doc/cpp.1 doc/gcc.1 doc/gcov.1
+INFO=		cpp.info cppinternals.info gcc.info gccint.info
+
+@
+
+
+1.12
+log
+@more cleanfiles and two new kids on the block: cxx and objc
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.11 2005/01/05 08:01:50 tg Exp $
+d14 2
+a15 1
+FSFMAKE=	ulimit -dS 245760; ${XVARS} ${GMAKE} ${FSFMARGS} ${XARGS}
+d40 8
+d78 1
+a78 1
+	-rm -rf ada
+@
+
+
+1.11
+log
+@disable posix threads; the Makefiles do forget that -pthread must be
+used when linking. (*sigh*)
+Ada builds fine now, though.
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.10 2005/01/05 06:10:26 tg Exp $
+d7 1
+d25 2
+a26 2
+CFARGS+=	--disable-nls --prefix=/usr --infodir=/usr/share/info \
+		--libexecdir=/usr/lib --disable-generated-files-in-srcdir \
+d28 3
+a30 3
+		--enable-sjlj-exceptions --with-local-prefix=/usr \
+		--with-gxx-include-dir=/usr/include/gxx --with-system-zlib \
+		--enable-stack-protector --enable-languages=c,ada
+d34 1
+a34 1
+		doc/gnat-style.info \
+d69 1
+a69 1
+	-rm -rf ada/bldtools
+@
+
+
+1.10
+log
+@since we don't have a system boehm-gc, I'm not so sure
+about letting objc use boehm at all...
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.9 2005/01/05 05:32:19 tg Exp $
+d26 1
+a26 1
+		--enable-threads=posix --disable-objc-gc --disable-shared \
+d61 3
+a63 1
+	    -o ${BINOWN} -g ${BINGRP} cpp ${DESTDIR}/usr/bin/cpp
+@
+
+
+1.9
+log
+@byebye /usr/libexec/cpp
+we now install mgcc no separate cpp frontend as /usr/bin/cpp,
+losing the "Reiser CCCP" shell wrapper. finally.
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.8 2005/01/05 05:16:44 tg Exp $
+d26 1
+a26 1
+		--enable-threads=posix --enable-objc-gc --disable-shared \
+@
+
+
+1.8
+log
+@*sigh* I give up. /usr/lib/gcc/ it is.
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.7 2005/01/05 04:47:43 tg Exp $
+d61 1
+a61 1
+	    -o ${BINOWN} -g ${BINGRP} cpp ${DESTDIR}/usr/libexec/cpp
+@
+
+
+1.7
+log
+@merge SSP, write configure part
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.6 2005/01/05 04:36:28 tg Exp $
+d32 2
+d48 1
+a48 1
+	mkdir -p ${DESTDIR}/usr/lib/gcc-lib/${GCCTARGET}/${GCCVERSION}
+d65 3
+@
+
+
+1.6
+log
+@sufficiently builds
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.5 2005/01/05 03:17:23 tg Exp $
+d29 1
+a29 1
+		--enable-languages=c,ada
+@
+
+
+1.5
+log
+@more CLEANFILES
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.4 2005/01/05 03:14:52 tg Exp $
+d20 2
+a21 2
+		extrapartsdir='/usr/lib' \
+		CFLAGS="${FSFCFLAGS}" BOOT_CFLAGS="${BOOT_CFLAGS}" \
+d29 1
+a29 1
+		--enable-languages=c
+@
+
+
+1.4
+log
+@* fix a problem occuring due to the removal of fixincludes
+* don't install gccbug
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.3 2005/01/05 02:19:24 tg Exp $
+d31 4
+a34 1
+CLEANFILES+=	gcov-iov.h gengtype-lex.c gengtype-yacc.c gengtype-yacc.h
+@
+
+
+1.3
+log
+@first build success for i386... still not everything right,
+it wants /usr/libexec/gcc-lib and fixincludes
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.2 2005/01/04 21:09:19 tg Exp $
+a9 1
+#NOMAN=		yes
+d19 2
+a20 1
+		SUB_LIBERTY="-liberty" STMP_FIXINC= extrapartsdir='/usr/lib' \
+d31 2
+@
+
+
+1.2
+log
+@porting goes further: make magic
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/gcc/Makefile.bsd-wrapper,v 1.1 2005/01/04 20:51:02 tg Exp $
+d10 3
+a12 7
+NOMAN=		yes
+INST_TARGET=	install
+#prefix=/usr tooldir=/tmp assertdir=/tmp bindir=/usr/bin \
+#		infodir=/usr/share/info NO_TARGET_GCC=true \
+#		INSTALL_TARGET='install-common $$(INSTALL_HEADERS) \
+#		$$(INSTALL_LIBGCC) lang.install-normal' install
+
+d17 1
+d20 2
+d25 1
+a25 1
+		--mandir=/usr/share/man --disable-generated-files-in-srcdir \
+d29 1
+a29 1
+		--enable-languages=c,proto
+d43 5
+d49 8
+@
+
+
+1.1
+log
+@a start at building gcc
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/gcc/gcc/Makefile.bsd-wrapper,v 1.52.2.2 2004/12/29 00:11:23 tg Exp $
+d25 1
+a25 1
+CFARGS+=	--prefix=/usr --sysconfdir=/etc --infodir=/usr/share/info \
+d27 4
+a30 4
+		--enable-__cxa_atexit --enable-threads=posix --enable-objc-gc \
+		--disable-shared --enable-sjlj-exceptions --disable-nls \
+		--with-local-prefix=/usr --disable-libtool-lock \
+		--with-gxx-include-dir=/usr/include/gxx --with-system-zlib
+@
+

@@ -1,0 +1,94 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.23;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.16;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.16;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@
+require 5;
+use Test;
+BEGIN { plan tests => 4; }
+use Locale::Maketext 1.01;
+print "# Hi there...\n";
+ok 1;
+
+
+print "# --- Making sure that get_handle works with utf8 ---\n";
+use utf8;
+
+# declare some classes...
+{
+  package Woozle;
+  @@ISA = ('Locale::Maketext');
+  sub dubbil   { return $_[1] * 2  .chr(2000)}
+  sub numerate { return $_[2] . 'en'  }
+}
+{
+  package Woozle::eu_mt;
+  @@ISA = ('Woozle');
+  %Lexicon = (
+   'd2' => chr(1000) . 'hum [dubbil,_1]',
+   'd3' => chr(1000) . 'hoo [quant,_1,zaz]',
+   'd4' => chr(1000) . 'hoo [*,_1,zaz]',
+  );
+  keys %Lexicon; # dodges the 'used only once' warning
+}
+
+my $lh;
+print "# Basic sanity:\n";
+ok defined( $lh = Woozle->get_handle('eu-mt') ) && ref($lh);
+ok $lh && $lh->maketext('d2', 7), chr(1000)."hum 14".chr(2000)   ;
+
+
+print "# Byebye!\n";
+ok 1;
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

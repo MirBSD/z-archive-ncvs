@@ -1,0 +1,82 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.37.32;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.33.32;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.33.32;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * Written by J.T. Conklin <jtc@@netbsd.org>.
+ * Public domain.
+ * Adapted for NetBSD/x86_64 by Frank van der Linden <fvdl@@wasabisystems.com>
+ */
+
+#include <machine/asm.h>
+
+#if defined(LIBC_SCCS)
+	RCSID("$NetBSD: rindex.S,v 1.1 2001/06/19 00:22:47 fvdl Exp $")
+#endif
+
+#ifdef STRRCHR
+ENTRY(strrchr)
+#else
+ENTRY(rindex)
+#endif
+	movb	%sil,%cl
+	xorq	%rax,%rax		/* init pointer to null */
+L1:
+	movb	(%rdi),%dl
+	cmpb	%dl,%cl
+	jne	L2
+	movq	%rdi,%rax
+L2:
+	incq	%rdi
+	testb	%dl,%dl			/* null terminator??? */
+	jnz	L1
+	ret
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

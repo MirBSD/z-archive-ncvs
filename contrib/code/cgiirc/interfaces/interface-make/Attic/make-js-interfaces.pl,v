@@ -1,0 +1,192 @@
+head	2.3;
+access;
+symbols
+	cgiirc-0_5_5:1.1.3.2
+	cgiirc-0_5_4:1.1.3.1
+	tg:1.1.3;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.18.20.26.31;	author tg;	state dead;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.18.20.12.41;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.19.14.29.16;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches
+	1.1.3.1;
+next	;
+
+1.1.3.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches;
+next	1.1.3.2;
+
+1.1.3.2
+date	2005.01.18.20.03.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@nah, doesnt work like I would
+@
+text
+@#!/usr/bin/perl
+# $MirBSD: contrib/code/cgiirc/interfaces/interface-make/make-js-interfaces.pl,v 2.2 2005/01/18 20:12:41 tg Exp $
+#
+# CGI:IRC JavaScript Interface builder
+# Copyright (C) 2002 David Leadbeater (http://contact.dgl.cx/)
+# Licensed under the GPLv2
+use Symbol;
+use IO::Handle;
+
+my(%fd, %current);
+my @@browsers = qw/ie mozilla konqueror opera7/;
+@@current{@@browsers} = @@browsers;
+
+for(@@browsers) {
+   $fd{$_} = Symbol::gensym;
+   open($fd{$_}, ">../$_.pm") or die "Out to ../$_.pm: $!";
+#?   $fd{$_}->autoflush(1);
+}
+
+open(IN, "main.pm");
+my @@in = <IN>; # don't use while - bug in perl?
+close(IN);
+parse_line($_) for @@in;
+
+close($fd{$_}) for @@browsers;
+
+sub parse_line {
+   $_ = $_[0];
+   if(/^\.\$?(\w+)(?: (.*))?/) {
+        # The $ is so the variables get syntax hilighted :)
+      my($cmd, $param) = ($1, $2);
+      my @@params = split(' ', $param);
+
+      if($cmd eq 'include') {
+         open(INC, $param) or die "$param: $!";
+         parse_line($_) while <INC>;
+         close(INC);
+      }elsif($cmd eq 'sub') {
+         out_cur("sub $param {\n");
+         open(SUB, "$param.pm") or die "$param: $!";
+         parse_line($_) while <SUB>;
+         close(SUB);
+         out_cur("}\n");
+      }elsif($cmd eq 'just') {
+         for my $current (keys %current) {
+            $current{$current} = 0;
+            if(scalar(grep(/$current/, @@params))) {
+               $current{$current} = 1;
+            }
+         }
+      }elsif($cmd eq 'not') {
+         for my $current (keys %current) {
+            $current{$current} = 1;
+            if(scalar(grep(/$current/, @@params))) {
+               $current{$current} = 0;
+            }
+         }
+      }elsif($cmd eq 'end') {
+         @@current{keys %current} = keys %current;
+      }elsif($cmd eq 'else') {
+         for(keys %current) {
+            $current{$_} = $current{$_} ? 0 : 1;
+         }
+      }else{
+         print "urm? $cmd isn't valid\n";
+      }
+
+   }else{
+      out_cur($_);
+   }
+}
+
+sub out_cur {
+   $_ = $_[0];
+   for my $b(keys %current) {
+      my $x = $_;
+      $x =~ s/\*\*BROWSER/$b/g;
+      my $fh = $fd{$b}; # cry :(
+      print $fh $x if $current{$b};
+   }
+}
+@
+
+
+2.2
+log
+@merge
+@
+text
+@d2 1
+a2 1
+# $MirBSD: contrib/code/cgiirc/interfaces/interface-make/make-js-interfaces.pl,v 2.1 2004/12/19 14:29:16 tg Exp $
+@
+
+
+2.1
+log
+@*sigh* update to MirCGIIRC
+@
+text
+@d2 1
+a2 1
+# $MirBSD: contrib/code/cgiirc/interfaces/interface-make/make-js-interfaces.pl,v 1.2 2004/10/27 11:30:30 tg Exp $
+d5 1
+a5 1
+# Copyright (C) 2002 David Leadbeater (cgiirc@@dgl.cx)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 2
+d67 1
+a67 1
+      
+a81 1
+
+@
+
+
+1.1.3.1
+log
+@Import cgiirc 0.5.4 (pristine) again
+@
+text
+@@
+
+
+1.1.3.2
+log
+@there's a new CGI::IRC out, with utf-8 supposedly, and fireschrott bugfixes
+@
+text
+@d3 1
+a3 1
+# Copyright (C) 2002 David Leadbeater (http://contact.dgl.cx/)
+@
+

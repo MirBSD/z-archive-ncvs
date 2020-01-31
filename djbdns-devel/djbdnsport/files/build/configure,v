@@ -1,0 +1,117 @@
+head	1.4;
+access;
+symbols
+	start:1.1.1.1 tg:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.4
+date	2005.12.14.00.23.21;	author tg;	state Exp;
+branches;
+next	1.3;
+commitid	0439f660247896f6;
+
+1.3
+date	2005.12.13.23.37.02;	author tg;	state Exp;
+branches;
+next	1.2;
+commitid	0439f5b3265932f0;
+
+1.2
+date	2005.12.13.23.36.13;	author tg;	state Exp;
+branches;
+next	1.1;
+commitid	0439f5afcbf57cbd;
+
+1.1
+date	2005.12.13.20.44.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+commitid	0439f32c6884c25e;
+
+1.1.1.1
+date	2005.12.13.20.44.45;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f32c6884c25e;
+
+
+desc
+@@
+
+
+1.4
+log
+@fix sysconfdir issues
+@
+text
+@#!/bin/sh
+# $MirOS: ports/net/djbdns/files/build/configure,v 1.1.201.1 2005/05/14 23:21:06 tg Exp $
+
+cd src
+echo >hasshsgr.h
+echo >hasdevtcp.h
+cp $TOP/src/direntry.h2 direntry.h
+cp $TOP/src/iopause.h2 iopause.h
+cp $TOP/src/select.h2 select.h
+cp $TOP/src/uint32.h1 uint32.h
+cp $TOP/src/uint64.h1 uint64.h
+cd ..
+
+ed -s man/Makefile <<-EOF
+	%g/@@@@SYSCONFDIR@@@@/s##$SYSCONFDIR#
+	wq
+EOF
+
+exec ${MAKE:-make} obj
+@
+
+
+1.3
+log
+@fix relative paths
+@
+text
+@d14 5
+@
+
+
+1.2
+log
+@fix shell code and path to includes
+@
+text
+@a6 1
+
+d12 1
+a12 1
+cd ../..
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d4 3
+a6 3
+cd bins/include
+print -n >hasshsgr.h
+print -n >hasdevtcp.h
+d15 1
+a15 3
+${MAKE:-make} obj
+
+exit 0
+@
+
+
+1.1.1.1
+log
+@Import ports/net/djbdns of snapshot
+@
+text
+@@

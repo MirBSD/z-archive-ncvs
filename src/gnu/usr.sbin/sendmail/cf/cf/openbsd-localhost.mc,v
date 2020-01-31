@@ -1,0 +1,101 @@
+head	2.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.02;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.11;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@divert(-1)
+#
+# $MirBSD: src/gnu/usr.sbin/sendmail/cf/cf/openbsd-localhost.mc,v 1.2 2004/11/20 00:24:32 tg Exp $
+#
+# Copyright (c) 2004
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+# Copyright (c) 1998 Sendmail, Inc.  All rights reserved.
+# Copyright (c) 1983 Eric P. Allman.  All rights reserved.
+# Copyright (c) 1988, 1993
+#	The Regents of the University of California.  All rights reserved.
+#
+# By using this file, you agree to the terms and conditions set
+# forth in the LICENSE file which can be found at the top level of
+# the sendmail distribution.
+#
+#
+
+#
+#  This configuration only runs sendmail on the localhost interface.
+#  This allows mail on the local host to work without accepting
+#  connections from the net at large.
+#
+
+divert(0)dnl
+VERSIONID(`@@(#)openbsd-localhost.mc $Revision: 1.2 $')
+OSTYPE(openbsd)dnl
+FEATURE(nouucp, `reject')dnl
+FEATURE(`accept_unresolvable_domains')dnl
+FEATURE(`no_default_msa')dnl
+MAILER(local)dnl
+MAILER(smtp)dnl
+DAEMON_OPTIONS(`Family=inet, address=127.0.0.1, Name=MTA')dnl
+DAEMON_OPTIONS(`Family=inet6, address=::1, Name=MTA6, M=O')dnl
+DAEMON_OPTIONS(`Family=inet, address=127.0.0.1, Port=587, Name=MSA, M=E')dnl
+DAEMON_OPTIONS(`Family=inet6, address=::1, Port=587, Name=MSA6, M=O, M=E')dnl
+CLIENT_OPTIONS(`Family=inet6, Address=::')dnl
+CLIENT_OPTIONS(`Family=inet, Address=0.0.0.0')dnl
+dnl
+dnl Some broken nameservers will return SERVFAIL (a temporary failure) 
+dnl on T_AAAA (IPv6) lookups.
+define(`confBIND_OPTS', `WorkAroundBrokenAAAA')dnl
+define(`confSEVEN_BIT_INPUT', `True')dnl
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 4
+d25 1
+a25 1
+VERSIONID(`@@(#)openbsd-localhost.mc $Revision: 1.4 $')
+d42 1
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

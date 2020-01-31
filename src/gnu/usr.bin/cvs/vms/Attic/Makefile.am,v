@@ -1,0 +1,111 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.21.48.54;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.58;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@## Process this file with automake to produce Makefile.in
+
+# *** Under VMS, we use *.COM to build, not
+# *** this makefile.  However, we need this file in order for 'make
+# *** dist' to work properly on Unix machines.
+
+# Makefile for GNU CVS VMS distribution.
+# Copyright (C) 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994,
+#               1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003
+#               Free Software Foundation, Inc.
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+EXTRA_DIST = \
+    ChangeLog \
+    Makefile.in \
+    build_vms.com \
+    config.h \
+    dir.h \
+    filesubr.c \
+    filutils.c \
+    filutils.h \
+    getpass.c \
+    getwd.c \
+    misc.c \
+    misc.h \
+    ndir.c \
+    ndir.h \
+    pathnames.h \
+    pc.c \
+    pipe.c \
+    pipe.h \
+    piped_child.c \
+    pwd.c \
+    pwd.h \
+    rcmd.c \
+    readlink.c \
+    rmdir.c \
+    startserver.c \
+    stat.c \
+    unlink.c \
+    utime.c \
+    vms-types.h \
+    vms.h \
+    vmsmunch.c \
+    vmsmunch.h \
+    vmsmunch_private.h \
+    waitpid.c
+
+# for backwards compatibility with the old makefiles
+realclean: maintainer-clean
+.PHONY: realclean
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

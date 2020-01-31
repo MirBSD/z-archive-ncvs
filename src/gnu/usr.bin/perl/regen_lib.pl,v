@@ -1,0 +1,100 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.28;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.25;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/bin/perl -w
+use strict;
+use vars qw($Is_W32 $Is_OS2 $Is_Cygwin $Is_NetWare $Needs_Write);
+use Config; # Remember, this is running using an existing perl
+
+# Common functions needed by the regen scripts
+
+$Is_W32 = $^O eq 'MSWin32';
+$Is_OS2 = $^O eq 'os2';
+$Is_Cygwin = $^O eq 'cygwin';
+$Is_NetWare = $Config{osname} eq 'NetWare';
+if ($Is_NetWare) {
+  $Is_W32 = 0;
+}
+
+$Needs_Write = $Is_OS2 || $Is_W32 || $Is_Cygwin || $Is_NetWare;
+
+sub safer_unlink {
+  my @@names = @@_;
+  my $cnt = 0;
+
+  my $name;
+  foreach $name (@@names) {
+    next unless -e $name;
+    chmod 0777, $name if $Needs_Write;
+    ( CORE::unlink($name) and ++$cnt
+      or warn "Couldn't unlink $name: $!\n" );
+  }
+  return $cnt;
+}
+
+sub safer_rename_silent {
+  my ($from, $to) = @@_;
+
+  # Some dosish systems can't rename over an existing file:
+  safer_unlink $to;
+  chmod 0600, $from if $Needs_Write;
+  rename $from, $to;
+}
+
+sub safer_rename {
+  my ($from, $to) = @@_;
+  safer_rename_silent($from, $to) or die "renaming $from to $to: $!";
+}
+1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

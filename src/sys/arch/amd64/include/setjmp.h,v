@@ -1,0 +1,74 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.34.12;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.09;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.09;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: setjmp.h,v 1.1 2004/01/28 01:39:39 mickey Exp $	*/
+/*	$NetBSD: setjmp.h,v 1.1 2003/04/26 18:39:47 fvdl Exp $	*/
+
+/*
+ * machine/setjmp.h: machine dependent setjmp-related information.
+ * These are only the callee-saved registers, code calling setjmp
+ * will expect the rest to be clobbered anyway.
+ */
+
+#define _JB_RBX		0
+#define _JB_RBP		1
+#define _JB_R12		2
+#define _JB_R13		3
+#define _JB_R14		4
+#define _JB_R15		5
+#define _JB_RSP		6
+#define _JB_PC		7
+#define _JB_SIGFLAG	8
+#define _JB_SIGMASK	9
+
+#define	_JBLEN	11		/* size, in longs, of a jmp_buf */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

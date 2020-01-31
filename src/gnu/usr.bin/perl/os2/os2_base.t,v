@@ -1,0 +1,107 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.00;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.41;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.41;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/bin/perl -w
+BEGIN {
+    chdir 't' if -d 't';
+    @@INC = '../lib';
+}
+
+use Test::More tests => 19;
+use strict;
+use Config;
+
+my $cwd = Cwd::sys_cwd();
+ok -d $cwd;
+
+my $lpb = Cwd::extLibpath;
+$lpb .= ';' unless $lpb and $lpb =~ /;$/;
+
+my $lpe = Cwd::extLibpath(1);
+$lpe .= ';' unless $lpe and $lpe =~ /;$/;
+
+ok Cwd::extLibpath_set("$lpb$cwd");
+
+$lpb = Cwd::extLibpath;
+$lpb =~ s#\\#/#g;
+(my $s_cwd = $cwd) =~ s#\\#/#g;
+
+like($lpb, qr/\Q$s_cwd/);
+
+ok Cwd::extLibpath_set("$lpe$cwd", 1);
+
+$lpe = Cwd::extLibpath(1);
+$lpe =~ s#\\#/#g;
+
+like($lpe, qr/\Q$s_cwd/);
+
+if (uc OS2::DLLname() eq uc $^X) {	# Static build
+  my ($short) = ($^X =~ m,.*[/\\]([^.]+),);
+  is(uc OS2::DLLname(1), uc $short);
+  is(uc OS2::DLLname, uc $^X );		# automatically
+  is(1,1);				# automatically...
+} else {
+  is(uc OS2::DLLname(1), uc $Config{dll_name});
+  like(OS2::DLLname, qr#\Q/$Config{dll_name}\E\.dll$#i );
+  (my $root_cwd = $s_cwd) =~ s,/t$,,;
+  like(OS2::DLLname, qr#^\Q$root_cwd\E(/t)?\Q/$Config{dll_name}\E\.dll#i );
+}
+is(OS2::DLLname, OS2::DLLname(2));
+like(OS2::DLLname(0), qr#^(\d+)$# );
+
+
+is(OS2::DLLname($_), OS2::DLLname($_, \&Cwd::extLibpath) ) for 0..2;
+ok(not defined eval { OS2::DLLname $_, \&Cwd::cwd; 1 } ) for 0..2;
+ok(not defined eval { OS2::DLLname $_, \&xxx; 1 } ) for 0..2;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

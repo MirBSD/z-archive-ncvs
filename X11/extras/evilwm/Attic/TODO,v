@@ -1,0 +1,64 @@
+head	1.2;
+access;
+symbols
+	evilwm-0_99_17:1.1.3.1 tg:1.1.3;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.06.22.13.39;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.06.21.15.24;	author tg;	state Exp;
+branches
+	1.1.3.1;
+next	;
+
+1.1.3.1
+date	2005.01.06.21.15.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@What I'd like to do some time...
+
+* Fullscreen toggle needs to account for Xinerama.
+
+* New windows tile as well as possible.
+
+* Seems like some applications (notably audiocontrol) bring themselves
+  to the front whenever mapped.  This breaks the simple approach to
+  keeping stacking order on changing desktop.  So probably have to do
+  the structure reordering thing.
+
+* Think of some good way of adding controllable window resizing beyond the
+  fullscreen/vertical maximise toggles.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.3.1
+log
+@evilwm 0.99.17 (.orig.tar.gz)
+@
+text
+@@

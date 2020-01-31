@@ -1,0 +1,118 @@
+head	1.3;
+access;
+symbols
+	start:1.1.1.1 tg:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.3
+date	2005.12.13.22.27.11;	author tg;	state dead;
+branches;
+next	1.2;
+commitid	0439f4ac1aff1455;
+
+1.2
+date	2005.12.13.21.21.08;	author tg;	state Exp;
+branches;
+next	1.1;
+commitid	0439f3b48b1b2910;
+
+1.1
+date	2005.12.13.20.44.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+commitid	0439f32c6884c25e;
+
+1.1.1.1
+date	2005.12.13.20.44.45;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f32c6884c25e;
+
+
+desc
+@@
+
+
+1.3
+log
+@consolidate all added source files in a central directory
+so it can be reused by the v6-transport stuff
+@
+text
+@#include "byte.h"
+#include "fmt.h"
+#include "dns.h"
+
+/* RFC1886:
+ *   4321:0:1:2:3:4:567:89ab
+ * ->
+ *   b.a.9.8.7.6.5.0.4.0.0.0.3.0.0.0.2.0.0.0.1.0.0.0.0.0.0.0.1.2.3.4.IP6.INT.
+ *   b.a.9.8.7.6.5.0.4.0.0.0.3.0.0.0.2.0.0.0.1.0.0.0.0.0.0.0.1.2.3.4.IP6.ARPA.
+ */
+
+extern char tohex(char num);
+
+unsigned int mkint(unsigned char a,unsigned char b) {
+  return ((unsigned int)a << 8) + (unsigned int)b;
+}
+
+int dns_name6_domain(char name[DNS_NAME6_DOMAIN],const char ip[16],int t)
+{
+  unsigned int j;
+
+  for (j=0; j<16; j++) {
+    name[j*4]=1;
+    name[j*4+1]=tohex(ip[15-j] & 15);
+    name[j*4+2]=1;
+    name[j*4+3]=tohex((unsigned char)ip[15-j] >> 4);
+  }
+  if (t==DNS_IP6_INT)
+    byte_copy(name + 4*16,9,"\3ip6\3int\0");
+  else if (t==DNS_IP6_ARPA)
+    byte_copy(name + 4*16,10,"\3ip6\4arpa\0");
+  else return 0;
+  return 4*16+9+t;
+}
+
+@
+
+
+1.2
+log
+@update to fefe's djbdns-1.05-test23.diff
+with djbdns-1.05-ixfr.diff
+@
+text
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d5 1
+a5 1
+/* RFC1886, RFC3152:
+d8 1
+d12 2
+d18 1
+a18 1
+int dns_name6_domain(char name[DNS_NAME6_DOMAIN],char ip[16])
+d28 6
+a33 2
+  byte_copy(name + 4*16,10,"\3ip6\3arpa\0");
+  return 4*16+10;
+d35 1
+@
+
+
+1.1.1.1
+log
+@Import ports/net/djbdns of snapshot
+@
+text
+@@

@@ -1,0 +1,97 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.09;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/bin/ksh
+#
+#	$MirBSD: src/etc/weekly,v 1.2 2004/10/09 01:36:22 tg Exp $
+#	$OpenBSD: weekly,v 1.14 2003/06/30 22:04:57 avsm Exp $
+#
+
+PATH=/bin:/sbin:/usr/sbin:/usr/bin:/usr/libexec
+export PATH
+
+if [ -f /etc/weekly.local ]; then
+	echo ""
+	echo "Running weekly.local:"
+	. /etc/weekly.local
+fi
+
+echo ""
+if [ -f /var/db/locate.database ]; then
+	TMP=`mktemp /var/db/locate.database.XXXXXXXXXX`
+	if [ $? -eq 0 ]; then
+		trap 'rm -f $TMP' 0 1 15
+		echo "Rebuilding locate database:"
+		UPDATEDB="/usr/libexec/locate.updatedb"
+		echo "${UPDATEDB} --fcodes=- --tmpdir=${TMPDIR:-/var/tmp}" | \
+		    nice -5 su -m nobody 2>/dev/null 1>$TMP
+		if [ -s "$TMP" ]; then
+			chmod 444 $TMP
+			chown root:wheel $TMP
+			mv -f $TMP /var/db/locate.database
+		else
+			echo "Not installing locate database; zero size"
+		fi
+	else
+		echo "Not rebuilding locate database; can't create temp file"
+	fi
+else
+	echo "Not rebuilding locate database; no /var/db/locate.database"
+fi
+
+echo ""
+echo "Rebuilding whatis databases:"
+makewhatis
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+#!/bin/sh -
+d3 1
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,57 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.13.38;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.13.38;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/mga/mga_map.h,v 1.2 2001/07/25 15:05:06 dawes Exp $ */
+
+#if !defined(UNIXCPP) || defined(ANSICPP)
+#define CATNAME(prefix,subname) prefix##subname
+#else
+#define CATNAME(prefix,subname) prefix/**/subname
+#endif
+
+#if PSZ == 8
+#define MGANAME(subname) CATNAME(Mga8,subname)
+#elif PSZ == 16
+#define MGANAME(subname) CATNAME(Mga16,subname)
+#elif PSZ == 24
+#define MGANAME(subname) CATNAME(Mga24,subname)
+#elif PSZ == 32
+#define MGANAME(subname) CATNAME(Mga32,subname)
+#endif
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

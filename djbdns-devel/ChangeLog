@@ -1,0 +1,654 @@
+Commit ID:	0439f3b48b1b2910
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 21:21:09 UTC
+
+Modified files:
+	files/build/bins/include: ip6.h
+	files/build/bins/lib: dns_nd6.c ip6_fmt.c ip6_scan.c socket_connect6.c
+			 socket_tcp6.c socket_udp6.c
+
+Log message:
+update to fefe's djbdns-1.05-test23.diff
+with djbdns-1.05-ixfr.diff
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/bins/include/ip6.h
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/bins/lib/dns_nd6.c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/bins/lib/ip6_fmt.c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/bins/lib/ip6_scan.c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/bins/lib/socket_connect6.c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/bins/lib/socket_tcp6.c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/bins/lib/socket_udp6.c
+________________________________________________________________________
+
+Commit ID:	0439f48ca142fd18
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 22:18:56 UTC
+
+Modified files:
+	patches        : patch-src_dns_h patch-src_dns_name_c
+			 patch-src_dns_rcip_c patch-src_dns_resolve_c
+			 patch-src_dns_transmit_c patch-src_dnscache-conf_c
+			 patch-src_dnscache_c patch-src_dnsfilter_c
+			 patch-src_dnsname_c patch-src_dnsq_c patch-src_log_c
+			 patch-src_okclient_c patch-src_pickdns-conf_c
+			 patch-src_qlog_c patch-src_query_c patch-src_query_h
+			 patch-src_rbldns-conf_c patch-src_roots_c
+			 patch-src_server_c patch-src_tdlookup_c
+			 patch-src_tinydns-conf_c patch-src_tinydns-data_c
+			 patch-src_walldns-conf_c
+Added files:
+	patches        : patch-src_error_h
+
+Log message:
+* update to fefe's djbdns-1.05-test23.diff
+with djbdns-1.05-ixfr.diff
+* slightly change naming of v6-transport binaries
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_dns_h
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_dns_name_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_dns_rcip_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_dns_resolve_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_dns_transmit_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_dnscache-conf_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_dnscache_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_dnsfilter_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_dnsname_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_dnsq_c
+cvs rdiff -ur0 -r1.1 djbdnsport/patches/patch-src_error_h
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_log_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_okclient_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_pickdns-conf_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_qlog_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_query_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_query_h
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_rbldns-conf_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_roots_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_server_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_tdlookup_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_tinydns-conf_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_tinydns-data_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_walldns-conf_c
+________________________________________________________________________
+
+Commit ID:	0439f49b51284d95
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 22:22:23 UTC
+
+djbdnsport/files/build/src
+
+Update of /home/tg/Ctmp/djbdnsport/files/build/src
+In directory odem.66h.42h.de:/Devel/ports/Mystuff/djbdnsport/files/build/src
+
+Log Message:
+Directory /home/tg/Ctmp/djbdnsport/files/build/src added to the repository
+
+________________________________________________________________________
+
+Commit ID:	0439f4ac1aff1455
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 22:27:16 UTC
+
+Modified files:
+	files/build    : Makefile.inc
+	files/build/bins: Makefile.inc
+Added files:
+	files/build/src: dns_ip6.c dns_ipq6.c dns_nd6.c dns_sortip6.c dnsip6.c
+			 dnsip6q.c fmt_xlong.c haveip6.h haven2i.h ip6.h
+			 ip6_fmt.c ip6_scan.c scan_xlong.c sockaddr_in6.h
+			 socket_accept6.c socket_bind6.c socket_connect6.c
+			 socket_getifidx.c socket_noipv6.c socket_recv6.c
+			 socket_send6.c socket_tcp6.c socket_udp6.c
+Removed files:
+	files/build/bins/dnsip6: dnsip6.c
+	files/build/bins/dnsip6q: dnsip6q.c
+	files/build/bins/include: haveip6.h haven2i.h ip6.h sockaddr_in6.h
+	files/build/bins/lib: dns_ip6.c dns_ipq6.c dns_nd6.c dns_sortip6.c
+			 fmt_xlong.c ip6_fmt.c ip6_scan.c scan_xlong.c
+			 socket_accept6.c socket_bind6.c socket_connect6.c
+			 socket_getifidx.c socket_noipv6.c socket_recv6.c
+			 socket_send6.c socket_tcp6.c socket_udp6.c
+
+Log message:
+consolidate all added source files in a central directory
+so it can be reused by the v6-transport stuff
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/Makefile.inc
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/bins/Makefile.inc
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/dnsip6/dnsip6.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/dnsip6q/dnsip6q.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/include/haveip6.h
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/include/haven2i.h
+cvs rdiff -ur1.2 -r0 djbdnsport/files/build/bins/include/ip6.h
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/include/sockaddr_in6.h
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/lib/dns_ip6.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/lib/dns_ipq6.c
+cvs rdiff -ur1.2 -r0 djbdnsport/files/build/bins/lib/dns_nd6.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/lib/dns_sortip6.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/lib/fmt_xlong.c
+cvs rdiff -ur1.2 -r0 djbdnsport/files/build/bins/lib/ip6_fmt.c
+cvs rdiff -ur1.2 -r0 djbdnsport/files/build/bins/lib/ip6_scan.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/lib/scan_xlong.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/lib/socket_accept6.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/lib/socket_bind6.c
+cvs rdiff -ur1.2 -r0 djbdnsport/files/build/bins/lib/socket_connect6.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/lib/socket_getifidx.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/lib/socket_noipv6.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/lib/socket_recv6.c
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/build/bins/lib/socket_send6.c
+cvs rdiff -ur1.2 -r0 djbdnsport/files/build/bins/lib/socket_tcp6.c
+cvs rdiff -ur1.2 -r0 djbdnsport/files/build/bins/lib/socket_udp6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/dns_ip6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/dns_ipq6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/dns_nd6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/dns_sortip6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/dnsip6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/dnsip6q.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/fmt_xlong.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/haveip6.h
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/haven2i.h
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/ip6.h
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/ip6_fmt.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/ip6_scan.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/scan_xlong.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/sockaddr_in6.h
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/socket_accept6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/socket_bind6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/socket_connect6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/socket_getifidx.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/socket_noipv6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/socket_recv6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/socket_send6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/socket_tcp6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/files/build/src/socket_udp6.c
+________________________________________________________________________
+
+Commit ID:	0439f4be90928005
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 22:31:54 UTC
+
+Log message:
+    clone the v4 bins for v6 transport
+
+Status:
+
+Vendor Tag:	tg
+Release Tags:	start
+
+    I djbdnsport/files/build/binst6/CVS
+    N djbdnsport/files/build/binst6/Makefile
+    N djbdnsport/files/build/binst6/Makefile.inc
+    I djbdnsport/files/build/binst6/axfr-get/CVS
+    N djbdnsport/files/build/binst6/axfr-get/Makefile
+    I djbdnsport/files/build/binst6/axfrdns/CVS
+    N djbdnsport/files/build/binst6/axfrdns/Makefile
+    I djbdnsport/files/build/binst6/axfrdns-conf/CVS
+    N djbdnsport/files/build/binst6/axfrdns-conf/Makefile
+    I djbdnsport/files/build/binst6/dnscache/CVS
+    N djbdnsport/files/build/binst6/dnscache/Makefile
+    I djbdnsport/files/build/binst6/dnscache-conf/CVS
+    N djbdnsport/files/build/binst6/dnscache-conf/Makefile
+    I djbdnsport/files/build/binst6/dnsfilter/CVS
+    N djbdnsport/files/build/binst6/dnsfilter/Makefile
+    I djbdnsport/files/build/binst6/dnsip/CVS
+    N djbdnsport/files/build/binst6/dnsip/Makefile
+    I djbdnsport/files/build/binst6/dnsip6/CVS
+    N djbdnsport/files/build/binst6/dnsip6/Makefile
+    I djbdnsport/files/build/binst6/dnsip6q/CVS
+    N djbdnsport/files/build/binst6/dnsip6q/Makefile
+    I djbdnsport/files/build/binst6/dnsipq/CVS
+    N djbdnsport/files/build/binst6/dnsipq/Makefile
+    I djbdnsport/files/build/binst6/dnsmx/CVS
+    N djbdnsport/files/build/binst6/dnsmx/Makefile
+    I djbdnsport/files/build/binst6/dnsname/CVS
+    N djbdnsport/files/build/binst6/dnsname/Makefile
+    I djbdnsport/files/build/binst6/dnsq/CVS
+    N djbdnsport/files/build/binst6/dnsq/Makefile
+    I djbdnsport/files/build/binst6/dnsqr/CVS
+    N djbdnsport/files/build/binst6/dnsqr/Makefile
+    I djbdnsport/files/build/binst6/dnstrace/CVS
+    N djbdnsport/files/build/binst6/dnstrace/Makefile
+    I djbdnsport/files/build/binst6/dnstxt/CVS
+    N djbdnsport/files/build/binst6/dnstxt/Makefile
+    I djbdnsport/files/build/binst6/lib/CVS
+    N djbdnsport/files/build/binst6/lib/Makefile
+    I djbdnsport/files/build/binst6/pickdns/CVS
+    N djbdnsport/files/build/binst6/pickdns/Makefile
+    I djbdnsport/files/build/binst6/pickdns-conf/CVS
+    N djbdnsport/files/build/binst6/pickdns-conf/Makefile
+    I djbdnsport/files/build/binst6/pickdns-data/CVS
+    N djbdnsport/files/build/binst6/pickdns-data/Makefile
+    I djbdnsport/files/build/binst6/random-ip/CVS
+    N djbdnsport/files/build/binst6/random-ip/Makefile
+    I djbdnsport/files/build/binst6/rbldns/CVS
+    N djbdnsport/files/build/binst6/rbldns/Makefile
+    I djbdnsport/files/build/binst6/tinydns/CVS
+    N djbdnsport/files/build/binst6/tinydns/Makefile
+    I djbdnsport/files/build/binst6/rbldns-conf/CVS
+    N djbdnsport/files/build/binst6/rbldns-conf/Makefile
+    I djbdnsport/files/build/binst6/rbldns-data/CVS
+    N djbdnsport/files/build/binst6/rbldns-data/Makefile
+    I djbdnsport/files/build/binst6/tinydns-conf/CVS
+    N djbdnsport/files/build/binst6/tinydns-conf/Makefile
+    I djbdnsport/files/build/binst6/tinydns-data/CVS
+    N djbdnsport/files/build/binst6/tinydns-data/Makefile
+    I djbdnsport/files/build/binst6/tinydns-edit/CVS
+    N djbdnsport/files/build/binst6/tinydns-edit/Makefile
+    I djbdnsport/files/build/binst6/tinydns-get/CVS
+    N djbdnsport/files/build/binst6/tinydns-get/Makefile
+    I djbdnsport/files/build/binst6/walldns/CVS
+    N djbdnsport/files/build/binst6/walldns/Makefile
+    I djbdnsport/files/build/binst6/walldns-conf/CVS
+    N djbdnsport/files/build/binst6/walldns-conf/Makefile
+
+    No conflicts created by this import
+________________________________________________________________________
+
+Commit ID:	0439f4ddd29e3d35
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 22:40:14 UTC
+
+Modified files:
+	files/build    : Makefile
+	files/build/binst6: Makefile Makefile.inc
+
+Log message:
+integrate the v6 transport binaries
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/Makefile.inc
+________________________________________________________________________
+
+Commit ID:	0439f4e4e838431c
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 22:42:04 UTC
+
+Modified files:
+	.              : Makefile
+
+Log message:
+fix spacing
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/Makefile
+________________________________________________________________________
+
+Commit ID:	0439f4f53524b6db
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 22:46:30 UTC
+
+Modified files:
+	patches        : patch-man_tinydns-data_8
+	pkg            : DESCR MESSAGE
+
+Log message:
+sync descriptive texts with reality
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-man_tinydns-data_8
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/pkg/DESCR
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/pkg/MESSAGE
+________________________________________________________________________
+
+Commit ID:	0439f504ebe828cb
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 22:50:40 UTC
+
+Modified files:
+	files/data     : dnsroots.eorsn
+
+Log message:
+sync European ORSN (v4 and v6) to their root.hint
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/data/dnsroots.eorsn
+________________________________________________________________________
+
+Commit ID:	0439f50e503cb809
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 22:53:06 UTC
+
+Modified files:
+	files/data     : dnsroots.opennic
+
+Log message:
+sync OpenNIC too
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/data/dnsroots.opennic
+________________________________________________________________________
+
+Commit ID:	0439f5182a0bb03b
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 22:55:50 UTC
+
+Modified files:
+	.              : Makefile bulklist
+	pkg            : MESSAGE
+Removed files:
+	files/data     : dnsroots.orsc
+
+Log message:
+Open-RSC seeminly ceased to exist recently
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.2 -r1.3 djbdnsport/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/bulklist
+cvs rdiff -ur1.1.1.1 -r0 djbdnsport/files/data/dnsroots.orsc
+cvs rdiff -ur1.2 -r1.3 djbdnsport/pkg/MESSAGE
+________________________________________________________________________
+
+Commit ID:	0439f536ded0ce95
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 23:04:05 UTC
+
+Modified files:
+	patches        : patch-src_tinydns-data_c
+Added files:
+	patches        : patch-src_pickdns-data_c patch-src_rbldns-data_c
+			 patch-src_tinydns-data_c.orig
+
+Log message:
+Apply compiler-temporary-filename.patch
+from http://homepages.tesco.net/~J.deBoynePollard/FGA/djbdns-problems.html
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur0 -r1.1 djbdnsport/patches/patch-src_pickdns-data_c
+cvs rdiff -ur0 -r1.1 djbdnsport/patches/patch-src_rbldns-data_c
+cvs rdiff -ur1.2 -r1.3 djbdnsport/patches/patch-src_tinydns-data_c
+cvs rdiff -ur0 -r1.1 djbdnsport/patches/patch-src_tinydns-data_c.orig
+________________________________________________________________________
+
+Commit ID:	0439f5385377a307
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 23:04:15 UTC
+
+Removed files:
+	patches        : patch-src_tinydns-data_c.orig
+
+Log message:
+oops
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.1 -r0 djbdnsport/patches/patch-src_tinydns-data_c.orig
+________________________________________________________________________
+
+Commit ID:	0439f54a63507b80
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 23:09:21 UTC
+
+Modified files:
+	patches        : patch-src_query_c
+
+Log message:
+apply dnscache-cname-handling.patch
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.2 -r1.3 djbdnsport/patches/patch-src_query_c
+________________________________________________________________________
+
+Commit ID:	0439f55f4c26936c
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 23:14:44 UTC
+
+Modified files:
+	patches        : patch-src_log_c patch-src_query_c
+Added files:
+	patches        : patch-src_log_h
+
+Log message:
+apply dnscache-strict-forwardonly.patch w/ IPv6 tweak
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.2 -r1.3 djbdnsport/patches/patch-src_log_c
+cvs rdiff -ur0 -r1.1 djbdnsport/patches/patch-src_log_h
+cvs rdiff -ur1.3 -r1.4 djbdnsport/patches/patch-src_query_c
+________________________________________________________________________
+
+Commit ID:	0439f564a1453b34
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 23:16:14 UTC
+
+Modified files:
+	patches        : patch-src_dns_rcip_c
+
+Log message:
+apply dnscacheip-space-separator.patch
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.2 -r1.3 djbdnsport/patches/patch-src_dns_rcip_c
+________________________________________________________________________
+
+Commit ID:	0439f58c7289b65f
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 23:26:48 UTC
+
+Modified files:
+	patches        : patch-src_tdlookup_c
+
+Log message:
+apply tinydns-alias-chain-truncation.patch
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.2 -r1.3 djbdnsport/patches/patch-src_tdlookup_c
+________________________________________________________________________
+
+Commit ID:	0439f5a348c2fe40
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 23:32:53 UTC
+
+Modified files:
+	patches        : patch-src_tinydns-data_c
+
+Log message:
+apply tinydns-data-semantic-error.patch
+appropriately for 6 and 3, too
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.3 -r1.4 djbdnsport/patches/patch-src_tinydns-data_c
+________________________________________________________________________
+
+Commit ID:	0439f5afcbf57cbd
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 23:36:13 UTC
+
+Modified files:
+	files/build    : configure
+
+Log message:
+fix shell code and path to includes
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/configure
+________________________________________________________________________
+
+Commit ID:	0439f5b3265932f0
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 23:37:02 UTC
+
+Modified files:
+	files/build    : configure
+
+Log message:
+fix relative paths
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.2 -r1.3 djbdnsport/files/build/configure
+________________________________________________________________________
+
+Commit ID:	0439f5c026e0c89a
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/13 23:40:49 UTC
+
+Modified files:
+	files/build/binst6: Makefile.inc
+	files/build/binst6/axfr-gett6: Makefile
+	files/build/binst6/axfrdnst6: Makefile
+	files/build/binst6/axfrdnst6-conf: Makefile
+	files/build/binst6/dnscachet6: Makefile
+	files/build/binst6/dnscachet6-conf: Makefile
+	files/build/binst6/dnsfiltert6: Makefile
+	files/build/binst6/dnsqrt6: Makefile
+	files/build/binst6/dnsqt6: Makefile
+	files/build/binst6/libt6: Makefile
+	files/build/binst6/pickdnst6: Makefile
+	files/build/binst6/pickdnst6-conf: Makefile
+	files/build/binst6/rbldnst6: Makefile
+	files/build/binst6/rbldnst6-conf: Makefile
+	files/build/binst6/tinydnst6: Makefile
+	files/build/binst6/tinydnst6-conf: Makefile
+	files/build/binst6/walldnst6: Makefile
+	files/build/binst6/walldnst6-conf: Makefile
+
+Log message:
+fix names of library and programmes; NOMAN=yes here
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.2 -r1.3 djbdnsport/files/build/binst6/Makefile.inc
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/axfr-gett6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/axfrdnst6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/axfrdnst6-conf/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/dnscachet6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/dnscachet6-conf/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/dnsfiltert6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/dnsqrt6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/dnsqt6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/libt6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/pickdnst6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/pickdnst6-conf/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/rbldnst6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/rbldnst6-conf/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/tinydnst6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/tinydnst6-conf/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/walldnst6/Makefile
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/binst6/walldnst6-conf/Makefile
+________________________________________________________________________
+
+Commit ID:	0439f6152767f69a
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/14 00:03:18 UTC
+
+Modified files:
+	.              : Makefile
+	files/build/src: dnsip6.c
+	patches        : patch-src_dnscache_c patch-src_dnsq_c
+			 patch-src_dnstrace_c patch-src_log_c patch-src_query_c
+			 patch-src_tdlookup_c patch-src_tinydns-data_c
+	pkg            : PLIST
+Added files:
+	patches        : patch-src_dns_domain_c patch-src_dnsqr_c
+			 patch-src_prot_c patch-src_scan_h
+			 patch-src_scan_ulong_c
+
+Log message:
+build it with -Wall -Werror
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.3 -r1.4 djbdnsport/Makefile
+cvs rdiff -ur1.1 -r1.2 djbdnsport/files/build/src/dnsip6.c
+cvs rdiff -ur0 -r1.1 djbdnsport/patches/patch-src_dns_domain_c
+cvs rdiff -ur1.2 -r1.3 djbdnsport/patches/patch-src_dnscache_c
+cvs rdiff -ur1.2 -r1.3 djbdnsport/patches/patch-src_dnsq_c
+cvs rdiff -ur0 -r1.1 djbdnsport/patches/patch-src_dnsqr_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/patches/patch-src_dnstrace_c
+cvs rdiff -ur1.3 -r1.4 djbdnsport/patches/patch-src_log_c
+cvs rdiff -ur0 -r1.1 djbdnsport/patches/patch-src_prot_c
+cvs rdiff -ur1.4 -r1.5 djbdnsport/patches/patch-src_query_c
+cvs rdiff -ur0 -r1.1 djbdnsport/patches/patch-src_scan_h
+cvs rdiff -ur0 -r1.1 djbdnsport/patches/patch-src_scan_ulong_c
+cvs rdiff -ur1.3 -r1.4 djbdnsport/patches/patch-src_tdlookup_c
+cvs rdiff -ur1.4 -r1.5 djbdnsport/patches/patch-src_tinydns-data_c
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/pkg/PLIST
+________________________________________________________________________
+
+Commit ID:	0439f635f9066f8a
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/14 00:12:01 UTC
+
+Modified files:
+	files/build    : Makefile.inc
+	files/build/man: Makefile
+	patches        : patch-src_dnscache-conf_c
+Added files:
+	patches        : patch-src_dns_rcrw_c
+
+Log message:
+honour ${SYSCONFDIR} throughout the port
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.2 -r1.3 djbdnsport/files/build/Makefile.inc
+cvs rdiff -ur1.1.1.1 -r1.2 djbdnsport/files/build/man/Makefile
+cvs rdiff -ur0 -r1.1 djbdnsport/patches/patch-src_dns_rcrw_c
+cvs rdiff -ur1.2 -r1.3 djbdnsport/patches/patch-src_dnscache-conf_c
+________________________________________________________________________
+
+Commit ID:	0439f660247896f6
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/14 00:23:21 UTC
+
+Modified files:
+	.              : Makefile
+	files/build    : Makefile.inc configure
+	files/build/man: Makefile
+
+Log message:
+fix sysconfdir issues
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.4 -r1.5 djbdnsport/Makefile
+cvs rdiff -ur1.3 -r1.4 djbdnsport/files/build/Makefile.inc
+cvs rdiff -ur1.3 -r1.4 djbdnsport/files/build/configure
+cvs rdiff -ur1.2 -r1.3 djbdnsport/files/build/man/Makefile
+________________________________________________________________________
+
+Commit ID:	0439f7edee492750
+CVSROOT:	/home/tg/Ctmp
+Module name:	djbdnsport
+Changes by:	tg@odem.66h.42h.de	2005/12/14 02:09:42 UTC
+
+Modified files:
+	.              : Makefile
+	patches        : patch-src_dns_h patch-src_dns_transmit_c
+	pkg            : DESCR
+
+Log message:
+Add support for the IPv6 transport module to communicate,
+as a client, with IPv4 transport name servers as well.
+
+WFM
+
+To generate a diff of this changeset, execute the following commands:
+cvs rdiff -ur1.5 -r1.6 djbdnsport/Makefile
+cvs rdiff -ur1.2 -r1.3 djbdnsport/patches/patch-src_dns_h
+cvs rdiff -ur1.2 -r1.3 djbdnsport/patches/patch-src_dns_transmit_c
+cvs rdiff -ur1.2 -r1.3 djbdnsport/pkg/DESCR
+________________________________________________________________________
+

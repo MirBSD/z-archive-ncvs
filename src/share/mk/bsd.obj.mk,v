@@ -1,0 +1,197 @@
+head	2.2;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.14.14.15.20;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.33.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@* protect from multiple inclusion
+* switch defaults to be suitable for gcc 3.4
+* remove crap
+* unify style a bit
+@
+text
+@# $MirBSD: src/share/mk/bsd.obj.mk,v 2.1 2005/01/03 16:33:53 tg Exp $
+# $OpenBSD: bsd.obj.mk,v 1.12 2003/10/28 17:09:33 espie Exp $
+# $NetBSD: bsd.obj.mk,v 1.9 1996/04/10 21:08:05 thorpej Exp $
+
+.if !defined(BSD_OBJ_MK)
+BSD_OBJ_MK=1
+
+.if !defined(BSD_OWN_MK)
+.  include <bsd.own.mk>
+.endif
+
+.if !target(obj)
+.  if ${NOOBJ:L} != "no"
+obj:
+.  else
+
+.    if defined(MAKEOBJDIR) && !empty(MAKEOBJDIR)
+__baseobjdir=	${MAKEOBJDIR}
+.    else
+__baseobjdir=	obj
+.    endif
+
+.    if defined(OBJMACHINE)
+__objdir=	${__baseobjdir}.${MACHINE}
+.    else
+__objdir=	${__baseobjdir}
+.    endif
+
+.    if defined(USR_OBJMACHINE)
+__usrobjdir=	${BSDOBJDIR}.${MACHINE}
+__usrobjdirpf=	
+.    else
+__usrobjdir=	${BSDOBJDIR}
+.      if defined(OBJMACHINE)
+__usrobjdirpf=	.${MACHINE}
+.      else
+__usrobjdirpf=
+.      endif
+.    endif
+
+_SUBDIRUSE:
+
+obj! _SUBDIRUSE
+	@@cd ${.CURDIR}; \
+	here=$$(/bin/pwd); bsdsrcdir=$$( (cd ${BSDSRCDIR} && /bin/pwd) \
+	    2>/dev/null || print '${BSDSRCDIR}'); \
+	subdir=$${here#$${bsdsrcdir}/}; \
+	if test $$here != $$subdir ; then \
+		dest=${__usrobjdir}/$$subdir${__usrobjdirpf} ; \
+		echo "$$here/${__objdir} -> $$dest"; \
+		if test ! -L ${__objdir} -o \
+		    X$$(readlink ${__objdir}) != X$$dest; \
+		    then \
+			if test -e ${__objdir}; then rm -rf ${__objdir}; fi; \
+			ln -sf $$dest ${__objdir}; \
+		fi; \
+		if test -d ${__usrobjdir} -a ! -d $$dest; then \
+			mkdir -p $$dest; \
+		else \
+			true; \
+		fi; \
+	else \
+		true ; \
+		dest=$$here/${__objdir} ; \
+		if test ! -d ${__objdir} ; then \
+			echo "making $$dest" ; \
+			mkdir $$dest; \
+		fi ; \
+	fi;
+.  endif
+.endif	# ! not target obj
+
+.endif
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.obj.mk,v 1.9 2004/12/16 19:35:02 tg Exp $
+d5 4
+a8 1
+.ifndef BSD_OWN_MK
+d72 2
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 7
+a7 2
+#	$OpenBSD: bsd.obj.mk,v 1.12 2003/10/28 17:09:33 espie Exp $
+#	$NetBSD: bsd.obj.mk,v 1.9 1996/04/10 21:08:05 thorpej Exp $
+d10 1
+a10 1
+.  if defined(NOOBJ)
+d14 1
+a14 1
+.  if defined(MAKEOBJDIR)
+d16 1
+a16 1
+.  else
+d18 1
+a18 1
+.  endif
+d20 1
+a20 1
+.  if defined(OBJMACHINE)
+d22 1
+a22 1
+.  else
+d24 1
+a24 1
+.  endif
+d26 1
+a26 1
+.  if defined(USR_OBJMACHINE)
+d29 1
+a29 1
+.  else
+d31 1
+a31 1
+.    if defined(OBJMACHINE)
+d33 1
+a33 1
+.    else
+d35 1
+a36 1
+.  endif
+d42 2
+a43 1
+	here=`/bin/pwd`; bsdsrcdir=`cd ${BSDSRCDIR}; /bin/pwd`; \
+d49 1
+a49 1
+		    X`readlink ${__objdir}` != X$$dest; \
+d68 1
+a68 1
+.endif
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

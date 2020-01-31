@@ -1,0 +1,89 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.04.17.24.44;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Conditionally execute a command based if the file argv[1] doesn't exist */
+/* Except for execvp, we stick to ANSI C.				   */
+# include "private/gcconfig.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+int main(argc, argv, envp)
+int argc;
+char ** argv;
+char ** envp;
+{
+    FILE * f;
+    if (argc < 3) goto Usage;
+    if ((f = fopen(argv[1], "rb")) != 0
+        || (f = fopen(argv[1], "r")) != 0) {
+        fclose(f);
+        return(0);
+    }
+    printf("^^^^Starting command^^^^\n");
+    fflush(stdout);
+    execvp(argv[2], argv+2);
+    exit(1);
+    
+Usage:
+    fprintf(stderr, "Usage: %s file_name command\n", argv[0]);
+    return(1);
+}
+
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

@@ -1,0 +1,141 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.18.58;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.18.58;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@
+// keycode aliases for phonetic keyboard maps
+//
+// $XFree86: xc/programs/xkbcomp/keycodes/aliases,v 1.1 2002/09/17 01:26:24 dawes Exp $
+
+default
+xkb_keycodes "qwerty" {
+
+   alias <LatQ> = <AD01>;
+   alias <LatW> = <AD02>;
+   alias <LatE> = <AD03>;
+   alias <LatR> = <AD04>;
+   alias <LatT> = <AD05>;
+   alias <LatY> = <AD06>;
+   alias <LatU> = <AD07>;
+   alias <LatI> = <AD08>;
+   alias <LatO> = <AD09>;
+   alias <LatP> = <AD10>;
+
+   alias <LatA> = <AC01>;
+   alias <LatS> = <AC02>;
+   alias <LatD> = <AC03>;
+   alias <LatF> = <AC04>;
+   alias <LatG> = <AC05>;
+   alias <LatH> = <AC06>;
+   alias <LatJ> = <AC07>;
+   alias <LatK> = <AC08>;
+   alias <LatL> = <AC09>;
+
+   alias <LatZ> = <AB01>;
+   alias <LatX> = <AB02>;
+   alias <LatC> = <AB03>;
+   alias <LatV> = <AB04>;
+   alias <LatB> = <AB05>;
+   alias <LatN> = <AB06>;
+   alias <LatM> = <AB07>;
+};
+
+xkb_keycodes "azerty" {
+
+   alias <LatA> = <AD01>;
+   alias <LatZ> = <AD02>;
+   alias <LatE> = <AD03>;
+   alias <LatR> = <AD04>;
+   alias <LatT> = <AD05>;
+   alias <LatY> = <AD06>;
+   alias <LatU> = <AD07>;
+   alias <LatI> = <AD08>;
+   alias <LatO> = <AD09>;
+   alias <LatP> = <AD10>;
+
+   alias <LatQ> = <AC01>;
+   alias <LatS> = <AC02>;
+   alias <LatD> = <AC03>;
+   alias <LatF> = <AC04>;
+   alias <LatG> = <AC05>;
+   alias <LatH> = <AC06>;
+   alias <LatJ> = <AC07>;
+   alias <LatK> = <AC08>;
+   alias <LatL> = <AC09>;
+   alias <LatM> = <AC10>;
+
+   alias <LatW> = <AB01>;
+   alias <LatX> = <AB02>;
+   alias <LatC> = <AB03>;
+   alias <LatV> = <AB04>;
+   alias <LatB> = <AB05>;
+   alias <LatN> = <AB06>;
+};
+
+xkb_keycodes "qwertz" {
+
+   alias <LatQ> = <AD01>;
+   alias <LatW> = <AD02>;
+   alias <LatE> = <AD03>;
+   alias <LatR> = <AD04>;
+   alias <LatT> = <AD05>;
+   alias <LatZ> = <AD06>;
+   alias <LatU> = <AD07>;
+   alias <LatI> = <AD08>;
+   alias <LatO> = <AD09>;
+   alias <LatP> = <AD10>;
+
+   alias <LatA> = <AC01>;
+   alias <LatS> = <AC02>;
+   alias <LatD> = <AC03>;
+   alias <LatF> = <AC04>;
+   alias <LatG> = <AC05>;
+   alias <LatH> = <AC06>;
+   alias <LatJ> = <AC07>;
+   alias <LatK> = <AC08>;
+   alias <LatL> = <AC09>;
+
+   alias <LatY> = <AB01>;
+   alias <LatX> = <AB02>;
+   alias <LatC> = <AB03>;
+   alias <LatV> = <AB04>;
+   alias <LatB> = <AB05>;
+   alias <LatN> = <AB06>;
+   alias <LatM> = <AB07>;
+};
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

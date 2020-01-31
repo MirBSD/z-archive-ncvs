@@ -1,0 +1,358 @@
+head	1.7;
+access;
+symbols
+	libtool-1_5_10:1.1.2.3
+	libtool-1_5_8:1.1.2.2
+	LIBTOOL_1_5:1.1.2.1.0.2
+	libtool-1_5-20040215:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.7
+date	2004.10.16.23.39.12;	author tg;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2004.10.14.18.37.21;	author tg;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2004.08.10.01.18.06;	author tg;	state Stab;
+branches;
+next	1.4;
+
+1.4
+date	2004.08.09.23.59.03;	author tg;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2004.08.09.23.06.59;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2004.02.15.13.32.38;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.15.13.09.42;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.15.13.09.42;	author tg;	state Exp;
+branches;
+next	1.1.2.2;
+
+1.1.2.2
+date	2004.08.09.22.58.25;	author tg;	state Exp;
+branches;
+next	1.1.2.3;
+
+1.1.2.3
+date	2004.10.14.17.45.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.7
+log
+@oops. this is libtool 1.5.10 based
+@
+text
+@# $MirBSD: contrib/gnu/libtool/configure.ac,v 1.6 2004/10/14 18:37:21 tg Exp $
+
+## Process this file with autoconf to create configure. -*- autoconf -*-
+# Copyright 2001, 2004
+#	Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+# 02111-1307  USA
+
+
+## This is enough for MirLibtool
+AC_PREREQ(2.13)
+
+
+
+## ------------------------ ##
+## Autoconf initialisation. ##
+## ------------------------ ##
+AC_INIT([ltmain.in])
+
+
+
+## ------------------------ ##
+## Automake Initialisation. ##
+## ------------------------ ##
+AM_INIT_AUTOMAKE([libtool], [1.5.10])
+
+
+ACINCLUDE_M4_LIST="${srcdir}/acinclude.m4"
+DIST_MAKEFILE_LIST=
+AC_SUBST([ACINCLUDE_M4_LIST])
+AC_SUBST([DIST_MAKEFILE_LIST])
+
+
+
+## ---------------- ##
+## compiler checks. ##
+## ---------------- ##
+
+# Use the specified CC and LD
+AC_PROG_CC
+AC_EXEEXT
+AM_PROG_LD
+AC_SUBST(LD)
+AM_PROG_NM
+AC_SUBST(NM)
+AC_PROG_LN_S
+
+
+
+## ----------------------- ##
+## Libtool initialisation. ##
+## ----------------------- ##
+AC_LIBTOOL_DLOPEN
+AC_PROG_LIBTOOL
+
+
+
+## -------- ##
+## Outputs. ##
+## -------- ##
+AC_OUTPUT([Makefile])
+@
+
+
+1.6
+log
+@sync
+@
+text
+@d1 1
+a1 1
+# $MirBSD: contrib/gnu/libtool/configure.ac,v 1.5 2004/08/10 01:18:06 tg Stab $
+d4 2
+a5 1
+# Copyright 2001  Free Software Foundation, Inc.
+d23 1
+a23 1
+## FIXME: Is this really new enough? ##
+d38 1
+a38 1
+AM_INIT_AUTOMAKE([libtool], [1.5.8])
+@
+
+
+1.5
+log
+@fix final stuff; regenerate
+@
+text
+@d1 1
+a1 1
+# $MirBSD: contrib/gnu/libtool/configure.ac,v 1.4 2004/08/09 23:59:03 tg Exp $
+a58 1
+
+@
+
+
+1.4
+log
+@basic adaptions
+@
+text
+@d1 1
+a1 1
+# $MirBSD$
+d30 1
+a30 2
+AC_INIT([libtool], [1.5.8], [bug-libtool@@gnu.org])
+AC_CONFIG_SRCDIR([ltmain.in])
+d37 1
+a37 1
+AM_INIT_AUTOMAKE(AC_PACKAGE_TARNAME, AC_PACKAGE_VERSION)
+a59 8
+  CXX="no"
+AM_CONDITIONAL(HAVE_CXX, [test "x$CXX" != xno])
+  F77="no"
+AM_CONDITIONAL(HAVE_F77, [test "x$F77" != xno])
+  GCJ="no"
+AM_CONDITIONAL(HAVE_GCJ, [test "x$GCJ" != xno])
+  RC="no"
+AM_CONDITIONAL(HAVE_RC, [test "x$RC" != xno])
+d74 1
+a74 2
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
+@
+
+
+1.3
+log
+@bring everything to (stock) libtool 1.5.8
+@
+text
+@d1 2
+d23 1
+a23 1
+AC_PREREQ(2.50)
+a34 19
+## ---------------------------------------- ##
+## Display a configure time version banner. ##
+## ---------------------------------------- ##
+
+# This is a sanity check so we can see which version is used in bug reports.
+# It is assumed that we only want to see the date extension for cvs libtool
+# versions (i.e. "odd" letters) and not actual alpha releases.
+TIMESTAMP=
+case AC_PACKAGE_VERSION in
+  [*[acegikmoqsuwy])]
+    TIMESTAMP=`${CONFIG_SHELL} ${srcdir}/mkstamp < ${srcdir}/ChangeLog`
+    AS_BOX([Configuring AC_PACKAGE_TARNAME AC_PACKAGE_VERSION$TIMESTAMP])
+    echo
+    ;;
+esac
+AC_SUBST([TIMESTAMP])
+
+
+
+a40 22
+## ------------------------------- ##
+## Libtool specific configuration. ##
+## ------------------------------- ##
+pkgdatadir='${datadir}'"/${PACKAGE}"
+AC_SUBST([pkgdatadir]) # automake does not need this, but libtoolize does
+
+aclocaldir='${datadir}/aclocal'
+AC_SUBST([aclocaldir])
+
+AC_ARG_ENABLE(ltdl-install,
+    [AC_HELP_STRING([--disable-ltdl-install], [do not install libltdl])])
+if test x"${enable_ltdl_install+set}" != xset; then
+  enable_ltdl_install=yes
+  ac_configure_args="$ac_configure_args --enable-ltdl-install"
+fi
+AC_CONFIG_SUBDIRS([libltdl])
+
+# all subdirectories that are configured on demand, but that must be
+# included in the distribution
+CONF_SUBDIRS="cdemo pdemo demo depdemo mdemo mdemo2 tagdemo f77demo"
+AC_SUBST([CONF_SUBDIRS])
+
+a42 4
+for dir in $CONF_SUBDIRS; do
+  ACINCLUDE_M4_LIST="$ACINCLUDE_M4_LIST ${srcdir}/$dir/acinclude.m4"
+  DIST_MAKEFILE_LIST="$DIST_MAKEFILE_LIST$dir/Makefile "
+done
+d61 1
+a61 3
+pushdef([AC_MSG_ERROR], [CXX=no])
+AC_PROG_CXX
+popdef([AC_MSG_ERROR])
+a62 5
+
+pushdef([AC_MSG_ERROR], [F77=no])
+AC_PROG_F77
+popdef([AC_MSG_ERROR])
+if test -z "$F77"; then
+a63 1
+fi
+d65 1
+a65 2
+
+LT_AC_PROG_GCJ
+d67 1
+a67 2
+
+LT_AC_PROG_RC
+a75 1
+AC_LIBTOOL_WIN32_DLL
+d83 1
+a83 1
+AC_CONFIG_FILES([Makefile doc/Makefile tests/Makefile])
+@
+
+
+1.2
+log
+@libtool 1.4 -> mirlibtool, back to the state of yesterday night
+(so we have a clean 1.4 in the branch LIBTOOL_1_4, and a working
+ 1.4 in head, which we might switch to LIBTOOL_1_5 once we get it
+ working in 2038)
+@
+text
+@d28 1
+a28 1
+AC_INIT([libtool], [1.5.3a], [bug-libtool@@gnu.org])
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@libtool 1.5 branch from today
+@
+text
+@@
+
+
+1.1.2.2
+log
+@http://ftp.gnu.org/gnu/libtool/libtool-1.5.8.tar.gz
+@
+text
+@d28 1
+a28 1
+AC_INIT([libtool], [1.5.8], [bug-libtool@@gnu.org])
+@
+
+
+1.1.2.3
+log
+@http://ftp.gnu.org/gnu/libtool/libtool-1.5.10.tar.gz
+@
+text
+@d28 1
+a28 1
+AC_INIT([libtool], [1.5.10], [bug-libtool@@gnu.org])
+d107 1
+a107 4
+AM_CONDITIONAL(HAVE_CXX, 
+[test -n "$CXX" && ( test "X$CXX" != "Xno" &&
+  ( (test "X$CXX" = "Xg++" && `g++ -v >/dev/null 2>&1` ) || 
+  (test "X$CXX" != "Xg++")))])
+@
+
+

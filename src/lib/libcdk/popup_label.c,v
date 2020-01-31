@@ -1,0 +1,104 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  cdk-4_9_11-20041224:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.20.08.04;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.20.08.04;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include <cdk_int.h>
+
+/*
+ * $Author: tom $
+ * $Date: 2003/11/27 22:16:35 $
+ * $Revision: 1.1 $
+ */
+
+/*
+ * This pops up a message.
+ */
+void popupLabel (CDKSCREEN *screen, char **mesg, int count)
+{
+   /* Declare local variables. */
+   CDKLABEL *popup = 0;
+   int oldCursState;
+
+   /* Create the label. */
+   popup = newCDKLabel (screen, CENTER, CENTER, mesg, count, TRUE, FALSE);
+
+   oldCursState = curs_set(0);
+   /* Draw it on the screen. */
+   drawCDKLabel (popup, TRUE);
+
+   /* Wait for some input. */
+   keypad (popup->win, TRUE);
+   getcCDKObject (ObjOf(popup));
+
+   /* Kill it. */
+   destroyCDKLabel (popup);
+
+   /* Clean the screen. */
+   curs_set(oldCursState);
+   eraseCDKScreen (screen);
+   refreshCDKScreen (screen);
+}
+
+/*
+ * This pops up a message.
+ */
+void popupLabelAttrib (CDKSCREEN *screen, char **mesg, int count, chtype attrib)
+{
+   /* Declare local variables. */
+   CDKLABEL *popup = 0;
+   int oldCursState;
+
+   /* Create the label. */
+   popup = newCDKLabel (screen, CENTER, CENTER, mesg, count, TRUE, FALSE);
+   setCDKLabelBackgroundAttrib(popup, attrib);
+
+   oldCursState = curs_set(0);
+   /* Draw it on the screen. */
+   drawCDKLabel (popup, TRUE);
+
+   /* Wait for some input. */
+   keypad (popup->win, TRUE);
+   getcCDKObject (ObjOf(popup));
+
+   /* Kill it. */
+   destroyCDKLabel (popup);
+
+   /* Clean the screen. */
+   curs_set(oldCursState);
+   eraseCDKScreen (screen);
+   refreshCDKScreen (screen);
+}
+@
+
+
+1.1.2.1
+log
+@Tom Dickey's libcdk
+@
+text
+@@

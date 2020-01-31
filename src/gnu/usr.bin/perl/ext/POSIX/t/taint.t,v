@@ -1,0 +1,108 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.30;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.48;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.48;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl -Tw
+
+BEGIN {
+    chdir 't' if -d 't';
+    @@INC = '../lib';
+    require Config; import Config;
+    if ($^O ne 'VMS' and $Config{'extensions'} !~ /\bPOSIX\b/) {
+	print "1..0\n";
+	exit 0;
+    }
+}
+
+use Test::More tests => 7;
+use Scalar::Util qw/tainted/;
+
+
+use POSIX qw(fcntl_h open read mkfifo);
+use strict ;
+
+$| = 1;
+
+my $buffer;
+my @@buffer;
+my $testfd;
+
+# Sources of taint:
+#   The empty tainted value, for tainting strings
+
+my $TAINT = substr($^X, 0, 0);
+
+my $file = 'TEST';
+
+eval { mkfifo($TAINT. $file, 0) };
+like($@@, qr/^Insecure dependency/,              'mkfifo with tainted data');
+
+eval { $testfd = open($TAINT. $file, O_WRONLY, 0) };
+like($@@, qr/^Insecure dependency/,              'open with tainted data');
+
+eval { $testfd = open($file, O_RDONLY, 0) };
+is($@@, "",                                  'open with untainted data');
+
+read($testfd, $buffer, 2) if $testfd > 2;
+is( $buffer, "#!",	                          '    read' );
+ok(tainted($buffer),                          '    scalar tainted');
+
+TODO: {
+    local $TODO = "POSIX::read won't taint an array element";
+
+    read($testfd, $buffer[1], 2) if $testfd > 2;
+
+    is( $buffer[1], "./",	                      '    read' );
+    ok(tainted($buffer[1]),                       '    array element tainted');
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

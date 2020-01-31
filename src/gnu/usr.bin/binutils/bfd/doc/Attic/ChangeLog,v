@@ -1,0 +1,99 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.15.19.34.08;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.02.17;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.17;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fix these up (needed for header regen)
+@
+text
+@2004-12-20  Ian Lance Taylor  <ian@@c2microsystems.com>
+
+	* Makefile.am: Use $(SHELL) whenever we run move-if-change.
+	* Makefile.in: Rebuild.
+
+2004-09-19  H.J. Lu  <hongjiu.lu@@intel.com>
+
+	* Makefile.am (AUTOMAKE_OPTIONS): Require 1.9.
+	(bfd.info): Rename the target to ...
+	($(srcdir)/bfd.info): This.
+	* Makefile.in: Regenerated.
+
+2004-09-17  Alan Modra  <amodra@@bigpond.net.au>
+
+	* Makefile.in: Regenerate.
+
+2004-03-27  Alan Modra  <amodra@@bigpond.net.au>
+
+	* bfdint.texi: Remove all mention of elflink.h.
+
+2004-03-19  Alan Modra  <amodra@@bigpond.net.au>
+
+	* Makefile.in: Regenerate.
+
+For older changes see ChangeLog-9103
+
+Local Variables:
+mode: change-log
+left-margin: 8
+fill-column: 74
+version-control: never
+End:
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

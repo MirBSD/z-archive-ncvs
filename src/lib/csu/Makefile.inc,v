@@ -1,0 +1,26 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.07.01.36.23;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@subdir magick
+@
+text
+@# $MirBSD: src/lib/csu/Makefile.inc,v 1.1 2004/10/14 18:54:56 tg Exp $
+
+CFLAGS+= -Wall -Werror
+@

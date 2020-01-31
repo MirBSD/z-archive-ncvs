@@ -1,0 +1,146 @@
+head	2.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.19.17.37.08;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.19.09.41.09;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.22.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@sync
+@
+text
+@./usr/bin/c++
+./usr/bin/g++
+./usr/bin/g77
+./usr/bin/gcj
+./usr/bin/gcjh
+./usr/bin/gcov
+./usr/bin/gnat
+./usr/bin/gnatbind
+./usr/bin/gnatbl
+./usr/bin/gnatchop
+./usr/bin/gnatclean
+./usr/bin/gnatfind
+./usr/bin/gnatkr
+./usr/bin/gnatlink
+./usr/bin/gnatls
+./usr/bin/gnatmake
+./usr/bin/gnatname
+./usr/bin/gnatprep
+./usr/bin/gnatxref
+./usr/bin/gpr2make
+./usr/bin/gprcmd
+./usr/bin/grepjar
+./usr/bin/jar
+./usr/bin/jcf-dump
+./usr/bin/jv-scan
+./usr/bin/mcpp
+./usr/bin/mgcc
+./usr/bin/protoize
+./usr/bin/unprotoize
+./usr/include/objc
+./usr/include/objc/NXConstStr.h
+./usr/include/objc/Object.h
+./usr/include/objc/Protocol.h
+./usr/include/objc/encoding.h
+./usr/include/objc/hash.h
+./usr/include/objc/objc-api.h
+./usr/include/objc/objc-list.h
+./usr/include/objc/objc.h
+./usr/include/objc/sarray.h
+./usr/include/objc/thr.h
+./usr/include/objc/typedstream.h
+./usr/lib/crtbegin.o
+./usr/lib/crtbeginS.o
+./usr/lib/crtbeginT.o
+./usr/lib/crtend.o
+./usr/lib/crtendS.o
+./usr/lib/gcc
+./usr/lib/libobjc.a
+./usr/lib/libobjc.la
+./usr/lib/libobjc.so.3.0
+./usr/lib/libobjc_gc.a
+./usr/lib/libobjc_gc.la
+./usr/lib/libobjc_gc.so.3.0
+./usr/share/gnat
+./usr/share/gnat/Makefile.generic
+./usr/share/gnat/Makefile.prolog
+./usr/share/info/cpp.info
+./usr/share/info/cppinternals.info
+./usr/share/info/fastjar.info
+./usr/share/info/g77.info
+./usr/share/info/gcc.info
+./usr/share/info/gccint.info
+./usr/share/info/gcj.info
+./usr/share/info/gnat-style.info
+./usr/share/info/gnat_rm.info
+./usr/share/info/gnat_ugn_unw.info
+./usr/share/man/cat1/cpp.0
+./usr/share/man/cat1/g++.0
+./usr/share/man/cat1/g77.0
+./usr/share/man/cat1/gcj.0
+./usr/share/man/cat1/gcjh.0
+./usr/share/man/cat1/gcov.0
+./usr/share/man/cat1/gij.0
+./usr/share/man/cat1/grepjar.0
+./usr/share/man/cat1/jar.0
+./usr/share/man/cat1/jcf-dump.0
+./usr/share/man/cat1/jv-convert.0
+./usr/share/man/cat1/jv-scan.0
+./usr/share/man/cat1/mgcc.0
+./usr/share/man/cat1/rmic.0
+./usr/share/man/cat1/rmiregistry.0
+@
+
+
+2.2
+log
+@| make: don't know how to make /usr/releng/base/usr/lib/crtbegin.o. Stop in /usr/src/distrib/special/chat.
+this is how far I get, now I need a break and a _good_ solution
+@
+text
+@d1 5
+a5 1
+./usr/bin/gcc
+d11 1
+d17 1
+a18 2
+./usr/bin/gnatpsta
+./usr/bin/gnatpsys
+d20 8
+d30 12
+d44 1
+d48 34
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 22
+@
+

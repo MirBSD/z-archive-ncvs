@@ -1,0 +1,127 @@
+head	2.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.18.00.20.51;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.09.11.38.08;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.23.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@some more optimizing options, so that we get the best out
+of -O2 but with the "fixed" scheduling of -Os
+@
+text
+@# $MirBSD: src/etc/mk.conf,v 2.2 2005/01/09 11:38:08 tg Exp $
+#@@@@MDPART@@@@
+
+# This is the make configuration file for MirOS and MirPorts.
+# This file is included by the system Makefile includes and contains
+# selected default settings and modules which can be overridden, al-
+# tered or activated unless $MAKECONF_OVERRIDE is set.
+# *THIS IS A SAMPLE FILE*  Review it before changing.
+
+### Set up sudo(8) first; use visudoers(8) and sudoers(5)
+#SUDO?=			sudo
+
+### If you really, really want /bin and /sbin to depend on /usr/lib
+# Note: this does not link _all_ binaries dynamically, but some which
+# depend on being statically linked may be broken (boot process bins?)
+#STATIC=		#empty
+## The exact contrary
+# Remove support for shared libraries
+#NOPIC=			yes
+
+# Speed up compile; if using mfs /tmp might be better to leave empty
+PIPE?=			-pipe
+
+### make build release process
+# Build no ramdisk/floppy/CD during make release
+#REL_NO_KERNEL?=	yes	# nothing
+#REL_NO_FLOPPY?=	yes	# no floppy kernel/image
+#REL_NO_GENERIC?=	yes	# no kernel (bsd)
+#REL_NO_RAMDISK?=	yes	# no ramdisk (bsd.rd)
+#REL_NO_AUTOISO?=	yes	# no bootable ISO image
+
+### debugging
+# Set MKC_DEBG to enable debugging support
+.ifdef	MKC_DEBG
+DEFCOPTS+=		-O1 -g -DDEBUG=1
+DEBUGLIBS=		Yes
+INSTALL_STRIP=		#nothing
+.endif
+
+### Patent issues
+# Define this if you live in the United States of America. Note: I'm not
+# aware of all patents there, just RC5, MDC-2 and TrueType hinting.
+#MKC_USAP?=		yes	# default: No
+
+### Sendmail fnordization
+#SENDMAIL_WANT_SASL?=	Yes	# SMTP AUTH, needs cyrus-sasl2 port
+#SENDMAIL_WANT_LDAP?=	Yes	# LDAP support, needs OpenLDAP port
+
+@
+
+
+2.2
+log
+@remove obsolete reference to mk.conf.local and everything MirPorts-related
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/mk.conf,v 2.1 2005/01/03 16:23:05 tg Exp $
+a20 4
+## Misc optimization settings
+DEFCOPTS+=		-fno-strict-aliasing -fno-strength-reduce -fgcse \
+			-fschedule-insns2 -fthread-jumps -Wformat
+
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/mk.conf,v 1.80 2004/11/30 16:46:53 tg Exp $
+d7 2
+a8 2
+# tered or activated in /etc/mk.conf.local unless $MAKECONF_OVERRIDE
+# is set.  *THIS IS A SAMPLE FILE*  Review it before changing.
+a12 10
+### Options for MirPorts (recommended)
+# make clean descends into dependencies
+# is overriden by certain ports though
+CLEANDEPENDS?=		yes
+# make checksum uses this order
+PREFERRED_CIPHERS=	sha512 rmd160 sha1 md5
+# install all subpackages by default on make install
+# NOTE: earlier MirPorts versions defaulted to off!
+#PREFER_SUBPKG_INSTALL?=no	# default: yes
+
+d52 1
+@
+

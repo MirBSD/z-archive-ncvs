@@ -1,0 +1,86 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.23;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.16;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.16;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@
+require 5;
+use strict;
+use Test;
+
+# use a BEGIN block so we print our plan before MyModule is loaded
+BEGIN { plan tests => 3 }
+
+ok 1;
+print "# Locale::Maketext version $Locale::Maketext::VERSION\n";
+
+#sub Locale::Maketext::DEBUG () {10};
+use Locale::Maketext ();
+{ package  Whunk::L10N;  use vars qw(@@ISA %Lexicon);  @@ISA =  'Locale::Maketext';
+  %Lexicon = ("hello" => "SROBLR!");
+}
+{ package  Whunk::L10N::en;      use vars qw(@@ISA %Lexicon);  @@ISA =  'Whunk::L10N';
+  %Lexicon = ("hello" => "HI AND STUFF!");
+}
+{  package  Whunk::L10N::zh_tw;  use vars qw(@@ISA %Lexicon);  @@ISA =  'Whunk::L10N';
+  %Lexicon = ("hello" => "NIHAU JOE!");
+}
+
+$ENV{'REQUEST_METHOD'} = 'GET';
+$ENV{'HTTP_ACCEPT_LANGUAGE'} = 'en-US, zh-TW';
+
+my $x = Whunk::L10N->get_handle;
+print "# LH object: $x\n";
+ok $x->maketext('hello'), "HI AND STUFF!";
+print "# OK bye\n";
+ok 1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

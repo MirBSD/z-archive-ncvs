@@ -1,0 +1,111 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.21.49.05;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.50;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.50;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@LIBRARY
+; zlib data compression library
+
+EXPORTS
+; basic functions
+    zlibVersion
+    deflate
+    deflateEnd
+    inflate
+    inflateEnd
+; advanced functions
+    deflateSetDictionary
+    deflateCopy
+    deflateReset
+    deflateParams
+    deflateBound
+    deflatePrime
+    inflateSetDictionary
+    inflateSync
+    inflateCopy
+    inflateReset
+    inflateBack
+    inflateBackEnd
+    zlibCompileFlags
+; utility functions
+    compress
+    compress2
+    compressBound
+    uncompress
+    gzopen
+    gzdopen
+    gzsetparams
+    gzread
+    gzwrite
+    gzprintf
+    gzputs
+    gzgets
+    gzputc
+    gzgetc
+    gzungetc
+    gzflush
+    gzseek
+    gzrewind
+    gztell
+    gzeof
+    gzclose
+    gzerror
+    gzclearerr
+; checksum functions
+    adler32
+    crc32
+; various hacks, don't look :)
+    deflateInit_
+    deflateInit2_
+    inflateInit_
+    inflateInit2_
+    inflateBackInit_
+    inflateSyncPoint
+    get_crc_table
+    zError
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

@@ -1,0 +1,99 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.22;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.52;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl
+#
+# check if builtins behave as prototyped
+#
+
+BEGIN {
+    chdir 't' if -d 't';
+    @@INC = '../lib';
+}
+
+print "1..10\n";
+
+my $i = 1;
+
+sub foo {}
+my $bar = "bar";
+
+sub test_too_many {
+    eval $_[0];
+    print "not " unless $@@ =~ /^Too many arguments/;
+    printf "ok %d\n",$i++;
+}
+
+sub test_no_error {
+    eval $_[0];
+    print "not " if $@@;
+    printf "ok %d\n",$i++;
+}
+
+test_too_many($_) for split /\n/,
+q[	defined(&foo, $bar);
+	undef(&foo, $bar);
+	uc($bar,$bar);
+];
+
+test_no_error($_) for split /\n/,
+q[	scalar(&foo,$bar);
+	defined &foo, &foo, &foo;
+	undef &foo, $bar;
+	uc $bar,$bar;
+	grep(not($bar), $bar);
+	grep(not($bar, $bar), $bar);
+	grep((not $bar, $bar, $bar), $bar);
+];
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

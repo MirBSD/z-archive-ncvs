@@ -1,0 +1,61 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.08.23.02.20;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.20;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Linux dumps "struct task_struct" at the end of the core-file.  This
+   structure is currently 1080 bytes long, but we allow up to 4096
+   bytes to allow for some future growth.  */
+#define TRAD_CORE_EXTRA_SIZE_ALLOWED		4096
+#define TRAD_UNIX_CORE_FILE_FAILING_SIGNAL(abfd) \
+  ((abfd)->tdata.trad_core_data->u.signal)
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

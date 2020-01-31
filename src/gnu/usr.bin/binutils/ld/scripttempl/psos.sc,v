@@ -1,0 +1,141 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.13.21.56.56;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@start merging
+* without generated files
+* docs are going to be built
+* untested ("minimal change" concept)
+* with assignment back to the FSF
+@
+text
+@# $MirBSD: src/gnu/usr.bin/binutils/src/ld/scripttempl/psos.sc,v 1.3 2004/09/16 22:28:15 tg Exp $
+#
+cat <<EOF
+OUTPUT_FORMAT(${OUTPUT_FORMAT})
+OUTPUT_ARCH(${ARCH})
+${RELOCATING+${LIB_SEARCH_DIRS}}
+
+SECTIONS
+{
+  .text ${RELOCATING:-0} ${RELOCATING+${TEXT_START_ADDR}} : {
+    ${RELOCATING+ start = DEFINED(_START) ? _START : DEFINED(_start) ? _start : .;}
+    ${RELOCATING+ PROVIDE(__text = .);}
+    *(.text);
+    *(code);
+    *(const);
+    *(strings);
+    *(pSOS);
+    *(pROBE);
+    *(pNA);
+    *(pHILE);
+    *(pREPC);
+    *(pRPC);
+    ${CONSTRUCTING+ ___CTOR_LIST__ = .;}
+    ${CONSTRUCTING+ LONG((___CTOR_END__ - ___CTOR_LIST__) / 4 - 2)}
+    ${CONSTRUCTING+ *(.ctors)}
+    ${CONSTRUCTING+ LONG(0);}
+    ${CONSTRUCTING+ ___CTOR_END__ = .;}
+    ${CONSTRUCTING+ ___DTOR_LIST__ = .;}
+    ${CONSTRUCTING+ LONG((___DTOR_END__ - ___DTOR_LIST__) / 4 - 2);}
+    ${CONSTRUCTING+ *(.dtors);}
+    ${CONSTRUCTING+ LONG(0);}
+    ${CONSTRUCTING+ ___DTOR_END__ = .;}
+    ${RELOCATING+ PROVIDE(__etext = .);}
+    ${RELOCATING+ PROVIDE(_etext = .);}
+  }
+  .data ${RELOCATING:-0} : ${RELOCATING+ AT(ADDR(.text) + SIZEOF(.text))} {
+    ${RELOCATING+ PROVIDE(__data = .);}
+    *(.data);
+    *(vars);
+    ${RELOCATING+ PROVIDE(__edata = .);}
+    ${RELOCATING+ PROVIDE(_edata = .);}
+  }
+  .bss ${RELOCATING:-0} :
+  { 					
+    ${RELOCATING+ PROVIDE(__bss = .);}
+    *(.bss);
+    *(zerovars);
+    *(COMMON);
+    ${RELOCATING+ PROVIDE(__ebss = .);}
+    ${RELOCATING+ PROVIDE(__end = .);}
+    ${RELOCATING+ PROVIDE(_end = .);}
+    ${RELOCATING+ PROVIDE(_FreeMemStart = .);}
+  }
+  .stab 0 ${RELOCATING+\(NOLOAD\)} : 
+  {
+    *(.stab);
+  }
+  .stabstr 0 ${RELOCATING+\(NOLOAD\)} :
+  {
+    *(.stabstr);
+  }
+}
+EOF
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+d54 1
+a54 1
+  .stab 0 ${RELOCATING+(NOLOAD)} : 
+d58 1
+a58 1
+  .stabstr 0 ${RELOCATING+(NOLOAD)} :
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

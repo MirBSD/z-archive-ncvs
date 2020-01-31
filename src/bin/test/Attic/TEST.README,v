@@ -1,0 +1,88 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.04.04;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.02;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.02;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@#	$OpenBSD: TEST.README,v 1.4 1997/06/18 20:44:27 kstailey Exp $
+
+OS/shell			syntax error	failed
+--------------------------------------------------------------------
+OpenBSD 2.0 /bin/test		6		0
+bash 1.14.5 			3		0
+bash 2.0			0		0
+pdksh 5.2.12			6		0
+zsh 2.6-beta17			6		4
+FreeBSD 2.1 /bin/test		8		0
+HP-UX 10.10 ksh			1		0
+HP-UX 10.10 sh			3		0
+HP-UX 10.10 /usr/bin/test	6		2
+IRIX 5.3 ksh			3		0
+IRIX 5.3 sh			3		0
+IRIX 5.3 /usr/bin/test		11		3
+IRIX 6.2 ksh			3		0
+IRIX 6.2 sh			3		0
+IRIX 6.2 /usr/bin/test		14		3
+SunOS 5.4 ksh			3		0
+SunOS 5.4 sh			3		0
+SunOS 5.4 /usr/ucb/test		3		0
+SunOS 5.5 ksh			0		0
+SunOS 5.5 sh			3		0
+SunOS 5.5 /usr/ucb/test		3		0
+SunOS 4.1.3_U1 sh		3		0
+SunOS 4.1.3_U1 /usr/bin/test	3		0
+ULTRIX 4.2 /bin/test		9		0
+ULTRIX 4.2 ksh			1		0
+ULTRIX 4.2 sh5			4		0
+
+96/06/16
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,106 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@// @;
+
+
+1.2
+date	2005.01.06.23.21.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.18.53;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.18.53;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge X11 out of my feet
+@
+text
+@XCOMM!/bin/sh
+XCOMM $Xorg: xinitrc.cpp,v 1.3 2000/08/17 19:54:30 cpqbld Exp $
+
+userresources=$HOME/.Xresources
+usermodmap=$HOME/.Xmodmap
+sysresources=XINITDIR/.Xresources
+sysmodmap=XINITDIR/.Xmodmap
+
+XCOMM merge in defaults and keymaps
+
+if [ -f $sysresources ]; then
+    xrdb -merge $sysresources
+fi
+
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
+fi
+
+if [ -f $userresources ]; then
+    xrdb -merge $userresources
+fi
+
+if [ -f $usermodmap ]; then
+    xmodmap $usermodmap
+fi
+
+XCOMM if we have private ssh key(s), start ssh-agent and add the key(s)
+id1=$HOME/.ssh/identity
+if [ -x /usr/bin/ssh-agent ] && [ -f $id1 -o -f $id2 -o -f $id3 ];
+then
+	eval $(ssh-agent -s)
+	ssh-add $id1 </dev/null
+fi
+
+XCOMM start some nice programs
+
+xclock -geometry 50x50-1+1 &
+xconsole -iconic &
+xterm -geometry 80x24 &
+twm || evilwm || xterm
+
+if [ "$SSH_AGENT_PID" ]; then
+	ssh-add -D </dev/null
+	eval $(ssh-agent -s -k)
+fi
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d27 8
+a36 1
+twm &
+d38 8
+a45 3
+xterm -geometry 80x50+494+51 &
+xterm -geometry 80x20+494-0 &
+exec xterm -geometry 80x66+0+0 -name login
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

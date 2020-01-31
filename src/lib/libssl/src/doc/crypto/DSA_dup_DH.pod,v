@@ -1,0 +1,89 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.30.42;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.59;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.59;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@=pod
+
+=head1 NAME
+
+DSA_dup_DH - create a DH structure out of DSA structure
+
+=head1 SYNOPSIS
+
+ #include <openssl/dsa.h>
+
+ DH * DSA_dup_DH(const DSA *r);
+
+=head1 DESCRIPTION
+
+DSA_dup_DH() duplicates DSA parameters/keys as DH parameters/keys. q
+is lost during that conversion, but the resulting DH parameters
+contain its length.
+
+=head1 RETURN VALUE
+
+DSA_dup_DH() returns the new B<DH> structure, and NULL on error. The
+error codes can be obtained by L<ERR_get_error(3)|ERR_get_error(3)>.
+
+=head1 NOTE
+
+Be careful to avoid small subgroup attacks when using this.
+
+=head1 SEE ALSO
+
+L<dh(3)|dh(3)>, L<dsa(3)|dsa(3)>, L<ERR_get_error(3)|ERR_get_error(3)>
+
+=head1 HISTORY
+
+DSA_dup_DH() was added in OpenSSL 0.9.4.
+
+=cut
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

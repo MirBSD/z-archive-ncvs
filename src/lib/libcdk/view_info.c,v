@@ -1,0 +1,76 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  cdk-4_9_11-20041224:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.20.08.04;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.20.08.04;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include <cdk_int.h>
+
+/*
+ * $Author: tom $
+ * $Date: 2003/11/27 22:05:27 $
+ * $Revision: 1.1 $
+ */
+
+/*
+ * This allows the user to view information.
+ */
+int viewInfo (CDKSCREEN *screen, char *title, char **info, int count, char **buttons, int buttonCount, boolean interpret)
+{
+   CDKVIEWER *viewer	= 0;
+   int selected		= -1;
+
+   /* Create the file viewer to view the file selected.*/
+   viewer = newCDKViewer (screen, CENTER, CENTER, -6, -16,
+				buttons, buttonCount,
+				A_REVERSE, TRUE, TRUE);
+
+   /* Set up the viewer title, and the contents to the widget. */
+   setCDKViewer (viewer, title, info, count, A_REVERSE, interpret, TRUE, TRUE);
+
+   /* Activate the viewer widget. */
+   selected = activateCDKViewer (viewer, 0);
+
+   /* Make sure they exited normally. */
+   if (viewer->exitType != vNORMAL)
+   {
+      destroyCDKViewer (viewer);
+      return (-1);
+   }
+
+   /* Clean up and return the button index selected. */
+   destroyCDKViewer (viewer);
+   return selected;
+}
+@
+
+
+1.1.2.1
+log
+@Tom Dickey's libcdk
+@
+text
+@@

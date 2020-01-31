@@ -1,0 +1,111 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.43.04;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@Tasks not to forget before release:
+
+- Update ABOUT-NLS and doc/matrix.texi with information from Francois Pinard's
+  Translation Project.
+
+- Update config.guess and config.sub from ftp://ftp.gnu.org/pub/gnu/config/.
+  now from
+    wget http://savannah.gnu.org/cgi-bin/viewcvs/config/config/config.guess?rev=HEAD&content-type=text/plain
+    wget http://savannah.gnu.org/cgi-bin/viewcvs/config/config/config.sub?rev=HEAD&content-type=text/plain
+- Update gettext-runtime/intl/locale.alias from glibc's intl/locale.alias.
+- Update {gettext-tools/lib,gettext-runtime/intl}/{localcharset.h,localcharset.c,config.charset}
+  from libcharset inside libiconv.
+
+- Update -version-info arguments in gettext-runtime/intl/Makefile.in.
+  * increment LTV_REVISION,
+  * if any functions/classes have been added, removed or changed, increment
+    LTV_CURRENT and set LTV_REVISION to 0,
+  * if any functions/classes have been added, increment LTV_AGE,
+  * if backwards compatibility has been broken, set LTV_AGE to 0.
+
+- Update the version numbers in
+    gettext-runtime/windows/intl.rc
+    gettext-tools/windows/gettextlib.rc
+    gettext-tools/windows/gettextsrc.rc
+    gettext-tools/windows/gettextpo.rc
+
+- Update Origin version in
+    gettext-runtime/po/Makefile.in.in and
+    gettext-tools/po/Makefile.in.in
+  if these files have changed since the last release.
+
+- Remove README-alpha from EXTRA_DIST in Makefile.am.
+
+- Bump po-mode-version-string in gettext-tools/misc/po-mode.el.
+
+- Bump version number and release date in version.sh.
+
+- Verify that the C files generated from *.y files contain no absolute
+  filenames.
+
+- Update djgpp/*.
+
+- Update gettext-tools/examples/*/LINGUAS and the file list in
+  gettext-tools/examples/Makefile.am. Also
+  "cd gettext-tools/examples/po; make update-po".
+
+- Update
+    NEWS
+    autoconf-lib-link/NEWS
+    gettext-runtime/libasprintf/NEWS
+    gettext-runtime/NEWS
+
+- Add an entry to all the ChangeLogs
+  except gettext-tools/examples/hello-c++-kde/admin/ChangeLog.
+
+- "make"; "make dist"; "make distcheck"
+- cd gettext-tools/misc; add-to-archive /somewhere/gettext-0.xx.yy.tar.gz
+  Then update the table in autopoint.in.
+- again: "make dist"
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

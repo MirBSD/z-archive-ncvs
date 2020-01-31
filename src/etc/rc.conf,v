@@ -1,0 +1,179 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.06;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/bin/ksh
+#	$Id: rc.conf,v 1.14 2004/11/23 14:54:26 tg Exp $
+#	$MirBSD: src/etc/rc.conf,v 1.14 2004/11/23 14:54:26 tg Exp $
+#	$OpenBSD: rc.conf,v 1.95 2004/03/05 23:54:47 henning Exp $
+
+# set these to "NO" to turn them off.  otherwise, they're used as flags
+routed_flags=NO		# for normal use: "-q"
+mrouted_flags=NO	# for normal use: "", if activated
+			# be sure to enable multicast_router below.
+bgpd_flags=NO		# for normal use: ""
+rarpd_flags=NO		# for normal use: "-a"
+bootparamd_flags=NO	# for normal use: ""
+rbootd_flags=NO		# for normal use: ""
+sshd_flags=""		# for normal use: ""
+rdate_flags=NO		# for normal use: [-c RFC868-host] or [-nc RFC1361-host]
+timed_flags=NO		# for normal use: ""
+ntpd_flags=NO		# for normal use: ""
+isakmpd_flags=NO	# for normal use: ""
+apmd_flags=NO		# for normal use: ""
+dhcpd_flags=NO		# for normal use: ""
+rtadvd_flags=NO		# for normal use: list of interfaces
+			# be sure to set net.inet6.ip6.forwarding=1
+route6d_flags=NO	# for normal use: ""
+			# be sure to set net.inet6.ip6.forwarding=1
+rtsold_flags=NO		# for normal use: interface
+			# be sure to set net.inet6.ip6.forwarding=0
+			# be sure to set net.inet6.ip6.accept_rtadv=1
+lpd_flags=NO		# for normal use: "" (or "-l" for debugging)
+isdnd_flags=NO		# for normal use: ""
+sensorsd_flags=NO	# for normal use: ""
+
+# use -u to disable chroot, see httpd(8)
+httpd_flags=NO		# for normal use: "" (or "-DSSL" after reading ssl(8))
+
+# For normal use: "-L sm-mta -bd -q30m", note the cron job and access_db!
+sendmail_flags="-L sm-mta -C/etc/mail/localhost.cf -bd -q30m"
+spamd_flags=NO		# for normal use: "" and see spamd-setup(8)
+spamd_grey=NO		# use spamd greylisting if YES
+
+# Set to NO if ftpd is running out of inetd
+ftpd_flags=NO		# for non-inetd use: "-D"
+
+# Set to NO if identd is running out of inetd
+identd_flags=NO		# for non-inetd use: "-b -elo"
+
+# On some architectures, you must also disable console getty in /etc/ttys
+xdm_flags=NO		# for normal use: ""
+
+# For enabling console mouse support (i386 and alpha only)
+wsmoused_flags=NO	# for ps/2 or usb mice: "", serial: "-p /dev/cua00"
+
+# set the following to "YES" to turn them on
+rwhod=NO
+nfs_server=NO		# see sysctl.conf for nfs client configuration
+lockd=NO
+pf=NO			# Packet filter / NAT
+portmap=NO		# Note: inetd(8) rpc services need portmap too
+inetd=YES		# almost always needed
+check_quotas=YES	# NO may be desirable in some YP environments
+arptables=NO		# read ARP tables into memory at startup
+
+# Multicast routing configuration
+# Please look at netstart(8) for a detailed description if you change these
+multicast_host=NO	# Route all multicast packets to a single interface
+multicast_router=NO	# A multicast routing daemon will be run, e.g. mrouted
+
+# Automatically start ssh-agent for the following users
+sshagent_autostart=NO		# example: "tg bsiegert"
+
+# Disable HDD hardware write cache for the following IDE devices:
+softdrives_ide=NO		# Autodetected from entries in /etc/fstab
+
+# miscellaneous other flags
+# only used if the appropriate server is marked YES above
+savecore_flags=			# "-z" to compress
+nfsd_flags="-tun 4"		# Crank the 4 for a busy NFS fileserver
+syslogd_flags=			# add more flags, ie. "-u -a /chroot/dev/log"
+pf_rules=/etc/pf.conf		# Packet filter rules file
+pflogd_flags=			# add more flags, ie. "-s 256"
+shlib_dirs=			# extra directories for ldconfig, separated by space
+
+# Do not change this file, rc.conf - do change the following file instead!
+local_rcconf="/etc/rc.conf.local"
+
+[ -f ${local_rcconf} ] && . ${local_rcconf} # Do not edit this line
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 3
+a3 2
+#!/bin/sh -
+#
+d15 1
+a15 2
+named_flags=NO		# for normal use: ""
+rdate_flags=NO		# for normal use: [RFC868-host] or [-n RFC1361-host]
+d17 1
+a17 1
+ntpdate_flags=NO	# for normal use: NTP server; run before ntpd starts
+a18 1
+mopd_flags=NO		# for normal use: "-a"
+d20 1
+a20 1
+dhcpd_flags=NO		# for normal use: "-q"
+d29 1
+d35 1
+a35 1
+# For normal use: "-L sm-mta -bd -q30m", and note there is a cron job
+a55 1
+amd=NO
+d60 1
+a60 5
+ntpd=YES		# run ntpd if it exists
+
+krb5_master_kdc=NO	# KerberosV master KDC. Run 'info heimdal' for help.
+krb5_slave_kdc=NO	# KerberosV slave KDC.
+afs=NO			# mount and run afs
+d67 6
+a75 2
+ypserv_flags=			# E.g. -1 for YP v1, -d for DNS etc
+yppasswdd_flags=NO		# "-d /etc/yp" if passwd files are in /etc/yp
+a76 2
+amd_dir=/tmp_mnt		# AMD's mount directory
+amd_master=/etc/amd/master	# AMD 'master' map
+d80 1
+a80 3
+afsd_flags=			# Flags passed to afsd
+shlib_dirs=			# extra directories for ldconfig, separated
+				# by space
+d82 1
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

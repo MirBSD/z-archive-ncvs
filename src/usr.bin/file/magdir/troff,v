@@ -1,0 +1,81 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: troff,v 1.2 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+# troff:  file(1) magic for *roff
+#
+# updated by Daniel Quinlan (quinlan@@yggdrasil.com)
+
+# troff input
+0	string		.\\"		troff or preprocessor input text
+0	string		'\\"		troff or preprocessor input text
+0	string		'.\\"		troff or preprocessor input text
+0	string		\\"		troff or preprocessor input text
+
+# ditroff intermediate output text
+0	string		x\ T		ditroff text
+>4	string		cat		for the C/A/T phototypesetter
+>4	string		ps		for PostScript
+>4	string		dvi		for DVI
+>4	string		ascii		for ASCII
+>4	string		lj4		for LaserJet 4
+>4	string		latin1		for ISO 8859-1 (Latin 1)
+>4	string		X75		for xditview at 75dpi
+>>7	string		-12		(12pt)
+>4	string		X100		for xditview at 100dpi
+>>8	string		-12		(12pt)
+
+# output data formats
+0	string		\100\357	very old (C/A/T) troff output data
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

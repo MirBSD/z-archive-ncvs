@@ -1,0 +1,54 @@
+head	1.2;
+access;
+symbols
+	cvs-200501070130:1.1.5.1 TNF:1.1.5;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.07.01.45.29;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.07.01.32.12;	author tg;	state Exp;
+branches
+	1.1.5.1;
+next	;
+
+1.1.5.1
+date	2005.01.07.01.32.12;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge and style
+@
+text
+@/*	$NetBSD: crtbeginS.c,v 1.1 2003/03/19 04:31:41 ross Exp $	*/
+
+#include "crtbegin.c"
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.5.1
+log
+@tnf's csu
+@
+text
+@@

@@ -1,0 +1,124 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.47.24;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.56;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@#!/bin/sh
+# Compile a Java program.
+
+# Copyright (C) 2001-2002 Free Software Foundation, Inc.
+# Written by Bruno Haible <haible@@clisp.cons.org>, 2001.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+
+# This uses the same choices as javacomp.c, but instead of relying on the
+# environment settings at run time, it uses the environment variables
+# present at configuration time.
+#
+# This is a separate shell script, because it must be able to unset JAVA_HOME
+# in some cases, which a simple shell command cannot do.
+#
+# The extra CLASSPATH must have been set prior to calling this script.
+# Options that can be passed are -O, -g and "-d DIRECTORY".
+
+CONF_JAVAC='@@JAVAC@@'
+CONF_CLASSPATH='@@CLASSPATH@@'
+if test -n "$CONF_JAVAC"; then
+  # Combine given CLASSPATH and configured CLASSPATH.
+  if test -n "$CLASSPATH"; then
+    CLASSPATH="$CLASSPATH${CONF_CLASSPATH:+@@CLASSPATH_SEPARATOR@@$CONF_CLASSPATH}"
+  else
+    CLASSPATH="$CONF_CLASSPATH"
+  fi
+  export CLASSPATH
+  test -z "$JAVA_VERBOSE" || echo "$CONF_JAVAC $@@"
+  exec $CONF_JAVAC "$@@"
+else
+  unset JAVA_HOME
+  if test -n "@@HAVE_GCJ_C@@"; then
+    CLASSPATH="$CLASSPATH"
+    export CLASSPATH
+    test -z "$JAVA_VERBOSE" || echo gcj -C "$@@"
+    exec gcj -C "$@@"
+  else
+    if test -n "@@HAVE_JAVAC@@"; then
+      CLASSPATH="$CLASSPATH"
+      export CLASSPATH
+      test -z "$JAVA_VERBOSE" || echo javac "$@@"
+      exec javac "$@@"
+    else
+      if test -n "@@HAVE_JIKES@@"; then
+        # Combine given CLASSPATH and configured CLASSPATH.
+        if test -n "$CLASSPATH"; then
+          CLASSPATH="$CLASSPATH${CONF_CLASSPATH:+@@CLASSPATH_SEPARATOR@@$CONF_CLASSPATH}"
+        else
+          CLASSPATH="$CONF_CLASSPATH"
+        fi
+        export CLASSPATH
+        test -z "$JAVA_VERBOSE" || echo jikes "$@@"
+        exec jikes "$@@"
+      else
+        echo 'Java compiler not found, try installing gcj or set $JAVAC, then reconfigure' 1>&2
+        exit 1
+      fi
+    fi
+  fi
+fi
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

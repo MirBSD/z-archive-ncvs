@@ -1,0 +1,80 @@
+head	1.2;
+access;
+symbols
+	expat-1_95_8:1.1.16.1 expat:1.1.16;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.31.19;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.28.14;	author tg;	state Exp;
+branches
+	1.1.16.1;
+next	;
+
+1.1.16.1
+date	2005.01.08.20.28.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge
+@
+text
+@                     Overview of the Expat distribution
+
+The Expat distribution creates several subdirectories on your system.
+Some of these directories contain components of interest to all Expat
+users, and some contain material of interest to developers who wish to
+use Expat in their applications.  In the list below, <top> is the
+directory you specified to the installer.
+
+    Directory           Contents
+    --------------------------------------------------------------------
+    <top>\              The XML well-formedness checker and some general
+                        information files.
+
+    <top>\Doc\          API documentation for developers.
+
+    <top>\Libs\         Pre-compiled dynamic libraries for developers.
+
+    <top>\StaticLibs\   Pre-compiled static libraries for developers.
+
+    <top>\Source\       Source code, which may interest some developers,
+                        including a workspace for Microsft Visual C++.
+                        The source code includes the parser, the well-
+                        formedness checker, and a couple of small sample
+                        applications.
+
+    <top>\Source\bcb5\  Project files for Borland C++ Builder 5 and BCC
+                        5.5.
+
+    <top>\Unistall\     The uninstaller and its data files.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.16.1
+log
+@libexpat 1.95.8
+@
+text
+@@

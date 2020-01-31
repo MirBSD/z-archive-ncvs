@@ -1,0 +1,109 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.57;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@<small class="rcsid">$MirBSD: www/content/bWFpbg__.inc,v 1.1 2004/12/13 00:13:24 tg Exp $</small>
+<h1>MirBSD &nbsp; MirLinux &nbsp; MirPorts &nbsp; &mdash; &nbsp; Main Page</h1>
+<h3>Software Patent Issues</h3>
+<p>The <tt>MirOS Project</tt> would like to join the hundreds of thousands of
+ parties protesting against software, algorithm and even data structure
+ patentability in the European Union!</p>
+<p>Call for action: sign the FFII petition, write your local MEP!</p>
+<p class="erecta">More information at <a href="http://swpat.ffii.org/">FFII
+ website</a>.</p>
+<h2>Welcome to the MirOS Project!</h2>
+<p>This project is driven by a small number of people, that's why this
+ website isn't always up to date. It's optimized for lynx and works in
+ Konqueror; IE and Mozilla&trade;-crap do have problems with it.<br />New:
+ <a href="/?style">the Stylesheet selector</a> to improve readability.</p>
+<p><big>Where to go next?</big><br />If you want to read about what MirOS
+ actually <b>is</b>, visit the &quot;about&quot; href (hyperlink) on the
+ left side. &quot;get MirOS!&quot; should be self-explanatory, and files
+ are available as well as a full ISO image!</p>
+<p><big>We're looking</big> for people wanting to ensure quality of MirPorts
+ under MirOS BSD and OpenBSD. If you're interested and have &gt;1
+ year of experience with the OpenBSD Ports Tree, and are not scared of
+ &lt;bsd.port.mk&gt;; please contact us. We also <big>need web site
+ hackers</big> who keep track of source changes.</p>
+<h3>News</h3>
+<p>The <a href="/stuff/oreilly-bsdss-flyer.pdf">Flyer</a> for the O'Reilly
+ <a href="/stuff/oreilly-bsdss.pdf">&quot;BSD Success Stories&quot;</a>
+ is available for download.</p>
+<p>Attention: All announcements from the MirOS team are <a
+ href="/cvs.cgi/contrib/samples/devel-keys">cryptographically
+ signed using PGP or OpenSSL</a> in order to prevent abuse of our name.</p>
+<p>Go to <a href="/?news">the main news page</a>.</p>
+<h3 style="color:red;">Latest Release</h3>
+<p>CURRENT: November 29th, 2004: #8-Beta snapshot available via <a
+ href="https://mirbsd.bsdadvocacy.org:8890/MirOS/current/i386-20041129/">http</a>.</p>
+<p>CURRENT: November 29th, 2004: Development snapshot available on the <a
+ href="http://f.scarywater.net/miros/">BitTorrent</a> tracker.</p>
+<p>MERCHANDISING: There are still T-Shirts up for order. Contact <a
+ href="mailto:tg@@66h.42h.de">tg@@</a> for purchase information.<br />
+ There will be two sets of T-Shirts for sale at 21C3, Berlin, Germany.</p>
+<p>PORTS: June 15th, 2004: MirPorts flag day; please read the page on <a
+ href="/?ports">MirPorts</a> for usage and update/upgrade instructions.<br />
+ October 10th, 2004: You must use 'cd /usr/ports; make setup' now before
+ using MirPorts. More detailed instructions will arrive at the page above.</p>
+<p>STABLE: June 14th, 2004: <a href="/?ann-7">MirOS #7quater</a> is available
+ for retrieval. Click the &quot;get MirOS!&quot; link on the left for further
+ information - where you can buy CDs or download the ISO.</p>
+<p>CVSROOT: November 23th, 2004: new seed file (316 MB) available to reduce
+ the initial amount of traffic required for mirroring /ocvs by rsync. CTM is
+ available on request, we'd like to do it but nobody uses it.<br />Attention:
+ the CVSROOT of MirOS is no longer <tt>/cvs</tt> but rather <b><tt>/ocvs</tt>
+ </b> and <tt>/cvs</tt> compat links will be removed the end of the month.</p>
+<h2>Big Warning</h2>
+<p>Do not go to &quot;mirbsd.org&quot; - it's not a domain of ours and
+ used to transfer you to a faecal website.</p>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+<small class="rcsid">$MirBSD: www/content/bWFpbg__.inc,v 1.59 2004/11/30 08:57:23 tg Exp $</small>
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

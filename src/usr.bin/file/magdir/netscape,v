@@ -1,0 +1,78 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: netscape,v 1.1 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+# netscape:  file(1) magic for Netscape files
+# "H. Nanosecond" <aldomel@@ix.netcom.com>
+# version 3 and 4 I think
+#
+
+# Netscape Address book  .nab
+0	string \000\017\102\104\000\000\000\000\000\000\001\000\000\000\000\002\000\000\000\002\000\000\004\000 Netscape Address book
+
+# Netscape Communicator address book
+0   string   \000\017\102\111 Netscape Communicator address book
+
+# .snm Caches
+0	string		#\ Netscape\ folder\ cache	Netscape folder cache
+0	string	\000\036\204\220\000	Netscape folder cache
+# .n2p 
+# Net 2 Phone 
+#0	string	123\130\071\066\061\071\071\071\060\070\061\060\061\063\060
+0	string	SX961999	Net2phone
+
+#
+#This is files ending in .art, FIXME add more rules
+0       string          JG\004\016\0\0\0\0      ART
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,117 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@:: @;
+
+
+2.1
+date	2005.01.03.16.26.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@@@echo off
+rem
+rem Normally you do not need to run this file.
+rem Instead you should edit and execute compile.bat .
+rem
+rem This file assumes that you have a set of appropriate
+rem bat-files that prepare environment variables for build process
+rem and execute commands passed as arguments
+rem
+
+call wcearm-300 compile.bat "MACHINE=wince-arm-hpc-wce300"
+call wcearm-300 compile.bat "MACHINE=wince-arm-hpc-wce300" zipdist
+..\miniperl makedist.pl --clean-exts
+
+call wcearm-211 compile.bat "MACHINE=wince-arm-hpc-wce211"
+call wcearm-211 compile.bat "MACHINE=wince-arm-hpc-wce211"  zipdist
+..\miniperl makedist.pl --clean-exts
+
+call wcesh3-211 compile.bat "MACHINE=wince-sh3-hpc-wce211"
+call wcesh3-211 compile.bat "MACHINE=wince-sh3-hpc-wce211"  zipdist
+..\miniperl makedist.pl --clean-exts
+
+call wcemips-211 compile.bat "MACHINE=wince-mips-hpc-wce211"
+call wcemips-211 compile.bat "MACHINE=wince-mips-hpc-wce211"  zipdist
+..\miniperl makedist.pl --clean-exts
+
+rem TODO call wcesh3-200 compile.bat "MACHINE=wince-sh3-hpc-wce200"
+rem TODO call wcesh3-200 compile.bat "MACHINE=wince-sh3-hpc-wce200"  zipdist
+rem TODO ..\miniperl makedist.pl --clean-exts
+
+rem TODO call compile.bat "MACHINE=wince-mips-hpc-wce200"
+rem TODO call compile.bat "MACHINE=wince-mips-hpc-wce200"  zipdist
+rem TODO ..\miniperl makedist.pl --clean-exts
+
+call WCEARM-p300 compile.bat "MACHINE=wince-arm-pocket-wce300"
+call WCEARM-p300 compile.bat "MACHINE=wince-arm-pocket-wce300"  zipdist
+..\miniperl makedist.pl --clean-exts
+
+call WCEMIPS-300 compile.bat "MACHINE=wince-mips-pocket-wce300"
+call WCEMIPS-300 compile.bat "MACHINE=wince-mips-pocket-wce300"  zipdist
+..\miniperl makedist.pl --clean-exts
+
+call WCESH3-300 compile.bat "MACHINE=wince-sh3-pocket-wce300"
+call WCESH3-300 compile.bat "MACHINE=wince-sh3-pocket-wce300"  zipdist
+..\miniperl makedist.pl --clean-exts
+
+call WCEx86-300 compile.bat "MACHINE=wince-x86em-pocket-wce300"
+call WCEx86-300 compile.bat "MACHINE=wince-x86em-pocket-wce300"  zipdist
+..\miniperl makedist.pl --clean-exts
+
+call WCEMIPS-palm211 compile.bat "MACHINE=wince-mips-palm-wce211"
+call WCEMIPS-palm211 compile.bat "MACHINE=wince-mips-palm-wce211"  zipdist
+..\miniperl makedist.pl --clean-exts
+
+call WCESH3-palm211 compile.bat "MACHINE=wince-sh3-palm-wce211"
+call WCESH3-palm211 compile.bat "MACHINE=wince-sh3-palm-wce211"  zipdist
+..\miniperl makedist.pl --clean-exts
+
+call WCEx86-palm211 compile.bat "MACHINE=wince-x86em-palm-wce211"
+call WCEx86-palm211 compile.bat "MACHINE=wince-x86em-palm-wce211"  zipdist
+..\miniperl makedist.pl --clean-exts
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

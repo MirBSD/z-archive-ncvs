@@ -1,0 +1,98 @@
+head	2.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.4
+date	2005.02.01.21.32.15;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.26.19.52.26;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.18.00.20.51;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.23.10;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.4
+log
+@don't -freorder-blocks twice
+also, don't -funswitch-loops which probably duplicates code
+@
+text
+@# $MirBSD: src/etc/etc.sparc/mk.conf.md,v 2.3 2005/01/26 19:52:26 tg Exp $
+#
+# machdep part of mk.conf for sparc
+
+DEFCOPTS=	-Os -fno-strict-aliasing -fno-strength-reduce -Wformat \
+		-fno-unit-at-a-time -fno-align-functions -fno-align-labels \
+		-falign-loops=4 -falign-jumps=4 -mcpu=v8 -mtune=supersparc \
+		-fweb -freorder-blocks -fmove-all-movables -frename-registers
+@
+
+
+2.3
+log
+@global -fno-unit-at-a-time
+can be switched back on by individual arches _iff_ it works
+
+still -Os, reason see my previous mail
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.sparc/mk.conf.md,v 2.2 2005/01/18 00:20:51 tg Exp $
+d8 1
+a8 2
+		-fweb -freorder-blocks -fmove-all-movables -freorder-blocks \
+		-frename-registers -funswitch-loops
+@
+
+
+2.2
+log
+@some more optimizing options, so that we get the best out
+of -O2 but with the "fixed" scheduling of -Os
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.sparc/mk.conf.md,v 2.1 2005/01/03 16:23:10 tg Exp $
+d6 1
+a6 1
+		-funit-at-a-time -fno-align-functions -fno-align-labels \
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.sparc/mk.conf.md,v 1.8 2004/11/13 21:16:03 tg Exp $
+d5 5
+a9 3
+DEFCOPTS=	-Os -mtune=supersparc -mcpu=v8
+
+SKIPDIR+=	X-Window	# for now, should work tho
+@
+

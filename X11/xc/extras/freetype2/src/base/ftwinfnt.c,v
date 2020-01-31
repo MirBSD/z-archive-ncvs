@@ -1,0 +1,95 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.05.07;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.05.07;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/***************************************************************************/
+/*                                                                         */
+/*  ftwinfnt.c                                                             */
+/*                                                                         */
+/*    FreeType API for accessing Windows FNT specific info (body).         */
+/*                                                                         */
+/*  Copyright 2002 by                                                      */
+/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */
+/*                                                                         */
+/*  This file is part of the FreeType project, and may only be used,       */
+/*  modified, and distributed under the terms of the FreeType project      */
+/*  license, LICENSE.TXT.  By continuing to use, modify, or distribute     */
+/*  this file you indicate that you have read the license and              */
+/*  understand and accept it fully.                                        */
+/*                                                                         */
+/***************************************************************************/
+
+
+#include <ft2build.h>
+#include FT_WINFONTS_H
+#include FT_INTERNAL_FNT_TYPES_H
+#include FT_INTERNAL_OBJECTS_H
+
+
+  FT_EXPORT_DEF( FT_Error )
+  FT_Get_WinFNT_Header( FT_Face              face,
+                        FT_WinFNT_HeaderRec *header )
+  {
+    FT_Error     error;
+
+    error = FT_Err_Invalid_Argument;
+
+    if ( face != NULL && face->driver != NULL )
+    {
+      FT_Module  driver = (FT_Module) face->driver;
+
+
+      if ( driver->clazz && driver->clazz->module_name              &&
+           ft_strcmp( driver->clazz->module_name, "winfonts" ) == 0 )
+      {
+        FNT_Size  size = (FNT_Size)face->size;
+        FNT_Font  font = size->font;
+
+        if (font)
+        {
+          FT_MEM_COPY( header, &font->header, sizeof(*header) );
+          error    = 0;
+        }
+      }
+    }
+    return error;
+  }
+
+
+/* END */
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.08.20.21.54;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@merge
+@
+text
+@/**	$MirBSD: src/lib/libcdk/include/cdk_version.h,v 1.1 2004/09/27 18:58:27 tg Exp $ */
+
+#ifndef	CDK_VERSION_H
+#define	CDK_VERSION_H
+
+#define	CDK_VERSION_MAJOR	"4"
+#define	CDK_VERSION_MINOR	"9.11"
+#define	CDK_VERSION_PATCH	"MirOS"
+
+#include <sys/cdefs.h>
+__BEGIN_DECLS
+char *CDKVersion(void);
+__END_DECLS
+
+#endif	/* ndef CDK_VERSION_H */
+@

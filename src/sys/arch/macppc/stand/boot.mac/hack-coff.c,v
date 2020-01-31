@@ -1,0 +1,82 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.34.42;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.22;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.22;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: hack-coff.c,v 1.1 2001/09/01 15:36:37 drahn Exp $	*/
+
+#include <stdio.h>
+
+char magic[2] = { 1, 0xb };
+char snos[12] = { 0, 1, 0, 1, 0, 2, 0, 0, 0, 0, 0, 3 };
+
+main(int ac, char **av)
+{
+    int fd;
+
+    if (ac != 2) {
+	fprintf(stderr, "Usage: hack-coff coff-file\n");
+	exit(1);
+    }
+    if ((fd = open(av[1], 2)) == -1) {
+	perror(av[2]);
+	exit(1);
+    }
+    if (lseek(fd, (long) 0x14, 0) == -1
+	|| write(fd, magic, sizeof(magic)) != sizeof(magic)
+	|| lseek(fd, (long) 0x34, 0) == -1
+	|| write(fd, snos, sizeof(snos)) != sizeof(snos)) {
+	fprintf(stderr, "%s: write error\n", av[1]);
+	exit(1);
+    }
+    close(fd);
+    exit(0);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

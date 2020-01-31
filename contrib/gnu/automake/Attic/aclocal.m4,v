@@ -1,0 +1,76 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041000:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.10.27.32;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.10.06.24;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.10.06.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@we basically only want the GNU master files
+@
+text
+@# generated automatically by aclocal 1.9a -*- Autoconf -*-
+
+# Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004
+# Free Software Foundation, Inc.
+# This file is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+m4_include([m4/amversion.m4])
+m4_include([m4/auxdir.m4])
+m4_include([m4/init.m4])
+m4_include([m4/install-sh.m4])
+m4_include([m4/lead-dot.m4])
+m4_include([m4/missing.m4])
+m4_include([m4/mkdirp.m4])
+m4_include([m4/options.m4])
+m4_include([m4/runlog.m4])
+m4_include([m4/sanity.m4])
+m4_include([m4/strip.m4])
+m4_include([m4/tar.m4])
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU automake CVS-current from anoncvs@@subversions.gnu.org:/cvsroot/automake
+@
+text
+@@

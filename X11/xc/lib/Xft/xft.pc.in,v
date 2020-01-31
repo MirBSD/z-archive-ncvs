@@ -1,0 +1,56 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.10.22;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.22;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@prefix=@@prefix@@
+exec_prefix=@@exec_prefix@@
+libdir=@@libdir@@
+hardcode_libdir_flag_spec=@@hardcode_libdir_flag_spec@@
+includedir=@@includedir@@
+freetypelibs=@@FREETYPE_LIBS@@
+freetypecflags=@@FREETYPE_CFLAGS@@
+xrenderlibs=@@XRENDER_LIBS@@
+xrendercflags=@@XRENDER_CFLAGS@@
+
+Name: Xft
+Description: X FreeType library
+Version: @@PACKAGE_VERSION@@
+Requires: fontconfig
+Libs: ${hardcode_libdir_flag_spec} -L${libdir} -lXft ${freetypelibs} ${xrenderlibs}
+Cflags: -I${includedir} ${freetypecflags} ${xrendercflags}
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

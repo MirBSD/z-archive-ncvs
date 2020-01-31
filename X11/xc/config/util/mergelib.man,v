@@ -1,0 +1,68 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @.\" @;
+
+
+1.1
+date     2004.12.15.18.03.19;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.03.19;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@.\" $XFree86: xc/config/util/mergelib.man,v 1.2 2003/04/07 22:03:49 herrb Exp $
+.\" shorthand for double quote that works everywhere.
+.ds q \N'34'
+.TH MERGELIB 1 __xorgversion__
+.SH NAME
+mergelib \- merge one library into another
+.SH SYNOPSIS
+.B mergelib
+.I to-library
+.I from-library
+.RI [ object-filename-prefix ]
+.SH DESCRIPTION
+The
+.I mergelib
+program merges objects from one library into another.
+The names of object files in
+.I from-library
+will be prefixed by
+.I object-filename-prefix
+(\*q_\*q by default) to avoid name clashes.
+The merged library will be left in
+.IR to-library .
+.SH AUTHOR
+Jim Fulton wrote the
+.I mergelib
+program for the X Consortium.
+.PP
+Colin Watson wrote this manual page, originally for the Debian Project.
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

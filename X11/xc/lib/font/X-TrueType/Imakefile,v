@@ -1,0 +1,75 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.10.50;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.50;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM X-TrueType Server - TrueType rasterizer for X
+XCOMM $XFree86: xc/lib/font/X-TrueType/Imakefile,v 1.11 2004/02/07 04:45:19 dawes Exp $
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS="$(CDEBUGFLAGS)"
+
+#if BuildServer && DoLoadableServer
+MODULE_SUBDIRS = module
+#endif
+
+INCLUDES = -I. -I$(FONTINCSRC) -I../include -I../fontcache \
+           -I$(XINCLUDESRC) -I$(SERVERSRC)/include \
+           -I$(FTSOURCEDIR)/lib -I$(FTSOURCEDIR)/lib/extend \
+           -I$(FTSOURCEDIR)/lib/arch/unix -I$(FONTLIBSRC)/FreeType
+
+DEFINES = -DTT_MAKE_OPTION_SINGLE_OBJECT=1  -DTT_CONFIG_OPTION_EXTEND_ENGINE \
+	  $(FONTMODULEDEF) \
+	  $(XTT_DEBUG_FLAGS) $(XTT_CCONV_MOUDLE_DEFINES) \
+	  $(XTT_USE_OPT_ENC_DEFINES) Freetype1BuildDefines
+
+#include "Imakefile.inc"
+
+CCONVHEADERS = \
+  xttcap.h xttcconv.h xttcconvP.h xttcommon.h xttversion.h cconvversion.h
+#if XTrueTypeInstallCConvHeaders
+CCONVINSTDIR = XTrueTypeCConvIncDir
+InstallMultipleFlags($(CCONVHEADERS),$(CCONVINSTDIR),$(INSTINCFLAGS))
+#endif
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+
+DependTarget()
+
+XCOMM end of Imakefile
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

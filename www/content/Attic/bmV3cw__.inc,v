@@ -1,0 +1,99 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.57;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@<small class="rcsid">$MirBSD: www/content/bmV3cw__.inc,v 1.1 2004/12/13 00:13:24 tg Exp $</small>
+<h1>Current MirOS News</h1><ul>
+
+<li>03.12.2004<br />
+	CVS 1.12.10 has entered HEAD and replaces CVS 1.11.1p1 which has
+	done well for ages. (Let me repeat it again: do not try to access
+	a new repository with an old cvs binary or vice versa.)<br />Some
+	time_t related bugs have been fixed; compat_openbsd(8) has been
+	extended to the point that it successfully runs Mozilla&trade;
+	Firefox&trade; and probably also Sun's native Java&trade;.</li>
+
+<li>30.11.2004<br />
+	The <a href="/?clog-2004#snap1129">new snapshot</a> is up via the
+	<a href="http://f.scarywater.net/miros/">BitTorrent tracker</a>.
+	Today you will get excellent download rates, tomorrow we will have
+	to reduce the upstream for cost reasons. It will appear on direct
+	download mirrors later. Please test test test, we haven't been able
+	to do so before. Time handling looks fixed now, OpenBSD emulation
+	is pretty damn stable. [UPDATE] Everything which uses rusage()
+	under emulatin (Linux or OpenBSD) is still broken.</li>
+
+<li>24.11.2004<br />
+	No new snapshot yet. Problems with time handling, both in our libc
+	routines (by Ohlson, DJB and me) and in format string handlings
+	(such as these in libcrypto of OpenSSL fame) have further delayed
+	proliferation of a &quot;known good&quot; snapshot (ie. X.509 cert
+	validation broke, so I couldn't use pine or lynx).<br />Let me
+	repeat: It is <strong>important</strong> that, once the new snap
+	is out, you all test it. I mean it.</li>
+
+<li>21.11.2004<br />
+	A <a href="/?clog-2004#snap1121">new snapshot</a> has been released
+	via <a href="http://f.scarywater.net/miros/">BitTorrent</a> and <a
+	href="/?getting">direct download</a>. New features: fixed Linux and
+	newly written OpenBSD 3.6-current emulation; lots of bug fixes. This
+	snapshot is a &quot;known good&quot; state of MirOS #8-beta; we will
+	start porting cvs-1.12 and gcc-3.4 now that this snapshot is released.
+	See you at <a href="http://www.ccc.de/congress/2004/">21C3</a>!<br />
+	Update: the snapshot is <strong>revoked</strong> for both bugs in the
+	installer/ramdisk and <strong>corrupt</strong> time handling!</li>
+
+</ul>
+<p>For older news, please refer to the <a href="/?older">historical news
+ page</a>, or the developers' weblog.</p>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+<small class="rcsid">$MirBSD: www/content/bmV3cw__.inc,v 1.78 2004/12/01 18:40:43 tg Exp $</small>
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

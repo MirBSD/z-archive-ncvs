@@ -1,0 +1,102 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: ncr,v 1.2 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+# ncr:  file(1) magic for NCR Tower objects
+#
+# contributed by
+# Michael R. Wayne  ***  TMC & Associates  ***  INTERNET: wayne@@ford-vax.arpa
+# uucp: {philabs | pyramid} !fmsrl7!wayne   OR   wayne@@fmsrl7.UUCP
+#
+0	beshort		000610	Tower/XP rel 2 object
+>12	   belong		>0	not stripped
+>20	   beshort		0407	executable
+>20	   beshort		0410	pure executable
+>22	   beshort		>0	- version %ld
+0	beshort		000615	Tower/XP rel 2 object
+>12	   belong		>0	not stripped
+>20	   beshort		0407	executable
+>20	   beshort		0410	pure executable
+>22	   beshort		>0	- version %ld
+0	beshort		000620	Tower/XP rel 3 object
+>12	   belong		>0	not stripped
+>20	   beshort		0407	executable
+>20	   beshort		0410	pure executable
+>22	   beshort		>0	- version %ld
+0	beshort		000625	Tower/XP rel 3 object
+>12	   belong		>0	not stripped
+>20	   beshort		0407	executable
+>20	   beshort		0410	pure executable
+>22	   beshort		>0	- version %ld
+0	beshort		000630	Tower32/600/400 68020 object
+>12	   belong		>0	not stripped
+>20	   beshort		0407	executable
+>20	   beshort		0410	pure executable
+>22	   beshort		>0	- version %ld
+0	beshort		000640	Tower32/800 68020
+>18	   beshort		&020000	w/68881 object
+>18	   beshort		&040000	compatible object
+>18	   beshort		&~060000	object
+>20	   beshort		0407	executable
+>20	   beshort		0413	pure executable
+>12	   belong		>0	not stripped
+>22	   beshort		>0	- version %ld
+0	beshort		000645	Tower32/800 68010
+>18	   beshort		&040000	compatible object
+>18	   beshort		&~060000 object
+>20	   beshort		0407	executable
+>20	   beshort		0413	pure executable
+>12	   belong		>0	not stripped
+>22	   beshort		>0	- version %ld
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

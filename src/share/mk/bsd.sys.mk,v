@@ -1,0 +1,217 @@
+head	2.3;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.21.00.07.16;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.14.14.15.20;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.33.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@sync
+@
+text
+@# $MirBSD: src/share/mk/bsd.sys.mk,v 2.2 2005/01/14 14:15:20 tg Exp $
+# $OpenBSD: bsd.sys.mk,v 1.8 2000/07/06 23:12:41 millert Exp $
+# $NetBSD: bsd.sys.mk,v 1.2 1995/12/13 01:25:07 cgd Exp $
+#-
+# Copyright (c) 2002, 2003, 2004, 2005
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+#
+# Licensee is hereby permitted to deal in this work without restric-
+# tion, including unlimited rights to use, publicly perform, modify,
+# merge, distribute, sell, give away or sublicence, provided all co-
+# pyright notices above, these terms and the disclaimer are retained
+# in all redistributions or reproduced in accompanying documentation
+# or other materials provided with binary redistributions.
+#
+# Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+# any kind, expressed or implied, to the maximum extent permitted by
+# applicable law, but with the warranty of being written without ma-
+# licious intent or gross negligence; in no event shall licensor, an
+# author or contributor be held liable for any damage, direct, indi-
+# rect or other, however caused, arising in any way out of the usage
+# of this work, even if advised of the possibility of such damage.
+#-
+# Overrides used for MirOS source tree builds.
+
+.if !defined(BSD_SYS_MK)
+BSD_SYS_MK=1
+
+# The following is only wanted for source tree builds, not MirPorts
+.ifndef TRUEPREFIX
+
+#CFLAGS+=	-Werror
+
+.  if defined(DESTDIR)
+CPPFLAGS+=	-nostdinc -isystem ${DESTDIR}/usr/include
+CXXFLAGS+=	-isystem ${DESTDIR}/usr/include/gxx \
+		-isystem ${DESTDIR}/usr/include/gxx/${OStriplet} \
+		-isystem ${DESTDIR}/usr/include/gxx/backward
+.  endif
+
+.  if defined(PARALLEL)
+# Lex
+.l:
+	${LEX.l} -o${.TARGET:R}.yy.c ${.IMPSRC}
+	${LINK.c} -o ${.TARGET} ${.TARGET:R}.yy.c ${LDLIBS} -ll
+	rm -f ${.TARGET:R}.yy.c
+.l.c:
+	${LEX.l} -o${.TARGET} ${.IMPSRC}
+.l.o:
+	${LEX.l} -o${.TARGET:R}.yy.c ${.IMPSRC}
+	${COMPILE.c} -o ${.TARGET} ${.TARGET:R}.yy.c
+	rm -f ${.TARGET:R}.yy.c
+
+# Yacc
+.y:
+	${YACC.y} -b ${.TARGET:R} ${.IMPSRC}
+	${LINK.c} -o ${.TARGET} ${.TARGET:R}.tab.c ${LDLIBS}
+	rm -f ${.TARGET:R}.tab.c
+.y.c:
+	${YACC.y} -b ${.TARGET:R} ${.IMPSRC}
+	mv ${.TARGET:R}.tab.c ${.TARGET}
+.y.o:
+	${YACC.y} -b ${.TARGET:R} ${.IMPSRC}
+	${COMPILE.c} -o ${.TARGET} ${.TARGET:R}.tab.c
+	rm -f ${.TARGET:R}.tab.c
+.  endif
+
+.endif
+
+.endif
+@
+
+
+2.2
+log
+@* protect from multiple inclusion
+* switch defaults to be suitable for gcc 3.4
+* remove crap
+* unify style a bit
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.sys.mk,v 2.1 2005/01/03 16:33:53 tg Exp $
+d34 4
+a37 4
+CPPFLAGS+=	-nostdinc -idirafter ${DESTDIR}/usr/include
+CXXFLAGS+=	-idirafter ${DESTDIR}/usr/include/gxx \
+		-idirafter ${DESTDIR}/usr/include/gxx/${OStriplet} \
+		-idirafter ${DESTDIR}/usr/include/gxx/backward
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.sys.mk,v 1.11 2004/09/11 18:17:44 tg Exp $
+d5 1
+a5 1
+# Copyright (c) 2002, 2003, 2004
+d9 5
+a13 5
+# tion, including unlimited rights to use, publically perform, modi-
+# fy, merge, distribute, sell, give away or sublicence, provided the
+# above copyright notices, these terms and the disclaimer are retai-
+# ned in all redistributions, or reproduced in accompanying documen-
+# tation or other materials provided with binary redistributions.
+d21 1
+a21 1
+# of covered work, even if advised of the possibility of such damage.
+d25 2
+a26 1
+.ifndef	BSD_SYS_MK
+d33 1
+a33 1
+.ifdef	DESTDIR
+d38 1
+a38 1
+.endif
+d40 1
+a40 1
+.ifdef	PARALLEL
+d65 1
+a65 1
+.endif	# def PARALLEL
+d67 1
+a67 1
+.endif	# ndef TRUEPREFIX
+a68 1
+BSD_SYS_MK=done
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 6
+a6 2
+#	$OpenBSD: bsd.sys.mk,v 1.8 2000/07/06 23:12:41 millert Exp $
+#	$NetBSD: bsd.sys.mk,v 1.2 1995/12/13 01:25:07 cgd Exp $
+d8 21
+a28 1
+# Overrides used for OpenBSD source tree builds.
+d30 1
+a30 1
+#CFLAGS+= -Werror
+d32 5
+a36 3
+.if defined(DESTDIR)
+CPPFLAGS+= -nostdinc -idirafter ${DESTDIR}/usr/include
+CXXFLAGS+= -idirafter ${DESTDIR}/usr/include/g++
+d39 1
+a39 1
+.if defined(PARALLEL)
+d49 1
+a49 1
+	${COMPILE.c} -o ${.TARGET} ${.TARGET:R}.yy.c 
+d64 5
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

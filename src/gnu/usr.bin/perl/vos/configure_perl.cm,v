@@ -1,0 +1,86 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.49;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@& This command macro configures perl to build with
+& either the alpha or generally-available version of
+& VOS POSIX.1 support.
+& Written 00-10-24 by Paul Green (Paul_Green@@stratus.com)
+&
+&begin_parameters
+     version   option(-version)name,allow(alpha,ga),=ga
+&end_parameters
+&echo command_lines
+&
+&if (file_info config.&version&.def date_modified) >= &+
+    (file_info config.&version&.h date_modified)
+&then &do
+!copy_file config.&version&.def config.def -delete
+&
+& NOTE: We must invoke Perl 5 not Perl 4. The following
+& commands runs perl5 if it exists, otherwise runs perl,
+& in the hopes it is really perl5.
+&
+!attach_default_output (process_dir)>_where_perl ; &+
+     where_command perl5 ; detach_default_output
+&if (index (contents (process_dir)>_where_perl) 'perl5:') ^= 0
+&then !perl5 config.pl
+&else !perl  config.pl
+&
+!rename config.h.new config.&version&.h -delete
+!delete_file config.def
+&end
+&
+&if (file_info config.&version&.h date_modified) ^= (file_info config.h date_modified)
+&then !copy_file config.&version&.h config.h -delete -keep_dates
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

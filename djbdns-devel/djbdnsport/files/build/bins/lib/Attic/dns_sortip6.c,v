@@ -1,0 +1,75 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 tg:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.12.13.22.27.12;	author tg;	state dead;
+branches;
+next	1.1;
+commitid	0439f4ac1aff1455;
+
+1.1
+date	2005.12.13.20.44.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+commitid	0439f32c6884c25e;
+
+1.1.1.1
+date	2005.12.13.20.44.45;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f32c6884c25e;
+
+
+desc
+@@
+
+
+1.2
+log
+@consolidate all added source files in a central directory
+so it can be reused by the v6-transport stuff
+@
+text
+@#include "byte.h"
+#include "dns.h"
+
+/* XXX: sort servers by configurable notion of closeness? */
+/* XXX: pay attention to competence of each server? */
+
+void dns_sortip6(char *s,unsigned int n)
+{
+  unsigned int i;
+  char tmp[16];
+
+  n >>= 4;
+  while (n > 1) {
+    i = dns_random(n);
+    --n;
+    byte_copy(tmp,16,s + (i << 4));
+    byte_copy(s + (i << 4),16,s + (n << 4));
+    byte_copy(s + (n << 4),16,tmp);
+  }
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import ports/net/djbdns of snapshot
+@
+text
+@@

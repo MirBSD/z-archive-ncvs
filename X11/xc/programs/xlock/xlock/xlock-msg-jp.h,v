@@ -1,0 +1,53 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.06.21.52.28;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.06.21.52.28;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Japanese messages are separate to another file.             */
+/* Because Japanese EUC-JP encoding is conflict with ISO-8859. */
+/* By: YOKOTA Hiroshi <yokota@@netlab.is.tsukuba.ac.jp>         */
+
+#ifndef __XLOCK_MSG_JP_H__
+#define __XLOCK_MSG_JP_H__
+
+#define JP_TIME_ELAPSSED_MINUTES "ロックしてから %d 分が経過しました。                      \n"
+#define JP_TIME_ELAPSSED_HOURS   "ロックしてから %d 時間 %02d 分経過しました。              \n"
+#define JP_BUTTON_MINUTES        "%d 分後にログアウトボタンが出現します。                   \n"
+#define JP_BUTTON_HOURS          "%d 時間 %02d 分後にログアウトボタンが出現します。         \n"
+#define JP_AUTOLOGOUT_MINUTES    "自動ログアウトまで %d 分"
+#define JP_AUTOLOGOUT_HOURS      "自動ログアウトまで %d 時間 %02d 分"
+
+#endif
+@
+
+
+1.1.1.1
+log
+@Import programmes new to OpenBSD's X-Window subsystem
+@
+text
+@@

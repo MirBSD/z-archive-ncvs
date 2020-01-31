@@ -1,0 +1,56 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.16.17.21.37;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.29.30;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@this is skurril
+@
+text
+@# $MirBSD: src/lib/libssl/Makefile.inc,v 2.1 2005/01/03 16:29:30 tg Exp $
+
+.if !defined(_MODSRC_LIB_LIBSSL_MAKEFILE_INC)
+_MODSRC_LIB_LIBSSL_MAKEFILE_INC=1
+
+.if exists(${.CURDIR}/../../Makefile.inc)
+.  include "${.CURDIR}/../../Makefile.inc"
+.endif
+
+CFLAGS+= -fno-builtin-pow10
+
+.endif
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 4
+a4 1
+# $MirBSD: src/lib/libssl/Makefile.inc,v 1.1 2003/11/27 22:37:32 tg Stab $
+d7 5
+a11 1
+.include "${.CURDIR}/../../Makefile.inc"
+@
+

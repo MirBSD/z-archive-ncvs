@@ -1,0 +1,74 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.08.23.03.10;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.03.10;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include "as.h"
+#include "emul.h"
+
+static const char *i386elf_bfd_name PARAMS ((void));
+
+static const char *
+i386elf_bfd_name ()
+{
+  abort ();
+  return NULL;
+}
+
+#define emul_bfd_name	i386elf_bfd_name
+#define emul_format	&elf_format_ops
+
+#define emul_name	"i386elf"
+#define emul_struct_name i386elf
+#define emul_default_endian 0
+#include "emul-target.h"
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

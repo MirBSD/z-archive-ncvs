@@ -1,0 +1,70 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.23.03.58;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.03.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ARCH=arm
+SCRIPT_NAME=pe
+
+OUTPUT_FORMAT="pei-arm-little"
+LITTLE_OUTPUT_FORMAT="pei-arm-little"
+BIG_OUTPUT_FORMAT="pei-arm-big"
+
+RELOCATEABLE_OUTPUT_FORMAT="pe-arm-little"
+
+TEMPLATE_NAME=pe
+ENTRY="_mainCRTStartup"
+SUBSYSTEM=PE_DEF_SUBSYSTEM
+INITIAL_SYMBOL_CHAR=\"_\"
+
+TARGET_PAGE_SIZE=0x1000
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

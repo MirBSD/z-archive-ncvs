@@ -1,0 +1,206 @@
+head	1.7;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.7
+date	2005.01.16.10.24.37;	author tg;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2005.01.16.10.19.26;	author tg;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2005.01.16.09.35.15;	author tg;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2005.01.15.20.09.36;	author tg;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2005.01.15.19.34.07;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2005.01.13.20.53.27;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.13.20.35.23;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.7
+log
+@fix CLEANFILES
+@
+text
+@# $MirBSD: src/gnu/usr.bin/binutils/bfd/Makefile.bsd-wrapper,v 1.6 2005/01/16 10:19:26 tg Exp $
+
+.include "../Makefile.inc"
+
+FSFSRC=		${GNU_BINUTILS_BFD}
+SHLIB_VERSION?=	2.0
+XARGS+=		libbfd_la_LDFLAGS="-version-info ${SHLIB_VERSION:S/./:/}"
+ALL_TARGET=	all info
+CLEANFILES+=	_gplwarn.c bfd_inst.h doc/aoutx.texi doc/archive.texi \
+		doc/archures.texi doc/bfdio.texi doc/bfdt.texi \
+		doc/bfdwin.texi doc/cache.texi doc/coffcode.texi \
+		doc/core.texi doc/elf.texi doc/elfcode.texi doc/format.texi \
+		doc/hash.texi doc/init.texi doc/libbfd.texi doc/linker.texi \
+		doc/mmo.texi doc/opncls.texi doc/reloc.texi doc/section.texi \
+		doc/syms.texi doc/targets.texi
+
+config.status: _gplwarn.c
+
+all: bfd_inst.h
+
+_gplwarn.c: ${GNUSYSTEM_AUX_DIR}/_gplwarn.c
+	cp $> $@@
+
+bfd.h: build
+
+bfd_inst.h: bfd.h ${GNU_LIBIBERTY_INC}/ansidecl.h \
+    ${GNU_LIBIBERTY_INC}/symcat.h
+	sed -e '/^#include "ansidecl.h"/r${GNU_LIBIBERTY_INC}/ansidecl.h' -e \
+	    '//d' -e '/^#include "symcat.h"/r${GNU_LIBIBERTY_INC}/symcat.h' \
+	    -e '//d' <bfd.h >$@@
+
+post-install:
+	chown ${LIBOWN}:${LIBGRP} ${DESTDIR}/usr/lib/libbfd.{a,la}
+	chmod ${LIBMODE} ${DESTDIR}/usr/lib/libbfd.{a,la}
+.if !defined(NOPIC) || ${NOPIC:L} == "no"
+	chown ${LIBOWN}:${LIBGRP} \
+	    ${DESTDIR}/usr/lib/libbfd.so.${SHLIB_VERSION}
+	chmod ${LIBMODE} \
+	    ${DESTDIR}/usr/lib/libbfd.so.${SHLIB_VERSION}
+.endif
+	${INSTALL_DATA} bfd_inst.h ${DESTDIR}/usr/include/bfd.h
+	${INSTALL_DATA} bfdver.h ${DESTDIR}/usr/include/
+	${INSTALL_DATA} ${GNU_LIBIBERTY_INC}/bfdlink.h ${DESTDIR}/usr/include/
+
+.include <bsd.cfwrap.mk>
+@
+
+
+1.6
+log
+@fix and correct perms
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/bfd/Makefile.bsd-wrapper,v 1.5 2005/01/16 09:35:15 tg Exp $
+d9 7
+a15 1
+CLEANFILES+=	_gplwarn.c bfd_inst.h
+@
+
+
+1.5
+log
+@build bfd
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/bfd/Makefile.bsd-wrapper,v 1.4 2005/01/15 20:09:36 tg Exp $
+d27 8
+a34 8
+#	chown ${LIBOWN}:${LIBGRP} ${DESTDIR}/usr/lib/libbfd.{a,la}
+#	chmod ${LIBMODE} ${DESTDIR}/usr/lib/libbfd.{a,la}
+#.if !defined(NOPIC) || ${NOPIC:L} == "no"
+#	chown ${LIBOWN}:${LIBGRP} \
+#	    ${DESTDIR}/usr/lib/libbfd.so.${SHLIB_VERSION}
+#	chmod ${LIBMODE} \
+#	    ${DESTDIR}/usr/lib/libbfd.so.${SHLIB_VERSION}
+#.endif
+@
+
+
+1.4
+log
+@save to cvs :) what I've already got, trying to compile bfd
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/bfd/Makefile.bsd-wrapper,v 1.3 2005/01/15 19:34:07 tg Exp $
+d8 1
+@
+
+
+1.3
+log
+@fix these up (needed for header regen)
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/bfd/Makefile.bsd-wrapper,v 1.2 2005/01/13 20:53:27 tg Exp $
+d8 1
+a8 2
+#CLEANFILES+=	doc/Makefile doc/bfd.h doc/chew doc/chew.o doc/libbfd.h \
+#		doc/libcoff.h _gplwarn.c bfd_inst.h
+@
+
+
+1.2
+log
+@ensure all shared libraries have at least a major more
+than these of OpenBSD-current or the last MirOS version
+before the time_t switch
+
+this makes the (U)pgrade option of bsd.rd work again
+
+thanks for finding out to Benni "zirk" Adams
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/bfd/Makefile.bsd-wrapper,v 1.1 2005/01/13 20:35:23 tg Exp $
+d8 2
+a9 2
+CLEANFILES+=	doc/Makefile doc/bfd.h doc/chew doc/chew.o doc/libbfd.h \
+		doc/libcoff.h _gplwarn.c bfd_inst.h
+d27 8
+a34 8
+	chown ${LIBOWN}:${LIBGRP} ${DESTDIR}/usr/lib/libbfd.{a,la}
+	chmod ${LIBMODE} ${DESTDIR}/usr/lib/libbfd.{a,la}
+.if !defined(NOPIC) || ${NOPIC:L} == "no"
+	chown ${LIBOWN}:${LIBGRP} \
+	    ${DESTDIR}/usr/lib/libbfd.so.${SHLIB_VERSION}
+	chmod ${LIBMODE} \
+	    ${DESTDIR}/usr/lib/libbfd.so.${SHLIB_VERSION}
+.endif
+@
+
+
+1.1
+log
+@further merge and fix double-inclusion-protection
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/bfd/Makefile.bsd-wrapper,v 1.13 2004/11/30 16:47:02 tg Exp $
+d6 1
+a6 1
+SHLIB_VERSION?=	1.0
+@
+

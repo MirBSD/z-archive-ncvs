@@ -1,0 +1,128 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.28.09;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.41;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.41;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * Copyright (c) 1983, 1993
+ *	The Regents of the University of California.  All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. Neither the name of the University nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#if defined(LIBC_SCCS) && !defined(lint)
+static char rcsid[] = "$OpenBSD: getservbyname.c,v 1.9 2004/10/25 03:09:01 millert Exp $";
+#endif /* LIBC_SCCS and not lint */
+
+#include <netdb.h>
+#include <stdio.h>
+#include <string.h>
+
+int
+getservbyname_r(const char *name, const char *proto, struct servent *se,
+    struct servent_data *sd)
+{
+	char **cp;
+	int error;
+
+	setservent_r(sd->stayopen, sd);
+	while ((error = getservent_r(se, sd)) == 0) {
+		if (strcmp(name, se->s_name) == 0)
+			goto gotname;
+		for (cp = se->s_aliases; *cp; cp++)
+			if (strcmp(name, *cp) == 0)
+				goto gotname;
+		continue;
+gotname:
+		if (proto == 0 || strcmp(se->s_proto, proto) == 0)
+			break;
+	}
+	if (!sd->stayopen && sd->fp != NULL) {
+		fclose(sd->fp);
+		sd->fp = NULL;
+	}
+	return (error);
+}
+
+struct servent *
+getservbyname(const char *name, const char *proto)
+{
+	extern struct servent_data _servent_data;
+	static struct servent serv;
+
+	if (getservbyname_r(name, proto, &serv, &_servent_data) != 0)
+		return (NULL);
+	return (&serv);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

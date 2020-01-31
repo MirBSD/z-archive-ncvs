@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.12.13.22.18.55;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f48ca142fd18;
+
+
+desc
+@@
+
+
+1.1
+log
+@* update to fefe's djbdns-1.05-test23.diff
+  with djbdns-1.05-ixfr.diff
+* slightly change naming of v6-transport binaries
+@
+text
+@$MirOS$
+--- src/error.h.orig	Sun Feb 11 21:11:23 2001
++++ src/error.h	Tue Dec 13 21:06:45 2005
+@@@@ -1,7 +1,7 @@@@
+ #ifndef ERROR_H
+ #define ERROR_H
+ 
+-extern int errno;
++#include <errno.h>
+ 
+ extern int error_intr;
+ extern int error_nomem;
+@

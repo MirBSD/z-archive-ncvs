@@ -1,0 +1,28 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.09.19.58.31;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@fix crt{begin,end}S.o CFLAGS (-fPIC yea, but -fno-omit-frame-pointer
+was eg. added for i386)
+@
+text
+@# $MirBSD$
+
+# Compile crtbeginS.o and crtendS.o with pic.
+CRTSTUFF_T_CFLAGS_S = $(CRTSTUFF_T_CFLAGS) -fPIC
+@

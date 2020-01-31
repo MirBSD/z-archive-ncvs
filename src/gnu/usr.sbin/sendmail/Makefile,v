@@ -1,0 +1,110 @@
+head	2.2;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.12.22.21.45;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.27.00;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.10;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.10;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@big documentation update:
+* move over the remaining parts of ocvs
+* restructure licence stuff into many files, big bang is gone
+* start converting to mdoc
+* rephrase MirOS stuff
+* add a termination clause to my advertising clause
+* cope with minors contributing to MirOS
+* better list and cross-link files
+@
+text
+@# $MirBSD: src/gnu/usr.sbin/sendmail/Makefile,v 2.1 2005/01/03 16:27:00 tg Exp $
+# $OpenBSD: Makefile,v 1.9 2004/06/29 04:07:49 millert Exp $
+
+# We only use these libs internally
+.if !make(install)
+SUBDIR= libsmutil libsmdb libsm
+.else
+SUBDIR=
+.endif
+
+# The bits we install
+SUBDIR+= libmilter sendmail mailstats makemap praliases smrsh editmap cf/cf
+
+# Extra bits we don't build/install right now
+#SUBDIR+= mail.local rmail vacation
+
+# These just get installed verbatim
+.if make(install)
+SUBDIR+= doc/op cf
+.endif
+
+afterinstall:
+	${INSTALL} -c -o ${DOCOWN} -g ${DOCGRP} -m ${DOCMODE} LICENSE \
+	    ${DESTDIR}${DOCDIR}/legal/LICENCE.smtpd
+
+.include <bsd.subdir.mk>
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.sbin/sendmail/Makefile,v 1.5 2004/10/23 00:25:41 tg Exp $
+d24 1
+a24 1
+	    ${DESTDIR}${DOCDIR}/legal/LICENSE.sendmail
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile,v 1.9 2004/06/29 04:07:49 millert Exp $
+d22 4
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

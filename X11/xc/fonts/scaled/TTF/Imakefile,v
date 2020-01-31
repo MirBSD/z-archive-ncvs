@@ -1,0 +1,100 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.06.23.20.51;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.08.43;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.08.43;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge X11 out of my feet
+@
+text
+@XCOMM $XFree86: xc/fonts/scaled/TTF/Imakefile,v 1.5 2003/12/31 19:30:39 dawes Exp $
+
+LUXIFONTS = luximb.ttf luximbi.ttf luximr.ttf luximri.ttf \
+	luxirb.ttf luxirbi.ttf luxirr.ttf luxirri.ttf \
+	luxisb.ttf luxisbi.ttf luxisr.ttf luxisri.ttf
+
+VERASRCDIR = $(TOP)/extras/fonts/Bitstream-Vera
+VERAFONTS = Vera.ttf VeraBI.ttf VeraBd.ttf VeraMoBI.ttf VeraMoBd.ttf \
+	VeraMoIt.ttf VeraMono.ttf VeraSe.ttf VeraSeBd.ttf VeraIt.ttf
+
+FONTS = $(LUXIFONTS) $(VERAFONTS)
+OBJS = $(FONTS)
+
+FONTINSTDIR = $(FONTDIR)/TTF
+
+MakeFontsScale($(OBJS))
+MakeFontsDir(fonts.scale)
+
+#if UseFreetype2
+MakeFcCache($(FONTS))
+#endif
+
+InstallFonts($(FONTINSTDIR))
+InstallEncodingsDir($(ENCODINGSSRC),$(FONTINSTDIR))
+#if UseFreetype2
+InstallFcCache($(FONTINSTDIR))
+#endif
+
+#ifdef IHaveSubdirs
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+#endif
+
+LinkSourceFile(Vera.ttf,$(VERASRCDIR))
+LinkSourceFile(VeraBI.ttf,$(VERASRCDIR))
+LinkSourceFile(VeraBd.ttf,$(VERASRCDIR))
+LinkSourceFile(VeraIt.ttf,$(VERASRCDIR))
+LinkSourceFile(VeraMoBI.ttf,$(VERASRCDIR))
+LinkSourceFile(VeraMoBd.ttf,$(VERASRCDIR))
+LinkSourceFile(VeraMoIt.ttf,$(VERASRCDIR))
+LinkSourceFile(VeraMono.ttf,$(VERASRCDIR))
+LinkSourceFile(VeraSe.ttf,$(VERASRCDIR))
+LinkSourceFile(VeraSeBd.ttf,$(VERASRCDIR))
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d9 1
+a9 1
+	VeraMoIt.ttf VeraMono.ttf VeraSe.ttf VeraSeBd.ttf
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

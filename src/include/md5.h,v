@@ -1,0 +1,146 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.27.37;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.25;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/* $MirBSD: src/include/md5.h,v 1.4 2004/06/23 08:41:04 tg Stab $ */
+/* $OpenBSD: md5.h,v 1.16 2004/06/22 01:57:30 jfb Exp $	*/
+
+#ifndef	_MD5_H_
+#define	_MD5_H_
+
+#define	MD5_BLOCK_LENGTH		64
+#define	MD5_DIGEST_LENGTH		16
+#define	MD5_DIGEST_STRING_LENGTH	(MD5_DIGEST_LENGTH * 2 + 1)
+
+typedef struct MD5Context {
+	u_int32_t state[4];
+	u_int64_t count;
+	u_int8_t  buffer[MD5_BLOCK_LENGTH];
+} MD5_CTX;
+
+__BEGIN_DECLS
+/* low-level MD5 functions from md5c.c */
+void	MD5Init(MD5_CTX *);
+void	MD5Update(MD5_CTX *, const u_int8_t *, size_t)
+		__attribute__((__bounded__(__string__,2,3)));
+void	MD5Pad(MD5_CTX *);
+void	MD5Final(u_int8_t [MD5_DIGEST_LENGTH], MD5_CTX *)
+		__attribute__((__bounded__(__minbytes__,1,MD5_DIGEST_LENGTH)));
+void	MD5Transform(u_int32_t [4], const u_int8_t [MD5_BLOCK_LENGTH])
+		__attribute__((__bounded__(__minbytes__,1,4)))
+		__attribute__((__bounded__(__minbytes__,2,MD5_BLOCK_LENGTH)));
+
+/* high-level functions from mdXhl.c */
+char   *MD5End(MD5_CTX *, char *)
+		__attribute__((__bounded__(__minbytes__,2,MD5_DIGEST_STRING_LENGTH)));
+char   *MD5File(const char *, char *)
+		__attribute__((__bounded__(__minbytes__,2,MD5_DIGEST_STRING_LENGTH)));
+char   *MD5FileChunk(const char *, char *, off_t, off_t)
+		__attribute__((__bounded__(__minbytes__,2,MD5_DIGEST_STRING_LENGTH)));
+char   *MD5Data(const u_int8_t *, size_t, char *)
+		__attribute__((__bounded__(__string__,1,2)))
+		__attribute__((__bounded__(__minbytes__,3,MD5_DIGEST_STRING_LENGTH)));
+__END_DECLS
+
+#endif	/* _MD5_H_ */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+/*	$OpenBSD: md5.h,v 1.16 2004/06/22 01:57:30 jfb Exp $	*/
+d4 2
+a5 14
+/*
+ * This code implements the MD5 message-digest algorithm.
+ * The algorithm is due to Ron Rivest.  This code was
+ * written by Colin Plumb in 1993, no copyright is claimed.
+ * This code is in the public domain; do with it what you wish.
+ *
+ * Equivalent code is available from RSA Data Security, Inc.
+ * This code has been tested against that, and is equivalent,
+ * except that you don't need to include two pages of legalese
+ * with every copy.
+ */
+
+#ifndef _MD5_H_
+#define _MD5_H_
+d12 3
+a14 3
+	u_int32_t state[4];			/* state */
+	u_int64_t count;			/* number of bits, mod 2^64 */
+	u_int8_t buffer[MD5_BLOCK_LENGTH];	/* input buffer */
+a16 2
+#include <sys/cdefs.h>
+
+d18 3
+a20 2
+void	 MD5Init(MD5_CTX *);
+void	 MD5Update(MD5_CTX *, const u_int8_t *, size_t)
+d22 2
+a23 2
+void	 MD5Pad(MD5_CTX *);
+void	 MD5Final(u_int8_t [MD5_DIGEST_LENGTH], MD5_CTX *)
+d25 1
+a25 1
+void	 MD5Transform(u_int32_t [4], const u_int8_t [MD5_BLOCK_LENGTH])
+d28 3
+a30 1
+char	*MD5End(MD5_CTX *, char *)
+d32 1
+a32 1
+char	*MD5File(const char *, char *)
+d34 1
+a34 1
+char	*MD5FileChunk(const char *, char *, off_t, off_t)
+d36 1
+a36 1
+char	*MD5Data(const u_int8_t *, size_t, char *)
+d41 1
+a41 1
+#endif /* _MD5_H_ */
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

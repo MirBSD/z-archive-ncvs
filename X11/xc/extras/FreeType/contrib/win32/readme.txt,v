@@ -1,0 +1,59 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.04.13;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.13;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@The purpose of this application is to serve as a running environment for 
+some of the freetype project test programs:
+currently available programa aree ftdump,ftlint,,ftstring,ftview;
+others may be convinced to run but you may need to change the source
+code to avoid duplicate problems with the linker.
+This work has been based on a large amount of guesswork		
+and a small amount of  my (little) spare time;
+however it seems to be	working pretty well as far as I can tell
+( -g -r options are not working but I don't care 'bout them).
+It can be compiled both under MS VC++ Version 4.X and Version 5.
+and has been tested under Windows 95 & NT 4.0 .
+
+Have Fun .
+ Giancarlo Ramat 
+  (gcramat@@radiostudio.it) 
+
+[Please note that all files are archived in Unix LF format (except
+testw32.mdp which is a binary file).  If necessary, use e.g. unzip's `-a'
+flag to convert to MSDOS CR/LF convention.]
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

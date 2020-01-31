@@ -1,0 +1,29 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.32.47;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@program mismatch(output)
+begin
+	writeln('***');
+	{ The next line is the last line in the file }
+	writeln
+@

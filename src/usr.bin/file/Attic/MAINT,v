@@ -1,0 +1,89 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.06.33;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.03;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@$OpenBSD: MAINT,v 1.2 1996/06/26 05:32:52 deraadt Exp $
+
+Maintenance notes:
+
+I am continuing to maintain the file command. I welcome your help,
+but to make my life easier I'd like to request the following:
+
+- Don't change the version numbers!
+
+If your changes are extensive, I will have to work hard to 
+integrate them into my version.  If you check it into SCCS locally,
+the version numbers will likely be kept. IF you check it into RCS
+or CVS locally, please use -k to keep the version numbers, and
+please use branch deltas (1.21.1, 1.21.2, ...).  If you don't do
+this, I will likely be unable to use your changes; life's just too
+short.
+
+- Do not distribute changed versions.
+
+People trying to be helpful occasionally put up their hacked versions
+of the file command for FTP, then the "archie" server finds and publishes
+the hacked version, and people all over the world get copies of it.
+Within a day or two I am getting email from around the world
+asking me why "my" file command won't compile!!! Needless to say this
+detracts from the limited time I have available to work on the actual
+software.  Therefore I ask you again to please NOT distribute
+your changed version.
+
+
+Thank you for your assistance and cooperation.
+
+Mark Moraes		Christos Zoulas
+moraes@@deshaw.com	christos@@deshaw.com
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

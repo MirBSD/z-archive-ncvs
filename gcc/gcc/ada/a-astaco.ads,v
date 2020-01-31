@@ -1,0 +1,101 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@-- @;
+
+
+1.1
+date	2005.01.04.17.23.05;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.23.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@------------------------------------------------------------------------------
+--                                                                          --
+--                         GNAT RUNTIME COMPONENTS                          --
+--                                                                          --
+--        A D A . A S Y N C H R O N O U S _ T A S K _ C O N T R O L         --
+--                                                                          --
+--                                 S p e c                                  --
+--                                                                          --
+-- This specification is adapted from the Ada Reference Manual for use with --
+-- GNAT.  In accordance with the copyright of that document, you can freely --
+-- copy and modify this specification,  provided that if you redistribute a --
+-- modified version,  any changes that you have made are clearly indicated. --
+--                                                                          --
+------------------------------------------------------------------------------
+
+   --  This unit is not implemented in typical GNAT implementations that
+   --  lie on top of operating systems, because it is infeasible to implement
+   --  in such environments. The RM anticipates this situation (RM D.11(10)),
+   --  and permits an implementation to leave this unimplemented even if the
+   --  Real-Time Systems annex is fully supported.
+
+   --  If a target environment provides appropriate support for this package,
+   --  then the Unimplemented_Unit pragma should be removed from this spec,
+   --  and an appropriate body provided. The framework for such a body is
+   --  included in the distributed sources.
+
+with Ada.Task_Identification;
+
+package Ada.Asynchronous_Task_Control is
+
+   pragma Unimplemented_Unit;
+
+   procedure Hold (T : Ada.Task_Identification.Task_Id);
+
+   procedure Continue (T : Ada.Task_Identification.Task_Id);
+
+   function Is_Held (T : Ada.Task_Identification.Task_Id) return Boolean;
+
+end Ada.Asynchronous_Task_Control;
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

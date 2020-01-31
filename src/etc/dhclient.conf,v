@@ -1,0 +1,70 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.04;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $OpenBSD: dhclient.conf,v 1.1 1998/09/08 20:26:41 marc Exp $
+#
+# DHCP Client Configuration
+#
+# See dhclient.conf(5) for possible contents of this file.
+# When empty default values are used:
+#
+# Example:
+#
+# send dhcp-lease-time 3600;
+# send host-name "myhost";
+# supersede host-name "myhost";
+# supersede domain-name "my.domain";
+# request subnet-mask, broadcast-address, time-offset, routers,
+#	domain-name, domain-name-servers, host-name, lpr-servers, ntp-servers;
+# require subnet-mask, domain-name-servers, routers;
+# media "link0 link1", "link0 link1", "link0 link1", "-link0 link1";
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

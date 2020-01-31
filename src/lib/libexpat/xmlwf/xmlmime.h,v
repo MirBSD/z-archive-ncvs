@@ -1,0 +1,74 @@
+head	1.2;
+access;
+symbols
+	expat-1_95_8:1.1.16.1 expat:1.1.16;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.20.31.20;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.28.14;	author tg;	state Exp;
+branches
+	1.1.16.1;
+next	;
+
+1.1.16.1
+date	2005.01.08.20.28.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge
+@
+text
+@#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Registered charset names are at most 40 characters long. */
+
+#define CHARSET_MAX 41
+
+/* Figure out the charset to use from the ContentType.
+   buf contains the body of the header field (the part after "Content-Type:").
+   charset gets the charset to use.  It must be at least CHARSET_MAX chars
+   long.  charset will be empty if the default charset should be used.
+*/
+
+void getXMLCharset(const char *buf, char *charset)
+		__attribute__((__bounded__(__minbytes__,2,CHARSET_MAX)));
+
+#ifdef __cplusplus
+}
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d15 2
+a16 1
+void getXMLCharset(const char *buf, char *charset);
+@
+
+
+1.1.16.1
+log
+@libexpat 1.95.8
+@
+text
+@@

@@ -1,0 +1,52 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041000:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.10.27.37;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.10.06.24;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.10.06.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@we basically only want the GNU master files
+@
+text
+@Makefile
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU automake CVS-current from anoncvs@@subversions.gnu.org:/cvsroot/automake
+@
+text
+@@

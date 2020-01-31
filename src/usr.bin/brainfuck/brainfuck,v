@@ -1,0 +1,45 @@
+head     1.1;
+branch   1.1.15;
+access   ;
+symbols  start:1.1.15.1 mirbsd:1.1.15;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.07.01.15.59;  author tg;  state Exp;
+branches 1.1.15.1;
+next     ;
+
+1.1.15.1
+date     2005.01.07.01.15.59;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/usr/bin/perl
+# $MirBSD: src/usr.bin/brainfuck/brainfuck,v 1.1 2003/03/23 22:50:09 tg Stab $
+# Public domain by Marko Nippula
+
+$/=$a;while(<>){s/./$&;/g;s/\+|-/P$&$&/g;s/</\$p--/g;s/>/\$p++/g;s/\./
+print chr P/g;s/,/P=ord getc/g;y/[]/{}/;s/{/while(P){/g;s/P/\$m[\$p]/g
+;eval$_;print$@@if$@@}
+@
+
+
+1.1.15.1
+log
+@the brainfuck(1) interpreter
+@
+text
+@@

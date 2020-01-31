@@ -1,0 +1,59 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.17.18;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.17.18;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/luit/Imakefile,v 1.4 2003/05/28 16:02:35 tsi Exp $
+
+#ifndef LocaleAliasFile
+#define LocaleAliasFile $(XLOCALEDIR)/locale.alias
+#endif
+
+LOCALEALIASFILE = LocaleAliasFile
+LOCAL_LIBRARIES = $(XFONTENCLIB)
+DEPLIBS = $(DEPXFONTENCLIB)
+
+SYS_LIBRARIES = GzipLibrary
+
+SRCS = luit.c iso2022.c charset.c parser.c sys.c other.c
+
+OBJS = luit.o iso2022.o charset.o parser.o sys.o other.o
+
+DEFINES = -DLOCALE_ALIAS_FILE=\"$(LOCALEALIASFILE)\"
+
+ComplexProgramTarget(luit)
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

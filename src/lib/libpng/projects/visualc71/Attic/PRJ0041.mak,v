@@ -1,0 +1,72 @@
+head	1.2;
+access;
+symbols
+	libpng-1_2_8:1.1.17.1 libpng:1.1.17;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.37.34;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches
+	1.1.17.1;
+next	;
+
+1.1.17.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke junk
+@
+text
+@# Prevent "Cannot find missing dependency..." warnings while compiling
+# pngw32.rc (PRJ0041).
+
+all: $(IntDir)\alloc.h \
+	 $(IntDir)\fp.h \
+	 $(IntDir)\m68881.h \
+	 $(IntDir)\mem.h \
+	 $(IntDir)\pngusr.h \
+	 $(IntDir)\strings.h \
+	 $(IntDir)\unistd.h \
+	 $(IntDir)\unixio.h
+	 
+$(IntDir)\alloc.h \
+$(IntDir)\fp.h \
+$(IntDir)\m68881.h \
+$(IntDir)\mem.h \
+$(IntDir)\pngusr.h \
+$(IntDir)\strings.h \
+$(IntDir)\unistd.h \
+$(IntDir)\unixio.h:
+	@@!echo.>$@@
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.17.1
+log
+@libpng-1.2.8.tar.bz2
+@
+text
+@@

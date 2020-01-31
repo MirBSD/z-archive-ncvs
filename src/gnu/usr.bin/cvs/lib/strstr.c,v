@@ -1,0 +1,78 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.21.13.54;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.21.13.54;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/******************************************************************************
+*                                                                             *
+*   s t r s t r                                                               *
+*                                                                             *
+*   Find the first occurrence of a string in another string.                  *
+*                                                                             *
+* Format:                                                                     *
+*             return = strstr(Source,What);                                   *
+*                                                                             *
+* Parameters:                                                                 *
+*                                                                             *
+* Returns:                                                                    *
+*                                                                             *
+* Scope:      PUBLIC                                                          *
+*                                                                             *
+******************************************************************************/
+
+char *strstr(Source, What)
+register const char *Source;
+register const char *What;
+{
+register char WhatChar;
+register char SourceChar;
+register long Length;
+
+
+    if ((WhatChar = *What++) != 0) {
+        Length = strlen(What);
+        do {
+            do {
+                if ((SourceChar = *Source++) == 0) {
+                    return (0);
+                }
+            } while (SourceChar != WhatChar);
+        } while (strncmp(Source, What, Length) != 0);
+        Source--;
+    }
+    return ((char *)Source);
+
+}/*strstr*/
+@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

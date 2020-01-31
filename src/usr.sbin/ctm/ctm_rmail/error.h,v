@@ -1,0 +1,68 @@
+head	1.2;
+access;
+symbols
+	cvs-200501081900:1.1.6.1 freebsd:1.1.6;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.19.26.48;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.19.05.41;	author tg;	state Exp;
+branches
+	1.1.6.1;
+next	;
+
+1.1.6.1
+date	2005.01.08.19.05.41;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge CTM
+@
+text
+@/* $MirBSD: src/usr.bin/ctm_rmail/error.h,v 1.2 2003/04/05 20:14:58 tg Stab $ */
+/* $FreeBSD: src/usr.sbin/ctm/ctm_rmail/error.h,v 1.2 2001/05/06 03:03:45 kris Exp $ */
+
+#ifndef	ERROR_H
+#define	ERROR_H
+
+extern	void	err_set_log(char *log_file);
+extern	void	err_prog_name(char *name);
+extern	void	err(const char *fmt, ...)
+			__attribute__((__format__ (printf, 1, 2)));
+
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d4 3
+d9 4
+a12 1
+extern	void	err(const char *fmt, ...) __printflike(1, 2);
+@
+
+
+1.1.6.1
+log
+@CTM from FreeBSD
+@
+text
+@@

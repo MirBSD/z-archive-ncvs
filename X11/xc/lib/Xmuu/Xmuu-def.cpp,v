@@ -1,0 +1,62 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @// @;
+
+
+1.1
+date     2004.12.15.18.10.27;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.27;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@LIBRARY libXmuu
+VERSION LIBRARY_VERSION
+EXPORTS
+
+ XmuClientWindow
+ XmuCursorNameToIndex
+ XmuPrintDefaultErrorMessage
+ XmuSimpleErrorHandler
+ XmuGetHostname
+ XmuCompareISOLatin1
+ XmuCopyISOLatin1Lowered
+ XmuCopyISOLatin1Uppered
+ XmuNCopyISOLatin1Lowered
+ XmuNCopyISOLatin1Uppered
+ XmuSnprintf
+#ifndef __UNIXOS2__
+ _cygwin_dll_entry@@12
+ _cygwin_noncygwin_dll_entry@@12
+ dll_main@@12
+#endif
+
+/* $XFree86: xc/lib/Xmuu/Xmuu-def.cpp,v 1.2 2002/05/31 18:45:45 dawes Exp $ */
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

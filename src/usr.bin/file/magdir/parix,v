@@ -1,0 +1,66 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: parix,v 1.1 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+#
+# Parix COFF executables
+# From: Ignatios Souvatzis <ignatios@@cs.uni-bonn.de>
+#
+0	beshort&0xfff	0xACE	PARIX
+>0	byte&0xf0	0x80	T800
+>0	byte&0xf0	0x90	T9000
+>19	byte&0x02	0x02	executable
+>19	byte&0x02	0x00	object
+>19	byte&0x0c	0x00	not stripped
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

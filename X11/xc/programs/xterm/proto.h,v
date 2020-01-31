@@ -1,0 +1,69 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.19.43;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.19.43;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* $XFree86: xc/programs/xterm/proto.h,v 3.4 2003/10/27 01:07:57 dickey Exp $ */
+
+#ifndef included_proto_h
+#define included_proto_h
+
+#define PROTO_XT_ACTIONS_ARGS \
+	(Widget w, XEvent *event, String *params, Cardinal *num_params)
+
+#define PROTO_XT_CALLBACK_ARGS \
+	(Widget gw, XtPointer closure, XtPointer data)
+
+#define PROTO_XT_CVT_SELECT_ARGS \
+	(Widget w, Atom *selection, Atom *target, Atom *type, XtPointer *value, unsigned long *length, int *format)
+
+#define PROTO_XT_EV_HANDLER_ARGS \
+	(Widget w, XtPointer closure, XEvent *event, Boolean *cont)
+
+#define PROTO_XT_SEL_CB_ARGS \
+	(Widget w, XtPointer client_data, Atom *selection, Atom *type, XtPointer value, unsigned long *length, int *format)
+
+#ifdef SIGNALRETURNSINT
+#define SIGNAL_T int
+#define SIGNAL_RETURN return 0
+#else
+#define SIGNAL_T void
+#define SIGNAL_RETURN return
+#endif
+
+#endif/*included_proto_h*/
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

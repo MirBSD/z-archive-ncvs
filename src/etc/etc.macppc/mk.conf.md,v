@@ -1,0 +1,116 @@
+head	2.5;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.5
+date	2005.02.01.21.32.15;	author tg;	state Exp;
+branches;
+next	2.4;
+
+2.4
+date	2005.01.26.19.52.26;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.18.00.20.51;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.17.22.44.25;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.09.19.36.54;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.5
+log
+@don't -freorder-blocks twice
+also, don't -funswitch-loops which probably duplicates code
+@
+text
+@# $MirBSD: src/etc/etc.macppc/mk.conf.md,v 2.4 2005/01/26 19:52:26 tg Exp $
+#
+# machdep part of mk.conf for mirppc
+
+DEFCOPTS=	-Os -fno-strict-aliasing -fno-strength-reduce -Wformat \
+		-fno-unit-at-a-time -fno-align-functions -fno-align-labels \
+		-falign-loops=4 -falign-jumps=4 -mcpu=750 -mno-altivec \
+		-fweb -freorder-blocks -fmove-all-movables -frename-registers
+@
+
+
+2.4
+log
+@global -fno-unit-at-a-time
+can be switched back on by individual arches _iff_ it works
+
+still -Os, reason see my previous mail
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.macppc/mk.conf.md,v 2.3 2005/01/18 00:20:51 tg Exp $
+d8 1
+a8 2
+		-fweb -freorder-blocks -fmove-all-movables -freorder-blocks \
+		-frename-registers -funswitch-loops
+@
+
+
+2.3
+log
+@some more optimizing options, so that we get the best out
+of -O2 but with the "fixed" scheduling of -Os
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.macppc/mk.conf.md,v 2.2 2005/01/17 22:44:25 tg Exp $
+d6 1
+a6 1
+		-funit-at-a-time -fno-align-functions -fno-align-labels \
+@
+
+
+2.2
+log
+@I assume that if gcc mis-optimises -O2 on i386 and works with
+-Os, it's a MI bug (chances are 85%). So the other platforms
+get -Os now first, too, unless proven it works otherwise.
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.macppc/mk.conf.md,v 2.1 2005/01/09 19:36:54 tg Exp $
+d5 5
+a9 1
+DEFCOPTS=	-Os -mcpu=750 -mmultiple -mno-altivec
+@
+
+
+2.1
+log
+@merge over most userland fixes from ocvs
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.macppc/mk.conf.md,v 1.1.4.1 2005/01/09 14:27:26 tg Exp $
+d5 1
+a5 1
+DEFCOPTS=	-O2 -mcpu=750 -mmultiple -mno-altivec
+@
+

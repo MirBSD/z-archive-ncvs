@@ -1,0 +1,115 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.06;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$MirBSD: src/etc/rc.local,v 1.4 2004/05/23 20:48:23 tg Stab $
+#	$OpenBSD: rc.local,v 1.35 2004/04/07 19:23:39 david Exp $
+
+# site-specific startup actions, daemons, and other things which
+# can be done AFTER your system goes into securemode.  For actions
+# which should be done BEFORE your system has gone into securemode
+# please see /etc/rc.securelevel
+
+# site-specific startup actions, daemons which can be run
+# Add your local changes additions to this file
+
+echo -n 'starting local daemons:'
+
+if [[ -x /usr/local/sbin/cfsd ]]; then
+	if ps auxc | grep -q '^ *root .* mountd$'; then
+		echo -n ' cfsd';        /usr/local/sbin/cfsd >/dev/null 2>&1
+		mount -o port=3049,nfsv2,intr localhost:/null /crypt
+	  else
+		echo -n ' cfsd (failed, no mountd running)'
+	fi
+fi
+
+#if [ -x /usr/local/sbin/snmpd ]; then
+#	echo -n ' snmpd';	/usr/local/sbin/snmpd
+#fi
+
+if [[ -x /usr/local/bin/svscanboot ]]; then
+	echo -n ' daemontools'
+	( /usr/local/bin/svscanboot & )
+fi
+
+echo '.'
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d14 1
+a14 17
+# run ntpdate prior to ntpd
+if [ $securelevel -le 1 -a X"${ntpdate_flags}" != X"NO" \
+    -a -x /usr/local/sbin/ntpdate ]; then
+	echo -n ' ntpdate'
+	/usr/local/sbin/ntpdate -b ${ntpdate_flags} >/dev/null
+fi
+
+if [ X"${ntpd}" == X"YES" -a -x /usr/local/sbin/ntpd \
+    -a -e /etc/ntp.conf ]; then
+	ntpd_flags="-p /var/run/ntpd.pid"
+	if [ $securelevel -ge 1 ]; then
+		ntpd_flags="${ntpd_flags} -x"
+	fi
+	echo -n ' ntpd';       /usr/local/sbin/ntpd ${ntpd_flags}
+fi
+
+if [ -x /usr/local/sbin/cfsd ]; then
+d18 1
+a18 1
+	else
+d27 5
+a32 6
+
+# Netatalk stuff
+#if [ -f /etc/netatalk/rc.atalk ]; then
+#	. /etc/netatalk/rc.atalk
+#fi
+
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

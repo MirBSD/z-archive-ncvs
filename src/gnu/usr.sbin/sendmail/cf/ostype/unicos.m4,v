@@ -1,0 +1,77 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.07;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.14;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@divert(-1)
+#
+# Copyright (c) 2003 Sendmail, Inc. and its suppliers.
+#	All rights reserved.
+#
+# By using this file, you agree to the terms and conditions set
+# forth in the LICENSE file which can be found at the top level of
+# the sendmail distribution.
+#
+#
+#
+
+divert(0)
+VERSIONID(`$Sendmail: unicos.m4,v 1.1 2003/04/21 17:03:51 ca Exp $')
+define(`ALIAS_FILE', `/usr/lib/aliases')
+define(`HELP_FILE', `/usr/lib/sendmail.hf')
+define(`QUEUE_DIR', `/usr/spool/mqueue')
+define(`STATUS_FILE', `/usr/lib/sendmail.st')
+MODIFY_MAILER_FLAGS(`LOCAL', `+aSPpmnxXu')
+MODIFY_MAILER_FLAGS(`SMTP', `+anpeLC')
+define(`LOCAL_SHELL_FLAGS', `pxehu')
+define(`confPID_FILE', `/etc/sendmail.pid')dnl
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

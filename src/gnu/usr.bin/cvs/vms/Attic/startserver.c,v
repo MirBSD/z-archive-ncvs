@@ -1,0 +1,107 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.21.48.54;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.59;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.59;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@#include <socket.h>
+#include <netdb.h>
+#include <errno.h>
+
+#include "config.h"
+
+static char *cvs_server;
+static char *command;
+
+extern int trace;
+
+void
+vms_start_server (int *tofd, int *fromfd,
+                  char *client_user, char *server_user,
+                  char *server_host, char *server_cvsroot)
+{
+  int fd, port;
+  char *portenv;
+  struct servent *sptr;
+
+  if (! (cvs_server = getenv ("CVS_SERVER")))
+      cvs_server = "cvs";
+  command = xmalloc (strlen (cvs_server)
+		     + strlen (server_cvsroot)
+		     + 50);
+  sprintf(command, "%s server", cvs_server);
+
+  portenv = getenv("CVS_RCMD_PORT");
+  if (portenv)
+      port = atoi(portenv);
+  else if ((sptr = getservbyname("shell", "tcp")) != NULL)
+      port = sptr->s_port;
+  else
+      port = 514; /* shell/tcp */
+
+  if(trace)
+    {
+    fprintf(stderr, "vms_start_server(): connecting to %s:%d\n",
+            server_host, port);
+    fprintf(stderr, "local_user = %s, remote_user = %s, CVSROOT = %s\n",
+            client_user, (server_user ? server_user : client_user),
+            server_cvsroot);
+    }
+
+  fd = rcmd(&server_host, port,
+            client_user,
+            (server_user ? server_user : client_user),
+            command, 0);
+
+  if (fd < 0)
+     error (1, errno, "cannot start server via rcmd()");
+
+  *tofd = fd;
+  *fromfd = fd;
+  free (command);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

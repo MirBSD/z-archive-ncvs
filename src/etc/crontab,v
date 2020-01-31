@@ -1,0 +1,102 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.04;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$MirBSD: src/etc/crontab,v 1.6 2004/10/09 01:43:58 tg Exp $
+#	$OpenBSD: crontab,v 1.12 2003/03/10 01:05:28 deraadt Exp $
+#
+# /var/cron/tabs/root - root's crontab
+#
+SHELL=/bin/ksh
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+HOME=/var/log
+#
+#minute	hour	mday	month	wday	command
+#
+# sendmail clientmqueue runner
+35	*/3	*	*	*	/usr/bin/nice /usr/sbin/sendmail -L sm-msp-queue -Ac -q
+#
+# rotate log files every hour, if necessary
+0	*	*	*	*	/usr/bin/nice -n 5 /usr/bin/newsyslog
+# send log file notifications, if necessary
+#1-59	*	*	*	*	/usr/bin/newsyslog -m
+#
+# do daily/weekly/monthly maintenance
+30	1	*	*	*	/usr/bin/nice /bin/ksh /etc/daily 2>&1 | tee /var/log/daily.out | mail -s "$(/bin/hostname) daily output" root
+30	3	*	*	6	/usr/bin/nice /bin/ksh /etc/weekly 2>&1 | tee /var/log/weekly.out | mail -s "$(/bin/hostname) weekly output" root
+30	5	1	*	*	/usr/bin/nice /bin/ksh /etc/monthly 2>&1 | tee /var/log/monthly.out | mail -s "$(/bin/hostname) monthly output" root
+#0	*	*	*	*	/usr/libexec/spamd-setup
+#
+# sync time with an ntp server regularily
+#53	*/3	*	*	*	/usr/bin/nice -n -20 /usr/sbin/rdate -ncav ptbtime2.ptb.de 2>&1 | /usr/bin/logger -t 'SNTP'
+#
+# update random seed every three hours
+57	*/3	*	*	*	/usr/bin/nice -n -19 /bin/ksh /usr/libexec/randshuffle
+#
+# pull random bytes from the 'net (useful for headless servers, but insecure)
+#9	*/5	*	*	*	/usr/bin/ftp -r 120 -Vo - http://qrng.unige.ch/examples/servlet/webqrng?nbRnd=120\&upLimit=999 2>&1 | /bin/cksum -a sha512 >/dev/prandom
+#31	*/7	*	*	*	/usr/bin/ftp -r 120 -Vo /dev/urandom http://fourmilab.ch/cgi-bin/uncgi/Hotbits?nbytes=512\&fmt=bin 2>&1 | /bin/cksum -a sha384 >/dev/prandom
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d6 1
+a6 1
+SHELL=/bin/sh
+d13 1
+a13 1
+*/30	*	*	*	*	/usr/sbin/sendmail -L sm-msp-queue -Ac -q
+d16 1
+a16 1
+0	*	*	*	*	/usr/bin/newsyslog
+d21 3
+a23 3
+30	1	*	*	*	/bin/sh /etc/daily 2>&1 | tee /var/log/daily.out | mail -s "`/bin/hostname` daily output" root
+30	3	*	*	6	/bin/sh /etc/weekly 2>&1 | tee /var/log/weekly.out | mail -s "`/bin/hostname` weekly output" root
+30	5	1	*	*	/bin/sh /etc/monthly 2>&1 | tee /var/log/monthly.out | mail -s "`/bin/hostname` monthly output" root
+d25 10
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

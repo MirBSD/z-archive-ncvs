@@ -1,0 +1,78 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.11;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.07;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.07;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/etc/root/dot.profile,v 1.5 2004/12/07 14:45:34 tg Exp $
+# $OpenBSD: dot.profile,v 1.4 2004/05/10 16:04:07 peter Exp $
+#
+# sh/ksh initialization
+
+if [ -z "$MIROS" ]; then
+	# Do this only if /etc/profile has _not_ yet run!
+PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/sbin:/usr/local/bin
+export PATH
+HOME=/root
+export HOME
+umask 022
+
+if [ -x /usr/bin/tset ]; then
+	eval $(/usr/bin/tset -sQ \?$TERM)
+fi
+	# End of /etc/profile replacement
+fi
+
+# Add local stuff here:
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d6 2
+d15 1
+a15 1
+	eval `/usr/bin/tset -sQ \?$TERM`
+d17 4
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

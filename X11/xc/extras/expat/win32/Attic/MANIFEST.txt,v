@@ -1,0 +1,82 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.06.22.13.44;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.04.46;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.04.46;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@                     Overview of the Expat distribution
+
+The Expat distribution creates several subdirectories on your system.
+Some of these directories contain components of interest to all Expat
+users, and some contain material of interest to developers who wish to
+use Expat in their applications.  In the list below, <top> is the
+directory you specified to the installer.
+
+    Directory           Contents
+    --------------------------------------------------------------------
+    <top>\              The XML well-formedness checker and some general
+                        information files.
+
+    <top>\Doc\          API documentation for developers.
+
+    <top>\Libs\         Pre-compiled dynamic libraries for developers.
+
+    <top>\StaticLibs\   Pre-compiled static libraries for developers.
+
+    <top>\Source\       Source code, which may interest some developers,
+                        including a workspace for Microsft Visual C++.
+                        The source code includes the parser, the well-
+                        formedness checker, and a couple of small sample
+                        applications.
+
+    <top>\Source\bcb5\  Project files for Borland C++ Builder 5 and BCC
+                        5.5.
+
+    <top>\Unistall\     The uninstaller and its data files.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

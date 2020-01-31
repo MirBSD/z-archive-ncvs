@@ -1,0 +1,101 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.06.21.52.19;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.06.21.52.19;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/****************************************************************************/
+/*
+ * xmbox.c  -- Module to check for mail using an IMAP socket
+ *
+ *  Logon to an IMAP server and check for unread messages.  Return 0 if
+ *  no RECENT or UNSEEN mail exists in the user's INBOX or > 0 if messages
+ *  exist.
+ *
+ *  Author: Michael P. Duane    mduane@@seanet.com
+ *  Date:   August 12, 1997
+ *
+ * Copyright (c) 1997-98 by Michael P. Duane
+ *
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appear in all copies and that
+ * both that copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * This file is provided AS IS with no warranties of any kind.  The author
+ * shall have no liability with respect to the infringement of copyrights,
+ * trade secrets or any patents by this file or any part thereof.  In no
+ * event will the author be liable for any lost revenue or profits or
+ * other special, indirect and consequential damages.
+ *
+ * Revision History:
+ *
+ ****************************************************************************/
+
+#include <stdio.h>
+#include <fcntl.h>
+#include <string.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#include "imapsocket.h"
+
+char	dftname		[]	= "chkmbox.cfg";
+
+/*************************************************************************/
+int main( int argc, char **argv )
+{
+char	*cfgname;
+int		msgnbr		= -1;
+
+	my_name = GetProgramName( *argv );
+
+	if ( argc >= 2 )
+		cfgname = *(argv+1);
+	else
+		cfgname = dftname;
+
+	RedirectErrLog();
+	GetImapCfgInfo( cfgname );
+	if ( !InitSocketAddr() )
+		if ( !ServerLogin() ) /* Any errors here it will behave as "no mail" */
+			msgnbr = CheckInbox();
+	ServerLogout();
+
+	return( msgnbr );
+
+} /* main */
+@
+
+
+1.1.1.1
+log
+@Import programmes new to OpenBSD's X-Window subsystem
+@
+text
+@@

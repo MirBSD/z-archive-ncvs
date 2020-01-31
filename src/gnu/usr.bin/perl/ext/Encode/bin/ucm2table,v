@@ -1,0 +1,103 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.31;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.31;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/bin/perl
+# $Id: ucm2table,v 1.1.1.2 2004/10/23 18:38:17 tg Exp $
+#
+
+use 5.006;
+use strict;
+use Getopt::Std;
+my %Opt;
+getopts("aeu", \%Opt);
+my %Chartab;
+
+my $Hex = '[0-9A-Fa-f]';
+while(<>){
+	chomp;
+	my ($uni, $enc, $fb) = 
+	    /^<U($Hex+)>\s+(\S+)\s+\|(\d)/o or next;
+	$fb eq '0' or next;
+	my @@byte = ();
+	my $ord = 0;
+	while($enc =~ /\G\\x($Hex+)/iog){
+	    my $byte = hex($1);
+	    push @@byte, $byte;
+	    $ord <<= 8; $ord += $byte;
+	};
+	# print join('', @@byte), " => $ord \n";
+	if ($Opt{u}){
+	    $Chartab{$ord} = pack("U", hex($uni));
+	}else{
+	    $Chartab{$ord} = pack("C*", @@byte);
+	}
+}
+
+my $start = $Opt{a} ? 0x20 : 0xa0;
+
+for (my $x = $start; $x <= 0xffff; $x += 32) {
+    my $line =  '';
+    for my $i (0..31){
+	my $num = $x+$i; $num eq 0x7f and next; # skip delete
+	my $char = $Chartab{$num};
+	$line .= !$char ? " " : 
+	    ($num < 0x7f ) ? " $char" : $char ;
+    }
+    $line =~ /^\s+$/o and next;
+    printf "0x%04x: $line\n", $x;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+# $Id: ucm2table,v 2.0 2004/05/16 20:55:16 dankogai Exp $
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

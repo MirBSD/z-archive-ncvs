@@ -1,0 +1,109 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.11.24;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.11.24;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/Xserver/GL/mesa/GLcore/Imakefile,v 1.4 2002/06/02 01:21:13 dawes Exp $
+
+#if DoLoadableServer
+#if !BuildModuleInSubdir
+#define IHaveModules
+#elif !defined(IHaveModules)
+#define IHaveSubdirs
+SUBDIRS = module
+#endif
+#endif
+
+#include <Server.tmpl>
+
+#define NeedAllMesaSrc
+#define MesaInXServer
+#define MesaBuildDir ../src/
+#define MesaACBuildDir ../src/array_cache/
+#define MesaMathBuildDir ../src/math/
+#define MesaSwrastBuildDir ../src/swrast/
+#define MesaSwrastSetupBuildDir ../src/swrast_setup/
+#define MesaTnlBuildDir ../src/tnl/
+#define MesaXBuildDir ../src/X/
+
+#include "../../../../../lib/GL/mesa/src/array_cache/Imakefile.inc"
+#include "../../../../../lib/GL/mesa/src/swrast/Imakefile.inc"
+#include "../../../../../lib/GL/mesa/src/swrast_setup/Imakefile.inc"
+#include "../../../../../lib/GL/mesa/src/tnl/Imakefile.inc"
+#include "../../../../../lib/GL/mesa/src/math/Imakefile.inc"
+#include "../../../../../lib/GL/mesa/src/X/Imakefile.inc"
+#include "../../../../../lib/GL/mesa/src/Imakefile.inc"
+
+#ifdef IHaveModules
+        MSRCS = GLcoremodule.c
+        MOBJS = GLcoremodule.o
+#endif
+
+        XOBJS = ../src/X/?*.o
+
+         OBJS = $(COREMESAOBJS) $(MOBJS)
+
+        DONES = ../src/DONE ../src/X/DONE ../src/array_cache/DONE \
+		../src/math/DONE ../src/swrast/DONE ../src/swrast_setup/DONE \
+		../src/tnl/DONE
+
+     INCLUDES = -I$(INCLUDESRC) -I$(XINCLUDESRC) -I$(EXTINCSRC) \
+		-I$(MESASRCDIR)/include -I$(GLXLIBSRC)/include \
+		-I$(MESASRCDIR)/src \
+		-I$(SERVERSRC)/include
+
+      DEFINES = $(GLX_DEFINES)
+
+#ifdef IHaveModules
+ModuleObjectRule()
+
+DepLibraryModuleTarget(GLcore, $(DONES) $(OBJS),$(OBJS) $(XOBJS))
+InstallLibraryModule(GLcore,$(MODULEDIR),extensions)
+
+#else
+NormalDepLibraryTarget(GLcore, $(DONES) $(OBJS), $(OBJS) $(XOBJS))
+NormalLibraryObjectRule()
+#endif
+
+InstallDriverSDKLibraryModule(GLcore,$(DRIVERSDKMODULEDIR),extensions)
+
+#ifdef IHaveSubdirs
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+#endif
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

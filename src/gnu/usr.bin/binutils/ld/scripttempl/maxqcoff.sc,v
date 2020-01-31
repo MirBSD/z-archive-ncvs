@@ -1,0 +1,122 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.16.22.42.04;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@escape (...) in substs correctly for mksh
+@
+text
+@# $MirBSD$
+
+test -z "$ENTRY" && ENTRY=_main
+cat <<EOF
+OUTPUT_FORMAT("${OUTPUT_FORMAT}")
+${LIB_SEARCH_DIRS}
+ENTRY(${ENTRY})
+MEMORY 
+  {
+  rom (rx)  : ORIGIN = 0, LENGTH = 0x7FFE
+  ram (!rx) : org = 0x0A000, l = 0x5FFF
+  }
+
+SECTIONS
+{
+	.text  ${RELOCATING+ 0x0000}: 
+	{
+		*(.text) 
+	} >rom
+
+	.data ${RELOCATING}: 
+	{ 
+		*(.data)  
+		*(.rodata)
+		*(.bss)
+		*(COMMON)
+		${RELOCATING+ edata  =  .};
+	}>ram
+
+/*	.bss ${RELOCATING+ SIZEOF\(.data\) + 0x0000}  :
+	{ 
+		*(.bss)  
+		*(COMMON)
+	}
+*/
+	.stab  0 ${RELOCATING+\(NOLOAD\)} :
+	{
+		[ .stab ]
+	}
+	.stabstr  0 ${RELOCATING+\(NOLOAD\)} :
+	{
+		[ .stabstr ]
+	}
+}
+EOF
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+d30 1
+a30 1
+/*	.bss ${RELOCATING+ SIZEOF(.data) + 0x0000}  :
+d36 1
+a36 1
+	.stab  0 ${RELOCATING+(NOLOAD)} :
+d40 1
+a40 1
+	.stabstr  0 ${RELOCATING+(NOLOAD)} :
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

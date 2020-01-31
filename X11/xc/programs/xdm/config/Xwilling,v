@@ -1,0 +1,52 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.18.30;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.18.30;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+#
+# $XFree86: xc/programs/xdm/config/Xwilling,v 1.1 1998/12/06 06:08:51 dawes Exp $
+
+# The output of this script is displayed in the chooser window.
+# (instead of "Willing to manage")
+
+load="`uptime|sed -e 's/^.*load[^0-9]*//'`"
+nrusers="`who|cut -c 1-8|sort -u|wc -l|sed 's/^[ 	]*//'`"
+s=""; [ "$nrusers" != 1 ] && s=s
+
+echo "${nrusers} user${s}, load: ${load}"
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,97 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.23.10.19;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.02.37;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.37;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@basic cleanup, more to follow
+@
+text
+@/* Portable version of strrchr().
+   This function is in the public domain. */
+
+/*
+
+@@deftypefn Supplemental char* strrchr (const char *@@var{s}, int @@var{c})
+
+Returns a pointer to the last occurrence of the character @@var{c} in
+the string @@var{s}, or @@code{NULL} if not found.  If @@var{c} is itself the
+null character, the results are undefined.
+
+@@end deftypefn
+
+*/
+
+#include <ansidecl.h>
+
+char *
+strrchr (s, c)
+  register const char *s;
+  int c;
+{
+  char *rtnval = 0;
+
+  do {
+    if (*s == c)
+      rtnval = (char*) s;
+  } while (*s++);
+  return (rtnval);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

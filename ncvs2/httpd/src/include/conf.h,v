@@ -1,0 +1,70 @@
+head	1.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200512032330:1.1.1.2
+	cvs-200507211800:1.1.1.2
+	tg-mergetmp-3:1.1.1.2
+	cvs-200504170300:1.1.1.2
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.02.05.17.30.46;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2005.02.05.17.30.46;	author tg;	state Exp;
+branches;
+next	1.1.1.2;
+
+1.1.1.2
+date	2005.04.17.03.32.21;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ *  conf.h -- backward compatibility header for ap_config.h
+ */
+
+#ifdef __GNUC__
+#warning "This header is obsolete, use ap_config.h instead"
+#endif
+
+#include "ap_config.h"
+@
+
+
+1.1.1.1
+log
+@Import the OpenBSD foundation of MirOS BSD
+@
+text
+@@
+
+
+1.1.1.2
+log
+@some more updates/fixes from obsd
+@
+text
+@a0 2
+/* $OpenBSD: conf.h,v 1.2 2005/03/28 23:26:51 niallo Exp $ */
+
+@
+

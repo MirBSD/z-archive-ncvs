@@ -1,0 +1,94 @@
+head	1.2;
+access;
+symbols
+	cvs-200501070130:1.1.5.1 TNF:1.1.5;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.07.01.36.23;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.07.01.32.12;	author tg;	state Exp;
+branches
+	1.1.5.1;
+next	;
+
+1.1.5.1
+date	2005.01.07.01.32.12;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@subdir magick
+@
+text
+@# $MirBSD: src/lib/csu/Makefile,v 1.9 2004/11/13 21:05:36 tg Exp $
+
+.include <bsd.own.mk>
+
+.if ${OBJECT_FMT} == "ELF" && exists(${MACHINE}_elf)
+  SUBDIR+= ${MACHINE}_elf
+.elif ${OBJECT_FMT} == "ELF" && exists(${MACHINE_ARCH}_elf)
+  SUBDIR+= ${MACHINE_ARCH}_elf
+.elif exists(${MACHINE})
+  SUBDIR+= ${MACHINE}
+.elif exists(${MACHINE_ARCH})
+  SUBDIR+= ${MACHINE_ARCH}
+.else
+.BEGIN:
+	@@echo no SUBDIR for ${MACHINE} / ${MACHINE_ARCH} nor \
+	    ${MACHINE}_elf / ${MACHINE_ARCH}_elf
+	@@false
+.endif
+
+.include <bsd.subdir.mk>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+#	$NetBSD: Makefile,v 1.24 2002/05/02 16:42:53 wiz Exp $
+d5 6
+a10 4
+.if ${OBJECT_FMT} == "ELF" && exists(${MACHINE_ARCH}_elf)
+SUBDIR=	${MACHINE_ARCH}_elf
+.elif ${OBJECT_FMT} == "ELF" && exists(${MACHINE_CPU}_elf)
+SUBDIR=	${MACHINE_CPU}_elf
+d12 1
+a12 3
+SUBDIR=	${MACHINE_ARCH}
+.elif exists(${MACHINE_CPU})
+SUBDIR=	${MACHINE_CPU}
+d15 2
+a16 2
+	@@echo no SUBDIR for ${MACHINE_ARCH}_elf, ${MACHINE_ARCH} nor \
+	    ${MACHINE_CPU}
+a19 4
+.if (${OBJECT_FMT} != "ELF")
+SUBDIR+= c++
+.endif
+
+@
+
+
+1.1.5.1
+log
+@tnf's csu
+@
+text
+@@

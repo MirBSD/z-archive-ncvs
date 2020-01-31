@@ -1,0 +1,69 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 tg:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.12.13.22.50.40;	author tg;	state Exp;
+branches;
+next	1.1;
+commitid	0439f504ebe828cb;
+
+1.1
+date	2005.12.13.20.44.46;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+commitid	0439f32c6884c25e;
+
+1.1.1.1
+date	2005.12.13.20.44.46;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f32c6884c25e;
+
+
+desc
+@@
+
+
+1.2
+log
+@sync European ORSN (v4 and v6) to their root.hint
+@
+text
+@217.146.128.77
+62.116.33.87
+212.7.160.13
+195.226.7.66
+213.161.0.90
+193.138.173.218
+82.102.0.9
+213.144.148.130
+212.102.42.126
+194.219.142.100
+217.173.157.225
+192.83.249.100
+213.145.82.34
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d6 1
+d12 1
+@
+
+
+1.1.1.1
+log
+@Import ports/net/djbdns of snapshot
+@
+text
+@@

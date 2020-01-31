@@ -1,0 +1,90 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.30.40;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.58;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@=pod
+
+=head1 NAME
+
+BIO_s_null - null data sink
+
+=head1 SYNOPSIS
+
+ #include <openssl/bio.h>
+
+ BIO_METHOD *	BIO_s_null(void);
+
+=head1 DESCRIPTION
+
+BIO_s_null() returns the null sink BIO method. Data written to
+the null sink is discarded, reads return EOF.
+
+=head1 NOTES
+
+A null sink BIO behaves in a similar manner to the Unix /dev/null
+device.
+
+A null bio can be placed on the end of a chain to discard any data
+passed through it.
+
+A null sink is useful if, for example, an application wishes to digest some
+data by writing through a digest bio but not send the digested data anywhere.
+Since a BIO chain must normally include a source/sink BIO this can be achieved
+by adding a null sink BIO to the end of the chain
+
+=head1 RETURN VALUES
+
+BIO_s_null() returns the null sink BIO method.
+
+=head1 SEE ALSO
+
+TBA
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

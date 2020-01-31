@@ -1,0 +1,28 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.21.03.09;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@merge BSD make structure for GNU RCS
+@
+text
+@# $MirBSD: src/gnu/usr.bin/rcs/rlog/Makefile,v 1.1 2004/12/12 20:42:57 tg Exp $
+
+PROG=	rlog
+
+.include <bsd.prog.mk>
+@

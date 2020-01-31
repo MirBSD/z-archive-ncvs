@@ -1,0 +1,61 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.16.00;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.16.00;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* $XFree86: xc/programs/Xserver/hw/xfree86/rac/xf86RACmodule.c,v 1.4 1999/01/26 05:54:14 dawes Exp $ */
+
+#include "xf86Module.h"
+
+static XF86ModuleVersionInfo racVersRec =
+{
+    "rac",
+    MODULEVENDORSTRING,
+    MODINFOSTRING1,
+    MODINFOSTRING2,
+    XF86_VERSION_CURRENT,
+    1, 0, 0,
+    ABI_CLASS_VIDEODRV,		/* requires the video driver ABI */
+    ABI_VIDEODRV_VERSION,
+    MOD_CLASS_NONE,
+    {0,0,0,0}
+};
+
+
+XF86ModuleData racModuleData = { &racVersRec, NULL, NULL };
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

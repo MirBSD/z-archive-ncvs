@@ -1,0 +1,51 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+# Test that titles with @@ commands don't produce markup in the <title>.
+# (And that the @@ commands get expanded.)
+
+if ../makeinfo --no-split --html ${srcdir-.}/html-title.txi; then
+  grep '^<title>@@[^<>]*</title>$' html-title.html >/dev/null
+  exit_status=$?
+else
+  exit_status=1
+fi
+
+rm -f html-title.html
+exit $exit_status
+@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

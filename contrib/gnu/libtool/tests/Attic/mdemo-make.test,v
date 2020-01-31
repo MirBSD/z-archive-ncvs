@@ -1,0 +1,87 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.1
+	libtool-1_5_8:1.1.2.1
+	libtool-1_5-20040215:1.1.2.1
+	libtool-1_4_3:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.03.19.42.38;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.17.55.46;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.03.17.55.46;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@* MirOSify
+* bootstrap
+* nuke unneeded stuff
+@
+text
+@#! /bin/sh
+# mdemo-make.test - try building in the ../mdemo subdirectory
+
+# Test script header.
+need_prefix=no
+if test -z "$srcdir"; then
+  srcdir=`echo "$0" | sed 's%/[^/]*$%%'`
+  test "$srcdir" = "$0" && srcdir=.
+  test "${VERBOSE+set}" != "set" && VERBOSE=yes
+fi
+. $srcdir/defs || exit 1
+
+if test -f ../mdemo/Makefile; then :
+else
+  echo "You must run mdemo-conf.test before running $0" 1>&2
+  exit 77
+fi
+
+# Change to our build directory.
+cd ../mdemo || exit 1
+
+# Do the actual build.
+echo "Making in ../mdemo"
+$make || exit 1
+exit 0
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Libtool 1.4.3 (last of the 1.4 series)
+
+Requires to bootstrap:
+* autoconf 2.13-o
+* automake 1.4-p5
+or later.
+@
+text
+@@

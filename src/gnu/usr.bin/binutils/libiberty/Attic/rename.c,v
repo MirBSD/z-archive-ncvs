@@ -1,0 +1,105 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.23.10.19;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.02.36;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.36;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@basic cleanup, more to follow
+@
+text
+@/* rename -- rename a file
+   This function is in the public domain. */
+
+/*
+
+@@deftypefn Supplemental int rename (const char *@@var{old}, const char *@@var{new})
+
+Renames a file from @@var{old} to @@var{new}.  If @@var{new} already
+exists, it is removed.
+
+@@end deftypefn
+
+*/
+
+#include "ansidecl.h"
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+#include <errno.h>
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+
+int
+rename (zfrom, zto)
+     const char *zfrom;
+     const char *zto;
+{
+  if (link (zfrom, zto) < 0)
+    {
+      if (errno != EEXIST)
+	return -1;
+      if (unlink (zto) < 0
+	  || link (zfrom, zto) < 0)
+	return -1;
+    }
+  return unlink (zfrom);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

@@ -1,0 +1,70 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.23.01.49;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.01.49;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@AC_DEFUN([TL_AC_GNU_MAKE_GCC_LIB_PATH],
+[
+if test x"$SET_GCC_LIB_PATH_CMD" != x; then
+  # SET_GCC_LIB_PATH_CMD is "XXX=path; export XXX;". It is expanded to
+  #
+  #	eval "set_gcc_lib_path=XXX=path; export XXX;"
+  #
+  eval "set_gcc_lib_path=$SET_GCC_LIB_PATH_CMD"
+  # It will set set_gcc_lib_path to "export XXX=path" for GNU make.
+  set_gcc_lib_path="export $set_gcc_lib_path"
+else
+  set_gcc_lib_path=
+fi
+AC_SUBST(set_gcc_lib_path)
+])dnl
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

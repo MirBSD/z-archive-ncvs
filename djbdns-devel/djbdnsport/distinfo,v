@@ -1,0 +1,48 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 tg:1.1.1;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.12.13.20.44.45;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+commitid        0439f32c6884c25e;
+
+1.1.1.1
+date     2005.12.13.20.44.45;  author tg;  state Exp;
+branches ;
+next     ;
+commitid        0439f32c6884c25e;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@MD5 (djbdns-1.05-man.tar.gz) = 2b4e71fa4592858e4508538f78d50f61
+MD5 (djbdns-1.05.tar.gz) = 3147c5cd56832aa3b41955c7a51cbeb2
+RMD160 (djbdns-1.05-man.tar.gz) = 71d2bd663a53415a680bae05c752fd56003f7f63
+RMD160 (djbdns-1.05.tar.gz) = a832cbfd93e4ccec6a565492a4ee0b3c1b4b68ed
+SHA1 (djbdns-1.05-man.tar.gz) = a1009b98081b68d41bc48b530f7a4d936e8a4571
+SHA1 (djbdns-1.05.tar.gz) = 2efdb3a039d0c548f40936aa9cb30829e0ce8c3d
+SIZE (djbdns-1.05-man.tar.gz) = 15733
+SIZE (djbdns-1.05.tar.gz) = 85648
+@
+
+
+1.1.1.1
+log
+@Import ports/net/djbdns of snapshot
+@
+text
+@@

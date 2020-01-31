@@ -1,0 +1,154 @@
+head	2.3;
+access;
+symbols
+	cgiirc-0_5_5:1.1.3.2
+	cgiirc-0_5_4:1.1.3.1
+	tg:1.1.3;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.18.20.26.27;	author tg;	state dead;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.18.20.12.40;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.19.14.28.46;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches
+	1.1.3.1;
+next	;
+
+1.1.3.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches;
+next	1.1.3.2;
+
+1.1.3.2
+date	2005.01.18.20.03.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@nah, doesnt work like I would
+@
+text
+@CGI:IRC - http://cgiirc.sourceforge.net/
+----------------------------------------
+
+CGI:IRC is a Perl/CGI program that lets you access IRC from a web browser, it
+is designed to be flexible and has many uses such as an IRC gateway for an IRC
+network, a chat-room for a website or to access IRC when stuck behind a
+restrictive firewall.
+
+This is a very quick guide to CGI:IRC, you will find more documentation in the
+docs directory and on the website.
+
+Requirements
+------------
+
+1. Ability to run CGI scripts using Perl 5.004 or greater with p5-Encode
+   installed, or Perl 5.8 or greater.
+2. UNIX(R) based system
+3. Acceptable use policy allows access to IRC
+
+Generally if you pay your host enough they will let you run CGI:IRC, but beware
+it does use a lot of memory because each user uses a web server process and a
+perl process. This is due to the stream based nature and the fact most
+webservers are designed to serve static content.
+
+Installing
+----------
+These are very simple instructions, see the website for more in depth
+instructions.
+
+1. Edit the cgiirc.config or cgiirc.config.full (if you use cgiirc.config.full
+   make sure to rename it to cgiirc.config).
+2. Copy or upload all the files to your cgi-bin directory, and put the images
+   directory in the correct location (may or may not be inside the cgi-bin
+   directory).
+   If you don't want to the docs directory does not need to be uploaded to the
+   server.
+3. Check that all the files have the correct permissions and so on
+4. Visit the location you installed irc.cgi to.
+
+If it doesn't work see the website as it has answers to common problems.
+
+Support
+-------
+
+CGI:IRC has a mailing list for support questions and anything else:
+http://lists.sourceforge.net/lists/listinfo/cgiirc-general
+
+Make sure you read the FAQ on the website before posting though ;-)
+
+-- 
+David Leadbeater <cgiirc@@dgl.cx> <http://contact.dgl.cx/>
+@
+
+
+2.2
+log
+@merge
+@
+text
+@@
+
+
+2.1
+log
+@Update to MirCGIIRC
+@
+text
+@d51 1
+a51 1
+David Leadbeater <cgiirc@@dgl.cx>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d15 3
+a17 2
+1. Ability to run CGI scripts using Perl 5.004 or greater
+2. UNIX based system
+@
+
+
+1.1.3.1
+log
+@Import cgiirc 0.5.4 (pristine) again
+@
+text
+@@
+
+
+1.1.3.2
+log
+@there's a new CGI::IRC out, with utf-8 supposedly, and fireschrott bugfixes
+@
+text
+@d50 1
+a50 1
+David Leadbeater <http://contact.dgl.cx/>
+@
+

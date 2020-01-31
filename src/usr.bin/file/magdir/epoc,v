@@ -1,0 +1,64 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.54;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: epoc,v 1.1 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+# Epoc 32 : file(1) magic for Epoc Documents [psion/osaris
+# Stefan Praszalowicz (hpicollo@@worldnet.fr)
+#0	lelong		0x10000037	Epoc32
+>4	lelong		0x1000006D
+>>8	lelong		0x1000007F	Word
+>>8	lelong		0x10000088	Sheet
+>>8	lelong		0x1000007D	Sketch
+>>8	lelong		0x10000085	TextEd
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,126 @@
+head	1.2;
+access;
+symbols
+	cdk-4_9_11-20041224:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.20.21.51;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.08.05;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.20.08.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge
+@
+text
+@/* $Id: subwindow_ex.c,v 1.8 2004/08/28 00:57:12 tom Exp $ */
+
+#include <cdk.h>
+
+#ifdef HAVE_XCURSES
+char *XCursesProgramName="subwindow_ex";
+#endif
+
+/*
+ * This demo displays the ability to put widgets within a curses subwindow.
+ */
+int main (int argc, char **argv)
+{
+   /* Declare vars. */
+   CDKSCREEN *cdkscreen;
+   CDKSCROLL *dowList;
+   CDKLABEL *title;
+   WINDOW *mainWindow, *subWindow;
+   char *dow[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+   char *mesg[5];
+   int pick;
+
+   CDK_PARAMS params;
+
+   CDKparseParams(argc, argv, &params, "s:" CDK_CLI_PARAMS);
+
+   /* Start curses. */
+   mainWindow = initscr();
+   curs_set(0);
+
+   /* Create a basic window. */
+   subWindow = newwin (LINES-5, COLS-10, 2, 5);
+
+   /* Start Cdk. */
+   cdkscreen = initCDKScreen (subWindow);
+
+   /* Box our window. */
+   box (subWindow, ACS_VLINE, ACS_HLINE);
+   wrefresh (subWindow);
+
+   /* Create a basic scrolling list inside the window. */
+   dowList = newCDKScroll (cdkscreen,
+			   CDKparamValue(&params, 'X', CENTER),
+			   CDKparamValue(&params, 'Y', CENTER),
+			   CDKparsePosition(CDKparamString2(&params, 's', "RIGHT")),
+			   CDKparamValue(&params, 'H', 10),
+			   CDKparamValue(&params, 'W', 15),
+			   "<C></U>Pick a Day", dow, 7, NONUMBERS,
+			   A_REVERSE,
+			   CDKparamValue(&params, 'N', TRUE),
+			   CDKparamValue(&params, 'S', FALSE));
+
+   /* Put a title within the window. */
+   mesg[0] = "<C><#HL(30)>";
+   mesg[1] = "<C>This is a Cdk scrolling list";
+   mesg[2] = "<C>inside a curses window.";
+   mesg[3] = "<C><#HL(30)>";
+   title = newCDKLabel (cdkscreen, CENTER, 0, mesg, 4, FALSE, FALSE);
+
+   /* Refresh the screen. */
+   refreshCDKScreen (cdkscreen);
+
+   /* Let the user play. */
+   pick = activateCDKScroll (dowList, 0);
+
+   /* Clean up. */
+   destroyCDKScroll (dowList);
+   destroyCDKLabel (title);
+   eraseCursesWindow (subWindow);
+   endCDK();
+
+   /* Tell them what they picked. */
+   printf ("You picked %s\n", dow[pick]);
+   exit (EXIT_SUCCESS);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Tom Dickey's libcdk
+@
+text
+@@

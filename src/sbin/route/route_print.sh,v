@@ -1,0 +1,308 @@
+head	2.7;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.7
+date	2005.01.17.19.04.06;	author tg;	state Exp;
+branches;
+next	2.6;
+
+2.6
+date	2005.01.17.18.18.22;	author tg;	state Exp;
+branches;
+next	2.5;
+
+2.5
+date	2005.01.15.23.07.31;	author tg;	state Exp;
+branches;
+next	2.4;
+
+2.4
+date	2005.01.15.23.07.06;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.15.23.05.15;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.15.22.38.38;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.15.22.27.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.7
+log
+@a way to show all routes, not just the S ones
+@
+text
+@#!/bin/ksh
+# $MirBSD: src/sbin/route/route_print.sh,v 2.6 2005/01/17 18:18:22 tg Exp $
+#-
+# Copyright (c) 2005
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+#
+# Licensee is hereby permitted to deal in this work without restric-
+# tion, including unlimited rights to use, publicly perform, modify,
+# merge, distribute, sell, give away or sublicence, provided all co-
+# pyright notices above, these terms and the disclaimer are retained
+# in all redistributions or reproduced in accompanying documentation
+# or other materials provided with binary redistributions.
+#
+# All advertising materials mentioning features or use of this soft-
+# ware must display the following acknowledgement:
+#	This product includes material provided by Thorsten Glaser.
+#
+# Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+# any kind, expressed or implied, to the maximum extent permitted by
+# applicable law, but with the warranty of being written without ma-
+# licious intent or gross negligence; in no event shall licensor, an
+# author or contributor be held liable for any damage, direct, indi-
+# rect or other, however caused, arising in any way out of the usage
+# of this work, even if advised of the possibility of such damage.
+#-
+# Display a list of all manually added (static) routes which are not
+# set on the loopback interface, for IPv4 and IPv6.
+
+#-- Functions
+
+function reverse_route
+{
+	local proto=$1
+	if [[ $2 = */* ]]; then
+		local dest=${2%/*}
+		local cidr=${2##*/}
+	else
+		local dest=$2
+		local cidr=-
+	fi
+	local gw=$3
+	local flags=$4
+	local mtu=$5
+	local iface=$6
+
+	local cmd="/sbin/route -n add -$proto"
+	if [[ $flags = *H* ]]; then
+		cmd="$cmd -host"
+	else
+		cmd="$cmd -net"
+	fi
+	cmd="$cmd $dest"
+	[[ $cidr = - ]] || cmd="$cmd -prefixlen $cidr"
+	[[ $flags = *1* ]] && cmd="$cmd -proto1"
+	[[ $flags = *2* ]] && cmd="$cmd -proto3"
+	[[ $flags = *3* ]] && cmd="$cmd -proto3"
+	[[ $flags = *B* ]] && cmd="$cmd -blackhole"
+	[[ $flags = *C* ]] && cmd="$cmd -cloning"
+	[[ $flags = *G* ]] || cmd="$cmd -iface"
+	[[ $flags = *L* ]] && cmd="$cmd -llinfo"
+	[[ $flags = *R* ]] && cmd="$cmd -reject"
+	[[ $flags = *X* ]] && cmd="$cmd -xresolve"
+	[[ $mtu = - ]] || cmd="$cmd -mtu $mtu"
+	[[ $gw = - && $flags != *L* ]] \
+	    && cmd="#error: $cmd"
+	if [[ $flags = *L* ]]; then
+		cmd="$cmd -link ${iface}:"
+	else
+		cmd="$cmd $gw"
+	fi
+	print -- $cmd
+}
+
+#-- Entry Point
+
+tab=$(print \\t)
+disp=h
+imode=n
+q=0
+dynrt=0
+
+while getopts "dho:rq" opt; do
+	case $opt {
+	d)	dynrt=1
+		;;
+	h)	print "Usage:\tmksh route_print [-d] | column -t"
+		print "\tmksh route_print -[d]r"
+		print "\tnetstat -rnvf inet[6] | fgrep ..." \
+		    "| mksh route_print -[dr]o inet[6]"
+		exit 1
+		;;
+	o)	imode=o
+		proto=$OPTARG
+		;;
+	r)	disp=r
+		;;
+	q)	q=1
+		;;
+	}
+done
+shift $((OPTIND - 1))
+
+[[ $disp = h && $q = 0 ]] && print Destination Gateway Flags MTU Interface
+case $imode {
+o)	/usr/bin/sed -e "s/^/$proto /"
+	;;
+n)	for proto in inet inet6; do
+		/usr/bin/netstat -rnvf $proto \
+		    | /usr/bin/tail +5 \
+		    | /usr/bin/sed -e "s/^/$proto /"
+	done
+	;;
+} \
+    | /usr/bin/fgrep -v "${tab}expire" \
+    | while read proto dest gw flags refs use mtu iface rn_dupedkey; do
+	if [[ $gw = U* ]]; then
+		# no gw (yet) in routing table
+		rn_dupedkey="$iface $rn_dupedkey"
+		iface=$mtu
+		mtu=$use
+		use=$refs
+		refs=$flags
+		flags=$gw
+		gw=-
+	fi
+	[[ $iface = lo0 ]] && continue
+	[[ $dynrt == 1 || $flags = *S* ]] || continue
+	case $disp {
+	h)	print -- $dest $gw $flags $mtu $iface
+		;;
+	r)	reverse_route $proto $dest $gw $flags $mtu $iface
+		;;
+	}
+done
+exit 0
+@
+
+
+2.6
+log
+@whoops, forgot a line
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/sbin/route/route_print.sh,v 2.5 2005/01/15 23:07:31 tg Exp $
+d80 1
+d82 1
+a82 1
+while getopts "ho:rq" opt; do
+d84 4
+a87 2
+	h)	print "Usage:\tmksh route_print | column -t"
+		print "\tmksh route_print -r"
+d89 1
+a89 1
+		    "| mksh route_print -[r]o inet[6]"
+d127 1
+a127 1
+	[[ $flags = *S* ]] || continue
+@
+
+
+2.5
+log
+@stupid typo
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/sbin/route/route_print.sh,v 2.4 2005/01/15 23:07:06 tg Exp $
+d117 1
+@
+
+
+2.4
+log
+@+quiet
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/sbin/route/route_print.sh,v 2.3 2005/01/15 23:05:15 tg Exp $
+d100 1
+a100 1
+[[ $disp = h && q = 0 ]] && print Destination Gateway Flags MTU Interface
+@
+
+
+2.3
+log
+@oops, ESYNTAX
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/sbin/route/route_print.sh,v 2.2 2005/01/15 22:38:38 tg Exp $
+d79 1
+d81 1
+a81 1
+while getopts "ho:r" opt; do
+d94 2
+d100 1
+a100 1
+[[ $disp = h ]] && print Destination Gateway Flags MTU Interface
+@
+
+
+2.2
+log
+@extend by a read-from-stdin mode
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/sbin/route/route_print.sh,v 2.1 2005/01/15 22:27:56 tg Exp $
+d99 1
+a99 1
+o)	/bin/cat
+d103 2
+a104 1
+		    | /usr/bin/tail +5
+a108 1
+    | /usr/bin/sed -e "s/^/$proto /" \
+@
+
+
+2.1
+log
+@Now, MirOS has got a tool which outputs (a part of)
+the routing table in a syntax suitable for directly
+entering on the mksh command line.
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/share/misc/licence.template,v 1.20 2004/12/03 16:18:37 tg Rel $
+d46 1
+a46 1
+	local cmd="route -n add -$proto"
+d78 1
+d80 1
+a80 1
+while getopts "hr" opt; do
+d84 2
+d88 3
+d98 11
+a108 6
+for proto in inet inet6; do
+	/usr/bin/netstat -rnvf $proto \
+	    | /usr/bin/tail +5 \
+	    | /usr/bin/sed -e "s/^/$proto /"
+done \
+    | fgrep -v "${tab}expire" \
+@
+

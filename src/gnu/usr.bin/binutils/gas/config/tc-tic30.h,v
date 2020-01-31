@@ -1,0 +1,112 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.08.23.03.32;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.03.32;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* tc-tic30.h -- Header file for tc-tic30.c
+   Copyright 1998, 2000 Free Software Foundation, Inc.
+   Contributed by Steven Haworth (steve@@pm.cse.rmit.edu.au)
+
+   This file is part of GAS, the GNU Assembler.
+
+   GAS is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
+
+   GAS is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with GAS; see the file COPYING.  If not, write to the Free
+   Software Foundation, 59 Temple Place - Suite 330, Boston, MA
+   02111-1307, USA.  */
+
+#ifndef _TC_TIC30_H_
+#define _TC_TIC30_H_
+
+#define TC_TIC30 1
+
+#ifdef OBJ_AOUT
+#define TARGET_FORMAT "a.out-tic30"
+#endif
+
+#define TARGET_ARCH		bfd_arch_tic30
+#define TARGET_BYTES_BIG_ENDIAN	1
+
+#define WORKING_DOT_WORD
+
+char *output_invalid PARAMS ((int c));
+
+#define END_OF_INSN '\0'
+#define MAX_OPERANDS 6
+#define DIRECT_REFERENCE '@@'
+#define INDIRECT_REFERENCE '*'
+#define PARALLEL_SEPARATOR '|'
+#define INSN_SIZE 4
+
+/* Define this to 1 if you want the debug output to be on stdout,
+   otherwise stderr will be used.  If stderr is used, there will be a
+   better synchronisation with the as_bad outputs, but you can't
+   capture the output.  */
+#define USE_STDOUT 0
+
+#define tc_unrecognized_line tic30_unrecognized_line
+
+extern int tic30_unrecognized_line PARAMS ((int));
+
+#define tc_aout_pre_write_hook {}
+
+#endif
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

@@ -1,0 +1,95 @@
+head	1.2;
+access;
+symbols
+	cvs-200501070130:1.1.5.1 TNF:1.1.5;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.07.01.45.29;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.07.01.32.12;	author tg;	state Exp;
+branches
+	1.1.5.1;
+next	;
+
+1.1.5.1
+date	2005.01.07.01.32.12;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge and style
+@
+text
+@/**	$MirBSD$ */
+/*	$NetBSD: crtend.c,v 1.11 2004/08/28 00:19:22 thorpej Exp $	*/
+
+#include <sys/cdefs.h>
+#include "dot_init.h"
+
+__RCSID("$MirBSD$");
+
+/*
+ * WE SHOULD BE USING GCC-SUPPLIED crtend.o FOR GCC 3.3 AND
+ * LATER!!!
+ */
+#if __GNUC_PREREQ__(3, 3)
+#error "Use GCC-supplied crtend.o"
+#endif
+
+static void (*__CTOR_LIST__[1])(void)
+    __attribute__((__unused__))
+    __attribute__((section(".ctors"))) = { (void *)0 };		/* XXX */
+static void (*__DTOR_LIST__[1])(void)
+    __attribute__((__unused__))
+    __attribute__((section(".dtors"))) = { (void *)0 };		/* XXX */
+
+#ifdef DWARF2_EH
+static unsigned int __FRAME_END__[]
+    __attribute__((__unused__))
+    __attribute__((section(".eh_frame"))) = { 0 };
+#endif
+
+#if defined(JCR) && defined(__GNUC__)
+static void *__JCR_END__[1]
+    __attribute__((__unused__, section(".jcr"))) = { (void *) 0 };
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d7 4
+a10 2
+/* 
+ * WE SHOULD BE USING GCC-SUPPLIED crtend.o FOR GCC 3.3 AND      
+d17 1
+a17 1
+static void (*__CTOR_LIST__[1]) __P((void))
+d20 1
+a20 1
+static void (*__DTOR_LIST__[1]) __P((void))
+@
+
+
+1.1.5.1
+log
+@tnf's csu
+@
+text
+@@

@@ -1,0 +1,452 @@
+head	2.3;
+access;
+symbols
+	cgiirc-0_5_5:1.1.3.2
+	cgiirc-0_5_4:1.1.3.1
+	tg:1.1.3;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.18.20.26.27;	author tg;	state dead;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.18.20.12.40;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.19.14.28.46;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches
+	1.1.3.1;
+next	;
+
+1.1.3.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches;
+next	1.1.3.2;
+
+1.1.3.2
+date	2005.01.18.20.03.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@nah, doesnt work like I would
+@
+text
+@#! /usr/bin/perl -w
+# $MirBSD: contrib/code/cgiirc/irc.cgi,v 2.2 2005/01/18 20:12:40 tg Exp $
+#
+# CGI:IRC - http://cgiirc.sourceforge.net/
+# Copyright (c) 2004-2005 Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+# Copyright (C) 2000-2004 David Leadbeater <http://contact.dgl.cx/>
+# vim:set ts=3 expandtab shiftwidth=3 cindent:
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; Version 2 of the License.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+# Uncomment this if the server doesn't chdir (Boa).
+# BEGIN { (my $dir = $0) =~ s|[^/]+$||; chdir($dir) }
+
+use strict;
+use vars qw($VERSION $config_path);
+use lib qw/modules interfaces/;
+
+($VERSION =
+ '$Name: rel_0_5_5 $ 0_5_CVS $Id: irc.cgi,v 1.32 2005/01/08 17:27:54 dgl Exp $ $MirBSD: contrib/code/cgiirc/irc.cgi,v 2.2 2005/01/18 20:12:40 tg Exp $'
+) =~ s/^.*?(\d\S+) .*?(\d{4}\/\S+) .*$/$1/;
+$VERSION .= " ($2)";
+$VERSION =~ s/_/./g;
+
+require 'parse.pl';
+
+my $cgi = cgi_read();
+
+for('', '/etc/cgiirc/', '/etc/') {
+   last if -r ($config_path = $_) . 'cgiirc.config';
+}
+
+my $config = parse_config($config_path . 'cgiirc.config');
+
+if(!parse_cookie()) {
+   print "Set-cookie: cgiircauth=". random(25) .";path=/\r\n";
+}
+print join("\r\n",
+# Hack to make sure we print the correct type for stylesheets too..
+	  'Content-type: text/' . (ref $cgi && defined $cgi->{item} &&
+        $cgi->{item} eq 'style' ? 'css' : 'html')
+# We need this for some JavaScript magic that detects the character set.
+# Basically don't send a character set for the login page..
+         . (ref $cgi && $cgi->{item} ? '; charset=utf-8' : ''),
+      'Pragma: no-cache',
+      'Cache-control: must-revalidate, no-cache',
+      'Expires: -1') . "\r\n";
+
+# Please leave this.
+my $copy = <<EOF;
+<a href="http://mirbsd.de/">MirOS</a> MirCGIIRC based upon
+<a href="http://cgiirc.sourceforge.net/">CGI:IRC</a> $VERSION<br />
+EOF
+
+my $scriptname = $config->{script_login} || 'irc.cgi';
+
+my $interface = ref $cgi && defined $cgi->{interface} ? $cgi->{interface} : 'default';
+$interface =~ s/[^a-z0-9]//gi;
+require('interfaces/' . $interface . '.pm');
+
+if(ref $cgi && defined $cgi->{item}) {
+   print "\r\n"; # send final header
+   my $name = $cgi->{item};
+   exit unless $interface->exists($name);
+   $interface->$name($cgi, $config, 0);
+}elsif(ref $cgi && defined $cgi->{Nickname}) {
+   print "\r\n"; # send final header
+   my $r = random();
+   my($format, $style);
+
+   my %p = (
+         Nickname => 'nick',
+         Channel => 'chan',
+         Port => 'port',
+         Server => 'serv',
+         Realname => 'name',
+         interface => 'interface',
+         Password => 'pass',
+         Format => 'format',
+         'Character set' => 'charset',
+      );
+   my $out;
+   for(keys %p) {
+	  next unless exists $cgi->{$_};
+	  $out .= cgi_encode($p{$_}) . '=' . cgi_encode($cgi->{$_}) . '&';
+   }
+
+   $format = exists $cgi->{Format}
+            ? $cgi->{Format}
+            : $config->{format} || 'default';
+   $format =~ s/[^a-z]//gi;
+   $format = parse_config($config_path . "formats/$format");
+   $style = exists $format->{style} ? $format->{style} : 'default';
+
+   $out .= "R=$r";
+   $out =~ s/\&$//;
+   $interface->frameset($scriptname, $config, $r, $out, $interface, $style);
+
+}elsif(defined $config->{form_redirect}) {
+   print join("\r\n",
+         "Status: 302",
+         "Location: $config->{form_redirect}",
+         "",
+         $config->{form_redirect});
+}else{
+   print "\r\n"; # send final header
+
+   my(%items,@@order);
+
+   my $server = dolist($config->{default_server});
+   my $channel = dolist($config->{default_channel});
+   my $port = dolist($config->{default_port});
+   
+   my $charset = [ $config->{'irc charset'} ];
+   if(defined $ENV{HTTP_ACCEPT_CHARSET}) {
+      for(split ',', $ENV{HTTP_ACCEPT_CHARSET}) {
+         next if /;q=0($|\.0$)/ or /\*/;
+         s/;.*//;
+         push @@$charset, $_; 
+      }
+   }
+   if(@@$charset == 1) {
+      $charset = $charset->[0];
+      $charset = '' unless defined $charset;
+   }
+
+   if(ref $cgi && $cgi->{chan}) {
+      $channel = $cgi->{chan};
+   }
+
+   if(!defined $config->{allow_non_default} || !$config->{allow_non_default}) {
+       $server = "-DISABLED- $server" unless ref $server;
+       $channel = "-DISABLED- $channel" unless ref $channel;
+       $port = "-DISABLED- $port" unless ref $port;
+   }elsif(!defined $config->{access_server} || !$config->{access_server}) {
+       $server = "-DISABLED- $server" unless ref $server;
+   }
+
+   opendir(FORMATS, $config_path . "formats");
+   my @@formats;
+   for(sort readdir FORMATS) {
+      next unless !/^\./ && -f $config_path . "formats/$_";
+      if($_ eq ($config->{format} || 'default')) {
+         unshift(@@formats, $_);
+      }else{
+         push(@@formats, $_);
+      }
+   }
+   closedir(FORMATS);
+
+   %items = (
+      Nickname => $ENV{REMOTE_USER} || $config->{default_nick},
+      Channel => $channel,
+      Server => $server,
+      Port => $port,
+      Password => '-PASSWORD-',
+      Realname => $config->{default_name},
+      Format => \@@formats,
+      'Character set' => $charset
+   );
+
+   @@items{keys %items} = map(ref $_ ? $_ : escape_html($_), values %items);
+
+   $items{Nickname} =~ s/\?/int rand 10/eg;
+
+   if(ref $cgi && $cgi->{adv}) {
+	  if($config->{'login advanced'}) {
+		 @@order = split(' ', $config->{'login advanced'});
+	  }else{
+		 @@order = qw/Nickname Realname Server Port Channel Password Format/;
+       push @@order, 'Character set';
+	  }
+   }else{
+	  if($config->{'login basic'}) {
+		 @@order = split(' ', $config->{'login basic'});
+	  }else{
+		 @@order = qw/Nickname Server Channel/;
+	  }
+   }
+   $interface->login($scriptname, $interface, $copy, $config,
+         \@@order, \%items,
+         (ref $cgi && $cgi->{adv} ? 0 : 1));
+}
+
+sub random {
+   return join('',map(('a'..'z','0'..'9')[int rand 62], 0..($_[0] || 15)));
+}
+
+sub dolist {
+   my($var) = @@_;
+   my @@tmp = split(/,\s*/, $var);
+   return [@@tmp] if $#tmp > 0;
+   return $var;
+}
+
+sub cgi_read {
+   return unless defined $ENV{REQUEST_METHOD};
+   if($ENV{REQUEST_METHOD} eq 'GET' && $ENV{QUERY_STRING}) {
+	  return parse_query($ENV{QUERY_STRING});
+   }elsif($ENV{REQUEST_METHOD} eq 'POST' && $ENV{CONTENT_LENGTH}) {
+	  my $tmp;
+	  read(STDIN, $tmp, $ENV{CONTENT_LENGTH});
+	  return parse_query($tmp);
+   }
+}
+
+sub cgi_encode { # from CGI.pm
+   my $toencode = shift;
+   $toencode=~s/([^a-zA-Z0-9_.-])/uc sprintf("%%%02x",ord($1))/eg;
+   return $toencode;
+}
+
+sub error {
+   die(@@_);
+}
+@
+
+
+2.2
+log
+@merge
+@
+text
+@d2 1
+a2 1
+# $MirBSD: contrib/code/cgiirc/irc.cgi,v 2.1 2004/12/19 14:28:46 tg Exp $
+d30 1
+a30 1
+ '$Name: rel_0_5_5 $ 0_5_CVS $Id: irc.cgi,v 1.32 2005/01/08 17:27:54 dgl Exp $ $MirBSD$'
+@
+
+
+2.1
+log
+@Update to MirCGIIRC
+@
+text
+@d2 1
+a2 1
+# $MirBSD: contrib/code/cgiirc/irc.cgi,v 1.2 2004/10/27 11:30:26 tg Exp $
+d5 2
+a6 2
+# Copyright (c) 2004 Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+# Copyright (C) 2000-2003 David Leadbeater <cgiirc@@dgl.cx>
+d26 1
+a26 1
+use vars qw($VERSION);
+d30 1
+a30 1
+ '$MirBSD: contrib/code/cgiirc/irc.cgi,v 1.2 2004/10/27 11:30:26 tg Exp $'
+d37 8
+d46 1
+a46 1
+   print "Set-cookie: cgiircauth=". random(25) .";path=/\n";
+d49 6
+a54 1
+	  'Content-type: text/html',
+a64 3
+my $config = parse_config('cgiirc.config');
+my $cgi = cgi_read();
+
+d89 2
+a90 1
+         Format => 'format'
+d102 1
+a102 1
+   $format = parse_config("formats/$format");
+d123 13
+d149 1
+a149 1
+   opendir(FORMATS, "formats");
+d152 1
+a152 1
+      next unless !/^\./ && -f "formats/$_";
+d169 1
+d181 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 2
+d5 1
+d11 1
+a11 2
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+d30 1
+a30 1
+ '$Name: cgiirc-0_5_4 $ 0_5_CVS $Id: irc.cgi,v 1.1.3.1 2004/10/27 10:56:50 tg Exp $'
+d40 1
+a40 1
+print join("\r\n", 
+d48 1
+d70 3
+a72 3
+   
+   my %p = ( 
+         Nickname => 'nick', 
+d88 1
+a88 1
+            ? $cgi->{Format} 
+d164 1
+a164 1
+   $interface->login($scriptname, $interface, $copy, $config, 
+d180 1
+a180 1
+sub cgi_read { 
+@
+
+
+1.1.3.1
+log
+@Import cgiirc 0.5.4 (pristine) again
+@
+text
+@@
+
+
+1.1.3.2
+log
+@there's a new CGI::IRC out, with utf-8 supposedly, and fireschrott bugfixes
+@
+text
+@d3 1
+a3 1
+# Copyright (C) 2000-2004 David Leadbeater <http://contact.dgl.cx/>
+d24 1
+a24 1
+use vars qw($VERSION $config_path);
+d28 1
+a28 1
+ '$Name: rel_0_5_5 $ 0_5_CVS $Id: irc.cgi,v 1.32 2005/01/08 17:27:54 dgl Exp $'
+a34 8
+my $cgi = cgi_read();
+
+for('', '/etc/cgiirc/', '/etc/') {
+   last if -r ($config_path = $_) . 'cgiirc.config';
+}
+
+my $config = parse_config($config_path . 'cgiirc.config');
+
+d36 1
+a36 1
+   print "Set-cookie: cgiircauth=". random(25) .";path=/\r\n";
+d38 2
+a39 7
+print join("\r\n",
+# Hack to make sure we print the correct type for stylesheets too..
+	  'Content-type: text/' . (ref $cgi && defined $cgi->{item} &&
+        $cgi->{item} eq 'style' ? 'css' : 'html')
+# We need this for some JavaScript magic that detects the character set.
+# Basically don't send a character set for the login page..
+         . (ref $cgi && $cgi->{item} ? '; charset=utf-8' : ''),
+d49 3
+d76 1
+a76 2
+         Format => 'format',
+         'Character set' => 'charset',
+d88 1
+a88 1
+   $format = parse_config($config_path . "formats/$format");
+a108 13
+   
+   my $charset = [ $config->{'irc charset'} ];
+   if(defined $ENV{HTTP_ACCEPT_CHARSET}) {
+      for(split ',', $ENV{HTTP_ACCEPT_CHARSET}) {
+         next if /;q=0($|\.0$)/ or /\*/;
+         s/;.*//;
+         push @@$charset, $_; 
+      }
+   }
+   if(@@$charset == 1) {
+      $charset = $charset->[0];
+      $charset = '' unless defined $charset;
+   }
+d122 1
+a122 1
+   opendir(FORMATS, $config_path . "formats");
+d125 1
+a125 1
+      next unless !/^\./ && -f $config_path . "formats/$_";
+a141 1
+      'Character set' => $charset
+a152 1
+       push @@order, 'Character set';
+@
+

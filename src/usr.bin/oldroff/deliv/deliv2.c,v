@@ -1,0 +1,168 @@
+head	1.2;
+access;
+symbols
+	start:1.1.15.1 mirbsd:1.1.15;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.19.44.08;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.03.18.18.29;	author tg;	state Exp;
+branches
+	1.1.15.1;
+next	;
+
+1.1.15.1
+date	2005.01.03.18.18.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@stdlib.h
+@
+text
+@/* $MirBSD: src/usr.bin/oldroff/deliv/deliv2.c,v 1.1.15.1 2005/01/03 18:18:29 tg Exp $ */
+
+/*-
+ * Copyright (c) 1979, 1980, 1981, 1986, 1988, 1990, 1991, 1992
+ *     The Regents of the University of California.
+ * Copyright (C) Caldera International Inc.  2001-2002.
+ * Copyright (c) 2003, 2004
+ *	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms,
+ * with or without modification, are permitted provided
+ * that the following conditions are met:
+ *
+ * Redistributions of source code and documentation must retain
+ * the above copyright notice, this list of conditions and the
+ * following disclaimer.  Redistributions in binary form must
+ * reproduce the above copyright notice, this list of conditions
+ * and the following disclaimer in the documentation and/or other
+ * materials provided with the distribution.
+ *
+ * All advertising materials mentioning features or use of this
+ * software must display the following acknowledgement:
+ *   This product includes software developed or owned by
+ *   Caldera International, Inc.
+ *
+ * Neither the name of Caldera International, Inc. nor the names
+ * of other contributors may be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+ * USE OF THE SOFTWARE PROVIDED FOR UNDER THIS LICENSE BY CALDERA
+ * INTERNATIONAL, INC. AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+ * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL CALDERA INTERNATIONAL, INC. BE
+ * LIABLE FOR ANY DIRECT, INDIRECT INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+__SCCSID("@@(#)deliv2.c	4.2 (Berkeley) 4/18/91");
+__RCSID("$MirBSD$");
+
+hash (s)
+char *s;
+{
+	int c, n;
+	for(n=0; c= *s; s++)
+		n += (c*n+ c << (n%4));
+	return(n>0 ? n : -n);
+}
+
+err (s, a)
+char *s;
+{
+	fprintf(stderr, "Error: ");
+	fprintf(stderr, s, a);
+	putc('\n', stderr);
+	exit(1);
+}
+
+prefix(t, s)
+char *t, *s;
+{
+	int c;
+
+	while ((c= *t++) == *s++)
+		if (c==0) return(1);
+	return(c==0 ? 1: 0);
+}
+
+char *
+mindex(s, c)
+char *s;
+{
+	register char *p;
+	for( p=s; *p; p++)
+		if (*p ==c)
+			return(p);
+	return(0);
+}
+
+zalloc(m,n)
+{
+	int t;
+# if D1
+	fprintf(stderr, "calling calloc for %d*%d bytes\n",m,n);
+# endif
+	t = (int) calloc(m,n);
+# if D1
+	fprintf(stderr, "calloc returned %o\n", t);
+# endif
+	return(t);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+/* $MirBSD: src/usr.bin/roff/deliv/deliv2.c,v 1.3 2004/12/05 13:25:49 tg Exp $ */
+d45 2
+a46 3
+#ifndef lint
+static char sccsid[] = "@@(#)deliv2.c	4.2 (Berkeley) 4/18/91";
+#endif /* not lint */
+d48 2
+a49 1
+#include <stdio.h>
+a91 1
+	char *calloc();
+@
+
+
+1.1.15.1
+log
+@our (old)roff, based upon 4.4BSD-Alpha code,
+copyrighted by AT&T, gratituously licenced to
+us under a 4-clause UCB-style licence by SCO
+(then Caldera)
+@
+text
+@@

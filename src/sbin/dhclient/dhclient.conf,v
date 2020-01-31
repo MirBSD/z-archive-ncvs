@@ -1,0 +1,89 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.31.18;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.18;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.18;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@send host-name "andare.fugue.com";
+send dhcp-client-identifier 1:0:a0:24:ab:fb:9c;
+send dhcp-lease-time 3600;
+supersede domain-name "fugue.com home.vix.com";
+prepend domain-name-servers 127.0.0.1;
+request subnet-mask, broadcast-address, time-offset, routers,
+	domain-name, domain-name-servers, host-name;
+require subnet-mask, domain-name-servers;
+timeout 60;
+retry 60;
+reboot 10;
+select-timeout 5;
+initial-interval 2;
+script "/etc/dhclient-script";
+media "-link0 -link1 -link2", "link0 link1";
+reject 192.33.137.209;
+
+alias {
+  interface "ep0";
+  fixed-address 192.5.5.213;
+  option subnet-mask 255.255.255.255;
+}
+
+lease {
+  interface "ep0";
+  fixed-address 192.33.137.200;
+  medium "link0 link1";
+  option host-name "andare.swiftmedia.com";
+  option subnet-mask 255.255.255.0;
+  option broadcast-address 192.33.137.255;
+  option routers 192.33.137.250;
+  option domain-name-servers 127.0.0.1;
+  renew 2 2000/1/12 00:00:01;
+  rebind 2 2000/1/12 00:00:01;
+  expire 2 2000/1/12 00:00:01;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

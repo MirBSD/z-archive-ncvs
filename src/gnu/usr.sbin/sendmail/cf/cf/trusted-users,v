@@ -1,0 +1,36 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/gnu/usr.sbin/sendmail/cf/cf/trusted-users,v 1.2 2004/08/21 15:30:51 tg Stab $
+# $OpenBSD: trusted-users,v 1.1 2003/09/23 21:37:11 millert Exp $
+#
+# This file contains a list of users (one per line) that may set their
+# envelope # "from" address to a different user via "sendmail -f".
+# Common values include "majordomo", "mailman" and "www".
+# In other words, if a daemon (or mailing list manager) sends mail purporting
+# to be from a different user, the user it runs as should be listed here.
+# The users "root" and "daemon" are implicitly included in this list.
+#
+# This file is read only at startup or when sendmail(8) is sent SIGHUP.
+#
+@

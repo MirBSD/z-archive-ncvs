@@ -1,0 +1,64 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.28.39;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.57;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: regmagic.h,v 1.2 1996/07/24 05:39:12 downsj Exp $	*/
+/*	$Id: regmagic.h,v 1.1.1.1 2003/03/22 17:46:34 tg Stab $ */
+
+/*
+ * The first byte of the regexp internal "program" is actually this magic
+ * number; the start node begins in the second byte.
+ */
+#define	MAGIC	0234
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+/*	$Id: regmagic.h,v 1.2 1996/07/24 05:39:12 downsj Exp $ */
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

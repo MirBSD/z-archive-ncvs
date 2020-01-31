@@ -1,0 +1,71 @@
+head     1.1;
+branch   1.1.15;
+access   ;
+symbols  start:1.1.15.1 mirbsd:1.1.15;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.07.01.10.41;  author tg;  state Exp;
+branches 1.1.15.1;
+next     ;
+
+1.1.15.1
+date     2005.01.07.01.10.41;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* $MirBSD: src/gnu/usr.bin/mkisofs/filesize64.c,v 1.2 2003/10/30 17:32:34 tg Stab $ */
+/* @@(#)filesize64.c	1.5 00/12/28 Copyright 2000 J. Schilling */
+/*
+ *	Copyright (c) 2000 J. Schilling
+ */
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; see the file COPYING.  If not, write to
+ * the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#ifndef	USE_LARGEFILES
+#define	USE_LARGEFILES
+#endif
+
+#include "io.h"
+
+/*#if	_LFS_LARGEFILE*/
+#ifdef	HAVE_LARGEFILES
+
+#include "filesize.c"
+
+#endif
+@
+
+
+1.1.15.1
+log
+@the mkisofs hack
+@
+text
+@@

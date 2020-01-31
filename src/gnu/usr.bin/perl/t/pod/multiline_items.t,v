@@ -1,0 +1,86 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.36;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.00;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.00;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@BEGIN {
+   use File::Basename;
+   my $THISDIR = dirname $0;
+   unshift @@INC, $THISDIR;
+   require "testp2pt.pl";
+   import TestPodIncPlainText;
+}
+
+my %options = map { $_ => 1 } @@ARGV;  ## convert cmdline to options-hash
+my $passed  = testpodplaintext \%options, $0;
+exit( ($passed == 1) ? 0 : -1 )  unless $ENV{HARNESS_ACTIVE};
+
+
+__END__
+
+
+=head1 Test multiline item lists
+
+This is a test to ensure that multiline =item paragraphs
+get indented appropriately.
+
+=over 4 
+
+=item This 
+is
+a
+test.
+
+=back
+
+=cut
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

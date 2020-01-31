@@ -1,0 +1,82 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.10.41;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.41;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/lib/font/FreeType/Imakefile,v 1.31 2003/11/20 22:36:34 dawes Exp $
+
+#if BuildServer && DoLoadableServer
+#define IHaveSubdirs
+#define NoLibSubdirs
+#define PassCDebugFlags
+SUBDIRS = module
+#endif
+
+DEFINES = ServerExtraDefines StrcasecmpDefines Freetype2BuildDefines \
+	  -DXFREE86_FT2
+
+FT2SOURCEDIR = $(TOP)/extras/freetype2/src
+FT2INCS = $(FREETYPE2INCLUDES)
+
+INCLUDES = $(FT2INCS) -I. -I$(FONTINCSRC) -I../include -I$(XINCLUDESRC) \
+           -I$(SERVERSRC)/include -I$(FT2SOURCEDIR)/truetype \
+           -I$(INCLUDESRC)
+
+SRCS = xttcap.c ftfuncs.c ftenc.c fttools.c
+OBJS = xttcap.o ftfuncs.o ftenc.o fttools.o
+
+#if BuildFontLib
+#define DoNormalLib NormalLibFont
+#define DoSharedLib SharedLibFont
+#define DoDebugLib DebugLibFont
+#define DoProfileLib ProfileLibFont
+#include <Library.tmpl>
+LibraryObjectRule()
+
+SubdirLibraryRule($(OBJS))
+NormalLintTarget($(SRCS))
+
+#endif
+
+#if BuildServer && DoLoadableServer
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+#endif
+
+DependTarget()
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

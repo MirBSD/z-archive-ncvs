@@ -1,0 +1,64 @@
+head	1.2;
+access;
+symbols
+	libpng-1_2_8:1.1.17.1 libpng:1.1.17;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.37.31;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches
+	1.1.17.1;
+next	;
+
+1.1.17.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke junk
+@
+text
+@#!/bin/sh
+echo "
+  There is no \"configure\" script in this distribution of
+  libpng-1.2.8.
+
+  Instead, please copy the appropriate makefile for your system from the
+  \"scripts\" directory.  Read the INSTALL file for more details.
+
+  Update, July 2004: you can get a "configure" based distribution
+  from the libpng distribution sites.  Download the file
+  libpng-1.2.8-config.tar.gz
+"
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.17.1
+log
+@libpng-1.2.8.tar.bz2
+@
+text
+@@

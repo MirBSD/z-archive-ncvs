@@ -1,0 +1,79 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.21.48.54;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.59;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.59;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@#include <unixio.h>
+
+/* UNIX-like file deletion, deletes previous VMS file versions so UNIX
+   style locking through files dosen't lose.  */
+#ifndef __VMS_VER
+int vms_unlink(char *path)
+#elif __VMS_VER < 70200000
+int vms_unlink(char *path)
+#else
+int vms_unlink(char const*path)
+#endif
+{
+  int rs, junk_rs;
+
+  rs = remove(path);
+  while(remove(path) >= 0);
+
+  return rs;
+}
+
+int link(char *from, char *to)
+{
+  int rs = -1;
+
+  /* Link always fails */
+
+  return rs;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

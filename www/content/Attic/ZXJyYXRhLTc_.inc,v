@@ -1,0 +1,122 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.57;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@<small class="rcsid">$MirBSD: www/content/ZXJyYXRhLTc_.inc,v 1.1 2004/12/13 00:13:24 tg Exp $</small>
+<h1>Errata for #7-stable</h1>
+<!-- deleteme --><h2>Need People</h2>
+<p>We're in need of people who keep the website, especially this
+ page, up to date. Please contact the MirOS team by eMail.</p>
+<h2>Content</h2><!-- endof deleteme -->
+<p>This page attempts to identify known issues for users of the MirOS
+ #7 installation, documenting why they should update to the latest
+ stable branch (CVS Tag: MIRBSD_7).</p>
+<h1>Corrigenda</h1><ul>
+<li><strong style="color:#FF0000;">This list is not up to date!</strong></li>
+<li>An <a href="/MirOS/v7.4/updates/20041027.tar.gz">update for #7quater</a>
+ compiled by bsiegert@@</li>
+<li>Multiple vulnerabilities in Apache&trade;'s mod_ssl and cvs.<br />
+ Fix: Upgrade <tt>src/gnu/usr.bin/cvs</tt> and
+ <tt>src/gnu/usr.sbin/httpd</tt> from CVS and recompile both Apache&trade; and CVS.
+ <a href="http://benz.mine.nu/MirBSD/updates/7quater/20040627-cvs-httpd.tar.gz">A
+ binary upgrade</a> is also available. Be sure to check the
+ <a href="http://benz.mine.nu/MirBSD/updates/7quater/20040627-cvs-httpd.tar.gz.sig">signature</a>.</li>
+<li class="erecta">MirOS #7quater released.</li>
+<li>Numerous backports from OpenBSD missing.<br />
+ Fix: update to MirOS #7quater.</li>
+<li>MirOS #7ter did not run on certain SPARCstation models (SS5, namely).<br />
+ Fix: update <tt>/etc/mk.conf</tt> to match the -stable version
+ and recompile on a supported SPARC, or install MirOS #7quater.</li>
+<li>MirPorts-current need newer package tools.<br />
+ Fix: update to latest -stable and recompile src/usr.sbin/pkg_install,
+ or install MirOS #7quater.</li>
+<li>Numerous fixes and backports from OpenBSD, as well as some on
+ our own. We'll shortly identify the issues.</li>
+<li class="erecta">MirOS #7ter released.</li>
+</ul><p>MirOS #7bis is approximately the same codebase as #7ter, but
+ with sparc support and a few minor fixes missing. MirOS #7semel is
+ not supported any more, and has been superseded for a long time.</p>
+<h1>Older Errata Corrigendaque</h1>
+<p>Older versions of MirOS than Version 7 are not supported any more;
+ if you are still using such an old version, consider installing a
+ <a href="/?errata">recent snapshot</a>.</p>
+<p>Users of MirOS #7bis please note that the #7ter release is built upon
+ the same codebase, but with sparc support added, and a few minor flaws
+ fixed. Therefore there is no reason to not update to MirOS #7ter.
+ For increased security, please consider updating to MirOS #7quater,
+ although you will have to adjust for the new package tools, which in
+ turn are necessary for installing from current MirPorts, which is
+ strongly advised due to security issues in third-party applications
+ anyways.</p>
+<p>Users of MirOS #7semel have been advised to update to #7bis a long
+ time ago. The #7 release had numerous flaws which have been corrected
+ as soon as possible at that time.</p>
+<p>Users of MirOS #6 (Linuxtag Edition) and even older versions are
+ recommended to consider re-installing from a recent -current snapshot.</p>
+<p>Users of MirOS #4, please note that the egcc port, which was necessary,
+ has been removed in favour of an in-tree gcc 3.2.3 compiler. Please remove
+ the egcc compiler except libestdc++ before updating.</p>
+<p>Users of MirOS #2, please note that the executable format has changed,
+ and only static executables which do not load modules (for example, not
+ Apache) are still able to run under a more recent release of MirOS.</p>
+<p>Users of even older BSD-mirabile or OpenBSD-current-mirabile releases:
+ I'd like to hear from you ;-)<br />If anyone is still productively using
+ MirOS #0 to #4, please drop me a note and tell me how you already liked
+ the product. You will be even more pleased with the more recent versions.</p>
+<h3>Caveats</h3>
+<p>MirOS -current (to become release #8) has switched to using gcc 3.2.3
+ with Propolice as system compiler, and dropped support for non-Pentium
+ CPUs (on x86) again. You are advised to read the <a href="/clogs/">change
+ logs</a> if you are interested in all details prior to installing. Until
+ MirOS #8 is formally released, there will not be a new features page.</p>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+<small class="rcsid">$MirBSD: www/content/ZXJyYXRhLTc_.inc,v 1.7 2004/11/01 13:33:02 tg Exp $</small>
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

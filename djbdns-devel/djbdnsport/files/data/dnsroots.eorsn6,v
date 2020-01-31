@@ -1,0 +1,44 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 tg:1.1.1;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.12.13.20.44.46;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+commitid        0439f32c6884c25e;
+
+1.1.1.1
+date     2005.12.13.20.44.46;  author tg;  state Exp;
+branches ;
+next     ;
+commitid        0439f32c6884c25e;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@2001:8d0:0:3::100
+2001:850:300:3::2
+2001:8a8:21:2::66
+2001:4b88:9000::
+@
+
+
+1.1.1.1
+log
+@Import ports/net/djbdns of snapshot
+@
+text
+@@

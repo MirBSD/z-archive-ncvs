@@ -1,0 +1,93 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.25.59;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.25.59;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ * Copyright (c) 2000 World Wide Web Consortium,
+ * (Massachusetts Institute of Technology, Institut National de
+ * Recherche en Informatique et en Automatique, Keio University). All
+ * Rights Reserved. This program is distributed under the W3C's Software
+ * Intellectual Property License. This program is distributed in the
+ * hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ * See W3C License http://www.w3.org/Consortium/Legal/ for more details.
+ */
+
+package org.w3c.dom.ranges;
+
+/**
+ * <p>See also the <a href='http://www.w3.org/TR/2000/REC-DOM-Level-2-Traversal-Range-20001113'>Document Object Model (DOM) Level 2 Traversal and Range Specification</a>.
+ * @@since DOM Level 2
+ */
+public interface DocumentRange {
+    /**
+     * This interface can be obtained from the object implementing the 
+     * <code>Document</code> interface using binding-specific casting 
+     * methods.
+     * @@return The initial state of the Range returned from this method is 
+     *   such that both of its boundary-points are positioned at the 
+     *   beginning of the corresponding Document, before any content. The 
+     *   Range returned can only be used to select content associated with 
+     *   this Document, or with DocumentFragments and Attrs for which this 
+     *   Document is the <code>ownerDocument</code>.
+     */
+    public Range createRange();
+
+}
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

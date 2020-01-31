@@ -1,0 +1,88 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.37;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!perl -w
+# Fix perlmain.c under DOS (short & case insensitive filenames).
+# Called from Makefile.aperl when needed.
+# You don't need this when LFN=y.
+
+use Config;
+
+open (PERLM,"<perlmain.c") or die "Can't load perlmain.c: $!";
+open (MAKEFILE,"<makefile.pl") or die "Can't load makefile.pl: $!";
+undef $/;
+$perlmain=<PERLM>;
+$makefile=<MAKEFILE>;
+
+($_) = $makefile =~ /\bNAME\b.*=>\W*([\w\:]+)/; # extract module name
+$badname=join ("__",map {lc substr ($_,0,8)} split /:+/); # dosify
+$perlmain =~ s/^.*boot_$badname.*$//gm if $badname; # delete bad lines
+
+@@exts=('DynaLoader',split (" ",$Config{known_extensions}));
+for $realname (@@exts)
+{
+    $dosname=join ("__",map {lc substr ($_,0,8)} split /\//,$realname);
+    $realname =~ s!/!__!g;
+    $perlmain =~ s/\bboot_$dosname\b/boot_$realname/gm;
+    $dosname =~ s/__/::/;
+    $realname =~ s/__/::/;
+    $perlmain =~ s/\b$dosname(::bootstrap)/$realname$1/gm;
+}
+
+#DynaLoader is special
+$perlmain =~ s/(DynaLoader:\:boot)strap/$1_DynaLoader/gm;
+
+open (PERLM,">perlmain.c") or die "Can't write perlmain.c: $!";
+print PERLM $perlmain;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,59 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.13.39;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.13.39;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Merged mode stuff */
+/* include file for mga_driver.c  DO NOT try to generate a .o with this file.*/
+
+void		MGADisplayPowerManagementSetMerged(ScrnInfoPtr pScrn, 
+					     int PowerManagementMode,
+				             int flags);
+void	        MGAMergePointerMoved(int scrnIndex, int x, int y);
+void            MGAAdjustMergeFrames(int scrnIndex, int x, int y, int flags);
+Bool            MGAPreInitMergedFB(ScrnInfoPtr pScrn1, int flags);
+Bool		MGACloseScreenMerged(int scrnIndex, ScreenPtr pScreen);
+Bool		MGASaveScreenMerged(ScreenPtr pScreen, int mode);
+
+typedef struct _MergedDisplayModeRec {
+    DisplayModePtr Monitor1;
+    DisplayModePtr Monitor2;
+    MgaScrn2Rel    Monitor2Pos; 
+} MergedDisplayModeRec, *MergedDisplayModePtr;
+
+#define MDMPTR(x) ((MergedDisplayModePtr)(x->currentMode->Private))
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

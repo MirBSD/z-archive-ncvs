@@ -1,0 +1,82 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.24.08;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.08;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# Just for these, we omit the frame pointer since it makes such a big
+# difference.  It is then pointless adding debugging.
+TARGET_LIBGCC2_CFLAGS = -fomit-frame-pointer -fPIC
+LIBGCC2_DEBUG_CFLAGS = -g0
+
+LIB1ASMSRC = arm/lib1funcs.asm
+LIB1ASMFUNCS = _udivsi3 _divsi3 _umodsi3 _modsi3 _dvmd_lnx
+
+# MULTILIB_OPTIONS = mhard-float/msoft-float
+# MULTILIB_DIRNAMES = hard-float soft-float
+
+# If you want to build both APCS variants as multilib options this is how
+# to do it.
+# MULTILIB_OPTIONS += mapcs-32/mapcs-26
+# MULTILIB_DIRNAMES += apcs-32 apcs-26
+
+# EXTRA_MULTILIB_PARTS = crtbegin.o crtend.o
+
+# LIBGCC = stmp-multilib
+# INSTALL_LIBGCC = install-multilib
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

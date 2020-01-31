@@ -1,0 +1,75 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.46.12;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.47;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.47;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@# Turkish translations for Gnu Gettext Package.
+# Copyright (C) 2004 Free Software Foundation, Inc.
+# Nilgün Belma Bugüner <nilgun@@superonline.com>, 2003,2004
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hello-csharp-forms 0.14-pre1\n"
+"Report-Msgid-Bugs-To: bug-gnu-gettext@@gnu.org\n"
+"PO-Revision-Date: 2004-01-21 06:17+0300\n"
+"Last-Translator: Nilgün Belma Bugüner <nilgun@@superonline.com>\n"
+"Language-Team: Turkish <gnu-tr-u12a@@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0\n"
+
+#: hello.cs:30
+msgid "Hello, world!"
+msgstr "Merhaba Dünyalı!"
+
+#: hello.cs:37
+#, csharp-format
+msgid "This program is running as process number {0}."
+msgstr "Bu yazılım, {0} süreç kimliği ile çalışıyor."
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

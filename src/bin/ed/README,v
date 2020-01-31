@@ -1,0 +1,78 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.22.31;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.26.57;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.26.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@$OpenBSD: README,v 1.2 1996/06/23 14:19:58 deraadt Exp $
+$NetBSD: README,v 1.9 1995/03/21 09:04:33 cgd Exp $
+
+ed is an 8-bit-clean, POSIX-compliant line editor.  It should work with
+any regular expression package that conforms to the POSIX interface
+standard, such as GNU regex(3).
+
+If reliable signals are supported (e.g., POSIX sigaction(2)), it should
+compile with little trouble.  Otherwise, the macros SPL1() and SPL0()
+should be redefined to disable interrupts.
+
+The following compiler directives are recognized:
+DES		- to add encryption support (requires crypt(3))
+NO_REALLOC_NULL	- if realloc(3) does not accept a NULL pointer
+BACKWARDS	- for backwards compatibility
+NEED_INSQUE	- if insque(3) is missing
+
+The file `POSIX' describes extensions to and deviations from the POSIX
+standard.
+
+The ./test directory contains regression tests for ed. The README
+file in that directory explains how to run these.
+
+For a description of the ed algorithm, see Kernighan and Plauger's book
+"Software Tools in Pascal," Addison-Wesley, 1981.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

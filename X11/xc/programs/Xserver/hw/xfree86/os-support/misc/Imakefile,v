@@ -1,0 +1,111 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.06.23.21.40;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.15.47;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.15.47;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge X11 out of my feet
+@
+text
+@XCOMM $XFree86: xc/programs/Xserver/hw/xfree86/os-support/misc/Imakefile,v 3.14 2004/02/02 03:55:32 dawes Exp $
+
+
+
+
+XCOMM $XConsortium: Imakefile /main/4 1996/09/28 17:24:12 rws $
+
+#include <Server.tmpl>
+
+
+#if defined(i386Architecture) && !defined(cygwinArchitecture) \
+	&& !defined(OS2Architecture)
+XSRCS = BUSmemcpy.S IODelay.S SlowBcopy.S
+XOBJS = BUSmemcpy.o IODelay.o SlowBcopy.o
+#else
+XSRCS = BUSmemcpy.c IODelay.c SlowBcopy.c
+XOBJS = BUSmemcpy.o IODelay.o SlowBcopy.o
+#if defined(NetBSDArchitecture)
+BUSmemcpy.o: BUSmemcpy.c
+IODelay.o: IODelay.c
+SlowBcopy.o: SlowBcopy.c
+#endif
+#endif
+
+#if HasGcc || HasGcc2
+#if !(defined(AlphaArchitecture) && defined(OpenBSDArchitecture))
+ILHACKSRCS = xf86_IlHack.c
+ILHACKOBJS = xf86_IlHack.o
+#elif defined(SunArchitecture) && defined(i386Architecture)
+ILHACKOBJS = PortIO.o
+#endif
+#endif
+
+SRCS = xf86_Util.c Delay.c $(ILHACKSRCS) $(XSRCS)
+
+OBJS = xf86_Util.o Delay.o $(ILHACKOBJS) $(XOBJS)
+
+INCLUDES = -I$(XF86COMSRC) -I$(XF86OSSRC) -I. -I$(SERVERSRC)/include \
+           -I$(XINCLUDESRC)
+
+SubdirLibraryRule($(OBJS))
+NormalLibraryObjectRule()
+
+#if defined(i386Architecture) && !defined(cygwinArchitecture) \
+	&& !defined(OS2Architecture)
+ObjectFromAsmSource(BUSmemcpy,NullParameter)
+ObjectFromAsmSource(IODelay,NullParameter)
+ObjectFromAsmSource(SlowBcopy,NullParameter)
+#endif
+
+#if defined(SunArchitecture) && defined(i386Architecture)
+ObjectFromAsmSource(PortIO,NullParameter)
+#endif
+
+DependTarget()
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d26 1
+d32 1
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

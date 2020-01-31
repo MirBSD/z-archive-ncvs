@@ -1,0 +1,152 @@
+head	1.7;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.7
+date	2005.01.13.21.51.13;	author tg;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2005.01.13.20.35.01;	author tg;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2005.01.09.21.03.27;	author tg;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2005.01.05.18.50.12;	author tg;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2005.01.05.16.35.07;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2005.01.05.16.04.16;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.04.20.50.53;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.7
+log
+@we're merging binutils right now, ma'am
+@
+text
+@# $MirBSD: gcc/Makefile.inc,v 1.6 2005/01/13 20:35:01 tg Exp $
+
+.ifndef _MODGCC_MAKEFILE_INC
+_MODGCC_MAKEFILE_INC=1
+
+#NO_ADA=defined
+#NO_CXX=defined
+#NO_OBJC=defined
+#NO_F77=defined
+#NO_JAVA=defined
+
+.ifndef EXPERIMENTAL
+CFLAGS+=	-Werror
+.endif
+
+.ifdef NO_CXX
+NO_JAVA=implied
+.endif
+
+GMAKE?=		/usr/local/bin/gmake
+
+.endif
+@
+
+
+1.6
+log
+@further merge and fix double-inclusion-protection
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/Makefile.inc,v 1.5 2005/01/09 21:03:27 tg Exp $
+a11 3
+# for now
+GNU_BINUTILS_SRC=/usr/src-ppc/gnu/usr.bin/binutils/src
+
+@
+
+
+1.5
+log
+@make $GMAKE avail to all
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/Makefile.inc,v 1.4 2005/01/05 18:50:12 tg Exp $
+d4 1
+a24 1
+_MODGCC_MAKEFILE_INC=1
+@
+
+
+1.4
+log
+@protect from multiple inclusion
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/Makefile.inc,v 1.3 2005/01/05 16:35:07 tg Exp $
+d22 2
+@
+
+
+1.3
+log
+@switches for the languages, and add java(tm) and f77
+@
+text
+@d1 3
+a3 1
+# $MirBSD$
+d21 3
+@
+
+
+1.2
+log
+@bring this thing into a pretty usable shape
+as a bonus, if ${DESTDIR}/systrace.policy is generated
+by us, it's removed by us on make cleandir as well
+@
+text
+@d1 9
+d12 7
+a18 1
+#CFLAGS+=-Werror
+@
+
+
+1.1
+log
+@a little kludge until all these builds are finished
+@
+text
+@d2 2
+@
+

@@ -1,0 +1,96 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.23.38;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ *    Copyright (c) 1999 Olaf Flebbe o.flebbe@@gmx.de
+ *    
+ *    You may distribute under the terms of either the GNU General Public
+ *    License or the Artistic License, as specified in the README file.
+ *
+ */
+
+/* This is C++ Code !! */
+
+#include <e32std.h>
+#include <stdlib.h>
+#include <estlib.h>
+#include <string.h>
+
+extern "C" { 
+
+
+/* Workaround for defect strtoul(). Values with leading + are zero */
+
+unsigned long int epoc_strtoul(const char *nptr, char **endptr,
+			       int base) {
+  if (nptr && *nptr == '+')
+    nptr++;
+  return strtoul( nptr, endptr, base);
+}
+
+void epoc_gcvt( double x, int digits, unsigned char *buf) {
+    TRealFormat trel;
+
+    trel.iPlaces = digits;
+    trel.iPoint = TChar( '.');
+
+    TPtr result( buf, 80);
+
+    result.Num( x, trel);
+    result.Append( TChar( 0));
+  }
+}
+
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

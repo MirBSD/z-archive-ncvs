@@ -1,0 +1,95 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.40;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.00;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.00;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl -w
+
+BEGIN {
+    chdir 't' if -d 't';
+    @@INC = qw(../lib lib);
+}
+
+require "./test.pl";
+
+plan(tests => 1);
+
+my $r;
+my @@tmpfiles = ();
+END { unlink @@tmpfiles }
+
+my $filename = 'swdtest.tmp';
+SKIP: {
+	open my $f, ">$filename"
+	    or skip( "Can't write temp file $filename: $!" );
+	print $f <<'__SWDTEST__';
+package Bar;
+sub bar { $_[0] * $_[0] }
+package Foo;
+sub foo {
+  my $s;
+  $s += Bar::bar($_) for 1..$_[0];
+}
+package main;
+Foo::foo(3);
+__SWDTEST__
+    close $f;
+    push @@tmpfiles, $filename;
+    $| = 1; # Unbufferize.
+    $r = runperl(
+		 switches => [ '-Ilib', '-d:switchd' ],
+		 progfile => $filename,
+		);
+    like($r, qr/^main,swdtest.tmp,9;Foo,swdtest.tmp,5;Foo,swdtest.tmp,6;Foo,swdtest.tmp,6;Bar,swdtest.tmp,2;Bar,swdtest.tmp,2;Bar,swdtest.tmp,2;$/i);
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

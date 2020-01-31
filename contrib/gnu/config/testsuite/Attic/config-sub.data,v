@@ -1,0 +1,69 @@
+head	1.2;
+access;
+symbols
+	cvs-200408040940:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.09.48.51;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.09.42.11;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.09.42.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge, clean up whitespace
+@
+text
+@arm-coff		arm-unknown-coff
+arm-elf			arm-unknown-elf
+sun3			m68k-sun-sunos4.1.1
+sun4 			sparc-sun-sunos4.1.1
+ibm			i370-ibm-aix
+i386-os2		i386-pc-os2
+os400			powerpc-ibm-os400
+mmix			mmix-knuth-mmixware
+mmix-elf		mmix-knuth-elf
+i386-linux		i386-pc-linux-gnu
+i386-netbsd		i386-pc-netbsd
+i386-openbsd		i386-pc-openbsd
+i386-freebsd		i386-pc-freebsd
+i386-elf		i386-pc-elf
+i486-elf		i486-pc-elf
+i586-elf		i586-pc-elf
+i686-elf		i686-pc-elf
+i786-elf		i786-pc-elf
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@update GNU config stuff from FSF, too
+@
+text
+@@

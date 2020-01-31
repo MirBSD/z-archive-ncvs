@@ -1,0 +1,82 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.42.23;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.39;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.39;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/* $OpenBSD: misc.h,v 1.2 2001/09/19 10:58:08 mpech Exp $ */
+
+/*
+ * Miscellaneous syscall wrappers.
+ */
+
+#ifndef _POP_MISC_H
+#define _POP_MISC_H
+
+/*
+ * A select(2)-based sleep() equivalent: no more problems with SIGALRM,
+ * subsecond precision.
+ */
+extern int sleep_select(int sec, int usec);
+
+/*
+ * Obtain or remove a lock.
+ */
+extern int lock_fd(int fd, int shared);
+extern int unlock_fd(int fd);
+
+/*
+ * Attempts to write all the supplied data. Returns the number of bytes
+ * written. Any value that differs from the requested count means that
+ * an error has occurred; if the value is -1, errno is set appropriately.
+ */
+extern int write_loop(int fd, char *buffer, int count);
+
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

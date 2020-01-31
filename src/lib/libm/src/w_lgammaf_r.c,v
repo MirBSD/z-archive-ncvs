@@ -1,0 +1,100 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.29.09;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.19;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.19;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/* w_lgammaf_r.c -- float version of w_lgamma_r.c.
+ * Conversion to float by Ian Lance Taylor, Cygnus Support, ian@@cygnus.com.
+ */
+
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunPro, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice 
+ * is preserved.
+ * ====================================================
+ */
+
+#if defined(LIBM_SCCS) && !defined(lint)
+static char rcsid[] = "$NetBSD: w_lgammaf_r.c,v 1.3 1995/05/10 20:49:32 jtc Exp $";
+#endif
+
+/* 
+ * wrapper float lgammaf_r(float x, int *signgamp)
+ */
+
+#include "math.h"
+#include "math_private.h"
+
+
+float
+lgammaf_r(float x, int *signgamp) /* wrapper lgammaf_r */
+{
+#ifdef _IEEE_LIBM
+	return __ieee754_lgammaf_r(x,signgamp);
+#else
+        float y;
+        y = __ieee754_lgammaf_r(x,signgamp);
+        if(_LIB_VERSION == _IEEE_) return y;
+        if(!finitef(y)&&finitef(x)) {
+            if(floorf(x)==x&&x<=(float)0.0)
+	        /* lgamma pole */
+                return (float)__kernel_standard((double)x,(double)x,115);
+            else
+	        /* lgamma overflow */
+	        return (float)__kernel_standard((double)x,(double)x,114);
+        } else
+            return y;
+#endif
+}             
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,70 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.54;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: gcc,v 1.1 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+# gcc:  file(1) magic for GCC special files
+#
+0	string		gpch		GCC precompiled header
+
+# The version field is annoying.  It's 3 characters, not zero-terminated.
+>5	byte		x			(version %c
+>6	byte		x			\b%c
+>7	byte		x			\b%c)
+
+# 67 = 'C', 111 = 'o', 43 = '+', 79 = 'O'
+>4	byte		67			for C
+>4	byte		111			for Objective C
+>4	byte		43			for C++
+>4	byte		79			for Objective C++
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

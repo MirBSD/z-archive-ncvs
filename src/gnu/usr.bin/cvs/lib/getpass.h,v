@@ -1,0 +1,89 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.21.48.43;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.57;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@/* $MirBSD: src/gnu/usr.bin/cvs/lib/getpass.h,v 1.2 2004/12/02 12:40:00 tg Exp $ */
+
+#ifndef GETPASS_H
+#define GETPASS_H
+
+#include <pwd.h>
+#include <unistd.h>
+
+#endif /* GETPASS_H */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 17
+/* getpass.h -- Read a password of arbitrary length from /dev/tty or stdin.
+   Copyright (C) 2004 Free Software Foundation, Inc.
+   Contributed by Simon Josefsson <jas@@extundo.com>, 2004.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+d6 1
+a6 1
+/* Get getpass declaration, if available.  */
+a8 6
+#if defined HAVE_DECL_GETPASS && !HAVE_DECL_GETPASS
+/* Read a password of arbitrary length from /dev/tty or stdin.  */
+char *getpass (const char *prompt);
+
+#endif
+
+@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

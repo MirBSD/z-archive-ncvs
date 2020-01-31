@@ -1,0 +1,85 @@
+head	1.2;
+access;
+symbols
+	start:1.1.15.1 mirbsd:1.1.15;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.02.04.19.59.10;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.19.14.25.08;	author tg;	state Exp;
+branches
+	1.1.15.1;
+next	;
+
+1.1.15.1
+date	2004.12.19.14.25.08;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke unilynx, we've got xterm and ulynx is in /etc/profile
+@
+text
+@#!/bin/ksh
+# $MirBSD: contrib/samples/unilynx,v 1.1 2004/12/19 14:25:08 tg Exp $
+#-
+# Copyright (c) 2003
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+#
+# Licensee is hereby permitted to deal in this work without restric-
+# tion, including unlimited rights to use, publicly perform, modify,
+# merge, distribute, sell, give away or sublicence, provided all co-
+# pyright notices above, these terms and the disclaimer are retained
+# in all redistributions or reproduced in accompanying documentation
+# or other materials provided with binary redistributions.
+#
+# Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+# any kind, expressed or implied, to the maximum extent permitted by
+# applicable law, but with the warranty of being written without ma-
+# licious intent or gross negligence; in no event shall licensor, an
+# author or contributor be held liable for any damage, direct, indi-
+# rect or other, however caused, arising in any way out of the usage
+# of this work, even if advised of the possibility of such damage.
+#-
+# Starts lynx in unicode mode and closes parent xterm.
+# XXX should use "grey", not "gray". Why?
+# warning: outdated; use uxterm and alias lunx='lynx -display_charset utf8'
+
+/usr/X11R6/bin/xterm -tn xterm-xfree86 -fg gray -bg black \
+	-fn '-misc-fixed-medium-r-normal-*-15-*-*-*-*-*-iso10646-1' \
+	-geom 113x42+0+0 -u8 -en UTF-8 \
+	-e lynx -display_charset=UTF-8 "$@@" &
+kill -1 $PPID
+exit 0
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/share/misc/licence.template,v 1.20 2004/12/03 16:18:37 tg Rel $
+@
+
+
+1.1.15.1
+log
+@Import "most" of the old "contrib" module
+@
+text
+@@

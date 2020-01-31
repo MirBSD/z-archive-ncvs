@@ -1,0 +1,72 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.40.56;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.52;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@./"state"8t"oflags"nbb++
++/"forw"16t"back"16t"index"8t"order"nppbb++
++/"w.nr"16t"w.nc"nDD
++/"w.t"16t"w.b"16t"w.l"16t"w.r"nDDDD
++/"b.nr"16t"b.nc"nDD
++/"b.t"16t"b.b"16t"b.l"16t"b.r"nDDDD
++/"i.nr"16t"i.nc"nDD
++/"i.t"16t"i.b"16t"i.l"16t"i.r"nDDDD
++/"cur.r"16t"cur.c"nDD
++/"win"16t"buf"16t"fmap"16t"nvis"npppp
++/"wstate"8t"modes"8t"insert"8t"mapnl"8t"noupd"n5b
++/"unctrl"8t"nointr"8t"hascurs"8t"hasframe"n4b
++/"ispty"8t"stopped"8t"pty"16t"socket"16t"pid"nbb+3D
++/"ttyname"n11C+
++/"ob"16t"obe"16t"obp"16t"obq"n4p
++/"center"8t"id"8t"label"nbb++p
++/"alt.nr"16t"alt.nc"nDD
++/"alt.t"16t"alt.b"16t"alt.l"16t"alt.r"nDDDD
++/t
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,71 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.45.38;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.43;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.43;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@dnl Example for use of GNU gettext.
+dnl Copyright (C) 2003-2004 Free Software Foundation, Inc.
+dnl This file is in the public domain.
+dnl
+dnl Configuration file - processed by autoconf.
+
+AC_INIT
+AC_CONFIG_SRCDIR(hello.cc)
+AM_INIT_AUTOMAKE(hello-c++, 0)
+
+AC_PROG_CXX
+AC_CHECK_HEADERS([unistd.h])
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION(0.13.1)
+AC_LIB_LINKFLAGS([asprintf])
+
+AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([m4/Makefile])
+AC_CONFIG_FILES([po/Makefile.in])
+AC_OUTPUT
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

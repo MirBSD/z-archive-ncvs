@@ -1,0 +1,207 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.1
+	libtool-1_5_8:1.1.2.1
+	LIBTOOL_1_5:1.1.2.1.0.2
+	libtool-1_5-20040215:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2004.02.15.13.32.48;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.15.13.09.45;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.15.13.09.45;	author tg;	state Exp;
+branches
+	1.1.2.1.2.1;
+next	;
+
+1.1.2.1.2.1
+date	2004.02.15.13.16.54;	author tg;	state dead;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@libtool 1.4 -> mirlibtool, back to the state of yesterday night
+(so we have a clean 1.4 in the branch LIBTOOL_1_4, and a working
+ 1.4 in head, which we might switch to LIBTOOL_1_5 once we get it
+ working in 2038)
+@
+text
+@/* main.c -- mlib library
+   Copyright (C) 2002 Free Software Foundation, Inc.
+   Originally by greg Eisenhauer <eisen at cc.gatech.edu>
+   Extracted from mdemo.c
+   This file is part of GNU Libtool.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+USA. */
+
+#include "foo.h"
+#include "ltdl.h"
+#include <stdio.h>
+
+int
+test_dl (filename)
+  char *filename;
+{
+  lt_dlhandle handle;	
+  const lt_dlinfo *info;
+  int (*pfoo1)() = 0;
+  int (*pfoo2)() = 0;
+  int (*phello)() = 0;
+  int *pnothing = 0;
+  int ret = 0;
+
+  handle = lt_dlopen(filename);
+  if (!handle) {
+    fprintf (stderr, "can't open the module %s!\n", filename);
+    fprintf (stderr, "error was: %s\n", lt_dlerror());
+    return 1;
+  }
+
+  info = lt_dlgetinfo(handle);
+  if (!info) {
+    fprintf (stderr, "can't get module info: %s\n", lt_dlerror());
+    return 1;
+  }
+  if (info->name) {
+    printf ("module name: %s\n", info->name);
+  } else {
+    printf ("module is not a libtool module\n");
+  }
+  printf ("module filename: %s\n", info->filename);
+  printf ("module reference count: %i\n", info->ref_count);
+  
+  phello = (int(*)())lt_dlsym(handle, "hello");  
+  if (phello)
+    {
+      int value = (*phello) ();
+      
+      printf ("hello returned: %i\n", value);
+      if (value == HELLO_RET)
+        printf("hello is ok!\n");
+    }
+  else
+    {
+      fprintf (stderr, "did not find the `hello' function\n");
+      fprintf (stderr, "error was: %s\n", lt_dlerror());
+      ret = 1;
+    }
+
+  pnothing = (int*)lt_dlsym(handle, "nothing");  
+  /* Try assigning to the nothing variable. */
+  if (pnothing)
+    *pnothing = 1;
+  else
+    {
+      fprintf (stderr, "did not find the `nothing' variable\n");
+      fprintf (stderr, "error was: %s\n", lt_dlerror());
+      ret = 1;
+    }
+
+  pfoo1 = (int(*)())lt_dlsym(handle, "foo1");  
+  /* Just call the functions and check return values. */
+  if (pfoo1)
+    {
+      if ((*pfoo1) () == FOO_RET)
+        printf("foo1 is ok!\n");
+      else
+	ret = 1;
+    }
+  else {
+    pfoo2 = (int(*)())lt_dlsym(handle, "foo2");  
+    if (pfoo2)
+      {
+        if ((*pfoo2) () == FOO_RET)
+          printf("foo2 is ok!\n");
+        else ret = 1;
+      }
+    else
+      {
+        fprintf (stderr, "did not find any of the `foo' functions\n");
+        fprintf (stderr, "error was: %s\n", lt_dlerror());
+        ret = 1;
+      }
+  }
+  lt_dlclose(handle);
+  return ret;
+}
+int 
+mlib_func(argc, argv)
+int argc;
+char **argv;
+{
+  int ret = 0;
+  int i;
+  /*
+   * Would be nice if this somehow worked for libraries, not just executables.
+   * LTDL_SET_PRELOADED_SYMBOLS();
+   */
+  if (lt_dlinit() != 0) {
+    fprintf (stderr, "error during initialization: %s\n", lt_dlerror());
+    return 1;
+  }
+
+  for (i = 1; i < argc; i++)
+    if (test_dl(argv[i]))
+       ret = 1;
+
+  lt_dlexit();
+  return ret;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@libtool 1.5 branch from today
+@
+text
+@@
+
+
+1.1.2.1.2.1
+log
+@we won't need them
+@
+text
+@@
+

@@ -1,0 +1,87 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.28.24;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.50;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.50;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * Copyright (c) 1993 Martin Birgmeier
+ * All rights reserved.
+ *
+ * You may redistribute unmodified or modified versions of this source
+ * code provided that the above copyright notice and this and the
+ * following conditions are retained.
+ *
+ * This software is provided ``as is'', and comes with no warranties
+ * of any kind. I shall in no event be liable for anything that happens
+ * to anyone/anything when using this software.
+ */
+
+#if defined(LIBC_SCCS) && !defined(lint)
+static char rcsid[] = "$OpenBSD: lcong48.c,v 1.2 1996/08/19 08:33:35 tholo Exp $";
+#endif /* LIBC_SCCS and not lint */
+
+#include "rand48.h"
+
+extern unsigned short __rand48_seed[3];
+extern unsigned short __rand48_mult[3];
+extern unsigned short __rand48_add;
+
+void
+lcong48(unsigned short p[7])
+{
+	__rand48_seed[0] = p[0];
+	__rand48_seed[1] = p[1];
+	__rand48_seed[2] = p[2];
+	__rand48_mult[0] = p[3];
+	__rand48_mult[1] = p[4];
+	__rand48_mult[2] = p[5];
+	__rand48_add = p[6];
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

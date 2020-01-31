@@ -1,0 +1,182 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.23;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/bin/perl -w
+
+BEGIN
+{
+	chdir 't' if -d 't';
+	@@INC = '../lib';
+	require Config;
+	if ($Config::Config{'extensions'} !~ /\bSocket\b/) {
+		print "1..0 # Skip: Socket not built - IO.pm uses Socket";
+		exit 0;
+	}
+}
+
+use strict;
+use File::Path;
+use File::Spec;
+use Test::More tests => 18;
+
+{
+	local $INC{'XSLoader.pm'} = 1;
+	local *XSLoader::load;
+
+	my @@load;
+	*XSLoader::load = sub {
+		push @@load, \@@_;
+	};
+
+	# use_ok() calls import, which we do not want to do
+	require_ok( 'IO' );
+	ok( @@load, 'IO should call XSLoader::load()' );
+	is( $load[0][0], 'IO', '... loading the IO library' );
+	is( $load[0][1], $IO::VERSION, '... with the current .pm version' );
+}
+
+my @@default = map { "IO/$_.pm" } qw( Handle Seekable File Pipe Socket Dir );
+delete @@INC{ @@default };
+
+my $warn = '' ;
+local $SIG{__WARN__} = sub { $warn = "@@_" } ;
+
+{
+    no warnings ;
+    IO->import();
+    is( $warn, '', "... import default, should not warn");
+    $warn = '' ;
+}
+
+{
+    local $^W = 0;
+    IO->import();
+    is( $warn, '', "... import default, should not warn");
+    $warn = '' ;
+}
+
+{
+    local $^W = 1;
+    IO->import();
+    like( $warn, qr/^Parameterless "use IO" deprecated at/, 
+              "... import default, should warn");
+    $warn = '' ;
+}
+
+{
+    use warnings 'deprecated' ;
+    IO->import(); 
+    like( $warn, qr/^Parameterless "use IO" deprecated at/, 
+              "... import default, should warn");
+    $warn = '' ;
+}
+
+{
+    use warnings ;
+    IO->import();
+    like( $warn, qr/^Parameterless "use IO" deprecated at/, 
+              "... import default, should warn");
+    $warn = '' ;
+}
+
+foreach my $default (@@default)
+{
+	ok( exists $INC{ $default }, "... import should default load $default" );
+}
+
+eval { IO->import( 'nothere' ) };
+like( $@@, qr/Can.t locate IO.nothere\.pm/, '... croaking on any error' );
+
+my $fakedir = File::Spec->catdir( 'lib', 'IO' );
+my $fakemod = File::Spec->catfile( $fakedir, 'fakemod.pm' );
+
+my $flag;
+if ( -d $fakedir or mkpath( $fakedir ))
+{
+	if (open( OUT, ">$fakemod"))
+	{
+		(my $package = <<'		END_HERE') =~ tr/\t//d;
+		package IO::fakemod;
+
+		sub import { die "Do not import!\n" }
+
+		sub exists { 1 }
+
+		1;
+		END_HERE
+
+		print OUT $package;
+	}
+
+	if (close OUT)
+	{
+		$flag = 1;
+		push @@INC, 'lib';
+	}
+}
+
+SKIP:
+{
+	skip("Could not write to disk", 2 ) unless $flag;
+	eval { IO->import( 'fakemod' ) };
+	ok( IO::fakemod::exists(), 'import() should import IO:: modules by name' );
+	is( $@@, '', '... and should not call import() on imported modules' );
+}
+
+END
+{
+	1 while unlink $fakemod;
+	rmdir $fakedir;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

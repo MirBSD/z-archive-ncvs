@@ -1,0 +1,100 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.38;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.52;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@BEGIN {
+    eval { require Config; import Config };
+    if ($@@) {
+	print "1..0 # Skip: no Config\n";
+	exit(0);
+    }
+}
+
+use Thread;
+
+$| = 1;
+
+if (@@ARGV) {
+    srand($ARGV[0]);
+} else {
+    my $seed = $$ ^ $^T;
+    print "Randomising to $seed\n";
+    srand($seed);
+}
+
+sub whoami {
+    my ($depth, $a, $b, $c) = @@_;
+    my $i;
+    print "whoami ($depth): $a $b $c\n";
+    sleep 1;
+    whoami($depth - 1, $a, $b, $c) if $depth > 0;
+}
+
+sub start_foo {
+    my $r = 3 + int(10 * rand);
+    print "start_foo: r is $r\n";
+    whoami($r, "start_foo", "foo1", "foo2");
+    print "start_foo: finished\n";
+}
+
+sub start_bar {
+    my $r = 3 + int(10 * rand);
+    print "start_bar: r is $r\n";
+    whoami($r, "start_bar", "bar1", "bar2");
+    print "start_bar: finished\n";
+}
+
+$foo = new Thread \&start_foo;
+$bar = new Thread \&start_bar;
+print "main: exiting\n";
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

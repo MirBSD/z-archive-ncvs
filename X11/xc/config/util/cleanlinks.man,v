@@ -1,0 +1,68 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @.\" @;
+
+
+1.1
+date     2004.12.15.18.03.19;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.03.19;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@.TH cleanlinks 1 __vendorversion__
+.SH NAME
+cleanlinks \- remove dangling symbolic links and empty directories
+.SH SYNOPSIS
+.B cleanlinks
+.SH DESCRIPTION
+The
+.I cleanlinks
+program searches the directory tree descended from the current directory for
+symbolic links whose targets do not exist, and removes them.
+It then removes all empty directories in that directory tree.
+.PP
+.I cleanlinks
+is useful for cleaning up a shadow link tree created with
+.BR lndir (1)
+after files have been removed from the real directory.
+.SH DIAGNOSTICS
+A message will be printed upon encountering each dangling symlink and empty
+directory.
+.SH SEE ALSO
+.BR lndir (1).
+.SH AUTHOR
+.PP
+David Dawes wrote the
+.I cleanlinks
+program for XFree86.
+.PP
+Colin Watson wrote this manual page, originally for the Debian Project.
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

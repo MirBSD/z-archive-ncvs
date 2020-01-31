@@ -1,0 +1,99 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.34;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.56;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl
+
+#
+# test the logical operators '&&', '||', '!', 'and', 'or', 'not'
+#
+
+BEGIN {
+    chdir 't' if -d 't';
+    @@INC = '../lib';
+}
+
+print "1..7\n";
+
+my $test = 0;
+for my $i (undef, 0 .. 2, "", "0 but true") {
+    my $true = 1;
+    my $false = 0;
+    for my $j (undef, 0 .. 2, "", "0 but true") {
+	$true &&= !(
+	    ((!$i || !$j) != !($i && $j))
+	    or (!($i || $j) != (!$i && !$j))
+	    or (!!($i || $j) != !(!$i && !$j))
+	    or (!(!$i || !$j) != !!($i && $j))
+	);
+	$false ||= (
+	    ((!$i || !$j) == !!($i && $j))
+	    and (!!($i || $j) == (!$i && !$j))
+	    and ((!$i || $j) == ($i && !$j))
+	    and (($i || !$j) != (!$i && $j))
+	);
+    }
+    if (not $true) {
+	print "not ";
+    } elsif ($false) {
+	print "not ";
+    }
+    print "ok ", ++$test, "\n";
+}
+
+# $test == 6
+my $i = 0;
+(($i ||= 1) &&= 3) += 4;
+print "not " unless $i == 7;
+print "ok ", ++$test, "\n";
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

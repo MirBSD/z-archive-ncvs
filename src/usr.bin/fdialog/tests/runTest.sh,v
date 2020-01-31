@@ -1,0 +1,67 @@
+head     1.1;
+branch   1.1.10;
+access   ;
+symbols  cvs-200407162200:1.1.10.1 ekkobsd:1.1.10;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.07.01.54.21;  author tg;  state Exp;
+branches 1.1.10.1;
+next     ;
+
+1.1.10.1
+date     2005.01.07.01.54.21;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/ksh
+# $ekkoBSD: runTest.sh,v 1.3 2004/02/18 19:45:40 dave Exp $
+
+FDIALOG=${FDIALOG:=fdialog} export FDIALOG
+OUT=`mktemp /tmp/fdialog_test.XXXXXXXXXX` || exit 1
+LOG=logfile
+
+TEST=$1
+
+if [ "${TEST}" = "" ] ; then
+	echo "No test specified."
+	exit 2
+fi
+
+if [ ! -s "${TEST}" ] ; then
+	echo "No test found called ${TEST}"
+	exit 1
+fi
+
+sh ${TEST} 3> ${OUT} 2>&3
+
+if [ $? -ne 0 ] ; then
+	echo "=======" >> ${LOG}
+	echo "${TEST} failed, it said:" >> ${LOG}
+	cat ${OUT} >> ${LOG}
+	echo "=======" >> ${LOG}
+else
+	cat ${OUT} && rm -f ${OUT}
+fi
+@
+
+
+1.1.10.1
+log
+@fdialog heritage
+@
+text
+@@

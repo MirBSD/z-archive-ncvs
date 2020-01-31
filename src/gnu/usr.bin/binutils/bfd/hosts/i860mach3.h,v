@@ -1,0 +1,82 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.08.23.02.20;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.20;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* This file was hacked from i386mach3.h   [dolan@@ssd.intel.com] */
+
+#include <machine/vmparam.h>
+#include <sys/param.h>
+
+/* This is an ugly way to hack around the incorrect
+ * definition of UPAGES in i386/machparam.h.
+ *
+ * The definition should specify the size reserved
+ * for "struct user" in core files in PAGES,
+ * but instead it gives it in 512-byte core-clicks
+ * for i386 and i860. UPAGES is used only in trad-core.c.
+ */
+#if UPAGES == 16
+#undef  UPAGES
+#define UPAGES 2
+#endif
+
+#if UPAGES != 2
+FIXME!! UPAGES is neither 2 nor 16
+#endif
+
+#define	HOST_PAGE_SIZE		1
+#define	HOST_SEGMENT_SIZE	NBPG
+#define	HOST_MACHINE_ARCH	bfd_arch_i860
+#define	HOST_TEXT_START_ADDR	USRTEXT
+#define	HOST_STACK_END_ADDR	USRSTACK
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

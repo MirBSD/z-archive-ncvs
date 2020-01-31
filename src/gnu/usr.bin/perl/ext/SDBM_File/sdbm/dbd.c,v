@@ -1,0 +1,168 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.24.32;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.49;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.49;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * dbd - dump a dbm data file
+ */
+
+#include <stdio.h>
+#include <sys/file.h>
+#include "EXTERN.h"
+#include "sdbm.h"
+
+char *progname;
+extern void oops();
+
+
+#define empty(page)	(((short *) page)[0] == 0)
+
+int
+main(int argc, char **argv)
+{
+	int n;
+	char *p;
+	char *name;
+	int pagf;
+
+	progname = argv[0];
+
+	if (p = argv[1]) {
+		name = (char *) malloc((n = strlen(p)) + 5);
+		if (!name)
+		    oops("cannot get memory");
+
+		strcpy(name, p);
+		strcpy(name + n, ".pag");
+
+		if ((pagf = open(name, O_RDONLY)) < 0)
+			oops("cannot open %s.", name);
+
+		sdump(pagf);
+	}
+	else
+		oops("usage: %s dbname", progname);
+	return 0;
+}
+
+void
+sdump(int pagf)
+{
+	register r;
+	register n = 0;
+	register o = 0;
+	char pag[PBLKSIZ];
+
+	while ((r = read(pagf, pag, PBLKSIZ)) > 0) {
+		if (!okpage(pag))
+			fprintf(stderr, "%d: bad page.\n", n);
+		else if (empty(pag))
+			o++;
+		else
+			dispage(pag);
+		n++;
+	}
+
+	if (r == 0)
+		fprintf(stderr, "%d pages (%d holes).\n", n, o);
+	else
+		oops("read failed: block %d", n);
+}
+
+
+#ifdef OLD
+int
+dispage(char *pag)
+{
+	register i, n;
+	register off;
+	register short *ino = (short *) pag;
+
+	off = PBLKSIZ;
+	for (i = 1; i < ino[0]; i += 2) {
+		printf("\t[%d]: ", ino[i]);
+		for (n = ino[i]; n < off; n++)
+			putchar(pag[n]);
+		putchar(' ');
+		off = ino[i];
+		printf("[%d]: ", ino[i + 1]);
+		for (n = ino[i + 1]; n < off; n++)
+			putchar(pag[n]);
+		off = ino[i + 1];
+		putchar('\n');
+	}
+}
+#else
+void
+dispage(char *pag)
+{
+	register i, n;
+	register off;
+	register short *ino = (short *) pag;
+
+	off = PBLKSIZ;
+	for (i = 1; i < ino[0]; i += 2) {
+		for (n = ino[i]; n < off; n++)
+			if (pag[n] != 0)
+				putchar(pag[n]);
+		putchar('\t');
+		off = ino[i];
+		for (n = ino[i + 1]; n < off; n++)
+			if (pag[n] != 0)
+				putchar(pag[n]);
+		putchar('\n');
+		off = ino[i + 1];
+	}
+}
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

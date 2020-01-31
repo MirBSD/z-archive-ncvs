@@ -1,0 +1,82 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.22.09.12;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.06.51;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@a better way to define IN_RCS, to please mkdep
+@
+text
+@/* $MirBSD$ */
+
+/* Parse a string into an internal time stamp.
+
+   Copyright (C) 1995, 1997, 1998, 2003, 2004 Free Software Foundation, Inc.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+
+#ifndef GETDATE_H
+#define GETDATE_H
+
+#if HAVE_CONFIG_H
+# include <config.h>
+#endif
+
+#include <sys/time.h>
+#include <stdbool.h>
+#include <time.h>
+
+#define IN_RCS
+
+#define	gettime(ts)	clock_gettime(CLOCK_REALTIME,(ts))
+
+bool get_date (struct timespec *, char const *, struct timespec const *);
+
+#endif /* GETDATE_H */
+@
+
+
+1.1
+log
+@merge
+@
+text
+@d1 2
+d21 3
+d28 1
+d31 2
+a32 1
+#include <sys/time.h>
+d37 2
+@
+

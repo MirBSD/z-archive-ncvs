@@ -1,0 +1,76 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.05.26;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.05.26;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/usr/local/bin/perl
+
+require "common.pl";
+
+$webmaster="webadmin\@@domain";
+$man_path="/usr/local/man:/usr/man:/usr/X11/man:/usr/lib/teTeX/man";
+$manpage_and_section = $ENV{"QUERY_STRING"};
+$rman="/usr/local/bin/rman -f HTML";
+
+($manpage,$section)=split("[&]",$manpage_and_section);
+
+
+ split(":",$man_path);
+ foreach(@@_){
+   $file=join("", $_, "/man", $section,"/",$manpage,".",$section);
+
+#   printf("try %s\n", $file);
+
+   if (-e $file) {
+ 	exec "echo Content-Type:text/html; echo; cat $file | $rman";
+   }
+   elsif (-e join("",$file,".gz")){
+ 	exec "echo Content-Type:text/html; echo; zcat $file | $rman";
+   }
+
+   $file=join("",$file,"x");
+   if (-e $file) {
+ 	exec "echo Content-Type:text/html; echo; cat $file | $rman";
+   }
+   elsif (-e join("",$file,".gz")){
+ 	exec "echo Content-Type:text/html; echo; zcat $file | $rman";
+   }
+
+ } 
+  
+&return_error(500,"man2html error","could not find manual page.");
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

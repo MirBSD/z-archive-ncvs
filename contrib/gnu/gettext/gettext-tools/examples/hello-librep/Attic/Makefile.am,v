@@ -1,0 +1,81 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.46.27;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.49;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.49;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@# Example for use of GNU gettext.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# This file is in the public domain.
+#
+# Makefile configuration - processed by automake.
+
+# General automake options.
+AUTOMAKE_OPTIONS = foreign
+ACLOCAL_AMFLAGS = -I m4
+
+# The list of subdirectories containing Makefiles.
+SUBDIRS = m4 po
+
+# The list of programs that are built.
+bin_SCRIPTS = hello
+
+# Compilation of librep programs.
+SUFFIXES = .jl .jlc
+.jl.jlc:
+	rep --batch --no-rc -l compiler -f compile-batch $<
+CLEANFILES = *.jlc
+
+# Making a librep program executable.
+hello: hello.jlc
+	(echo '#!@@REP@@'; echo '!#'; cat $<) > $@@
+	chmod a+x $@@
+CLEANFILES += hello
+
+# Additional files to be distributed.
+EXTRA_DIST = autogen.sh autoclean.sh
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

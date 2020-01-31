@@ -1,0 +1,84 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.06.21.52.25;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.06.21.52.25;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* text3d --- Shows moving 3D texts */
+
+/* Copyright (c) E. Lassauge, 1998. */
+
+/*
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notice appear in all copies and that
+ * both that copyright notice and this permission notice appear in
+ * supporting documentation.
+ *
+ * This file is provided AS IS with no warranties of any kind.  The author
+ * shall have no liability with respect to the infringement of copyrights,
+ * trade secrets or any patents by this file or any part thereof.  In no
+ * event will the author be liable for any lost revenue or profits or
+ * other special, indirect and consequential damages.
+ *
+ * My e-mail address changed to lassauge@@mail.dotcom.fr
+ * Web site at http://perso.libertysurf.fr/lassauge/
+ *
+ * Eric Lassauge  (October-28-1999)
+ *
+ */
+
+extern      "C" {
+#include <GL/gl.h>
+#include <GL/glx.h>
+} typedef struct {
+
+	/* global Parameters */
+	int         wire, counter, animation;
+	float       extrusion;
+	float       rampl;
+	float       rfreq;
+	int 	    direction;
+	char       *words, *words_start;
+	/* per Screen variables */
+	GLint       WinH, WinW;
+	GLXContext *glx_context;
+	FTFace     *face;
+	float       center_x, center_y, center_z;
+	float       phi, theta, radius;
+	double      camera_dist;
+	double      ref_camera_dist;
+
+} text3dstruct;
+@
+
+
+1.1.1.1
+log
+@Import programmes new to OpenBSD's X-Window subsystem
+@
+text
+@@

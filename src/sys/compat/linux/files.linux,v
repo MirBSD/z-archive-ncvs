@@ -1,0 +1,85 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.35.05;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.33;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.33;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: files.linux,v 1.13 2001/04/09 06:53:44 tholo Exp $
+#	$NetBSD: files.linux,v 1.4 1996/03/08 04:55:59 mycroft Exp $
+#
+# Config.new file description for machine-independent Linux compat code.
+# Included by ports that need it.
+
+# ports should define any machine-specific files they need in their
+# own file lists.
+
+file	compat/linux/linux_blkio.c		compat_linux
+file	compat/linux/linux_cdrom.c		compat_linux
+file	compat/linux/linux_dummy.c		compat_linux
+file	compat/linux/linux_error.c		compat_linux
+file	compat/linux/linux_exec.c		compat_linux
+file	compat/linux/linux_fdio.c		compat_linux
+file	compat/linux/linux_file.c		compat_linux
+file	compat/linux/linux_file64.c		compat_linux
+file	compat/linux/linux_getcwd.c		compat_linux
+file	compat/linux/linux_hdio.c		compat_linux
+file	compat/linux/linux_ioctl.c		compat_linux
+file	compat/linux/linux_ipc.c		compat_linux
+file	compat/linux/linux_misc.c		compat_linux
+file	compat/linux/linux_mount.c		compat_linux
+file	compat/linux/linux_resource.c		compat_linux
+file	compat/linux/linux_sched.c		compat_linux
+file	compat/linux/linux_signal.c		compat_linux
+file	compat/linux/linux_socket.c		compat_linux
+file	compat/linux/linux_syscalls.c		compat_linux & syscall_debug
+file	compat/linux/linux_sysent.c		compat_linux
+file	compat/linux/linux_termios.c		compat_linux
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d12 1
+a30 1
+file	compat/linux/linux_dummy.c		compat_linux
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

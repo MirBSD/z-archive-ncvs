@@ -1,0 +1,90 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.34;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.56;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl
+
+BEGIN {
+    chdir 't' if -d 't';
+    @@INC = qw(. ../lib); # ../lib needed for test.deparse
+    require "test.pl";
+}
+
+plan tests => 7;
+
+# compile time evaluation
+
+# 'A' 65	ASCII
+# 'A' 193	EBCDIC
+
+ok(ord('A') == 65 || ord('A') == 193, "ord('A') is ".ord('A'));
+
+is(ord(chr(500)), 500, "compile time chr 500");
+
+# run time evaluation
+
+$x = 'ABC';
+
+ok(ord($x) == 65 || ord($x) == 193, "ord('$x') is ".ord($x));
+
+ok(chr 65 eq 'A' || chr 193 eq 'A', "chr can produce 'A'");
+
+$x = 500;
+is(ord(chr($x)), $x, "runtime chr $x");
+
+is(ord("\x{1234}"), 0x1234, 'compile time ord \x{....}');
+
+$x = "\x{1234}";
+is(ord($x), 0x1234, 'runtime ord \x{....}');
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

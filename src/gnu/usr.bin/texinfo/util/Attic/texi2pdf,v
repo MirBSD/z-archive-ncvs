@@ -1,0 +1,70 @@
+head	1.2;
+access;
+symbols
+	texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.07.00.21.59;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.06.23.31.23;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.06.23.31.23;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke unneeded files
+@
+text
+@#!/bin/sh
+# $Id: texi2pdf,v 1.1 2004/07/11 01:02:35 karl Exp $
+# Written by Thomas Esser.  Public domain.
+# Execute texi2dvi --pdf.
+
+test -f /bin/sh5 && test -z "$RUNNING_SH5" \
+  && { UNAMES=`uname -s`; test "x$UNAMES" = xULTRIX; } 2>/dev/null \
+  && { RUNNING_SH5=true; export RUNNING_SH5; exec /bin/sh5 $0 ${1+"$@@"}; }
+unset RUNNING_SH5
+
+test -f /bin/bsh && test -z "$RUNNING_BSH" \
+  && { UNAMES=`uname -s`; test "x$UNAMES" = xAIX; } 2>/dev/null \
+  && { RUNNING_BSH=true; export RUNNING_BSH; exec /bin/bsh $0 ${1+"$@@"}; }
+unset RUNNING_BSH
+
+# hack around a bug in zsh:
+test -n "${ZSH_VERSION+set}" && alias -g '${1+"$@@"}'='"$@@"'
+
+texi2dvi --pdf ${1+"$@@"}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

@@ -1,0 +1,87 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.2
+	libtool-1_5_8:1.1.2.2
+	libtool-1_5-20040215:1.1.2.2
+	libtool-1_4_3:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.03.19.42.03;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.17.55.57;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.03.17.55.57;	author tg;	state Exp;
+branches;
+next	1.1.2.2;
+
+1.1.2.2
+date	2004.02.15.13.09.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@* MirOSify
+* bootstrap
+* nuke unneeded stuff
+@
+text
+@## Process this file with automake to produce Makefile.in
+
+AUTOMAKE_OPTIONS = no-dependencies foreign
+
+INCLUDES = -I$(top_srcdir)
+
+lib_LTLIBRARIES = libl4.la
+libl4_la_SOURCES = l4.c l4.h
+libl4_la_LIBADD = $(top_builddir)/l3/libl3.la $(LIBM)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Libtool 1.4.3 (last of the 1.4 series)
+
+Requires to bootstrap:
+* autoconf 2.13-o
+* automake 1.4-p5
+or later.
+@
+text
+@@
+
+
+1.1.2.2
+log
+@libtool 1.5 branch from today
+@
+text
+@a8 1
+libl4_la_LDFLAGS = -no-undefined
+@
+

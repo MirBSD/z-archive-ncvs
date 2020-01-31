@@ -1,0 +1,128 @@
+head	2.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.31.40;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.27;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.27;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$MirBSD: src/sbin/isakmpd/apps/certpatch/Makefile,v 1.2 2004/11/26 16:46:19 tg Exp $
+#	$OpenBSD: Makefile,v 1.7 2003/06/03 14:35:00 ho Exp $
+#	$EOM: Makefile,v 1.6 2000/03/28 21:22:06 ho Exp $
+
+#
+# Copyright (c) 1999 Niels Provos.  All rights reserved.
+# Copyright (c) 2001 Niklas Hallqvist.  All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+# NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+#
+# This code was written under funding by Ericsson Radio Systems.
+#
+
+PROG=		certpatch
+SRCS=		certpatch.c
+BINDIR?=	/usr/sbin
+TOPSRC=		${.CURDIR}/../..
+TOPOBJ!=	cd ${TOPSRC}; printf "all:\n\t@@pwd\n" |${MAKE} -f-
+OS!=		cd ${TOPSRC}; ${MAKE} show-os
+FEATURES!=	cd ${TOPSRC}; ${MAKE} show-features
+.PATH:		${TOPSRC} ${TOPSRC}/sysdep/${OS} ${TOPOBJ}
+CPPFLAGS+=	-I${TOPSRC} -I${TOPSRC}/sysdep/${OS} -I${TOPOBJ}
+CFLAGS+=	-Wall
+LDADD+=		-lcrypto
+DPADD+=		${LIBCRYPTO}
+MAN=		certpatch.8
+
+.if ${FEATURES:Mgmp} == "gmp"
+CPPFLAGS+=	-DMP_FLAVOUR=MP_FLAVOUR_GMP
+LDADD+=		-lgmp
+DPADD+=		${LIBGMP}
+.else
+CPPFLAGS+=	-DMP_FLAVOUR=MP_FLAVOUR_OPENSSL
+.endif
+
+.include "${TOPSRC}/sysdep/${OS}/Makefile.sysdep"
+# Override LIBSYSDEPDIR definition from Makefile.sysdep
+LIBSYSDEPDIR=	${TOPSRC}/sysdep/common/libsysdep
+
+.include <bsd.prog.mk>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d39 2
+a40 2
+OS!=		awk '/^OS=/ { print $$2 }' ${.CURDIR}/../../Makefile
+FEATURES!=	awk '/^FEATURES=/ { print $$0 }' ${.CURDIR}/../../Makefile | sed 's/FEATURES=.//'
+d42 2
+a43 1
+CFLAGS+=	-I${TOPSRC} -I${TOPSRC}/sysdep/${OS} -I${TOPOBJ} -Wall
+d49 1
+a49 1
+CFLAGS+=	-DMP_FLAVOUR=MP_FLAVOUR_GMP
+d53 1
+a53 1
+CFLAGS+=	-DMP_FLAVOUR=MP_FLAVOUR_OPENSSL
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

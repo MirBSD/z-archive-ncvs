@@ -1,0 +1,66 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.06.21.52.28;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.06.21.52.28;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#if !defined( lint ) && !defined( SABER )
+/* #ident        "@@(#)ras.h      4.14 99/06/17 xlockmore" */
+
+#endif
+
+/*-
+ * Utilities for Sun rasterfile processing
+ *
+ * Copyright (c) 1995 by Tobias Gloth
+ *
+ * See xlock.c for copying information.
+ *
+ * Revision History:
+ * 12-Dec-95: Modified to be a used in more than one mode
+ *            <joukj@@hrem.stm.tudelft.nl>
+ * 22-May-95: Written.
+ */
+
+#include "xlockimage.h"
+
+#define RasterColorError   1
+#define RasterSuccess      0
+#define RasterOpenFailed  -1
+#define RasterFileInvalid -2
+#define RasterNoMemory    -3
+#define RasterColorFailed -4
+
+extern int  RasterFileToImage(ModeInfo * mi, char *filename, XImage ** image);
+@
+
+
+1.1.1.1
+log
+@Import programmes new to OpenBSD's X-Window subsystem
+@
+text
+@@

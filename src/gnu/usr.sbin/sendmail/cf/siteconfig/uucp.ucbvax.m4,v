@@ -1,0 +1,128 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.08;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.14;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@SITE(Padova)
+SITE(Shasta)
+SITE(alice)
+SITE(allegra)
+SITE(amdcad)
+SITE(att)
+SITE(attunix)
+SITE(avsd)
+SITE(bellcore bellcor)
+SITE(calma)
+SITE(cithep)
+SITE(cnmat)
+SITE(craig)
+SITE(craylab)
+SITE(decusj)
+SITE(decvax, S)
+SITE(decwrl)
+SITE(dssovax)
+SITE(eagle)
+SITE(ecovax)
+SITE(floyd)
+SITE(franz)
+SITE(geoff)
+SITE(harpo)
+SITE(ho3e2)
+SITE(hpda)
+SITE(hplabs)
+SITE(ibmsupt ibmuupa ibmpa)
+SITE(iiasa70)
+SITE(imagen)
+SITE(isunix menlo70)
+SITE(kentmth)
+SITE(lbl-csam lbl-csa)
+SITE(lime)
+SITE(mothra)
+SITE(mseonyx)
+SITE(mtxinu)
+SITE(pixar)
+SITE(pur-ee)
+SITE(purdue)
+SITE(pwbd)
+SITE(sdcarl)
+SITE(sftig)
+SITE(sgi olympus)
+SITE(sii)
+SITE(srivisi)
+SITE(ssyx)
+SITE(sun)
+SITE(trwrb)
+SITE(twg)
+SITE(ucivax)
+SITE(ucla-se)
+SITE(ucla-cs)
+SITE(ucsbcsl ucsbhub)
+SITE(ucscc)
+SITE(ucsd)
+SITE(ucsfcgl)
+SITE(ucsfmis)
+SITE(ulysses)
+SITE(unisoft)
+SITE(unmvax)
+SITE(usenix)
+SITE(uw)
+SITE(uwvax)
+SITE(vax135)
+SITE(voder)
+SITE(wheps)
+SITE(whuxle)
+SITE(whuxlj)
+SITE(xicomp)
+SITE(xprin)
+SITE(zehntel)
+SITE(zilog)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,132 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.29.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.44;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/local/bin/perl
+
+$L="edi";
+$R="esi";
+
+sub DES_encrypt3
+	{
+	local($name,$enc)=@@_;
+
+	&function_begin_B($name,"");
+	&push("ebx");
+	&mov("ebx",&wparam(0));
+
+	&push("ebp");
+	&push("esi");
+
+	&push("edi");
+
+	&comment("");
+	&comment("Load the data words");
+	&mov($L,&DWP(0,"ebx","",0));
+	&mov($R,&DWP(4,"ebx","",0));
+	&stack_push(3);
+
+	&comment("");
+	&comment("IP");
+	&IP_new($L,$R,"edx",0);
+
+	# put them back
+	
+	if ($enc)
+		{
+		&mov(&DWP(4,"ebx","",0),$R);
+		 &mov("eax",&wparam(1));
+		&mov(&DWP(0,"ebx","",0),"edx");
+		 &mov("edi",&wparam(2));
+		 &mov("esi",&wparam(3));
+		}
+	else
+		{
+		&mov(&DWP(4,"ebx","",0),$R);
+		 &mov("esi",&wparam(1));
+		&mov(&DWP(0,"ebx","",0),"edx");
+		 &mov("edi",&wparam(2));
+		 &mov("eax",&wparam(3));
+		}
+	&mov(&swtmp(2),	(DWC(($enc)?"1":"0")));
+	&mov(&swtmp(1),	"eax");
+	&mov(&swtmp(0),	"ebx");
+	&call("DES_encrypt2");
+	&mov(&swtmp(2),	(DWC(($enc)?"0":"1")));
+	&mov(&swtmp(1),	"edi");
+	&mov(&swtmp(0),	"ebx");
+	&call("DES_encrypt2");
+	&mov(&swtmp(2),	(DWC(($enc)?"1":"0")));
+	&mov(&swtmp(1),	"esi");
+	&mov(&swtmp(0),	"ebx");
+	&call("DES_encrypt2");
+
+	&stack_pop(3);
+	&mov($L,&DWP(0,"ebx","",0));
+	&mov($R,&DWP(4,"ebx","",0));
+
+	&comment("");
+	&comment("FP");
+	&FP_new($L,$R,"eax",0);
+
+	&mov(&DWP(0,"ebx","",0),"eax");
+	&mov(&DWP(4,"ebx","",0),$R);
+
+	&pop("edi");
+	&pop("esi");
+	&pop("ebp");
+	&pop("ebx");
+	&ret();
+	&function_end_B($name);
+	}
+
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

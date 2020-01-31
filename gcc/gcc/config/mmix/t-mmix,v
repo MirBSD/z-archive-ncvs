@@ -1,0 +1,92 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.24.24;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# See "Target Fragment" in GCC info.  That same order is used here.
+
+TARGET_LIBGCC2_CFLAGS = -mlibfuncs -O2
+
+EXTRA_MULTILIB_PARTS = crti.o crtn.o crtbegin.o crtend.o
+
+# We need to turn off some assumptions on normality for code in crtstuff.c
+# and crt{i,n}.asm, specifically about execution not continuing past the
+# end of the section in the file being compiled.  Thus we must stop the
+# assembler from generating stubbable PUSHJ relocs, because that will add
+# stubs at the end of the current section when necessary.
+CRTSTUFF_T_CFLAGS = -Wa,--no-stubs
+
+MULTILIB_OPTIONS = mabi=gnu
+MULTILIB_DIRNAMES = gnuabi
+
+# Don't use global registers in libraries.
+# FIXME: Not applied at "root" level, so disabled at the moment to stop
+# incorrect comparisons with -mabi=gnu.
+#MULTILIB_EXTRA_OPTS = mno-base-addresses
+
+$(T)crti.o: $(srcdir)/config/mmix/crti.asm $(GCC_PASSES)
+	$(GCC_FOR_TARGET) $(GCC_CFLAGS) $(MULTILIB_CFLAGS) $(INCLUDES) \
+	$(CRTSTUFF_T_CFLAGS) -c -o $(T)crti.o -x assembler-with-cpp \
+	$(srcdir)/config/mmix/crti.asm
+
+$(T)crtn.o: $(srcdir)/config/mmix/crtn.asm $(GCC_PASSES)
+	$(GCC_FOR_TARGET) $(GCC_CFLAGS) $(MULTILIB_CFLAGS) $(INCLUDES) \
+	$(CRTSTUFF_T_CFLAGS) -c -o $(T)crtn.o -x assembler-with-cpp \
+	$(srcdir)/config/mmix/crtn.asm
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

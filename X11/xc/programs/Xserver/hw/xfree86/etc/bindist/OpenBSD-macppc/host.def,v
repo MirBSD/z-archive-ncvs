@@ -1,0 +1,34 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.06.22.13.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@/*
+ * Host.def for building OpenBSD bindists
+ * $MirBSD$
+ * $OpenBSD: host.def,v 1.1 2001/09/04 19:48:50 matthieu Exp $
+ * $XFree86$
+ */
+
+#define InstallEmptyHostDef
+
+#define ForceNormalLib		YES
+#define BuildOpenBSDDocs	NO
+@

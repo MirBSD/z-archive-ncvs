@@ -1,0 +1,72 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  gdb-20050107:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.08.23.04.31;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.23.04.31;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@name:arm
+expedite:r11,sp,pc
+32:r0
+32:r1
+32:r2
+32:r3
+32:r4
+32:r5
+32:r6
+32:r7
+32:r8
+32:r9
+32:r10
+32:r11
+32:r12
+32:sp
+32:lr
+32:pc
+96:f0
+96:f1
+96:f2
+96:f3
+96:f4
+96:f5
+96:f6
+96:f7
+32:fps
+32:cpsr
+@
+
+
+1.1.2.1
+log
+@The GNU Debugger 6.3.50-current, from
+ ftp://sources.redhat.com/pub/gdb/snapshots/current/gdb-weekly-6.3.50.20050107.tar.bz2
+
+only the gdb/ subdirectory, gdb/testsuite/ removed.
+
+Luckily, this time it doesn't depend on a different libbfd than
+the one we deliver with GNU binutils...
+@
+text
+@@

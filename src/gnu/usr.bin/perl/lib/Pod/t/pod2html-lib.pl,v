@@ -1,0 +1,117 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.37;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@require Cwd;
+require Pod::Html;
+require Config;
+use File::Spec::Functions;
+
+sub convert_n_test {
+    my($podfile, $testname) = @@_;
+
+    my $cwd = Cwd::cwd();
+    my $base_dir = catdir $cwd, updir(), "lib", "Pod";
+    my $new_dir  = catdir $base_dir, "t";
+    my $infile   = catfile $new_dir, "$podfile.pod";
+    my $outfile  = catfile $new_dir, "$podfile.html";
+
+    Pod::Html::pod2html(
+        "--podpath=t",
+        "--podroot=$base_dir",
+        "--htmlroot=/",
+        "--infile=$infile",
+        "--outfile=$outfile"
+    );
+
+
+    my ($expect, $result);
+    {
+	local $/;
+	# expected
+	$expect = <DATA>;
+	$expect =~ s/\[PERLADMIN\]/$Config::Config{perladmin}/;
+	if (ord("A") == 193) { # EBCDIC.
+	    $expect =~ s/item_mat%3c%21%3e/item_mat%4c%5a%6e/;
+	}
+
+	# result
+	open my $in, $outfile or die "cannot open $outfile: $!";
+	$result = <$in>;
+	close $in;
+    }
+
+    ok($expect eq $result, $testname) or do {
+	my $diff = '/bin/diff';
+	-x $diff or $diff = '/usr/bin/diff';
+	if (-x $diff) {
+	    my $expectfile = "pod2html-lib.tmp";
+	    open my $tmpfile, ">", $expectfile or die $!;
+	    print $tmpfile $expect;
+	    close $tmpfile;
+	    my $diffopt = $^O eq 'linux' ? 'u' : 'c';
+	    open my $diff, "diff -$diffopt $expectfile $outfile |" or die $!;
+	    print "# $_" while <$diff>;
+	    close $diff;
+	    unlink $expectfile;
+	}
+    };
+
+    # pod2html creates these
+    1 while unlink $outfile;
+    1 while unlink "pod2htmd.tmp";
+    1 while unlink "pod2htmi.tmp";
+}
+
+1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

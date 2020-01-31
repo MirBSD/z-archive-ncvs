@@ -1,0 +1,91 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.30.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: refuse.c,v 1.1 1997/02/26 03:06:55 downsj Exp $	*/
+
+ /*
+  * refuse() reports a refused connection, and takes the consequences: in
+  * case of a datagram-oriented service, the unread datagram is taken from
+  * the input queue (or inetd would see the same datagram again and again);
+  * the program is terminated.
+  * 
+  * Author: Wietse Venema, Eindhoven University of Technology, The Netherlands.
+  */
+
+#ifndef lint
+#if 0
+static char sccsid[] = "@@(#) refuse.c 1.5 94/12/28 17:42:39";
+#else
+static char rcsid[] = "$OpenBSD: refuse.c,v 1.1 1997/02/26 03:06:55 downsj Exp $";
+#endif
+#endif
+
+/* System libraries. */
+
+#include <stdio.h>
+#include <syslog.h>
+
+/* Local stuff. */
+
+#include "tcpd.h"
+
+/* refuse - refuse request */
+
+void    refuse(request)
+struct request_info *request;
+{
+    syslog(deny_severity, "refused connect from %s", eval_client(request));
+    clean_exit(request);
+    /* NOTREACHED */
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

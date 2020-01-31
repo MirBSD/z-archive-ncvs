@@ -1,0 +1,51 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.21.13.54;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.21.13.54;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Wrapper to implement ANSI C's atexit using SunOS's on_exit. */
+/* This function is in the public domain.  --Mike Stump. */
+
+#include "config.h"
+
+int
+atexit (void (*f) (void))
+{
+  /* If the system doesn't provide a definition for atexit, use on_exit
+     if the system provides that.  */
+  on_exit (f, 0);
+  return 0;
+}
+@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

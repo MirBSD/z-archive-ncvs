@@ -1,0 +1,63 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.06.21.52.25;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.06.21.52.25;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef __THREEJETVEC
+#define __THREEJETVEC
+#include "i_threejet.h"
+#include "i_twojetvec.h"
+struct ThreeJetVec {
+  ThreeJet x;
+  ThreeJet y;
+  ThreeJet z;
+  operator TwoJetVec() { return TwoJetVec(x,y,z); }
+};
+
+ThreeJetVec operator+(ThreeJetVec v, ThreeJetVec w);
+ThreeJetVec operator*(ThreeJetVec v, ThreeJet  a);
+ThreeJetVec operator*(ThreeJetVec v, double a);
+ThreeJetVec AnnihilateVec(ThreeJetVec v, int index);
+ThreeJetVec Cross(ThreeJetVec v, ThreeJetVec w);
+ThreeJet Dot(ThreeJetVec v, ThreeJetVec w);
+TwoJetVec D(ThreeJetVec x, int index);
+ThreeJetVec Normalize(ThreeJetVec v);
+ThreeJetVec RotateZ(ThreeJetVec v, ThreeJet angle);
+ThreeJetVec RotateY(ThreeJetVec v, ThreeJet angle);
+ThreeJetVec RotateX(ThreeJetVec v, ThreeJet angle);
+ThreeJetVec InterpolateVec(ThreeJetVec v1, ThreeJetVec v2, ThreeJet weight);
+ThreeJet Length(ThreeJetVec v);
+#endif
+@
+
+
+1.1.1.1
+log
+@Import programmes new to OpenBSD's X-Window subsystem
+@
+text
+@@

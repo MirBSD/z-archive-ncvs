@@ -1,0 +1,88 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.31.05;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.14;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$MirBSD: src/libexec/login_chpass/Makefile,v 1.2 2003/10/26 22:18:05 tg Stab $
+#	$OpenBSD: Makefile,v 1.4 2003/07/15 19:02:19 deraadt Exp $
+
+
+PROG=	login_chpass
+SRCS=	login_chpass.c
+MAN=	login_chpass.8
+
+.PATH:  ${.CURDIR}/../../usr.bin/passwd
+
+.include <bsd.own.mk>	# For KERBEROS and YP
+
+CFLAGS+=-Wall
+
+BINOWN=	root
+BINGRP=	auth
+BINMODE=4555
+BINDIR=	/usr/libexec/auth
+
+.include <bsd.prog.mk>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a14 14
+#.if (${KERBEROS:L} == "yes")
+#CFLAGS+=-DKERBEROS
+#SRCS+=	new_pwd.c
+#DPADD+= ${LIBKADM} ${LIBKRB} ${LIBDES}
+#LDADD+= -lkadm -lkrb -ldes
+#.endif
+
+.if (${YP:L} == "yes")
+CFLAGS+=-DYP
+SRCS+= yp_passwd.c pwd_check.c pwd_gensalt.c
+DPADD+= ${LIBRPCSVC} ${LIBUTIL}
+LDADD+= -lrpcsvc -lutil
+.endif
+
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,209 @@
+head	2.2;
+access;
+symbols
+	cvs-200501160850:1.1.1.2
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.2
+date	2005.01.16.10.56.36;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.42.21;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.38;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.38;	author tg;	state Exp;
+branches;
+next	1.1.1.2;
+
+1.1.1.2
+date	2005.01.16.09.53.42;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@merge
+@
+text
+@/**	$MirBSD: src/usr.sbin/ntpd/ntp_msg.c,v 2.1 2005/01/03 16:42:21 tg Exp $ */
+/*	$OpenBSD: ntp_msg.c,v 1.14 2004/12/14 06:27:13 dtucker Exp $ */
+
+/*
+ * Copyright (c) 2003, 2004 Henning Brauer <henning@@openbsd.org>
+ * Copyright (c) 2004 Alexander Guy <alexander.guy@@andern.org>
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF MIND, USE, DATA OR PROFITS, WHETHER
+ * IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
+ * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+
+#include <sys/param.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <errno.h>
+
+#include "ntpd.h"
+#include "ntp.h"
+
+__RCSID("$MirBSD: src/usr.sbin/ntpd/ntp_msg.c,v 2.1 2005/01/03 16:42:21 tg Exp $");
+
+int
+ntp_getmsg(char *p, ssize_t len, struct ntp_msg *msg)
+{
+	if (len != NTP_MSGSIZE_NOAUTH && len != NTP_MSGSIZE) {
+		log_warnx("malformed packet received");
+		return (-1);
+	}
+
+#define	copyin(f,p)	memcpy(&(f), (p), sizeof(f)); (p) += sizeof(f)
+
+	copyin(msg->status, p);
+	copyin(msg->stratum, p);
+	copyin(msg->ppoll, p);
+	copyin(msg->precision, p);
+	copyin(msg->rootdelay.int_parts, p);
+	copyin(msg->rootdelay.fractions, p);
+	copyin(msg->dispersion.int_parts, p);
+	copyin(msg->dispersion.fractions, p);
+	copyin(msg->refid, p);
+	copyin(msg->reftime.int_partl, p);
+	copyin(msg->reftime.fractionl, p);
+	copyin(msg->orgtime.int_partl, p);
+	copyin(msg->orgtime.fractionl, p);
+	copyin(msg->rectime.int_partl, p);
+	copyin(msg->rectime.fractionl, p);
+	copyin(msg->xmttime.int_partl, p);
+	copyin(msg->xmttime.fractionl, p);
+
+	return (0);
+}
+
+int
+ntp_sendmsg(int fd, struct sockaddr *sa, struct ntp_msg *msg, ssize_t len,
+    int auth __attribute__((unused)))
+{
+	char		 buf[NTP_MSGSIZE];
+	char		*p = buf;
+	socklen_t	sa_len;
+
+#define	copyout(p,f)	memcpy((p), &(f), sizeof(f)); p += sizeof(f)
+
+	copyout(p, msg->status);
+	copyout(p, msg->stratum);
+	copyout(p, msg->ppoll);
+	copyout(p, msg->precision);
+	copyout(p, msg->rootdelay.int_parts);
+	copyout(p, msg->rootdelay.fractions);
+	copyout(p, msg->dispersion.int_parts);
+	copyout(p, msg->dispersion.fractions);
+	copyout(p, msg->refid);
+	copyout(p, msg->reftime.int_partl);
+	copyout(p, msg->reftime.fractionl);
+	copyout(p, msg->orgtime.int_partl);
+	copyout(p, msg->orgtime.fractionl);
+	copyout(p, msg->rectime.int_partl);
+	copyout(p, msg->rectime.fractionl);
+	copyout(p, msg->xmttime.int_partl);
+	copyout(p, msg->xmttime.fractionl);
+
+	if (sa != NULL)
+		sa_len = SA_LEN(sa);
+	else
+		sa_len = 0;
+
+	if (sendto(fd, &buf, len, 0, sa, sa_len) != len) {
+		if (errno == ENOBUFS || errno == EHOSTUNREACH ||
+		    errno == ENETDOWN || errno == EHOSTDOWN) {
+			/* logging is futile */
+			return (-1);
+		}
+		log_warn("sendto");
+		return (-1);
+	}
+
+	return (0);
+}
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 2
+a2 2
+/**	$MirBSD: src/usr.sbin/ntpd/ntp_msg.c,v 1.4 2004/12/08 22:56:42 tg Exp $ */
+/*	$OpenBSD: ntp_msg.c,v 1.13 2004/12/08 17:35:16 mickey Exp $ */
+d30 1
+a30 1
+__RCSID("$MirBSD: src/usr.sbin/ntpd/ntp_msg.c,v 1.4 2004/12/08 22:56:42 tg Exp $");
+d69 1
+a69 1
+	u_int8_t	sa_len;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d30 2
+d65 1
+a65 1
+    int auth)
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@
+
+
+1.1.1.2
+log
+@Import a series of fixes and minor updates from OpenBSD
+@
+text
+@d1 1
+a1 1
+/*	$OpenBSD: ntp_msg.c,v 1.14 2004/12/14 06:27:13 dtucker Exp $ */
+d66 1
+a66 1
+	socklen_t	sa_len;
+@
+

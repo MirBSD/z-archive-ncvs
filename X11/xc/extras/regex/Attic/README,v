@@ -1,0 +1,85 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.06.22.13.48;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.05.26;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.05.26;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@alpha3.7 release.
+Fri Nov 21 13:25:21 EST 1997
+henry@@zoo.toronto.edu
+
+See WHATSNEW for change listing.
+
+installation notes:
+--------
+Read the comments at the beginning of Makefile before running.
+
+Utils.h contains some things that just might have to be modified on
+some systems, as well as a nested include (ugh) of <assert.h>.
+
+The "fake" directory contains quick-and-dirty fakes for some header
+files and routines that old systems may not have.  Note also that
+-DUSEBCOPY will make utils.h substitute bcopy() for memmove().
+
+After that, "make r" will build regcomp.o, regexec.o, regfree.o,
+and regerror.o (the actual routines), bundle them together into a test
+program, and run regression tests on them.  No output is good output.
+
+"make lib" builds just the .o files for the actual routines (when
+you're happy with testing and have adjusted CFLAGS for production),
+and puts them together into libregex.a.  You can pick up either the
+library or *.o ("make lib" makes sure there are no other .o files left
+around to confuse things).
+
+Main.c, debug.c, split.c are used for regression testing but are not part
+of the RE routines themselves.
+
+Regex.h goes in /usr/include.  All other .h files are internal only.
+--------
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,117 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.32.41;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.43;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.43;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/share/doc/psd/Makefile,v 1.4 2004/05/23 15:56:46 tg Stab $
+# $OpenBSD: Makefile,v 1.5 2004/04/09 12:10:04 jmc Exp $
+
+INSTDIR=psd
+FILES=	00.contents Makefile Title
+SUBDIR!=echo */Makefile | sed 's,/Makefile[[:>:]],,g'
+
+.include <bsd.own.mk>
+
+all: _SUBDIRUSE
+all: Title.txt contents.txt
+
+Title.ps: ${FILES}
+	${ROFF} Title >${.TARGET}
+Title.txt: ${FILES}
+	${NROFF} Title >${.TARGET}
+
+contents.ps: ${FILES}
+	${ROFF} -ms 00.contents >${.TARGET}
+contents.txt: ${FILES}
+	${NROFF} -ms 00.contents >${.TARGET}
+
+beforeinstall:
+	install -c -o ${DOCOWN} -g ${DOCGRP} -m ${DOCMODE} ${FILES} \
+	    ${DESTDIR}${DOCDIR}/${INSTDIR}
+
+.include <bsd.subdir.mk>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile,v 1.5 2004/04/09 12:10:04 jmc Exp $
+d4 5
+a8 4
+# Missing or not installed:
+# 01.cacm 02.implement 03.iosys 04.uprog 06.Clang
+# 07.pascal 08.f77 09.f77io 11.adb
+# 12.make 13.rcs 14.sccs 15.yacc 17.m4
+d10 2
+a11 12
+DOCDIR=	/usr/share/doc/psd
+FILES=	00.contents Makefile Title
+SUBDIR=	05.sysman 20.ipctut 21.ipc
+.if exists(12.make)
+SUBDIR+= 12.make
+.endif
+.if exists(18.gprof)
+SUBDIR+= 18.gprof
+.endif
+.if exists(19.curses)
+SUBDIR+= 19.curses
+.endif
+d14 1
+a14 1
+	groff Title > ${.TARGET}
+d16 1
+a16 1
+	groff -Tascii Title > ${.TARGET}
+d19 1
+a19 1
+	groff -ms 00.contents > ${.TARGET}
+d21 1
+a21 1
+	groff -Tascii -ms 00.contents > ${.TARGET}
+d25 1
+a25 1
+	    ${DESTDIR}${DOCDIR}
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

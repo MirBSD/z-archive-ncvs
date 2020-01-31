@@ -1,0 +1,80 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.39;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.00;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.00;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@    This is a test to see if I can do not only `$self' and `method()', but
+    also `$self->method()' and `$self->{FIELDNAME}' and `$Foo <=> $Bar'
+    without resorting to escape sequences. If I want to refer to the
+    right-shift operator I can do something like `$x >> 3' or even `$y >>
+    5'.
+
+    Now for the grand finale of `$self->method()->{FIELDNAME} = {FOO=>BAR}'.
+    And I also want to make sure that newlines work like this
+    `$self->{FOOBAR} >> 3 and [$b => $a]->[$a <=> $b]'
+
+    Of course I should still be able to do all this *with* escape sequences
+    too: `$self->method()' and `$self->{FIELDNAME}' and `{FOO=>BAR}'.
+
+    Dont forget `$self->method()->{FIELDNAME} = {FOO=>BAR}'.
+
+    And make sure that `0' works too!
+
+    Now, if I use << or >> as my delimiters, then I have to use whitespace.
+    So things like `<$self-'method()>> and `<$self-'{FIELDNAME}>> wont end
+    up doing what you might expect since the first > will still terminate
+    the first < seen.
+
+    Lets make sure these work for empty ones too, like and `>>' (just to be
+    obnoxious)
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

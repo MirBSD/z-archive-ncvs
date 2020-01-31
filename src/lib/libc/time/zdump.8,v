@@ -1,0 +1,98 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@.\" @;
+
+
+2.1
+date	2005.01.03.16.28.37;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.56;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@.\"	$OpenBSD: zdump.8,v 1.9 2004/04/01 11:37:02 jmc Exp $
+.Dd May 23, 1999
+.Dt ZDUMP 8
+.Os
+.Sh NAME
+.Nm zdump
+.Nd time zone dumper
+.Sh SYNOPSIS
+.Nm zdump
+.Op Fl v
+.Op Fl c Ar cutoffyear
+.Ar zonename Ar ...
+.Sh DESCRIPTION
+.Nm
+prints the current time in each
+.Ar zonename
+named on the command line.
+.Pp
+These options are available:
+.Bl -tag -width Fl
+.It Fl c Ar cutoffyear
+Cut off the verbose output near the start of the given year.
+.It Fl v
+For each
+.Ar zonename
+on the command line,
+print the time at the lowest possible time value,
+the time one day after the lowest possible time value,
+the times both one second before and exactly at
+each detected time discontinuity,
+the time at one day less than the highest possible time value,
+and the time at the highest possible time value.
+Each line ends with
+.Dq isdst=1
+if the given time is Daylight Saving Time or
+.Dq isdst=0
+otherwise.
+.El
+.Sh SEE ALSO
+.Xr ctime 3 ,
+.Xr tzfile 5 ,
+.Xr zic 8
+.\" @@(#)zdump.8	7.4
+.\" This file is in the public domain, so clarified as of
+.\" 2003-02-14 by Arthur David Olson (arthur_david_olson@@nih.gov).
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

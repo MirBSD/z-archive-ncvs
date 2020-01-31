@@ -1,0 +1,67 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  cvs-200501160850:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.16.09.55.58;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.16.09.55.58;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@5.004050
+PL_na                          # E
+PL_sv_no                       # E
+PL_sv_undef                    # E
+PL_sv_yes                      # E
+SvGETMAGIC                     # U
+AvFILLp                        # added by devel/scanprov
+DEFSV                          # added by devel/scanprov
+ERRSV                          # added by devel/scanprov
+PL_compiling                   # added by devel/scanprov
+PL_curcop                      # added by devel/scanprov
+PL_curstash                    # added by devel/scanprov
+PL_defgv                       # added by devel/scanprov
+PL_dirty                       # added by devel/scanprov
+PL_perldb                      # added by devel/scanprov
+PL_rsfp                        # added by devel/scanprov
+PL_rsfp_filters                # added by devel/scanprov
+PL_stdingv                     # added by devel/scanprov
+SAVE_DEFSV                     # added by devel/scanprov
+dTHR                           # added by devel/scanprov
+PL_debstash                    # added by devel/scanprov
+PL_diehook                     # added by devel/scanprov
+PL_errgv                       # added by devel/scanprov
+PL_perl_destruct_level         # added by devel/scanprov
+PL_stack_base                  # added by devel/scanprov
+PL_stack_sp                    # added by devel/scanprov
+PL_sv_arenaroot                # added by devel/scanprov
+PL_tainted                     # added by devel/scanprov
+PL_tainting                    # added by devel/scanprov
+@
+
+
+1.1.1.1
+log
+@Import a series of fixes and minor updates from OpenBSD
+@
+text
+@@

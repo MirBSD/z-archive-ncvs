@@ -1,0 +1,87 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.25.59;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.41;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.41;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/* Wrapper around broken system errno.h.  */
+
+#ifndef _PERL_WRAPPER_AROUND_ERRNO_H
+# define _PERL_WRAPPER_AROUND_ERRNO_H 1
+
+/* First include the system file.  */
+#include_next <errno.h> 
+
+/* Now add the missing stuff.
+#ifndef EAGAIN
+# define EAGAIN EWOULDBLOCK
+#endif
+
+/* This one is problematic.  If you open() a directory with the
+   MiNTLib you can't detect from errno if it is really a directory
+   or if the file simply doesn't exist.  You'll get ENOENT 
+   ("file not found") in either case.
+   
+   Defining EISDIR as ENOENT is actually a bad idea but works fine
+   in general.  In praxi, if code checks for errno == EISDIR it
+   will attempt an opendir() call on the file in question and this
+   call will also file if the file really can't be found.  But
+   you may get compile-time errors if the errno checking is embedded
+   in a switch statement ("duplicate case value in switch").
+   
+   Anyway, here the define works alright.  */
+#ifndef EISDIR
+# define EISDIR ENOENT
+#endif
+
+#endif
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

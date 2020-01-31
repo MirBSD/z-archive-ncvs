@@ -1,0 +1,76 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.49.19;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.13;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.13;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@#! /bin/sh
+
+# This test often fails during development. It works after "make dist".
+
+# Test -x option.
+
+tmpfiles=""
+trap 'rm -fr $tmpfiles' 1 2 3 15
+
+tmpfiles="$tmpfiles zero-domain.po xg-test1.err"
+rm -f zero-domain.po
+: ${XGETTEXT=xgettext}
+LC_MESSAGES=C LC_ALL= \
+${XGETTEXT} -k_ -d zero-domain -x $top_srcdir/po/gettext-tools.pot \
+  $top_srcdir/src/xgettext.c >xg-test1.err 2>&1
+result=$?
+cat xg-test1.err | grep -v 'warning: Charset' | grep -v '^ '
+test $result = 0 || { rm -fr $tmpfiles; exit 1; }
+
+test ! -f zero-domain.po
+result=$?
+
+rm -fr $tmpfiles
+
+exit $result
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

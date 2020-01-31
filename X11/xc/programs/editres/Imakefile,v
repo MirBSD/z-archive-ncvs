@@ -1,0 +1,52 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.17.09;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.17.09;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $Xorg: Imakefile,v 1.3 2000/08/17 19:53:51 cpqbld Exp $
+        DEPLIBS = XawClientDepLibs XkbClientDepLibs
+LOCAL_LIBRARIES = XawClientLibs XkbClientLibs
+           SRCS = actions.c comm.c editres.c geometry.c handler.c setvalues.c \
+		  svpopup.c utils.c widgets.c wtree.c 
+           OBJS = actions.o comm.o editres.o geometry.o handler.o setvalues.o \
+		  svpopup.o utils.o widgets.o wtree.o 
+        DEFINES = XkbClientDefines
+
+ComplexProgramTarget(editres)
+InstallAppDefaults(Editres)
+InstallAppDefaultsLong(Edit-col,Editres-color)
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

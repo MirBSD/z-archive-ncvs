@@ -1,0 +1,86 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.21;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.52;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@This is the perl test library.  To run the test suite, just type './TEST'
+or 'make test' from the build directory above t/.  See also the section
+"Special Make Test Targets" in pod/perlhack.pod to learn about other
+specific test commands.
+
+To add new tests, just look at the current tests and do likewise.
+The library t/test.pl provides some utility functions that you can use
+in most tests, except in the most basic ones.
+
+If a test fails, run it by itself to see if it prints any informative
+diagnostics.  If not, modify the test to print informative diagnostics.
+If you put out extra lines with a '#' character on the front, you don't
+have to worry about removing the extra print statements later since TEST
+ignores lines beginning with '#'.
+
+If you know that Perl is basically working but expect that some tests
+will fail, you may want to use Test::Harness thusly:
+        cd t
+	./perl -I../lib harness
+This method pinpoints failed tests automatically.
+
+If you come up with new tests, please send them to perlbug@@perl.org.
+
+Tests in the t/base/ directory ought to be runnable with plain miniperl.
+That is, they should not require Config.pm nor should they require any
+extensions to have been built.  TEST will abort if any tests in the
+t/base/ directory fail.
+
+Tests in the t/comp/, t/cmd/, t/run/, t/io/, t/op/ and t/uni/ directories
+should also be runnable by miniperl and not require Config.pm, but
+failures to comply will not cause TEST to abort like for t/base/.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

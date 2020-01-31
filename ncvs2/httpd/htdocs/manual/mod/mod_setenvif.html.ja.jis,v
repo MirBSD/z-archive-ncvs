@@ -1,0 +1,379 @@
+head	1.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200507211800:1.1.1.1
+	tg-mergetmp-3:1.1.1.1
+	cvs-200504170300:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.02.05.17.30.38;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2005.02.05.17.30.38;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@<?xml version="1.0" encoding="iso-2022-jp"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+
+    <title>Apache module mod_setenvif</title>
+
+  </head>
+  <!-- English revision: 1.19 -->
+  <!-- Background white, links blue (unvisited), navy (visited), red (active) -->
+  <body bgcolor="#ffffff" text="#000000" link="#0000ff"
+  vlink="#000080" alink="#ff0000">
+        <div align="CENTER">
+      <img src="../images/sub.gif" alt="[APACHE DOCUMENTATION]" /> 
+
+      <h3>Apache HTTP Server Version 1.3</h3>
+    </div>
+
+
+    <h1 align="center">mod_setenvif $B%b%8%e!<%k(B</h1>
+
+    <p>$B$3$N%b%8%e!<%k$O!"(B
+    $B%j%/%(%9%H$NB0@@-$K4p$E$$$F4D6-JQ?t$r@@_Dj$9$k5!G=$rDs6!$7$^$9!#(B</p>
+ 
+    <p><a href="module-dict.html#status"
+    rel="help"><strong>$B%9%F!<%?%9(B:</strong></a> Base<br />
+     <a href="module-dict.html#sourcefile"
+    rel="help"><strong>$B%=!<%9%U%!%$%k(B:</strong></a>
+    mod_setenvif.c<br />
+     <a href="module-dict.html#moduleidentifier"
+    rel="help"><strong>$B%b%8%e!<%k<1JL;R(B:</strong></a>
+    setenvif_module<br />
+     <a href="module-dict.html#Compatibility"
+    rel="help"><strong>$B8_49@@-(B:</strong></a>
+    Apache 1.3 $B0J9_$G;HMQ2DG=!#(B</p>
+
+    <h2>$B35MW(B</h2>
+
+    <p><samp>mod_setenvif</samp>
+    $B%b%8%e!<%k$O!"%j%/%(%9%H$N$"$kB&LL$,;XDj$5$l$?(B<a
+    href="../misc/faq.html#regex">$B@@55,I=8=(B</a
+    >$B$K9g$&$+$I$&$+$K$h$C$F4D6-JQ?t$r@@_Dj$9$k5!G=$rDs6!$7$^$9!#(B
+    $B$3$l$i$N4D6-JQ?t$r;HMQ$7$F!"%5!<%P$NB>$NItJ,$,$I$N$h$&$JF0:n$r$9$k$+$r(B
+    $B7hDj$9$k$3$H$,$G$-$^$9!#(B</p>
+
+    <p>$B$3$N%b%8%e!<%k$,Ds6!$9$k%G%#%l%/%F%#%V$O!"(B
+    $B@@_Dj%U%!%$%k$K8=$l$k=gHV$KE,MQ$5$l$^$9!#(B
+    $B$=$l$r;H$C$F!"<!$NNc$N$h$&$K$h$jJ#;($J@@_Dj$r$9$k$3$H$,$G$-$^$9!#(B
+    $B$3$l$O!"%V%i%&%6$,(B mozilla $B$G$O$"$k$1$l$I!"(BMSIE $B$G$O$J$$$H$-$K(B
+    <code>netscape</code> $B$r@@_Dj$7$^$9!#(B</p>
+    <blockquote>
+<pre>
+  BrowserMatch ^Mozilla netscape
+  BrowserMatch MSIE !netscape
+ 
+</pre>
+    </blockquote>
+
+    <p>$B>\:Y$O!"(B<a href="../env.html">Apache
+    $B$N4D6-JQ?t(B</a>$B$r;2>H$7$F$/$@@$5$$!#(B</p>
+
+    <h2>$B%G%#%l%/%F%#%V(B</h2>
+
+    <ul>
+      <li><a href="#browsermatch">BrowserMatch</a></li>
+
+      <li><a href="#browsermatchnocase">BrowserMatchNoCase</a></li>
+
+      <li><a href="#setenvif">SetEnvIf</a></li>
+
+      <li><a href="#setenvifnocase">SetEnvIfNoCase</a></li>
+    </ul>
+    <hr />
+    <!-- the HR is part of the directive description -->
+
+    <h2><a id="browsermatch" name="browsermatch">BrowserMatch
+    $B%G%#%l%/%F%#%V(B</a></h2>
+
+    <p><a href="directive-dict.html#syntax"
+    rel="help"><strong>$B9=J8(B:</strong></a> BrowserMatch <em>regex
+    env-variable</em>[=<em>value</em>]
+    [<em>env-variable</em>[=<em>value</em>]] ...<br />
+     <a href="directive-dict.html#Default"
+    rel="help"><strong>$B%G%U%)%k%H(B:</strong></a> None<br />
+     <a href="directive-dict.html#context"
+    rel="help"><strong>$B%3%s%F%-%9%H(B:</strong></a>
+    $B%5!<%P@@_Dj%U%!%$%k!"%P!<%A%c%k%[%9%H!"%G%#%l%/%H%j!"(B.htaccess<br />
+     <a href="directive-dict.html#override"
+    rel="help"><strong>$B>e=q$-(B:</strong></a> FileInfo<br />
+     <a href="directive-dict.html#status"
+    rel="help"><strong>$B%9%F!<%?%9(B:</strong></a> Base<br />
+     <a href="directive-dict.html#module"
+    rel="help"><strong>$B%b%8%e!<%k(B:</strong></a> mod_setenvif<br />
+     <a href="directive-dict.html#Compatibility"
+    rel="help"><strong>$B8_49@@-(B:</strong></a> Apache 1.2 $B0J>e(B
+    ($B$3$N%G%#%l%/%F%#%V$O(B Apache 1.2 $B$G$O!":#$G$O(B obsolete $B$K$J$C$F$$$k(B
+    mod_browser $B%b%8%e!<%k$K$"$j$^$7$?(B)$B!#(B.htaccess $B%U%!%$%k$G$N;HMQ$O(B
+    1.3.13 $B0J9_$G$N$_%5%]!<%H!#(B</p>
+
+    <p>BrowserMatch $B%G%#%l%/%F%#%V$O!"(BHTTP $B%j%/%(%9%H$N(B
+    <samp>User-Agent</samp>
+    $B%X%C%@@%U%#!<%k%I$K4p$E$$$F4D6-JQ?t$r@@_Dj$7$^$9!#:G=i$N0z?t$O(B
+    POSIX.2 $B3HD%@@55,I=8=(B (<samp>egrep</samp>
+    $B7A<0$N@@55,I=8=$H;w$?$b$N(B) $B$G$9!#(B
+    $B;D$j$N0z?t$O!"@@_Dj$r$9$kJQ?tL>$H$=$NCM$G!"8e<T$O>JN,2DG=$G$9!#(B
+    $B$3$l$i$O0J2<$N7A<0$K$J$j$^$9!#(B</p>
+
+    <ol>
+      <li><samp><em>varname</em></samp>, or</li>
+
+      <li><samp>!<em>varname</em></samp>, or</li>
+
+      <li><samp><em>varname</em>=<em>value</em></samp></li>
+    </ol>
+
+    <p>$B:G=i$N7A<0$G$O!"CM$O(B &quot;1&quot; $B$K@@_Dj$5$l$^$9!#(B
+    2 $BHVL\$OJQ?t$,4{$KDj5A$5$l$F$$$?>l9g!"$=$l$r:o=|$7$^$9!#(B
+    3 $BHVL\$OJQ?t$NCM$r(B <samp><em>value</em></samp> $B$K@@_Dj$7$^$9!#(B
+    <samp>User-Agent</samp>
+    $B%U%#!<%k%I$NJ8;zNs$,J#?t$N%(%s%H%j$K%^%C%A$7$?>l9g$O!"(B
+    $B$=$N7k2L$,$^$H$a$i$l$^$9!#(B
+    $B%(%s%H%j$O8=$l$?=g$K=hM}$5$l!"8e$N%(%s%H%j$,A0$N$b$N$r>e=q$-$7$^$9!#(B
+    </p>
+    <p>$BNc(B:</p>
+<pre>
+    BrowserMatch ^Mozilla forms jpeg=yes browser=netscape
+    BrowserMatch "^Mozilla/[2-3]" tables agif frames javascript
+    BrowserMatch MSIE !javascript
+
+</pre>
+
+    <p>$B@@55,I=8=$NJ8;zNs$O(B<strong>$BBgJ8;z>.J8;z$r6hJL$9$k(B</strong
+    >$B$3$H$KCm0U$7$F$/$@@$5$$!#BgJ8;z>.J8;z$r6hJL$7$J$$%^%C%A$O(B<a
+    href="#browsermatchnocase"><samp>BrowserMatchNoCase</samp></a
+    >$B%G%#%l%/%F%#%V$r;2>H$7$F$/$@@$5$$!#(B
+    </p>
+    <p><samp>BrowserMatch</samp> $B%G%#%l%/%F%#%V$H(B
+    <samp>BrowserMatchNoCase</samp> $B%G%#%l%/%F%#%V$O(B
+    <a href="#setenvif"><samp>SetEnvIf</samp></a> $B%G%#%l%/%F%#%V(B
+    <a href="#setenvifnocase"><samp>SetEnvIfNoCase</samp></a>
+    $B%G%#%l%/%F%#%V$NFCJL$J%1!<%9$G$9!#0J2<$N(B 2 $B9T$OF1$88z2L$K$J$j$^$9(B:
+    </p>
+<pre>
+   BrowserMatchNoCase Robot is_a_robot
+   SetEnvIfNoCase User-Agent Robot is_a_robot
+
+</pre>
+    <hr />
+    <!-- the HR is part of the directive description -->
+
+    <h2><a id="browsermatchnocase"
+    name="browsermatchnocase">BrowserMatchNoCase $B%G%#%l%/%F%#%V(B</a></h2>
+
+    <p><a href="directive-dict.html#syntax"
+    rel="help"><strong>$B9=J8(B:</strong></a> BrowserMatchNoCase
+    <em>regex env-variable</em>[=<em>value</em>]
+    [<em>env-variable</em>[=<em>value</em>]] ...<br />
+     <a href="directive-dict.html#Default"
+    rel="help"><strong>$B%G%U%)%k%H(B:</strong></a> <em>none</em><br />
+     <a href="directive-dict.html#context"
+    rel="help"><strong>$B%3%s%F%-%9%H(B:</strong></a>
+    $B%5!<%P@@_Dj%U%!%$%k!"%P!<%A%c%k%[%9%H!"%G%#%l%/%H%j!"(B.htaccess<br />
+     <a href="directive-dict.html#override"
+    rel="help"><strong>$B>e=q$-(B:</strong></a> FileInfo<br />
+     <a href="directive-dict.html#status"
+    rel="help"><strong>$B%9%F!<%?%9(B:</strong></a> Base<br />
+     <a href="directive-dict.html#module"
+    rel="help"><strong>$B%b%8%e!<%k(B:</strong></a> mod_setenvif<br />
+     <a href="directive-dict.html#Compatibility"
+    rel="help"><strong>$B8_49@@-(B:</strong></a> Apache 1.2 $B0J>e(B
+    ($B$3$N%G%#%l%/%F%#%V$O(B Apache 1.2 $B$G$O!":#$G$O(B obsolete $B$K$J$C$F$$$k(B
+    mod_browser $B%b%8%e!<%k$K$"$j$^$7$?(B)$B!#(B.htaccess $B%U%!%$%k$G$N;HMQ$O(B
+    1.3.13 $B0J9_$G$N$_%5%]!<%H!#(B</p>
+    <p><samp>BrowserMatchNoCase</samp>
+    $B%G%#%l%/%F%#%V$O!"0UL#E*$K$O(B <a href="#browsermatch"
+    ><samp>BrowserMatch</samp></a>
+    $B%G%#%l%/%F%#%V$H$[$H$s$IF1$8$G$9!#(B
+    $B0c$&E@@$O!"BgJ8;z>.J8;z$r6hJL$7$J$$$G%^%C%A$r9T$J$&$3$H$G$9!#Nc(B:</p>
+<pre>
+    BrowserMatchNoCase mac platform=macintosh
+    BrowserMatchNoCase win platform=windows
+
+</pre>
+    <p><samp>BrowserMatch</samp> $B%G%#%l%/%F%#%V$H(B
+    <samp>BrowserMatchNoCase</samp> $B%G%#%l%/%F%#%V$O(B <a
+     href="#setenvif"><samp>SetEnvIf</samp></a> $B%G%#%l%/%F%#%V$H(B <a
+     href="#setenvifnocase"><samp>SetEnvIfNoCase</samp></a>
+    $B%G%#%l%/%F%#%V$NFCJL$J%1!<%9$G$9!#0J2<$N(B
+    2 $B9T$OF1$88z2L$K$J$j$^$9(B:</p>
+<pre>
+   BrowserMatchNoCase Robot is_a_robot
+   SetEnvIfNoCase User-Agent Robot is_a_robot
+
+</pre>
+    <hr />
+    <!-- the HR is part of the directive description -->
+
+    <h2><a id="setenvif" name="setenvif">SetEnvIf
+    $B%G%#%l%/%F%#%V(B</a></h2>
+
+    <p><a href="directive-dict.html#syntax"
+    rel="help"><strong>$B9=J8(B:</strong></a> SetEnvIf <em> attribute
+    regex env-variable</em>[=<em>value</em>]
+    [<em>env-variable</em>[=<em>value</em>]] ...<br />
+     <a href="directive-dict.html#Default"
+    rel="help"><strong>$B%G%U%)%k%H(B:</strong></a> <em>none</em><br />
+     <a href="directive-dict.html#context"
+    rel="help"><strong>$B%3%s%F%-%9%H(B:</strong></a>
+    $B%5!<%P@@_Dj%U%!%$%k!"%P!<%A%c%k%[%9%H!"%G%#%l%/%H%j!"(B.htaccess<br />
+     <a href="directive-dict.html#override"
+    rel="help"><strong>$B>e=q$-(B:</strong></a> FileInfo<br />
+     <a href="directive-dict.html#status"
+    rel="help"><strong>$B%9%F!<%?%9(B:</strong></a> Base<br />
+     <a href="directive-dict.html#module"
+    rel="help"><strong>$B%b%8%e!<%k(B:</strong></a> mod_setenvif<br />
+     <a href="directive-dict.html#Compatibility"
+    rel="help"><strong>$B8_49@@-(B:</strong></a> Apache 1.3 $B0J>e!#(B
+    Request_Protocol $B%-!<%o!<%I$H4D6-JQ?t$N%^%C%A$O(B 1.3.7
+    $B0J9_$G$N$_;HMQ2DG=!#(B.htaccess $B%U%!%$%k$G$N;HMQ$O(B
+    1.3.13 $B0J9_$G$N$_%5%]!<%H!#(B</p>
+
+    <p><samp>SetEnvIf</samp>
+    $B%G%#%l%/%F%#%V$O!"%j%/%(%9%H$NB0@@-$K4p$E$$$F4D6-JQ?t$rDj5A$7$^$9!#(B
+    $B$3$l$i$NB0@@-$O!"(BHTTP $B%j%/%(%9%H$N$$$m$$$m$J%X%C%@@%U%#!<%k%I(B
+    ($B>\$7$$>pJs$O(B <a href="http://www.rfc-editor.org/rfc/rfc2616.txt">RFC
+    2616</a> $B$r;2>H$7$F$/$@@$5$$(B)
+    $B$+!"0J2<$N$h$&$J!"%j%/%(%9%H$NB>$NB&LL$G$"$k$3$H$,$G$-$^$9!#(B</p>
+
+    <ul>
+      <li><samp>Remote_Host</samp> -
+      $B%j%/%(%9%H$r9T$J$C$F$$$k%/%i%$%"%s%H$N%[%9%HL>(B ($B$b$7$"$l$P(B)</li>
+
+      <li><samp>Remote_Addr</samp> -
+      $B%j%/%(%9%H$r9T$J$C$F$$$k%/%i%$%"%s%H$N(B IP $B%"%I%l%9(B</li>
+
+      <li><samp>Remote_User</samp> -
+      $BG'>Z$5$l$?%f!<%6L>(B ($B$b$7$"$l$P(B)</li>
+
+      <li><samp>Request_Method</samp> -
+      $B;HMQ$5$l$F$$$k%a%=%C%IL>(B (<samp>GET</samp>, <samp>POST</samp>
+      <em>$B$J$I(B</em>)</li>
+
+      <li><samp>Request_Protocol</samp> -
+      $B%j%/%(%9%H$,9T$J$o$l$?%W%m%H%3%k$NL>A0$H%P!<%8%g%s(B
+      (<em>$BNc$($P(B</em>$B!"(B"HTTP/0.9", "HTTP/1.1" <em>$B$J$I!#(B</em>)</li>
+
+      <li><samp>Request_URI</samp> -
+      URL $B$N%9%-!<%`$H%[%9%H$N8e$NItJ,(B</li>
+    </ul>
+
+    <p>$B$h$/;H$o$l$k%j%/%(%9%H$N%X%C%@@%U%#!<%k%I$K$O(B
+    <samp>Host</samp>, <samp>User-Agent</samp>, <samp>Referer</samp>
+    $B$,$"$j$^$9!#(B</p>
+
+    <p>$BB0@@-L>(B <em>attribute</em>
+    $B$,FCJL$J%-!<%o!<%I$d%j%/%(%9%H$N%X%C%@@%U%#!<%k%IL>$K%^%C%A$7$J$$$H$-$O!"(B
+    $B%j%/%(%9%H$K4XO"IU$1$i$l$?%j%9%H$K$"$k4D6-JQ?t$NL>A0$H$7$F;n$5$l$^$9!#(B
+    $B$3$l$K$h$j!"(B<code>SetEnvIf</code>
+    $B%G%#%l%/%F%#%V$,A0$N%^%C%A$N7k2L$r;HMQ$9$k$3$H$,$G$-$k$h$&$K$J$j$^$9!#(B
+    </p>
+
+    <blockquote>
+      <strong>$BA0$N(B <code>SetEnvIf[NoCase]</code>
+      $B$GDj5A$5$l$?4D6-JQ?t$N$_$r$3$NJ}K!$GD4$Y$k$3$H$,$G$-$^$9!#(B
+      $B!VA0!W$H$$$&$N$O(B ($B%5!<%PA4BN!"$N$h$&$J(B)
+      $B$h$j9-$$%9%3!<%W$GDj5A$5$l$?$+!"(B
+      $B8=%G%#%l%/%F%#%V$N%9%3!<%W$NCf$NA0$NJ}$GDj5A$5$l$?$H$$$&0UL#$G$9!#(B
+      </strong>
+    </blockquote>
+    <p>$BNc(B:</p>
+<pre>
+   SetEnvIf Request_URI "\.gif$" object_is_image=gif
+   SetEnvIf Request_URI "\.jpg$" object_is_image=jpg
+   SetEnvIf Request_URI "\.xbm$" object_is_image=xbm
+        :
+   SetEnvIf Referer www\.mydomain\.com intra_site_referral
+        :
+   SetEnvIf object_is_image xbm XBIT_PROCESSING=1
+
+</pre>
+
+    <p>$B@@hF,$N;0$D$O%j%/%(%9%H$,2hA|%U%!%$%k$N$H$-$K!"4D6-JQ?t(B
+    <samp>object_is_image</samp> $B$r@@_Dj$7$^$9!#(B
+    4 $BHVL\$O;2>H85$N%Z!<%8$,(B <samp>www.mydomain.com</samp>
+    $B%&%'%V%5%$%H$N$I$3$+$K$"$k>l9g$K(B <samp>intra_site_referral</samp>
+    $B$r@@_Dj$7$^$9!#(B</p>
+    <hr />
+    <!-- the HR is part of the directive description -->
+
+    <h2><a id="setenvifnocase" name="setenvifnocase">SetEnvIfNoCase
+    $B%G%#%l%/%F%#%V(B</a></h2>
+
+    <p><a href="directive-dict.html#syntax"
+    rel="help"><strong>$B9=J8(B:</strong></a> SetEnvIfNoCase
+    <em>attribute regex env-variable</em>[=<em>value</em>]
+    [<em>env-variable</em>[=<em>value</em>]] ...<br />
+     <a href="directive-dict.html#default"
+    rel="help"><strong>$B%G%U%)%k%H(B:</strong></a> <em>none</em><br />
+     <a href="directive-dict.html#context"
+    rel="help"><strong>$B%3%s%F%-%9%H(B:</strong></a>
+    $B%5!<%P@@_Dj%U%!%$%k!"%P!<%A%c%k%[%9%H!"%G%#%l%/%H%j!"(B.htaccess<br />
+     <a href="directive-dict.html#override"
+    rel="help"><strong>$B>e=q$-(B:</strong></a> FileInfo<br />
+     <a href="directive-dict.html#status"
+    rel="help"><strong>$B%9%F!<%?%9(B:</strong></a> Base<br />
+     <a href="directive-dict.html#module"
+    rel="help"><strong>$B%b%8%e!<%k(B:</strong></a> mod_setenvif<br />
+     <a href="directive-dict.html#Compatibility"
+    rel="help"><strong>$B8_49@@-(B:</strong></a> Apache 1.3 $B0J>e!#(B
+    Request_Protocol $B%-!<%o!<%I$H4D6-JQ?t$N%^%C%A$O(B 1.3.7
+    $B0J9_$G$N$_;HMQ2DG=!#(B.htaccess $B%U%!%$%k$G$N;HMQ$O(B
+    1.3.13 $B0J9_$G$N$_%5%]!<%H!#(B</p>
+
+    <p><samp>SetEnvIfNoCase</samp> $B$O!"0UL#E*$K$O(B <a 
+    href="#setenvif"><samp>SetEnvIf</samp></a> $B$H$[$H$s$IF1$8$G$9!#(B
+    $B0c$$$O@@55,I=8=$N%^%C%A$,BgJ8;z>.J8;z$r6hJL$7$J$$$G9T$J$o$l$k$3$H$G$9!#(B
+    $BNc$($P(B:</p>
+
+<pre>
+   SetEnvIfNoCase Host Apache\.Org site=apache
+</pre>
+
+    <p>$B$3$l$O!"(BHTTP $B%j%/%(%9%H$N(B <samp>Host:</samp>
+    $B%X%C%@@%U%#!<%k%I$,$"$j!"$=$NCM$,(B
+    <samp>Apache.org</samp>, <samp>apache.org</samp>
+    $B$d$=$NB>$NBgJ8;z>.J8;z$NAH$_9g$o$;$G$"$C$?$H$-$K!"4D6-JQ?t(B
+    <samp>site</samp> $B$r(B &quot;<samp>apache</samp>&quot; $B$K@@_Dj$7$^$9!#(B</p>
+        <hr />
+
+    <h3 align="CENTER">Apache HTTP Server Version 1.3</h3>
+    <a href="./"><img src="../images/index.gif" alt="Index" /></a>
+    <a href="../"><img src="../images/home.gif" alt="Home" /></a>
+
+  </body>
+</html>
+@
+
+
+1.1.1.1
+log
+@Import the OpenBSD foundation of MirOS BSD
+@
+text
+@@

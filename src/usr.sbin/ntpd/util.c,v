@@ -1,0 +1,158 @@
+head	2.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.42.22;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.38;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.38;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/**	$MirBSD: src/usr.sbin/ntpd/util.c,v 1.4 2004/12/08 22:56:43 tg Exp $ */
+/*	$OpenBSD: util.c,v 1.10 2004/12/08 15:47:38 mickey Exp $ */
+
+/*
+ * Copyright (c) 2004
+ *	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+ * Copyright (c) 2004 Alexander Guy <alexander.guy@@andern.org>
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF MIND, USE, DATA OR PROFITS, WHETHER
+ * IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
+ * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+
+#include <sys/time.h>
+#include <limits.h>
+
+#include "ntpd.h"
+
+__RCSID("$MirBSD: src/usr.sbin/ntpd/util.c,v 1.4 2004/12/08 22:56:43 tg Exp $");
+
+double
+gettime(void)
+{
+	tai64na_t t;
+
+	taina_time(&t);
+	return (1.0E-09 * t.nano + tai2utc(t.secs) + JAN_1970);
+}
+
+
+void
+d_to_tv(double d, struct timeval *tv)
+{
+	tv->tv_sec = (long)d;
+	tv->tv_usec = (d - tv->tv_sec) * 1000000;
+}
+
+double
+lfp_to_d(struct l_fixedpt lfp)
+{
+	double	ret;
+
+	lfp.int_partl = ntohl(lfp.int_partl);
+	lfp.fractionl = ntohl(lfp.fractionl);
+
+	ret = (double)(lfp.int_partl) + ((double)lfp.fractionl / UINT_MAX);
+
+	return (ret);
+}
+
+struct l_fixedpt
+d_to_lfp(double d)
+{
+	struct l_fixedpt	lfp;
+
+	lfp.int_partl = htonl((u_int32_t)d);
+	lfp.fractionl = htonl((u_int32_t)((d - (u_int32_t)d) * UINT_MAX));
+
+	return (lfp);
+}
+
+double
+sfp_to_d(struct s_fixedpt sfp)
+{
+	double	ret;
+
+	sfp.int_parts = ntohs(sfp.int_parts);
+	sfp.fractions = ntohs(sfp.fractions);
+
+	ret = (double)(sfp.int_parts) + ((double)sfp.fractions / USHRT_MAX);
+
+	return (ret);
+}
+
+struct s_fixedpt
+d_to_sfp(double d)
+{
+	struct s_fixedpt	sfp;
+
+	sfp.int_parts = htons((u_int16_t)d);
+	sfp.fractions = htons((u_int16_t)((d - (u_int16_t)d) * USHRT_MAX));
+
+	return (sfp);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d5 2
+d27 2
+d32 1
+a32 4
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL) == -1)
+		fatal("gettimeofday");
+d34 2
+a35 1
+	return (tv.tv_sec + JAN_1970 + 1.0e-6 * tv.tv_usec);
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

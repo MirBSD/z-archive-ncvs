@@ -1,0 +1,292 @@
+head	2.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.4
+date	2005.01.14.16.26.40;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.14.06.54.13;	author sap;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.12.22.21.45;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.32.32;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.4
+log
+@sort the list of MirOS Project members into active committers
+and the rest (former contributors, inactive developers or
+committers - excluding the "contributors" which are the people
+who just send us patches; they are too numerous and can be found
+on the MLs or even cvs ci msgs)
+@
+text
+@$MirBSD: src/share/doc/legal/LICENCE,v 2.3 2005/01/14 06:54:13 sap Exp $
+
+MirOS base system and BSD - TOU
+-------------------------------
+
+This is /usr/share/doc/legal/LICENCE, available online under
+<http://mirbsd.bsdadvocacy.org/cvs.cgi/src/share/doc/legal/>
+or any other CVSweb enabled mirror.
+
+This file contains the terms and conditions which MirOS base
+and MirOS BSD are covered under.
+
+The MirOS Project consists of a loosely bound group of deve-
+lopers of which most are Europe-based, some in Canada or USA
+and some other places of the world; these developers work on
+MirOS together as "committers" (people with direct write ac-
+cess to MirOS) and former committers (together, authors), as
+well as "contributors" who submit patches or help otherwise.
+MirBSD is defined as the content of the MirOS Project's lea-
+der's /usr/src and /usr/ports directories; usually MirOS BSD
+and MirPorts.
+
+# MirOS is Copyright (c) 2003, 2004, 2005
+#		The MirOS Project <miros-dev@@66h.42h.de>
+#   with the following persons as active committers:
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+#	Benny Siegert <bsiegert@@gmx.de>
+#   and the following former/inactive contributors:
+#	R. Tyler Ballance <tyler@@66h.42h.de>
+#	Waldemar Brodkorb <wbx@@thinknow.de>
+#	Stephen Paskaluk <sap@@66h.42h.de>
+#	Joseph Soentgen <cnuke@@66h.42h.de>
+#	Dave Steinberg <dave@@66h.42h.de>
+#
+# Licensee is hereby permitted to deal in this work without restric-
+# tion, including unlimited rights to use, publicly perform, modify,
+# merge, distribute, sell, give away or sublicence, provided all co-
+# pyright notices above, these terms and the disclaimer are retained
+# in all redistributions or reproduced in accompanying documentation
+# or other materials provided with binary redistributions.
+#
+# Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+# any kind, expressed or implied, to the maximum extent permitted by
+# applicable law, but with the warranty of being written without ma-
+# licious intent or gross negligence; in no event shall licensor, an
+# author or contributor be held liable for any damage, direct, indi-
+# rect or other, however caused, arising in any way out of the usage
+# of this work, even if advised of the possibility of such damage.
+#
+# This licence agreement shall be governed in all aspects by the law
+# of Germany; designated place of court is Bonn, NRW, Germany.  (Der
+# Gerichtsstand ist Bonn, NRW/Deutschland. Es gilt deutsches Recht.)
+
+/*-
+ * MirBSD is Copyright (c) 1999, 2002, 2003, 2004, 2005
+ *	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+ *
+ * Licensee is hereby permitted to deal in this work without restric-
+ * tion, including unlimited rights to use, publicly perform, modify,
+ * merge, distribute, sell, give away or sublicence, provided all co-
+ * pyright notices above, these terms and the disclaimer are retained
+ * in all redistributions or reproduced in accompanying documentation
+ * or other materials provided with binary redistributions.
+ *
+ * All advertising materials mentioning features or use of this soft-
+ * ware must display the following acknowledgement:
+ *	This product includes material provided by Thorsten Glaser.
+ *
+ * Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+ * any kind, expressed or implied, to the maximum extent permitted by
+ * applicable law, but with the warranty of being written without ma-
+ * licious intent or gross negligence; in no event shall licensor, an
+ * author or contributor be held liable for any damage, direct, indi-
+ * rect or other, however caused, arising in any way out of the usage
+ * of this work, even if advised of the possibility of such damage.
+ *-
+ * I as the MirOS Project and MirBSD's project leader hereby assert a
+ * collective-work copyright on the "MirOS Project" work and "MirBSD"
+ * including the MirPorts Framework and the (OpenBSD-derived) kernel,
+ * excluding single ports, the contributed sections (the modules gcc,
+ * x11 and contrib) and any part of MirOS licenced under the GFDL and
+ * with copyright assigned back to the FSF.
+ * I hereby also limit the above advertising clause to cease to exist
+ * after my death or removal of all other advertising clauses, which-
+ * ever comes first.
+ */
+
+For an overview of all other terms and conditions that cover
+parts of MirOS, refer to the file 1stREAD in the current di-
+rectory.
+
+The MirOS Project strives to make as much of our work as po-
+ssible, as well as inherited work we redistribute, available
+under OSI certified licences (see www.opensource.org).
+
+We ask all of our contributors to publish their work under a
+licence boilerplate derived from the "licence.template" file
+and request them to always use the disclaimer shown in this,
+even if contributor is not bound by EU law, and accepts that
+he is liable for knowingly inserted work or malice intent as
+well as for integrating work which other parties have rights
+but we no licence. We also ask all contributors to be either
+at least 18 years old, or at least 7 years old and have been
+given by their parents a generic permit to do business rela-
+ted to open source software (or at least specific to MirOS),
+which makes them fully contractually capable for this speci-
+fic area of deals. Contributor is responsible to provide the
+parental statement, in non-electronic form, giving this all-
+owance, or a proof of age, on request.
+
+
+The following art has been provided by developers and users of Open Source:
+
+              |    .                                         ,     ,
+  OpenBSD .   |L  /|   .               4.4 Berkeley        ,(       ).
+      _ . |\ _| \--+._/| .                 Software        | \,--_ / |
+     / ||\| Y J  )   / |/| ./              Distribution     /_  _    /
+    J  |)'( |        ` F`.'/                              /-.,-.    \
+  -<|  F         __     .-<                               | |   \     \
+    | /       .-'. `.  /-. L___       ,---------.        _\O|O  |     |
+    J \      <    \  | | O\|.-'      / MirLinux |       (___)--'_    /
+  _J \  .-    \/ O | | \  |F         `----------`,       .______/  /
+ '-F  -<_.     \   .-'  `-' L__              .ooO          .__,   ,/
+__J  _   _.     >-'  )._.   |-'          .-.'                 /    \
+`-|.'   /_.           \_|   F            oo|    <----.   ,___/ __   \
+  /.-   .                _.<            /'\     <----|====)))==) \) /=====
+ /'    /.'             .'  `\          (\_;/)   <----'   `--' `.__,' |   _
+  /L  /'   |/      _.-'-\                                   |        |  / \
+ /'J       ___.---'\|                                        \ _     /`-' \/
+   |\  .--' V  | `. `           More art &c:             ,---- \   /
+   |/`. `-.     `._)       http://www.openbsd.org/       \_,-----'  \
+      / .-.\                `-> images/newhead.jpg         \________/ dugsong.
+VK    \ (  `\
+       `.\     The BSD daemon is Copyright (c) 1988 by Marshall Kirk McKusick.
+               All Rights Reserved.  Individuals may use the daemon for their
+   _______     personal use within the bounds of good taste.  When reasonably
+  /___/__/|    possible, the text shown above is to be included.
+ /___/__/|/    If you want to mass produce the daemon, for example on CDROM or
+ |___|__|/     T-Shirts, you need permission in advance.  Permission to use it
+  MirBSD`TM´   may be obtained from: Marshall Kirk McKusick, 1614 Oxford St,
+               Berkeley, CA 94709-1608, USA  or at <mckusick@@mckusick.com>
+@
+
+
+2.3
+log
+@Slight wording changes, ok bsiegert@@ tg@@
+@
+text
+@d1 1
+a1 1
+$MirBSD$
+d25 4
+a30 1
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+a31 1
+#	Benny Siegert <bsiegert@@gmx.de>
+@
+
+
+2.2
+log
+@big documentation update:
+* move over the remaining parts of ocvs
+* restructure licence stuff into many files, big bang is gone
+* start converting to mdoc
+* rephrase MirOS stuff
+* add a termination clause to my advertising clause
+* cope with minors contributing to MirOS
+* better list and cross-link files
+
+ok tg@@ tyler@@ sap@@ cnuke@@ wbx@@
+@
+text
+@d90 2
+a91 2
+The MirOS Project strives to make as many out of our work as
+possible as well as inherited work we redistribute available
+d106 2
+a107 2
+parental statement, in non-electronical writing, giving this
+allowance, or a proof of age, on request.
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+XXX outdated
+d3 2
+a4 1
+$MirBSD: src/share/doc/LICENCE,v 1.8 2004/06/12 00:33:31 tg Stab $
+d6 134
+a139 50
+
+The MirOS and MirPorts license are contained in /usr/share/man/COPYRIGHT
+and /usr/ports/README, respectively.
+You are reading /usr/share/doc/legal/LICENCE, which is an overview over
+all other licences used throughout the MirOS project (BSD, X11).
+
+The XFree86(TM) code contains additional clauses, which are reproduced
+partially in the end-user documentation (COPYRIGHT, see above), and fully
+in /usr/X11R6/lib/X11/doc/LICENSE after installation, or - using CVSweb,
+at src/X-Window/xc/programs/Xserver/hw/xfree86/doc/LICENSE in the source.
+The XFree86(TM) project contains only Open Source code, too.
+
+This directory contains:
+ - COPYING-1
+	GNU General Public License, Version 1
+ - COPYING-2
+	GNU General Public License, Version 2
+ - COPYING.LIB-2
+	GNU Library General Public License, Version 2.0
+ - COPYING.LIB-2_1
+	GNU Lesser General Public License, Version 2.1
+ - COPYING.v1
+	GNU General Public License, Version 1
+ - LICENCE
+	This file
+ - LICENSE.httpd
+	The Apache(TM) License, Version 1.1
+	The mod_ssl License
+	The mhttpd "NOTICE" file, required by the APSL v2
+ - LICENSE.sendmail
+	The SENDMAIL License
+ - README.GNU
+	About applying the GNU licenses
+	About the src/gnu/ subtree in OpenBSD/MirBSD
+	Problems with the GNU FDL in the versions 1.1 and 1.2
+
+
+If you are seeking for the NPL, it's only one programme using that,
+namely dict(1), which is in the miscXX.tgz set. The NPL is contained
+within the dict(1) manual page, contained in the manXX.tgz set.
+
+If you have spotted any other work in the MirOS base install or MirPorts
+which imposes more restrictions than the MirOS licence in COPYRIGHT,
+please mail <x86@@ePost.de> AND <miros-discuss@@66h.42h.de> instantly.
+If you have other suggestions about how to make any MirOS installation
+even more free (less strings attached), your suggestions are welcome.
+Thank you very much in advance.
+
+// The MirBSD developer - Thorsten Glaser
+// The MirOS Project, the MirPorts Framework team
+@
+

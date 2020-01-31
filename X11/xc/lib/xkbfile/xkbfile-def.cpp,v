@@ -1,0 +1,137 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @// @;
+
+
+1.1
+date     2004.12.15.18.11.00;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.11.00;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@LIBRARY xkbfile
+VERSION LIBRARY_VERSION
+EXPORTS
+ XkbAccessXDetailText
+ XkbActionText
+ XkbActionTypeText
+ XkbAtomGetString
+ XkbAtomText
+ XkbBehaviorText
+ XkbCFAddModByName
+ XkbCFAddPrivate
+ XkbCFApplyMods
+ XkbCFApplyRtrnValues
+ XkbCFBindMods
+ XkbCFDup
+ XkbCFFree
+ XkbCFFreeRtrn
+ XkbCFParse
+ XkbCFReportError
+ XkbCFScan
+ XkbChangeAtomDisplay
+ XkbChangeKbdDisplay
+ XkbConfigText
+ XkbControlsMaskText
+ XkbConvertGetByNameComponents
+ XkbConvertXkbComponents
+ XkbDetermineFileType
+ XkbDoodadTypeText
+ XkbEnsureSafeMapName
+ XkbFindKeycodeByName
+ XkbFreeOrderedDrawables
+ XkbGeomFPText
+ XkbGetOrderedDrawables
+ XkbIMWhichStateMaskText
+ XkbIndentText
+ XkbInitAtoms
+ XkbInternAtom
+ XkbKeyNameText
+ XkbKeysymText
+ XkbLookupCanonicalRGBColor
+ XkbLookupGroupAndLevel
+ XkbMergeFile
+ XkbModIndexText
+ XkbModMaskText
+ XkbNKNDetailMaskText
+ XkbNameMatchesPattern
+ XkbRF_AddGroup
+ XkbRF_AddRule
+ XkbRF_AddVarDesc
+ XkbRF_AddVarDescCopy
+ XkbRF_AddVarToDescribe
+ XkbRF_Create
+ XkbRF_Free
+ XkbRF_GetComponents
+ XkbRF_GetNamesProp
+ XkbRF_Load
+ XkbRF_LoadDescriptions
+ XkbRF_LoadDescriptionsByName
+ XkbRF_LoadRules
+ XkbRF_LoadRulesByName
+ XkbRF_SetNamesProp
+ XkbReadFromServer
+ XkbSIMatchText
+ XkbStdBell
+ XkbStdBellEvent
+ XkbStringText
+ XkbVModIndexText
+ XkbVModMaskText
+ XkbWriteCFile
+ XkbWriteToServer
+ XkbWriteXKBCompatMap
+ XkbWriteXKBFile
+ XkbWriteXKBGeometry
+ XkbWriteXKBKeyTypes
+ XkbWriteXKBKeycodes
+ XkbWriteXKBKeymap
+ XkbWriteXKBKeymapForNames
+ XkbWriteXKBLayout
+ XkbWriteXKBSemantics
+ XkbWriteXKBSymbols
+ XkbWriteXKMFile
+ XkmFindTOCEntry
+ XkmProbe
+ XkmReadFile
+ XkmReadFileSection
+ XkmReadFileSectionName
+ XkmReadTOC
+#ifdef __UNIXOS2__
+ _XkbStrCaseCmp
+ XkbCFDflts
+ _XkbErrLocation
+ _XkbErrCode
+ _XkbErrMessages
+ _XkbKSCheckCase
+#endif
+
+/* $XFree86: xc/lib/xkbfile/xkbfile-def.cpp,v 1.2 2003/11/06 03:25:42 dawes Exp $ */
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

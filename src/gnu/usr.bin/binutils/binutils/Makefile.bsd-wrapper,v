@@ -1,0 +1,145 @@
+head	1.5;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.5
+date	2005.01.18.18.53.52;	author tg;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2005.01.17.02.06.51;	author tg;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2005.01.16.15.08.44;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2005.01.16.14.06.31;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.13.20.35.26;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.5
+log
+@re-enable man pages, looks like a shortcoming in roff
+@
+text
+@# $MirBSD: src/gnu/usr.bin/binutils/binutils/Makefile.bsd-wrapper,v 1.4 2005/01/17 02:06:51 tg Exp $
+
+FSFSRC=		${GNU_BINUTILS_BU}
+MAN=		doc/addr2line.1 doc/ar.1 doc/c++filt.1 doc/dlltool.1 \
+		doc/nlmconv.1 doc/nm.1 doc/objcopy.1 doc/objdump.1 \
+		doc/ranlib.1 doc/readelf.1 doc/size.1 doc/strings.1 \
+		doc/strip.1 doc/windres.1
+XARGS+=		YLWRAP="${GNUSYSTEM_AUX_DIR}/ylwrap" tooldir=nonexist
+ALL_TARGET=	all info
+INST_TARGET=	INSTALL_MAN= install
+CLEANFILES+=	arlex.c arparse.c arparse.h nlmheader.c nlmheader.h sysinfo.c \
+		sysinfo.h syslex.c ${MAN} doc/binutils.info doc/cxxfilt.man
+MACROS=		-man.old
+
+${MAN}: do-build
+
+.include <bsd.cfwrap.mk>
+@
+
+
+1.4
+log
+@for now, don't install the manpages
+XXX broken
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/binutils/Makefile.bsd-wrapper,v 1.3 2005/01/16 15:08:44 tg Exp $
+d4 4
+a7 4
+#MAN=		doc/addr2line.1 doc/ar.1 doc/c++filt.1 doc/dlltool.1 \
+#		doc/nlmconv.1 doc/nm.1 doc/objcopy.1 doc/objdump.1 \
+#		doc/ranlib.1 doc/readelf.1 doc/size.1 doc/strings.1 \
+#		doc/strip.1 doc/windres.1
+d15 1
+a15 1
+#${MAN}: do-build
+@
+
+
+1.3
+log
+@look! it seems to work!
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/binutils/Makefile.bsd-wrapper,v 1.2 2005/01/16 14:06:31 tg Exp $
+d4 4
+a7 4
+MAN=		doc/addr2line.1 doc/ar.1 doc/c++filt.1 doc/dlltool.1 \
+		doc/nlmconv.1 doc/nm.1 doc/objcopy.1 doc/objdump.1 \
+		doc/ranlib.1 doc/readelf.1 doc/size.1 doc/strings.1 \
+		doc/strip.1 doc/windres.1
+d13 1
+d15 1
+a15 1
+${MAN}: do-build
+@
+
+
+1.2
+log
+@we ain't that buggy
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/binutils/Makefile.bsd-wrapper,v 1.1 2005/01/13 20:35:26 tg Exp $
+d4 5
+a8 2
+#MAN=
+XARGS+=		YLWRAP="${GNUSYSTEM_AUX_DIR}/ylwrap"
+d11 2
+a12 2
+CLEANFILES+=	arlex.c arparse.c arparse.h nlmheader.c nlmheader.h \
+		sysinfo.c sysinfo.h syslex.c
+d14 1
+a14 1
+#${MAN}: do-build
+@
+
+
+1.1
+log
+@further merge and fix double-inclusion-protection
+@
+text
+@d1 1
+a1 8
+# $MirBSD: src/gnu/usr.bin/binutils/binutils/Makefile.bsd-wrapper,v 1.3 2004/08/22 03:28:57 tg Stab $
+
+.include "../Makefile.inc"
+
+FSFSRC=	${GNU_BINUTILS_BU}
+
+XARGS+=	YLWRAP="${GNUSYSTEM_AUX_DIR}/ylwrap" \
+	mkinstalldirs="${SHELL} ${GNUSYSTEM_AUX_DIR}/mkinstalldirs"
+d3 5
+d11 2
+@
+

@@ -1,0 +1,123 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@:: @;
+
+
+2.1
+date	2005.01.03.16.26.00;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.41;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.41;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/* Test PERLREXX.DLL */
+/* Example:
+   perlrexx.cmd BEGIN {push @@INC, 'lib'} use OS2::REXX; REXX_eval "address cmd\n'copyy'";
+ */
+
+call RxFuncAdd 'SysLoadFuncs', 'RexxUtil', 'SysLoadFuncs'
+call SysLoadFuncs
+
+parse arg args
+retval = runperl(args)
+say 'retval = "'retval'"'
+exit 0
+
+addperl: procedure
+  parse arg perlf
+  pathname='perlrexx'
+  r = RxFuncAdd(perlf, pathname, perlf)
+  say "RxFuncAdd("perlf","pathname") -> "r
+  return
+
+runperl1: procedure
+  parse arg perlarg
+  call addperl('PERL')
+  call addperl('PERLTERM')
+  call addperl('PERLEXIT')
+  call addperl('PERLEVAL')
+  call addperl('PERLLASTERROR')
+  signal on syntax name runperl_error
+/*  signal on error name runperl_error
+  signal on failure name runperl_error */
+  say "doing PERLEVAL("perlarg")"
+  tmp = PERLEVAL(perlarg)
+  say "PERLEVAL -> '"tmp"'"
+  signal off syntax
+  call RxFuncDrop 'PERL'
+  call RxFuncDrop 'PERLLASTERROR'
+  call RxFuncDrop 'PERLTERM'
+  call RxFuncDrop 'PERLEVAL'
+  call PERLEXIT
+  call RxFuncDrop 'PERLEXIT'
+  return pathname ': PERLEVAL('perlarg') =' tmp
+
+runperl: procedure
+  parse arg perlarg
+  pathname='perlrexx'
+  r = RxFuncAdd("PerlExportAll", pathname, "PERLEXPORTALL")
+  say "RxFuncAdd("'PerlExportAll'","pathname") -> "r
+  r = PerlExportAll()
+  say "PerlExportAll() -> "r
+  signal on syntax name runperl_error
+/*  signal on error name runperl_error
+  signal on failure name runperl_error */
+  say "doing PERLEVAL("perlarg")"
+  tmp = PERLEVAL(perlarg)
+  say "PERLEVAL -> '"tmp"'"
+  address evalperl perlarg
+  say "Did address evalperl "perlarg
+  signal off syntax
+  r = PerlDropAllExit()
+  /* The following line is not reached...  Why? */
+  say "PerlDropAllExit() -> "r
+  return pathname ': PERLEVAL('perlarg') =' tmp
+
+
+runperl_error:
+  return pathname ': REXX->Perl interface not available; rc="'rc'", .rs="'.rs'", errstr="'errortext(rc)'", perlerr="'PERLLASTERROR()'"'
+
+/*  return pathname ': REXX->Perl interface not available; rc="'rc'", .rs="'.rs'", errstr="'errortext(rc)'", perlerr="???"' */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

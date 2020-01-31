@@ -1,0 +1,91 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.12;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.12;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.12;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/bin/perl -w
+
+BEGIN {
+    if( $ENV{PERL_CORE} ) {
+        chdir 't' if -d 't';
+        unshift @@INC, '../lib';
+    }
+    else {
+        unshift @@INC, 't/lib';
+    }
+}
+chdir 't';
+
+use strict;
+use Test::More tests => 6;
+use Data::Dumper;
+
+BEGIN {
+    use_ok( 'ExtUtils::Liblist' );
+}
+
+ok( defined &ExtUtils::Liblist::ext, 
+    'ExtUtils::Liblist::ext() defined for backwards compat' );
+
+{
+    my @@warn;
+    local $SIG{__WARN__} = sub {push @@warn, [@@_]};
+
+    my $ll = bless {}, 'ExtUtils::Liblist';
+    my @@out = $ll->ext('-ln0tt43r3_perl');
+    is( @@out, 4, 'enough output' );
+    unlike( $out[2], qr/-ln0tt43r3_perl/, 'bogus library not added' );
+    ok( @@warn, 'had warning');
+
+    is( grep(/\QNote (probably harmless): No library found for \E(-l)?n0tt43r3_perl/, map { @@$_ } @@warn), 1 ) || diag Dumper @@warn;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

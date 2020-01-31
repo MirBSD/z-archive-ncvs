@@ -1,0 +1,72 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @// @;
+
+
+1.1
+date     2005.01.06.21.52.25;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.06.21.52.25;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include "i_figureeight.h"
+
+extern int n_strips;
+
+TwoJetVec FigureEight(
+  TwoJetVec w, TwoJetVec h, TwoJetVec bend, TwoJet form, TwoJet v
+) {
+  TwoJet height;
+  v %= 1;
+  height = (Cos (v*2) + -1) * (-1);
+  if (v > 0.25 && v < 0.75)
+    height = height*-1 + 4;
+  height = height*0.6;
+  h = h + bend*(height*height*(1/64.));
+  return
+    w*Sin (v*2) + (h) * (Interpolate((Cos (v) + -1) * (-2), height, form))
+  ;
+}
+
+TwoJetVec AddFigureEight(ThreeJetVec p, ThreeJet u, TwoJet v, ThreeJet form, ThreeJet scale)
+{
+  ThreeJet size = form*scale;
+  form = form*2 + form*form*-1;
+  TwoJetVec dv = AnnihilateVec(D(p, 1), 1);
+  p = AnnihilateVec(p, 1);
+  TwoJetVec du = Normalize(D(p, 0));
+  TwoJetVec h = Normalize(Cross(du, dv))*TwoJet(size);
+  TwoJetVec w = Normalize(Cross(h, du))*(TwoJet(size)*1.1);
+  return RotateZ(
+    TwoJetVec(p) +
+      FigureEight(w, h, du*D(size, 0)*(D(u, 0)^(-1)), form, v),
+    v*(1./n_strips)
+  );
+}
+@
+
+
+1.1.1.1
+log
+@Import programmes new to OpenBSD's X-Window subsystem
+@
+text
+@@

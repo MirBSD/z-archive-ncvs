@@ -1,0 +1,100 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041000:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.10.27.38;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.10.06.25;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.10.06.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@we basically only want the GNU master files
+@
+text
+@## Process this file with automake to create Makefile.in
+
+## Makefile for Automake lib.
+
+## Copyright (C) 2001, 2003, 2004 Free Software Foundation, Inc.
+
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2, or (at your option)
+## any later version.
+
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+
+## You should have received a copy of the GNU General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+## 02111-1307, USA.
+
+SUBDIRS = Automake am
+
+dist_pkgvdata_DATA = COPYING INSTALL texinfo.tex ansi2knr.c ansi2knr.1 \
+  config-ml.in
+
+## These must all be executable when installed.  However, if we use
+## _SCRIPTS, then the program transform will be applied, which is not
+## what we want.  So we make them executable by hand.
+scriptdir = $(pkgvdatadir)
+dist_script_DATA = config.guess config.sub install-sh mdate-sh missing \
+  mkinstalldirs elisp-comp ylwrap acinstall depcomp compile py-compile \
+  symlink-tree
+
+EXTRA_DIST = gnupload
+
+install-data-hook:
+	@@$(POST_INSTALL)
+	@@for prog in $(dist_script_DATA); do \
+	  echo " chmod +x $(DESTDIR)$(scriptdir)/$$prog"; \
+	  chmod +x $(DESTDIR)$(scriptdir)/$$prog; \
+	done
+
+## `test -x' is not portable.  So we use Perl instead.  If Perl
+## doesn't exist, then this test is meaningless anyway.
+installcheck-local:
+	for file in $(dist_script_DATA); do \
+	  $(PERL) -e "exit ! -x '$(pkgvdatadir)/$$file';" || exit 1; \
+	done
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU automake CVS-current from anoncvs@@subversions.gnu.org:/cvsroot/automake
+@
+text
+@@

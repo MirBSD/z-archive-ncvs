@@ -1,0 +1,33 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.12.13.20.47.47;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f3387e8d1051;
+
+
+desc
+@@
+
+
+1.1
+log
+@add ChangeLog services
+@
+text
+@#!/bin/mksh
+# $MirOS: CVSROOT/tracker,v 1.5 2005/12/06 03:11:40 tg Exp $
+#-
+# Record the last directory where the current commit is taking place
+# in for use by the mklogci and mklogtag scripts. Note that the pre-
+# fix for temporary files (idea: tmpdir/prefix.*.commitid) is synced
+# with the other files.
+
+print -r -- "$3" >$1/.tmp/cl.lastdir.$2
+@

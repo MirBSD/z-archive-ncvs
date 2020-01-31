@@ -1,0 +1,71 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.47.05;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.53;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.53;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@#!@@WISH@@
+# Example for use of GNU gettext.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# This file is in the public domain.
+#
+# Source code of the Tcl/Tk program.
+
+package require msgcat
+::msgcat::mcload [file join "@@pkgdatadir@@" "msgs"]
+proc _ {s} {return [::msgcat::mc $s]}
+
+frame .my
+button .my.button \
+  -text [_ "Hello, world!"] \
+  -command exit
+label .my.label \
+  -text [format [_ "This program is running as process number %d."] [pid]]
+pack .my.button -side top
+pack .my.label -side bottom
+pack .my
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

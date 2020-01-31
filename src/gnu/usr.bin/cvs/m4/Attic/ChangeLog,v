@@ -1,0 +1,628 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.21.48.45;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.39;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.39;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@2004-11-17  Derek Price  <derek@@ximbiot.com>
+
+	* getopt.m4: Update from GNULIB.
+
+2004-11-11  Mark D. Baushke  <mdb@@cvshome.org>
+
+	* getopt.m4: Update from GNULIB.
+
+2004-11-09  Mark D. Baushke  <mdb@@cvshome.org>
+
+	* strftime.m4: Update from GNULIB.
+
+2004-11-03  Mark D. Baushke  <mdb@@cvshome.org>
+
+	* uint32_t.m4: Update from GNULIB.
+
+2004-11-03  Derek Price  <derek@@ximbiot.com>
+
+	* bison.m4 (gl_BISON): Update comment to specify the correct Automake
+	version number.
+
+2004-11-03  Mark D. Baushke  <mdb@@cvshome.org>
+
+	* readlink.m4, xreadlink.m4: New from GNULIB.
+	* uint32_t.m4: Update from GNULIB.
+	* gnulib.m4: Regenerated.
+
+2004-11-02  Mark D. Baushke  <mdb@@cvshome.org>
+
+	* getpass.m4, setenv.m4: Update from GNULIB.
+
+2004-11-01  Derek Price  <derek@@ximbiot.com>
+
+	* allocsa.m4, eealloc.m4, setenv.m4: New files from GNULIB.
+
+2004-10-26  Derek Price  <derek@@ximbiot.com>
+
+	* bison.m4 (gl_BISON): Update comment to eliminate new spaces from
+	generated configure script.
+
+2004-10-26  Derek Price  <derek@@ximbiot.com>
+
+	* bison.m4 (gl_BISON): Update comment to specify an Automake version
+	number, rather than Autoconf.
+
+2004-10-26  Derek Price  <derek@@ximbiot.com>
+
+	* bison.m4 (gl_BISON): Comment reasons for forking form GNULIB.
+
+2004-10-25  Derek Price  <derek@@ximbiot.com>
+
+	* rpmatch.m4, yesno.m4: New files from GNULIB.
+
+2004-10-22  Derek Price  <derek@@ximbiot.com>
+
+	* md5.m4, uint32_t.m4: New files from GNULIB.
+
+2004-10-21  Derek Price  <derek@@ximbiot.com>
+
+	* rpmatch.m4, yesno.m4: Back out addition.
+
+2004-10-21  Derek Price  <derek@@ximbiot.com>
+
+	* rpmatch.m4, yesno.m4: New files from GNULIB.
+
+2004-10-21  Derek Price  <derek@@ximbiot.com>
+
+	* getpagesize.m4: New file from GNULIB.
+
+2004-10-21  Derek Price  <derek@@ximbiot.com>
+
+	* realloc.m4: Remove this file.
+
+2004-10-21  Derek Price  <derek@@ximbiot.com>
+
+	* malloc.m4: Remove this file.
+
+2004-10-20  Mark D. Baushke  <mdb@@cvshome.org>
+
+	* sunos57-select.m4: New file. Work around Solaris 7 select()
+	hang.
+
+2004-10-18  Derek Price  <derek@@ximbiot.com>
+
+	* getopt.m4: Update file from GNULIB.
+
+2004-10-15  Derek Price  <derek@@ximbiot.com>
+
+	* vasprintf.m4: New file from GNULIB.
+
+2004-10-09  Derek Price  <derek@@ximbiot.com>
+
+	* lstat.m4: Update from GNULIB.
+
+2004-10-09  Derek Price  <derek@@ximbiot.com>
+
+	* stat.m4: Update from GNULIB.
+
+2004-10-07  Derek Price  <derek@@ximbiot.com>
+
+	* .cvsignore, Makefile.am, Makefile.in: Remove.
+
+2004-10-06  Derek Price  <derek@@ximbiot.com>
+
+	* getpass.m4: Update from GNULIB.
+
+2004-10-06  Derek Price  <derek@@ximbiot.com>
+
+	* strcase.m4: New file from GNULIB.
+
+2004-10-06  Derek Price  <derek@@ximbiot.com>
+
+	* ssize_t.m4: Update from GNULIB.
+
+2004-10-06  Derek Price  <derek@@ximbiot.com>
+
+	* stdbool.m4: Update from GNULIB.
+
+2004-10-06  Derek Price  <derek@@ximbiot.com>
+
+	* getopt.m4: Update from GNULIB.
+
+2004-10-06  Derek Price  <derek@@ximbiot.com>
+
+	* mkstemp.m4: Update from GNULIB.
+
+2004-10-05  Derek Price  <derek@@ximbiot.com>
+
+	* fnmatch.m4: Update from GNULIB.
+
+2004-10-05  Derek Price  <derek@@ximbiot.com>
+
+	* dirname.m4, dos.m4: Updated from GNULIB.
+
+2004-10-05  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add gnulib.m4.
+	* gnulib.m4: New file.
+	* xalloc.m4: Update from GNULIB.
+
+2004-10-05  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add new and previously missing files.
+	* eoverflow.m4, intmax.m4, printf-posix.m4: New files from GNULIB.
+	* gettext.m4, glibc21.m4, intmax_t.m4, inttypes_h.m4, lib-ld.m4,
+	lib-link.m4, lib-prefix.m4, longlong.m4, po.m4, stdint_h.m4,
+	uintmax_t.m4, ulonglong.m4, vasnprintf.m4: Import most recent versions
+	from GNULIB.
+
+2004-10-05  Derek Price  <derek@@ximbiot.com>
+
+	* save-cwd.m4: New file from GNULIB.
+
+2004-10-05  Derek Price  <derek@@ximbiot.com>
+
+	* alloca.m4: Import latest version from GNULIB.
+
+2004-10-05  Derek Price  <derek@@ximbiot.com>
+
+	* unlocked-io.m4: Import most recent version from GNULIB.
+
+2004-10-05  Derek Price  <derek@@ximbiot.com>
+
+	* regex.m4: Import most recent version from GNULIB.
+
+2004-05-20  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add strftime.m4.
+	* strftime.m4: New file.
+
+2004-05-20  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add tzset.m4.
+
+2004-05-14  Derek Price  <derek@@ximbiot.com>
+
+	* gettime.m4: Updated from GNULIB.
+
+2004-05-03  Derek Price  <derek@@ximbiot.com>
+
+	* bison.m4: Declare YACC & YFLAGS as precious vars.
+
+2004-05-03  Derek Price  <derek@@ximbiot.com>
+
+	* bison.m4: Use AM_MISSING_PROG rather than a set/subst combination.
+
+2004-05-02  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add strerror.m4 & strerror_r.m4.
+	* strerror_r.m4: New file.
+	* Makefile.in: Regenerated.
+
+2004-04-28  Derek Price  <derek@@ximbiot.com>
+
+	* unlocked-io.m4: Update to most recent version from GNULIB.
+
+2004-04-27  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add new files.
+	* bison.m4, tm_gmtoff.m4, getdate.m4: New files.
+	* Makefile.in: Regenerated.
+
+2004-04-27  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add new file.
+	* mktime.m4: New file.
+	* Makefile.in: Regenerated.
+
+2004-04-27  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add new file.
+	* time_r.m4: New file.
+	* Makefile.in: Regenerated.
+
+2004-04-27  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add new file.
+	* nanosleep.m4: New file.
+	* Makefile.in: Regenerated.
+
+2004-04-27  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add new files.
+	* clock_time.m4, gettime.m4: New files.
+	* Makefile.in: Regenerated.
+
+2004-04-27  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add new file.
+	* gettimeofday.m4: New file.
+	* Makefile.in: Regenerated.
+
+2004-04-27  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add new file.
+	* st_mtim.m4, timespec.m4: New file.
+	* Makefile.in: Regenerated.
+
+2004-04-27  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add new file.
+	* extensions.m4: New file.
+	* Makefile.in: Regenerated.
+
+2004-04-27  Derek Price  <derek@@ximbiot.com>
+
+	* dos.m4: Update from GNULIB.
+
+2004-04-27  Derek Price  <derek@@ximbiot.com>
+
+	Add dirname module from GNULIB.
+
+	* Makefile.am (EXTRA_DIST): Add new files.
+	* dirname.m4, dos.m4: New files.
+	* Makefile.in: Regenerated.
+
+2004-04-21  Derek Price  <derek@@ximbiot.com>
+
+	Add stdbool module from GNULIB.
+
+	* Makefile.am (EXTRA_DIST): Add stdbool.m4.
+	* stdbool.m4: New files.
+	* Makefile.in: Regenerated.
+
+2004-04-14  Derek Price  <derek@@ximbiot.com>
+
+	Update to current fnmatch module from GNULIB.
+
+	* Makefile.am (EXTRA_DIST): Add fnmatch.m4 * mbstate_t.m4.
+	* fnmatch.m4, mbstate_t.m4: New files.
+	* Makefile.in: Regenerated.
+
+2004-04-07  Derek Price  <derek@@ximbiot.com>
+
+	Update regex module from GNULIB.
+
+	* Makefile.am (EXTRA_DIST): Add regex.m4.
+	* regex.m4: New file.
+
+2004-02-20  Derek Price  <derek@@ximbiot.com>
+
+	Import xalloc module from GNULIB, as well as its remaining unimported
+	dependency, the exitfail module.
+
+	* Makefile.am (EXTRA_DIST): Add exitfail.m4 & xalloc.m4.
+	* exitfail.m4, xalloc.m4: New files.
+	* Makefile.in: Regenerated.
+
+2004-02-18  Derek Price  <derek@@ximbiot.com>
+
+	* xsize.m4: Update to a more recent version which AC_REQUIREs
+	AC_C_INLINE.
+
+2004-02-15  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add alloca.m4.
+
+2004-02-15  Derek Price  <derek@@ximbiot.com>
+
+	Import vasnprintf module from GNULIB.
+	* intmax_t.m4, longdouble.m4, longlong.m4, signed.m4, vasnprintf.m4,
+	wchar_t.m4, wint_t.m4: New files.
+	* Makefile.am (EXTRA_DIST): Add new files.
+
+2004-02-15  Derek Price  <derek@@ximbiot.com>
+
+	Import xsize module from GNULIB for vasnprintf().
+	* size_max.m4, xsize.m4: New files.
+	* Makefile.am (EXTRA_DIST): Add new files.
+
+2004-02-15  Derek Price  <derek@@ximbiot.com>
+
+	Import alloca module from GNULIB for vasnprintf().
+	* alloca.m4: New file.
+
+2003-11-25  Mark D. Baushke  <mdb@@cvshome.org>
+
+	* Makefile.in: Regenerate for new configure.in.
+
+2003-11-19  Derek Price  <derek@@ximbiot.com>
+
+	* getline.m4, getndelim2.m4: Import new, synchronized, versions from
+	GNULIB.
+
+2003-11-03  Derek Price  <derek@@ximbiot.com>
+
+	* acx_extract_cpp_defn.m4 (ACX_EXTRACT_CPP_DEFN): Remove leading and
+	trailing white space around extracted definitions.
+	(Report from Mark D. Baushke <mdb@@cvshome.org>.)
+
+2003-10-23  Derek Price  <derek@@ximbiot.com>
+
+	Avoid including getndelim.o in $(LIBOBJ) twice.
+
+	* getndelim2.m4 (gl_GETNDELIM2): Only allow AC_LIBOBJ(getndelim2) to be
+	called once.
+	* getline.m4 (gl_GETLINE): Use gl_GETNDELIM2 rather than calling
+	AC_LIBOBJ(getndelim2) directly.
+
+2003-10-01  Derek Price  <derek@@ximbiot.com>
+
+	Add the GNULIB restrict module.
+
+	* Makefile.am (EXTRA_DIST): Add restrict.m4.
+	* restrict.m4: New file.
+	* Makefile.in: Regenerated.
+
+2003-10-01  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add getopt.m4.
+	* getopt.m4: New file from GNULIB.
+	* Makefile.in: Regenerated.
+
+2003-10-01  Derek Price  <derek@@ximbiot.com>
+
+	* gettext.m4: Don't check for headers we assume per the notes in
+	HACKING.
+
+2003-09-30  Derek Price  <derek@@ximbiot.com>
+
+	Provide an atexit() function on systems which provide on_exit() but not
+	atexit().
+
+	* Makefile.am (EXTRA_DIST): Add atexit.m4.
+	* atexit.m4: New file.
+	* Makefile.in: Regenerated.
+
+2003-08-11  Derek Price  <derek@@ximbiot.com>
+
+	* getndelim2: Update from GNULIB to eliminate warning.
+
+2003-07-31  Derek Price  <derek@@ximbiot.com>
+
+	* getpass.m4: Update from GNULIB.
+
+2003-07-29  Derek Price  <derek@@ximbiot.com>
+
+	* getpass.m4: New file from GNULIB.
+
+2003-07-25  Derek Price  <derek@@ximbiot.com>
+
+	* getline.m4: Sync this file with GNULIB.
+
+2003-07-24  Derek Price  <derek@@ximbiot.com>
+
+	* gethostname.m4: New file from GNULIB.
+
+2003-07-22  Derek Price  <derek@@ximbiot.com>
+
+	* gettext.m4: Assume the existance of <limits.h> & <stddef.h> per C89.
+
+2003-07-22  Derek Price  <derek@@ximbiot.com>
+
+	* strerror.m4: New file from GNULIB.
+
+2003-07-22  Derek Price  <derek@@ximbiot.com>
+
+	* memmove.m4: New file from GNULIB.
+
+2003-07-19  Derek Price  <derek@@ximbiot.com>
+
+	* lstat.m4: Call the *_ONCE functions.  This almost syncs us with
+	GNULIB.
+
+2003-07-19  Derek Price  <derek@@ximbiot.com>
+
+	* getline.m4: Merge more of Bruno Habile's GNULIB changes to this file
+	so our fork is less divergent.
+	* getndelim2.m4: Ditto.
+	* getnline.m4: Ditto.
+
+2003-07-17  Derek Price  <derek@@ximbiot.com>
+
+	* getline.m4 (gl_PREREQ_GETLINE): s/gl_FUNC_GETNDELIM2/gl_GETNDELIM2/.
+	* getnline.m4 (gl_FUNC_GETNLINE): Rename to...
+	(gl_GETNLINE): ...this and s/gl_FUNC_GETNDELIM2/gl_GETNDELIM2/.
+	* getndelim2.m4 (gl_FUNC_GETNDELIM2): Rename to...
+	(gl_GETNDELIM2): ...this.
+	(Merging some of Bruno Habile's changes from GNULIB.)
+
+2003-07-17  Derek Price  <derek@@ximbiot.com>
+
+	* getndelim2.m4: New file.
+	* ssize_t.m4: Ditto.
+
+	* getline.m4: Depend on getndelim2 rather than getnline.
+	* getnline.m4: Depend on getndelim2.
+
+2003-07-17  Derek Price  <derek@@ximbiot.com>
+
+	* getline.m4 (AM_FUNC_GETLINE): Define HAVE_GETDELIM when a working
+	GNU getline() is found.
+	(Thanks again to Steve McIntyre <stevem@@cvshome.org> for the report.)
+
+2003-07-16  Derek Price  <derek@@ximbiot.com>
+
+	* pathmax.m4: New file.
+	* Makefile.am (EXTRA_DIST): Add new file.
+	* Makefile.in: Regenerated.
+
+2003-07-16  Derek Price  <derek@@ximbiot.com>
+
+	* getline.m4: New file based on GNULIB and resubmitted to GNULIB.
+	* getnline.m4: Ditto.
+
+	* Makefile.am (EXTRA_DIST): Add new files.
+
+	* Makefile.in: Regenerated.
+
+2003-07-15  Derek Price  <derek@@ximbiot.com>
+
+	* unlocked-io.m4: Use the onceonly_2_57.m4 functions.  This syncs us
+	with GNULIB.
+
+2003-06-16  Derek Price  <derek@@ximbiot.com>
+
+	* acx_with_external_zlib.m4: Fix minor typo that was preventing
+	--with-external-zlib from linking.
+	(Patch from Rainer Orth <ro@@TechFak.Uni-Bielefeld.DE>.)
+
+2003-06-13  Derek Price  <derek@@ximbiot.com>
+
+	* onceonly_2_57.m4: New file.
+	* Makefile.am (EXTRA_DIST): Add new file.
+
+	* Makefile.in: Regenerated.
+
+2003-06-13  Derek Price  <derek@@ximbiot.com>
+
+	* mkstemp.m4: New file.
+	* Makefile.am (EXTRA_DIST): Add new file.
+
+	* Makefile.in: Regenerated.
+
+2003-06-13  Derek Price  <derek@@ximbiot.com>
+
+	* asx_version_compare.c: Check for empty strings in version subparts.
+
+2003-06-11  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): Add new files and a few forgotten files.
+
+	* codeset.m4: New gettext support macros.
+	* gettext.m4: Ditto.
+	* glibc21.m4: Ditto.
+	* iconv.m4: Ditto.
+	* intdiv0.m4: Ditto.
+	* inttypes-pri.m4: Ditto.
+	* inttypes.m4: Ditto.
+	* inttypes_h.m4: Ditto.
+	* isc-posix.m4: Ditto.
+	* lcmessage.m4: Ditto.
+	* lib-ld.m4: Ditto.
+	* lib-link.m4: Ditto.
+	* lib-prefix.m4: Ditto.
+	* nls.m4: Ditto.
+	* po.m4: Ditto.
+	* progtest.m4: Ditto.
+	* stdint_h.m4: Ditto.
+	* uintmax_t.m4: Ditto.
+	* ulonglong.m4: Ditto.
+
+	* Makefile.in: Regenerated.
+
+2003-05-28  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.in: Regenerated with README included in DIST_COMMON.
+
+2003-05-27  Derek Price  <derek@@ximbiot.com>
+
+	* README: New file explaining the GNULIB origin of many of the m4
+	files.
+
+2003-05-22  Derek Price  <derek@@ximbiot.com>
+
+	* acx_with_external_zlib.m4: Check version of unused ZLIBs and warn
+	when they are newer than the selected version.
+	* acx_extract_cpp_defn.m4: New file.
+	* asx_version_compare.m4: Ditto.
+
+2003-05-21  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.in: Regenerate with Autoconf version 1.7.5.
+
+2003-05-21  Derek Price  <derek@@ximbiot.com>
+
+	* unlocked-io.m4: New file from GNULIB.
+
+2003-05-21  Derek Price  <derek@@ximbiot.com>
+
+	* realloc.m4: New file from GNULIB.
+
+2003-05-20  Derek Price  <derek@@ximbiot.com>
+
+	* lstat.m4 (jm_FUNC_LSTAT): Add check for the lstat directory with a
+	trailing slash bug.
+
+2003-05-20  Derek Price  <derek@@ximbiot.com>
+
+	* acx_with_external_zlib.m4 (--with-external-zlib): New file with new
+	ACX_WITH_SYSTEM_VLIB function to use the system's installed version of
+	zlib library.
+	(Original patch from Anthon Pang <apang@@telus.net>.)
+
+	* Makefile.am (EXTRA_DIST): Add new file.
+	* Makefile.in: Regenerated.
+
+2003-05-20  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am (EXTRA_DIST): s/acx_have_gssapi.m4/acx_with_gssapi.m4/.
+
+	* Makefile.in: Regenerated.
+
+2003-05-20  Derek Price  <derek@@ximbiot.com>
+
+	* .cvsignore: New file.
+
+2003-05-19  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.in (EXTRA_DIST): Add stat.m4, lstat.m4, malloc.m4.
+	* malloc.m4: New file from <https://savannah.gnu.org/projects/gnulib>.
+
+	* Makefile.in: Regenerated.
+
+2003-05-19  Derek Price  <derek@@ximbiot.com>
+
+	* lstat.m4: New file from
+	<https://savannah.gnu.org/projects/gnulib>.
+	* stat.m4: Ditto.
+
+	* Makefile.in: Regenerated.
+
+2003-05-19  Derek Price  <derek@@ximbiot.com>
+
+	* Makefile.am: New file.
+	* acx_have_gssapi.m4: Ditto.
+	* cvs_func_printf_ptr.m4: Ditto.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

@@ -1,0 +1,59 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.03.00.23.35;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.35;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*                  /Net/dxcern/userd/timbl/hypertext/WWW/Library/Implementation/HTPlain.html
+                                    PLAIN TEXT OBJECT
+                                             
+ */
+#ifndef HTPLAIN_H
+#define HTPLAIN_H
+
+#include <HTStream.h>
+#include <HTAnchor.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    extern HTStream *HTPlainPresent(HTPresentation *pres,
+				    HTParentAnchor *anchor,
+				    HTStream *sink);
+
+#ifdef __cplusplus
+}
+#endif
+#endif				/* HTPLAIN_H */
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

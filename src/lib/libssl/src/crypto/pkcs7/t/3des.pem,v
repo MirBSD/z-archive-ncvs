@@ -1,0 +1,69 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.30.23;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.54;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.54;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@-----BEGIN PKCS7-----
+MIAGCSqGSIb3DQEHA6CAMIACAQAxggHmMIHwAgEAMIGZMIGSMQswCQYDVQQGEwJBVTETMBEG
+A1UECBMKUXVlZW5zbGFuZDERMA8GA1UEBxMIQnJpc2JhbmUxGjAYBgNVBAoTEUNyeXB0c29m
+dCBQdHkgTHRkMSIwIAYDVQQLExlERU1PTlNUUkFUSU9OIEFORCBURVNUSU5HMRswGQYDVQQD
+ExJERU1PIFpFUk8gVkFMVUUgQ0ECAgR+MA0GCSqGSIb3DQEBAQUABEC2vXI1xQDW6lUHM3zQ
+/9uBEBOO5A3TtkrklAXq7v01gsIC21t52qSk36REXY+slhNZ0OQ349tgkTsoETHFLoEwMIHw
+AgEAMIGZMIGSMQswCQYDVQQGEwJBVTETMBEGA1UECBMKUXVlZW5zbGFuZDERMA8GA1UEBxMI
+QnJpc2JhbmUxGjAYBgNVBAoTEUNyeXB0c29mdCBQdHkgTHRkMSIwIAYDVQQLExlERU1PTlNU
+UkFUSU9OIEFORCBURVNUSU5HMRswGQYDVQQDExJERU1PIFpFUk8gVkFMVUUgQ0ECAgR9MA0G
+CSqGSIb3DQEBAQUABEB8ujxbabxXUYJhopuDm3oDq4JNqX6Io4p3ro+ShqfIndsXTZ1v5a2N
+WtLLCWlHn/habjBwZ/DgQgcKASbZ7QxNMIAGCSqGSIb3DQEHATAaBggqhkiG9w0DAjAOAgIA
+oAQIbsL5v1wX98KggAQoAaJ4WHm68fXY1WE5OIjfVBIDpO1K+i8dmKhjnAjrjoyZ9Bwc8rDL
+lgQg4CXb805h5xl+GfvSwUaHJayte1m2mcOhs3J2YyqbQ+MEIMIiJQccmhO3oDKm36CFvYR8
+5PjpclVcZyX2ngbwPFMnBAgy0clOAE6UKAAAAAAAAAAAAAA=
+-----END PKCS7-----
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

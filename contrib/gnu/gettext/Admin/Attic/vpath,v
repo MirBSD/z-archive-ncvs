@@ -1,0 +1,69 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.43.04;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@Q: gettext's Makefiles don't support VPATH.
+
+A: It's some vendors' "make" which doesn't support VPATH.
+
+   1) GNU make supports VPATH with both .c.o and %.o:%.c rules.
+
+   2) Solaris make should not be used with VPATH at all, as it randomly
+      changes Makefile variables.
+
+   3) FreeBSD make does not support %.o:%.c rules at all. For the
+      remaining .c.o rules VPATH is taken into account. For
+      additional dependencies like "foo.o : bar.c" it is not.
+
+   Since %.o:%.c rules are not portable, GNU package Makefiles
+   shouldn't use them. Only .c.o rules. And then gettext's Makefiles
+   should work with GNU make and with FreeBSD make. But Solaris make
+   is not supportable with VPATH.
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

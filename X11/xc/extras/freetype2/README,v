@@ -1,0 +1,82 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.04.58;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.58;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@
+  Special notes to Unix users
+  ===========================
+
+  Please   read  the  file   "docs/UPGRADE.UNX",  it   contains  important
+  information  regarding  the  installation  of  FreeType on Unix systems,
+  especially GNU based operating systems like GNU/Linux.
+
+  FreeType 2's library is called `libfreetype', FreeType 1's library
+  is called `libttf'.  They are *not* compatible!
+
+
+  FreeType 2.1.4
+  ==============
+
+  Please   read  the  docs/CHANGES   file,  it   contains  IMPORTANT
+  INFORMATION.
+
+  Read  the  files "docs/INSTALL"  for installation instructions.
+
+  Note  that the  FreeType 2  documentation  is now  available as  a
+  separate package from our sites.  See:
+
+    ftp://ftp.freetype.org/pub/freetype2/ftdocs-2.1.4.tar.bz2
+    ftp://ftp.freetype.org/pub/freetype2/ftdocs-2.1.4.tar.gz
+    ftp://ftp.freetype.org/pub/freetype2/ftdoc214.zip
+
+
+  Reports
+  =======
+
+  Please  report  bugs  by  e-mail to  `devel@@freetype.org'.   Don't
+  forget to send  a detailed explanation of the  problem -- there is
+  nothing worse  than receiving a  terse message that only  says "it
+  doesn't work".
+
+
+
+  Enjoy!
+
+
+    The FreeType Team
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,110 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.49.13;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.12;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.12;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@#! /bin/sh
+
+# Test compendium option.  Use it there was no "old" PO file at all
+# (merely use /dev/null).
+
+tmpfiles=""
+trap 'rm -fr $tmpfiles' 1 2 3 15
+
+tmpfiles="$tmpfiles mm-c-4.com mm-c-4.pot"
+
+cat <<\EOF > mm-c-4.com
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: file.c:345
+msgid "5"
+msgstr "fünf"
+EOF
+
+cat <<EOF > mm-c-4.pot
+#: file.c:123
+msgid "1"
+msgstr ""
+
+#: file.c:345
+msgid "5"
+msgstr ""
+EOF
+
+tmpfiles="$tmpfiles mm-c-4.out"
+: ${MSGMERGE=msgmerge}
+${MSGMERGE} -q --compendium mm-c-4.com /dev/null mm-c-4.pot -o mm-c-4.out
+test $? = 0 || { rm -fr $tmpfiles; exit 1; }
+
+tmpfiles="$tmpfiles mm-c-4.ok"
+cat << \EOF > mm-c-4.ok
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: file.c:123
+msgid "1"
+msgstr ""
+
+#: file.c:345
+msgid "5"
+msgstr "fünf"
+EOF
+
+: ${DIFF=diff}
+${DIFF} mm-c-4.ok mm-c-4.out
+result=$?
+
+rm -fr $tmpfiles
+
+exit $result
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

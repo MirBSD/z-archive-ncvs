@@ -1,0 +1,96 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.2
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.06;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.11;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.11;	author tg;	state Exp;
+branches;
+next	1.1.1.2;
+
+1.1.1.2
+date	2005.01.16.09.54.35;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@divert(-1)
+#
+# Copyright (c) 1998-2004 Sendmail, Inc. and its suppliers.
+#	All rights reserved.
+# Copyright (c) 1983 Eric P. Allman.  All rights reserved.
+# Copyright (c) 1988, 1993
+#	The Regents of the University of California.  All rights reserved.
+#
+# By using this file, you agree to the terms and conditions set
+# forth in the LICENSE file which can be found at the top level of
+# the sendmail distribution.
+#
+#
+VERSIONID(`$Sendmail: version.m4,v 8.117 2004/07/30 18:03:07 ca Exp $')
+#
+divert(0)
+# Configuration version number
+DZ8.13.1`'ifdef(`confCF_VERSION', `/confCF_VERSION')
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@
+
+
+1.1.1.2
+log
+@Import a series of fixes and minor updates from OpenBSD
+@
+text
+@d3 1
+a3 1
+# Copyright (c) 1998-2005 Sendmail, Inc. and its suppliers.
+d14 1
+a14 1
+VERSIONID(`$Sendmail: version.m4,v 8.127 2005/01/12 04:32:32 ca Exp $')
+d18 1
+a18 1
+DZ8.13.3`'ifdef(`confCF_VERSION', `/confCF_VERSION')
+@
+

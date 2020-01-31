@@ -1,0 +1,165 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.13.20.13.27;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.01.44;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.01.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@start merging binutils
+@
+text
+@#
+# Makefile for binutils under openVMS (Alpha and Vax)
+#
+# For use with gnu-make for vms
+#
+# Created by Klaus K"ampf, kkaempf@@rmi.de
+#
+#
+
+# Distribution version, filled in by configure.com
+VERSION=@@VERSION@@
+
+ifeq ($(ARCH),ALPHA)
+TARGET=""vms-alpha""
+else
+TARGET=""vms-vax""
+endif
+
+ifeq ($(CC),gcc)
+CFLAGS=/include=([],[-.include],[-.bfd])$(DEFS)
+DEFS=/define=("TARGET=$(TARGET)")
+LIBS=,gnu_cc_library:libgcc/lib,sys$$library:vaxcrtl.olb/lib,gnu_cc_library:crt0.obj
+else
+CFLAGS=/noopt/debug/include=([],[-.include],[-.bfd])$(DEFS)\
+/warnings=disable=(missingreturn,implicitfunc,longextern)
+DEFS=/define=("TARGET=$(TARGET)","const=","unlink=remove")
+LIBS=,sys$$library:vaxcrtl.olb/lib
+endif
+
+BFDLIB = [-.bfd]libbfd.olb/lib
+BFDLIB_DEP = [-.bfd]libbfd.olb
+LIBIBERTY_DEP = [-.libiberty]libiberty.olb
+LIBIBERTY = [-.libiberty]libiberty.olb/lib
+OPCODES_DEP = [-.opcodes]libopcodes.olb
+OPCODES = [-.opcodes]libopcodes.olb/lib
+
+DEBUG_OBJS = rddbg.obj,debug.obj,stabs.obj,ieee.obj,rdcoff.obj
+
+WRITE_DEBUG_OBJS = $(DEBUG_OBJS),wrstabs.obj
+
+BULIBS = []bucomm.obj,version.obj,filemode.obj
+
+ADDL_DEPS = $(BULIBS),$(BFDLIB_DEP),$(LIBIBERTY_DEP)
+ADDL_LIBS = $(BULIBS),$(BFDLIB),$(LIBIBERTY)
+
+SIZEOBJS = $(ADDL_DEPS),size.obj
+
+STRINGSOBJS = $(ADDL_DEPS),strings.obj
+
+NMOBJS = $(ADDL_DEPS),nm.obj
+
+OBJDUMPOBJS = $(ADDL_DEPS),objdump.obj,prdbg.obj,$(DEBUG_OBJS),$(OPCODES_DEP)
+
+all: config.h size.exe strings.exe objdump.exe nm.exe
+
+size.exe: $(SIZEOBJS)
+	link/exe=$@@ size.obj,$(ADDL_LIBS)$(LIBS)
+
+strings.exe: $(STRINGSOBJS)
+	link/exe=$@@ strings.obj,$(ADDL_LIBS)$(LIBS)
+
+nm.exe: $(NMOBJS)
+	link/exe=$@@ nm.obj,$(ADDL_LIBS)$(LIBS)
+
+objdump.exe: $(OBJDUMPOBJS)
+	link/exe=$@@ objdump.obj,prdbg.obj,$(DEBUG_OBJS),$(BFDLIB),$(OPCODES),$(ADDL_LIBS)$(LIBS)
+
+
+version.obj: version.c
+	$(CC) $(CFLAGS)/define=(VERSION="""$(VERSION)""") $<
+
+config.h:
+	$$ @@configure
+	$(MAKE) -f makefile.vms "CC=$(CC)"
+
+[-.bfd]libbfd.olb:
+	$(CD) [-.bfd]
+	$(MAKE) -f makefile.vms "CC=$(CC)"
+	$(CD) [-.binutils]
+
+[-.libiberty]libiberty.olb:
+	$(CD) [-.libiberty]
+	$(MAKE) -f makefile.vms "CC=$(CC)"
+	$(CD) [-.binutils]
+
+[-.opcodes]libopcodes.olb:
+	$(CD) [-.opcodes]
+	$(MAKE) -f makefile.vms "CC=$(CC)"
+	$(CD) [-.binutils]
+
+clean:
+	$$ purge
+	$(RM) *.obj;
+	$(RM) *.exe;
+
+distclean: clean
+	$(RM) config.h;
+	$(RM) makefile.vms;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

@@ -1,0 +1,61 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.12.53;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.12.53;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XConsortium: Imakefile /main/10 1996/12/02 10:20:33 lehors $
+XCOMM $XFree86: xc/programs/Xserver/hw/kdrive/i810/Imakefile,v 1.1 2001/03/30 02:18:41 keithp Exp $
+KDRIVE=..
+#include "../Kdrive.tmpl"
+
+#if BuildXvExt
+XVSRCS = i810_video.c
+XVOBJS = i810_video.o
+#endif
+
+SRCS = 	i810.c i810stub.c i810draw.c i810_cursor.c $(XVSRCS)
+
+OBJS = 	i810.o i810stub.o i810draw.o i810_cursor.o $(XVOBJS)
+
+DEFINES = XvExtensionDefines /* -DI810CFG_SHOW_OVERSCAN */
+
+INCLUDES = -I. $(KDINCS)
+
+NormalLibraryObjectRule()
+NormalLibraryTarget(i810,$(OBJS))
+DependTarget()
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

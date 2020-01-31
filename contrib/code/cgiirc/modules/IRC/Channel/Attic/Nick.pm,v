@@ -1,0 +1,97 @@
+head	2.2;
+access;
+symbols
+	cgiirc-0_5_5:1.1.3.2
+	cgiirc-0_5_4:1.1.3.1
+	tg:1.1.3;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.18.20.26.34;	author tg;	state dead;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.19.14.29.18;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches
+	1.1.3.1;
+next	;
+
+1.1.3.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches;
+next	1.1.3.2;
+
+1.1.3.2
+date	2005.01.18.20.03.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@nah, doesnt work like I would
+@
+text
+@# $Id: Nick.pm,v 1.1.3.1 2004/10/27 10:56:50 tg Exp $
+package IRC::Channel::Nick;
+use strict;
+
+sub new {
+   my $class = shift;
+   my $self = bless { }, $class;
+   %$self = @@_;
+   return $self;
+}
+
+# Maybe i'll add some functions here, one day...
+
+1;
+@
+
+
+2.1
+log
+@*sigh* update to MirCGIIRC
+@
+text
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.3.1
+log
+@Import cgiirc 0.5.4 (pristine) again
+@
+text
+@@
+
+
+1.1.3.2
+log
+@there's a new CGI::IRC out, with utf-8 supposedly, and fireschrott bugfixes
+@
+text
+@d1 1
+a1 1
+# $Id: Nick.pm,v 1.1.1.1 2002/03/05 16:34:19 dgl Exp $
+@
+

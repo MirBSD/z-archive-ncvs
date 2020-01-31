@@ -1,0 +1,94 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.30.44;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.02;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.02;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@=pod
+
+=head1 NAME
+
+RSA_new, RSA_free - allocate and free RSA objects
+
+=head1 SYNOPSIS
+
+ #include <openssl/rsa.h>
+
+ RSA * RSA_new(void);
+
+ void RSA_free(RSA *rsa);
+
+=head1 DESCRIPTION
+
+RSA_new() allocates and initializes an B<RSA> structure. It is equivalent to
+calling RSA_new_method(NULL).
+
+RSA_free() frees the B<RSA> structure and its components. The key is
+erased before the memory is returned to the system.
+
+=head1 RETURN VALUES
+
+If the allocation fails, RSA_new() returns B<NULL> and sets an error
+code that can be obtained by L<ERR_get_error(3)|ERR_get_error(3)>. Otherwise it returns
+a pointer to the newly allocated structure.
+
+RSA_free() returns no value.
+
+=head1 SEE ALSO
+
+L<ERR_get_error(3)|ERR_get_error(3)>, L<rsa(3)|rsa(3)>,
+L<RSA_generate_key(3)|RSA_generate_key(3)>,
+L<RSA_new_method(3)|RSA_new_method(3)>
+
+=head1 HISTORY
+
+RSA_new() and RSA_free() are available in all versions of SSLeay and OpenSSL.
+
+=cut
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

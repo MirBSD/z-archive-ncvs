@@ -1,0 +1,530 @@
+head	2.7;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.7
+date	2005.01.26.20.08.13;	author tg;	state Exp;
+branches;
+next	2.6;
+
+2.6
+date	2005.01.18.17.31.15;	author tg;	state Exp;
+branches;
+next	2.5;
+
+2.5
+date	2005.01.16.13.35.00;	author tg;	state Exp;
+branches;
+next	2.4;
+
+2.4
+date	2005.01.14.14.15.20;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.09.15.32.31;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.03.23.02.42;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.33.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.7
+log
+@bump (-fno-dingens and tai and ...)
+@
+text
+@# $MirBSD: src/share/mk/sys.mk,v 2.6 2005/01/18 17:31:15 tg Exp $
+# $OpenBSD: sys.mk,v 1.39 2004/09/20 18:52:37 espie Exp $
+# $NetBSD: sys.mk,v 1.27 1996/04/10 05:47:19 mycroft Exp $
+# @@(#)sys.mk	5.11 (Berkeley) 3/13/91
+#-
+# Copyright (c) 2002, 2003, 2004, 2005
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+#
+# Licensee is hereby permitted to deal in this work without restric-
+# tion, including unlimited rights to use, publicly perform, modify,
+# merge, distribute, sell, give away or sublicence, provided all co-
+# pyright notices above, these terms and the disclaimer are retained
+# in all redistributions or reproduced in accompanying documentation
+# or other materials provided with binary redistributions.
+#
+# Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+# any kind, expressed or implied, to the maximum extent permitted by
+# applicable law, but with the warranty of being written without ma-
+# licious intent or gross negligence; in no event shall licensor, an
+# author or contributor be held liable for any damage, direct, indi-
+# rect or other, however caused, arising in any way out of the usage
+# of this work, even if advised of the possibility of such damage.
+#-
+# We want at least the following defines: (samples)
+# MACHINE		i386			amiga
+# MACHINE_ARCH		i386			m68k
+# MACHINE_OS		BSD			Linux
+# OStype		MirBSD			Debian (...)
+# OSrev			7			version
+# OSrpl			128			patchlevel
+# OSNAME		MirBSD			uname -s
+# OSname		mirbsd			uname -s in lowercase
+# OScompat		3.5			equivalent OpenBSD version
+# OStriplet		i386-ecce-mirbsd8	... for GNU software
+
+.if !defined(_SYS_MK)
+_SYS_MK=1
+
+.if defined(EXTRA_SYS_MK_INCLUDES)
+.  for _i in ${EXTRA_SYS_MK_INCLUDES}
+.    include ${_i}
+.  endfor
+.endif
+
+MACHINE_OS?=	unknown
+.if ${MACHINE_OS} == "BSD"
+OStype=		MirBSD
+.elif ${MACHINE_OS} == "Linux"
+OStype=		MirLinux
+.else
+ERRORS+=	Something fishy: $$MACHINE_OS unknown!
+___DISPLAY_MAKEVARS+=ERRORS
+OStype=		unknown
+.endif
+
+# Sync these with <sys/param.h>
+unix=		We run ${OStype}.
+OSrev=		8		# MirOS version (major)
+OSrpl=		35		# MirOS patchlevel
+OScompat=	3.5		# OpenBSD compatibility revision
+.if !defined(OSNAME) || empty(OSNAME)
+OSNAME!=	uname -s
+.endif
+OSname=		${OSNAME:L}
+OStriplet?=	${MACHINE_ARCH}-ecce-${OSname}${OSrev}
+
+.SUFFIXES:	.a .c .cc .cxx .h .i .l .ln .m4 .o .out .S .s .sh .y
+.LIBS:		.a
+
+AR?=		ar
+ARFLAGS?=	rl
+RANLIB?=	ranlib
+LORDER?=	lorder
+
+AS?=		as
+AFLAGS?=	${DEBUG}
+COMPILE.s?=	${CC} ${AFLAGS} -c
+LINK.s?=	${CC} ${AFLAGS} ${LDFLAGS}
+COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c
+LINK.S?=	${CC} ${AFLAGS} ${CPPFLAGS} ${LDFLAGS}
+
+CC?=		mgcc
+
+CFLAGS?=	-O2 ${PIPE} ${DEBUG}
+COMPILE.c?=	${CC} ${CFLAGS} ${CPPFLAGS} -c
+LINK.c?=	${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS}
+
+HOSTCC?=	mgcc
+
+CXX?=		c++
+CXXFLAGS?=	${CFLAGS}
+COMPILE.cc?=	${CXX} ${CXXFLAGS} ${CPPFLAGS} -c
+LINK.cc?=	${CXX} ${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS}
+
+CPP?=		cpp
+CPPFLAGS?=
+CPPFLAGS+=	-I${.CURDIR}
+
+LEX?=		lex
+LFLAGS?=
+LEX.l?=		${LEX} ${LFLAGS}
+
+LD?=		ld
+LDFLAGS+=	${DEBUG}
+
+LINT?=		lint
+LINTFLAGS?=	-chapbx
+
+# MirOS can use mirbsdksh extensions per definitionem
+SHELL=		/bin/ksh
+MAKE?=		make
+
+YACC?=		yacc
+YFLAGS?=	-d
+YACC.y?=	${YACC} ${YFLAGS}
+
+INSTALL?=	install
+
+CTAGS?=		/usr/bin/ctags
+
+# C
+.c:
+	${LINK.c} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.c.o:
+	${COMPILE.c} ${CFLAGS_${.TARGET}} ${.IMPSRC}
+.c.i:
+	${COMPILE.c} -o ${.TARGET} -E ${.IMPSRC}
+.c.a:
+	${COMPILE.c} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@@ $*.o
+	rm -f $*.o
+.c.ln:
+	${LINT} ${LINTFLAGS} ${CFLAGS:M-[IDU]*} ${CPPFLAGS:M-[IDU]*} \
+	    -i ${.IMPSRC}
+
+# C++
+.cc:
+	${LINK.cc} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.cc.o:
+	${COMPILE.cc} ${CXXFLAGS_${.TARGET}} ${.IMPSRC}
+.cc.i:
+	${COMPILE.cc} -o ${.TARGET} -E ${.IMPSRC}
+.cc.a:
+	${COMPILE.cc} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@@ $*.o
+	rm -f $*.o
+
+.cxx:
+	${LINK.cc} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.cxx.o:
+	${COMPILE.cc} ${CXXFLAGS_${.TARGET}} ${.IMPSRC}
+.cxx.i:
+	${COMPILE.cc} -o ${.TARGET} -E ${.IMPSRC}
+.cxx.a:
+	${COMPILE.cc} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@@ $*.o
+	rm -f $*.o
+
+# Assembly
+.s:
+	${LINK.s} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.s.o:
+	${COMPILE.s} ${ASFLAGS_${.TARGET}} ${.IMPSRC}
+.s.a:
+	${COMPILE.s} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@@ $*.o
+	rm -f $*.o
+
+.S:
+	${LINK.S} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.S.o:
+	${COMPILE.S} ${ASFLAGS_${.TARGET}} ${.IMPSRC}
+.S.i:
+	${COMPILE.S} -o ${.TARGET} -E ${.IMPSRC}
+.S.a:
+	${COMPILE.S} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@@ $*.o
+	rm -f $*.o
+
+# Lex
+.l:
+	${LEX.l} ${.IMPSRC}
+	${LINK.c} -o ${.TARGET} lex.yy.c ${LDLIBS} -ll
+	rm -f lex.yy.c
+.l.c:
+	${LEX.l} ${.IMPSRC}
+	mv lex.yy.c ${.TARGET}
+.l.o:
+	${LEX.l} ${.IMPSRC}
+	${COMPILE.c} ${CFLAGS_${.TARGET}} -o ${.TARGET} lex.yy.c
+	rm -f lex.yy.c
+
+# Yacc
+.y:
+	${YACC.y} ${.IMPSRC}
+	${LINK.c} -o ${.TARGET} y.tab.c ${LDLIBS}
+	rm -f y.tab.c
+.y.c:
+	${YACC.y} ${.IMPSRC}
+	mv y.tab.c ${.TARGET}
+.y.o:
+	${YACC.y} ${.IMPSRC}
+	${COMPILE.c} ${CFLAGS_${.TARGET}} -o ${.TARGET} y.tab.c
+	rm -f y.tab.c
+
+# Shell
+.sh:
+	rm -f ${.TARGET}
+	cp ${.IMPSRC} ${.TARGET}
+
+# Debugging output
+.if defined(___DISPLAY_MAKEVARS)
+.MAIN: ___display_makevars
+.endif
+___display_makevars: .PHONY .NOTMAIN
+.for _i in ${___DISPLAY_MAKEVARS}
+	@@printf '%s\n' '${${_i}}'
+.endfor
+
+.endif
+@
+
+
+2.6
+log
+@bump (mksh)
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/sys.mk,v 2.5 2005/01/16 13:35:00 tg Exp $
+d59 1
+a59 1
+OSrpl=		34		# MirOS patchlevel
+@
+
+
+2.5
+log
+@bump: gcc and binutils are working pretty well
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/sys.mk,v 2.4 2005/01/14 14:15:20 tg Exp $
+d59 1
+a59 1
+OSrpl=		33		# MirOS patchlevel
+@
+
+
+2.4
+log
+@* protect from multiple inclusion
+* switch defaults to be suitable for gcc 3.4
+* remove crap
+* unify style a bit
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/sys.mk,v 2.3 2005/01/09 15:32:31 tg Exp $
+d6 1
+a6 1
+# Copyright (c) 2002, 2003, 2004
+d59 1
+a59 1
+OSrpl=		32		# MirOS patchlevel
+@
+
+
+2.3
+log
+@bump (switch to ncvs)
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/sys.mk,v 2.2 2005/01/03 23:02:42 tg Exp $
+d36 2
+a37 1
+.ifndef	SYS_MK
+d51 1
+a51 1
+ERRORS+=	Warning: $$MACHINE_OS unknown!
+d82 1
+a82 1
+CC?=		gcc
+d88 1
+a88 1
+HOSTCC?=	gcc
+a219 1
+SYS_MK=done
+@
+
+
+2.2
+log
+@bump
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/sys.mk,v 2.1 2005/01/03 16:33:53 tg Exp $
+d58 1
+a58 1
+OSrpl=		31		# MirOS patchlevel
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/sys.mk,v 1.140 2004/12/11 17:05:56 tg Exp $
+d58 1
+a58 1
+OSrpl=		29		# MirOS patchlevel
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 36
+a36 3
+#	$OpenBSD: sys.mk,v 1.37 2004/04/05 19:17:25 miod Exp $
+#	$NetBSD: sys.mk,v 1.27 1996/04/10 05:47:19 mycroft Exp $
+#	@@(#)sys.mk	5.11 (Berkeley) 3/13/91
+d39 3
+a41 3
+.for __SYS_MK_INCLUDE in ${EXTRA_SYS_MK_INCLUDES}
+.include ${__SYS_MK_INCLUDE}
+.endfor
+d44 10
+a53 5
+unix=		We run OpenBSD.
+OSMAJOR=	3
+OSMINOR=	5
+OSREV=		$(OSMAJOR).$(OSMINOR)
+OSrev=		$(OSMAJOR)$(OSMINOR)
+d55 10
+a64 1
+.SUFFIXES: .out .a .ln .o .c .cc .C .cxx .F .f .r .y .l .s .S .cl .p .h .sh .m4
+d66 1
+d81 1
+a81 1
+CC?=		cc
+d87 1
+a87 1
+HOSTCC?=	cc
+d95 2
+a96 11
+CPPFLAGS?=	
+
+FC?=		f77
+FFLAGS?=		-O2
+RFLAGS?=
+COMPILE.f?=	${FC} ${FFLAGS} -c
+LINK.f?=	${FC} ${FFLAGS} ${LDFLAGS}
+COMPILE.F?=	${FC} ${FFLAGS} ${CPPFLAGS} -c
+LINK.F?=	${FC} ${FFLAGS} ${CPPFLAGS} ${LDFLAGS}
+COMPILE.r?=	${FC} ${FFLAGS} ${RFLAGS} -c
+LINK.r?=	${FC} ${FFLAGS} ${RFLAGS} ${LDFLAGS}
+d108 2
+a111 7
+PC?=		pc
+PFLAGS?=
+COMPILE.p?=	${PC} ${PFLAGS} ${CPPFLAGS} -c
+LINK.p?=	${PC} ${PFLAGS} ${CPPFLAGS} ${LDFLAGS}
+
+SHELL?=		sh
+
+d124 3
+a126 2
+	${COMPILE.c} ${.IMPSRC}
+.if (${MACHINE_ARCH} != "alpha")
+a130 1
+.endif
+d132 2
+a133 1
+	${LINT} ${LINTFLAGS} ${CFLAGS:M-[IDU]*} -i ${.IMPSRC}
+d139 3
+a141 1
+	${COMPILE.cc} ${.IMPSRC}
+a146 9
+.C:
+	${LINK.cc} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.C.o:
+	${COMPILE.cc} ${.IMPSRC}
+.C.a:
+	${COMPILE.cc} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@@ $*.o
+	rm -f $*.o
+
+d150 3
+a152 1
+	${COMPILE.cc} ${.IMPSRC}
+a157 38
+# Fortran/Ratfor
+.f:
+	${LINK.f} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.f.o:
+	${COMPILE.f} ${.IMPSRC}
+.f.a:
+	${COMPILE.f} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@@ $*.o
+	rm -f $*.o
+
+.F:
+	${LINK.F} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.F.o:
+	${COMPILE.F} ${.IMPSRC}
+.F.a:
+	${COMPILE.F} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@@ $*.o
+	rm -f $*.o
+
+.r:
+	${LINK.r} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.r.o:
+	${COMPILE.r} ${.IMPSRC}
+.r.a:
+	${COMPILE.r} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@@ $*.o
+	rm -f $*.o
+
+# Pascal
+.p:
+	${LINK.p} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.p.o:
+	${COMPILE.p} ${.IMPSRC}
+.p.a:
+	${COMPILE.p} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@@ $*.o
+	rm -f $*.o
+
+d162 1
+a162 1
+	${COMPILE.s} ${.IMPSRC}
+d167 1
+d171 3
+a173 1
+	${COMPILE.S} ${.IMPSRC}
+d189 1
+a189 1
+	${COMPILE.c} -o ${.TARGET} lex.yy.c 
+d202 1
+a202 1
+	${COMPILE.c} -o ${.TARGET} y.tab.c
+d209 12
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

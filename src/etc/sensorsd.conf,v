@@ -1,0 +1,73 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.06;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $OpenBSD: sensorsd.conf,v 1.1 2003/10/08 20:30:04 grange Exp $
+
+#
+# Sample sensorsd.conf file. See sensorsd.conf(5) for details.
+#
+
+# +5 voltage (volts)
+#hw.sensors.3:low=4.8V:high=5.2V
+
+# +12 voltage (volts)
+#hw.sensors.4:low=11.5V:high=12.5V
+
+# Chipset temperature (degrees Celsius)
+#hw.sensors.7:high=50C
+
+# CPU temperature (degrees Celsius)
+#hw.sensors.8:high=60C
+
+# CPU fan (RPM)
+#hw.sensors.11:low=3000
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

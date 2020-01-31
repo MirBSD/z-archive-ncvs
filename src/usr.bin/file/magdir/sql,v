@@ -1,0 +1,72 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: sql,v 1.1 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+# sql:  file(1) magic for SQL files
+#
+# From: "Marty Leisner" <mleisner@@eng.mc.xerox.com>
+# Recognize some MySQL files.
+#
+0	beshort			0xfe01		MySQL table definition file
+>2	byte			x		Version %d
+0	belong&0xffffff00	0xfefe0300	MySQL MISAM index file
+>3	byte			x		Version %d
+0	belong&0xffffff00	0xfefe0700	MySQL MISAM compressed data file
+>3	byte			x		Version %d
+0	belong&0xffffff00	0xfefe0500	MySQL ISAM index file
+>3	byte			x		Version %d
+0	belong&0xffffff00	0xfefe0600	MySQL ISAM compressed data file
+>3	byte			x		Version %d
+0	string		 	\376bin		MySQL replication log
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

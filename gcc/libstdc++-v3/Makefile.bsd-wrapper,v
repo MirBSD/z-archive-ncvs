@@ -1,0 +1,35 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.13.20.53.23;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@ensure all shared libraries have at least a major more
+than these of OpenBSD-current or the last MirOS version
+before the time_t switch
+
+this makes the (U)pgrade option of bsd.rd work again
+
+thanks for finding out to Benni "zirk" Adams
+@
+text
+@# $MirBSD: gcc/libobjc/Makefile.bsd-wrapper,v 1.6 2005/01/09 20:39:30 tg Exp $
+
+.include <bsd.own.mk>
+.include "${GNUSYSTEM_AUX_DIR}/locations.mk"
+
+SHLIB_VERSION?=	35.0
+@

@@ -1,0 +1,135 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.13.21.56.56;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@start merging
+* without generated files
+* docs are going to be built
+* untested ("minimal change" concept)
+* with assignment back to the FSF
+@
+text
+@# $MirBSD: src/gnu/usr.bin/binutils/src/ld/scripttempl/pj.sc,v 1.3 2004/09/16 22:28:15 tg Exp $
+#
+TORS=".tors :
+  {
+    ___ctors = . ;
+    *(.ctors)
+    ___ctors_end = . ;
+    ___dtors = . ;
+    *(.dtors)
+    ___dtors_end = . ;
+  } > ram"
+
+cat <<EOF
+OUTPUT_FORMAT("${OUTPUT_FORMAT}")
+OUTPUT_ARCH(${ARCH})
+
+MEMORY
+{
+  ram : o = 0x1000, l = 512M
+}
+
+SECTIONS
+{
+  .text :
+  {
+    *(.text)
+    *(.strings)
+    ${RELOCATING+ _etext = . ; }
+  } ${RELOCATING+ > ram}
+  ${CONSTRUCTING+${TORS}}
+  .data :
+  {
+    *(.data)
+    ${RELOCATING+ _edata = . ; }
+  } ${RELOCATING+ > ram}
+  .bss :
+  {
+    ${RELOCATING+ _bss_start = . ; }
+    *(.bss)
+    *(COMMON)
+    ${RELOCATING+ _end = . ;  }
+  } ${RELOCATING+ > ram}
+  .stack ${RELOCATING+ 0x30000 }  :
+  {
+    ${RELOCATING+ _stack = . ; }
+    *(.stack)
+  } ${RELOCATING+ > ram}
+  .stab 0 ${RELOCATING+\(NOLOAD\)} :
+  {
+    *(.stab)
+  }
+  .stabstr 0 ${RELOCATING+\(NOLOAD\)} :
+  {
+    *(.stabstr)
+  }
+}
+EOF
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+d48 1
+a48 1
+  .stab 0 ${RELOCATING+(NOLOAD)} :
+d52 1
+a52 1
+  .stabstr 0 ${RELOCATING+(NOLOAD)} :
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

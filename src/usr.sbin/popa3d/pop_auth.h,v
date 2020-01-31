@@ -1,0 +1,81 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.42.23;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.39;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.39;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/* $OpenBSD: pop_auth.h,v 1.2 2001/09/21 20:22:06 camield Exp $ */
+
+/*
+ * AUTHORIZATION state handling.
+ */
+
+#ifndef _POP_AUTH_H
+#define _POP_AUTH_H
+
+/*
+ * Possible authentication results.
+ */
+#define AUTH_OK				0
+#define AUTH_NONE			1
+#define AUTH_FAILED			2
+
+/*
+ * Handles the AUTHORIZATION state commands, and writes authentication
+ * data into the channel.
+ */
+extern int do_pop_auth(int channel);
+
+/*
+ * Logs an authentication attempt for user, use NULL for non-existent.
+ */
+extern void log_pop_auth(int result, char *user);
+
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

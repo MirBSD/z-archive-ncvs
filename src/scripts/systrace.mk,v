@@ -1,0 +1,175 @@
+head	2.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.4
+date	2005.01.18.00.51.33;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.17.21.56.24;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.09.21.15.54;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.04.20.18.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.4
+log
+@rename systrace.policy to hide it from the casual ls
+(this helps since it can live in / for quite some time)
+@
+text
+@#!/bin/ksh
+# $MirBSD: src/scripts/systrace.mk,v 2.3 2005/01/17 21:56:24 tg Exp $
+#-
+# Copyright (c) 2004, 2005
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+#
+# Licensee is hereby permitted to deal in this work without restric-
+# tion, including unlimited rights to use, publicly perform, modify,
+# merge, distribute, sell, give away or sublicence, provided all co-
+# pyright notices above, these terms and the disclaimer are retained
+# in all redistributions or reproduced in accompanying documentation
+# or other materials provided with binary redistributions.
+#
+# All advertising materials mentioning features or use of this soft-
+# ware must display the following acknowledgement:
+#	This product includes material provided by Thorsten Glaser.
+#
+# Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+# any kind, expressed or implied, to the maximum extent permitted by
+# applicable law, but with the warranty of being written without ma-
+# licious intent or gross negligence; in no event shall licensor, an
+# author or contributor be held liable for any damage, direct, indi-
+# rect or other, however caused, arising in any way out of the usage
+# of this work, even if advised of the possibility of such damage.
+#-
+# Call a programme with an appropriate systrace policy
+# Syntax:
+#  cd ${policydir}; env WRITEDIR="/a:/b:/c" NOWRITEDIR="/usr/obj" \
+#    ${SHELL} systrace.mk prog ...
+# To call the protected programmes:
+#  /bin/systrace -e -i -a -f ${policydir}/.policy.mk prog args
+
+[[ -n $WRITEDIR && -n $1 ]] || exit 1
+saveIFS="$IFS"
+IFS=:
+set -o noglob
+set -A rwdirs -- $WRITEDIR
+set -A rodirs -- $NOWRITEDIR
+set +o noglob
+IFS="$saveIFS"
+
+set -A progs
+let i=0
+for prog in "$@@"; do
+	[[ -x $prog ]] || prog=$(whence -p $prog)
+	if [[ -x $prog ]]; then
+		progs[i++]="$prog"
+	else
+		print -u2 "Warning: $prog not executable!"
+	fi
+done
+(( i > 0 )) || exit 1
+
+mydir=${0%/*}
+[[ $mydir = $0 ]] && mydir=.
+mydir=$(cd $mydir; pwd)
+
+for prog in "${progs[@@]}"; do
+	sed "s#@@@@PROG@@@@#$prog#g" <$mydir/systrace.sed
+done >.policy.mk
+
+ed -s .policy.mk |&
+set -o noglob
+for dir in "${rwdirs[@@]}"; do
+	print -p '1,$g/@@@@RW_DIR@@@@/t.\\\n'"s:@@@@RW_DIR@@@@:$dir:g"
+done
+for dir in "${rodirs[@@]}"; do
+	print -p '1,$g/@@@@RO_DIR@@@@/t.\\\n'"s:@@@@RO_DIR@@@@:$dir:g"
+done
+set +o noglob
+print -p "1,\$g/@@@@R[OW]_DIR@@@@/d\nwq"
+
+sync
+sleep 1
+exit 0
+@
+
+
+2.3
+log
+@* simplify policies for OBJDIR and non-/ DESTDIR
+* disallow OBJDIR writes during install even for / DESTDIR
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/scripts/systrace.mk,v 2.2 2005/01/09 21:15:54 tg Exp $
+d31 1
+a31 1
+#  /bin/systrace -e -i -a -f ${policydir}/systrace.policy prog args
+d60 1
+a60 1
+done >systrace.policy
+d62 1
+a62 1
+ed -s systrace.policy |&
+@
+
+
+2.2
+log
+@sync and sleep 1 second after policy generation to prevent casual errors
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/scripts/systrace.mk,v 2.1 2005/01/04 20:18:15 tg Exp $
+d4 1
+a4 1
+# Copyright (c) 2004
+d28 2
+a29 1
+#  cd ${policydir}; env WRITEDIR="/a:/b:/c" ${SHELL} systrace.mk prog ...
+d37 2
+a38 1
+set -A dirs -- $WRITEDIR
+d64 5
+a68 2
+for dir in "${dirs[@@]}"; do
+	print -p '1,$g/@@@@WRITEDIR@@@@/t.\\\n'"s:@@@@WRITEDIR@@@@:$dir:g"
+d71 1
+a71 1
+print -p "1,\$g/@@@@WRITEDIR@@@@/d\nwq"
+@
+
+
+2.1
+log
+@systrace'd building, from ocvs
+@
+text
+@d2 1
+a2 1
+# $MirBSD: src/scripts/systrace.mk,v 1.2 2004/12/14 19:21:10 tg Exp $
+d68 2
+@
+

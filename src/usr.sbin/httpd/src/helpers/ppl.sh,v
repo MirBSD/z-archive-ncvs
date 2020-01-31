@@ -1,0 +1,124 @@
+head	2.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.41.50;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.22;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.22;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/bin/sh
+##
+##  ppl.sh -- pretty print a colon-sperarated list by avoiding 
+##            `tr' and `fmt' because these tools are different
+##            between Unix platforms
+##
+##  Initially written by Ralf S. Engelschall <rse@@apache.org>
+##  for pretty printing lists in the --help option of
+##  Apache's Autoconf-style Interface (APACI)
+##
+#
+# This script falls under the Apache License.
+# See /usr/share/doc/legal/LICENSE.httpd
+
+
+list=`
+IFS=:
+for entry in $*; do
+    if [ "x$entry" != "x" ]; then
+        echo $entry
+    fi
+done |\
+sort |\
+awk '
+    BEGIN { list = ""; n = 0; }
+    {
+        list = list $1;
+        n = n + 1;
+        if (n == 1 || n == 2) {
+            list = list ":";
+        }
+        if (n == 3) {
+            list = list "\n";
+            n = 0;
+        }
+    }
+    END { print list; }
+'`
+IFS='
+'
+for entry in $list; do
+    echo $entry |\
+    awk -F: '
+        { printf("%-15s %-15s %-15s\n", $1, $2, $3); }
+    '
+done |\
+awk '{
+    if (length($0) > 48) {
+        printf("%s\n", substr($0, 0, 47));
+    } else {
+        print $0;
+    }
+}' |\
+sed -e 's/^/                        [/' -e 's/$/]/'
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d13 1
+a13 1
+# See http://www.apache.org/docs/LICENSE
+d26 1
+a26 1
+    { 
+d47 2
+a48 2
+awk '{ 
+    if (length($0) > 48) { 
+d50 2
+a51 2
+    } else { 
+        print $0; 
+a54 1
+
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

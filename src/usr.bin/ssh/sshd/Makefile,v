@@ -1,0 +1,125 @@
+head	2.1;
+access;
+symbols
+	cvs-200501262100:1.1.1.1
+	cvs-200501201820:1.1.1.1
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.40.09;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.34;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.34;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/usr.bin/ssh/sshd/Makefile,v 1.6 2004/08/28 12:28:29 tg Exp $
+# $OpenBSD: Makefile,v 1.64 2004/08/23 14:26:39 dtucker Exp $
+
+.PATH:		${.CURDIR}/..
+
+PROG=	sshd
+BINOWN=	root
+BINMODE=555
+BINDIR=	/usr/sbin
+MAN=	sshd.8 sshd_config.5
+CPPFLAGS+=	-DHAVE_LOGIN_CAP -DBSD_AUTH
+
+SRCS=	sshd.c auth-rhosts.c auth-passwd.c auth-rsa.c auth-rh-rsa.c \
+	sshpty.c sshlogin.c servconf.c serverloop.c \
+	auth.c auth1.c auth2.c auth-options.c session.c \
+	auth-chall.c auth2-chall.c groupaccess.c \
+	auth-skey.c auth-bsdauth.c auth2-hostbased.c auth2-kbdint.c \
+	auth2-none.c auth2-passwd.c auth2-pubkey.c \
+	monitor_mm.c monitor.c monitor_wrap.c \
+	kexdhs.c kexgexs.c
+
+.include <bsd.prog.mk>
+
+DPADD+=	${LIBCRYPTO} ${LIBUTIL} ${LIBZ} ${LIBDES}
+LDADD+=	-lcrypto -lutil -lz -ldes
+
+.if ${TCP_WRAPPERS:L} == "yes"
+CPPFLAGS+=	-DLIBWRAP
+DPADD+=		${LIBWRAP}
+LDADD+=		-lwrap
+.endif
+
+#.if ${SKEY:L} == "yes"
+#CPPFLAGS+=	-DSKEY
+#DPADD+=	${SKEY}
+#LDADD+=	-lskey
+#.endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile,v 1.64 2004/08/23 14:26:39 dtucker Exp $
+d11 1
+a11 1
+CFLAGS+=-DHAVE_LOGIN_CAP -DBSD_AUTH
+a21 7
+.include <bsd.own.mk> # for KERBEROS and AFS
+
+.if (${KERBEROS5:L} == "yes")
+CFLAGS+=-DKRB5 -I${DESTDIR}/usr/include/kerberosV -DGSSAPI
+SRCS+=  auth-krb5.c auth2-gss.c gss-serv.c gss-serv-krb5.c
+.endif
+
+a23 5
+.if (${KERBEROS5:L} == "yes")
+LDADD+= -lgssapi -lkrb5 -lkafs
+DPADD+= ${LIBGSSAPI} ${LIBKRB5}
+.endif
+
+d27 4
+a30 4
+.if (${TCP_WRAPPERS:L} == "yes")
+CFLAGS+= -DLIBWRAP
+DPADD+= ${LIBWRAP}
+LDADD+= -lwrap
+d33 4
+a36 4
+#.if (${SKEY:L} == "yes")
+#CFLAGS+= -DSKEY
+#DPADD+= ${SKEY}
+#LDADD+= -lskey
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

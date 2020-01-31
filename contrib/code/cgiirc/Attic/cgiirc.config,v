@@ -1,0 +1,382 @@
+head	2.4;
+access;
+symbols
+	cgiirc-0_5_5:1.1.3.2
+	cgiirc-0_5_4:1.1.3.1
+	tg:1.1.3;
+locks; strict;
+comment	@# @;
+
+
+2.4
+date	2005.01.18.20.26.27;	author tg;	state dead;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.18.20.23.08;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.18.20.12.40;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.19.14.28.46;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches
+	1.1.3.1;
+next	;
+
+1.1.3.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches;
+next	1.1.3.2;
+
+1.1.3.2
+date	2005.01.18.20.03.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.4
+log
+@nah, doesnt work like I would
+@
+text
+@# $MirBSD: contrib/code/cgiirc/cgiirc.config,v 2.3 2005/01/18 20:23:08 tg Exp $
+#
+# This is the full access MirCGIIRC config file
+# It will allow access to *all* servers and channels
+# See http://cgiirc.sourceforge.net/docs/config.php for help editing it.
+
+# -----
+# These are the default settings to show on the login form
+
+# default server(s) to connect to, more than one server can
+# be entered as a comma seperated list
+default_server = 217.160.142.142,62.116.124.106,161.53.160.95,161.53.160.99,217.204.76.170,irc6.oftc.net,213.92.8.4,69.28.212.219,81.209.176.2,82.96.64.2,128.193.0.29,128.193.0.47,212.204.214.114,213.28.116.205,irc.freenode.net,62.2.212.118,129.132.86.221,129.132.189.109,193.247.205.205,212.53.102.12,213.144.133.44,217.8.211.226,irc.lugs.ch
+#default_server = irc.oftc.net,irc.freenode.net,irc.lugs.ch,irc.blitzed.org
+default_port = 6667
+
+# default channel(s), again this can be a comma seperated list
+default_channel = #deutsch
+#default_channel = #cgiirc
+
+# Realname to use (in /whois)
+default_name = MirOS CGI:IRC User - http://mirbsd.de/
+
+# default nickname, a ? is replaced with a random number
+default_nick = CGI???
+
+# The default username to send, this will only be sent if
+# encoded_ip (below) is set to 1 or less and will have no affect
+# if the system is running identd.
+default_user = cgiircd
+
+# Default quit message
+quit_message = MirCGIIRC - provided by The MirOS Project
+# Quit prefix added to EOF messages and other quits not from /quit
+quit_prefix = MirOS HTTP-IRC
+
+# -----
+# System setup options
+
+# You can change the default locations of the scripts with these
+# settings, generally they don't need to be changed
+script_nph = nph-irc.cgi
+script_form = client-perl.cgi
+script_login = irc.cgi
+
+# The path to images for the browser (a URL!)
+# In script aliased directories (cgi-bin) the default will *not* work,
+# you need to move the directory elsewhere and change this to something
+# like /images.
+image_path = images
+
+# The charset to send to IRC, to send anything other than UTF-8 you will
+# need the Encode perl module installed.
+# See perldoc Encode::Supported for a list of supported encodings.
+# If you see the wrong characters in CGI:IRC or with a normal IRC client
+# you probably need to change this or set it on the login form.
+irc charset = utf-8
+
+# The location to *append* before the location of the socket directory
+# (don't change this unless you understand it - and then think about it again).
+# Remember you will need to either edit client-perl.cgi or
+# client.c and recompile client.cgi if you change this
+
+# IF YOU CHANGE THIS AND HAVE ANY PROBLEMS TRY THE DEFAULT BEFORE ASKING FOR
+# HELP
+socket_prefix = /tmp/cgiirc-
+
+# Virtual Host - Bind to a specific IP address
+# (this must be a valid interface or IP alias on your system).
+#vhost = 0.0.0.0
+# For IPv6
+#vhost6 =
+
+# Prefer IPv6 addresses if both addresses resolve (default is IPv4).
+#prefer_v6 = 0 (XXX: This option does not currently work)
+
+# -----
+# Access related settings
+
+# encoded_ip, set to 3 to send real IP in realname and encoded in username
+# set to 2 to send hex encoded IP address in username
+# and in realname, set to 1 to send only in realname and 0 to
+# disable.
+encoded_ip = 0
+#encoded_ip = 2
+
+# If the ip_access_file option is set to the filename that
+# contains ipaccess information then CGI:IRC will check this file.
+# See ipaccess.example for more information, rename it to ipaccess
+# and uncomment the line below to enable.
+# NOTE: If the file does not exist, all clients are denied!
+#ip_access_file = ipaccess
+# If the ip_access_file option is set to a comma-separated list
+# of filenames, they are checked sequentially, as if they were
+# concatenated.
+#ip_access_file = ipaccess.deny,ipaccess.allow
+
+# The maximum number of users that can connect to this CGI:IRC script at once
+# Please note, sometimes CGI:IRC leaves files in the socket_prefix location, if
+# it is killed (kill -9) or maybe a bug - this option still counts those as users.
+#max_users = 20
+
+# Allow access to servers, ports and channels not set in the default
+# settings above and use access_channel, access_port and access_server below.
+allow_non_default = 1
+
+# This is regular experssion that sets what channels access should
+# be allowed to.
+access_channel = .*
+
+# This is regular experssion that sets what servers access should
+# be allowed to.
+access_server = .*
+
+# This is regular experssion that sets what ports access should
+# be allowed to.
+access_port = .*
+
+# A list of commands to allow and deny access to, this is a space
+# seperated list of commands to allow access to or if prefixed
+# with an ! commands to disallow access to.
+# Eg to only allow access to, msg, me, whois, join, nick
+#   = msg me whois join nick !
+# Note the ! on the end, it disallows all other commands
+
+# It is recommened that you disable quote if you are limiting
+# access to channels.
+#access_command = !quote
+access_command =
+
+# Session timeout (timeout after this many seconds of inactivity).
+# 18000 is 5 hours
+session_timeout = 18000
+
+# Admin password (used for /ctcp kill)
+# Remember this is a crypt of the password - not the actual password.
+# You can generate this by running (at a Unix shell prompt):
+# perl -le'print crypt(shift,$$)' password
+# where password is the password to generate a crypt for.
+#admin password =
+
+# If your server is password protected and you wish to provide the password in
+# the script rather than get the user to enter the password then set this
+# option to the password (The user can still override this with a password on
+# the login form).
+#server_password =
+
+# Send extra information (e.g. proxy headers) on ctcp USERINFO.
+#extra_userinfo = 1
+
+# If the irc server you are connecting to accepts hostnames encoded into passwords
+# (CGI:IRC host spoofing) and it has been setup for your host uncomment the following
+# line.
+#realhost_as_password = 1
+
+# Check clients connecting against a DNSBL (deny access if their IP address is in
+# it), seperate with spaces to check more than one.
+#dnsbl = opm.blitzed.org
+
+# Redirect to a different URL (eg. custom login form) instead of the default.
+#form_redirect = http://cgiirc.sourceforge.net/docs/custom.php
+
+# -----
+# Appearence settings
+
+# The options to show on the basic and advanced login forms.
+# Simply a space seperated list of the fields to display.
+#login basic = Nickname Channel
+#login advanced = Nickname Realname Channel Server Password Format
+login basic = Nickname Channel Server
+
+# The default format to use
+format = default
+
+# These options control where output goes. Parameters are comma seperated
+# and are the types (e.g. the names used in the format files), only the
+# first two words are matched.
+
+# Do not output joins, parts or quits.
+#output none = join, part, quit
+# Hide a lot of information that is shown at connect time
+#output none = raw 439, reply welcome, reply yourhost, reply created, reply myinfo, reply protoctl, raw 251, raw 252, raw 254, raw 255, raw 265, raw 266, looking up, connecting, reply motd start, reply motd end, reply names
+
+# Show whois in the active window
+#output active = reply whois
+
+# Show the names output in the Status window
+#output status = reply names
+
+
+# Remove almost all colour from the output
+removecolor = 1
+
+# By default CGI:IRC shorterns the text inside links to 120 characters to work
+# around browser bugs. This changes the length text is shortened to
+#linkshorten = 120
+
+# If set this disables the input of %C, %B, etc so that the user
+# cannot enter colours, etc
+disable_format_input = 1
+
+# ----
+# Interface settings
+# These control the options for the user - the user can change these via the
+# options dialog.
+# Uncommenting the options below will change from the default value.
+
+# Enable Timestamps for all text
+interface timestamp = 1
+# Convert :-) and so on into smilie images
+#interface smilies = 1
+# Default font to use
+#interface font = monospace
+# Show users nickname next to text entry area
+interface shownick = 1
+# Show long scrollback (uses more memory)
+interface scrollback = 1
+# Enable activity sounds by default
+#interface actsound = 1
+# Enable join sounds by default
+#interface joinsound = 1
+@
+
+
+2.3
+log
+@don't double-encode
+@
+text
+@d1 1
+a1 1
+# $MirBSD: contrib/code/cgiirc/cgiirc.config.full,v 2.2 2005/01/18 20:12:40 tg Exp $
+@
+
+
+2.2
+log
+@merge
+@
+text
+@d1 1
+a1 1
+# $MirBSD: contrib/code/cgiirc/cgiirc.config,v 2.1 2004/12/19 14:28:46 tg Exp $
+d3 2
+a4 1
+# This is the default configuration file for MirCGIIRC
+d7 7
+a13 7
+# If you want to allow the use of multiple servers or enable more
+# advanced  options please copy cgiirc.config.full over this file,
+# then edit that.
+
+# Set the server(s) that access is allowed to, to allow more than one entry
+# seperate the servers with commas.
+default_server = irc.oftc.net,irc.freenode.net,irc.blitzed.org
+d15 29
+a43 6
+# Channel(s) to allow access to, a comma seperated list
+default_channel = #cgiirc
+# The default name (shown in /whois) of a user
+default_name = CGI:IRC User
+# The default nickname, any ? is replaced with a random number
+default_nick=CGI???
+d51 170
+a220 5
+# You can change the location of the scripts if needed.
+# This doesn't usually need to be changed but they *must* be set.
+script_nph = nph-irc.cgi
+script_form = client-perl.cgi
+script_login = irc.cgi
+@
+
+
+2.1
+log
+@Update to MirCGIIRC
+@
+text
+@d1 1
+a1 1
+# $MirBSD: contrib/code/cgiirc/cgiirc.config,v 1.2 2004/10/27 11:30:26 tg Exp $
+d21 4
+a24 1
+# The path to images for the browser
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 3
+a3 1
+# This is the default configuration file for CGI:IRC 0.5
+d6 1
+a6 1
+# If you want to allow the use of multiple servers or enable more 
+d12 1
+a12 1
+default_server = irc.blitzed.org
+a28 1
+
+@
+
+
+1.1.3.1
+log
+@Import cgiirc 0.5.4 (pristine) again
+@
+text
+@@
+
+
+1.1.3.2
+log
+@there's a new CGI::IRC out, with utf-8 supposedly, and fireschrott bugfixes
+@
+text
+@d19 1
+a19 4
+# The path to images for the browser (a URL!)
+# In script aliased directories (cgi-bin) the default will *not* work,
+# you need to move the directory elsewhere and change this to something
+# like /images.
+@
+

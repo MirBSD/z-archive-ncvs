@@ -1,0 +1,226 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.14.16.03.21;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.10.17.51.05;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.10.17.10.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@show conflicts in history and rotate it earlier
+@
+text
+@# $MirBSD: CVSROOT/config,v 2.1 2004/12/10 17:51:05 tg Exp $
+
+# Set this to "no" if pserver shouldn't check system users/passwords
+#SystemAuth=no
+
+# Put CVS lock files in this directory rather than directly in the repository.
+#LockDir=/var/lock/cvs
+
+# Set 'TopLevelAdmin' to 'yes' to create a CVS directory at the top
+# level of the new working directory when using the 'cvs checkout'
+# command.
+TopLevelAdmin=no
+
+# Set 'LogHistory' to 'all' or 'TOEFWUPCGMAR' to log all transactions to the
+# history file, or a subset as needed (ie 'TMAR' logs all write operations)
+#LogHistory=TOEFWUPCGMAR
+LogHistory=TCMAR
+
+# Set 'RereadLogAfterVerify' to 'always' (the default) to allow the verifymsg
+# script to change the log message.  Set it to 'stat' to force CVS to verify
+# that the file has changed before reading it (this can take up to an extra
+# second per directory being committed, so it is not recommended for large
+# repositories.  Set it to 'never' (the previous CVS behavior) to prevent
+# verifymsg scripts from changing the log message.
+#RereadLogAfterVerify=always
+RereadLogAfterVerify=never
+
+# Set 'UserAdminOptions' to the list of 'cvs admin' commands (options)
+# that users not in the 'cvsadmin' group are allowed to run.  This
+# defaults to 'k', or only allowing the changing of the default
+# keyword expansion mode for files for users not in the 'cvsadmin' group.
+# This value is ignored if the 'cvsadmin' group does not exist.
+#
+# The following string would enable all 'cvs admin' commands for all
+# users:
+#UserAdminOptions=aAbceIklLmnNostuU
+
+# Set 'UseNewInfoFmtStrings' to 'no' if you must support a legacy system by
+# enabling the deprecated old style info file command line format strings.
+# Be warned that these strings could be disabled in any new version of CVS.
+UseNewInfoFmtStrings=yes
+
+# Set 'ImportNewFilesToVendorBranchOnly' to 'yes' if you wish to force
+# every 'cvs import' command to behave as if the '-X' flag was
+# specified.
+#ImportNewFilesToVendorBranchOnly=no
+
+# Set 'PrimaryServer' to the CVSROOT to the primary, or write, server when
+# establishing one or more read-only mirrors which serve as proxies for
+# the write server in write mode or redirect the client to the primary for
+# write requests.
+#
+# For example:
+#
+#   PrimaryServer=:fork:localhost/cvsroot
+
+# Set 'MaxProxyBufferSize' to the the maximum allowable secondary
+# buffer memory cache size before the buffer begins being stored to disk, in
+# bytes.  Must be a positive integer but may end in 'k', 'M', 'G', or 'T' (for
+# kiilo, mega, giga, & tera, respectively).  If an otherwise valid number you
+# specify is greater than the SIZE_MAX defined by your system's C compiler,
+# then it will be resolved to SIZE_MAX without a warning.  Defaults to 8M (8
+# megabytes).
+#
+# High values for MaxProxyBufferSize may speed up a secondary server
+# with old hardware and a lot of available memory but can actually slow a
+# modern system down slightly.
+#
+# For example:
+#
+#   MaxProxyBufferSize=1G
+
+# Set 'MaxCommentLeaderLength' to the maximum length permitted for the
+# automagically determined comment leader used when expanding the Log
+# keyword, in bytes.  CVS's behavior when the automagically determined
+# comment leader exceeds this length is dependant on the value of
+# 'UseArchiveCommentLeader' set in this file.  'unlimited' is a valid
+# setting for this value.  Defaults to 20 bytes.
+#
+# For example:
+#
+#   MaxCommentLeaderLength=20
+
+# Set 'UseArchiveCommentLeader' to 'yes' to cause CVS to fall back on
+# the comment leader set in the RCS archive file, if any, when the
+# automagically determined comment leader exceeds 'MaxCommentLeaderLength'
+# bytes.  If 'UseArchiveCommentLeader' is not set and a comment leader
+# greater than 'MaxCommentLeaderLength' is calculated, the Log keyword
+# being examined will not be expanded.  Defaults to 'no'.
+#
+# For example:
+#
+#   UseArchiveCommentLeader=no
+
+
+#
+# Options specific to MirOS
+#
+
+# Expand the keyword MirBSD to CVSHeader
+LocalKeyword=MirBSD=CVSHeader
+
+# Only ever expand the keyword MirBSD, do not
+# expand any other RCS or CVS keyword
+KeywordExpand=iMirBSD
+@
+
+
+2.1
+log
+@New CVS configuration, and the old CVS fix-permissions script
+specifically tailored for MirOS CVSROOT
+@
+text
+@d1 1
+a1 1
+# $MirBSD$
+d17 1
+a17 1
+LogHistory=TMAR
+@
+
+
+1.1
+log
+@initial checkin
+@
+text
+@d1 2
+d9 2
+a10 2
+# Set `TopLevelAdmin' to `yes' to create a CVS directory at the top
+# level of the new working directory when using the `cvs checkout'
+d12 1
+a12 1
+#TopLevelAdmin=no
+d14 2
+a15 2
+# Set `LogHistory' to `all' or `TOEFWUPCGMAR' to log all transactions to the
+# history file, or a subset as needed (ie `TMAR' logs all write operations)
+d17 1
+d19 2
+a20 2
+# Set `RereadLogAfterVerify' to `always' (the default) to allow the verifymsg
+# script to change the log message.  Set it to `stat' to force CVS to verify
+d23 1
+a23 1
+# repositories.  Set it to `never' (the previous CVS behavior) to prevent
+d26 1
+d28 5
+a32 5
+# Set `UserAdminOptions' to the list of `cvs admin' commands (options)
+# that users not in the `cvsadmin' group are allowed to run.  This
+# defaults to `k', or only allowing the changing of the default
+# keyword expansion mode for files for users not in the `cvsadmin' group.
+# This value is ignored if the `cvsadmin' group does not exist.
+d34 1
+a34 1
+# The following string would enable all `cvs admin' commands for all
+d38 1
+a38 1
+# Set `UseNewInfoFmtStrings' to `no' if you must support a legacy system by
+d43 2
+a44 2
+# Set `ImportNewFilesToVendorBranchOnly' to `yes' if you wish to force
+# every `cvs import' command to behave as if the `-X' flag was
+d48 1
+a48 1
+# Set `PrimaryServer' to the CVSROOT to the primary, or write, server when
+d57 1
+a57 1
+# Set `MaxProxyBufferSize' to the the maximum allowable secondary
+d59 1
+a59 1
+# bytes.  Must be a positive integer but may end in `k', `M', `G', or `T' (for
+d73 1
+a73 1
+# Set `MaxCommentLeaderLength' to the maximum length permitted for the
+d77 1
+a77 1
+# `UseArchiveCommentLeader' set in this file.  `unlimited' is a valid
+d84 1
+a84 1
+# Set `UseArchiveCommentLeader' to `yes' to cause CVS to fall back on
+d86 4
+a89 4
+# automagically determined comment leader exceeds `MaxCommentLeaderLength'
+# bytes.  If `UseArchiveCommentLeader' is not set and a comment leader
+# greater than `MaxCommentLeaderLength' is calculated, the Log keyword
+# being examined will not be expanded.  Defaults to `no'.
+d94 12
+@
+
+

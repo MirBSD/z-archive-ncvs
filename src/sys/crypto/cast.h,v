@@ -1,0 +1,75 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.35.11;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.37;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.37;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*      $OpenBSD: cast.h,v 1.2 2002/03/14 01:26:51 millert Exp $       */
+
+/*
+ *	CAST-128 in C
+ *	Written by Steve Reid <sreid@@sea-to-sky.net>
+ *	100% Public Domain - no warranty
+ *	Released 1997.10.11
+ */
+
+#ifndef _CAST_H_
+#define _CAST_H_
+
+typedef struct {
+	u_int32_t	xkey[32];	/* Key, after expansion */
+	int		rounds;		/* Number of rounds to use, 12 or 16 */
+} cast_key;
+
+void cast_setkey(cast_key * key, u_int8_t * rawkey, int keybytes);
+void cast_encrypt(cast_key * key, u_int8_t * inblock, u_int8_t * outblock);
+void cast_decrypt(cast_key * key, u_int8_t * inblock, u_int8_t * outblock);
+
+#endif /* ifndef _CAST_H_ */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,69 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @// @;
+
+
+1.1
+date     2004.12.15.18.09.10;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.09.10;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@LIBRARY libOSmesa
+VERSION LIBRARY_VERSION
+EXPORTS
+	OSMesaCreateContext
+	OSMesaDestroyContext
+	OSMesaGetColorBuffer
+	OSMesaGetCurrentContext
+	OSMesaGetDepthBuffer
+	OSMesaGetIntegerv
+	OSMesaMakeCurrent
+	OSMesaPixelStore
+#ifndef __UNIXOS2__
+	_glapi_Context 
+	_glapi_noop_enable_warnings
+	_glapi_add_entrypoint
+	_glapi_get_dispatch_table_size
+	_glapi_set_dispatch
+	_glapi_check_multithread
+	_glapi_set_context
+	glTexCoordPointer
+	glColorPointer
+	glNormalPointer
+	glVertexPointer
+	glDrawElements
+#else
+	OSMesaCreateContextExt
+#endif  /* __UNIXOS2__ */
+
+/* $XFree86: xc/lib/GL/mesa/src/OSmesa/OSMesa-def.cpp,v 1.2 2003/03/25 04:18:08 dawes Exp $ */
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

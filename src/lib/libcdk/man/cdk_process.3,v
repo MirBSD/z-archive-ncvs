@@ -1,0 +1,66 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  cdk-4_9_11-20041224:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @.\" @;
+
+
+1.1
+date     2005.01.08.20.08.05;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.20.08.05;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@'\" t
+.\" $Id: cdk_process.3,v 1.2 2002/08/09 22:14:03 tom Exp $
+.TH cdk_process 3
+.SH NAME
+cdk_process \- curses widget pre/post-processing
+.SH SYNOPSIS
+Perform pre- and post-processing of data which is injected into a widget.
+.SH DESCRIPTION
+Character input is handled by each widget by its injection function.
+That is typically a large case-statement consisting of the actions to
+be taken for editing and scrolling keys.
+The calling application can modify the behavior of the injection function
+by defining either or both preprocess and postprocess functions.
+.PP
+Preprocessing is performed before doing anything with the injected keystroke.
+If the preprocess function returns zero, no further action is taken in
+the injection function.
+Note that the preprocess function may do more than filter out characters;
+it can fill in logic to coordinate different widgets.
+.PP
+Postprocessing is performed after all other actions have been done in
+the injection function.
+Like the other actions, it is performed only if the preprocess function
+returns a nonzero value.
+Unlike the preprocess function, its return value is ignored.
+.SH SEE ALSO
+.BR cdk (3),
+.BR cdk_binding (3).
+@
+
+
+1.1.2.1
+log
+@Tom Dickey's libcdk
+@
+text
+@@

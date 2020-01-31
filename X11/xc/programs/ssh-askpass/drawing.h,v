@@ -1,0 +1,69 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.06.21.52.17;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.06.21.52.17;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* xscreensaver, Copyright (c) 1991-1998 Jamie Zawinski <jwz@@netscape.com>
+ *
+ * Permission to use, copy, modify, distribute, and sell this software and its
+ * documentation for any purpose is hereby granted without fee, provided that
+ * the above copyright notice appear in all copies and that both that
+ * copyright notice and this permission notice appear in supporting
+ * documentation.  No representations are made about the suitability of this
+ * software for any purpose.  It is provided "as is" without express or 
+ * implied warranty.
+ */
+
+/* 1999-Nov-21 Modified by Jim Knoble <jmknoble@@jmknoble.cx>
+ * Modifications:
+ *   - Extracted draw_shaded_rectangle() from xscreensaver source for use
+ *     in a separate application.  Constructed separate header file.
+ */
+
+#ifndef _DRAWING_H_
+#define _DRAWING_H_
+
+#include <X11/Intrinsic.h>
+
+void
+draw_shaded_rectangle (Display *dpy, Window window,
+		       int x, int y,
+		       int width, int height,
+		       int thickness,
+		       unsigned long top_color,
+		       unsigned long bottom_color);
+
+#endif /* _DRAWING_H_ */
+@
+
+
+1.1.1.1
+log
+@Import programmes new to OpenBSD's X-Window subsystem
+@
+text
+@@

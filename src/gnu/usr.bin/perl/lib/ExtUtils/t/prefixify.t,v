@@ -1,0 +1,101 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.13;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.12;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.12;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/bin/perl -w
+
+BEGIN {
+    if( $ENV{PERL_CORE} ) {
+        chdir 't' if -d 't';
+        @@INC = ('../lib', 'lib');
+    }
+    else {
+        unshift @@INC, 't/lib';
+    }
+}
+
+use strict;
+use Test::More;
+
+if( $^O eq 'VMS' ) {
+    plan skip_all => 'prefixify works differently on VMS';
+}
+else {
+    plan tests => 3;
+}
+use Config;
+use File::Spec;
+use ExtUtils::MM;
+
+my $mm = bless {}, 'MM';
+
+my $default = File::Spec->catdir(qw(this that));
+
+$mm->prefixify('installbin', 'wibble', 'something', $default);
+is( $mm->{INSTALLBIN}, $Config{installbin},
+                                            'prefixify w/defaults');
+
+$mm->{ARGS}{PREFIX} = 'foo';
+$mm->prefixify('installbin', 'wibble', 'something', $default);
+is( $mm->{INSTALLBIN}, File::Spec->catdir('something', $default),
+                                            'prefixify w/defaults and PREFIX');
+
+{
+    undef *ExtUtils::MM_Unix::Config;
+    $ExtUtils::MM_Unix::Config{wibble} = 'C:\opt\perl\wibble';
+    $mm->prefixify('wibble', 'C:\opt\perl', 'C:\yarrow');
+
+    is( $mm->{WIBBLE}, 'C:\yarrow\wibble',  'prefixify Win32 paths' );
+    { package ExtUtils::MM_Unix;  Config->import }
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

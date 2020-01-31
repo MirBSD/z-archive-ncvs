@@ -1,0 +1,1457 @@
+head	1.2;
+access;
+symbols
+	gdb-20050107:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.13.20.14.06;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.04.23;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.04.23;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@start merging binutils
+@
+text
+@# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2005-01-07 01:53+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: abug-rom.c:176
+msgid "ABug monitor"
+msgstr ""
+
+#: abug-rom.c:177
+msgid ""
+"Debug via the ABug monitor.\n"
+"Specify the serial device it is connected to (e.g. /dev/ttya)."
+msgstr ""
+
+#: ada-lang.c:372
+#, possible-c-format
+msgid "Unable to find field %s in struct %s.  Aborting"
+msgstr ""
+
+#: ada-lang.c:508
+msgid "object size is larger than varsize-limit"
+msgstr ""
+
+#: ada-lang.c:576
+msgid "Unexpected type in discrete_type_high_bound."
+msgstr ""
+
+#: ada-lang.c:594
+msgid "Unexpected type in discrete_type_low_bound."
+msgstr ""
+
+#: ada-lang.c:654
+msgid "Invalid address for Ada main program name."
+msgstr ""
+
+#: ada-lang.c:765
+#, possible-c-format
+msgid "invalid Ada operator name: %s"
+msgstr ""
+
+#: ada-lang.c:1211 ada-lang.c:1228 ada-lang.c:1287
+msgid "Bad GNAT array descriptor"
+msgstr ""
+
+#: ada-lang.c:1324
+msgid "Bad GNAT array descriptor bounds"
+msgstr ""
+
+#: ada-lang.c:1527
+msgid "Bounds unavailable for null array pointer."
+msgstr ""
+
+#: ada-lang.c:1631
+msgid "could not find bounds information on packed array"
+msgstr ""
+
+#: ada-lang.c:1638
+msgid "could not understand bounds information on packed array"
+msgstr ""
+
+#: ada-lang.c:1645
+msgid "could not understand bit size information on packed array"
+msgstr ""
+
+#: ada-lang.c:1670
+msgid "can't unpack array"
+msgstr ""
+
+#: ada-lang.c:1722
+msgid "attempt to do packed indexing of something other than a packed array"
+msgstr ""
+
+#: ada-lang.c:1731
+msgid "don't know bounds of array"
+msgstr ""
+
+#: ada-lang.c:1737
+#, possible-c-format
+msgid "packed array index %ld out of bounds"
+msgstr ""
+
+#: ada-lang.c:2007
+msgid "Left operand of assignment is not a modifiable lvalue."
+msgstr ""
+
+#: ada-lang.c:2069 ada-lang.c:2091
+#, possible-c-format
+msgid "too many subscripts (%d expected)"
+msgstr ""
+
+#: ada-lang.c:2389
+msgid "Could not find operator name for opcode"
+msgstr ""
+
+#: ada-lang.c:2582
+msgid "Unexpected operator during name resolution"
+msgstr ""
+
+#: ada-lang.c:2651
+#, possible-c-format
+msgid "No definition found for %s"
+msgstr ""
+
+#: ada-lang.c:2663 ada-lang.c:2715
+#, possible-c-format
+msgid "Could not find a match for %s"
+msgstr ""
+
+#: ada-lang.c:2668 ada-lang.c:2959
+#, possible-c-format
+msgid "Multiple matches for %s\n"
+msgstr ""
+
+#: ada-lang.c:3043
+msgid "Request to select 0 symbols!"
+msgstr ""
+
+#: ada-lang.c:3047
+msgid "[0] cancel\n"
+msgstr ""
+
+#: ada-lang.c:3049
+msgid "[1] all\n"
+msgstr ""
+
+#: ada-lang.c:3063
+#, possible-c-format
+msgid "[%d] %s at <no source file available>:%d\n"
+msgstr ""
+
+#: ada-lang.c:3068 ada-lang.c:3082
+#, possible-c-format
+msgid "[%d] %s at %s:%d\n"
+msgstr ""
+
+#: ada-lang.c:3092
+#, possible-c-format
+msgid "'(%s) (enumeral)\n"
+msgstr ""
+
+#: ada-lang.c:3097
+#, possible-c-format
+msgid "[%d] %s in %s (enumeral)\n"
+msgstr ""
+
+#: ada-lang.c:3098
+#, possible-c-format
+msgid "[%d] %s at %s:?\n"
+msgstr ""
+
+#: ada-lang.c:3104
+#, possible-c-format
+msgid "[%d] %s (enumeral)\n"
+msgstr ""
+
+#: ada-lang.c:3105
+#, possible-c-format
+msgid "[%d] %s at ?\n"
+msgstr ""
+
+#: ada-lang.c:3155 ada-lang.c:3169
+msgid "one or more choice numbers"
+msgstr ""
+
+#: ada-lang.c:3176
+msgid "Argument must be choice number"
+msgstr ""
+
+#: ada-lang.c:3180
+msgid "cancelled"
+msgstr ""
+
+#: ada-lang.c:3206
+#, possible-c-format
+msgid "Select no more than %d of the above"
+msgstr ""
+
+#: ada-lang.c:3450 ada-lang.c:3455
+msgid "Improperly encoded renaming."
+msgstr ""
+
+#: ada-lang.c:5481 ada-lang.c:5499
+#, possible-c-format
+msgid "Bad value type in a %s."
+msgstr ""
+
+#: ada-lang.c:5516
+#, possible-c-format
+msgid "Attempt to extract a component of a value that is not a %s."
+msgstr ""
+
+#: ada-lang.c:5555
+#, possible-c-format
+msgid "There is no member named %s."
+msgstr ""
+
+#: ada-lang.c:5607
+msgid "Type (null) is not a structure or union type"
+msgstr ""
+
+#. XXX: type_sprint
+#: ada-lang.c:5611 ada-lang.c:5678 ada-lang.c:5685
+msgid "Type "
+msgstr ""
+
+#: ada-lang.c:5613
+msgid " is not a structure or union type"
+msgstr ""
+
+#: ada-lang.c:5680
+msgid " has no component named <null>"
+msgstr ""
+
+#: ada-lang.c:5687
+#, possible-c-format
+msgid " has no component named %s"
+msgstr ""
+
+#: ada-lang.c:6189
+#, possible-c-format
+msgid "Invalid type size for `%s' detected: %d."
+msgstr ""
+
+#: ada-lang.c:6192
+#, possible-c-format
+msgid "Invalid type size for <unnamed> detected: %d."
+msgstr ""
+
+#: ada-lang.c:6203
+msgid "record type with dynamic size is larger than varsize-limit"
+msgstr ""
+
+#: ada-lang.c:6482
+msgid "array type with dynamic size is larger than varsize-limit"
+msgstr ""
+
+#: ada-lang.c:6702
+msgid "'POS only defined on discrete types"
+msgstr ""
+
+#: ada-lang.c:6714
+msgid "enumeration value is invalid: can't find 'POS"
+msgstr ""
+
+#: ada-lang.c:6732
+msgid "'VAL only defined on discrete types"
+msgstr ""
+
+#: ada-lang.c:6734
+msgid "'VAL requires integral argument"
+msgstr ""
+
+#: ada-lang.c:6740
+msgid "argument to 'VAL out of range"
+msgstr ""
+
+#: ada-lang.c:7040
+msgid "Incompatible types in assignment"
+msgstr ""
+
+#: ada-lang.c:7074
+#, possible-c-format
+msgid "second operand of %s must not be zero."
+msgstr ""
+
+#: ada-lang.c:7113
+msgid "Attempt to compare array with non-array"
+msgstr ""
+
+#: ada-lang.c:7205
+msgid "Fixed-point values must be assigned to fixed-point variables"
+msgstr ""
+
+#: ada-lang.c:7218
+msgid "Operands of fixed-point addition must have the same type"
+msgstr ""
+
+#: ada-lang.c:7229
+msgid "Operands of fixed-point subtraction must have the same type"
+msgstr ""
+
+#. Only encountered when an unresolved symbol occurs in a
+#. context other than a function call, in which case, it is
+#. illegal.
+#: ada-lang.c:7296 ada-lang.c:7325
+#, possible-c-format
+msgid "Unexpected unresolved symbol, %s, during evaluation"
+msgstr ""
+
+#: ada-lang.c:7360
+#, possible-c-format
+msgid "cannot subscript or call something of type `%s'"
+msgstr ""
+
+#: ada-lang.c:7379
+msgid "cannot subscript or call a record"
+msgstr ""
+
+#: ada-lang.c:7381
+#, possible-c-format
+msgid "wrong number of subscripts; expecting %d"
+msgstr ""
+
+#: ada-lang.c:7393 ada-lang.c:7407
+msgid "element type of array unknown"
+msgstr ""
+
+#: ada-lang.c:7416
+msgid "Attempt to index or call something other than an array or function"
+msgstr ""
+
+#: ada-lang.c:7445
+msgid "cannot slice a packed array"
+msgstr ""
+
+#: ada-lang.c:7473
+msgid "cannot take slice of non-array"
+msgstr ""
+
+#: ada-lang.c:7509
+msgid "Membership test incompletely implemented; always returns true"
+msgstr ""
+
+#: ada-lang.c:7539
+msgid "invalid dimension number to 'range"
+msgstr ""
+
+#: ada-lang.c:7584
+#, possible-c-format
+msgid "Invalid operand to '%s"
+msgstr ""
+
+#: ada-lang.c:7599 ada-lang.c:7655
+#, possible-c-format
+msgid "invalid dimension number to '%s"
+msgstr ""
+
+#: ada-lang.c:7607 ada-lang.c:7661
+msgid "attempt to take bound of something that is not an array"
+msgstr ""
+
+#. Should never happen.
+#: ada-lang.c:7614 ada-lang.c:7636 ada-lang.c:7668
+msgid "unexpected attribute encountered"
+msgstr ""
+
+#: ada-lang.c:7642
+msgid "the 'length attribute applies only to array types"
+msgstr ""
+
+#: ada-lang.c:7646
+msgid "unimplemented type attribute"
+msgstr ""
+
+#: ada-lang.c:7715
+msgid "'modulus must be applied to modular type"
+msgstr ""
+
+#: ada-lang.c:7794
+msgid "Attempt to dereference null array pointer."
+msgstr ""
+
+#: ada-lang.c:7812
+msgid "Attempt to take contents of a non-pointer value."
+msgstr ""
+
+#: ada-lang.c:7865
+msgid "Attempt to use a type name as an expression"
+msgstr ""
+
+#: ada-lang.c:8014
+msgid "invalid VAX floating-point type"
+msgstr ""
+
+#: ada-lang.c:8174
+msgid "Unknown lower bound, using 1."
+msgstr ""
+
+#: ada-lang.c:8192
+#, possible-c-format
+msgid "Unknown upper bound, using %ld."
+msgstr ""
+
+#. XXX: gdb_sprint_host_address, type_sprint
+#: ada-lang.c:8337
+msgid "Type @@"
+msgstr ""
+
+#: ada-lang.c:8538
+#, possible-c-format
+msgid "internal error: no Ada fundamental type %d"
+msgstr ""
+
+#: ada-typeprint.c:658
+msgid " <incomplete type> end record"
+msgstr ""
+
+#: ada-valprint.c:209 ada-valprint.c:495
+#, possible-c-format
+msgid " <repeats %u times>"
+msgstr ""
+
+#: ada-valprint.c:424
+msgid "internal error: unhandled type in ada_print_scalar"
+msgstr ""
+
+#: ada-valprint.c:428
+msgid "Invalid type code in symbol table."
+msgstr ""
+
+#: ada-valprint.c:1071
+msgid "<optimized out or zero length>"
+msgstr ""
+
+#: aix-thread.c:243
+#, possible-c-format
+msgid "aix-thread: ptrace (%d, %d) returned %d (errno = %d %s)"
+msgstr ""
+
+#. i18n: Like "Thread-Id %d, [state] idle"
+#: aix-thread.c:555
+msgid "idle"
+msgstr ""
+
+#. i18n: Like "Thread-Id %d, [state] running"
+#: aix-thread.c:558
+msgid "running"
+msgstr ""
+
+#. i18n: Like "Thread-Id %d, [state] sleeping"
+#: aix-thread.c:561
+msgid "sleeping"
+msgstr ""
+
+#. i18n: Like "Thread-Id %d, [state] ready"
+#: aix-thread.c:564
+msgid "ready"
+msgstr ""
+
+#. i18n: Like "Thread-Id %d, [state] finished"
+#: aix-thread.c:567
+msgid "finished"
+msgstr ""
+
+#. i18n: Like "Thread-Id %d, [state] unknown"
+#: aix-thread.c:570
+msgid "unknown"
+msgstr ""
+
+#: aix-thread.c:985
+#, possible-c-format
+msgid "aix-thread resume: unknown pthread %ld"
+msgstr ""
+
+#: aix-thread.c:990
+#, possible-c-format
+msgid "aix-thread resume: no tid for pthread %ld"
+msgstr ""
+
+#: aix-thread.c:1146
+#, possible-c-format
+msgid "aix-thread: fetch_registers: pthdb_pthread_context returned %s"
+msgstr ""
+
+#: aix-thread.c:1427
+#, possible-c-format
+msgid "aix-thread: store_registers: pthdb_pthread_context returned %s"
+msgstr ""
+
+#: aix-thread.c:1488
+#, possible-c-format
+msgid "aix-thread: store_registers: pthdb_pthread_setcontext returned %s"
+msgstr ""
+
+#: aix-thread.c:1675
+#, possible-c-format
+msgid "Thread %ld"
+msgstr ""
+
+#. i18n: Like "thread-identifier %d, [state] running, suspended"
+#: aix-thread.c:1706
+#, possible-c-format
+msgid "tid %d"
+msgstr ""
+
+#. i18n: Like "Thread-Id %d, [state] running, suspended"
+#: aix-thread.c:1717
+msgid ", suspended"
+msgstr ""
+
+#. i18n: Like "Thread-Id %d, [state] running, detached"
+#: aix-thread.c:1723
+msgid ", detached"
+msgstr ""
+
+#. i18n: Like "Thread-Id %d, [state] running, cancel pending"
+#: aix-thread.c:1728
+msgid ", cancel pending"
+msgstr ""
+
+#: aix-thread.c:1746 aix-thread.c:1747
+msgid "AIX pthread support"
+msgstr ""
+
+#: aix-thread.c:1781
+msgid "Set debugging of AIX thread module."
+msgstr ""
+
+#: aix-thread.c:1782
+msgid "Show debugging of AIX thread module."
+msgstr ""
+
+#: aix-thread.c:1783
+msgid "Enables debugging output (used to debug GDB)."
+msgstr ""
+
+#: aix-thread.c:1784
+#, possible-c-format
+msgid "Debugging of AIX thread module is \"%d\"."
+msgstr ""
+
+#: alpha-nat.c:124
+#, possible-c-format
+msgid "Register %s not found in core file."
+msgstr ""
+
+#: alpha-nat.c:134
+#, possible-c-format
+msgid "Core file register section too small (%u bytes)."
+msgstr ""
+
+#: alpha-tdep.c:227
+msgid "Cannot retrieve value from floating point register"
+msgstr ""
+
+#: alpha-tdep.c:245
+msgid "Cannot store value in floating point register"
+msgstr ""
+
+#: alpha-tdep.c:467 alpha-tdep.c:491 alpha-tdep.c:546 alpha-tdep.c:571
+msgid "unknown floating point width"
+msgstr ""
+
+#. FIXME: 128-bit long doubles are returned like structures:
+#. by writing into indirect storage provided by the caller
+#. as the first argument.
+#: alpha-tdep.c:543 alpha-tdep.c:568
+msgid "Cannot set a 128-bit long double return value."
+msgstr ""
+
+#: alpha-tdep.c:958
+#, possible-c-format
+msgid ""
+"Hit beginning of text section without finding enclosing function for address "
+"0x%s"
+msgstr ""
+
+#: alpha-tdep.c:961
+#, possible-c-format
+msgid ""
+"Hit heuristic-fence-post without finding enclosing function for address 0x%s"
+msgstr ""
+
+#: alpha-tdep.c:966
+msgid ""
+"This warning occurs if you are debugging a function without any symbols\n"
+"(for example, in a stripped executable).  In that case, you may wish to\n"
+"increase the size of the search with the `set heuristic-fence-post' "
+"command.\n"
+"\n"
+"Otherwise, you told GDB there was a function where there isn't one, or\n"
+"(more likely) you have encountered a bug in GDB.\n"
+msgstr ""
+
+#: alpha-tdep.c:1589
+msgid "Set the distance searched for the start of a function."
+msgstr ""
+
+#: alpha-tdep.c:1591
+msgid "Show the distance searched for the start of a function."
+msgstr ""
+
+#: alpha-tdep.c:1593
+msgid ""
+"If you are debugging a stripped executable, GDB needs to search through the\n"
+"program for the start of a function.  This command sets the distance of the\n"
+"search.  The only need to set it is when debugging a stripped executable."
+msgstr ""
+
+#: alpha-tdep.c:1597
+#, possible-c-format
+msgid "The distance searched for the start of a function is \"%d\"."
+msgstr ""
+
+#: alphabsd-nat.c:95 alphabsd-nat.c:125 amd64-linux-nat.c:165
+#: amd64-linux-nat.c:202 amd64bsd-nat.c:52 amd64bsd-nat.c:83
+msgid "Couldn't get registers"
+msgstr ""
+
+#: alphabsd-nat.c:108 alphabsd-nat.c:143 amd64-linux-nat.c:177
+#: amd64-linux-nat.c:218 amd64bsd-nat.c:65 amd64bsd-nat.c:101
+msgid "Couldn't get floating point status"
+msgstr ""
+
+#: alphabsd-nat.c:131 amd64-linux-nat.c:207 amd64bsd-nat.c:89
+msgid "Couldn't write registers"
+msgstr ""
+
+#: alphabsd-nat.c:149 amd64-linux-nat.c:223 amd64bsd-nat.c:107
+msgid "Couldn't write floating point status"
+msgstr ""
+
+#: alphanbsd-tdep.c:67 alphanbsd-tdep.c:89
+msgid "Wrong size register set in core file."
+msgstr ""
+
+#: alphanbsd-tdep.c:96
+msgid "Wrong size FP register set in core file."
+msgstr ""
+
+#: amd64-linux-nat.c:251
+msgid "Couldn't read debug register"
+msgstr ""
+
+#: amd64-linux-nat.c:272
+msgid "Couldn't write debug register"
+msgstr ""
+
+#: amd64-tdep.c:207
+#, possible-c-format
+msgid "Unmapped DWARF Register #%d encountered\n"
+msgstr ""
+
+#: amd64fbsd-nat.c:181
+#, possible-c-format
+msgid ""
+"offsetof (struct sigcontext, sc_rip) yields %d instead of %d.\n"
+"Please report this to <bug-gdb@@gnu.org>."
+msgstr ""
+
+#: amd64fbsd-nat.c:194
+#, possible-c-format
+msgid ""
+"offsetof (struct sigcontext, sc_rsp) yields %d instead of %d.\n"
+"Please report this to <bug-gdb@@gnu.org>."
+msgstr ""
+
+#: amd64fbsd-nat.c:207
+#, possible-c-format
+msgid ""
+"offsetof (struct sigcontext, sc_rbp) yields %d instead of %d.\n"
+"Please report this to <bug-gdb@@gnu.org>."
+msgstr ""
+
+#: arch-utils.c:183
+msgid "default_float_format: bad byte order"
+msgstr ""
+
+#: arch-utils.c:200
+msgid "default_double_format: bad byte order"
+msgstr ""
+
+#. Should this be an internal error?  I guess so, it is reflecting
+#. an architectural limitation in the current design.
+#: arch-utils.c:264
+msgid "No virtual frame pointer available"
+msgstr ""
+
+#: arch-utils.c:376
+msgid "The target endianness is set automatically (currently big endian)\n"
+msgstr ""
+
+#: arch-utils.c:379
+msgid "The target endianness is set automatically (currently little endian)\n"
+msgstr ""
+
+#: arch-utils.c:402
+msgid "Little endian target not supported by GDB\n"
+msgstr ""
+
+#: arch-utils.c:411
+msgid "Big endian target not supported by GDB\n"
+msgstr ""
+
+#: arch-utils.c:415
+msgid "set_endian: bad value"
+msgstr ""
+
+#: arch-utils.c:445
+#, possible-c-format
+msgid "The target architecture is set automatically (currently %s)\n"
+msgstr ""
+
+#: arch-utils.c:447
+#, possible-c-format
+msgid "The target architecture is assumed to be %s\n"
+msgstr ""
+
+#: arch-utils.c:468
+msgid "set_architecture: bfd_scan_arch failed"
+msgstr ""
+
+#: arch-utils.c:472
+#, possible-c-format
+msgid "Architecture `%s' not recognized.\n"
+msgstr ""
+
+#: arch-utils.c:542
+msgid "Architecture of file not recognized.\n"
+msgstr ""
+
+#: arch-utils.c:590
+msgid "initialize_current_architecture: No arch"
+msgstr ""
+
+#: arch-utils.c:594
+msgid "initialize_current_architecture: Arch not found"
+msgstr ""
+
+#: arch-utils.c:632
+msgid ""
+"initialize_current_architecture: Selection of initial architecture failed"
+msgstr ""
+
+#: arch-utils.c:650
+msgid "Set architecture of target."
+msgstr ""
+
+#: arch-utils.c:657
+msgid "Show the current target architecture"
+msgstr ""
+
+#: arch-utils.c:734
+msgid "Set endianness of target."
+msgstr ""
+
+#: arch-utils.c:740
+msgid "Show the current byte-order"
+msgstr ""
+
+#: arm-linux-nat.c:239
+msgid "Unable to fetch floating point register."
+msgstr ""
+
+#: arm-linux-nat.c:288 arm-linux-nat.c:336 arm-linux-nat.c:374
+msgid "Unable to fetch the floating point registers."
+msgstr ""
+
+#: arm-linux-nat.c:353
+msgid "Unable to store floating point register."
+msgstr ""
+
+#: arm-linux-nat.c:391
+msgid "Unable to store floating point registers."
+msgstr ""
+
+#: arm-linux-nat.c:411
+msgid "Unable to fetch general register."
+msgstr ""
+
+#: arm-linux-nat.c:451 arm-linux-nat.c:489 arm-linux-nat.c:517
+msgid "Unable to fetch general registers."
+msgstr ""
+
+#: arm-linux-nat.c:499
+msgid "Unable to store general register."
+msgstr ""
+
+#: arm-linux-nat.c:531
+msgid "Unable to store general registers."
+msgstr ""
+
+#: arm-linux-nat.c:694
+msgid "Unable to determine GNU/Linux version."
+msgstr ""
+
+#: arm-tdep.c:1326
+#, possible-c-format
+msgid "Hardware FPU type %d\n"
+msgstr ""
+
+#: arm-tdep.c:1328
+#, possible-c-format
+msgid "Software FPU type %d\n"
+msgstr ""
+
+#. i18n: [floating point unit] mask
+#: arm-tdep.c:1330
+msgid "mask: "
+msgstr ""
+
+#. i18n: [floating point unit] flags
+#: arm-tdep.c:1333
+msgid "flags: "
+msgstr ""
+
+#: arm-tdep.c:1390
+#, possible-c-format
+msgid "Bad REGNUM %d"
+msgstr ""
+
+#: arm-tdep.c:1555 arm-tdep.c:1586 arm-tdep.c:1637 arm-tdep.c:1718
+#: arm-tdep.c:1761 arm-tdep.c:1797 arm-tdep.c:1813
+msgid "Infinite loop detected"
+msgstr ""
+
+#. multiply
+#: arm-tdep.c:1626 arm-tdep.c:1736
+msgid "Invalid update to pc in instruction"
+msgstr ""
+
+#: arm-tdep.c:1824
+msgid "Bad bit-field extraction\n"
+msgstr ""
+
+#: arm-tdep.c:2018
+msgid "arm_extract_return_value: Floating point model not supported"
+msgstr ""
+
+#: arm-tdep.c:2208
+msgid "arm_store_return_value: Floating point model not supported"
+msgstr ""
+
+#: arm-tdep.c:2335
+msgid "\"set arm\" must be followed by an apporpriate subcommand.\n"
+msgstr ""
+
+#: arm-tdep.c:2390
+#, possible-c-format
+msgid "Invalid fp model accepted: %s."
+msgstr ""
+
+#. i18n: "the default [floating point model] for the current ABI..."
+#: arm-tdep.c:2406
+#, possible-c-format
+msgid "  - the default for the current ABI is \"%s\".\n"
+msgstr ""
+
+#: arm-tdep.c:2569
+#, possible-c-format
+msgid "arm_elf_osabi_sniffer: Unknown ARM EABI version 0x%x"
+msgstr ""
+
+#: arm-tdep.c:2676 arm-tdep.c:2777 armnbsd-tdep.c:67
+msgid "arm_gdbarch_init: bad byte order for float format"
+msgstr ""
+
+#: arm-tdep.c:2791
+#, possible-c-format
+msgid "arm_dump_tdep: Lowest pc = 0x%lx"
+msgstr ""
+
+#: arm-tdep.c:2852 arm-tdep.c:2856
+msgid "Various ARM-specific commands."
+msgstr ""
+
+#: arm-tdep.c:2888
+msgid "The valid values are:\n"
+msgstr ""
+
+#: arm-tdep.c:2890
+msgid "The default is \"std\"."
+msgstr ""
+
+#: arm-tdep.c:2898 arm-tdep.c:2910
+msgid "Set the disassembly style."
+msgstr ""
+
+#: arm-tdep.c:2899 arm-tdep.c:2911
+msgid "Show the disassembly style."
+msgstr ""
+
+#: arm-tdep.c:2901 arm-tdep.c:2913
+#, possible-c-format
+msgid "The disassembly style is \"%s\"."
+msgstr ""
+
+#: arm-tdep.c:2918
+msgid "Set usage of ARM 32-bit mode."
+msgstr ""
+
+#: arm-tdep.c:2919
+msgid "Show usage of ARM 32-bit mode."
+msgstr ""
+
+#: arm-tdep.c:2920
+msgid "When off, a 26-bit PC will be used."
+msgstr ""
+
+#: arm-tdep.c:2921
+#, possible-c-format
+msgid "Usage of ARM 32-bit mode is %s."
+msgstr ""
+
+#: arm-tdep.c:2927
+msgid "Set the floating point type."
+msgstr ""
+
+#: arm-tdep.c:2928
+msgid "Show the floating point type."
+msgstr ""
+
+#: arm-tdep.c:2929
+msgid ""
+"auto - Determine the FP typefrom the OS-ABI.\n"
+"softfpa - Software FP, mixed-endian doubles on little-endian ARMs.\n"
+"fpa - FPA co-processor (GCC compiled).\n"
+"softvfp - Software FP with pure-endian doubles.\n"
+"vfp - VFP co-processor."
+msgstr ""
+
+#: arm-tdep.c:2934
+#, possible-c-format
+msgid "The floating point type is \"%s\"."
+msgstr ""
+
+#: arm-tdep.c:2940
+msgid "Switch to the next set of register names."
+msgstr ""
+
+#: arm-tdep.c:2945
+msgid "Set ARM debugging."
+msgstr ""
+
+#: arm-tdep.c:2946
+msgid "Show ARM debugging."
+msgstr ""
+
+#: arm-tdep.c:2947
+msgid "When on, arm-specific debugging is enabled."
+msgstr ""
+
+#: arm-tdep.c:2948
+#, possible-c-format
+msgid "ARM debugging is %s."
+msgstr ""
+
+#: armnbsd-nat.c:91
+msgid "unable to fetch general register"
+msgstr ""
+
+#: armnbsd-nat.c:142 armnbsd-nat.c:190 armnbsd-nat.c:226
+msgid "unable to fetch general registers"
+msgstr ""
+
+#: armnbsd-nat.c:160
+msgid "unable to fetch floating-point register"
+msgstr ""
+
+#: armnbsd-nat.c:287 armnbsd-nat.c:369
+#, possible-c-format
+msgid "unable to write register %d to inferior"
+msgstr ""
+
+#: armnbsd-nat.c:334
+msgid "unable to store general registers"
+msgstr ""
+
+#: armnbsd-nat.c:348
+msgid "unable to fetch floating-point registers"
+msgstr ""
+
+#: armnbsd-nat.c:391
+msgid "unable to store floating-point registers"
+msgstr ""
+
+#: armnbsd-nat.c:440
+msgid "wrong size of register set in core file"
+msgstr ""
+
+#: armnbsd-nat.c:452
+msgid "wrong size of FPA register set in core file"
+msgstr ""
+
+#: auxv.c:205
+msgid "End of vector"
+msgstr ""
+
+#: auxv.c:206 auxv.c:227
+msgid "Entry should be ignored"
+msgstr ""
+
+#: auxv.c:207
+msgid "File descriptor of program"
+msgstr ""
+
+#: auxv.c:208
+msgid "Program headers for program"
+msgstr ""
+
+#: auxv.c:209
+msgid "Size of program header entry"
+msgstr ""
+
+#: auxv.c:210
+msgid "Number of program headers"
+msgstr ""
+
+#: auxv.c:211
+msgid "System page size"
+msgstr ""
+
+#: auxv.c:212
+msgid "Base address of interpreter"
+msgstr ""
+
+#: auxv.c:213
+msgid "Flags"
+msgstr ""
+
+#: auxv.c:214
+msgid "Entry point of program"
+msgstr ""
+
+#: auxv.c:215
+msgid "Program is not ELF"
+msgstr ""
+
+#: auxv.c:216 auxv.c:232
+msgid "Real user ID"
+msgstr ""
+
+#: auxv.c:217 auxv.c:231
+msgid "Effective user ID"
+msgstr ""
+
+#: auxv.c:218 auxv.c:234
+msgid "Real group ID"
+msgstr ""
+
+#: auxv.c:219 auxv.c:233
+msgid "Effective group ID"
+msgstr ""
+
+#: auxv.c:220
+msgid "Frequency of times()"
+msgstr ""
+
+#: auxv.c:221
+msgid "String identifying platform"
+msgstr ""
+
+#: auxv.c:222 auxv.c:240
+msgid "Machine-dependent CPU capability hints"
+msgstr ""
+
+#: auxv.c:223
+msgid "Used FPU control word"
+msgstr ""
+
+#: auxv.c:224
+msgid "Data cache block size"
+msgstr ""
+
+#: auxv.c:225
+msgid "Instruction cache block size"
+msgstr ""
+
+#: auxv.c:226
+msgid "Unified cache block size"
+msgstr ""
+
+#: auxv.c:228
+msgid "Special system info/entry points"
+msgstr ""
+
+#: auxv.c:229
+msgid "System-supplied DSO's ELF header"
+msgstr ""
+
+#: auxv.c:230
+msgid "Boolean, was exec setuid-like?"
+msgstr ""
+
+#: auxv.c:235
+msgid "Dynamic linker's ELF header"
+msgstr ""
+
+#: auxv.c:236
+msgid "Dynamic linker's section headers"
+msgstr ""
+
+#: auxv.c:237
+msgid "String giving name of dynamic linker"
+msgstr ""
+
+#: auxv.c:238
+msgid "Large pagesize"
+msgstr ""
+
+#: auxv.c:239
+msgid "Platform name string"
+msgstr ""
+
+#: auxv.c:241
+msgid "Should flush icache?"
+msgstr ""
+
+#: auxv.c:242
+msgid "CPU name string"
+msgstr ""
+
+#: auxv.c:243
+msgid "COFF entry point address"
+msgstr ""
+
+#: auxv.c:244
+msgid "COFF executable file descriptor"
+msgstr ""
+
+#: auxv.c:246
+msgid "Canonicalized file name given to execve"
+msgstr ""
+
+#: auxv.c:247
+msgid "String for name of MMU module"
+msgstr ""
+
+#: auxv.c:248
+msgid "Dynamic linker's data segment address"
+msgstr ""
+
+#: auxv.c:280
+msgid "The program has no auxiliary information now."
+msgstr ""
+
+#: auxv.c:285
+msgid "No auxiliary vector found, or failed reading it."
+msgstr ""
+
+#: auxv.c:287
+msgid "Auxiliary vector is empty."
+msgstr ""
+
+#: auxv.c:298
+msgid ""
+"Display the inferior's auxiliary vector.\n"
+"This is information provided by the operating system at program startup."
+msgstr ""
+
+#: avr-tdep.c:591
+#, possible-c-format
+msgid "Num pushes too large: %d\n"
+msgstr ""
+
+#: avr-tdep.c:670
+msgid "Hit end of prologue while scanning pushes\n"
+msgstr ""
+
+#: avr-tdep.c:1340
+msgid "ERR: info io_registers NOT supported by current target\n"
+msgstr ""
+
+#: avr-tdep.c:1355
+msgid "info io_registers NOT supported by target\n"
+msgstr ""
+
+#: avr-tdep.c:1362
+msgid "Error fetching number of io registers\n"
+msgstr ""
+
+#: avr-tdep.c:1368
+#, possible-c-format
+msgid ""
+"Target has %u io registers:\n"
+"\n"
+msgstr ""
+
+#: avr-tdep.c:1415
+msgid "query remote avr target for io space register values"
+msgstr ""
+
+#: jv-exp.y:394
+msgid "FIXME - ClassInstanceCreationExpression"
+msgstr ""
+
+#: jv-exp.y:413 jv-exp.y:416
+msgid "FIXME - ArrayCreationExpression"
+msgstr ""
+
+#: jv-exp.y:462 jv-exp.y:464
+msgid "Form of method invocation not implemented"
+msgstr ""
+
+#: jv-exp.y:554
+msgid "Invalid cast expression"
+msgstr ""
+
+#: jv-exp.y:810
+msgid "Numeric constant too large"
+msgstr ""
+
+#: jv-exp.y:920
+msgid "Empty character constant"
+msgstr ""
+
+#: jv-exp.y:933
+msgid "Unmatched single quote"
+msgstr ""
+
+#: jv-exp.y:938
+msgid "Invalid character constant"
+msgstr ""
+
+#: jv-exp.y:1023
+#, possible-c-format
+msgid "Invalid number \"%s\""
+msgstr ""
+
+#: jv-exp.y:1095
+msgid "Unterminated string in expression"
+msgstr ""
+
+#. We must have come across a bad character (e.g. ';').
+#: jv-exp.y:1107
+#, possible-c-format
+msgid "Invalid character '%c' in expression"
+msgstr ""
+
+#: jv-exp.y:1219
+#, possible-c-format
+msgid "%s: near `%s'"
+msgstr ""
+
+#: jv-exp.y:1221
+#, possible-c-format
+msgid "error in expression, near `%s'"
+msgstr ""
+
+#: jv-exp.y:1232
+#, possible-c-format
+msgid "No class named `%s'"
+msgstr ""
+
+#: jv-exp.y:1371
+#, possible-c-format
+msgid "unknown type `%.*s'"
+msgstr ""
+
+#: jv-exp.y:1420
+msgid "No symbol table is loaded.  Use the \"file\" command"
+msgstr ""
+
+#: jv-exp.y:1422
+#, possible-c-format
+msgid "No symbol \"%s\" in current context"
+msgstr ""
+
+#: main.c:390
+#, possible-c-format
+msgid "%s: unable to load tclcommand file \"%s\""
+msgstr ""
+
+#: main.c:437
+#, possible-c-format
+msgid "warning: could not set baud rate to `%s'.\n"
+msgstr ""
+
+#: main.c:455
+#, possible-c-format
+msgid "warning: could not set timeout limit to `%s'.\n"
+msgstr ""
+
+#: main.c:463
+#, possible-c-format
+msgid "Use `%s --help' for a complete list of options.\n"
+msgstr ""
+
+#: main.c:483
+#, possible-c-format
+msgid "%s: `--args' specified but no program specified\n"
+msgstr ""
+
+#: main.c:510
+#, possible-c-format
+msgid "Excess command line arguments ignored. (%s%s)\n"
+msgstr ""
+
+#. We may get more than one warning, don't double space all of them...
+#: main.c:596 main.c:664
+msgid ""
+"\n"
+"warning: "
+msgstr ""
+
+#: main.c:690
+msgid "warning: "
+msgstr ""
+
+#: main.c:754
+#, possible-c-format
+msgid "Startup time: %ld.%06ld\n"
+msgstr ""
+
+#: main.c:764
+#, possible-c-format
+msgid "Startup size: data size %ld\n"
+msgstr ""
+
+#: main.c:825
+msgid ""
+"This is the GNU debugger.  Usage:\n"
+"\n"
+"    gdb [options] [executable-file [core-file or process-id]]\n"
+"    gdb [options] --args executable-file [inferior-arguments ...]\n"
+"\n"
+"Options:\n"
+"\n"
+msgstr ""
+
+#: main.c:831
+msgid ""
+"  --args             Arguments after executable-file are passed to inferior\n"
+msgstr ""
+
+#: main.c:834
+msgid "  --[no]async        Enable (disable) asynchronous version of CLI\n"
+msgstr ""
+
+#: main.c:837
+msgid ""
+"  -b BAUDRATE        Set serial port baud rate used for remote debugging.\n"
+"  --batch            Exit after processing options.\n"
+"  --cd=DIR           Change current directory to DIR.\n"
+"  --command=FILE     Execute GDB commands from FILE.\n"
+"  --core=COREFILE    Analyze the core dump COREFILE.\n"
+"  --pid=PID          Attach to running process PID.\n"
+msgstr ""
+
+#: main.c:845
+msgid ""
+"  --dbx              DBX compatibility mode.\n"
+"  --directory=DIR    Search for source files in DIR.\n"
+"  --epoch            Output information used by epoch emacs-GDB interface.\n"
+"  --exec=EXECFILE    Use EXECFILE as the executable.\n"
+"  --fullname         Output information used by emacs-GDB interface.\n"
+"  --help             Print this message.\n"
+msgstr ""
+
+#: main.c:853
+msgid ""
+"  --interpreter=INTERP\n"
+"                     Select a specific interpreter / user interface\n"
+msgstr ""
+
+#: main.c:857
+msgid ""
+"  -l TIMEOUT         Set timeout in seconds for remote debugging.\n"
+"  --mapped           Use mapped symbol files if supported on this system.\n"
+"  --nw\t\t     Do not use a window interface.\n"
+"  --nx               Do not read "
+msgstr ""
+
+#: main.c:863
+msgid ""
+" file.\n"
+"  --quiet            Do not print version number on startup.\n"
+"  --readnow          Fully read symbol files on first access.\n"
+msgstr ""
+
+#: main.c:867
+msgid ""
+"  --se=FILE          Use FILE as symbol file and executable file.\n"
+"  --symbols=SYMFILE  Read symbols from SYMFILE.\n"
+"  --tty=TTY          Use TTY for input/output by the program being "
+"debugged.\n"
+msgstr ""
+
+#: main.c:873
+msgid "  --tui              Use a terminal user interface.\n"
+msgstr ""
+
+#: main.c:877
+msgid ""
+"  --version          Print version information and then exit.\n"
+"  -w                 Use a window interface.\n"
+"  --write            Set writing into executable and core files.\n"
+"  --xdb              XDB compatibility mode.\n"
+msgstr ""
+
+#: main.c:883
+msgid ""
+"\n"
+"For more information, type \"help\" from within GDB, or consult the\n"
+"GDB manual (available as on-line info or a printed manual).\n"
+"Report bugs to \"bug-gdb@@gnu.org\"."
+msgstr ""
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@The GNU Debugger 6.3.50-current, from
+ ftp://sources.redhat.com/pub/gdb/snapshots/current/gdb-weekly-6.3.50.20050107.tar.bz2
+
+only the gdb/ subdirectory, gdb/testsuite/ removed.
+
+Luckily, this time it doesn't depend on a different libbfd than
+the one we deliver with GNU binutils...
+@
+text
+@@

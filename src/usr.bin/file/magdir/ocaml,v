@@ -1,0 +1,67 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: ocaml,v 1.1 2004/06/03 03:14:20 tedu Exp $
+
+#------------------------------------------------------------------------------
+# ocaml: file(1) magic for Objective Caml files.
+0	string	Caml1999	Objective caml
+>8	string	X		exec file
+>8	string	I		interface file (.cmi)
+>8	string	O		object file (.cmo)
+>8	string	A		library file (.cma)
+>8	string	Y		native object file (.cmx)
+>8	string	Z		native library file (.cmxa)
+>8	string	M		abstract syntax tree implementation file
+>8	string	N		abstract syntax tree interface file
+>9	string	>\0		(Version %3.3s).
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

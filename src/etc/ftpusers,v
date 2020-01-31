@@ -1,0 +1,161 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.04;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/etc/ftpusers,v 1.13 2004/11/25 19:22:15 tg Exp $
+#
+# Users who are not allowed to use ftp access; read by ftpd(8)
+
+root
+daemon
+operator
+bin
+smmsp
+popa3d
+sshd
+_portmap
+_identd
+_rstatd
+_rusersd
+_fingerd
+_x11
+uucp
+_kdc
+_kadmin
+_spamd
+www
+_isakmpd
+named
+proxy
+_syslogd
+_pflogd
+_bgpd
+_tcpdump
+_dhcp
+_mopd
+_tftpd
+_rbootd
+_afs
+_ppp
+_ntp
+_ftp
+_anoncvs
+_rsync
+_dnscache
+_tinydns
+_dnslog
+_freenet
+_bnetd
+_mldonkey
+_mailscan
+_cups
+_gii
+_icecast
+_slapd
+_openvpn
+_opennap
+_gnats
+_mysql
+_postgresql
+_mailman
+_mixmaster
+_spamdaemon
+_postfix
+_postdrop
+_bitlbee
+_pdnsd
+_tacacs
+_silcd
+_vsftpd
+_scanlogd
+_squid
+_privoxy
+_wnn
+_dovecot
+_news
+_majordomo
+_exim
+_xcept
+_ffproxy
+_mail
+_quagga
+_tomcat
+_milter-regex
+_stunnel
+_ups
+_vscan
+_cnupm
+_milter-spamd
+_jabberd
+_zope
+nobody
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+#	$OpenBSD: ftpusers,v 1.23 2004/05/06 16:58:34 deraadt Exp $
+d3 2
+a4 2
+# list of users disallowed any ftp access.
+# read by ftpd(8).
+a11 5
+uucp
+www
+named
+proxy
+nobody
+d13 1
+a14 1
+_identd
+d18 1
+a18 1
+_spamd
+d21 2
+d24 2
+d36 52
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

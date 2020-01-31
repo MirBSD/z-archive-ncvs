@@ -1,0 +1,65 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.10.56;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.56;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/lib/font/stubs/Imakefile,v 1.4 2002/02/13 21:32:49 dawes Exp $
+
+#include <Server.tmpl>
+
+INCLUDES = -I$(FONTINCSRC) -I../include -I$(XINCLUDESRC)
+SRCS = cauthgen.c csignal.c delfntcid.c errorf.c fatalerror.c \
+       findoldfnt.c getcres.c getdefptsize.c getnewfntcid.c gettime.c \
+       initfshdl.c regfpefunc.c rmfshdl.c servclient.c setfntauth.c \
+       stfntcfnt.c xpstubs.c
+OBJS = cauthgen.o csignal.o delfntcid.o errorf.o fatalerror.o \
+       findoldfnt.o getcres.o getdefptsize.o getnewfntcid.o gettime.o \
+       initfshdl.o regfpefunc.o rmfshdl.o servclient.o setfntauth.o \
+       stfntcfnt.o xpstubs.o
+
+#undef _LinkBuildLibrary
+#define _LinkBuildLibrary(lib) LinkBuildLibrary(lib)
+
+NormalLibraryObjectRule()
+NormalLibraryTarget(fntstubs,$(OBJS))
+LintLibraryTarget(fntstubs,$(SRCS))
+InstallLibrary(fntstubs,$(USRLIBDIR))
+NormalLintTarget($(SRCS))
+DependTarget()
+
+/* end of file */
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

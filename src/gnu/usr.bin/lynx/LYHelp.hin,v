@@ -1,0 +1,59 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.03.00.23.33;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.33;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* definitions for help files */
+
+#ifndef LYHELP_H
+#define LYHELP_H
+
+#define ALT_EDIT_HELP		"keystrokes/@@ALT_EDIT_HELP@@"
+#define BASHLIKE_EDIT_HELP	"keystrokes/@@BASHLIKE_EDIT_HELP@@"
+#define COOKIE_JAR_HELP		"@@LYNX_USERS_GUIDE@@#Cookies"
+#define CURRENT_KEYMAP_HELP	"keystrokes/@@KEYSTROKE_HELP@@"
+#define DIRED_MENU_HELP		"keystrokes/@@DIRED_HELP@@"
+#define EDIT_HELP		"keystrokes/@@EDIT_HELP@@"
+#define DOWNLOAD_OPTIONS_HELP	"@@LYNX_USERS_GUIDE@@#RemoteSource"
+#define HISTORY_PAGE_HELP	"keystrokes/@@HISTORY_HELP@@"
+#define LIST_PAGE_HELP		"keystrokes/@@FOLLOW_HELP@@"
+#define LYNXCFG_HELP		"lynx.cfg"
+#define OPTIONS_HELP		"keystrokes/@@OPTION_HELP@@"
+#define PRINT_OPTIONS_HELP	"keystrokes/@@PRINT_HELP@@"
+#define UPLOAD_OPTIONS_HELP	"@@LYNX_USERS_GUIDE@@#DirEd"
+#define VISITED_LINKS_HELP	"keystrokes/@@VISITED_HELP@@"
+
+#endif /* LYHELP_H */
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

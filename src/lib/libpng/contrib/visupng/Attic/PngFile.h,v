@@ -1,0 +1,78 @@
+head	1.2;
+access;
+symbols
+	libpng-1_2_8:1.1.17.1 libpng:1.1.17;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.20.37.33;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches
+	1.1.17.1;
+next	;
+
+1.1.17.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke junk
+@
+text
+@//------------------------------------------
+//  PNGFILE.H -- Header File for pngfile.c
+//------------------------------------------
+
+// Copyright 2000, Willem van Schaik.  For conditions of distribution and
+// use, see the copyright/license/disclaimer notice in png.h
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <windows.h>
+
+void PngFileInitialize (HWND hwnd) ;
+BOOL PngFileOpenDlg (HWND hwnd, PTSTR pstrFileName, PTSTR pstrTitleName) ;
+BOOL PngFileSaveDlg (HWND hwnd, PTSTR pstrFileName, PTSTR pstrTitleName) ;
+
+BOOL PngLoadImage (PTSTR pstrFileName, png_byte **ppbImageData, 
+                   int *piWidth, int *piHeight, int *piChannels, png_color *pBkgColor);
+BOOL PngSaveImage (PTSTR pstrFileName, png_byte *pDiData,
+                   int iWidth, int iHeight, png_color BkgColor);
+
+#if defined(PNG_NO_STDIO)
+static void png_read_data(png_structp png_ptr, png_bytep data, png_size_t length);
+static void png_write_data(png_structp png_ptr, png_bytep data, png_size_t length);
+static void png_flush(png_structp png_ptr);
+#endif
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.17.1
+log
+@libpng-1.2.8.tar.bz2
+@
+text
+@@

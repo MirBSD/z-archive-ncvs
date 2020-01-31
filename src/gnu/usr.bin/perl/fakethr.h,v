@@ -1,0 +1,120 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.23.21;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.21;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.21;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*    fakethr.h
+ *
+ *    Copyright (C) 1999, by Larry Wall and others
+ *
+ *    You may distribute under the terms of either the GNU General Public
+ *    License or the Artistic License, as specified in the README file.
+ *
+ */
+
+typedef int perl_mutex;
+typedef int perl_key;
+
+typedef struct perl_thread *perl_os_thread;
+/* With fake threads, thr is global(ish) so we don't need dTHR */
+#define dTHR extern int errno
+
+struct perl_wait_queue {
+    struct perl_thread *	thread;
+    struct perl_wait_queue *	next;
+};
+typedef struct perl_wait_queue *perl_cond;
+
+/* Ask thread.h to include our per-thread extras */
+#define HAVE_THREAD_INTERN
+struct thread_intern {
+    perl_os_thread next_run, prev_run;  /* Linked list of runnable threads */
+    perl_cond   wait_queue;             /* Wait queue that we are waiting on */
+    IV          private;                /* Holds data across time slices */
+    I32         savemark;               /* Holds MARK for thread join values */
+};
+
+#define init_thread_intern(t) 				\
+    STMT_START {					\
+	t->self = (t);					\
+	(t)->i.next_run = (t)->i.prev_run = (t);	\
+	(t)->i.wait_queue = 0;				\
+	(t)->i.private = 0;				\
+    } STMT_END
+
+/*
+ * Note that SCHEDULE() is only callable from pp code (which
+ * must be expecting to be restarted). We'll have to do
+ * something a bit different for XS code.
+ */
+
+#define SCHEDULE() return schedule(), PL_op
+
+#define MUTEX_LOCK(m)
+#define MUTEX_UNLOCK(m)
+#define MUTEX_INIT(m)
+#define MUTEX_DESTROY(m)
+#define COND_INIT(c) perl_cond_init(c)
+#define COND_SIGNAL(c) perl_cond_signal(c)
+#define COND_BROADCAST(c) perl_cond_broadcast(c)
+#define COND_WAIT(c, m)		\
+    STMT_START {		\
+	perl_cond_wait(c);	\
+	SCHEDULE();		\
+    } STMT_END
+#define COND_DESTROY(c)
+
+#define THREAD_CREATE(t, f)	f((t))
+#define THREAD_POST_CREATE(t)	NOOP
+
+#define YIELD	NOOP
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

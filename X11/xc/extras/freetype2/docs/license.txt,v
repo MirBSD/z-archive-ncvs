@@ -1,0 +1,68 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.05.03;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.05.03;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@
+   The FreeType   2 font   engine  is   copyrighted work,   and cannot   be
+   used  legally  without a   software license.   In order   to make   this
+   project  usable  to  a  vast majority  of developers,  we distribute  it
+   under two dual licenses.
+
+   What this  means is  that *you*  must choose  *one* license among  those
+   described below,  then obey  all  its  terms and  conditions when  using
+   FreeType 2 in any of your projects or products:
+
+
+     - The  FreeType License,  found in  the file  "FTL.TXT", which  is
+       an     BSD-style  open-source   license *with*  an   advertising
+       clause   that      forces   you   to   explicitely   cite    the
+       FreeType   project   in  your      product's  documentation. All
+       details are in the license file
+
+
+     - The GNU General Public   License, found in "GPL.TXT",  which  is
+       the      traditionnal   and    "viral"   GPL    license,    that
+       forces  you   to     redistribute the _complete_ sources of  all
+       your products that simply     use FreeType 2.
+
+
+   Note that  the contributed  PCF driver  comes with  a license similar to
+   that  of   X Window   System  which  is  compatible   to the  above  two
+   licenses (see file src/pcf/readme).
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

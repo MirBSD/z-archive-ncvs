@@ -1,0 +1,112 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.23.04.10;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.04.10;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@test -z "${BIG_OUTPUT_FORMAT}" && BIG_OUTPUT_FORMAT=${OUTPUT_FORMAT}
+test -z "${LITTLE_OUTPUT_FORMAT}" && LITTLE_OUTPUT_FORMAT=${OUTPUT_FORMAT}
+test -z "${ALIGNMENT}" && ALIGNMENT="4"
+
+cat <<EOF
+OUTPUT_FORMAT("${OUTPUT_FORMAT}", "${BIG_OUTPUT_FORMAT}",
+	      "${LITTLE_OUTPUT_FORMAT}")
+OUTPUT_ARCH(${ARCH})
+
+${RELOCATING+${LIB_SEARCH_DIRS}}
+${STACKZERO+${RELOCATING+${STACKZERO}}}
+${SHLIB_PATH+${RELOCATING+${SHLIB_PATH}}}
+${RELOCATING+${EXECUTABLE_SYMBOLS}}
+${RELOCATING+PROVIDE (__stack = 0);}
+SECTIONS
+{
+  ${RELOCATING+. = ${TEXT_START_ADDR};}
+  .text :
+  {
+    CREATE_OBJECT_SYMBOLS
+    *(.text)
+    /* The next six sections are for SunOS dynamic linking.  The order
+       is important.  */
+    *(.dynrel)
+    *(.hash)
+    *(.dynsym)
+    *(.dynstr)
+    *(.rules)
+    *(.need)
+    ${RELOCATING+_etext = .;}
+    ${RELOCATING+__etext = .;}
+    ${PAD_TEXT+${RELOCATING+. = ${DATA_ALIGNMENT};}}
+  }
+  ${RELOCATING+. = ${DATA_ALIGNMENT};}
+  .data :
+  {
+    /* The first three sections are for SunOS dynamic linking.  */
+    *(.dynamic)
+    *(.got)
+    *(.plt)
+    *(.data)
+    *(.linux-dynamic) /* For Linux dynamic linking.  */
+    ${CONSTRUCTING+CONSTRUCTORS}
+    ${RELOCATING+_edata  =  .;}
+    ${RELOCATING+__edata  =  .;}
+  }
+  .bss :
+  {
+   ${RELOCATING+ __bss_start = .};
+   *(.bss)
+   *(COMMON)
+   ${RELOCATING+. = ALIGN(${ALIGNMENT});}
+   ${RELOCATING+_end = . };
+   ${RELOCATING+__end = . };
+  }
+}
+EOF
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

@@ -1,0 +1,44 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.21.03.07;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@merge BSD make structure for GNU RCS
+@
+text
+@# $MirBSD: src/gnu/usr.bin/rcs/Makefile.inc,v 1.5 2004/12/12 22:33:40 tg Exp $
+
+.ifndef _MODSRC_GNU_USR_BIN_RCS_MAKEFILE_INC
+
+.PATH: ${.CURDIR}/../man ${.CURDIR}/../src
+
+CFLAGS+=	-W -pedantic -Wno-long-long
+CPPFLAGS+=	-I${.CURDIR}/..
+
+.if !defined(LIB)
+LIBDIR!=	cd ${.CURDIR}/../lib; ${MAKE} ___DISPLAY_MAKEVARS=.OBJDIR
+LDADD+=		-L${LIBDIR} -lrcs
+DPADD+=		${LIBDIR}/librcs.a
+.endif
+
+.if exists(${.CURDIR}/../../Makefile.inc)
+.  include "${.CURDIR}/../../Makefile.inc"
+.endif
+
+_MODSRC_GNU_USR_BIN_RCS_MAKEFILE_INC=1
+.endif
+@

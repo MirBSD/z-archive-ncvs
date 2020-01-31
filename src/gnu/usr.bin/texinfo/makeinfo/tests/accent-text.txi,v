@@ -1,0 +1,111 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@@c args with braces, without braces/following whitespace
+
+should be e`: @@`{e} @@`e
+
+should be e': @@'{e} @@'e
+
+should be e^: @@^{e} @@^e
+
+should be u": @@"{u} @@"u
+
+should be i`: @@`{i} @@`i
+
+should be i': @@'{i} @@'i
+
+should be i^: @@^{i} @@^i
+
+should be u": @@"{u} @@"u
+
+should be c,: @@,{c} @@,c
+
+should be n~: @@~{n} @@~n
+
+should be e=: @@={e} @@=e
+
+should be e@@w{'}': @@H{e} @@H e
+
+should be e.: @@dotaccent{e} @@dotaccent e
+
+should be e*: @@ringaccent{e} @@ringaccent e
+
+should be ee[: @@tieaccent{ee}
+
+should be e(: @@u{e} @@u e
+
+should be e_: @@ubaraccent{e} @@ubaraccent e
+
+should be .e: @@udotaccent{e} @@udotaccent e
+
+should be e<: @@v{e} @@v e
+
+upside down: @@questiondown{} @@exclamdown{}
+
+A-with-circle: @@aa{},@@AA{}
+
+AE, OE ligatures: @@ae{} @@AE{} @@oe{} @@OE{}
+
+dotless i, j: @@dotless{i} @@dotless{j}
+
+Polish suppressed-L: @@l{} @@L{}
+
+O-with-slash: @@o{} @@O{}
+
+es-zet or sharp S: @@ss{}          
+
+pounds sterling: @@pounds{}      
+
+@@c arg is command -- @@dotless{i} is special-cased for HTML
+should be dotless i`: @@`{@@dotless{i}}
+
+should be dotless i': @@'{@@dotless{i}}
+
+should be dotless i^: @@^{@@dotless{i}}
+
+should be dotless i": @@"{@@dotless{i}}
+
+@@c arg is command -- @@dotless{j}
+should be dotless j`: @@`{@@dotless{j}}
+
+should be dotless j': @@'{@@dotless{j}}
+
+should be dotless j^: @@^{@@dotless{j}}
+
+should be dotless j": @@"{@@dotless{j}}
+@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

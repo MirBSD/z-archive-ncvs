@@ -1,0 +1,149 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @% @;
+
+
+1.1
+date     2004.12.15.18.10.39;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.39;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* dpsfontops.psw
+ *
+ * (c) Copyright 1988-1994 Adobe Systems Incorporated.
+ * All rights reserved.
+ * 
+ * Permission to use, copy, modify, distribute, and sublicense this software
+ * and its documentation for any purpose and without fee is hereby granted,
+ * provided that the above copyright notices appear in all copies and that
+ * both those copyright notices and this permission notice appear in
+ * supporting documentation and that the name of Adobe Systems Incorporated
+ * not be used in advertising or publicity pertaining to distribution of the
+ * software without specific, written prior permission.  No trademark license
+ * to use the Adobe trademarks is hereby granted.  If the Adobe trademark
+ * "Display PostScript"(tm) is used to describe this software, its
+ * functionality or for any other purpose, such use shall be limited to a
+ * statement that this software works in conjunction with the Display
+ * PostScript system.  Proper trademark attribution to reflect Adobe's
+ * ownership of the trademark shall be given whenever any such reference to
+ * the Display PostScript system is made.
+ * 
+ * ADOBE MAKES NO REPRESENTATIONS ABOUT THE SUITABILITY OF THE SOFTWARE FOR
+ * ANY PURPOSE.  IT IS PROVIDED "AS IS" WITHOUT EXPRESS OR IMPLIED WARRANTY.
+ * ADOBE DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
+ * IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NON- INFRINGEMENT OF THIRD PARTY RIGHTS.  IN NO EVENT SHALL ADOBE BE LIABLE
+ * TO YOU OR ANY OTHER PARTY FOR ANY SPECIAL, INDIRECT, OR CONSEQUENTIAL
+ * DAMAGES OR ANY DAMAGES WHATSOEVER WHETHER IN AN ACTION OF CONTRACT,
+ * NEGLIGENCE, STRICT LIABILITY OR ANY OTHER ACTION ARISING OUT OF OR IN
+ * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.  ADOBE WILL NOT
+ * PROVIDE ANY TRAINING OR OTHER SUPPORT FOR THE SOFTWARE.
+ * 
+ * Adobe, PostScript, and Display PostScript are trademarks of Adobe Systems
+ * Incorporated which may be registered in certain jurisdictions
+ * 
+ * Author:  Adobe Systems Incorporated
+ */
+
+defineps DPSFontDirectory(DPSContext ctxt)
+	FontDirectory 
+endps
+
+defineps DPSISOLatin1Encoding(DPSContext ctxt)
+	ISOLatin1Encoding 
+endps
+
+defineps DPSSharedFontDirectory(DPSContext ctxt)
+	SharedFontDirectory 
+endps
+
+defineps DPSStandardEncoding(DPSContext ctxt)
+	StandardEncoding 
+endps
+
+defineps DPScachestatus(DPSContext ctxt)
+	cachestatus 
+endps
+
+defineps DPScurrentcacheparams(DPSContext ctxt)
+	currentcacheparams 
+endps
+
+defineps DPScurrentfont(DPSContext ctxt)
+	currentfont 
+endps
+
+defineps DPSdefinefont(DPSContext ctxt)
+	definefont 
+endps
+
+defineps DPSfindfont(DPSContext ctxt; char *name)
+	/name findfont 
+endps
+
+defineps DPSmakefont(DPSContext ctxt)
+	makefont 
+endps
+
+defineps DPSscalefont(DPSContext ctxt; float size)
+	size scalefont
+endps
+
+defineps DPSselectfont(DPSContext ctxt; char *name; float scale)
+	/name scale selectfont 
+endps
+
+defineps DPSsetcachedevice(DPSContext ctxt; float wx, wy, llx, lly, urx, ury)
+	wx wy llx lly urx ury setcachedevice 
+endps
+
+defineps DPSsetcachelimit(DPSContext ctxt; int n)
+	n setcachelimit 
+endps
+
+defineps DPSsetcacheparams(DPSContext ctxt)
+	setcacheparams 
+endps
+
+defineps DPSsetcharwidth(DPSContext ctxt; float wx, wy)
+	wx wy setcharwidth 
+endps
+
+defineps DPSsetfont(DPSContext ctxt; userobject f)
+	f setfont 
+endps
+
+defineps DPSundefinefont(DPSContext ctxt; char *name)
+	/name undefinefont 
+endps
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

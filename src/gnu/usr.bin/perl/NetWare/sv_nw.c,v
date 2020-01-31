@@ -1,0 +1,90 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.23.34;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.56;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#include <EXTERN.h>
+#define PERL_IN_SV_C
+#include <perl.h>
+#include <regcomp.h>
+
+#define FCALL *f
+#define SV_CHECK_THINKFIRST(sv) if (SvTHINKFIRST(sv)) sv_force_normal(sv)
+
+
+
+void
+Perl_sv_catsv(pTHX_ SV *dstr, register SV *sstr)
+{
+    sv_catsv_flags(dstr, sstr, SV_GMAGIC);
+}
+
+void
+Perl_sv_catpvn(pTHX_ SV *dsv, const char* sstr, STRLEN slen)
+{
+    
+    sv_catpvn_flags(dsv, sstr, slen, SV_GMAGIC);
+}
+
+void
+Perl_sv_setsv(pTHX_ SV *dstr, register SV *sstr)
+{
+    sv_setsv_flags(dstr, sstr, SV_GMAGIC);
+}
+
+char *
+Perl_sv_2pv(pTHX_ register SV *sv, STRLEN *lp)
+{
+    return sv_2pv_flags(sv, lp, SV_GMAGIC);
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

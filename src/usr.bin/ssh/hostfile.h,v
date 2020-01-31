@@ -1,0 +1,85 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501262100:1.1.1.1
+	cvs-200501201820:1.1.1.1
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.39.59;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.30;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.30;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: hostfile.h,v 1.14 2003/11/10 16:23:41 jakob Exp $	*/
+
+/*
+ * Author: Tatu Ylonen <ylo@@cs.hut.fi>
+ * Copyright (c) 1995 Tatu Ylonen <ylo@@cs.hut.fi>, Espoo, Finland
+ *                    All rights reserved
+ *
+ * As far as I am concerned, the code I have written for this software
+ * can be used freely for any purpose.  Any derived versions of this
+ * software must be clearly marked as such, and if the derived work is
+ * incompatible with the protocol description in the RFC file, it must be
+ * called by a name other than "ssh" or "Secure Shell".
+ */
+#ifndef HOSTFILE_H
+#define HOSTFILE_H
+
+typedef enum {
+	HOST_OK, HOST_NEW, HOST_CHANGED, HOST_FOUND
+}       HostStatus;
+
+int	 hostfile_read_key(char **, u_int *, Key *);
+HostStatus check_host_in_hostfile(const char *, const char *,
+	    const Key *, Key *, int *);
+int	add_host_to_hostfile(const char *, const char *, const Key *);
+int	lookup_key_in_hostfile_by_type(const char *, const char *,
+	    int, Key *, int *);
+
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

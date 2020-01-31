@@ -1,0 +1,36 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/gnu/usr.sbin/sendmail/cf/cf/relay-domains,v 1.2 2004/01/03 01:37:55 tg Stab $
+# $OpenBSD: relay-domains,v 1.2 2003/12/23 21:17:04 miod Exp $
+#
+# List of other domains to relay mail for here (one per line).
+# By default, sendmail(8) will not relay for foreign domains.  If the mail
+# is not destined for (or sent by) a user in the local domain the message
+# will be rejected.  Alternately, domains may be listed in /etc/mail/access
+# with the RELAY attribute instead of being enumerated here.
+#
+# This file is read only at startup or when sendmail(8) is sent SIGHUP.
+#
+127
+@

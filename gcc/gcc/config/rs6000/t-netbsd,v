@@ -1,0 +1,104 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.24.29;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# Support for NetBSD PowerPC ELF targets (SVR4 ABI).
+
+LIB2FUNCS_EXTRA = tramp.S
+
+tramp.S: $(srcdir)/config/rs6000/tramp.asm
+	cat $(srcdir)/config/rs6000/tramp.asm > tramp.S
+
+crtsavres.S: $(srcdir)/config/rs6000/crtsavres.asm
+	cat $(srcdir)/config/rs6000/crtsavres.asm >crtsavres.S
+
+EXTRA_PARTS += crtsavres$(objext)
+
+# It is important that crtbegin.o, etc., aren't surprised by stuff in .sdata.
+CRTSTUFF_T_CFLAGS += -msdata=none
+CRTSTUFF_T_CFLAGS_S += -msdata=none
+
+# Switch synonyms
+MULTILIB_MATCHES_FLOAT	= msoft-float=mcpu?401 \
+			  msoft-float=mcpu?403 \
+			  msoft-float=mcpu?405 \
+			  msoft-float=mcpu?ec603e \
+			  msoft-float=mcpu?801 \
+			  msoft-float=mcpu?821 \
+			  msoft-float=mcpu?823 \
+			  msoft-float=mcpu?860
+
+MULTILIB_OPTIONS	= msoft-float
+MULTILIB_DIRNAMES	= soft-float
+MULTILIB_EXTRA_OPTS	= fPIC mstrict-align
+MULTILIB_EXCEPTIONS	=
+
+MULTILIB_MATCHES	= ${MULTILIB_MATCHES_FLOAT}
+
+LIBGCC = stmp-multilib
+INSTALL_LIBGCC = install-multilib
+EXTRA_MULTILIB_PARTS = crtbegin$(objext) crtend$(objext) \
+  crtbeginS$(objext) crtendS$(objext) crtbeginT$(objext) \
+  crtsavres$(objext)
+
+$(T)crtsavres$(objext): crtsavres.S
+	$(GCC_FOR_TARGET) $(CRTSTUFF_CFLAGS) $(CRTSTUFF_T_CFLAGS) \
+	  -c crtsavres.S -o $(T)crtsavres$(objext)
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

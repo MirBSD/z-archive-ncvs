@@ -1,0 +1,127 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.04.17.25.15;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.25.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@// sparc-signal.h - Catch runtime signals and turn them into exceptions.
+
+/* Copyright (C) 1998, 1999, 2000  Free Software Foundation
+
+   This file is part of libgcj.
+
+This software is copyrighted work licensed under the terms of the
+Libgcj License.  Please consult the file "LIBGCJ_LICENSE" for
+details.  */
+
+#ifndef JAVA_SIGNAL_H
+#define JAVA_SIGNAL_H 1
+
+#include <signal.h>
+#include <ucontext.h>
+
+#define HANDLE_SEGV 1
+#define HANDLE_FPE 1
+
+#define SIGNAL_HANDLER(_name) 						\
+static void _name (int _dummy, siginfo_t *_info, void *arg)
+
+#ifdef __arch64__
+#define FLUSH_REGISTER_WINDOWS					\
+  asm volatile ("flushw");
+#else
+#define FLUSH_REGISTER_WINDOWS					\
+  asm volatile ("ta 3");
+#endif
+
+#define MAKE_THROW_FRAME(_exception)				\
+do								\
+{								\
+  ucontext_t *_context = (ucontext_t *) arg;                    \
+  (void)_dummy;							\
+  (void)_info;							\
+  register long sp = _context->uc_mcontext.gregs[REG_SP];	\
+  register long retaddr = _context->uc_mcontext.gregs[REG_O7];	\
+  FLUSH_REGISTER_WINDOWS;					\
+  asm volatile ("mov %0, %%i6; mov %1, %%i7"			\
+		: : "r"(sp), "r"(retaddr));			\
+}								\
+while (0)
+
+#define INIT_SEGV						\
+do								\
+  {								\
+    struct sigaction act;					\
+    act.sa_sigaction = catch_segv;				\
+    act.sa_flags = SA_SIGINFO | SA_NODEFER;			\
+    sigemptyset (&act.sa_mask);					\
+    sigaction (SIGSEGV, &act, NULL);				\
+  }								\
+while (0)							
+								
+#define INIT_FPE						\
+do								\
+  {								\
+    struct sigaction act;					\
+    act.sa_flags = SA_SIGINFO | SA_NODEFER;			\
+    act.sa_sigaction = catch_fpe;				\
+    sigemptyset (&act.sa_mask);					\
+    sigaction (SIGFPE, &act, NULL);				\
+  }								\
+while (0)
+
+#endif /* JAVA_SIGNAL_H */
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

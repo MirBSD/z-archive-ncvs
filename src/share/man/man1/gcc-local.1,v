@@ -1,0 +1,500 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@.\" @;
+
+
+2.1
+date	2005.01.03.16.33.17;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.47;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.47;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@.\" $MirBSD: src/share/man/man1/gcc-local.1,v 1.4 2004/09/17 20:40:44 tg Exp $
+.\" $OpenBSD: gcc-local.1,v 1.2 2004/04/23 22:25:04 avsm Exp $
+.\" $OpenBSD: gcc-local.1,v 1.3 2004/08/26 14:08:19 miod Exp $
+.\"
+.\" Copyright (c) 2002 Marc Espie
+.\" Copyright (c) 2003 Anil Madhavapeddy
+.\" Copyright (c) 2004 Thorsten Glaser
+.\"
+.\" All rights reserved.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE DEVELOPERS "AS IS" AND ANY EXPRESS OR
+.\" IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+.\" OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+.\" IN NO EVENT SHALL THE DEVELOPERS BE LIABLE FOR ANY DIRECT, INDIRECT,
+.\" INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+.\" NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+.\" DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+.\" THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+.\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+.\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+.\"
+.Dd December 1, 2002
+.Dt GCC-LOCAL 1
+.Os
+.Sh NAME
+.Nm gcc-local
+.Nd local modifications to gcc
+.Sh DESCRIPTION
+The GNU Compiler Collections come with special modifications for
+.Mx .
+.br
+There is a compiler for the C language and assorted utilities available.
+.Mx
+currently delivers
+.Sy GCC 3.2.3 .
+.Bl -dash
+.It
+.Nm gcc
+is the executable name for the gcc 3.x version which
+currently comes with a
+.Mx
+base installation.
+You might want to invoke
+.Nm cc
+for the C compiler instead.
+.It
+.Nm cpp ,
+the C Preprocessor (refer to
+.Xr cccp 1
+for details) is the cpp version coming with gcc3.
+.It
+.Nm gcc
+does not search under
+.Pa /usr/local
+for include files nor for libraries:
+as a system compiler, it only searches the system paths by default.
+.It
+On
+.Mx ,
+the
+.Fl pthread
+option should be used to link threaded code, isolating the program from
+operating system details.
+.It
+On most architectures,
+trampoline code marks the smallest possible area around the trampoline stub
+executable using
+.Xr mprotect 2 ,
+since the stack area is by default non-executable.
+.It
+The
+.Fl O2
+option does not include
+.Fl fstrict-aliasing ,
+as this option causes issues on some legacy code.
+.Fl fstrict-aliasing
+is very unsafe with code that plays tricks with casts, bypassing the
+already weak type system of C.
+.It
+.Nm gcc
+recognizes the extra format attribute syslog, to better match
+the definition of
+.Xr syslog 3 ,
+and silence erroneous warnings when used with
+.Fl pedantic .
+.It
+.Nm gcc
+recognizes the extra attribute
+.Dv __sentinel__ ,
+which can be used to mark varargs function that need a
+.Dv NULL
+pointer to mark argument termination, like
+.Xr execl 3 .
+This exposes latent bugs for 64-bit architectures,
+where a terminating 0 will expand to a 32-bit int, and not a full-fledged
+64-bits pointer.
+.It
+On
+.Mx ,
+.Nm gcc
+comes with the
+.Dq propolice
+stack protection extension (SSP), which is enabled by default.
+This extension reorders local variable declarations and adds stack consistency
+checks at run time, in order to detect stack overflows, and will attempt to
+report the problem in the system logs, and abort the faulting process.
+It can be turned off using the
+.Fl fno-stack-protector
+commandline option.
+By default, all functions are protected, which unveils some code
+generation bugs in the compiler; for more conservative code, use
+.Fl fno-stack-protector-all .
+Note that the stack protector relies on some support code in libc.
+Stand-alone programs not linked against libc must either provide their own
+support bits, or use the
+.Fl fno-stack-protector
+option.
+.It
+.Nm pgcc
+recognizes a new flag,
+.Fl Wbounded ,
+to perform basic checks on functions which accept buffers and sizes.
+An extra attribute,
+.Dv __bounded__ ,
+has been added to mark functions that can be
+checked this way.
+.It
+.Nm gcc
+recognizes a new format attribute, kprintf, to deal with the extra format
+arguments
+.Ql %b ,
+.Ql %r ,
+and
+.Ql %z
+used in the kernel.
+.It
+.Nm gcc
+does not store its version string in objects.
+This behavior can be restored with
+.Fl fident .
+.It
+.Nm gcc
+has been adjusted for the new
+.Pa src/lib/csu/
+layout in
+.Mx 6 ,
+including update of the specs for
+.Pa /usr/lib/crti.o
+and
+.Pa /usr/lib/crtn.o
+(from
+.Nx ,
+idea from defaults of other compilers).
+.Mx
+uses the
+.Pa /usr/lib/crtbegin.o ,
+.Pa /usr/lib/crtbeginS.o ,
+.Pa /usr/lib/crtend.o
+and
+.Pa /usr/lib/crtendS.o
+files from gcc3.
+.It
+The
+.Nm cccp
+manual page does not get installed as
+.Nm cpp .
+.It
+A new option,
+.Fl femit-memmove ,
+has been added to
+.Nm gcc
+in
+.Mx 8 .
+If set, library calls to
+.Xr memcpy 3
+which can be emitted under certain circumstances
+will be replaced with calls to
+.Xr memmove 3 .
+This is being used in the bootloader.
+.El
+.Sh ATTRIBUTES
+The
+.Dv __bounded__
+attribute is used to type-check functions whose parameters pass fixed-length
+buffers and their sizes.
+The syntax for normal buffers is:
+.Pp
+.Li __attribute__ ((__bounded__ (
+.Dv __buffer__ ,
+.Va buffer ,
+.Va length
+.Li )))
+.Pp
+where
+.Fa buffer
+contains the parameter number (starting from 1) of the pointer to the buffer,
+and
+.Fa length
+contains the parameter number of the buffer length argument.
+.Pp
+.Nm gcc
+will emit a warning if the length argument is a constant larger than the
+actual size of the buffer.
+If the buffer is not a statically declared array of fixed length, no warnings
+will be generated.
+Refer to
+.Xr memcpy 3
+for an example of a function with this check.
+.Pp
+For checking strings, just use
+.Dv __string__
+instead of
+.Dv __buffer__ :
+.Pp
+.Li __attribute__ ((__bounded__ (
+.Dv __string__ ,
+.Va buffer ,
+.Va length
+.Li )))
+.Pp
+In addition to the checks described above, this also tests if the
+.Va length
+argument was wrongly derived from a
+.Fn sizeof "void *"
+operation.
+.Xr strlcpy 3
+is a good example of a string function with this check.
+.Pp
+Some functions specify the length as two arguments:
+the number of elements and the size of each element.
+In this case, use the
+.Dv __size__
+attribute:
+.Pp
+.Li __attribute__ ((__bounded__ (
+.Dv __size__ ,
+.Va buffer ,
+.Va nmemb ,
+.Va size
+.Li )))
+.Pp
+where
+.Va buffer
+contains the parameter number of the pointer to the buffer,
+.Va nmemb
+contains the parameter number of the number of members, and
+.Va size
+has the parameter number of the size of each element.
+The type checks performed by
+.Dv __size__
+are the same as the
+.Dv __buffer__
+attribute.
+See
+.Xr fread 3
+for an example of this type of function.
+.Pp
+If a function accepts a buffer parameter and specifies that it has to be of a
+minimum length, the __minbytes__ attribute can be used:
+.Pp
+.Li __attribute__ ((__bounded__ (
+.Dv __minbytes__ ,
+.Va buffer ,
+.Va minsize
+.Li )))
+.Pp
+where
+.Va buffer
+contains the parameter number of the pointer to the buffer, and
+.Va minsize
+specifies the minimum number of bytes that the buffer should be.
+.Xr ctime_r 3
+is an example of this type of function.
+.Pp
+If
+.Fl Wbounded
+is specified with
+.Fl Wformat ,
+additional checks are performed on
+.Xr sscanf 3
+format strings.
+The
+.Ql %s
+fields are checked for incorrect bound lengths by checking the size of the
+buffer associated with the format argument.
+.Sh SEE ALSO
+.Xr cccp 1 ,
+.Xr pgcc 1 ,
+.Xr cpp 1 ,
+.Xr gcc 1
+.Pp
+.Pa http://www.research.ibm.com/trl/projects/security/ssp/
+.Sh CAVEATS
+The
+.Fl Wbounded
+flag only works with statically allocated fixed-size buffers.
+Since it is applied at compile-time, dynamically allocated memory buffers
+and non-constant arguments are ignored.
+.Sh BUGS
+The
+.Dv __sentinel__
+attribute is not yet fully implemented for
+.Nm gcc 3.3.2 .
+.Pp
+The propolice stack protector, especially in
+.Nm gcc
+version 3.2.3, is still buggy, which can lead to strange effects.
+For example, the Ada compiler has to be compiled with disabled
+stack protection on eight (out of ca. 1300) files.
+.Pp
+Neither the
+.Fl Wbounded
+nor
+.Fl Wnonnull
+options have been ported to
+.Nm gcc
+3.2.3 yet.
+Worse, the latter option generates a syntax error,
+and null pointer warnings are silently discarded in
+favour of a well-building base system.
+.Pp
+The
+.Xr cpp 1
+and
+.Xr gcc 1
+manual pages are part of GCC 3, and cannot be included in the
+.Mx
+operating system due to licence issues.
+If you rely on these manual pages and the associated texinfo
+documents, please install the
+.Em books/gfdl-doc
+package from MirPorts.
+Alternatively, refer to the
+.Xr cccp 1
+and
+.Xr pgcc 1
+manual pages for simple usage information;
+these are the gcc 2.95 versions.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d3 1
+d7 1
+d20 1
+a20 1
+.\" THIS SOFTWARE IS PROVIDED BY THE DEVELOPERS ``AS IS'' AND ANY EXPRESS OR
+d38 9
+a46 8
+Some
+.Ox
+platforms use a derivative of
+.Nm gcc 2.95.3 ,
+others use a derivative of
+.Nm gcc 3.3.2 .
+In both cases,
+the
+d48 12
+a59 3
+software comes with specific modifications for
+.Ox .
+.Bl -dash
+d68 1
+a68 1
+.Ox ,
+a88 9
+The option
+.Fl fno-builtin-<function>
+was backported from
+.Nm gcc 3.3.2 ,
+to
+.Nm gcc 2.95.3 ,
+and can be used without having to differentiate between
+both compilers.
+.It
+a95 11
+Even in 2.95.3,
+.Nm gcc
+recognizes the attribute nonnull, which can be used to mark
+arguments that can't be
+.Dv NULL .
+The printf format attribute does not imply nonnull
+for the format.
+This allows for correct format checking on the
+.Xr err 3
+function family.
+.It
+d97 3
+a99 2
+recognizes the extra attribute sentinel, which can be used to mark varargs
+function that need a
+a106 26
+On some
+.Ox
+platforms,
+.Nm gcc
+still uses
+.Xr setjmp 3 /
+.Xr longjmp 3 -
+style exceptions, and so needs extra fixes beyond the pure 2.95.3 release.
+.It
+On a few
+platforms (mostly a.out),
+.Nm gcc
+uses a linker wrapper to write stubs that call global constructors and
+destructors.
+Those platforms use
+.Nm gcc 2.95.3 ,
+and those calls can be traced using
+.Fl Wl,-trace-ctors-dtors ,
+using
+.Xr syslog_r 3 .
+.It
+On i386, the optimizer for
+.Nm gcc 2.95.3
+features an extra peephole which reduces the function
+prologues enough to allow for the ramdisk to fit on one floppy.
+.It
+d108 1
+a108 1
+.Ox ,
+d112 1
+a112 1
+stack protection extension, which is enabled by default.
+d119 3
+d128 1
+a128 1
+.Nm gcc
+d144 1
+a144 3
+used in the
+.Ox
+kernel.
+d150 39
+d296 3
+d301 1
+a301 1
+.Pa http://www.trl.ibm.com/projects/security/ssp
+d309 39
+a347 2
+The sentinel attribute is not yet fully implemented for
+.Nm gcc 3.3.2.
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

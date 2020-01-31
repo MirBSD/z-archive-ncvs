@@ -1,0 +1,152 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.19;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.16;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.16;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@<html>
+<head><title>xxfi_envrcpt</title></head>
+<body>
+<!--
+$Sendmail: xxfi_envrcpt.html,v 1.11 2003/12/30 00:19:42 gshapiro Exp $
+-->
+<h1>xxfi_envrcpt</h1>
+
+<table border="0" cellspacing=4 cellpadding=4>
+<!---------- Synopsis ----------->
+<tr><th valign="top" align=left width=150>SYNOPSIS</th><td>
+<pre>
+#include &lt;libmilter/mfapi.h&gt;
+sfsistat (*xxfi_envrcpt)(
+	SMFICTX * ctx,
+	char ** argv
+);
+</pre>
+Handle the envelope RCPT command.
+</td></tr>
+
+<!----------- Description ---------->
+<tr><th valign="top" align=left>DESCRIPTION</th><td>
+<table border="1" cellspacing=1 cellpadding=4>
+<tr align="left" valign=top>
+<th width="80">Called When</th>
+<td>xxfi_envrcpt is called once per recipient, hence one or more times per message, immediately after xxfi_envfrom.</td>
+</tr>
+<tr align="left" valign=top>
+<th>Default Behavior</th>
+<td>Do nothing; return SMFIS_CONTINUE.</td>
+</tr>
+</table>
+
+<!----------- Arguments ---------->
+<tr><th valign="top" align=left>ARGUMENTS</th><td>
+    <table border="1" cellspacing=0>
+    <tr bgcolor="#dddddd"><th>Argument</th><th>Description</th></tr>
+    <tr valign="top"><td>ctx</td>
+	<td>Opaque context structure.
+	</td></tr>
+    <tr valign="top"><td>argv</td>
+	<td>Null-terminated SMTP command arguments;
+		argv[0] is guaranteed to be the recipient address.
+		Later arguments are the ESMTP arguments.
+	</td></tr>
+    </table>
+</td></tr>
+
+<!----------- Return values ---------->
+<tr>
+<th valign="top" align=left>SPECIAL RETURN VALUES</th>
+<td><table border="1" cellspacing=0>
+  <tr bgcolor="#dddddd"><th>Return value</th><th>Description</th></tr>
+  <tr valign="top">
+     <td>SMFIS_TEMPFAIL</td>
+     <td>Temporarily fail for this particular recipient; further recipients 
+     may still be sent.  <a href="xxfi_abort.html">xxfi_abort</a> is not called.
+     </td>
+  </tr>
+  <tr valign="top">
+     <td>SMFIS_REJECT</td>
+     <td>Reject this particular recipient; further recipients may still be sent.
+     <a href="xxfi_abort.html">xxfi_abort</a> is not called.
+     </td>
+  </tr>
+  <tr valign="top">
+     <td>SMFIS_DISCARD</td>
+     <td>Accept and discard the message.  <a href="xxfi_abort.html">xxfi_abort</a> will be called.
+     </td>
+  </tr>
+  <tr valign="top">
+     <td>SMFIS_ACCEPT</td>
+     <td>Accept recipient.  <a href="xxfi_abort.html">xxfi_abort</a> will not be called.
+     </td>
+   </tr>
+</table>
+</tr>
+
+<!----------- Notes ---------->
+<tr>
+<th valign="top" align=left>NOTES</th> 
+<td>For more details on ESTMP responses, please see RFC
+<a href="http://www.rfc-editor.org/rfc/rfc1869.txt">1869</a>.</td>
+</tr>
+</table>
+
+<hr size="1">
+<font size="-1">
+Copyright (c) 2000, 2003 Sendmail, Inc. and its suppliers.
+All rights reserved.
+<br>
+By using this file, you agree to the terms and conditions set
+forth in the LICENSE.
+</font>
+</body>
+</html>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

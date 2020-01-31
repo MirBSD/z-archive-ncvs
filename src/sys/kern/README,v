@@ -1,0 +1,68 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.37.20;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.33.29;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.33.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@$OpenBSD: README,v 1.4 2001/03/22 06:12:33 angelos Exp $	-*- text -*-
+
+		     Notes on Adding a System Call
+
+You must always commit syscalls.master before rebuilding the files, then
+commit them separately so that the correct RCS stuff shows up in the
+generated files.
+
+Don't forget to increment the minor number of src/lib/libc/shlib_version
+when adding a syscall.
+
+		      Note on Adding a Sysctl Entry
+
+Don't forget to add the entry to the sysctl(8) man page.
+Don't forget to add the description to the sysctl(3) man page.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

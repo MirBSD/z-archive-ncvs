@@ -1,0 +1,47 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.12.13.22.27.14;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f4ac1aff1455;
+
+
+desc
+@@
+
+
+1.1
+log
+@consolidate all added source files in a central directory
+so it can be reused by the v6-transport stuff
+@
+text
+@#include "fmt.h"
+
+char tohex(char num) {
+  if (num<10)
+    return num+'0';
+  else if (num<16)
+    return num-10+'a';
+  else
+    return -1;
+}
+
+unsigned int fmt_xlong(register char *s,register unsigned long u)
+{
+  register unsigned int len; register unsigned long q;
+  len = 1; q = u;
+  while (q > 15) { ++len; q /= 16; }
+  if (s) {
+    s += len;
+    do { *--s = tohex(u % 16); u /= 16; } while(u); /* handles u == 0 */
+  }
+  return len;
+}
+@

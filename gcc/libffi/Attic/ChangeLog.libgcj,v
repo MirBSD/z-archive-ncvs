@@ -1,0 +1,111 @@
+head	1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.04.18.05.29;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.04.17.24.56;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@The usual removal of dupes and unused stuff
+@
+text
+@2004-01-14  Kelley Cook  <kcook@@gcc.gnu.org>
+
+	* configure.in: Add in AC_PREREQ(2.13)
+
+2003-02-20  Alexandre Oliva  <aoliva@@redhat.com>
+
+	* configure.in: Propagate ORIGINAL_LD_FOR_MULTILIBS to
+	config.status.
+	* configure: Rebuilt.
+
+2002-01-27  Alexandre Oliva  <aoliva@@redhat.com>
+
+	* configure.in (toolexecdir, toolexeclibdir): Set and AC_SUBST.
+	Remove USE_LIBDIR conditional.
+	* Makefile.am (toolexecdir, toolexeclibdir): Don't override.
+	* Makefile.in, configure: Rebuilt.
+
+Mon Aug  9 18:33:38 1999  Rainer Orth  <ro@@TechFak.Uni-Bielefeld.DE>
+
+	* include/Makefile.in: Rebuilt.
+	* Makefile.in: Rebuilt
+	* Makefile.am (toolexeclibdir): Add $(MULTISUBDIR) even for native
+	builds.
+	Use USE_LIBDIR.
+
+	* configure: Rebuilt.
+	* configure.in (USE_LIBDIR): Define for native builds.
+	Use lowercase in configure --help explanations.
+
+1999-08-08  Anthony Green  <green@@cygnus.com>
+
+	* include/ffi.h.in (FFI_FN): Remove `...'.
+
+1999-08-08  Anthony Green  <green@@cygnus.com>
+
+	* Makefile.in: Rebuilt.
+	* Makefile.am (AM_CFLAGS): Compile with -fexceptions.
+
+	* src/x86/sysv.S: Add exception handling metadata.
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

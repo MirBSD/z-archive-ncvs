@@ -1,0 +1,88 @@
+head	1.2;
+access;
+symbols
+	lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.00.32.41;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.03.00.23.44;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.03.00.23.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke some unused files for Win32, VMS, DJGPP/DOS etc.
+@
+text
+@$ v0 = 0
+$ v = f$verify(v0)
+$!			BUILD-HEADER.COM
+$!
+$!   Command file to use MAKEUCTB.EXE on VMS systems for creating
+$!   a chrtrans header (foo.h) file from a table (foo.tbl) file.
+$!   Use the file root as P1, e.g.:
+$!
+$!	$ @@build-header iso05_uni
+$!
+$!   will create iso05_uni.h from iso05_uni.tbl.
+$!
+$!   28-Jun-1997	F.Macrides		macrides@@sci.wfeb.edu
+$!	Initial version, for Lynx v2.7.1+fotemods
+$!
+$ ON CONTROL_Y THEN GOTO CLEANUP
+$ ON ERROR THEN GOTO CLEANUP
+$ CHRproc = f$environment("PROCEDURE")
+$ CHRwhere = f$parse(CHRproc,,,"DEVICE") + f$parse(CHRproc,,,"DIRECTORY")
+$!
+$ Create_header:
+$!=============
+$ v1 = f$verify(1)
+$!
+$!	Create a Lynx [.SRC.CHRTRANS] header file.
+$!
+$ makeuctb := $'CHRwhere'makeuctb
+$ makeuctb 'P1'.tbl
+$ v1 = f$verify(v0)
+$ exit
+$!
+$ CLEANUP:
+$    v1 = f$verify(v0)
+$    write sys$output "Default directory:"
+$    show default
+$    v1 = f$verify(v)
+$ exit
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

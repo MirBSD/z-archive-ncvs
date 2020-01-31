@@ -1,0 +1,60 @@
+head	1.2;
+access;
+symbols
+	evilwm-0_99_17:1.1.3.1 tg:1.1.3;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.06.22.13.38;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.06.21.15.24;	author tg;	state Exp;
+branches
+	1.1.3.1;
+next	;
+
+1.1.3.1
+date	2005.01.06.21.15.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@VDESK EXTERNAL PAGER
+
+vdesk is a small standalone application for providing virtual desktop
+support to window managers that do not support it themselves.  evilwm
+*does* have inbuilt virtual desktops, but if you want to support vdesk you
+can set a compile-time option to do so - read the Makefile for details.
+
+vdesk was written by Adam Sampson <azz@@gnu.org> and is available from his
+web site:  http://azz.us-lot.org/code.html
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.3.1
+log
+@evilwm 0.99.17 (.orig.tar.gz)
+@
+text
+@@

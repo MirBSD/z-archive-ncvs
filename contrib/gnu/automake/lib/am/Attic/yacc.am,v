@@ -1,0 +1,133 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041000:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.10.27.49;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.10.06.26;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.10.06.26;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@we basically only want the GNU master files
+@
+text
+@## automake - create Makefile.in from Makefile.am
+## Copyright (C) 1998, 1999, 2001, 2002, 2003, 2004  Free Software Foundation, Inc.
+
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2, or (at your option)
+## any later version.
+
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+
+## You should have received a copy of the GNU General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+## 02111-1307, USA.
+
+## We want to disable the Yacc rebuild rule when
+##   1. AM_MAINTAINER_MODE is used, and
+##   2. --enable-maintainer-mode is not specified, and
+##   3. parser.c already exist, and
+##   4. parser.y and parser.c are distributed.
+## Point #3 is because `make maintainer-clean' erases parser.c, yet
+## the GNU Coding Standards require that ./configure; make works even
+## after that.
+## Point #4 is because parsers listed in nodist_*_SOURCES are always
+## built on the user's side, so it makes no sense to disable them.
+##
+## Points #1, #2, #3 are solved by unconditionally prefixing the rules
+## with $(am__skipyacc) defined below only when needed.
+##
+## Point #4 requires a condition on whether parser.y/parser.c are
+## distributed or not.  We cannot have a generic rule that works in
+## both cases, so we ensure in automake that nodist_ parsers always
+## use non-generic rules.
+if %?MAINTAINER-MODE%
+if %?FIRST%
+@@MAINTAINER_MODE_FALSE@@am__skipyacc = test -f $@@ ||
+endif %?FIRST%
+endif %?MAINTAINER-MODE%
+
+?GENERIC?%EXT%%DERIVED-EXT%:
+?!GENERIC?%OBJ%: %SOURCE%
+if %?MORE-THAN-ONE%
+?GENERIC?	$(am__skipyacc) $(SHELL) $(YLWRAP) %SOURCE% y.tab.c %OBJ% y.tab.h %BASE%.h y.output %BASE%.output -- %COMPILE%
+?!GENERIC??DIST_SOURCE?	$(am__skipyacc) \
+## For non-suffix rules, we must emulate a VPATH search on %SOURCE%.
+?!GENERIC?	$(SHELL) $(YLWRAP) `test -f '%SOURCE%' || echo '$(srcdir)/'`%SOURCE% y.tab.c %OBJ% y.tab.h %BASE%.h y.output %BASE%.output -- %COMPILE%
+else !%?MORE-THAN-ONE%
+?GENERIC?	$(am__skipyacc) %COMPILE% %SOURCE%
+?!GENERIC??DIST_SOURCE?	$(am__skipyacc) \
+## For non-suffix rules, we must emulate a VPATH search on %SOURCE%.
+?!GENERIC?	%COMPILE% `test -f '%SOURCE%' || echo '$(srcdir)/'`%SOURCE%
+## Edit out Bison multiple inclusion guards.  It may be BISON_Y_TAB_H,
+## or Y_TAB_H depending upon the version, that's why the regexp is
+## so loose.
+?GENERIC?	$(am__skipyacc) \
+?!GENERIC??DIST_SOURCE?	$(am__skipyacc) \
+	if test -f y.tab.h; then \
+	  to=`echo "%BASE%_H" | sed \
+                -e 'y/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/' \
+                -e 's/[^ABCDEFGHIJKLMNOPQRSTUVWXYZ]/_/g'`; \
+	  sed "/^#/ s/Y_TAB_H/$$to/g" y.tab.h >%BASE%.ht; \
+	  rm -f y.tab.h; \
+	  if cmp -s %BASE%.ht %BASE%.h; then \
+	    rm -f %BASE%.ht ;\
+	  else \
+	    mv %BASE%.ht %BASE%.h; \
+	  fi; \
+	fi
+?GENERIC?	$(am__skipyacc) \
+?!GENERIC??DIST_SOURCE?	$(am__skipyacc) \
+	if test -f y.output; then \
+	  mv y.output %BASE%.output; \
+	fi
+?GENERIC?	$(am__skipyacc) \
+?!GENERIC??DIST_SOURCE?	$(am__skipyacc) \
+## Edit out `#line' or `#' directives.
+	{ sed '/^#/ s|y\.tab\.c|%OBJ%|' y.tab.c >%OBJ%t && mv %OBJ%t %OBJ% && \
+	rm -f y.tab.c; }
+endif !%?MORE-THAN-ONE%
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU automake CVS-current from anoncvs@@subversions.gnu.org:/cvsroot/automake
+@
+text
+@@

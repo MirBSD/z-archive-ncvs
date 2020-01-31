@@ -1,0 +1,91 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.09.09;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.09.09;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/lib/GL/dri/Imakefile,v 1.11 2003/09/28 20:14:59 alanh Exp $
+
+#include <Threads.tmpl>
+
+#define DoNormalLib (NormalLibGlx || SharedLibGlxWithoutPIC)
+#define DoSharedLib (SharedLibGlx && !SharedLibGlxWithoutPIC)
+#define DoExtraLib SharedLibGlx
+#define DoDebugLib DebugLibGlx
+#define DoProfileLib ProfileLibGlx
+
+#if Malloc0ReturnsNull
+ALLOC_DEFINES = -DMALLOC_0_RETURNS_NULL
+#endif
+
+#if !GlxUseSGISI
+     DRI_SRCS = dri_glx.c
+     DRI_OBJS = dri_glx.o
+     DRI_INCS = -I. -I$(GLXLIBSRC)/glx -I$(INCLUDESRC) -I$(INCLUDESRC)/GL \
+		-I$(XINCLUDESRC) -I$(SERVERSRC)/GL/dri \
+		-I$(GLXLIBSRC)/include \
+		-I$(MESASRCDIR)/include -I$(MESASRCDIR)/src
+#endif
+
+#if GlxUseBuiltInDRIDriver
+     GLX_DEFS = -DBUILT_IN_DRI_DRIVER
+#endif
+
+  PATHDEFINES = -DDEFAULT_DRIVER_DIR=\"$(MODULEDIR)/dri\"
+
+      DEFINES = $(ALLOC_DEFINES) GlxDefines $(GLX_DEFS) $(PATHDEFINES)
+     INCLUDES = -I$(XLIBSRC) -I$(EXTINCSRC) -I$(XF86OSSRC) $(DRI_INCS)
+         SRCS = XF86dri.c dri_util.c $(DRI_SRCS)
+         OBJS = XF86dri.o dri_util.o $(DRI_OBJS)
+
+#include <Library.tmpl>
+
+LibraryObjectRule()
+
+SubdirLibraryRule($(OBJS))
+NormalLintTarget($(SRCS))
+
+#define IHaveSubdirs
+#define PassCDebugFlags
+
+SUBDIRS = drm
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+
+DependTarget()
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

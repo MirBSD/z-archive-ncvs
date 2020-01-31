@@ -1,0 +1,92 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.32.24;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.37;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.37;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#! /bin/sh
+#
+#	$OpenBSD: mkkeysym.sh,v 1.1 2000/07/01 23:52:45 mickey Exp $
+#	$NetBSD: mkkeysym.sh 1.1 1998/12/28 14:01:17 hannken Exp $
+#
+#	Build a table of keysyms from a file describing keysyms as:
+#
+#	/*BEGINKEYSYMDECL*/
+#	#define KS_name 0xval
+#	...
+#	/*ENDKEYSYMDECL*/
+#
+
+AWK=${AWK:-awk}
+
+${AWK} '
+BEGIN {
+	in_decl = 0;
+	printf("/* DO  NOT EDIT: AUTOMATICALLY GENERATED FROM '$1' */\n\n");
+	printf("struct ksym {\n\tchar *name;\n\tint value;\n};\n\n");
+	printf("struct ksym ksym_tab_by_name[] = {\n");
+}
+
+END {
+	printf("};\n");
+}
+
+$1 == "/*BEGINKEYSYMDECL*/" {
+	in_decl = 1;
+}
+
+$1 == "/*ENDKEYSYMDECL*/" {
+	in_decl = 0;
+}
+
+$1 ~ /^#[ 	]*define/ && $2 ~ /^KS_/ && $3 ~ /^0x[0-9a-f]*/ {
+	if (in_decl)
+		printf("\t{ \"%s\", %s },\n", substr($2, 4), $3);
+}' $1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

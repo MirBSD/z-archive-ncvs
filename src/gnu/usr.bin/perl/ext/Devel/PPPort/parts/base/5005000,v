@@ -1,0 +1,48 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  cvs-200501160850:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.16.09.55.58;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.16.09.55.58;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@5.005000
+PL_modglobal                   # E
+NOOP                           # added by devel/scanprov
+PL_Sv                          # added by devel/scanprov
+PL_copline                     # added by devel/scanprov
+PL_hexdigit                    # added by devel/scanprov
+PL_hints                       # added by devel/scanprov
+END_EXTERN_C                   # added by devel/scanprov
+EXTERN_C                       # added by devel/scanprov
+START_EXTERN_C                 # added by devel/scanprov
+@
+
+
+1.1.1.1
+log
+@Import a series of fixes and minor updates from OpenBSD
+@
+text
+@@

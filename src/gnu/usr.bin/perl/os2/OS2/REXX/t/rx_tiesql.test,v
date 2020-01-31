@@ -1,0 +1,141 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.03;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.41;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.41;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@BEGIN {
+    chdir 't' if -d 't/lib';
+    @@INC = '../lib';
+    require Config; import Config;
+    if ($Config{'extensions'} !~ /\bOS2(::|\/)REXX\b/) {
+	print "1..0\n";
+	exit 0;
+    }
+}
+
+#extproc perl5 -Rx
+#! perl
+
+use REXX;
+
+$db2 = load REXX "sqlar" or die "load";
+tie $sqlcode, REXX, "SQLCA.SQLCODE";
+tie $sqlstate, REXX, "SQLCA.SQLSTATE";
+tie %rexx, REXX, "";
+
+sub stmt
+{
+	my ($s) = @@_;
+	$s =~ s/\s*\n\s*/ /g;
+	$s =~ s/^\s+//;
+	$s =~ s/\s+$//;
+	return $s;
+}
+
+sub sql
+{
+	my ($stmt) = stmt(@@_);
+	return 0 if $db2->SqlExec($stmt);
+	return $sqlcode >= 0;
+}
+
+sub dbs
+{
+	my ($stmt) = stmt(@@_);
+	return 0 if $db2->SqlDBS($stmt);
+	return $sqlcode >= 0;
+}
+
+sub error
+{
+	my ($where) = @@_;
+	print "ERROR in $where: sqlcode=$sqlcode, sqlstate=$sqlstate\n";
+	dbs("GET MESSAGE INTO :msg LINEWIDTH 75");
+	print "\n", $rexx{'MSG'};
+	exit 1;
+}
+
+sql(<<) or error("connect");
+     CONNECT TO sample IN SHARE MODE
+
+$rexx{'STMT'} = stmt(<<);
+     SELECT name FROM sysibm.systables
+
+sql(<<) or error("prepare");
+     PREPARE s1 FROM :stmt
+
+sql(<<) or error("declare");
+     DECLARE c1 CURSOR FOR s1
+
+sql(<<) or error("open");
+     OPEN c1
+
+while (1) {
+     sql(<<) or error("fetch");
+          FETCH c1 INTO :name
+
+     last if $sqlcode == 100;
+
+     print "Table name is $rexx{'NAME'}\n";
+}
+	
+sql(<<) or error("close");
+     CLOSE c1
+
+sql(<<) or error("rollback");
+     ROLLBACK
+
+sql(<<) or error("disconnect");
+     CONNECT RESET
+
+exit 0;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

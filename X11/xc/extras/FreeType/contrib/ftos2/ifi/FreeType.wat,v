@@ -1,0 +1,69 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.04.07;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.07;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# WARNING!! this doesn't quite work yet!!!!
+#
+#       Makefile for FTIFI using Watcom C/C++
+#
+# Explanation of compiler switches used:
+#  -4r      register calling convention, generate 486 code. Better than
+#           Pentium opt. for Cyrix/IBM and AMD
+#  -otexan  maximum optimization for speed
+#  -zp1     pack structures on byte boundaries (quite important!)
+#  -bd      build a DLL
+#  -zc
+#  -d2      include debug info
+#
+# Important linker options used:
+#  initglobal   call DLL initialization function only once (not for each
+#               process)
+#  termglobal   call DLL termination function only once
+#  oneautodata  use only one shared data segment
+
+WCCR=-4r -otexan
+#WCCD=-d2 -DDEBUG
+#LNKD=debug all
+
+
+FreeType.dll:       $*.obj $*.def
+   wlink system os2v2 dll initglobal termglobal op oneautodata export GetOutline_ export FONT_DRIVER_DISPATCH_TABLE=_fdhdr file $* lib ..\lib\libttf.lib $(LNKD)
+
+FreeType.obj:       ftifi.c ftifi.h
+   wcc386 $(WCCD) $(WCCR) -zp1 -bd -zc -I..\lib -I..\lib\extend ftifi.c /Fo=freetype.obj
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

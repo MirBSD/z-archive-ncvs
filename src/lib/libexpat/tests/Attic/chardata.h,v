@@ -1,0 +1,83 @@
+head	1.2;
+access;
+symbols
+	expat-1_95_8:1.1.16.1 expat:1.1.16;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.20.31.19;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.28.14;	author tg;	state Exp;
+branches
+	1.1.16.1;
+next	;
+
+1.1.16.1
+date	2005.01.08.20.28.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge
+@
+text
+@/* chardata.h
+
+   Interface to some helper routines used to accumulate and check text
+   and attribute content.
+*/
+
+#ifndef XML_CHARDATA_H
+#define XML_CHARDATA_H 1
+
+#ifndef XML_VERSION
+#include "expat.h"                      /* need XML_Char */
+#endif
+
+
+typedef struct {
+    int count;                          /* # of chars, < 0 if not set */
+    XML_Char data[1024];
+} CharData;
+
+
+void CharData_Init(CharData *storage);
+
+void CharData_AppendString(CharData *storage, const char *s);
+
+void CharData_AppendXMLChars(CharData *storage, const XML_Char *s, int len);
+
+int CharData_CheckString(CharData *storage, const char *s);
+
+int CharData_CheckXMLChars(CharData *storage, const XML_Char *s);
+
+
+#endif  /* XML_CHARDATA_H */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.16.1
+log
+@libexpat 1.95.8
+@
+text
+@@

@@ -1,0 +1,61 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.14.59;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.14.59;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ * Host.def for building OpenBSD/ix86 bindists
+ *
+ * $XFree86: xc/programs/Xserver/hw/xfree86/etc/bindist/OpenBSD-aout-ix86/host.def,v 1.1 2003/12/09 19:03:02 herrb Exp $
+ */
+
+#define InstallEmptyHostDef
+#define BuildBindist
+
+#define ForceNormalLib		YES
+
+/*
+ *  These defines assume libpng is installed from the ports tree
+ */
+#define HasLibpng               YES
+#define LibpngDir               /usr/local
+#define LibpngDirStandard       NO
+#define LibpngIncDir            /usr/local/include/libpng
+#define LibpngIncDirStandard    NO
+#define LibpngLibDir            /usr/local/lib
+#define LibpngLibDirStandard    NO
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

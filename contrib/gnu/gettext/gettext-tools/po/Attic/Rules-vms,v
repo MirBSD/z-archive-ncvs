@@ -1,0 +1,65 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.48.05;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.01;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.01;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@# Special Makefile rules for generating a Makefile.vms.
+
+DISTFILES.extra2 = Rules-vms Makefile.vms.sh Makefile.vms
+
+dist distdir: $(srcdir)/Makefile.vms
+
+# Makefile.vms needs to be redone when LINGUAS has changed. When rebuilding
+# it, ensure that we use the updated value of CATALOGS.
+$(srcdir)/Makefile.vms: $(srcdir)/Makefile.vms.sh LINGUAS
+	$(MAKE) Makefile
+	$(MAKE) -f Makefile Makefile.vms-update
+
+Makefile.vms-update:
+	$(SHELL) $(srcdir)/Makefile.vms.sh $(DOMAIN) '$(GMOFILES)' > $(srcdir)/Makefile.vms
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

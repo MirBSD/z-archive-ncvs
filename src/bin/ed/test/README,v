@@ -1,0 +1,86 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.22.33;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.26.57;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.26.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@$OpenBSD: README,v 1.2 1996/06/23 14:20:06 deraadt Exp $
+$NetBSD: README,v 1.8 1995/03/21 09:05:18 cgd Exp $
+
+The files in this directory with suffixes `.t', `.d', `.r' and `.err' are
+used for testing ed.  To run the tests, set the ED variable in the Makefile
+for the path name of the program to be tested (e.g., /bin/ed), and type
+`make'.  The tests do not exhaustively verify POSIX compliance nor do
+they verify correct 8-bit or long line support.
+
+The test file suffixes have the following meanings:
+.t    Template - a list of ed commands from which an ed script is
+      constructed
+.d    Data - read by an ed script
+.r    Result - the expected output after processing data via an ed
+      script.
+.err  Error - invalid ed commands that should generate an error
+
+The output of the tests is written to the two files err.o and scripts.o.
+At the end of the tests, these files are grep'ed for error messages,
+which look like:
+	*** The script u.ed exited abnormally ***
+or:
+	*** Output u.o of script u.ed is incorrect ***
+
+The POSIX requirement that an address range not be used where at most
+a single address is expected has been relaxed in this version of ed.
+Therefore, the  following scripts  which test for compliance with this
+POSIX rule exit abnormally:
+=-err.ed
+a1-err.ed
+i1-err.ed
+k1-err.ed
+r1-err.ed
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

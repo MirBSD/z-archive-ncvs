@@ -1,0 +1,70 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.10.07;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.07;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/lib/XTrap/Imakefile,v 1.1 2001/11/02 23:29:27 dawes Exp $
+
+#define DoNormalLib NormalLibXTrap
+#define DoSharedLib SharedLibXTrap
+#define DoDebugLib DebugLibXTrap
+#define DoProfileLib ProfileLibXTrap
+#define LibName XTrap
+#define SoRev SOXTRAPREV
+#define LibHeaders NO
+
+#include <Threads.tmpl>
+
+#ifdef SharedXmuReqs
+REQUIREDLIBS = SharedXmuReqs
+#endif
+
+XCOMM wish this weren't necessary, but need xlib and xt internals...
+INCLUDES=-I$(TOP)/include -I$(TOOLKITSRC)
+
+
+      SRCS = XECallBcks.c XEConTxt.c XEDsptch.c XEPrInfo.c \
+	XERqsts.c XEStrMap.c XETrapInit.c XEWrappers.c
+      OBJS = XECallBcks.o XEConTxt.o XEDsptch.o XEPrInfo.o \
+	XERqsts.o XEStrMap.o XETrapInit.o XEWrappers.o
+
+LINTLIBS = $(LINTXLIB)
+
+#include <Library.tmpl>
+
+DependTarget()
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

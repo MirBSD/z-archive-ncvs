@@ -1,0 +1,85 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.29.04;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.15;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * Written by J.T. Conklin <jtc@@NetBSD.org>.
+ * Public domain.
+ */
+
+#include <machine/asm.h>
+
+RCSID("$NetBSD: s_ilogbf.S,v 1.6 2003/07/26 19:25:02 salo Exp $")
+
+ENTRY(ilogbf)
+#ifdef __i386__
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+
+	flds	8(%ebp)
+	fxtract
+	fstp	%st
+
+	fistpl	-4(%ebp)
+	movl	-4(%ebp),%eax
+
+	leave
+#else
+	movss	%xmm0,-4(%rsp)
+	flds	-4(%rsp)
+	fxtract
+	fstp	%st
+	fistpl	-4(%rsp)
+	movl	-4(%rsp),%eax
+#endif
+	ret
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

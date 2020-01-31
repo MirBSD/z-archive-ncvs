@@ -1,0 +1,78 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2004.12.12.13.20.56;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.10.17.51.28;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.10.17.10.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@add a script which writes to ChangeLog _and_ rotates it at 1 MiB
+@
+text
+@# $MirBSD: CVSROOT/checkoutlist,v 2.1 2004/12/10 17:51:28 tg Exp $
+#-
+# The "checkoutlist" file is used to support additional version controlled
+# administrative files in $CVSROOT/CVSROOT, such as template files.
+#
+# The first entry on a line is a filename which will be checked out from
+# the corresponding RCS file in the $CVSROOT/CVSROOT directory.
+# The remainder of the line is an error message to use if the file cannot
+# be checked out.
+#
+# File format:
+#
+#	[<whitespace>]<filename>[<whitespace><error message>]<end-of-line>
+#
+# comment lines begin with '#'
+
+commit_prep2	Cannot find ChangeLog directory notification driver!
+log_accum2	Cannot find ChangeLog file generation driver!
+tag_accum2	Cannot find ChangeLog tag generation driver!
+log_write2	Cannot find ChangeLog rotation and append driver!
+cvs-genperm	Cannot find CVS Repository permission fixup script!
+@
+
+
+2.1
+log
+@list of needed files in /cvs/CVSROOT/
+@
+text
+@d1 1
+a1 1
+# $MirBSD$
+d20 1
+@
+
+
+1.1
+log
+@initial checkin
+@
+text
+@d1 2
+d16 5
+@
+
+

@@ -1,0 +1,79 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.29.30;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.29;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# default settings
+CERTPATHLEN		= 1
+CERTUSAGE		= digitalSignature,keyCertSign
+CERTIP			= 0.0.0.0
+CERTFQDN		= nohost.nodomain
+
+# This section should be referenced when building an x509v3 CA
+# Certificate.
+# The default path length and the key usage can be overriden
+# modified by setting the CERTPATHLEN and CERTUSAGE environment 
+# variables.
+[x509v3_CA]
+basicConstraints=critical,CA:true,pathlen:$ENV::CERTPATHLEN
+keyUsage=$ENV::CERTUSAGE
+
+# This section should be referenced to add an IP Address
+# as an alternate subject name, needed by isakmpd
+# The address must be provided in the CERTIP environment variable
+[x509v3_IPAddr]
+subjectAltName=IP:$ENV::CERTIP
+
+# This section should be referenced to add a FQDN hostname
+# as an alternate subject name, needed by isakmpd
+# The address must be provided in the CERTFQDN environment variable
+[x509v3_FQDN]
+subjectAltName=DNS:$ENV::CERTFQDN
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

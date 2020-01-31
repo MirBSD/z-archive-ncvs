@@ -1,0 +1,76 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2004.08.04.11.47.26;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.56;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@/* memmove.c -- copy memory.
+   Copy LENGTH bytes from SOURCE to DEST.  Does not null-terminate.
+   In the public domain.
+   By David MacKenzie <djm@@gnu.ai.mit.edu>.  */
+
+#if HAVE_CONFIG_H
+# include <config.h>
+#endif
+
+void *
+memmove (char *dest, const char *source, unsigned length)
+{
+  char *d0 = dest;
+  if (source < dest)
+    /* Moving from low mem to hi mem; start at end.  */
+    for (source += length, dest += length; length; --length)
+      *--dest = *--source;
+  else if (source != dest)
+    {
+      /* Moving from hi mem to low mem; start at beginning.  */
+      for (; length; --length)
+	*dest++ = *source++;
+    }
+  return (void *) d0;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

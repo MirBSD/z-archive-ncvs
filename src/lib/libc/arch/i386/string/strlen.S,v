@@ -1,0 +1,79 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.46;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.29;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * Written by J.T. Conklin <jtc@@netbsd.org>.
+ * Public domain.
+ */
+
+#include <machine/asm.h>
+
+	.text
+#if defined(LIBC_SCCS)
+	.asciz "$OpenBSD: strlen.S,v 1.2 1996/08/19 08:13:19 tholo Exp $"
+#endif
+
+ENTRY(strlen)
+	pushl	%edi
+	movl	8(%esp),%edi		/* string address */
+	cld				/* set search forward */
+	xorl	%eax,%eax		/* set search for null terminator */
+	movl	$-1,%ecx		/* set search for lots of characters */
+	repne				/* search! */
+	scasb
+	notl	%ecx			/* get length by taking	complement */
+	leal	-1(%ecx),%eax		/* and subtracting one */
+	popl	%edi
+	ret
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 1
+a9 1
+	.text
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

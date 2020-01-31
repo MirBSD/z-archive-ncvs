@@ -1,0 +1,49 @@
+head     1.1;
+branch   1.1.15;
+access   ;
+symbols  start:1.1.15.1 mirbsd:1.1.15;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.07.01.15.08;  author tg;  state Exp;
+branches 1.1.15.1;
+next     ;
+
+1.1.15.1
+date     2005.01.07.01.15.08;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# $MirBSD: src/libexec/randshuffle/Makefile,v 1.4 2004/11/30 16:47:22 tg Exp $
+
+SCRIPTS=	randshuffle
+NOOBJ=		Yes
+NOMAN=		Yes
+
+realinstall:
+	cd ${.CURDIR}; install -c -o ${BINOWN} -g ${BINGRP} -m 555 \
+	    ${SCRIPTS} ${DESTDIR}${BINDIR}
+
+.include <bsd.prog.mk>
+@
+
+
+1.1.15.1
+log
+@the random seed shuffler script
+@
+text
+@@

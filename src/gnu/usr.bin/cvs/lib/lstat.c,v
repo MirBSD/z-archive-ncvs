@@ -1,0 +1,61 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.21.13.54;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.21.13.54;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Work around the bug in some systems whereby lstat succeeds when
+   given the zero-length file name argument.  The lstat from SunOS 4.1.4
+   has this bug.
+
+   Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free
+   Software Foundation, Inc.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+
+#define LSTAT
+#include "stat.c"
+@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

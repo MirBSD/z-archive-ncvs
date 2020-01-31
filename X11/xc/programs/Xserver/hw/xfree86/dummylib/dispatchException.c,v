@@ -1,0 +1,31 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.06.22.13.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@/**
+ ** Public domain
+ **/
+/* $OpenBSD: dispatchException.c,v 1.2 2003/12/14 17:51:29 matthieu Exp $ */
+
+#include "opaque.h"
+
+char dispatchException;
+@

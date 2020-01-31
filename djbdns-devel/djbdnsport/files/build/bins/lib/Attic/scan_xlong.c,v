@@ -1,0 +1,78 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 tg:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.12.13.22.27.12;	author tg;	state dead;
+branches;
+next	1.1;
+commitid	0439f4ac1aff1455;
+
+1.1
+date	2005.12.13.20.44.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+commitid	0439f32c6884c25e;
+
+1.1.1.1
+date	2005.12.13.20.44.45;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f32c6884c25e;
+
+
+desc
+@@
+
+
+1.2
+log
+@consolidate all added source files in a central directory
+so it can be reused by the v6-transport stuff
+@
+text
+@#include "scan.h"
+
+static inline int fromhex(unsigned char c) {
+  if (c>='0' && c<='9')
+    return c-'0';
+  else if (c>='A' && c<='F')
+    return c-'A'+10;
+  else if (c>='a' && c<='f')
+    return c-'a'+10;
+  return -1;
+}
+
+unsigned int scan_xlong(const char *src,unsigned long *dest) {
+  register const char *tmp=src;
+  register int l=0;
+  register unsigned char c;
+  while ((c=fromhex(*tmp))<16) {
+    l=(l<<4)+c;
+    ++tmp;
+  }
+  *dest=l;
+  return tmp-src;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import ports/net/djbdns of snapshot
+@
+text
+@@

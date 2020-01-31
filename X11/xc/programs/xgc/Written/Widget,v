@@ -1,0 +1,66 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.18.50;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.18.50;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@What we need is a widget which presents a collection of buttons.  The user
+can select only one of them at a time.  When one is selected, its 
+foreground and background colors should be reversed and stay that way
+until another one is selected.  Exactly one button can be selected at
+any one time.
+
+Possible implementations:
+
+1.  As a new kind of widget.  bleah.
+
+
+2.  Box surrounding a lot of command buttons.  The command buttons have
+    the appropriate callbacks.
+
+Callbacks:  a) set all buttons to normal colors
+            b) set this button to reverse colors
+            c) change the appropriate variable to the desired value.
+
+    This can all be done at the time of creation, thus the buttons would
+    be invisible to the rest of the program (a good thing).
+
+
+
+(2) would be a heck of a lot easier to program, since creating widgets is
+a bitch.  However, (1) could come in handy outside of this program.  Perhaps
+write it using (2) and switch to (1) if/when we can get the widget working.
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

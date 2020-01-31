@@ -1,0 +1,93 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.49.07;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.11;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@#! /bin/sh
+
+# Test --more-than=0; identical message are wanted once only.
+
+tmpfiles=""
+trap 'rm -fr $tmpfiles' 1 2 3 15
+
+tmpfiles="$tmpfiles mcomm-test18.in1 mcomm-test18.in2"
+cat <<EOF > mcomm-test18.in1
+# Sure.
+#: first.c:123
+msgid "1"
+msgstr "1x"
+EOF
+
+cat <<EOF > mcomm-test18.in2
+# Right.
+#: hunt.c:759
+msgid "1"
+msgstr "1x"
+EOF
+
+tmpfiles="$tmpfiles mcomm-test18.out"
+: ${MSGCOMM=msgcomm}
+${MSGCOMM} --more-than=0 mcomm-test18.in1 mcomm-test18.in2 -o mcomm-test18.out
+test $? = 0 || { rm -fr $tmpfiles; exit 1; }
+
+tmpfiles="$tmpfiles mcomm-test18.ok"
+cat << EOF > mcomm-test18.ok
+# Sure.
+#: first.c:123 hunt.c:759
+msgid "1"
+msgstr "1x"
+EOF
+
+: ${DIFF=diff}
+${DIFF} mcomm-test18.ok mcomm-test18.out
+result=$?
+
+rm -fr $tmpfiles
+
+exit $result
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

@@ -1,0 +1,63 @@
+head	2.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.09.19.36.54;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.03.18.01.24;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.22.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@merge over most userland fixes from ocvs
+@
+text
+@Build.log
+X11
+contrib
+ports
+testing
+www
+@
+
+
+2.2
+log
+@build.log -> Build.log
+don't disturb my tab complete :)
+@
+text
+@d2 1
+d4 1
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+build.log
+@
+

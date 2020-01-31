@@ -1,0 +1,91 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.04.10;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.10;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ *   filesrch.h
+ *
+ *   This file is part of the ttf2pk package.
+ *
+ *   Copyright 1997-1999 by
+ *     Frederic Loyer <loyer@@ensta.fr>
+ *     Werner Lemberg <wl@@gnu.org>
+ */
+
+#ifndef FILESRCH_H
+#define FILESRCH_H
+
+#include "ttf2tfm.h"
+
+/*
+ *   Arguments are the full program name and two identification strings
+ *   (for the program and the environment).
+ */
+
+void TeX_search_init(char *exec_name,
+                     char *program_identifier,
+                     char *env_identifier);
+
+/*
+ *   The next function returns a version string.
+ */
+
+char *TeX_search_version(void);
+
+/*
+ *   The following functions take a file name (either relative or absolute),
+ *   probably append a default extension, and return the complete path to the
+ *   file.
+ */
+
+char *TeX_search_tfm(char **name);
+char *TeX_search_encoding_file(char **name);
+char *TeX_search_replacement_file(char **name);
+char *TeX_search_sfd_file(char **name);
+char *TeX_search_config_file(char **name);
+char *TeX_search_ttf_file(char **name);
+
+void get_tfm_fullname(Font *fnt);
+void handle_extension(char **stringp,
+                      char *extension);
+
+#endif /* FILESRCH_H */
+
+
+/* end */
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

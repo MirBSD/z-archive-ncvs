@@ -1,0 +1,99 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.06.22.13.44;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.04.46;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.04.46;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@/*
+Copyright (c) 1998, 1999 Thai Open Source Software Center Ltd
+See the file COPYING for copying permission.
+*/
+
+enum {
+  BT_NONXML,
+  BT_MALFORM,
+  BT_LT,
+  BT_AMP,
+  BT_RSQB,
+  BT_LEAD2,
+  BT_LEAD3,
+  BT_LEAD4,
+  BT_TRAIL,
+  BT_CR,
+  BT_LF,
+  BT_GT,
+  BT_QUOT,
+  BT_APOS,
+  BT_EQUALS,
+  BT_QUEST,
+  BT_EXCL,
+  BT_SOL,
+  BT_SEMI,
+  BT_NUM,
+  BT_LSQB,
+  BT_S,
+  BT_NMSTRT,
+  BT_COLON,
+  BT_HEX,
+  BT_DIGIT,
+  BT_NAME,
+  BT_MINUS,
+  BT_OTHER, /* known not to be a name or name start character */
+  BT_NONASCII, /* might be a name or name start character */
+  BT_PERCNT,
+  BT_LPAR,
+  BT_RPAR,
+  BT_AST,
+  BT_PLUS,
+  BT_COMMA,
+  BT_VERBAR
+};
+
+#include <stddef.h>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,87 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.24.08;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.08;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# Just for these, we omit the frame pointer since it makes such a big
+# difference.  It is then pointless adding debugging.
+TARGET_LIBGCC2_CFLAGS = -fomit-frame-pointer -fpic
+LIBGCC2_DEBUG_CFLAGS = -g0
+
+# Build a shared libgcc library.
+SHLIB_EXT = .so
+SHLIB_NAME = @@shlib_base_name@@.so
+SHLIB_SONAME = @@shlib_base_name@@.so.1
+SHLIB_OBJS = @@shlib_objs@@
+
+SHLIB_LINK = $(GCC_FOR_TARGET) $(LIBGCC2_CFLAGS) -shared -nodefaultlibs \
+	-Wl,-soname,$(SHLIB_SONAME) \
+	-o $(SHLIB_NAME).tmp @@multilib_flags@@ $(SHLIB_OBJS) -lc && \
+	rm -f $(SHLIB_SONAME) && \
+	if [ -f $(SHLIB_NAME) ]; then \
+	  mv -f $(SHLIB_NAME) $(SHLIB_NAME).backup; \
+	else true; fi && \
+	mv $(SHLIB_NAME).tmp $(SHLIB_NAME) && \
+	$(LN_S) $(SHLIB_NAME) $(SHLIB_SONAME)
+# $(slibdir) double quoted to protect it from expansion while building
+# libgcc.mk.  We want this delayed until actual install time.
+SHLIB_INSTALL = $(INSTALL_DATA) $(SHLIB_NAME) $$(DESTDIR)$$(slibdir)/$(SHLIB_SONAME); \
+	rm -f $$(DESTDIR)$$(slibdir)/$(SHLIB_NAME); \
+	$(LN_S) $(SHLIB_SONAME) $$(DESTDIR)$$(slibdir)/$(SHLIB_NAME)
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

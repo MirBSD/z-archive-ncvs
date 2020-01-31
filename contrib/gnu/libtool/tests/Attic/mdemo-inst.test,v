@@ -1,0 +1,137 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.2
+	libtool-1_5_8:1.1.2.2
+	libtool-1_5-20040215:1.1.2.2
+	libtool-1_4_3:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.03.19.42.38;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.17.55.46;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.03.17.55.46;	author tg;	state Exp;
+branches;
+next	1.1.2.2;
+
+1.1.2.2
+date	2004.02.15.13.09.51;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@* MirOSify
+* bootstrap
+* nuke unneeded stuff
+@
+text
+@#! /bin/sh
+# mdemo-inst.test - try installing from the ../mdemo subdirectory
+
+# Test script header.
+need_prefix=yes
+if test -z "$srcdir"; then
+  srcdir=`echo "$0" | sed 's%/[^/]*$%%'`
+  test "$srcdir" = "$0" && srcdir=.
+  test "${VERBOSE+set}" != "set" && VERBOSE=yes
+fi
+. $srcdir/defs || exit 1
+
+# Check that things are built.
+if test -f ../mdemo/mdemo; then :
+else
+  echo "You must run mdemo-make.test before $0" 1>&2
+  exit 77
+fi
+
+# Change to our build directory.
+cd ../mdemo || exit 1
+
+echo "= Running $make install in ../mdemo"
+$make install || exit 1
+
+echo "= Executing installed programs"
+
+status=0
+if $prefix/bin/mdemo.static $prefix/lib/foo1.la $prefix/lib/libfoo2.la; then :
+else
+  echo "$0: cannot execute $prefix/bin/mdemo.static" 1>&2
+  status=1
+fi
+
+if $prefix/bin/mdemo $prefix/lib/foo1.la $prefix/lib/libfoo2.la; then :
+else
+  echo "$0: cannot execute $prefix/bin/mdemo" 1>&2
+
+  # Simple check to see if they are superuser.
+  if test -w /; then :
+  else
+    echo "You may need to run $0 as the superuser."
+  fi
+  status=1
+fi
+
+exit $status
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Libtool 1.4.3 (last of the 1.4 series)
+
+Requires to bootstrap:
+* autoconf 2.13-o
+* automake 1.4-p5
+or later.
+@
+text
+@@
+
+
+1.1.2.2
+log
+@libtool 1.5 branch from today
+@
+text
+@d14 1
+a14 1
+if test -f ../mdemo/mdemo$EXEEXT; then :
+a26 2
+path_old=$PATH
+PATH=$prefix/lib:$PATH
+d29 1
+a29 1
+if $prefix/bin/mdemo_static $prefix/lib/foo1.la $prefix/lib/libfoo2.la; then :
+d31 1
+a31 1
+  echo "$0: cannot execute $prefix/bin/mdemo_static" 1>&2
+a46 1
+PATH=$path_old
+@
+

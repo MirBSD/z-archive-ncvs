@@ -1,0 +1,3145 @@
+head	1.22;
+access;
+symbols
+	libtool-1_5_10:1.1.2.3
+	libtool-1_5_8:1.1.2.2
+	MIRLIBTOOL_I:1.10
+	LIBTOOL_1_5:1.7.0.4
+	LIBTOOL_1_4:1.7.0.2
+	libtool-1_4_3:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.22
+date	2005.01.15.19.57.35;	author tg;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2004.10.16.23.42.18;	author tg;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2004.10.16.23.40.16;	author tg;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2004.10.14.18.58.57;	author tg;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2004.08.10.01.19.13;	author tg;	state Stab;
+branches;
+next	1.17;
+
+1.17
+date	2004.08.10.01.18.01;	author tg;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2004.08.09.23.06.49;	author tg;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2004.08.04.09.39.58;	author tg;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2004.07.23.08.24.18;	author tg;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2004.07.15.08.55.51;	author tg;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2004.07.15.08.46.04;	author tg;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2004.07.15.08.27.47;	author tg;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2004.02.16.12.35.56;	author tg;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2004.02.16.12.34.16;	author tg;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2004.02.16.12.26.14;	author tg;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2004.02.15.00.34.38;	author tg;	state Exp;
+branches
+	1.7.4.1;
+next	1.6;
+
+1.6
+date	2004.02.15.00.24.29;	author tg;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2004.02.15.00.10.11;	author tg;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2004.02.07.23.20.41;	author tg;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2004.02.03.19.54.52;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2004.02.03.19.41.19;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.17.55.33;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.03.17.55.33;	author tg;	state Exp;
+branches;
+next	1.1.2.2;
+
+1.1.2.2
+date	2004.08.09.22.58.46;	author tg;	state Exp;
+branches;
+next	1.1.2.3;
+
+1.1.2.3
+date	2004.10.14.17.45.32;	author tg;	state Exp;
+branches;
+next	;
+
+1.7.4.1
+date	2004.02.15.13.30.25;	author tg;	state dead;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.22
+log
+@regen
+@
+text
+@# Makefile.in generated automatically by automake 1.4-p6 from Makefile.am
+
+# Copyright (C) 1994, 1995-8, 1999, 2001 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# $MirBSD: contrib/gnu/libtool/Makefile.am,v 1.10 2004/08/10 01:18:01 tg Stab $
+# _MirBSD: contrib/gnu/libtool/Makefile.am,v 1.10 2004/08/10 01:18:01 tg Stab $
+
+
+SHELL = @@SHELL@@
+
+srcdir = @@srcdir@@
+top_srcdir = @@top_srcdir@@
+VPATH = @@srcdir@@
+prefix = @@prefix@@
+exec_prefix = @@exec_prefix@@
+
+bindir = @@bindir@@
+sbindir = @@sbindir@@
+libexecdir = @@libexecdir@@
+datadir = @@datadir@@
+sysconfdir = @@sysconfdir@@
+sharedstatedir = @@sharedstatedir@@
+localstatedir = @@localstatedir@@
+libdir = @@libdir@@
+infodir = @@infodir@@
+mandir = @@mandir@@
+includedir = @@includedir@@
+oldincludedir = /usr/include
+
+DESTDIR =
+
+pkgdatadir = $(datadir)/@@PACKAGE@@
+pkglibdir = $(libdir)/@@PACKAGE@@
+pkgincludedir = $(includedir)/@@PACKAGE@@
+
+top_builddir = .
+
+ACLOCAL = @@ACLOCAL@@
+AUTOCONF = @@AUTOCONF@@
+AUTOMAKE = @@AUTOMAKE@@
+AUTOHEADER = @@AUTOHEADER@@
+
+INSTALL = @@INSTALL@@
+INSTALL_PROGRAM = @@INSTALL_PROGRAM@@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_DATA = @@INSTALL_DATA@@
+INSTALL_SCRIPT = @@INSTALL_SCRIPT@@
+transform = @@program_transform_name@@
+
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+host_alias = @@host_alias@@
+host_triplet = @@host@@
+ACINCLUDE_M4_LIST = @@ACINCLUDE_M4_LIST@@
+AR = @@AR@@
+AS = @@AS@@
+CC = @@CC@@
+CXX = @@CXX@@
+CXXCPP = @@CXXCPP@@
+DIST_MAKEFILE_LIST = @@DIST_MAKEFILE_LIST@@
+DLLTOOL = @@DLLTOOL@@
+ECHO = @@ECHO@@
+EGREP = @@EGREP@@
+EXEEXT = @@EXEEXT@@
+GCJ = @@GCJ@@
+GCJFLAGS = @@GCJFLAGS@@
+LD = @@LD@@
+LIBTOOL = @@LIBTOOL@@
+LN_S = @@LN_S@@
+MAKEINFO = @@MAKEINFO@@
+NM = @@NM@@
+OBJDUMP = @@OBJDUMP@@
+OBJEXT = @@OBJEXT@@
+PACKAGE = @@PACKAGE@@
+RANLIB = @@RANLIB@@
+RC = @@RC@@
+STRIP = @@STRIP@@
+VERSION = @@VERSION@@
+
+AUTOMAKE_OPTIONS = 1.3e gnu
+
+BUILD_SUBDIRS = .
+CONF_SUBDIRS = @@CONF_SUBDIRS@@
+SUBDIRS = $(BUILD_SUBDIRS)
+DIST_SUBDIRS = $(BUILD_SUBDIRS) $(CONF_SUBDIRS)
+
+# We need to export these variables
+CFLAGS = @@CFLAGS@@
+CPPLAGS = @@CPPFLAGS@@
+LDFLAGS = @@LDFLAGS@@
+LIBS = @@LIBS@@
+FFLAGS = @@FFLAGS@@
+FLIBS = @@FLIBS@@
+
+aclocal_macros = libtool.m4
+
+EXTRA_DIST = $(aclocal_macros) bootstrap libtoolize.in ltmain.in
+CLEANFILES = libtool libtoolize ltmain.shT
+
+# These are required by libtoolize and must be executable when installed.
+# Since _SCRIPTS gets the program transform applied we make them
+# executable by hand
+pkgdata_DATA = config.guess config.sub ltmain.sh
+
+# The standalone libtool script, and the libtool distributor.
+bin_SCRIPTS = libtool libtoolize
+ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_CLEAN_FILES = 
+SCRIPTS =  $(bin_SCRIPTS)
+
+DATA =  $(pkgdata_DATA)
+
+DIST_COMMON =  README AUTHORS COPYING ChangeLog INSTALL Makefile.am \
+Makefile.in NEWS acinclude.m4 aclocal.m4 config.guess config.sub \
+configure configure.ac configure.in install-sh ltmain.sh missing \
+mkinstalldirs
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = tar
+GZIP_ENV = --best
+all: all-redirect
+.SUFFIXES:
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.ac $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu Makefile
+
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status $(BUILT_SOURCES)
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$@@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+$(ACLOCAL_M4):  configure.ac  acinclude.m4
+	cd $(srcdir) && $(ACLOCAL)
+
+config.status: $(srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+	$(SHELL) ./config.status --recheck
+$(srcdir)/configure: $(srcdir)/configure.ac $(ACLOCAL_M4) $(CONFIGURE_DEPENDENCIES)
+	cd $(srcdir) && $(AUTOCONF)
+
+install-binSCRIPTS: $(bin_SCRIPTS)
+	@@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(bindir)
+	@@list='$(bin_SCRIPTS)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo " $(INSTALL_SCRIPT) $$p $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`"; \
+	    $(INSTALL_SCRIPT) $$p $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`; \
+	  else if test -f $(srcdir)/$$p; then \
+	    echo " $(INSTALL_SCRIPT) $(srcdir)/$$p $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`"; \
+	    $(INSTALL_SCRIPT) $(srcdir)/$$p $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`; \
+	  else :; fi; fi; \
+	done
+
+uninstall-binSCRIPTS:
+	@@$(NORMAL_UNINSTALL)
+	list='$(bin_SCRIPTS)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`; \
+	done
+
+install-pkgdataDATA: $(pkgdata_DATA)
+	@@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
+	@@list='$(pkgdata_DATA)'; for p in $$list; do \
+	  if test -f $(srcdir)/$$p; then \
+	    echo " $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(pkgdatadir)/$$p"; \
+	    $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(pkgdatadir)/$$p; \
+	  else if test -f $$p; then \
+	    echo " $(INSTALL_DATA) $$p $(DESTDIR)$(pkgdatadir)/$$p"; \
+	    $(INSTALL_DATA) $$p $(DESTDIR)$(pkgdatadir)/$$p; \
+	  fi; fi; \
+	done
+
+uninstall-pkgdataDATA:
+	@@$(NORMAL_UNINSTALL)
+	list='$(pkgdata_DATA)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(pkgdatadir)/$$p; \
+	done
+
+# This directory's subdirectories are mostly independent; you can cd
+# into them and run `make' without going through this Makefile.
+# To change the values of `make' variables: instead of editing Makefiles,
+# (1) if the variable is set in `config.status', edit `config.status'
+#     (which will cause the Makefiles to be regenerated when you run `make');
+# (2) otherwise, pass the desired values on the `make' command line.
+
+@@SET_MAKE@@
+
+all-recursive install-data-recursive install-exec-recursive \
+installdirs-recursive install-recursive uninstall-recursive  \
+check-recursive installcheck-recursive info-recursive dvi-recursive:
+	@@set fnord $(MAKEFLAGS); amf=$$2; \
+	dot_seen=no; \
+	target=`echo $@@ | sed s/-recursive//`; \
+	list='$(SUBDIRS)'; for subdir in $$list; do \
+	  echo "Making $$target in $$subdir"; \
+	  if test "$$subdir" = "."; then \
+	    dot_seen=yes; \
+	    local_target="$$target-am"; \
+	  else \
+	    local_target="$$target"; \
+	  fi; \
+	  (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) $$local_target) \
+	   || case "$$amf" in *=*) exit 1;; *k*) fail=yes;; *) exit 1;; esac; \
+	done; \
+	if test "$$dot_seen" = "no"; then \
+	  $(MAKE) $(AM_MAKEFLAGS) "$$target-am" || exit 1; \
+	fi; test -z "$$fail"
+
+mostlyclean-recursive clean-recursive distclean-recursive \
+maintainer-clean-recursive:
+	@@set fnord $(MAKEFLAGS); amf=$$2; \
+	dot_seen=no; \
+	rev=''; list='$(SUBDIRS)'; for subdir in $$list; do \
+	  rev="$$subdir $$rev"; \
+	  test "$$subdir" != "." || dot_seen=yes; \
+	  true; \
+	done; \
+	test "$$dot_seen" = "no" && rev=". $$rev"; \
+	target=`echo $@@ | sed s/-recursive//`; \
+	for subdir in $$rev; do \
+	  echo "Making $$target in $$subdir"; \
+	  if test "$$subdir" = "."; then \
+	    local_target="$$target-am"; \
+	  else \
+	    local_target="$$target"; \
+	  fi; \
+	  (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) $$local_target) \
+	   || case "$$amf" in *=*) exit 1;; *k*) fail=yes;; *) exit 1;; esac; \
+	done && test -z "$$fail"
+tags-recursive:
+	list='$(SUBDIRS)'; for subdir in $$list; do \
+	  test "$$subdir" = . || (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) tags); \
+	done
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $$unique $(LISP)
+
+TAGS: tags-recursive $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SUBDIRS)'; for subdir in $$list; do \
+   if test "$$subdir" = .; then :; else \
+	    test -f $$subdir/TAGS && tags="$$tags -i $$here/$$subdir/TAGS"; \
+   fi; \
+	done; \
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags $(ETAGS_ARGS) $$tags  $$unique $(LISP) -o $$here/TAGS)
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(PACKAGE)-$(VERSION)
+top_distdir = $(distdir)
+
+# This target untars the dist file and tries a VPATH configuration.  Then
+# it guarantees that the distribution is self-contained by making another
+# tarfile.
+distcheck: dist
+	-rm -rf $(distdir)
+	GZIP=$(GZIP_ENV) $(TAR) zxf $(distdir).tar.gz
+	mkdir $(distdir)/=build
+	mkdir $(distdir)/=inst
+	dc_install_base=`cd $(distdir)/=inst && pwd`; \
+	cd $(distdir)/=build \
+	  && ../configure --srcdir=.. --prefix=$$dc_install_base \
+	  && $(MAKE) $(AM_MAKEFLAGS) \
+	  && $(MAKE) $(AM_MAKEFLAGS) dvi \
+	  && $(MAKE) $(AM_MAKEFLAGS) check \
+	  && $(MAKE) $(AM_MAKEFLAGS) install \
+	  && $(MAKE) $(AM_MAKEFLAGS) installcheck \
+	  && $(MAKE) $(AM_MAKEFLAGS) dist
+	-rm -rf $(distdir)
+	@@banner="$(distdir).tar.gz is ready for distribution"; \
+	dashes=`echo "$$banner" | sed s/./=/g`; \
+	echo "$$dashes"; \
+	echo "$$banner"; \
+	echo "$$dashes"
+dist: distdir
+	-chmod -R a+r $(distdir)
+	GZIP=$(GZIP_ENV) $(TAR) chozf $(distdir).tar.gz $(distdir)
+	-rm -rf $(distdir)
+dist-all: distdir
+	-chmod -R a+r $(distdir)
+	GZIP=$(GZIP_ENV) $(TAR) chozf $(distdir).tar.gz $(distdir)
+	-rm -rf $(distdir)
+distdir: $(DISTFILES)
+	-rm -rf $(distdir)
+	mkdir $(distdir)
+	-chmod 777 $(distdir)
+	here=`cd $(top_builddir) && pwd`; \
+	top_distdir=`cd $(distdir) && pwd`; \
+	distdir=`cd $(distdir) && pwd`; \
+	cd $(top_srcdir) \
+	  && $(AUTOMAKE) --include-deps --build-dir=$$here --srcdir-name=$(top_srcdir) --output-dir=$$top_distdir --gnu Makefile
+	@@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+	  if test -d $$d/$$file; then \
+	    cp -pr $$d/$$file $(distdir)/$$file; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	    || cp -p $$d/$$file $(distdir)/$$file || :; \
+	  fi; \
+	done
+	for subdir in $(DIST_SUBDIRS); do \
+	  if test "$$subdir" = .; then :; else \
+	    test -d $(distdir)/$$subdir \
+	    || mkdir $(distdir)/$$subdir \
+	    || exit 1; \
+	    chmod 777 $(distdir)/$$subdir; \
+	    (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) top_distdir=../$(distdir) distdir=../$(distdir)/$$subdir distdir) \
+	      || exit 1; \
+	  fi; \
+	done
+info-am:
+info: info-recursive
+dvi-am:
+dvi: dvi-recursive
+check-am: all-am
+check: check-recursive
+installcheck-am:
+installcheck: installcheck-recursive
+install-exec-am: install-binSCRIPTS
+install-exec: install-exec-recursive
+
+install-data-am: install-pkgdataDATA
+install-data: install-data-recursive
+
+install-am:
+	@@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+install: install-recursive
+uninstall-am: uninstall-binSCRIPTS uninstall-pkgdataDATA
+uninstall: uninstall-recursive
+all-am: Makefile $(SCRIPTS) $(DATA)
+all-redirect: all-recursive
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+installdirs: installdirs-recursive
+installdirs-am:
+	$(mkinstalldirs)  $(DESTDIR)$(bindir) $(DESTDIR)$(pkgdatadir)
+
+
+mostlyclean-generic:
+
+clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
+
+distclean-generic:
+	-rm -f Makefile $(CONFIG_CLEAN_FILES)
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+
+maintainer-clean-generic:
+mostlyclean-am:  mostlyclean-tags mostlyclean-generic
+
+mostlyclean: mostlyclean-recursive
+
+clean-am:  clean-tags clean-generic mostlyclean-am
+
+clean: clean-recursive
+
+distclean-am:  distclean-tags distclean-generic clean-am
+	-rm -f libtool
+
+distclean: distclean-recursive
+	-rm -f config.status
+
+maintainer-clean-am:  maintainer-clean-tags maintainer-clean-generic \
+		distclean-am
+	@@echo "This command is intended for maintainers to use;"
+	@@echo "it deletes files that may require special tools to rebuild."
+
+maintainer-clean: maintainer-clean-recursive
+	-rm -f config.status
+
+.PHONY: uninstall-binSCRIPTS install-binSCRIPTS uninstall-pkgdataDATA \
+install-pkgdataDATA install-data-recursive uninstall-data-recursive \
+install-exec-recursive uninstall-exec-recursive installdirs-recursive \
+uninstalldirs-recursive all-recursive check-recursive \
+installcheck-recursive info-recursive dvi-recursive \
+mostlyclean-recursive distclean-recursive clean-recursive \
+maintainer-clean-recursive tags tags-recursive mostlyclean-tags \
+distclean-tags clean-tags maintainer-clean-tags distdir info-am info \
+dvi-am dvi check check-am installcheck-am installcheck install-exec-am \
+install-exec install-data-am install-data install-am install \
+uninstall-am uninstall all-redirect all-am all installdirs-am \
+installdirs mostlyclean-generic distclean-generic clean-generic \
+maintainer-clean-generic clean mostlyclean distclean maintainer-clean
+
+
+libtool: $(srcdir)/ltmain.sh $(top_builddir)/configure.ac
+	$(SHELL) $(top_builddir)/config.status --recheck
+	chmod +x $@@
+
+libtoolize: $(srcdir)/libtoolize.in $(top_builddir)/config.status
+	CONFIG_FILES=$@@ CONFIG_HEADERS= $(SHELL) $(top_builddir)/config.status
+	chmod +x $@@
+
+$(srcdir)/ltmain.sh: $(srcdir)/ltmain.in $(TSDEPS)
+	-rm -f ltmain.shT
+	date=" (MirLibtool-1.5 $$(date '+%Y/%m/%d %H:%M:%S'))" && \
+	sed -e 's/@@''PACKAGE@@/@@PACKAGE@@/' -e 's/@@''VERSION@@/@@VERSION@@/' \
+	    -e "s%@@""TIMESTAMP@@%$$date%" $(srcdir)/ltmain.in > ltmain.shT
+	mv -f ltmain.shT $@@ || \
+	(rm -f $@@ && cp ltmain.shT $@@ && rm -f ltmain.shT)
+
+# All our rules should depend on these demo files.
+all-recursive: $(ACINCLUDE_M4_LIST)
+
+@@ACINCLUDE_M4_LIST@@: $(srcdir)/libtool.m4
+	-rm -f $@@ $@@T
+	cat $(srcdir)/libtool.m4 > $@@T
+	mv $@@T $@@
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:
+@
+
+
+1.21
+log
+@regen
+@
+text
+@d357 1
+a357 1
+install-am: all-am
+@
+
+
+1.20
+log
+@sync
+@
+text
+@@
+
+
+1.19
+log
+@regenerate
+sync
+@
+text
+@@
+
+
+1.18
+log
+@sync
+@
+text
+@d13 2
+a14 2
+# $MirBSD: contrib/gnu/libtool/Makefile.am,v 1.10 2004/08/10 01:18:01 tg Exp $
+# _MirBSD: contrib/gnu/libtool/Makefile.am,v 1.10 2004/08/10 01:18:01 tg Exp $
+a75 1
+F77 = @@F77@@
+@
+
+
+1.17
+log
+@fix final stuff; regenerate
+@
+text
+@d13 2
+a14 2
+# $MirBSD: contrib/gnu/libtool/Makefile.am,v 1.9 2004/08/09 23:59:02 tg Exp $
+# _MirBSD: contrib/gnu/libtool/Makefile.am,v 1.9 2004/08/09 23:59:02 tg Exp $
+@
+
+
+1.16
+log
+@bring everything to (stock) libtool 1.5.8
+@
+text
+@d1 1
+a1 2
+# Makefile.in generated by automake 1.8.5 from Makefile.am.
+# @@configure_input@@
+d3 1
+a3 2
+# Copyright (C) 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
+# 2003, 2004  Free Software Foundation, Inc.
+d13 3
+a15 1
+@@SET_MAKE@@
+d17 1
+d22 19
+d43 1
+d45 6
+a50 1
+am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
+d52 5
+a56 5
+install_sh_DATA = $(install_sh) -c -m 644
+install_sh_PROGRAM = $(install_sh) -c
+install_sh_SCRIPT = $(install_sh) -c
+INSTALL_HEADER = $(INSTALL_DATA)
+transform = $(program_transform_name)
+d63 1
+a64 42
+DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(top_srcdir)/configure AUTHORS COPYING \
+	ChangeLog INSTALL NEWS THANKS TODO config.guess config.sub \
+	install-sh ltmain.sh missing
+subdir = .
+ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
+	$(top_srcdir)/configure.ac
+am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+	$(ACLOCAL_M4)
+am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
+ configure.lineno configure.status.lineno
+mkinstalldirs = $(mkdir_p)
+CONFIG_CLEAN_FILES =
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(aclocaldir)" "$(DESTDIR)$(pkgdatadir)"
+binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
+SCRIPTS = $(bin_SCRIPTS)
+SOURCES =
+DIST_SOURCES =
+RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
+	html-recursive info-recursive install-data-recursive \
+	install-exec-recursive install-info-recursive \
+	install-recursive installcheck-recursive installdirs-recursive \
+	pdf-recursive ps-recursive uninstall-info-recursive \
+	uninstall-recursive
+aclocalDATA_INSTALL = $(INSTALL_DATA)
+pkgdataDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(aclocal_DATA) $(pkgdata_DATA)
+ETAGS = etags
+CTAGS = ctags
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+distdir = $(PACKAGE)-$(VERSION)
+top_distdir = $(distdir)
+am__remove_distdir = \
+  { test ! -d $(distdir) \
+    || { find $(distdir) -type d ! -perm -200 -exec chmod u+w {} ';' \
+         && rm -fr $(distdir); }; }
+DIST_ARCHIVES = $(distdir).tar.gz
+GZIP_ENV = --best
+distuninstallcheck_listfiles = find . -type f -print
+distcleancheck_listfiles = find . -type f -print
+pkgdatadir = @@pkgdatadir@@
+a65 4
+ACLOCAL = @@ACLOCAL@@
+AMDEP_FALSE = @@AMDEP_FALSE@@
+AMDEP_TRUE = @@AMDEP_TRUE@@
+AMTAR = @@AMTAR@@
+a67 4
+AUTOCONF = @@AUTOCONF@@
+AUTOHEADER = @@AUTOHEADER@@
+AUTOMAKE = @@AUTOMAKE@@
+AWK = @@AWK@@
+a68 7
+CCDEPMODE = @@CCDEPMODE@@
+
+# We need to export these variables
+CFLAGS = @@CFLAGS@@
+CONF_SUBDIRS = @@CONF_SUBDIRS@@
+CPP = @@CPP@@
+CPPFLAGS = @@CPPFLAGS@@
+a70 5
+CXXDEPMODE = @@CXXDEPMODE@@
+CXXFLAGS = @@CXXFLAGS@@
+CYGPATH_W = @@CYGPATH_W@@
+DEFS = @@DEFS@@
+DEPDIR = @@DEPDIR@@
+a73 3
+ECHO_C = @@ECHO_C@@
+ECHO_N = @@ECHO_N@@
+ECHO_T = @@ECHO_T@@
+a76 1
+FFLAGS = @@FFLAGS@@
+a78 12
+HAVE_CXX_FALSE = @@HAVE_CXX_FALSE@@
+HAVE_CXX_TRUE = @@HAVE_CXX_TRUE@@
+HAVE_F77_FALSE = @@HAVE_F77_FALSE@@
+HAVE_F77_TRUE = @@HAVE_F77_TRUE@@
+HAVE_GCJ_FALSE = @@HAVE_GCJ_FALSE@@
+HAVE_GCJ_TRUE = @@HAVE_GCJ_TRUE@@
+HAVE_RC_FALSE = @@HAVE_RC_FALSE@@
+HAVE_RC_TRUE = @@HAVE_RC_TRUE@@
+INSTALL_DATA = @@INSTALL_DATA@@
+INSTALL_PROGRAM = @@INSTALL_PROGRAM@@
+INSTALL_SCRIPT = @@INSTALL_SCRIPT@@
+INSTALL_STRIP_PROGRAM = @@INSTALL_STRIP_PROGRAM@@
+a79 3
+LDFLAGS = @@LDFLAGS@@
+LIBOBJS = @@LIBOBJS@@
+LIBS = @@LIBS@@
+a81 1
+LTLIBOBJS = @@LTLIBOBJS@@
+a86 6
+PACKAGE_BUGREPORT = @@PACKAGE_BUGREPORT@@
+PACKAGE_NAME = @@PACKAGE_NAME@@
+PACKAGE_STRING = @@PACKAGE_STRING@@
+PACKAGE_TARNAME = @@PACKAGE_TARNAME@@
+PACKAGE_VERSION = @@PACKAGE_VERSION@@
+PATH_SEPARATOR = @@PATH_SEPARATOR@@
+a88 2
+SET_MAKE = @@SET_MAKE@@
+SHELL = @@SHELL@@
+a89 1
+TIMESTAMP = @@TIMESTAMP@@
+d91 1
+a91 48
+ac_ct_AR = @@ac_ct_AR@@
+ac_ct_AS = @@ac_ct_AS@@
+ac_ct_CC = @@ac_ct_CC@@
+ac_ct_CXX = @@ac_ct_CXX@@
+ac_ct_DLLTOOL = @@ac_ct_DLLTOOL@@
+ac_ct_F77 = @@ac_ct_F77@@
+ac_ct_GCJ = @@ac_ct_GCJ@@
+ac_ct_OBJDUMP = @@ac_ct_OBJDUMP@@
+ac_ct_RANLIB = @@ac_ct_RANLIB@@
+ac_ct_RC = @@ac_ct_RC@@
+ac_ct_STRIP = @@ac_ct_STRIP@@
+aclocaldir = @@aclocaldir@@
+am__fastdepCC_FALSE = @@am__fastdepCC_FALSE@@
+am__fastdepCC_TRUE = @@am__fastdepCC_TRUE@@
+am__fastdepCXX_FALSE = @@am__fastdepCXX_FALSE@@
+am__fastdepCXX_TRUE = @@am__fastdepCXX_TRUE@@
+am__include = @@am__include@@
+am__leading_dot = @@am__leading_dot@@
+am__quote = @@am__quote@@
+bindir = @@bindir@@
+build = @@build@@
+build_alias = @@build_alias@@
+build_cpu = @@build_cpu@@
+build_os = @@build_os@@
+build_vendor = @@build_vendor@@
+datadir = @@datadir@@
+exec_prefix = @@exec_prefix@@
+host = @@host@@
+host_alias = @@host_alias@@
+host_cpu = @@host_cpu@@
+host_os = @@host_os@@
+host_vendor = @@host_vendor@@
+includedir = @@includedir@@
+infodir = @@infodir@@
+install_sh = @@install_sh@@
+libdir = @@libdir@@
+libexecdir = @@libexecdir@@
+localstatedir = @@localstatedir@@
+mandir = @@mandir@@
+mkdir_p = @@mkdir_p@@
+oldincludedir = @@oldincludedir@@
+prefix = @@prefix@@
+program_transform_name = @@program_transform_name@@
+sbindir = @@sbindir@@
+sharedstatedir = @@sharedstatedir@@
+subdirs = @@subdirs@@
+sysconfdir = @@sysconfdir@@
+target_alias = @@target_alias@@
+d93 3
+a95 1
+BUILD_SUBDIRS = . libltdl doc tests
+d98 3
+d102 3
+a105 3
+aclocal_macros = libtool.m4 ltdl.m4
+EXTRA_DIST = $(aclocal_macros) bootstrap libtoolize.in ltmain.in \
+	mkstamp ChangeLog.0 ChangeLog.1
+d107 3
+a116 3
+# This macro file should be visible to Automake's aclocal.
+aclocal_DATA = $(aclocal_macros)
+
+d119 6
+a124 1
+TEXI2HTML = texi2html
+d126 4
+a129 20
+# TSDEPS will be defined to TSDEPS_DIST at `make dist' time
+TSDEPS = 
+TSDEPS_DIST = ChangeLog libtool.m4
+CVS = cvs # set it to `:' to avoid CVS operations
+WGET = wget
+WGETSGO = $(WGET) http://savannah.gnu.org/cgi-bin/viewcvs/~checkout~
+FETCHFILES = \
+./INSTALL \
+./config.guess \
+libltdl/config.guess \
+./config.sub \
+libltdl/config.sub \
+doc/texinfo.tex
+
+GPG = gpg # set it to `:' to avoid gpg operations
+DIFF = diff
+DIFF_OPTIONS = -ruNp
+XDELTA = xdelta
+XDELTA_OPTIONS = -9
+all: all-recursive
+d131 6
+d138 9
+a146 25
+am--refresh:
+	@@:
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
+	@@for dep in $?; do \
+	  case '$(am__configure_deps)' in \
+	    *$$dep*) \
+	      echo ' cd $(srcdir) && $(AUTOMAKE) --gnu '; \
+	      cd $(srcdir) && $(AUTOMAKE) --gnu  \
+		&& exit 0; \
+	      exit 1;; \
+	  esac; \
+	done; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  Makefile'; \
+	cd $(top_srcdir) && \
+	  $(AUTOMAKE) --gnu  Makefile
+.PRECIOUS: Makefile
+Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
+	@@case '$?' in \
+	  *config.status*) \
+	    echo ' $(SHELL) ./config.status'; \
+	    $(SHELL) ./config.status;; \
+	  *) \
+	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $@@ $(am__depfiles_maybe)'; \
+	    cd $(top_builddir) && $(SHELL) ./config.status $@@ $(am__depfiles_maybe);; \
+	esac;
+d148 1
+a148 1
+$(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+d150 2
+a152 4
+$(top_srcdir)/configure:  $(am__configure_deps)
+	cd $(srcdir) && $(AUTOCONF)
+$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
+	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
+d155 1
+a155 1
+	test -z "$(bindir)" || $(mkdir_p) "$(DESTDIR)$(bindir)"
+d157 7
+a163 6
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  if test -f $$d$$p; then \
+	    f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	    echo " $(binSCRIPT_INSTALL) '$$d$$p' '$(DESTDIR)$(bindir)/$$f'"; \
+	    $(binSCRIPT_INSTALL) "$$d$$p" "$(DESTDIR)$(bindir)/$$f"; \
+	  else :; fi; \
+d168 2
+a169 4
+	@@list='$(bin_SCRIPTS)'; for p in $$list; do \
+	  f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	  echo " rm -f '$(DESTDIR)$(bindir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(bindir)/$$f"; \
+a171 26
+mostlyclean-libtool:
+	-rm -f *.lo
+
+clean-libtool:
+	-rm -rf .libs _libs
+
+distclean-libtool:
+	-rm -f libtool
+uninstall-info-am:
+install-aclocalDATA: $(aclocal_DATA)
+	@@$(NORMAL_INSTALL)
+	test -z "$(aclocaldir)" || $(mkdir_p) "$(DESTDIR)$(aclocaldir)"
+	@@list='$(aclocal_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " $(aclocalDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(aclocaldir)/$$f'"; \
+	  $(aclocalDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(aclocaldir)/$$f"; \
+	done
+
+uninstall-aclocalDATA:
+	@@$(NORMAL_UNINSTALL)
+	@@list='$(aclocal_DATA)'; for p in $$list; do \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " rm -f '$(DESTDIR)$(aclocaldir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(aclocaldir)/$$f"; \
+	done
+d174 1
+a174 1
+	test -z "$(pkgdatadir)" || $(mkdir_p) "$(DESTDIR)$(pkgdatadir)"
+d176 7
+a182 4
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " $(pkgdataDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(pkgdatadir)/$$f'"; \
+	  $(pkgdataDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(pkgdatadir)/$$f"; \
+d187 2
+a188 4
+	@@list='$(pkgdata_DATA)'; for p in $$list; do \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " rm -f '$(DESTDIR)$(pkgdatadir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(pkgdatadir)/$$f"; \
+d197 7
+a203 2
+$(RECURSIVE_TARGETS):
+	@@set fnord $$MAKEFLAGS; amf=$$2; \
+d223 1
+a223 1
+	@@set fnord $$MAKEFLAGS; amf=$$2; \
+d225 4
+a228 8
+	case "$@@" in \
+	  distclean-* | maintainer-clean-*) list='$(DIST_SUBDIRS)' ;; \
+	  *) list='$(SUBDIRS)' ;; \
+	esac; \
+	rev=''; for subdir in $$list; do \
+	  if test "$$subdir" = "."; then :; else \
+	    rev="$$subdir $$rev"; \
+	  fi; \
+d230 1
+a230 1
+	rev="$$rev ."; \
+a245 4
+ctags-recursive:
+	list='$(SUBDIRS)'; for subdir in $$list; do \
+	  test "$$subdir" = . || (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) ctags); \
+	done
+d247 6
+a252 6
+ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+d254 2
+a255 2
+	mkid -fID $$unique
+tags: TAGS
+d257 1
+a257 2
+TAGS: tags-recursive $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+a259 7
+	if ($(ETAGS) --etags-include --version) >/dev/null 2>&1; then \
+	  include_option=--etags-include; \
+	  empty_fix=.; \
+	else \
+	  include_option=--include; \
+	  empty_fix=; \
+	fi; \
+d261 3
+a263 4
+	  if test "$$subdir" = .; then :; else \
+	    test ! -f $$subdir/TAGS || \
+	      tags="$$tags $$include_option=$$here/$$subdir/TAGS"; \
+	  fi; \
+d265 3
+a267 5
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+d269 6
+a274 24
+	if test -z "$(ETAGS_ARGS)$$tags$$unique"; then :; else \
+	  test -n "$$unique" || unique=$$empty_fix; \
+	  $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
+	    $$tags $$unique; \
+	fi
+ctags: CTAGS
+CTAGS: ctags-recursive $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(CTAGS_ARGS)$$tags$$unique" \
+	  || $(CTAGS) $(CTAGSFLAGS) $(AM_CTAGSFLAGS) $(CTAGS_ARGS) \
+	     $$tags $$unique
+
+GTAGS:
+	here=`$(am__cd) $(top_builddir) && pwd` \
+	  && cd $(top_srcdir) \
+	  && gtags -i $(GTAGS_ARGS) $$here
+d277 6
+a282 1
+	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
+d284 31
+d316 1
+a316 1
+	$(am__remove_distdir)
+d318 8
+a325 15
+	@@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
+	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
+	list='$(DISTFILES)'; for file in $$list; do \
+	  case $$file in \
+	    $(srcdir)/*) file=`echo "$$file" | sed "s|^$$srcdirstrip/||"`;; \
+	    $(top_srcdir)/*) file=`echo "$$file" | sed "s|^$$topsrcdirstrip/|$(top_builddir)/|"`;; \
+	  esac; \
+	  if test -f $$file || test -d $$file; then d=.; else d=$(srcdir); fi; \
+	  dir=`echo "$$file" | sed -e 's,/[^/]*$$,,'`; \
+	  if test "$$dir" != "$$file" && test "$$dir" != "."; then \
+	    dir="/$$dir"; \
+	    $(mkdir_p) "$(distdir)$$dir"; \
+	  else \
+	    dir=''; \
+	  fi; \
+d327 1
+a327 4
+	    if test -d $(srcdir)/$$file && test $$d != $(srcdir); then \
+	      cp -pR $(srcdir)/$$file $(distdir)$$dir || exit 1; \
+	    fi; \
+	    cp -pR $$d/$$file $(distdir)$$dir || exit 1; \
+d330 2
+a331 2
+	    || cp -p $$d/$$file $(distdir)/$$file \
+	    || exit 1; \
+d334 1
+a334 1
+	list='$(DIST_SUBDIRS)'; for subdir in $$list; do \
+d336 2
+a337 2
+	    test -d "$(distdir)/$$subdir" \
+	    || mkdir "$(distdir)/$$subdir" \
+d339 2
+a340 5
+	    (cd $$subdir && \
+	      $(MAKE) $(AM_MAKEFLAGS) \
+	        top_distdir="../$(top_distdir)" \
+	        distdir="../$(distdir)/$$subdir" \
+	        distdir) \
+d344 4
+a347 97
+	-find $(distdir) -type d ! -perm -777 -exec chmod a+rwx {} \; -o \
+	  ! -type d ! -perm -444 -links 1 -exec chmod a+r {} \; -o \
+	  ! -type d ! -perm -400 -exec chmod a+r {} \; -o \
+	  ! -type d ! -perm -444 -exec $(SHELL) $(install_sh) -c -m a+r {} {} \; \
+	|| chmod -R a+r $(distdir)
+dist-gzip: distdir
+	$(AMTAR) chof - $(distdir) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).tar.gz
+	$(am__remove_distdir)
+
+dist-bzip2: distdir
+	$(AMTAR) chof - $(distdir) | bzip2 -9 -c >$(distdir).tar.bz2
+	$(am__remove_distdir)
+
+dist-tarZ: distdir
+	$(AMTAR) chof - $(distdir) | compress -c >$(distdir).tar.Z
+	$(am__remove_distdir)
+
+dist-shar: distdir
+	shar $(distdir) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).shar.gz
+	$(am__remove_distdir)
+
+dist-zip: distdir
+	-rm -f $(distdir).zip
+	zip -rq $(distdir).zip $(distdir)
+	$(am__remove_distdir)
+
+dist dist-all: distdir
+	$(AMTAR) chof - $(distdir) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).tar.gz
+	$(am__remove_distdir)
+
+# This target untars the dist file and tries a VPATH configuration.  Then
+# it guarantees that the distribution is self-contained by making another
+# tarfile.
+distcheck: dist
+	case '$(DIST_ARCHIVES)' in \
+	*.tar.gz*) \
+	  GZIP=$(GZIP_ENV) gunzip -c $(distdir).tar.gz | $(AMTAR) xf - ;;\
+	*.tar.bz2*) \
+	  bunzip2 -c $(distdir).tar.bz2 | $(AMTAR) xf - ;;\
+	*.tar.Z*) \
+	  uncompress -c $(distdir).tar.Z | $(AMTAR) xf - ;;\
+	*.shar.gz*) \
+	  GZIP=$(GZIP_ENV) gunzip -c $(distdir).shar.gz | unshar ;;\
+	*.zip*) \
+	  unzip $(distdir).zip ;;\
+	esac
+	chmod -R a-w $(distdir); chmod a+w $(distdir)
+	mkdir $(distdir)/_build
+	mkdir $(distdir)/_inst
+	chmod a-w $(distdir)
+	dc_install_base=`$(am__cd) $(distdir)/_inst && pwd | sed -e 's,^[^:\\/]:[\\/],/,'` \
+	  && dc_destdir="$${TMPDIR-/tmp}/am-dc-$$$$/" \
+	  && cd $(distdir)/_build \
+	  && ../configure --srcdir=.. --prefix="$$dc_install_base" \
+	    $(DISTCHECK_CONFIGURE_FLAGS) \
+	  && $(MAKE) $(AM_MAKEFLAGS) \
+	  && $(MAKE) $(AM_MAKEFLAGS) dvi \
+	  && $(MAKE) $(AM_MAKEFLAGS) check \
+	  && $(MAKE) $(AM_MAKEFLAGS) install \
+	  && $(MAKE) $(AM_MAKEFLAGS) installcheck \
+	  && $(MAKE) $(AM_MAKEFLAGS) uninstall \
+	  && $(MAKE) $(AM_MAKEFLAGS) distuninstallcheck_dir="$$dc_install_base" \
+	        distuninstallcheck \
+	  && chmod -R a-w "$$dc_install_base" \
+	  && ({ \
+	       (cd ../.. && umask 077 && mkdir "$$dc_destdir") \
+	       && $(MAKE) $(AM_MAKEFLAGS) DESTDIR="$$dc_destdir" install \
+	       && $(MAKE) $(AM_MAKEFLAGS) DESTDIR="$$dc_destdir" uninstall \
+	       && $(MAKE) $(AM_MAKEFLAGS) DESTDIR="$$dc_destdir" \
+	            distuninstallcheck_dir="$$dc_destdir" distuninstallcheck; \
+	      } || { rm -rf "$$dc_destdir"; exit 1; }) \
+	  && rm -rf "$$dc_destdir" \
+	  && $(MAKE) $(AM_MAKEFLAGS) dist \
+	  && rm -rf $(DIST_ARCHIVES) \
+	  && $(MAKE) $(AM_MAKEFLAGS) distcleancheck
+	$(am__remove_distdir)
+	@@(echo "$(distdir) archives ready for distribution: "; \
+	  list='$(DIST_ARCHIVES)'; for i in $$list; do echo $$i; done) | \
+	  sed -e '1{h;s/./=/g;p;x;}' -e '$${p;x;}'
+distuninstallcheck:
+	@@cd $(distuninstallcheck_dir) \
+	&& test `$(distuninstallcheck_listfiles) | wc -l` -le 1 \
+	   || { echo "ERROR: files left after uninstall:" ; \
+	        if test -n "$(DESTDIR)"; then \
+	          echo "  (check DESTDIR support)"; \
+	        fi ; \
+	        $(distuninstallcheck_listfiles) ; \
+	        exit 1; } >&2
+distcleancheck: distclean
+	@@if test '$(srcdir)' = . ; then \
+	  echo "ERROR: distcleancheck can only run from a VPATH build" ; \
+	  exit 1 ; \
+	fi
+	@@test `$(distcleancheck_listfiles) | wc -l` -eq 0 \
+	  || { echo "ERROR: files left in build directory after distclean:" ; \
+	       $(distcleancheck_listfiles) ; \
+	       exit 1; } >&2
+d350 3
+a352 7
+all-am: Makefile $(SCRIPTS) $(DATA)
+installdirs: installdirs-recursive
+installdirs-am:
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(aclocaldir)" "$(DESTDIR)$(pkgdatadir)"; do \
+	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
+	done
+install: install-recursive
+d354 2
+a356 1
+uninstall: uninstall-recursive
+d360 11
+a371 6
+installcheck: installcheck-recursive
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) INSTALL_PROGRAM="$(INSTALL_STRIP_PROGRAM)" \
+	  install_sh_PROGRAM="$(INSTALL_STRIP_PROGRAM)" INSTALL_STRIP_FLAG=-s \
+	  `test -z '$(STRIP)' || \
+	    echo "INSTALL_PROGRAM_ENV=STRIPPROG='$(STRIP)'"` install
+d378 2
+a379 1
+	-rm -f $(CONFIG_CLEAN_FILES)
+d382 1
+a382 3
+	@@echo "This command is intended for maintainers to use"
+	@@echo "it deletes files that may require special tools to rebuild."
+clean: clean-recursive
+d384 1
+a384 1
+clean-am: clean-generic clean-libtool mostlyclean-am
+d386 1
+a386 5
+distclean: distclean-recursive
+	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
+	-rm -f Makefile
+distclean-am: clean-am distclean-generic distclean-libtool \
+	distclean-tags
+d388 1
+a388 1
+dvi: dvi-recursive
+d390 2
+a391 1
+dvi-am:
+d393 2
+a394 1
+html: html-recursive
+d396 4
+a399 15
+info: info-recursive
+
+info-am:
+
+install-data-am: install-aclocalDATA install-pkgdataDATA
+	@@$(NORMAL_INSTALL)
+	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
+
+install-exec-am: install-binSCRIPTS
+
+install-info: install-info-recursive
+
+install-man:
+
+installcheck-am:
+d402 1
+a402 4
+	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
+	-rm -rf $(top_srcdir)/autom4te.cache
+	-rm -f Makefile
+maintainer-clean-am: distclean-am maintainer-clean-generic
+d404 13
+a416 34
+mostlyclean: mostlyclean-recursive
+
+mostlyclean-am: mostlyclean-generic mostlyclean-libtool
+
+pdf: pdf-recursive
+
+pdf-am:
+
+ps: ps-recursive
+
+ps-am:
+
+uninstall-am: uninstall-aclocalDATA uninstall-binSCRIPTS \
+	uninstall-info-am uninstall-local uninstall-pkgdataDATA
+
+uninstall-info: uninstall-info-recursive
+
+.PHONY: $(RECURSIVE_TARGETS) CTAGS GTAGS all all-am am--refresh check \
+	check-am clean clean-generic clean-libtool clean-recursive \
+	ctags ctags-recursive dist dist-all dist-bzip2 dist-gzip \
+	dist-shar dist-tarZ dist-zip distcheck distclean \
+	distclean-generic distclean-libtool distclean-recursive \
+	distclean-tags distcleancheck distdir distuninstallcheck dvi \
+	dvi-am html html-am info info-am install install-aclocalDATA \
+	install-am install-binSCRIPTS install-data install-data-am \
+	install-exec install-exec-am install-info install-info-am \
+	install-man install-pkgdataDATA install-strip installcheck \
+	installcheck-am installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic maintainer-clean-recursive \
+	mostlyclean mostlyclean-generic mostlyclean-libtool \
+	mostlyclean-recursive pdf pdf-am ps ps-am tags tags-recursive \
+	uninstall uninstall-aclocalDATA uninstall-am \
+	uninstall-binSCRIPTS uninstall-info-am uninstall-local \
+	uninstall-pkgdataDATA
+d429 1
+a429 1
+	date=`$(SHELL) $(srcdir)/mkstamp < $(srcdir)/ChangeLog` && \
+a433 1
+	cp $@@ $(srcdir)/libltdl/
+d436 1
+a436 6
+all-recursive: $(srcdir)/libltdl/acinclude.m4 $(ACINCLUDE_M4_LIST)
+
+@@srcdir@@/libltdl/acinclude.m4: $(srcdir)/libtool.m4 $(srcdir)/ltdl.m4
+	-rm -f $@@ $@@T
+	cat $(srcdir)/libtool.m4 $(srcdir)/ltdl.m4 > $@@T
+	mv $@@T $@@
+a442 156
+.PHONY: configure-subdirs
+configure-subdirs distdir: $(DIST_MAKEFILE_LIST)
+@@DIST_MAKEFILE_LIST@@:
+	dir=`echo $@@ | sed 's,^[^/]*$$,.,;s,/[^/]*$$,,'`; \
+	test -d $$dir || mkdir $$dir || exit 1; \
+	abs_srcdir=`cd $(top_srcdir) && pwd`; \
+	(cd $$dir && $$abs_srcdir/$$dir/configure) || exit 1
+
+# Create and install libltdl
+install-data-hook:
+	cd libltdl && $(MAKE) local-install-files
+	chmod +x $(DESTDIR)$(pkgdatadir)/config.guess
+	chmod +x $(DESTDIR)$(pkgdatadir)/config.sub
+
+# Uninstall libltdl
+uninstall-local:
+	-rm -rf $(DESTDIR)$(pkgdatadir)/libltdl
+
+.PHONY: cvs-release
+cvs-release: version-check prev-tarball cvs-news fetch cvs-commit cvs-dist deltas web-manual
+	@@tarname="$(PACKAGE)-$(VERSION).tar.gz"; \
+	diffname="$(PACKAGE)-$(LASTRELEASE)-$(VERSION).diff.gz"; \
+	xdeltaname="$(PACKAGE)-$(LASTRELEASE)-$(VERSION).xdelta"; \
+	echo " *** Upload $$tarname, $$tarname.sig,";\
+	echo " *** $$tarname.directive.asc, $$diffname,"; \
+	echo " *** $$diffname.sig, $$diffname.directive.asc,"; \
+	echo " *** $$xdeltaname, $$xdeltaname.sig and";\
+	echo " *** $$xdeltaname.directive.asc to either"
+	echo " *** /incoming/alpha or /incoming/ftp on ftp-upload.gnu.org."
+	echo " *** You might need to upload manual.html to webcvs/libtool."
+
+.PHONY: version-check
+version-check:
+	@@case $(VERSION) in \
+	*[acegikmoqsuwy]) \
+	  echo "Version \`$(VERSION)' is not a releasable version, please read:"; \
+	  echo "    http://www.gnu.org/software/libtool/contribute.html"; \
+	  exit 1; \
+	  ;; \
+	esac
+
+.PHONY: prev-tarball
+prev-tarball:
+	@@if test -z "$(LASTRELEASE)"; \
+		then echo "LASTRELEASE is not set"; exit 1; fi
+	@@ofile="$(PACKAGE)-$(LASTRELEASE).tar.gz"; \
+	if test -f $$ofile; then :; \
+	else echo "Cannot make deltas without $$ofile"; exit 1; fi
+
+.PHONY: timestamps update-timestamps
+timestamps: update-timestamps
+update-timestamps:
+	@@if (cd $(srcdir) && test -d CVS && \
+	    $(CVS) -n update $(TSDEPS_DIST) | grep '^M'); then \
+		echo "Cannot make cvs-dist before commit"; exit 1; else :; fi
+
+.PHONY: cvs-news
+cvs-news:
+	@@if sed '1,2d;3q' $(srcdir)/NEWS | grep -e "$(VERSION)" >/dev/null; \
+	then :; \
+	else \
+	  echo "NEWS not updated; not releasing" 1>&2; \
+	  exit 1; \
+	fi
+
+.PHONY: fetch
+fetch:
+	rm -rf Fetchdir > /dev/null 2>&1
+	mkdir Fetchdir
+	(cd Fetchdir && \
+	$(WGETSGO)/autoconf/autoconf/INSTALL; \
+	$(WGETSGO)/config/config/config.guess; \
+	$(WGETSGO)/config/config/config.sub; \
+	$(WGETSGO)/texinfo/texinfo/doc/texinfo.tex )
+	@@stat=0; for file in $(FETCHFILES); do \
+	  fetchedfile=Fetchdir/`echo $$file | sed 's,.*/,,g'`; \
+	  if diff -u $(srcdir)/$$file $$fetchedfile \
+	    >>Fetchdir/update.patch 2>/dev/null; then :; \
+	  else \
+	    stat=1; \
+	    echo "Updating $(srcdir)/$$file..."; \
+	    cp $$fetchedfile $(srcdir)/$$file; \
+	  fi; \
+	done; \
+	test $$stat = 1 && \
+	  echo "See Fetchdir/update.patch for a log of the changes."; \
+	exit $$stat
+
+.PHONY: cvs-commit
+cvs-commit: cvs-news
+	cd $(srcdir) && $(SHELL) ./commit
+
+.PHONY: cvs-dist
+cvs-dist: cvs-news timestamps
+	$(MAKE) distcheck
+	cd $(srcdir) \
+	  && $(CVS) -q tag -c `echo "release-$(VERSION)" | sed 's/\./-/g'`
+	ofile="$(PACKAGE)-$(VERSION).tar.gz"; \
+	$(GPG) --detach-sign $$ofile \
+	&& echo "directory: libtool" > $$ofile.directive \
+	&& $(GPG) --clearsign $$ofile.directive \
+	&& rm -f $$ofile.directive
+
+.PHONY: new-tarball
+new-tarball:
+	@@ofile="$(PACKAGE)-$(VERSION).tar.gz"; \
+	if test -f $$ofile; then :; \
+	else echo "Cannot make deltas without $$ofile"; exit 1; fi
+
+.PHONY: got-xdelta
+got-xdelta:
+	@@if ($(XDELTA) --version 2>&1 | grep version)>/dev/null 2>/dev/null; \
+	then :;\
+	else \
+	  echo "Get xdelta from http://sourceforge.net/projects/xdelta."; \
+	  exit 1; \
+	fi
+
+.PHONY: deltas
+deltas: delta-diff delta-xdelta
+
+.PHONY: delta-diff
+delta-diff: prev-tarball new-tarball
+	rm -rf delta-diff
+	mkdir delta-diff
+	ofile="../$(PACKAGE)-$(LASTRELEASE)-$(VERSION).diff.gz"; \
+	cd delta-diff \
+	&& tar xzf "../$(PACKAGE)-$(LASTRELEASE).tar.gz" \
+	&& tar xzf "../$(PACKAGE)-$(VERSION).tar.gz" \
+	&& $(DIFF) $(DIFF_OPTIONS) \
+		$(PACKAGE)-$(LASTRELEASE) $(PACKAGE)-$(VERSION) \
+		| GZIP=$(GZIP_ENV) gzip -c > $$ofile \
+	&& $(GPG) --detach-sign $$ofile \
+	&& echo "directory: libtool" > $$ofile.directive \
+	&& $(GPG) --clearsign $$ofile.directive \
+	&& rm -f $$ofile.directive
+	rm -rf delta-diff
+
+.PHONY: delta-xdelta
+delta-xdelta: prev-tarball new-tarball got-xdelta
+	ofile="$(PACKAGE)-$(LASTRELEASE)-$(VERSION).xdelta"; \
+	( test -z `$(XDELTA) delta $(XDELTA_OPTIONS) \
+	    $(PACKAGE)-$(LASTRELEASE).tar.gz $(PACKAGE)-$(VERSION).tar.gz \
+	    $$ofile 2>&1` \
+	  && : ) \
+	&& $(GPG) --detach-sign $$ofile \
+	&& echo "directory: libtool" > $$ofile.directive \
+	&& $(GPG) --clearsign $$ofile.directive \
+	&& rm -f $$ofile.directive
+
+.PHONY: web-manual
+web-manual:
+	@@$(LN_S) $(top_srcdir)/doc/libtool.texi doc/manual.texi
+	$(TEXI2HTML) -I doc -monolithic -number -verbose doc/manual.texi
+	@@mv doc/manual.html manual.html
+	@@rm -f doc/manual.texi
+@
+
+
+1.15
+log
+@regen
+@
+text
+@d1 2
+a2 1
+# Makefile.in generated automatically by automake 1.4-p6 from Makefile.am
+d4 2
+a5 1
+# Copyright (C) 1994, 1995-8, 1999, 2001 Free Software Foundation, Inc.
+d15 1
+a16 1
+SHELL = @@SHELL@@
+a20 19
+prefix = @@prefix@@
+exec_prefix = @@exec_prefix@@
+
+bindir = @@bindir@@
+sbindir = @@sbindir@@
+libexecdir = @@libexecdir@@
+datadir = @@datadir@@
+sysconfdir = @@sysconfdir@@
+sharedstatedir = @@sharedstatedir@@
+localstatedir = @@localstatedir@@
+libdir = @@libdir@@
+infodir = @@infodir@@
+mandir = @@mandir@@
+includedir = @@includedir@@
+oldincludedir = /usr/include
+
+DESTDIR =
+
+pkgdatadir = $(datadir)/@@PACKAGE@@
+a22 1
+
+d24 1
+a24 6
+
+ACLOCAL = @@ACLOCAL@@
+AUTOCONF = @@AUTOCONF@@
+AUTOMAKE = @@AUTOMAKE@@
+AUTOHEADER = @@AUTOHEADER@@
+
+d26 5
+a30 5
+INSTALL_PROGRAM = @@INSTALL_PROGRAM@@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_DATA = @@INSTALL_DATA@@
+INSTALL_SCRIPT = @@INSTALL_SCRIPT@@
+transform = @@program_transform_name@@
+
+a36 1
+host_alias = @@host_alias@@
+d38 42
+d81 5
+d87 4
+d92 15
+d109 4
+d114 20
+d136 1
+d138 1
+d142 6
+d149 3
+d153 1
+d155 48
+a202 1
+
+d204 1
+a204 2
+
+BUILD_SUBDIRS = .
+a206 6
+
+# $MirBSD: contrib/gnu/libtool/Makefile.am,v 1.7 2004/02/16 12:30:40 tg Exp $
+# _MirBSD: contrib/gnu/libtool/Makefile.am,v 1.7 2004/02/16 12:30:40 tg Exp $
+
+# We need to export these variables
+CFLAGS = @@CFLAGS@@
+d208 4
+a211 2
+LDFLAGS = @@LDFLAGS@@
+LIBS = @@LIBS@@
+d213 1
+a213 1
+aclocal_macros = libtool.m4
+d215 4
+a218 2
+EXTRA_DIST = $(aclocal_macros) bootstrap libtoolize.in ltmain.in
+CLEANFILES = libtool libtoolize ltmain.shT
+d220 2
+a221 3
+# These are required by libtoolize.
+pkgdata_SCRIPTS = config.guess config.sub
+pkgdata_DATA = ltmain.sh
+d225 1
+a225 4
+ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_CLEAN_FILES = 
+SCRIPTS =  $(bin_SCRIPTS) $(pkgdata_SCRIPTS)
+d227 20
+a246 1
+DATA =  $(pkgdata_DATA)
+a247 10
+DIST_COMMON =  README AUTHORS COPYING ChangeLog INSTALL Makefile.am \
+Makefile.in NEWS acinclude.m4 aclocal.m4 config.guess config.sub \
+configure configure.in install-sh ltmain.sh missing mkinstalldirs
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = tar
+GZIP_ENV = --best
+all: all-redirect
+d249 25
+a273 2
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu Makefile
+d275 2
+a276 3
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status $(BUILT_SOURCES)
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$@@ CONFIG_HEADERS= $(SHELL) ./config.status
+d278 1
+a278 6
+$(ACLOCAL_M4):  configure.in  acinclude.m4
+	cd $(srcdir) && $(ACLOCAL)
+
+config.status: $(srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+	$(SHELL) ./config.status --recheck
+$(srcdir)/configure: $(srcdir)/configure.in $(ACLOCAL_M4) $(CONFIGURE_DEPENDENCIES)
+d280 2
+a281 1
+
+d284 1
+a284 1
+	$(mkinstalldirs) $(DESTDIR)$(bindir)
+d286 6
+a291 7
+	  if test -f $$p; then \
+	    echo " $(INSTALL_SCRIPT) $$p $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`"; \
+	    $(INSTALL_SCRIPT) $$p $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`; \
+	  else if test -f $(srcdir)/$$p; then \
+	    echo " $(INSTALL_SCRIPT) $(srcdir)/$$p $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`"; \
+	    $(INSTALL_SCRIPT) $(srcdir)/$$p $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`; \
+	  else :; fi; fi; \
+d296 4
+a299 2
+	list='$(bin_SCRIPTS)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`; \
+d302 10
+a311 1
+install-pkgdataSCRIPTS: $(pkgdata_SCRIPTS)
+d313 6
+a318 9
+	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
+	@@list='$(pkgdata_SCRIPTS)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo " $(INSTALL_SCRIPT) $$p $(DESTDIR)$(pkgdatadir)/`echo $$p|sed '$(transform)'`"; \
+	    $(INSTALL_SCRIPT) $$p $(DESTDIR)$(pkgdatadir)/`echo $$p|sed '$(transform)'`; \
+	  else if test -f $(srcdir)/$$p; then \
+	    echo " $(INSTALL_SCRIPT) $(srcdir)/$$p $(DESTDIR)$(pkgdatadir)/`echo $$p|sed '$(transform)'`"; \
+	    $(INSTALL_SCRIPT) $(srcdir)/$$p $(DESTDIR)$(pkgdatadir)/`echo $$p|sed '$(transform)'`; \
+	  else :; fi; fi; \
+d321 1
+a321 1
+uninstall-pkgdataSCRIPTS:
+d323 4
+a326 2
+	list='$(pkgdata_SCRIPTS)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(pkgdatadir)/`echo $$p|sed '$(transform)'`; \
+a327 1
+
+d330 1
+a330 1
+	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
+d332 4
+a335 7
+	  if test -f $(srcdir)/$$p; then \
+	    echo " $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(pkgdatadir)/$$p"; \
+	    $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(pkgdatadir)/$$p; \
+	  else if test -f $$p; then \
+	    echo " $(INSTALL_DATA) $$p $(DESTDIR)$(pkgdatadir)/$$p"; \
+	    $(INSTALL_DATA) $$p $(DESTDIR)$(pkgdatadir)/$$p; \
+	  fi; fi; \
+d340 4
+a343 2
+	list='$(pkgdata_DATA)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(pkgdatadir)/$$p; \
+d352 2
+a353 7
+
+@@SET_MAKE@@
+
+all-recursive install-data-recursive install-exec-recursive \
+installdirs-recursive install-recursive uninstall-recursive  \
+check-recursive installcheck-recursive info-recursive dvi-recursive:
+	@@set fnord $(MAKEFLAGS); amf=$$2; \
+d373 1
+a373 1
+	@@set fnord $(MAKEFLAGS); amf=$$2; \
+d375 8
+a382 4
+	rev=''; list='$(SUBDIRS)'; for subdir in $$list; do \
+	  rev="$$subdir $$rev"; \
+	  test "$$subdir" != "." || dot_seen=yes; \
+	  true; \
+d384 1
+a384 1
+	test "$$dot_seen" = "no" && rev=". $$rev"; \
+d400 4
+d405 8
+d415 2
+a416 9
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $$unique $(LISP)
+
+TAGS: tags-recursive $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) $(LISP)
+d419 7
+d427 4
+a430 3
+   if test "$$subdir" = .; then :; else \
+	    test -f $$subdir/TAGS && tags="$$tags -i $$here/$$subdir/TAGS"; \
+   fi; \
+d432 21
+a452 3
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+d454 8
+a461 6
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags $(ETAGS_ARGS) $$tags  $$unique $(LISP) -o $$here/TAGS)
+
+mostlyclean-tags:
+
+clean-tags:
+d464 1
+a464 6
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(PACKAGE)-$(VERSION)
+top_distdir = $(distdir)
+a465 31
+# This target untars the dist file and tries a VPATH configuration.  Then
+# it guarantees that the distribution is self-contained by making another
+# tarfile.
+distcheck: dist
+	-rm -rf $(distdir)
+	GZIP=$(GZIP_ENV) $(TAR) zxf $(distdir).tar.gz
+	mkdir $(distdir)/=build
+	mkdir $(distdir)/=inst
+	dc_install_base=`cd $(distdir)/=inst && pwd`; \
+	cd $(distdir)/=build \
+	  && ../configure --srcdir=.. --prefix=$$dc_install_base \
+	  && $(MAKE) $(AM_MAKEFLAGS) \
+	  && $(MAKE) $(AM_MAKEFLAGS) dvi \
+	  && $(MAKE) $(AM_MAKEFLAGS) check \
+	  && $(MAKE) $(AM_MAKEFLAGS) install \
+	  && $(MAKE) $(AM_MAKEFLAGS) installcheck \
+	  && $(MAKE) $(AM_MAKEFLAGS) dist
+	-rm -rf $(distdir)
+	@@banner="$(distdir).tar.gz is ready for distribution"; \
+	dashes=`echo "$$banner" | sed s/./=/g`; \
+	echo "$$dashes"; \
+	echo "$$banner"; \
+	echo "$$dashes"
+dist: distdir
+	-chmod -R a+r $(distdir)
+	GZIP=$(GZIP_ENV) $(TAR) chozf $(distdir).tar.gz $(distdir)
+	-rm -rf $(distdir)
+dist-all: distdir
+	-chmod -R a+r $(distdir)
+	GZIP=$(GZIP_ENV) $(TAR) chozf $(distdir).tar.gz $(distdir)
+	-rm -rf $(distdir)
+d467 1
+a467 1
+	-rm -rf $(distdir)
+d469 15
+a483 8
+	-chmod 777 $(distdir)
+	here=`cd $(top_builddir) && pwd`; \
+	top_distdir=`cd $(distdir) && pwd`; \
+	distdir=`cd $(distdir) && pwd`; \
+	cd $(top_srcdir) \
+	  && $(AUTOMAKE) --include-deps --build-dir=$$here --srcdir-name=$(top_srcdir) --output-dir=$$top_distdir --gnu Makefile
+	@@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+d485 4
+a488 1
+	    cp -pr $$d/$$file $(distdir)/$$file; \
+d491 2
+a492 2
+	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	    || cp -p $$d/$$file $(distdir)/$$file || :; \
+d495 1
+a495 1
+	for subdir in $(DIST_SUBDIRS); do \
+d497 2
+a498 2
+	    test -d $(distdir)/$$subdir \
+	    || mkdir $(distdir)/$$subdir \
+d500 5
+a504 2
+	    chmod 777 $(distdir)/$$subdir; \
+	    (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) top_distdir=../$(distdir) distdir=../$(distdir)/$$subdir distdir) \
+d508 97
+a604 4
+info-am:
+info: info-recursive
+dvi-am:
+dvi: dvi-recursive
+d607 7
+a613 3
+installcheck-am:
+installcheck: installcheck-recursive
+install-exec-am: install-binSCRIPTS
+a614 2
+
+install-data-am: install-pkgdataSCRIPTS install-pkgdataDATA
+d616 1
+d620 2
+a621 6
+install: install-recursive
+uninstall-am: uninstall-binSCRIPTS uninstall-pkgdataSCRIPTS \
+		uninstall-pkgdataDATA
+uninstall: uninstall-recursive
+all-am: Makefile $(SCRIPTS) $(DATA)
+all-redirect: all-recursive
+d623 4
+a626 7
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+installdirs: installdirs-recursive
+installdirs-am:
+	$(mkinstalldirs)  $(DESTDIR)$(bindir) $(DESTDIR)$(pkgdatadir) \
+		$(DESTDIR)$(pkgdatadir)
+
+
+d633 1
+a633 2
+	-rm -f Makefile $(CONFIG_CLEAN_FILES)
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+d636 39
+a674 1
+mostlyclean-am:  mostlyclean-tags mostlyclean-generic
+d678 3
+a680 1
+clean-am:  clean-tags clean-generic mostlyclean-am
+d682 1
+a682 1
+clean: clean-recursive
+d684 1
+a684 2
+distclean-am:  distclean-tags distclean-generic clean-am
+	-rm -f libtool
+d686 1
+a686 2
+distclean: distclean-recursive
+	-rm -f config.status
+d688 2
+a689 4
+maintainer-clean-am:  maintainer-clean-tags maintainer-clean-generic \
+		distclean-am
+	@@echo "This command is intended for maintainers to use;"
+	@@echo "it deletes files that may require special tools to rebuild."
+d691 1
+a691 2
+maintainer-clean: maintainer-clean-recursive
+	-rm -f config.status
+d693 17
+a709 13
+.PHONY: uninstall-binSCRIPTS install-binSCRIPTS uninstall-pkgdataSCRIPTS \
+install-pkgdataSCRIPTS uninstall-pkgdataDATA install-pkgdataDATA \
+install-data-recursive uninstall-data-recursive install-exec-recursive \
+uninstall-exec-recursive installdirs-recursive uninstalldirs-recursive \
+all-recursive check-recursive installcheck-recursive info-recursive \
+dvi-recursive mostlyclean-recursive distclean-recursive clean-recursive \
+maintainer-clean-recursive tags tags-recursive mostlyclean-tags \
+distclean-tags clean-tags maintainer-clean-tags distdir info-am info \
+dvi-am dvi check check-am installcheck-am installcheck install-exec-am \
+install-exec install-data-am install-data install-am install \
+uninstall-am uninstall all-redirect all-am all installdirs-am \
+installdirs mostlyclean-generic distclean-generic clean-generic \
+maintainer-clean-generic clean mostlyclean distclean maintainer-clean
+d712 1
+a712 1
+libtool: $(srcdir)/ltmain.sh $(top_builddir)/configure.in
+d722 1
+a722 1
+	date=" (MirLibtool-1.4 $$(date '+%Y/%m/%d %H:%M:%S'))" && \
+d727 1
+d730 6
+a735 1
+all-recursive: $(ACINCLUDE_M4_LIST)
+d742 156
+@
+
+
+1.14
+log
+@regenerate
+@
+text
+@@
+
+
+1.13
+log
+@regenerate after setting correct RCS keyword substitution mode in CVS
+@
+text
+@@
+
+
+1.12
+log
+@regenerate (and fix regen process)
+@
+text
+@@
+
+
+1.11
+log
+@* some fixes from jakemsr for the relink issue
+  (need testing)
+* apply same or similar fix at other places
+* prettify makefile
+* fix RCS IDs
+@
+text
+@d85 1
+@
+
+
+1.10
+log
+@let's call this the first formal release of MirLibtool :-)
+@
+text
+@d84 1
+a84 1
+# $MirBSD: Makefile.am,v 1.7 2004/02/16 12:30:40 tg Exp $
+@
+
+
+1.9
+log
+@sync
+Makefile.in from Makefile.am,v 1.7
+@
+text
+@@
+
+
+1.8
+log
+@simplify and correct
+nuke junk
+nuke generated junk
+@
+text
+@d84 2
+d433 1
+a433 1
+	date=" (MirLibtool-1.4 $(date '+%Y/%m/%d %H:%M:%S')" && \
+@
+
+
+1.7
+log
+@silence, sync
+@
+text
+@a64 1
+DIST_MAKEFILE_LIST = @@DIST_MAKEFILE_LIST@@
+a75 1
+TIMESTAMP = @@TIMESTAMP@@
+a100 5
+
+# TSDEPS will be defined to TSDEPS_DIST at `make dist' time
+TSDEPS = 
+TSDEPS_DIST = libtool.m4
+CVS = : # CVS # set it to `:' to avoid CVS operations
+a436 7
+.PHONY: timestamps update-timestamps
+timestamps distdir: update-timestamps
+update-timestamps:
+	@@if (cd $(srcdir) && test -d CVS && \
+	    $(CVS) -n update $(TSDEPS_DIST) | grep '^M'); then \
+		echo "Cannot make dist before commit"; exit 1; else :; fi
+
+a443 8
+
+.PHONY: configure-subdirs
+configure-subdirs distdir: $(DIST_MAKEFILE_LIST)
+@@DIST_MAKEFILE_LIST@@:
+	dir=`echo $@@ | sed 's,^[^/]*$$,.,;s,/[^/]*$$,,'`; \
+	test -d $$dir || mkdir $$dir || exit 1; \
+	abs_srcdir=`cd $(top_srcdir) && pwd`; \
+	(cd $$dir && $$abs_srcdir/$$dir/configure) || exit 1
+@
+
+
+1.7.4.1
+log
+@"automatic" merge
+
+this is broken. we don't want this.
+libtool.m4 isn't even similar to that from 1.4
+
+so use 1.4 instead for mirlibtool, for now
+@
+text
+@@
+
+
+1.6
+log
+@give libtoolize a chance to have a different location for libtool.m4
+@
+text
+@d115 3
+a117 3
+DIST_COMMON =  COPYING INSTALL Makefile.am Makefile.in acinclude.m4 \
+aclocal.m4 config.guess config.sub configure configure.in install-sh \
+ltmain.sh missing mkinstalldirs
+@
+
+
+1.5
+log
+@<benz> mirlibtoolify
+@
+text
+@a78 2
+aclocaldir = @@aclocaldir@@
+pkgdatadir = @@pkgdatadir@@
+a100 3
+# This macro file should be visible to Automake's aclocal.
+aclocal_DATA = $(aclocal_macros)
+
+d113 1
+a113 1
+DATA =  $(aclocal_DATA) $(pkgdata_DATA)
+a178 19
+install-aclocalDATA: $(aclocal_DATA)
+	@@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(aclocaldir)
+	@@list='$(aclocal_DATA)'; for p in $$list; do \
+	  if test -f $(srcdir)/$$p; then \
+	    echo " $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(aclocaldir)/$$p"; \
+	    $(INSTALL_DATA) $(srcdir)/$$p $(DESTDIR)$(aclocaldir)/$$p; \
+	  else if test -f $$p; then \
+	    echo " $(INSTALL_DATA) $$p $(DESTDIR)$(aclocaldir)/$$p"; \
+	    $(INSTALL_DATA) $$p $(DESTDIR)$(aclocaldir)/$$p; \
+	  fi; fi; \
+	done
+
+uninstall-aclocalDATA:
+	@@$(NORMAL_UNINSTALL)
+	list='$(aclocal_DATA)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(aclocaldir)/$$p; \
+	done
+
+d362 1
+a362 2
+install-data-am: install-pkgdataSCRIPTS install-aclocalDATA \
+		install-pkgdataDATA
+d369 1
+a369 1
+		uninstall-aclocalDATA uninstall-pkgdataDATA
+d378 1
+a378 1
+		$(DESTDIR)$(aclocaldir) $(DESTDIR)$(pkgdatadir)
+d414 2
+a415 3
+install-pkgdataSCRIPTS uninstall-aclocalDATA install-aclocalDATA \
+uninstall-pkgdataDATA install-pkgdataDATA install-data-recursive \
+uninstall-data-recursive install-exec-recursive \
+@
+
+
+1.4
+log
+@even better
+@
+text
+@a64 1
+CONF_SUBDIRS = @@CONF_SUBDIRS@@
+d96 1
+a96 1
+EXTRA_DIST = $(aclocal_macros) bootstrap libtoolize.in ltmain.in mkstamp
+d111 2
+a112 2
+TSDEPS_DIST = ChangeLog libtool.m4
+CVS = cvs # set it to `:' to avoid CVS operations
+d120 3
+a122 3
+DIST_COMMON =  COPYING ChangeLog INSTALL Makefile.am Makefile.in \
+acinclude.m4 aclocal.m4 config.guess config.sub configure configure.in \
+install-sh ltmain.sh missing mkinstalldirs
+d464 1
+a464 1
+	date=`$(SHELL) $(srcdir)/mkstamp < $(srcdir)/ChangeLog` && \
+@
+
+
+1.3
+log
+@make do-bootstrap without libtool-1.3 installed, d'oh
+@
+text
+@a69 1
+LD = @@LD@@
+a72 1
+NM = @@NM@@
+d85 1
+a85 1
+BUILD_SUBDIRS = . libltdl doc
+d95 1
+a95 3
+aclocal_macros = libtool.m4 ltdl.m4
+
+EXTRA_DIST = $(aclocal_macros) bootstrap libtoolize.in ltmain.in 	mkstamp ChangeLog.0
+d97 1
+d121 3
+a123 3
+DIST_COMMON =  README AUTHORS COPYING ChangeLog INSTALL Makefile.am \
+Makefile.in NEWS THANKS TODO acinclude.m4 aclocal.m4 configure \
+configure.in install-sh ltmain.sh missing mkinstalldirs
+a388 2
+	@@$(NORMAL_INSTALL)
+	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
+d395 1
+a395 2
+		uninstall-aclocalDATA uninstall-pkgdataDATA \
+		uninstall-local
+d450 3
+a452 4
+uninstall-local uninstall-am uninstall all-redirect all-am all \
+installdirs-am installdirs mostlyclean-generic distclean-generic \
+clean-generic maintainer-clean-generic clean mostlyclean distclean \
+maintainer-clean
+d479 1
+a479 6
+all-recursive: $(srcdir)/libltdl/acinclude.m4 $(ACINCLUDE_M4_LIST)
+
+@@srcdir@@/libltdl/acinclude.m4: $(srcdir)/libtool.m4 $(srcdir)/ltdl.m4
+	-rm -f $@@ $@@T
+	cat $(srcdir)/libtool.m4 $(srcdir)/ltdl.m4 > $@@T
+	mv $@@T $@@
+a492 30
+
+# Create and install libltdl
+install-data-hook:
+	cd libltdl && $(MAKE) local-install-files
+
+# Uninstall libltdl
+uninstall-local:
+	-rm -rf $(DESTDIR)$(pkgdatadir)/libltdl
+
+################################################################
+
+# Tag before making distribution.  Also, don't make a distribution if
+# checks fail.  Also, make sure the NEWS file is up-to-date.
+cvs-dist: distcheck
+	@@if sed '1,2d;3q' $(srcdir)/NEWS | grep -e "$(VERSION)" > /dev/null; then :; else \
+	  echo "NEWS not updated; not releasing" 1>&2; \
+	  exit 1;				\
+	fi
+	cd $(srcdir) && \
+	 $(CVS) -q tag `echo "release-$(VERSION)" | sed 's/\./-/g'`
+	$(MAKE) dist
+
+cvs-diff:
+	thisver=`echo "release-$(VERSION)" | sed 's/\./-/g'`; \
+	if test -z "$$OLDVERSION"; then \
+	  prevno=`echo "$(VERSION)" - 0.01 | bc | sed 's/^\./0./'`; \
+	else prevno="$$OLDVERSION"; fi; \
+	prevver=release-`echo $$prevno | sed 's/\./-/g'`; \
+	$(CVS) -f rdiff -c -r $$prevver -r $$thisver $(PACKAGE) \
+	    > $(PACKAGE)-$$prevno-$(VERSION).diff
+@
+
+
+1.2
+log
+@* MirOSify
+* bootstrap
+* nuke unneeded stuff
+@
+text
+@d125 2
+a126 3
+Makefile.in NEWS THANKS TODO acinclude.m4 aclocal.m4 config.guess \
+config.sub configure configure.in install-sh ltconfig ltmain.sh missing \
+mkinstalldirs
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+# Makefile.in generated automatically by automake 1.4-p5 from Makefile.am
+d87 1
+a87 1
+BUILD_SUBDIRS = . libltdl doc tests
+d99 1
+a99 2
+EXTRA_DIST = $(aclocal_macros) bootstrap libtoolize.in ltmain.in \
+	mkstamp ChangeLog.0
+d126 1
+a126 1
+config.sub configure configure.in install-sh ltmain.sh missing \
+d132 1
+a132 1
+TAR = gtar
+d137 1
+a137 1
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps Makefile
+d139 1
+a139 1
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+d264 1
+d355 5
+@
+
+
+1.1.2.1
+log
+@GNU Libtool 1.4.3 (last of the 1.4 series)
+
+Requires to bootstrap:
+* autoconf 2.13-o
+* automake 1.4-p5
+or later.
+@
+text
+@@
+
+
+1.1.2.2
+log
+@http://ftp.gnu.org/gnu/libtool/libtool-1.5.8.tar.gz
+@
+text
+@d1 1
+a1 2
+# Makefile.in generated by automake 1.8.5 from Makefile.am.
+# @@configure_input@@
+d3 1
+a3 2
+# Copyright (C) 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
+# 2003, 2004  Free Software Foundation, Inc.
+a12 1
+@@SET_MAKE@@
+d14 1
+d19 19
+d40 1
+d42 6
+a47 1
+am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
+d49 5
+a53 5
+install_sh_DATA = $(install_sh) -c -m 644
+install_sh_PROGRAM = $(install_sh) -c
+install_sh_SCRIPT = $(install_sh) -c
+INSTALL_HEADER = $(INSTALL_DATA)
+transform = $(program_transform_name)
+d60 1
+a61 42
+DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(top_srcdir)/configure AUTHORS COPYING \
+	ChangeLog INSTALL NEWS THANKS TODO config.guess config.sub \
+	install-sh ltmain.sh missing
+subdir = .
+ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
+	$(top_srcdir)/configure.ac
+am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
+	$(ACLOCAL_M4)
+am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
+ configure.lineno configure.status.lineno
+mkinstalldirs = $(mkdir_p)
+CONFIG_CLEAN_FILES =
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(aclocaldir)" "$(DESTDIR)$(pkgdatadir)"
+binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
+SCRIPTS = $(bin_SCRIPTS)
+SOURCES =
+DIST_SOURCES =
+RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
+	html-recursive info-recursive install-data-recursive \
+	install-exec-recursive install-info-recursive \
+	install-recursive installcheck-recursive installdirs-recursive \
+	pdf-recursive ps-recursive uninstall-info-recursive \
+	uninstall-recursive
+aclocalDATA_INSTALL = $(INSTALL_DATA)
+pkgdataDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(aclocal_DATA) $(pkgdata_DATA)
+ETAGS = etags
+CTAGS = ctags
+DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+distdir = $(PACKAGE)-$(VERSION)
+top_distdir = $(distdir)
+am__remove_distdir = \
+  { test ! -d $(distdir) \
+    || { find $(distdir) -type d ! -perm -200 -exec chmod u+w {} ';' \
+         && rm -fr $(distdir); }; }
+DIST_ARCHIVES = $(distdir).tar.gz
+GZIP_ENV = --best
+distuninstallcheck_listfiles = find . -type f -print
+distcleancheck_listfiles = find . -type f -print
+pkgdatadir = @@pkgdatadir@@
+a62 5
+ACLOCAL = @@ACLOCAL@@
+AMDEP_FALSE = @@AMDEP_FALSE@@
+AMDEP_TRUE = @@AMDEP_TRUE@@
+AMTAR = @@AMTAR@@
+AR = @@AR@@
+a63 4
+AUTOCONF = @@AUTOCONF@@
+AUTOHEADER = @@AUTOHEADER@@
+AUTOMAKE = @@AUTOMAKE@@
+AWK = @@AWK@@
+a64 4
+CCDEPMODE = @@CCDEPMODE@@
+
+# We need to export these variables
+CFLAGS = @@CFLAGS@@
+a65 9
+CPP = @@CPP@@
+CPPFLAGS = @@CPPFLAGS@@
+CXX = @@CXX@@
+CXXCPP = @@CXXCPP@@
+CXXDEPMODE = @@CXXDEPMODE@@
+CXXFLAGS = @@CXXFLAGS@@
+CYGPATH_W = @@CYGPATH_W@@
+DEFS = @@DEFS@@
+DEPDIR = @@DEPDIR@@
+a68 4
+ECHO_C = @@ECHO_C@@
+ECHO_N = @@ECHO_N@@
+ECHO_T = @@ECHO_T@@
+EGREP = @@EGREP@@
+a69 16
+F77 = @@F77@@
+FFLAGS = @@FFLAGS@@
+GCJ = @@GCJ@@
+GCJFLAGS = @@GCJFLAGS@@
+HAVE_CXX_FALSE = @@HAVE_CXX_FALSE@@
+HAVE_CXX_TRUE = @@HAVE_CXX_TRUE@@
+HAVE_F77_FALSE = @@HAVE_F77_FALSE@@
+HAVE_F77_TRUE = @@HAVE_F77_TRUE@@
+HAVE_GCJ_FALSE = @@HAVE_GCJ_FALSE@@
+HAVE_GCJ_TRUE = @@HAVE_GCJ_TRUE@@
+HAVE_RC_FALSE = @@HAVE_RC_FALSE@@
+HAVE_RC_TRUE = @@HAVE_RC_TRUE@@
+INSTALL_DATA = @@INSTALL_DATA@@
+INSTALL_PROGRAM = @@INSTALL_PROGRAM@@
+INSTALL_SCRIPT = @@INSTALL_SCRIPT@@
+INSTALL_STRIP_PROGRAM = @@INSTALL_STRIP_PROGRAM@@
+a70 3
+LDFLAGS = @@LDFLAGS@@
+LIBOBJS = @@LIBOBJS@@
+LIBS = @@LIBS@@
+a72 1
+LTLIBOBJS = @@LTLIBOBJS@@
+a77 6
+PACKAGE_BUGREPORT = @@PACKAGE_BUGREPORT@@
+PACKAGE_NAME = @@PACKAGE_NAME@@
+PACKAGE_STRING = @@PACKAGE_STRING@@
+PACKAGE_TARNAME = @@PACKAGE_TARNAME@@
+PACKAGE_VERSION = @@PACKAGE_VERSION@@
+PATH_SEPARATOR = @@PATH_SEPARATOR@@
+a78 3
+RC = @@RC@@
+SET_MAKE = @@SET_MAKE@@
+SHELL = @@SHELL@@
+a81 11
+ac_ct_AR = @@ac_ct_AR@@
+ac_ct_AS = @@ac_ct_AS@@
+ac_ct_CC = @@ac_ct_CC@@
+ac_ct_CXX = @@ac_ct_CXX@@
+ac_ct_DLLTOOL = @@ac_ct_DLLTOOL@@
+ac_ct_F77 = @@ac_ct_F77@@
+ac_ct_GCJ = @@ac_ct_GCJ@@
+ac_ct_OBJDUMP = @@ac_ct_OBJDUMP@@
+ac_ct_RANLIB = @@ac_ct_RANLIB@@
+ac_ct_RC = @@ac_ct_RC@@
+ac_ct_STRIP = @@ac_ct_STRIP@@
+d83 2
+a84 36
+am__fastdepCC_FALSE = @@am__fastdepCC_FALSE@@
+am__fastdepCC_TRUE = @@am__fastdepCC_TRUE@@
+am__fastdepCXX_FALSE = @@am__fastdepCXX_FALSE@@
+am__fastdepCXX_TRUE = @@am__fastdepCXX_TRUE@@
+am__include = @@am__include@@
+am__leading_dot = @@am__leading_dot@@
+am__quote = @@am__quote@@
+bindir = @@bindir@@
+build = @@build@@
+build_alias = @@build_alias@@
+build_cpu = @@build_cpu@@
+build_os = @@build_os@@
+build_vendor = @@build_vendor@@
+datadir = @@datadir@@
+exec_prefix = @@exec_prefix@@
+host = @@host@@
+host_alias = @@host_alias@@
+host_cpu = @@host_cpu@@
+host_os = @@host_os@@
+host_vendor = @@host_vendor@@
+includedir = @@includedir@@
+infodir = @@infodir@@
+install_sh = @@install_sh@@
+libdir = @@libdir@@
+libexecdir = @@libexecdir@@
+localstatedir = @@localstatedir@@
+mandir = @@mandir@@
+mkdir_p = @@mkdir_p@@
+oldincludedir = @@oldincludedir@@
+prefix = @@prefix@@
+program_transform_name = @@program_transform_name@@
+sbindir = @@sbindir@@
+sharedstatedir = @@sharedstatedir@@
+subdirs = @@subdirs@@
+sysconfdir = @@sysconfdir@@
+target_alias = @@target_alias@@
+d86 1
+d90 3
+d94 3
+a96 1
+FLIBS = @@FLIBS@@
+d98 1
+d100 1
+a100 1
+	mkstamp ChangeLog.0 ChangeLog.1
+d104 3
+a106 4
+# These are required by libtoolize and must be executable when installed.
+# Since _SCRIPTS gets the program transform applied we make them
+# executable by hand
+pkgdata_DATA = config.guess config.sub ltmain.sh
+a112 1
+TEXI2HTML = texi2html
+d118 6
+a123 16
+WGET = wget
+WGETSGO = $(WGET) http://savannah.gnu.org/cgi-bin/viewcvs/~checkout~
+FETCHFILES = \
+./INSTALL \
+./config.guess \
+libltdl/config.guess \
+./config.sub \
+libltdl/config.sub \
+doc/texinfo.tex
+
+GPG = gpg # set it to `:' to avoid gpg operations
+DIFF = diff
+DIFF_OPTIONS = -ruNp
+XDELTA = xdelta
+XDELTA_OPTIONS = -9
+all: all-recursive
+d125 11
+d137 9
+a145 25
+am--refresh:
+	@@:
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
+	@@for dep in $?; do \
+	  case '$(am__configure_deps)' in \
+	    *$$dep*) \
+	      echo ' cd $(srcdir) && $(AUTOMAKE) --gnu '; \
+	      cd $(srcdir) && $(AUTOMAKE) --gnu  \
+		&& exit 0; \
+	      exit 1;; \
+	  esac; \
+	done; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu  Makefile'; \
+	cd $(top_srcdir) && \
+	  $(AUTOMAKE) --gnu  Makefile
+.PRECIOUS: Makefile
+Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
+	@@case '$?' in \
+	  *config.status*) \
+	    echo ' $(SHELL) ./config.status'; \
+	    $(SHELL) ./config.status;; \
+	  *) \
+	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $@@ $(am__depfiles_maybe)'; \
+	    cd $(top_builddir) && $(SHELL) ./config.status $@@ $(am__depfiles_maybe);; \
+	esac;
+d147 1
+a147 1
+$(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+d149 2
+a151 4
+$(top_srcdir)/configure:  $(am__configure_deps)
+	cd $(srcdir) && $(AUTOCONF)
+$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
+	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
+d154 1
+a154 1
+	test -z "$(bindir)" || $(mkdir_p) "$(DESTDIR)$(bindir)"
+d156 7
+a162 6
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  if test -f $$d$$p; then \
+	    f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	    echo " $(binSCRIPT_INSTALL) '$$d$$p' '$(DESTDIR)$(bindir)/$$f'"; \
+	    $(binSCRIPT_INSTALL) "$$d$$p" "$(DESTDIR)$(bindir)/$$f"; \
+	  else :; fi; \
+d167 2
+a168 4
+	@@list='$(bin_SCRIPTS)'; for p in $$list; do \
+	  f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	  echo " rm -f '$(DESTDIR)$(bindir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(bindir)/$$f"; \
+d171 12
+a182 2
+mostlyclean-libtool:
+	-rm -f *.lo
+d184 5
+a188 2
+clean-libtool:
+	-rm -rf .libs _libs
+a189 3
+distclean-libtool:
+	-rm -f libtool
+uninstall-info-am:
+d192 1
+a192 1
+	test -z "$(aclocaldir)" || $(mkdir_p) "$(DESTDIR)$(aclocaldir)"
+d194 7
+a200 4
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " $(aclocalDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(aclocaldir)/$$f'"; \
+	  $(aclocalDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(aclocaldir)/$$f"; \
+d205 2
+a206 4
+	@@list='$(aclocal_DATA)'; for p in $$list; do \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " rm -f '$(DESTDIR)$(aclocaldir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(aclocaldir)/$$f"; \
+d208 1
+d211 1
+a211 1
+	test -z "$(pkgdatadir)" || $(mkdir_p) "$(DESTDIR)$(pkgdatadir)"
+d213 7
+a219 4
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " $(pkgdataDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(pkgdatadir)/$$f'"; \
+	  $(pkgdataDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(pkgdatadir)/$$f"; \
+d224 2
+a225 4
+	@@list='$(pkgdata_DATA)'; for p in $$list; do \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " rm -f '$(DESTDIR)$(pkgdatadir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(pkgdatadir)/$$f"; \
+d234 7
+a240 2
+$(RECURSIVE_TARGETS):
+	@@set fnord $$MAKEFLAGS; amf=$$2; \
+d260 1
+a260 1
+	@@set fnord $$MAKEFLAGS; amf=$$2; \
+d262 3
+a264 8
+	case "$@@" in \
+	  distclean-* | maintainer-clean-*) list='$(DIST_SUBDIRS)' ;; \
+	  *) list='$(SUBDIRS)' ;; \
+	esac; \
+	rev=''; for subdir in $$list; do \
+	  if test "$$subdir" = "."; then :; else \
+	    rev="$$subdir $$rev"; \
+	  fi; \
+d266 1
+a266 1
+	rev="$$rev ."; \
+a281 4
+ctags-recursive:
+	list='$(SUBDIRS)'; for subdir in $$list; do \
+	  test "$$subdir" = . || (cd $$subdir && $(MAKE) $(AM_MAKEFLAGS) ctags); \
+	done
+d283 6
+a288 6
+ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+d290 2
+a291 2
+	mkid -fID $$unique
+tags: TAGS
+d293 1
+a293 2
+TAGS: tags-recursive $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+a295 7
+	if ($(ETAGS) --etags-include --version) >/dev/null 2>&1; then \
+	  include_option=--etags-include; \
+	  empty_fix=.; \
+	else \
+	  include_option=--include; \
+	  empty_fix=; \
+	fi; \
+d297 3
+a299 4
+	  if test "$$subdir" = .; then :; else \
+	    test ! -f $$subdir/TAGS || \
+	      tags="$$tags $$include_option=$$here/$$subdir/TAGS"; \
+	  fi; \
+d301 3
+a303 5
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+d305 6
+a310 24
+	if test -z "$(ETAGS_ARGS)$$tags$$unique"; then :; else \
+	  test -n "$$unique" || unique=$$empty_fix; \
+	  $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
+	    $$tags $$unique; \
+	fi
+ctags: CTAGS
+CTAGS: ctags-recursive $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(CTAGS_ARGS)$$tags$$unique" \
+	  || $(CTAGS) $(CTAGSFLAGS) $(AM_CTAGSFLAGS) $(CTAGS_ARGS) \
+	     $$tags $$unique
+
+GTAGS:
+	here=`$(am__cd) $(top_builddir) && pwd` \
+	  && cd $(top_srcdir) \
+	  && gtags -i $(GTAGS_ARGS) $$here
+d313 1
+a313 1
+	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
+d315 36
+d352 1
+a352 1
+	$(am__remove_distdir)
+d354 3
+a356 15
+	@@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
+	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
+	list='$(DISTFILES)'; for file in $$list; do \
+	  case $$file in \
+	    $(srcdir)/*) file=`echo "$$file" | sed "s|^$$srcdirstrip/||"`;; \
+	    $(top_srcdir)/*) file=`echo "$$file" | sed "s|^$$topsrcdirstrip/|$(top_builddir)/|"`;; \
+	  esac; \
+	  if test -f $$file || test -d $$file; then d=.; else d=$(srcdir); fi; \
+	  dir=`echo "$$file" | sed -e 's,/[^/]*$$,,'`; \
+	  if test "$$dir" != "$$file" && test "$$dir" != "."; then \
+	    dir="/$$dir"; \
+	    $(mkdir_p) "$(distdir)$$dir"; \
+	  else \
+	    dir=''; \
+	  fi; \
+d358 1
+a358 4
+	    if test -d $(srcdir)/$$file && test $$d != $(srcdir); then \
+	      cp -pR $(srcdir)/$$file $(distdir)$$dir || exit 1; \
+	    fi; \
+	    cp -pR $$d/$$file $(distdir)$$dir || exit 1; \
+d361 2
+a362 2
+	    || cp -p $$d/$$file $(distdir)/$$file \
+	    || exit 1; \
+d365 1
+a365 1
+	list='$(DIST_SUBDIRS)'; for subdir in $$list; do \
+d367 2
+a368 2
+	    test -d "$(distdir)/$$subdir" \
+	    || mkdir "$(distdir)/$$subdir" \
+d370 2
+a371 5
+	    (cd $$subdir && \
+	      $(MAKE) $(AM_MAKEFLAGS) \
+	        top_distdir="../$(top_distdir)" \
+	        distdir="../$(distdir)/$$subdir" \
+	        distdir) \
+d375 4
+a378 97
+	-find $(distdir) -type d ! -perm -777 -exec chmod a+rwx {} \; -o \
+	  ! -type d ! -perm -444 -links 1 -exec chmod a+r {} \; -o \
+	  ! -type d ! -perm -400 -exec chmod a+r {} \; -o \
+	  ! -type d ! -perm -444 -exec $(SHELL) $(install_sh) -c -m a+r {} {} \; \
+	|| chmod -R a+r $(distdir)
+dist-gzip: distdir
+	$(AMTAR) chof - $(distdir) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).tar.gz
+	$(am__remove_distdir)
+
+dist-bzip2: distdir
+	$(AMTAR) chof - $(distdir) | bzip2 -9 -c >$(distdir).tar.bz2
+	$(am__remove_distdir)
+
+dist-tarZ: distdir
+	$(AMTAR) chof - $(distdir) | compress -c >$(distdir).tar.Z
+	$(am__remove_distdir)
+
+dist-shar: distdir
+	shar $(distdir) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).shar.gz
+	$(am__remove_distdir)
+
+dist-zip: distdir
+	-rm -f $(distdir).zip
+	zip -rq $(distdir).zip $(distdir)
+	$(am__remove_distdir)
+
+dist dist-all: distdir
+	$(AMTAR) chof - $(distdir) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).tar.gz
+	$(am__remove_distdir)
+
+# This target untars the dist file and tries a VPATH configuration.  Then
+# it guarantees that the distribution is self-contained by making another
+# tarfile.
+distcheck: dist
+	case '$(DIST_ARCHIVES)' in \
+	*.tar.gz*) \
+	  GZIP=$(GZIP_ENV) gunzip -c $(distdir).tar.gz | $(AMTAR) xf - ;;\
+	*.tar.bz2*) \
+	  bunzip2 -c $(distdir).tar.bz2 | $(AMTAR) xf - ;;\
+	*.tar.Z*) \
+	  uncompress -c $(distdir).tar.Z | $(AMTAR) xf - ;;\
+	*.shar.gz*) \
+	  GZIP=$(GZIP_ENV) gunzip -c $(distdir).shar.gz | unshar ;;\
+	*.zip*) \
+	  unzip $(distdir).zip ;;\
+	esac
+	chmod -R a-w $(distdir); chmod a+w $(distdir)
+	mkdir $(distdir)/_build
+	mkdir $(distdir)/_inst
+	chmod a-w $(distdir)
+	dc_install_base=`$(am__cd) $(distdir)/_inst && pwd | sed -e 's,^[^:\\/]:[\\/],/,'` \
+	  && dc_destdir="$${TMPDIR-/tmp}/am-dc-$$$$/" \
+	  && cd $(distdir)/_build \
+	  && ../configure --srcdir=.. --prefix="$$dc_install_base" \
+	    $(DISTCHECK_CONFIGURE_FLAGS) \
+	  && $(MAKE) $(AM_MAKEFLAGS) \
+	  && $(MAKE) $(AM_MAKEFLAGS) dvi \
+	  && $(MAKE) $(AM_MAKEFLAGS) check \
+	  && $(MAKE) $(AM_MAKEFLAGS) install \
+	  && $(MAKE) $(AM_MAKEFLAGS) installcheck \
+	  && $(MAKE) $(AM_MAKEFLAGS) uninstall \
+	  && $(MAKE) $(AM_MAKEFLAGS) distuninstallcheck_dir="$$dc_install_base" \
+	        distuninstallcheck \
+	  && chmod -R a-w "$$dc_install_base" \
+	  && ({ \
+	       (cd ../.. && umask 077 && mkdir "$$dc_destdir") \
+	       && $(MAKE) $(AM_MAKEFLAGS) DESTDIR="$$dc_destdir" install \
+	       && $(MAKE) $(AM_MAKEFLAGS) DESTDIR="$$dc_destdir" uninstall \
+	       && $(MAKE) $(AM_MAKEFLAGS) DESTDIR="$$dc_destdir" \
+	            distuninstallcheck_dir="$$dc_destdir" distuninstallcheck; \
+	      } || { rm -rf "$$dc_destdir"; exit 1; }) \
+	  && rm -rf "$$dc_destdir" \
+	  && $(MAKE) $(AM_MAKEFLAGS) dist \
+	  && rm -rf $(DIST_ARCHIVES) \
+	  && $(MAKE) $(AM_MAKEFLAGS) distcleancheck
+	$(am__remove_distdir)
+	@@(echo "$(distdir) archives ready for distribution: "; \
+	  list='$(DIST_ARCHIVES)'; for i in $$list; do echo $$i; done) | \
+	  sed -e '1{h;s/./=/g;p;x;}' -e '$${p;x;}'
+distuninstallcheck:
+	@@cd $(distuninstallcheck_dir) \
+	&& test `$(distuninstallcheck_listfiles) | wc -l` -le 1 \
+	   || { echo "ERROR: files left after uninstall:" ; \
+	        if test -n "$(DESTDIR)"; then \
+	          echo "  (check DESTDIR support)"; \
+	        fi ; \
+	        $(distuninstallcheck_listfiles) ; \
+	        exit 1; } >&2
+distcleancheck: distclean
+	@@if test '$(srcdir)' = . ; then \
+	  echo "ERROR: distcleancheck can only run from a VPATH build" ; \
+	  exit 1 ; \
+	fi
+	@@test `$(distcleancheck_listfiles) | wc -l` -eq 0 \
+	  || { echo "ERROR: files left in build directory after distclean:" ; \
+	       $(distcleancheck_listfiles) ; \
+	       exit 1; } >&2
+d381 3
+a383 7
+all-am: Makefile $(SCRIPTS) $(DATA)
+installdirs: installdirs-recursive
+installdirs-am:
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(aclocaldir)" "$(DESTDIR)$(pkgdatadir)"; do \
+	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
+	done
+install: install-recursive
+d385 5
+a390 1
+uninstall: uninstall-recursive
+d394 14
+a408 6
+installcheck: installcheck-recursive
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) INSTALL_PROGRAM="$(INSTALL_STRIP_PROGRAM)" \
+	  install_sh_PROGRAM="$(INSTALL_STRIP_PROGRAM)" INSTALL_STRIP_FLAG=-s \
+	  `test -z '$(STRIP)' || \
+	    echo "INSTALL_PROGRAM_ENV=STRIPPROG='$(STRIP)'"` install
+d415 2
+a416 1
+	-rm -f $(CONFIG_CLEAN_FILES)
+d419 1
+a419 3
+	@@echo "This command is intended for maintainers to use"
+	@@echo "it deletes files that may require special tools to rebuild."
+clean: clean-recursive
+d421 1
+a421 1
+clean-am: clean-generic clean-libtool mostlyclean-am
+d423 1
+a423 5
+distclean: distclean-recursive
+	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
+	-rm -f Makefile
+distclean-am: clean-am distclean-generic distclean-libtool \
+	distclean-tags
+d425 1
+a425 1
+dvi: dvi-recursive
+d427 2
+a428 1
+dvi-am:
+d430 2
+a431 1
+html: html-recursive
+d433 4
+a436 15
+info: info-recursive
+
+info-am:
+
+install-data-am: install-aclocalDATA install-pkgdataDATA
+	@@$(NORMAL_INSTALL)
+	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
+
+install-exec-am: install-binSCRIPTS
+
+install-info: install-info-recursive
+
+install-man:
+
+installcheck-am:
+d439 1
+a439 4
+	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
+	-rm -rf $(top_srcdir)/autom4te.cache
+	-rm -f Makefile
+maintainer-clean-am: distclean-am maintainer-clean-generic
+d441 15
+a455 14
+mostlyclean: mostlyclean-recursive
+
+mostlyclean-am: mostlyclean-generic mostlyclean-libtool
+
+pdf: pdf-recursive
+
+pdf-am:
+
+ps: ps-recursive
+
+ps-am:
+
+uninstall-am: uninstall-aclocalDATA uninstall-binSCRIPTS \
+	uninstall-info-am uninstall-local uninstall-pkgdataDATA
+a456 1
+uninstall-info: uninstall-info-recursive
+d458 1
+a458 20
+.PHONY: $(RECURSIVE_TARGETS) CTAGS GTAGS all all-am am--refresh check \
+	check-am clean clean-generic clean-libtool clean-recursive \
+	ctags ctags-recursive dist dist-all dist-bzip2 dist-gzip \
+	dist-shar dist-tarZ dist-zip distcheck distclean \
+	distclean-generic distclean-libtool distclean-recursive \
+	distclean-tags distcleancheck distdir distuninstallcheck dvi \
+	dvi-am html html-am info info-am install install-aclocalDATA \
+	install-am install-binSCRIPTS install-data install-data-am \
+	install-exec install-exec-am install-info install-info-am \
+	install-man install-pkgdataDATA install-strip installcheck \
+	installcheck-am installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic maintainer-clean-recursive \
+	mostlyclean mostlyclean-generic mostlyclean-libtool \
+	mostlyclean-recursive pdf pdf-am ps ps-am tags tags-recursive \
+	uninstall uninstall-aclocalDATA uninstall-am \
+	uninstall-binSCRIPTS uninstall-info-am uninstall-local \
+	uninstall-pkgdataDATA
+
+
+libtool: $(srcdir)/ltmain.sh $(top_builddir)/configure.ac
+d473 7
+a479 1
+	cp $@@ $(srcdir)/libltdl/
+a504 2
+	chmod +x $(DESTDIR)$(pkgdatadir)/config.guess
+	chmod +x $(DESTDIR)$(pkgdatadir)/config.sub
+d510 1
+a510 37
+.PHONY: cvs-release
+cvs-release: version-check prev-tarball cvs-news fetch cvs-commit cvs-dist deltas web-manual
+	@@tarname="$(PACKAGE)-$(VERSION).tar.gz"; \
+	diffname="$(PACKAGE)-$(LASTRELEASE)-$(VERSION).diff.gz"; \
+	xdeltaname="$(PACKAGE)-$(LASTRELEASE)-$(VERSION).xdelta"; \
+	echo " *** Upload $$tarname, $$tarname.sig,";\
+	echo " *** $$tarname.directive.asc, $$diffname,"; \
+	echo " *** $$diffname.sig, $$diffname.directive.asc,"; \
+	echo " *** $$xdeltaname, $$xdeltaname.sig and";\
+	echo " *** $$xdeltaname.directive.asc to either"
+	echo " *** /incoming/alpha or /incoming/ftp on ftp-upload.gnu.org."
+	echo " *** You might need to upload manual.html to webcvs/libtool."
+
+.PHONY: version-check
+version-check:
+	@@case $(VERSION) in \
+	*[acegikmoqsuwy]) \
+	  echo "Version \`$(VERSION)' is not a releasable version, please read:"; \
+	  echo "    http://www.gnu.org/software/libtool/contribute.html"; \
+	  exit 1; \
+	  ;; \
+	esac
+
+.PHONY: prev-tarball
+prev-tarball:
+	@@if test -z "$(LASTRELEASE)"; \
+		then echo "LASTRELEASE is not set"; exit 1; fi
+	@@ofile="$(PACKAGE)-$(LASTRELEASE).tar.gz"; \
+	if test -f $$ofile; then :; \
+	else echo "Cannot make deltas without $$ofile"; exit 1; fi
+
+.PHONY: timestamps update-timestamps
+timestamps: update-timestamps
+update-timestamps:
+	@@if (cd $(srcdir) && test -d CVS && \
+	    $(CVS) -n update $(TSDEPS_DIST) | grep '^M'); then \
+		echo "Cannot make cvs-dist before commit"; exit 1; else :; fi
+d512 4
+a515 5
+.PHONY: cvs-news
+cvs-news:
+	@@if sed '1,2d;3q' $(srcdir)/NEWS | grep -e "$(VERSION)" >/dev/null; \
+	then :; \
+	else \
+d517 1
+a517 1
+	  exit 1; \
+d519 12
+a531 91
+.PHONY: fetch
+fetch:
+	rm -rf Fetchdir > /dev/null 2>&1
+	mkdir Fetchdir
+	(cd Fetchdir && \
+	$(WGETSGO)/autoconf/autoconf/INSTALL; \
+	$(WGETSGO)/config/config/config.guess; \
+	$(WGETSGO)/config/config/config.sub; \
+	$(WGETSGO)/texinfo/texinfo/doc/texinfo.tex )
+	@@stat=0; for file in $(FETCHFILES); do \
+	  fetchedfile=Fetchdir/`echo $$file | sed 's,.*/,,g'`; \
+	  if diff -u $(srcdir)/$$file $$fetchedfile \
+	    >>Fetchdir/update.patch 2>/dev/null; then :; \
+	  else \
+	    stat=1; \
+	    echo "Updating $(srcdir)/$$file..."; \
+	    cp $$fetchedfile $(srcdir)/$$file; \
+	  fi; \
+	done; \
+	test $$stat = 1 && \
+	  echo "See Fetchdir/update.patch for a log of the changes."; \
+	exit $$stat
+
+.PHONY: cvs-commit
+cvs-commit: cvs-news
+	cd $(srcdir) && $(SHELL) ./commit
+
+.PHONY: cvs-dist
+cvs-dist: cvs-news timestamps
+	$(MAKE) distcheck
+	cd $(srcdir) \
+	  && $(CVS) -q tag -c `echo "release-$(VERSION)" | sed 's/\./-/g'`
+	ofile="$(PACKAGE)-$(VERSION).tar.gz"; \
+	$(GPG) --detach-sign $$ofile \
+	&& echo "directory: libtool" > $$ofile.directive \
+	&& $(GPG) --clearsign $$ofile.directive \
+	&& rm -f $$ofile.directive
+
+.PHONY: new-tarball
+new-tarball:
+	@@ofile="$(PACKAGE)-$(VERSION).tar.gz"; \
+	if test -f $$ofile; then :; \
+	else echo "Cannot make deltas without $$ofile"; exit 1; fi
+
+.PHONY: got-xdelta
+got-xdelta:
+	@@if ($(XDELTA) --version 2>&1 | grep version)>/dev/null 2>/dev/null; \
+	then :;\
+	else \
+	  echo "Get xdelta from http://sourceforge.net/projects/xdelta."; \
+	  exit 1; \
+	fi
+
+.PHONY: deltas
+deltas: delta-diff delta-xdelta
+
+.PHONY: delta-diff
+delta-diff: prev-tarball new-tarball
+	rm -rf delta-diff
+	mkdir delta-diff
+	ofile="../$(PACKAGE)-$(LASTRELEASE)-$(VERSION).diff.gz"; \
+	cd delta-diff \
+	&& tar xzf "../$(PACKAGE)-$(LASTRELEASE).tar.gz" \
+	&& tar xzf "../$(PACKAGE)-$(VERSION).tar.gz" \
+	&& $(DIFF) $(DIFF_OPTIONS) \
+		$(PACKAGE)-$(LASTRELEASE) $(PACKAGE)-$(VERSION) \
+		| GZIP=$(GZIP_ENV) gzip -c > $$ofile \
+	&& $(GPG) --detach-sign $$ofile \
+	&& echo "directory: libtool" > $$ofile.directive \
+	&& $(GPG) --clearsign $$ofile.directive \
+	&& rm -f $$ofile.directive
+	rm -rf delta-diff
+
+.PHONY: delta-xdelta
+delta-xdelta: prev-tarball new-tarball got-xdelta
+	ofile="$(PACKAGE)-$(LASTRELEASE)-$(VERSION).xdelta"; \
+	( test -z `$(XDELTA) delta $(XDELTA_OPTIONS) \
+	    $(PACKAGE)-$(LASTRELEASE).tar.gz $(PACKAGE)-$(VERSION).tar.gz \
+	    $$ofile 2>&1` \
+	  && : ) \
+	&& $(GPG) --detach-sign $$ofile \
+	&& echo "directory: libtool" > $$ofile.directive \
+	&& $(GPG) --clearsign $$ofile.directive \
+	&& rm -f $$ofile.directive
+
+.PHONY: web-manual
+web-manual:
+	@@$(LN_S) $(top_srcdir)/doc/libtool.texi doc/manual.texi
+	$(TEXI2HTML) -I doc -monolithic -number -verbose doc/manual.texi
+	@@mv doc/manual.html manual.html
+	@@rm -f doc/manual.texi
+@
+
+
+1.1.2.3
+log
+@http://ftp.gnu.org/gnu/libtool/libtool-1.5.10.tar.gz
+@
+text
+@d1 1
+a1 1
+# Makefile.in generated by automake 1.9.1 from Makefile.am.
+a36 1
+build_triplet = @@build@@
+d50 1
+a50 1
+mkinstalldirs = $(install_sh) -d
+d52 1
+a52 2
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(aclocaldir)" \
+	"$(DESTDIR)$(pkgdatadir)"
+a62 6
+am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
+am__vpath_adj = case $$p in \
+    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
+    *) f=$$p;; \
+  esac;
+am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+a173 2
+am__tar = @@am__tar@@
+am__untar = @@am__untar@@
+d316 1
+a316 1
+	  f=$(am__strip_dir) \
+d324 1
+a324 1
+	  f=$(am__strip_dir) \
+d333 1
+a333 1
+	  f=$(am__strip_dir) \
+d341 1
+a341 1
+	  f=$(am__strip_dir) \
+d498 1
+a498 1
+	    || $(mkdir_p) "$(distdir)/$$subdir" \
+a499 2
+	    distdir=`$(am__cd) $(distdir) && pwd`; \
+	    top_distdir=`$(am__cd) $(top_distdir) && pwd`; \
+d502 2
+a503 2
+	        top_distdir="$$top_distdir" \
+	        distdir="$$distdir/$$subdir" \
+d514 1
+a514 1
+	tardir=$(distdir) && $(am__tar) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).tar.gz
+d518 1
+a518 1
+	tardir=$(distdir) && $(am__tar) | bzip2 -9 -c >$(distdir).tar.bz2
+d522 1
+a522 1
+	tardir=$(distdir) && $(am__tar) | compress -c >$(distdir).tar.Z
+d535 1
+a535 1
+	tardir=$(distdir) && $(am__tar) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).tar.gz
+d544 1
+a544 1
+	  GZIP=$(GZIP_ENV) gunzip -c $(distdir).tar.gz | $(am__untar) ;;\
+d546 1
+a546 1
+	  bunzip2 -c $(distdir).tar.bz2 | $(am__untar) ;;\
+d548 1
+a548 1
+	  uncompress -c $(distdir).tar.Z | $(am__untar) ;;\
+d633 1
+a633 1
+	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+d701 9
+a709 9
+	install-data-hook install-exec install-exec-am install-info \
+	install-info-am install-man install-pkgdataDATA install-strip \
+	installcheck installcheck-am installdirs installdirs-am \
+	maintainer-clean maintainer-clean-generic \
+	maintainer-clean-recursive mostlyclean mostlyclean-generic \
+	mostlyclean-libtool mostlyclean-recursive pdf pdf-am ps ps-am \
+	tags tags-recursive uninstall uninstall-aclocalDATA \
+	uninstall-am uninstall-binSCRIPTS uninstall-info-am \
+	uninstall-local uninstall-pkgdataDATA
+@
+
+

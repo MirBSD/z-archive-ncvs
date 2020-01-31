@@ -1,0 +1,102 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.21.49.04;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.54;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.54;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@;
+; Slightly modified version of ../nt/zlib.dnt :-)
+;
+
+LIBRARY		Z
+DESCRIPTION	"Zlib compression library for OS/2"
+CODE		PRELOAD MOVEABLE DISCARDABLE
+DATA		PRELOAD MOVEABLE MULTIPLE
+
+EXPORTS
+    adler32
+    compress
+    crc32
+    deflate
+    deflateCopy
+    deflateEnd
+    deflateInit2_
+    deflateInit_
+    deflateParams
+    deflateReset
+    deflateSetDictionary
+    gzclose
+    gzdopen
+    gzerror
+    gzflush
+    gzopen
+    gzread
+    gzwrite
+    inflate
+    inflateEnd
+    inflateInit2_
+    inflateInit_
+    inflateReset
+    inflateSetDictionary
+    inflateSync
+    uncompress
+    zlibVersion
+    gzprintf
+    gzputc
+    gzgetc
+    gzseek
+    gzrewind
+    gztell
+    gzeof
+    gzsetparams
+    zError
+    inflateSyncPoint
+    get_crc_table
+    compress2
+    gzputs
+    gzgets
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

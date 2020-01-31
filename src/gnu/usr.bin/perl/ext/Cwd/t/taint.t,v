@@ -1,0 +1,82 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.44;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.29;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl -Tw
+# Testing Cwd under taint mode.
+
+BEGIN {
+    chdir 't' if -d 't';
+    if ($ENV{PERL_CORE}) {
+	@@INC = '../lib';
+    }
+}
+use Cwd;
+
+use strict;
+use Test::More tests => 16;
+use Scalar::Util qw/tainted/;
+
+my @@Functions = qw(getcwd cwd fastcwd fastgetcwd
+                   abs_path fast_abs_path
+                   realpath fast_realpath
+                  );
+
+foreach my $func (@@Functions) {
+    no strict 'refs';
+    my $cwd;
+    eval { $cwd = &{'Cwd::'.$func} };
+    is( $@@, '',		"$func() should not explode under taint mode" );
+    ok( tainted($cwd),	"its return value should be tainted" );
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

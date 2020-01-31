@@ -1,0 +1,102 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.06.21.12.26;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.10.17.52.15;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.10.17.10.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@rewrite in mksh
+@
+text
+@# $MirBSD: CVSROOT/commitinfo,v 2.1 2004/12/10 17:52:15 tg Exp $
+#-
+# The "commitinfo" file is used to control pre-commit checks.
+# The filter on the right is invoked with the repository and a list
+# of files to check.  A non-zero exit of the filter program will
+# cause the commit to be aborted.
+#
+# The first entry on a line is a regular expression which is tested
+# against the directory that the change is being committed to, relative
+# to the $CVSROOT.  For the first match that is found, then the remainder
+# of the line is the name of the filter to run.
+#
+# Format strings present in the filter will be replaced as follows:
+#    %p = path relative to repository
+#    %r = repository (path portion of $CVSROOT)
+#    %{s} = file name, file name, ...
+#
+# If no format strings are present in the filter string, a default of
+# " %r %s" will be appended to the filter string, but this usage is
+# deprecated.
+#
+# If the repository name does not match any of the regular expressions in this
+# file, the "DEFAULT" line is used, if it is specified.
+#
+# If the name "ALL" appears as a regular expression it is always used
+# in addition to the first matching regex or "DEFAULT".
+
+#-----------------------------------------------------------------
+# commit preparation for our ChangeLog and eMail generator
+#
+# Use this with GNU CVS 1.11.1p1:
+#ALL			$CVSROOT/CVSROOT/commit_prep2
+#
+# Use this with GNU CVS 1.12.10:
+ALL			$CVSROOT/CVSROOT/commit_prep2 %r/%p
+@
+
+
+2.1
+log
+@enable logging to /cvs/CVSROOT/ChangeLog and
+sending out eMail messages like this one ;-)
+@
+text
+@d1 1
+a1 1
+# $MirBSD$
+d32 1
+a32 1
+#ALL			$CVSROOT/CVSROOT/commit_prep2 -r
+d35 1
+a35 1
+ALL			$CVSROOT/CVSROOT/commit_prep2 -r %r/%p %{s}
+@
+
+
+1.1
+log
+@initial checkin
+@
+text
+@d1 2
+d4 2
+a5 2
+# The filter on the right is invoked with the repository and a list 
+# of files to check.  A non-zero exit of the filter program will 
+d27 9
+@
+
+

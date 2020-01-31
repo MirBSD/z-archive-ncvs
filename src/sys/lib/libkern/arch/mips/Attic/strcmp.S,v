@@ -1,0 +1,86 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.06.27;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.33.33;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.33.33;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@/*	$OpenBSD: strcmp.S,v 1.5 1998/03/01 16:10:34 niklas Exp $	*/
+
+#include "DEFS.h"
+
+
+/*
+ * NOTE: this version assumes unsigned chars in order to be "8 bit clean".
+ */
+LEAF(strcmp)
+	.set	noreorder
+1:
+	lbu	t0, 0(a0)		# get two bytes and compare them
+	lbu	t1, 0(a1)
+	beq	t0, zero, LessOrEq	# end of first string?
+	nop
+	bne	t0, t1, NotEq
+	nop
+	lbu	t0, 1(a0)		# unroll loop
+	lbu	t1, 1(a1)
+	beq	t0, zero, LessOrEq	# end of first string?
+	addu	a0, a0, 2
+	beq	t0, t1, 1b
+	addu	a1, a1, 2
+NotEq:
+	j	ra
+	 subu	v0, t0, t1
+LessOrEq:
+	j	ra
+	 subu	v0, zero, t1
+END(strcmp)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

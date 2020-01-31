@@ -1,0 +1,79 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.16.28;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.16.28;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* $XFree86: xc/programs/Xserver/hw/xfree86/xf8_32bpp/cfbcpyplane.c,v 1.1 1999/01/03 03:58:55 dawes Exp $ */
+
+#include "X.h"
+#include "Xmd.h"
+#include "Xproto.h"
+#include "gcstruct.h"
+#include "windowstr.h"
+#include "scrnintstr.h"
+#include "pixmapstr.h"
+#include "regionstr.h"
+#define PSZ 8
+#include "cfb.h"
+#undef PSZ
+#include "cfb32.h"
+#include "cfb8_32.h"
+#include "mi.h"
+
+
+RegionPtr 
+cfb8_32CopyPlane(
+    DrawablePtr pSrc,
+    DrawablePtr	pDst,
+    GCPtr pGC,
+    int srcx, int srcy,
+    int width, int height,
+    int dstx, int dsty,
+    unsigned long bitPlane
+){
+   /* There's actually much more to it than this */
+
+   if((pDst->bitsPerPixel == 8) && (pSrc->bitsPerPixel != 32)){
+	return(cfbCopyPlane(pSrc, pDst,
+            pGC, srcx, srcy, width, height, dstx, dsty, bitPlane));
+   } 
+
+
+   return(miCopyPlane (pSrc, pDst,
+            pGC, srcx, srcy, width, height, dstx, dsty, bitPlane));
+}
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

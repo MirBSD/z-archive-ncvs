@@ -1,0 +1,122 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.13.21.56.56;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.04.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@start merging
+* without generated files
+* docs are going to be built
+* untested ("minimal change" concept)
+* with assignment back to the FSF
+@
+text
+@# $MirBSD: src/gnu/usr.bin/binutils/src/ld/scripttempl/m68kcoff.sc,v 1.3 2004/09/16 22:28:15 tg Exp $
+#
+cat <<EOF
+OUTPUT_FORMAT("${OUTPUT_FORMAT}")
+${LIB_SEARCH_DIRS}
+PROVIDE (__stack = 0); 
+SECTIONS
+{
+  .text ${RELOCATING+ 0x1000000} : {
+    *(.text)
+    ${CONSTRUCTING+ . = ALIGN(4);}
+    ${RELOCATING+ etext  =  .;}
+    ${CONSTRUCTING+ __CTOR_LIST__ = .;}
+    ${CONSTRUCTING+ LONG((__CTOR_END__ - __CTOR_LIST__) / 4 - 2)}
+    ${CONSTRUCTING+ *(.ctors)}
+    ${CONSTRUCTING+ LONG(0)}
+    ${CONSTRUCTING+ __CTOR_END__ = .;}
+    ${CONSTRUCTING+ __DTOR_LIST__ = .;}
+    ${CONSTRUCTING+ LONG((__DTOR_END__ - __DTOR_LIST__) / 4 - 2)}
+    ${CONSTRUCTING+ *(.dtors)}
+    ${CONSTRUCTING+ LONG(0)}
+    ${CONSTRUCTING+ __DTOR_END__ = .;}
+  }
+  .data : {
+    *(.data)
+    ${RELOCATING+ edata  =  .};
+  }
+  .bss : { 					
+    ${RELOCATING+ __bss_start = .};
+    *(.bss)
+    *(COMMON)
+     ${RELOCATING+ end = ALIGN(0x8)};
+     ${RELOCATING+ _end = ALIGN(0x8)};
+  }
+  .stab  0 ${RELOCATING+\(NOLOAD\)} : 
+  {
+    [ .stab ]
+  }
+  .stabstr  0 ${RELOCATING+\(NOLOAD\)} :
+  {
+    [ .stabstr ]
+  }
+}
+EOF
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+d35 1
+a35 1
+  .stab  0 ${RELOCATING+(NOLOAD)} : 
+d39 1
+a39 1
+  .stabstr  0 ${RELOCATING+(NOLOAD)} :
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

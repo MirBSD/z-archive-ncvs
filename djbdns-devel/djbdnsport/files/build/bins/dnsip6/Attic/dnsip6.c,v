@@ -1,0 +1,95 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 tg:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.12.13.22.27.10;	author tg;	state dead;
+branches;
+next	1.1;
+commitid	0439f4ac1aff1455;
+
+1.1
+date	2005.12.13.20.44.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+commitid	0439f32c6884c25e;
+
+1.1.1.1
+date	2005.12.13.20.44.45;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f32c6884c25e;
+
+
+desc
+@@
+
+
+1.2
+log
+@consolidate all added source files in a central directory
+so it can be reused by the v6-transport stuff
+@
+text
+@#include "buffer.h"
+#include "exit.h"
+#include "strerr.h"
+#include "ip6.h"
+#include "dns.h"
+
+#define FATAL "dnsip: fatal: "
+
+static char seed[128];
+
+static stralloc fqdn;
+static stralloc out;
+char str[IP6_FMT];
+
+main(int argc,char **argv)
+{
+  int i;
+
+  dns_random_init(seed);
+
+  if (*argv) ++argv;
+
+  while (*argv) {
+    if (!stralloc_copys(&fqdn,*argv))
+      strerr_die2x(111,FATAL,"out of memory");
+    if (dns_ip6(&out,&fqdn) == -1)
+      strerr_die4sys(111,FATAL,"unable to find IPv6 address for ",*argv,": ");
+
+    for (i = 0;i + 16 <= out.len;i += 16) {
+      buffer_put(buffer_1,str,ip6_fmt(str,out.s + i));
+      buffer_puts(buffer_1," ");
+    }
+    buffer_puts(buffer_1,"\n");
+
+    ++argv;
+  }
+
+  buffer_flush(buffer_1);
+  _exit(0);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import ports/net/djbdns of snapshot
+@
+text
+@@

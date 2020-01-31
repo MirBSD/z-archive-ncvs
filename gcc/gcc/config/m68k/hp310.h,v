@@ -1,0 +1,91 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.04.17.24.20;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.20;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Definitions of target machine for GNU compiler.  HP-UX 68010 version.  */
+
+/* Don't try using XFmode.  */
+#undef LONG_DOUBLE_TYPE_SIZE
+#define LONG_DOUBLE_TYPE_SIZE 64
+
+#undef CPP_SPEC
+#undef ASM_SPEC
+
+/* HP does not support a 68020 without a 68881 or a 68010 with a 68881.
+   However, -m68020 does not imply -m68881.  You must specify both
+   if you want both.  */
+
+#ifdef HPUX_ASM
+
+#define CPP_SPEC "-D__HPUX_ASM__ %{m68881: -D__HAVE_68881__}\
+%{m68020: -Dmc68020}%{mc68020: -Dmc68020} -D_INCLUDE__STDC__"
+
+#define ASM_SPEC "%{!m68020:%{!mc68020:+X}}"
+
+#else	/* not HPUX_ASM */
+
+#define CPP_SPEC "%{m68881: -D__HAVE_68881__}\
+%{m68020: -Dmc68020}%{mc68020: -Dmc68020} -D_INCLUDE__STDC__"
+
+#define ASM_SPEC \
+ "%{m68000:-mc68000}%{mc68000:-mc68000}%{!mc68000:%{!m68000:-mc68020}}"
+
+#endif	/* not HPUX_ASM */
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

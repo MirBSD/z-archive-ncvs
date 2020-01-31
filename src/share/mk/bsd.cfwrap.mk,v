@@ -1,0 +1,371 @@
+head	2.7;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.7
+date	2005.01.14.14.15.20;	author tg;	state Exp;
+branches;
+next	2.6;
+
+2.6
+date	2005.01.05.10.34.59;	author tg;	state Exp;
+branches;
+next	2.5;
+
+2.5
+date	2005.01.05.06.03.58;	author tg;	state Exp;
+branches;
+next	2.4;
+
+2.4
+date	2005.01.05.05.19.14;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.05.05.05.29;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.05.04.47.29;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.33.53;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.7
+log
+@* protect from multiple inclusion
+* switch defaults to be suitable for gcc 3.4
+* remove crap
+* unify style a bit
+@
+text
+@# $MirBSD: src/share/mk/bsd.cfwrap.mk,v 2.6 2005/01/05 10:34:59 tg Exp $
+#-
+# Copyright (c) 2004, 2005
+#	Thorsten "mirabile" Glaser <tg@@66h.42h.de>
+#
+# Licensee is hereby permitted to deal in this work without restric-
+# tion, including unlimited rights to use, publicly perform, modify,
+# merge, distribute, sell, give away or sublicence, provided all co-
+# pyright notices above, these terms and the disclaimer are retained
+# in all redistributions or reproduced in accompanying documentation
+# or other materials provided with binary redistributions.
+#
+# Licensor hereby provides this work "AS IS" and WITHOUT WARRANTY of
+# any kind, expressed or implied, to the maximum extent permitted by
+# applicable law, but with the warranty of being written without ma-
+# licious intent or gross negligence; in no event shall licensor, an
+# author or contributor be held liable for any damage, direct, indi-
+# rect or other, however caused, arising in any way out of the usage
+# of this work, even if advised of the possibility of such damage.
+#-
+# This Makefile include is to be used in various degrees at the file
+# top of a "Makefile.bsd-wrapper" around GNU autoconf produced confi-
+# gure shell scripts.
+
+.if !defined(BSD_CFWRAP_MK)
+BSD_CFWRAP_MK=1
+
+.if !defined(BSD_OWN_MK)
+.  include <bsd.own.mk>
+.endif
+
+.if !target(.MAIN)
+.  if exists(${.CURDIR}/../Makefile.inc)
+.    include "${.CURDIR}/../Makefile.inc"
+.  endif
+
+.MAIN: all
+.endif
+
+INSTALL_PROGRAM=	${INSTALL} ${INSTALL_COPY} ${INSTALL_STRIP} \
+			    -o ${BINOWN} -g ${BINGRP} -m ${BINMODE}
+INSTALL_SCRIPT=		${INSTALL} ${INSTALL_COPY} \
+			    -o ${BINOWN} -g ${BINGRP} -m ${BINMODE}
+INSTALL_DATA=		${INSTALL} ${INSTALL_COPY} \
+			    -o ${BINOWN} -g ${BINGRP} -m ${SHAREMODE}
+INSTALL_MAN=		${INSTALL} ${INSTALL_COPY} \
+			    -o ${MANOWN} -g ${MANGRP} -m ${MANMODE}
+INSTALL_DOC=		${INSTALL} ${INSTALL_COPY} \
+			    -o ${DOCOWN} -g ${DOCGRP} -m ${DOCMODE}
+
+GCCHOST?=	${OStriplet}
+GCCTARGET?=	${OStriplet}
+ALL_TARGET?=	all
+INST_TARGET?=	install
+FSFMAKEFILE?=	Makefile
+CLEANFILES+=	config.cache config.log
+FSFMAKE?=	${XVARS} ${MAKE} ${FSFMARGS} ${XARGS}
+FSFSRC?=	${.CURDIR}
+.if !defined(FSFOBJDIR)
+FSFOBJDIR!=	readlink ${.OBJDIR} || ( cd ${.OBJDIR} && pwd )
+.endif
+
+.PATH: ${FSFSRC}
+
+.if ${FSFMAKEFILE} != "Makefile"
+FSFMARGS+=	-f ${FSFMAKEFILE}
+.endif
+
+FSFCFLAGS=	${CFLAGS} ${COPTS}
+FSFCXXFLAGS=	${CXXFLAGS} ${CXXOPTS}
+
+.if ${FSFCFLAGS:M*Werror*} || ${FSFCXXFLAGS:M*Werror*}
+FSFCFLAGS+=	-Werror-maybe-reset
+FSFCXXFLAGS+=	-Werror-maybe-reset
+.endif
+
+.if !defined(CFWRAP_NO_CCOM)
+XVARS+=	CC="${CC:C/ *$//}" CFLAGS="${FSFCFLAGS:C/ *$//}" CPP="${CPP}" \
+	CXX="${CXX:C/ *$//}" CXXFLAGS="${FSFCXXFLAGS:C/ *$//}"
+.endif
+
+XARGS+=	INSTALL_PROGRAM="${INSTALL_PROGRAM}" INSTALL_DATA="${INSTALL_DATA}" \
+	INSTALL_SCRIPT="${INSTALL_SCRIPT}" BSDSRCDIR="${BSDSRCDIR}" \
+	GNUSYSTEM_AUX_DIR="${GNUSYSTEM_AUX_DIR}" SHELL="${SHELL}" \
+	CONFIG_SHELL="${SHELL}" PICFLAG="${PICFLAG}" DESTDIR="${DESTDIR}"
+
+XVARS+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS} ${LDSTATIC}" \
+	INSTALL_STRIP="${INSTALL_STRIP}"
+
+_CFVARS=PATH="/bin:/usr/bin:/sbin:/usr/sbin" ${XVARS} ${XARGS} \
+	GCC_NO_WERROR=1 ${CFVARS}
+
+CFARGS+=--build=${OStriplet} --host=${GCCHOST} --srcdir=${FSFSRC}
+.if ${GCCTARGET} != ${GCCHOST}
+CFARGS+=--target=${GCCTARGET}
+.endif
+.if ${NOPIC:L} != "no"
+CF_PIC=	--disable-shared
+.else
+CF_PIC=	--enable-shared
+.endif
+
+all: _SUBDIRUSE do-build
+
+prereq: config.status
+
+config: config.clean config.status
+
+config.clean:
+	rm -f config.cache config.status
+
+config.status: ${FSFMAKEFILE}.in configure
+	cd ${FSFOBJDIR} && ${_CFVARS} ${SHELL} ${FSFSRC}/configure ${CFARGS}
+
+build: config.status
+	cd ${FSFOBJDIR} && ${FSFMAKE} ${ALL_TARGET}
+
+.if !target(do-build)
+do-build: build
+.endif
+
+install: _SUBDIRUSE pre-install do-install maninstall linkinstall post-install
+
+.if !target(do-install)
+do-install:
+	cd ${FSFOBJDIR} && ${FSFMAKE} ${INST_TARGET}
+.endif
+
+pre-install:
+
+post-install:
+
+linkinstall:
+.if defined(LINKS) && !empty(LINKS)
+.  for lnk file in ${LINKS}
+	@@l=${DESTDIR}${lnk}; \
+	 t=${DESTDIR}${file}; \
+	 echo $$t -\> $$l; \
+	 rm -f $$t; ln $$l $$t || cp $$l $$t
+.  endfor
+.endif
+
+.if ${NOMAN:L} != "no"
+maninstall:
+.endif
+
+.for _tgt in depend lint tags
+.  if !target(${_tgt})
+${_tgt}: _SUBDIRUSE
+	# Nothing here so far...
+
+.  endif
+.endfor
+
+clean: _SUBDIRUSE pre-clean do-clean post-clean
+
+pre-clean:
+
+.if !target(do-clean)
+do-clean:
+	-if test -e ${FSFMAKEFILE}; then \
+		cd ${FSFOBJDIR} && ${FSFMAKE} distclean; fi
+.endif
+
+post-clean:
+	-rm -rf ${CLEANFILES}
+
+cleandir: _SUBDIRUSE clean
+
+.include <bsd.obj.mk>
+.include <bsd.subdir.mk>
+.if ${NOMAN:L} == "no"
+.  include <bsd.man.mk>
+.endif
+
+.PHONY:	all prereq config config.clean build do-build install \
+	pre-install do-install maninstall post-install depend \
+	lint tags clean pre-clean do-clean post-clean cleandir
+
+.endif
+@
+
+
+2.6
+log
+@... and even the -Werror-maybe-reset, edition ][, works well
+(this shaves some time building autoconf'd base stuff AND maybe ports)
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.cfwrap.mk,v 2.5 2005/01/05 06:03:58 tg Exp $
+d25 2
+a57 6
+.if ${CFLAGS:M*Werror*} || ${COPTS:M*Werror*}
+.  if ${CC} != "mgcc"
+FSFCC?=		${SHELL} ${GNUSYSTEM_AUX_DIR}/ccwrap.sh
+.  endif
+.endif
+FSFCC?=
+a68 1
+.if !defined(CFWRAP_NO_CCOM)
+d72 1
+a72 2
+.  if ${CFLAGS:M*Werror*} || ${COPTS:M*Werror*}
+.    if ${CC} == "mgcc"
+d74 2
+a75 2
+.    endif
+.  endif
+d77 3
+a79 5
+FSFCC_C=	${FSFCC} ${CC}
+FSFCC_CC=	${FSFCC} ${CXX}
+
+XVARS+=	CC="${FSFCC_C:C/ *$//}" CFLAGS="${FSFCFLAGS:C/ *$//}" CPP="${CPP}" \
+	CXX="${FSFCC_CC:C/ *$//}" CXXFLAGS="${FSFCXXFLAGS:C/ *$//}"
+d91 1
+a91 1
+	GCC_NO_WERROR=1 CCWRAP_FLAGS_POSTFIX=-Wno-error ${CFVARS}
+d179 2
+@
+
+
+2.5
+log
+@further simplify if possible
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.cfwrap.mk,v 2.4 2005/01/05 05:19:14 tg Exp $
+d57 1
+d59 2
+a60 1
+.else
+a61 1
+.endif
+@
+
+
+2.4
+log
+@trim whitespaces from $CC and $CXX too
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.cfwrap.mk,v 2.3 2005/01/05 05:05:29 tg Exp $
+d76 2
+a77 1
+.  if ${CC} == "mgcc"
+d79 1
+@
+
+
+2.3
+log
+@oups
+allow user overriding
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.cfwrap.mk,v 2.2 2005/01/05 04:47:29 tg Exp $
+d80 5
+a84 2
+XVARS+=	CC="${FSFCC} ${CC}" CFLAGS="${FSFCFLAGS:C/ *$//}" CPP="${CPP}" \
+	CXX="${FSFCC} ${CXX}" CXXFLAGS="${FSFCXXFLAGS:C/ *$//}"
+@
+
+
+2.2
+log
+@experimental support for new -Werror-maybe-reset
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/misc/licence.template,v 1.20 2004/12/03 16:18:37 tg Rel $
+d59 1
+a59 1
+FSFCC?=		${CC}
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.cfwrap.mk,v 1.20 2004/12/08 18:42:20 tg Exp $
+d3 1
+a3 1
+# Copyright (c) 2004
+d7 5
+a11 5
+# tion, including unlimited rights to use, publically perform, modi-
+# fy, merge, distribute, sell, give away or sublicence, provided the
+# above copyright notices, these terms and the disclaimer are retai-
+# ned in all redistributions, or reproduced in accompanying documen-
+# tation or other materials provided with binary redistributions.
+d19 1
+a19 1
+# of covered work, even if advised of the possibility of such damage.
+d56 1
+d58 3
+d76 4
+d93 1
+a93 1
+	CCWRAP_FLAGS_POSTFIX=-Wno-error ${CFVARS}
+@
+

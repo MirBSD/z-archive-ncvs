@@ -1,0 +1,69 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.03.00.23.43;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.43;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef LYSIGNAL_H
+#define LYSIGNAL_H
+
+#include <signal.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+#ifdef VMS
+    extern void VMSsignal(int sig, void (*func) ());
+
+#ifdef signal
+#undef signal
+#endif				/* signal */
+#define signal(a,b) VMSsignal(a,b)	/* use LYCurses.c routines for interrupts */
+#endif				/* VMS */
+
+#ifdef HAVE_SIGACTION
+    typedef void LYSigHandlerFunc_t(int);
+
+/* implementation in LYUtils.c */
+    extern void LYExtSignal(int sig, LYSigHandlerFunc_t * handler);
+
+#else
+#define LYExtSignal(sig,h) signal(sig, h)
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+#endif				/* LYSIGNAL_H */
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

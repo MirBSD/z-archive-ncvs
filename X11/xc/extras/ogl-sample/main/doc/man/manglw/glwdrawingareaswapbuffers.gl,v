@@ -1,0 +1,70 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.05.22;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.05.22;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@.\" **
+.\" **  (c) Copyright 1993, 1994, 1995, 1996 Silicon Graphics, Inc.
+.\" **
+.\" **  (c) Copyright 1989, 1990, 1991 Open Software Foundation, Inc.
+.\" **      All Rights Reserved.
+.\" **
+.\" **  (c) Copyright 1987, 1988, 1989, by Hewlett-Packard Company
+.\" **
+.\" **  (c) Copyright 1987, 1988 by Digital Equipment Corporation,
+.\" **      Maynard, MA.  All Rights Reserved.
+.\" **
+.\" **
+.TH GLwDrawingAreaSwapBuffers 3X "" "" "" ""
+.SH NAME
+\fBGLwDrawingAreaSwapBuffers \(em Swap buffers in a GLwDrawingArea.\fP
+.iX "GLwDrawingAreaSwapBuffers"
+.iX "GLwDrawingArea"
+.sp 1
+.SH SYNOPSIS
+\fB#include <X11/GLw/GLwDraw.h>\fP
+.br
+void \fBGLwDrawingAreaSwapBuffers\fP( Widget \fIw\fP )
+.br
+.fi
+.SH DESCRIPTION
+\fBGLwDrawingAreaSwapBuffers\fP is a front end to \fBglXSwapBuffers\fP,
+however instead of passing in a Display and a Window, a Widget is
+passed in.
+.SH SEE ALSO
+\fBGLwMDrawingArea(3X)\fP, \fBglXSwapBuffers(3G)\fP.
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,117 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.1
+	libtool-1_5_8:1.1.2.1
+	LIBTOOL_1_5:1.1.2.1.0.2
+	libtool-1_5-20040215:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.15.13.32.51;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.15.13.09.50;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.15.13.09.50;	author tg;	state Exp;
+branches
+	1.1.2.1.2.1;
+next	;
+
+1.1.2.1.2.1
+date	2004.02.15.13.16.57;	author tg;	state dead;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@libtool 1.4 -> mirlibtool, back to the state of yesterday night
+(so we have a clean 1.4 in the branch LIBTOOL_1_4, and a working
+ 1.4 in head, which we might switch to LIBTOOL_1_5 once we get it
+ working in 2038)
+@
+text
+@#! /bin/sh
+# f77demo-conf.test - try configuring the ../f77demo subdirectory
+
+# Test script header.
+need_prefix=yes
+if test -z "$srcdir"; then
+  srcdir=`echo "$0" | sed 's%/[^/]*$%%'`
+  test "$srcdir" = "$0" && srcdir=.
+  test "${VERBOSE+set}" != "set" && VERBOSE=yes
+fi
+. $srcdir/defs || exit 1
+
+# Maybe we have a VPATH build, in which case, create a new subdir.
+test -d ../f77demo || mkdir ../f77demo
+
+# Change to our build directory.
+cd ../f77demo || exit 1
+
+# Possibly clean up the distribution.
+if test -f Makefile; then
+  echo "= Running $make distclean in ../f77demo"
+  $make distclean
+fi
+rm -f config.cache
+
+# Configure the demonstration.
+echo "= Configuring in ../f77demo (prefix=$prefix) with --disable-shared"
+${CONFIG_SHELL-/bin/sh} $srcdir/../f77demo/configure --srcdir=$srcdir/../f77demo --prefix=$prefix --disable-shared || exit 1
+
+if $EGREP '^build_old_libs=yes' libtool > /dev/null &&
+   $EGREP '^build_libtool_libs=no' libtool > /dev/null; then :
+else rm -f Makefile && exit 77
+fi
+
+exit 0
+
+
+
+
+
+
+
+
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@libtool 1.5 branch from today
+@
+text
+@@
+
+
+1.1.2.1.2.1
+log
+@we won't need them
+@
+text
+@@
+

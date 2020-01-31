@@ -1,0 +1,68 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.46;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.29;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/lib/libc/arch/i386/string/Makefile.inc,v 1.2 2004/04/24 21:11:19 tg Stab $
+# $OpenBSD: Makefile.inc,v 1.4 1999/04/25 00:23:58 millert Exp $
+
+SRCS+=	bcmp.S bcopy.S bzero.S ffs.S index.S memchr.S memcmp.S memset.S \
+	rindex.S strcat.S strcmp.S strcpy.S strcspn.c strlen.S \
+	strncat.c strncmp.S strncpy.c strpbrk.c strsep.c \
+	strspn.c strstr.c swab.S
+SRCS+=	memcpy.S memmove.S strchr.S strrchr.S
+LSRCS+=	bcmp.c bcopy.c bzero.c ffs.c index.c memchr.c memcmp.c memset.c \
+	rindex.c strcat.c strcmp.c strcpy.c strlen.c strncmp.c swab.c
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile.inc,v 1.4 1999/04/25 00:23:58 millert Exp $
+d5 1
+a5 1
+	rindex.S strcat.S strcmp.S strcpy.S strcspn.c strlcpy.c strlen.S \
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

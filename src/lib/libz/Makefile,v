@@ -1,0 +1,130 @@
+head	2.2;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.13.20.54.11;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.30.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.07;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.07;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@ensure all shared libraries have at least a major more
+than these of OpenBSD-current or the last MirOS version
+before the time_t switch
+
+this makes the (U)pgrade option of bsd.rd work again
+
+thanks for finding out to Benni "zirk" Adams
+@
+text
+@# $MirBSD: src/lib/libz/Makefile,v 2.1 2005/01/03 16:30:57 tg Exp $
+# $OpenBSD: Makefile,v 1.12 2003/12/17 14:06:45 jmc Exp $
+
+SHLIB_VERSION?=	5.0
+LIB=	z
+HDRS=	zconf.h zlib.h
+SRCS=	adler32.c compress.c crc32.c deflate.c gzio.c infback.c \
+	inffast.c inflate.c inftrees.c trees.c uncompr.c zutil.c
+MAN=	compress.3
+MLINKS=	compress.3 zlibVersion.3 compress.3 deflateInit.3 \
+	compress.3 deflate.3 compress.3 deflateEnd.3 \
+	compress.3 inflateInit.3 compress.3 inflate.3 \
+	compress.3 inflateEnd.3 compress.3 deflateInit2.3 \
+	compress.3 deflateSetDictionary.3 \
+	compress.3 deflateCopy.3 compress.3 deflateReset.3 \
+	compress.3 deflateParams.3 compress.3 deflateBound.3 \
+	compress.3 deflatePrime.3 compress.3 inflateInit2.3 \
+	compress.3 inflateSetDictionary.3 compress.3 inflateSync.3 \
+	compress.3 inflateCopy.3 compress.3 inflateReset.3 \
+	compress.3 inflateBackInit.3 compress.3 inflateBack.3 \
+	compress.3 inflateBackEnd.3 compress.3 zlibCompileFlags.3 \
+	compress.3 compress2.3 compress.3 compressBound.3 \
+	compress.3 uncompress.3 compress.3 gzopen.3 \
+	compress.3 gzdopen.3 compress.3 gzsetparams.3 \
+	compress.3 gzread.3 compress.3 gzwrite.3 \
+	compress.3 gzprintf.3 compress.3 gzputs.3 \
+	compress.3 gzgets.3 compress.3 gzputc.3 \
+	compress.3 gzgetc.3 compress.3 gzungetc.3 \
+	compress.3 gzflush.3 \
+	compress.3 gzseek.3 compress.3 gzrewind.3 \
+	compress.3 gztell.3 compress.3 gzeof.3 \
+	compress.3 gzclose.3 compress.3 gzerror.3 \
+	compress.3 gzclearerr.3 \
+	compress.3 adler32.3 compress.3 crc32.3
+CPPFLAGS+=-DHAVE_STRERROR -DHAVE_MEMCPY -DHAS_vsnprintf -DHAS_snprintf
+
+includes:
+	@@cd ${.CURDIR}; for i in $(HDRS); do \
+		j="cmp -s $$i ${DESTDIR}/usr/include/$$i || \
+		    ${INSTALL} ${INSTALL_COPY} -o ${BINOWN} -g ${BINGRP} -m 444 \
+		    $$i ${DESTDIR}/usr/include"; \
+		echo $$j; \
+		eval "$$j"; \
+	done
+
+.include <bsd.lib.mk>
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/lib/libz/Makefile,v 1.4 2004/11/14 00:13:43 tg Exp $
+d4 1
+a4 1
+SHLIB_VERSION?=	2.0
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile,v 1.12 2003/12/17 14:06:45 jmc Exp $
+d4 1
+d35 1
+a35 1
+CFLAGS+=-DHAVE_STRERROR -DHAVE_MEMCPY -DHAS_vsnprintf -DHAS_snprintf
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

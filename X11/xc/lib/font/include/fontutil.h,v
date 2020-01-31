@@ -1,0 +1,66 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.10.56;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.56;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* $XFree86: xc/lib/font/include/fontutil.h,v 1.2 1999/08/21 13:48:06 dawes Exp $ */
+
+#ifndef _FONTUTIL_H_
+#define _FONTUTIL_H_
+
+#include "FSproto.h"
+
+extern int FontCouldBeTerminal(FontInfoPtr);
+extern int CheckFSFormat(fsBitmapFormat, fsBitmapFormatMask, int *, int *,
+			 int *, int *, int *);
+extern void FontComputeInfoAccelerators(FontInfoPtr);
+
+extern void GetGlyphs ( FontPtr font, unsigned long count, 
+			unsigned char *chars, FontEncoding fontEncoding, 
+			unsigned long *glyphcount, CharInfoPtr *glyphs );
+extern void QueryGlyphExtents ( FontPtr pFont, CharInfoPtr *charinfo, 
+				unsigned long count, ExtentInfoRec *info );
+extern Bool QueryTextExtents ( FontPtr pFont, unsigned long count, 
+			       unsigned char *chars, ExtentInfoRec *info );
+extern Bool ParseGlyphCachingMode ( char *str );
+extern void InitGlyphCaching ( void );
+extern void SetGlyphCachingMode ( int newmode );
+extern int add_range ( fsRange *newrange, int *nranges, fsRange **range, 
+		       Bool charset_subset );
+
+#endif /* _FONTUTIL_H_ */
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

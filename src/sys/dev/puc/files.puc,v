@@ -1,0 +1,62 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.36.47;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.33.16;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.33.16;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: files.puc,v 1.2 1999/11/28 11:52:06 downsj Exp $
+#
+# Config file and device description for machine-independent PUC drivers.
+# Requires PCI to be defined first.
+
+attach	com at puc with com_puc
+file	dev/puc/com_puc.c		com_puc | pccom_puc
+attach	lpt at puc with lpt_puc
+file	dev/puc/lpt_puc.c		lpt_puc
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

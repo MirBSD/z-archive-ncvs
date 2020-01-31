@@ -1,0 +1,95 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.49.19;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.13;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.13;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@#!/bin/sh
+
+# Test of comment extraction in the case of duplicated msgids.
+
+tmpfiles=""
+trap 'rm -fr $tmpfiles' 1 2 3 15
+
+tmpfiles="$tmpfiles xg-test7.c"
+cat <<\EOF > xg-test7.c
+/* first comment */
+/* xgettext: c-format */
+gettext ("abc");
+
+/* first comment */
+/* xgettext: lisp-format */
+gettext ("abc");
+
+/* second comment */
+/* xgettext: python-format */
+gettext ("abc");
+EOF
+
+tmpfiles="$tmpfiles xg-test7.po"
+: ${XGETTEXT=xgettext}
+${XGETTEXT} --omit-header --add-comments -d xg-test7 xg-test7.c
+test $? = 0 || { rm -fr $tmpfiles; exit 1; }
+
+tmpfiles="$tmpfiles xg-test7.ok"
+cat <<\EOF > xg-test7.ok
+#. first comment
+#. second comment
+#: xg-test7.c:3 xg-test7.c:7 xg-test7.c:11
+#, c-format, python-format, lisp-format
+msgid "abc"
+msgstr ""
+EOF
+
+: ${DIFF=diff}
+${DIFF} xg-test7.ok xg-test7.po
+result=$?
+
+rm -fr $tmpfiles
+
+exit $result
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

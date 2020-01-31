@@ -1,0 +1,77 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.24.32;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.49;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.49;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/* Mini EMBED (pair.c) */
+#define chkpage sdbm__chkpage
+#define delpair sdbm__delpair
+#define duppair sdbm__duppair
+#define exipair sdbm__exipair
+#define fitpair sdbm__fitpair
+#define getnkey sdbm__getnkey
+#define getpair sdbm__getpair
+#define putpair sdbm__putpair
+#define splpage sdbm__splpage
+
+extern int fitpair proto((char *, int));
+extern void  putpair proto((char *, datum, datum));
+extern datum	getpair proto((char *, datum));
+extern int  exipair proto((char *, datum));
+extern int  delpair proto((char *, datum));
+extern int  chkpage proto((char *));
+extern datum getnkey proto((char *, int));
+extern void splpage proto((char *, char *, long));
+#ifdef SEEDUPS
+extern int duppair proto((char *, datum));
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

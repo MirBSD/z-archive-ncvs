@@ -1,0 +1,159 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@.\" @;
+
+
+2.1
+date	2005.01.03.16.33.38;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.55;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@.\"	$MirBSD: src/share/man/man5/myname.5,v 1.2 2003/11/28 22:37:52 tg Stab $
+.\"	$OpenBSD: myname.5,v 1.1 2003/07/26 07:07:08 jmc Exp $
+.\"
+.\" Copyright (c) 2003 Jason McIntyre <jmc@@openbsd.org>
+.\"
+.\" Permission to use, copy, modify, and distribute this software for any
+.\" purpose with or without fee is hereby granted, provided that the above
+.\" copyright notice and this permission notice appear in all copies.
+.\"
+.\" THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+.\" WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+.\" MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+.\" ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+.\" WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+.\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+.\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.\"
+.Dd July 24, 2003
+.Dt MYNAME 5
+.Os
+.Sh NAME
+.Nm myname
+.Nd default hostname
+.Sh SYNOPSIS
+.Nm /etc/myname
+.Sh DESCRIPTION
+The
+.Nm myname
+file is read by
+.Xr netstart 8
+at system startup time.
+.Pp
+.Pa /etc/myname
+contains the symbolic name of the host machine.
+The file should contain a single line specifying the
+fully qualified domain name
+.Pq FQDN
+of the system
+.Pq e.g. host.example.com .
+The name must be resolvable, either by matching a hostname specified in
+.Pa /etc/hosts
+(see
+.Xr hosts 5 )
+or through DNS
+(see
+.Xr resolv.conf 5 ) .
+The hostname is set via the
+.Xr hostname 1
+utility at boot time.
+See
+.Xr hostname 7
+for a description of hostname resolution.
+.Pp
+The file must not contain comments.
+.Sh FILES
+.Bl -tag -width "/etc/myname" -compact
+.It Pa /etc/myname
+Default hostname.
+.El
+.Sh SEE ALSO
+.Xr hostname 1 ,
+.Xr hosts 5 ,
+.Xr resolv.conf 5 ,
+.Xr hostname 7 ,
+.Xr netstart 8 ,
+.Xr route 8
+.Sh HISTORY
+This manual page first appeared in
+.Ox 3.4 .
+The
+.Pa /etc/mygate
+file was removed in
+.Mx 8 .
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d22 2
+a23 2
+.Nm myname , mygate
+.Nd default hostname and gateway
+a25 1
+.Nm /etc/mygate
+d29 1
+a29 3
+and
+.Nm mygate
+files are read by
+d54 1
+a54 16
+.Pa /etc/mygate
+contains the address of the gateway host, if it exists.
+The gateway is added to the routing tables by the
+.Xr route 8
+utility.
+If
+.Pa /etc/mygate
+does not exist, no default gateway is added to the routing tables.
+The file should contain a single line specifying the gateway address,
+in dotted quad notation
+.Pq e.g. 192.0.2.0 .
+.Pa /etc/mygate
+is processed after all interfaces have been configured.
+It will therefore override any DHCP-supplied default route information.
+.Pp
+Neither file may contain comments.
+a58 2
+.It Pa /etc/mygate
+Default gateway address.
+d70 4
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

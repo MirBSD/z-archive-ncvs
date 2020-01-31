@@ -1,0 +1,76 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @.\" @;
+
+
+1.1
+date     2004.12.15.18.14.40;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.14.40;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@.\" $XFree86: xc/programs/Xserver/hw/xfree86/etc/kbd_mode.man,v 3.5 2001/01/27 18:20:56 dawes Exp $
+.TH KBD_MODE 1 __vendorversion__
+.SH NAME
+kbd_mode \- recover the PC console keyboard
+.SH SYNOPSIS
+.B kbd_mode
+[ -a -u ]
+.SH DESCRIPTION
+.I Kbd_mode
+resets the PC console keyboard to a rational state.
+.SH OPTIONS
+The following options are supported:
+.TP 8
+.B \-a
+Set the keyboard so that ASCII characters are read from the console.
+.TP 8
+.B \-u
+Set the keyboard so that undecoded keyboard values are read from the
+console.
+.SH EXAMPLES
+If the server crashes or otherwise fails to put the keyboard back in
+ascii mode when it exits, it can leave your keyboard dead.  If you are
+able to login remotely, you can reset it typing:
+.sp
+	kbd_mode -a
+.sp
+.PP
+Conversely, changing the keyboard to ascii mode while the server is
+running will make the keyboard appear to be dead while the the mouse
+continues to work.  Again, if you are able to login remotely, you can
+reset it typing:
+.sp
+	kbd_mode -u
+.sp
+
+.\" $TOG: kbd_mode.man /main/6 1997/07/19 10:37:14 kaleb $
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

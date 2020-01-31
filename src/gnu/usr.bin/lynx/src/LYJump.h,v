@@ -1,0 +1,73 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.03.00.23.43;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.43;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef LYJUMP_H
+#define LYJUMP_H
+
+#include <HTList.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    typedef struct _JumpDatum {
+	char *key;
+	char *url;
+    } JumpDatum;
+
+    struct JumpTable {
+	int key;
+	int nel;
+	char *msg;
+	char *file;
+	char *shortcut;
+	HTList *history;
+	JumpDatum *table;
+	struct JumpTable *next;
+	char *mp;
+    };
+
+    extern struct JumpTable *JThead;
+    extern void LYJumpTable_free(void);
+    extern void LYAddJumpShortcut(HTList *the_history, char *shortcut);
+    extern BOOL LYJumpInit(char *config);
+    extern char *LYJump(int key);
+
+#ifdef __cplusplus
+}
+#endif
+#endif				/* LYJUMP_H */
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

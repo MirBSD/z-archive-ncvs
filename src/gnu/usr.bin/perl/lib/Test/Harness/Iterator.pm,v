@@ -1,0 +1,121 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.39;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@package Test::Harness::Iterator;
+
+use strict;
+use vars qw($VERSION);
+$VERSION = 0.02;
+
+=head1 NAME
+
+Test::Harness::Iterator - Internal Test::Harness Iterator
+
+=head1 SYNOPSIS
+
+  use Test::Harness::Iterator;
+  my $it = Test::Harness::Iterator->new(\*TEST);
+  my $it = Test::Harness::Iterator->new(\@@array);
+
+  my $line = $it->next;
+
+=head1 DESCRIPTION
+
+B<FOR INTERNAL USE ONLY!>
+
+This is a simple iterator wrapper for arrays and filehandles.
+
+=head2 new()
+
+Create an iterator.
+
+=head2 next()
+
+Iterate through it, of course.
+
+=cut
+
+sub new {
+    my($proto, $thing) = @@_;
+
+    my $self = {};
+    if( ref $thing eq 'GLOB' ) {
+        bless $self, 'Test::Harness::Iterator::FH';
+        $self->{fh} = $thing;
+    }
+    elsif( ref $thing eq 'ARRAY' ) {
+        bless $self, 'Test::Harness::Iterator::ARRAY';
+        $self->{idx}   = 0;
+        $self->{array} = $thing;
+    }
+    else {
+        warn "Can't iterate with a ", ref $thing;
+    }
+
+    return $self;
+}
+
+package Test::Harness::Iterator::FH;
+sub next {
+    my $fh = $_[0]->{fh};
+    return scalar <$fh>;
+}
+
+
+package Test::Harness::Iterator::ARRAY;
+sub next {
+    my $self = shift;
+    return $self->{array}->[$self->{idx}++];
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

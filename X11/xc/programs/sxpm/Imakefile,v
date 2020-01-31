@@ -1,0 +1,53 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.17.28;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.17.28;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/sxpm/Imakefile,v 1.2 1999/04/04 08:46:25 dawes Exp $
+
+/* This is a simplified version of the Imakefile included with the xpm dist */
+
+LOCAL_LIBRARIES = $(XPMLIB) $(XTOOLLIB) $(XLIB)
+        DEPLIBS = $(DEPXPMLIB) $(DEPXTOOLLIB) $(DEPXLIB)
+        SXPMDIR = $(TOP)/extras/Xpm/sxpm
+       INCLUDES = -I$(SXPMDIR)
+
+SimpleProgramTarget(sxpm)
+
+LinkSourceFile(sxpm.c,$(SXPMDIR))
+LinkSourceFile(sxpm.man,$(SXPMDIR))
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

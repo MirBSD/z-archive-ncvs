@@ -1,0 +1,107 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.26;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.21;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.21;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@package Memoize::ExpireFile;
+
+=head1 NAME
+
+Memoize::ExpireFile - test for Memoize expiration semantics
+
+=head1 DESCRIPTION
+
+See L<Memoize::Expire>.
+
+=cut
+
+$VERSION = 1.01;
+use Carp;
+
+my $Zero = pack("N", 0);
+
+sub TIEHASH {
+  my ($package, %args) = @@_;
+  my $cache = $args{HASH} || {};
+  bless {ARGS => \%args, C => $cache} => $package;
+}
+
+
+sub STORE {
+#  print "Expiry manager STORE handler\n";
+  my ($self, $key, $data) = @@_;
+  my $cache = $self->{C};
+  my $cur_date = pack("N", (stat($key))[9]);
+  $cache->{"C$key"} = $data;
+  $cache->{"T$key"} = $cur_date;
+}
+
+sub FETCH {
+  my ($self, $key) = @@_;
+  $self->{C}{"C$key"};
+}
+
+sub EXISTS {
+#  print "Expiry manager EXISTS handler\n";
+  my ($self, $key) = @@_;
+  my $cache_date = $self->{C}{"T$key"} || $Zero;
+  my $file_date = pack("N", (stat($key))[9]);#
+#  if ($self->{ARGS}{CHECK_DATE} && $old_date gt $cur_date) {
+#    return $self->{ARGS}{CHECK_DATE}->($key, $old_date, $cur_date);
+#  } 
+  my $res = $cache_date ge $file_date;
+#  print $res ? "... still good\n" : "... expired\n";
+  $res;
+}
+
+1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

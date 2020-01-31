@@ -1,0 +1,196 @@
+head	2.3;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.14.14.15.20;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.08.22.23.19;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.33.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@* protect from multiple inclusion
+* switch defaults to be suitable for gcc 3.4
+* remove crap
+* unify style a bit
+@
+text
+@# $MirBSD: src/share/mk/bsd.doc.mk,v 2.2 2005/01/08 22:23:19 tg Exp $
+# $OpenBSD: bsd.doc.mk,v 1.8 2001/04/03 23:00:09 espie Exp $
+# $NetBSD: bsd.doc.mk,v 1.20 1994/07/26 19:42:37 mycroft Exp $
+# @@(#)bsd.doc.mk	8.1 (Berkeley) 8/14/93
+
+.if !defined(BSD_DOC_MK)
+BSD_DOC_MK=1
+
+.if !defined(BSD_OWN_MK)
+.  include <bsd.own.mk>
+.endif
+
+FILES?=	${SRCS}
+.PATH: ${.CURDIR}
+
+.if !target(all)
+.MAIN: all
+.  if target(paper.)
+all:
+	@@echo 'Fix Makefile and replace paper.$${PRINTER} target by paper.ps'
+	@@false
+.  else
+all: paper.txt
+.  endif
+.endif
+
+.if !target(paper.ps)
+paper.ps: ${SRCS}
+	${TBL} ${SRCS} | ${ROFF} >${.TARGET}
+.endif
+
+.if !target(paper.txt)
+paper.txt: ${SRCS}
+	@@([ -e paper.ps ] && mv paper.ps paper.tmp) 2>/dev/null || true
+	@@${MAKE} paper.ps 'ROFF=${NROFF}' 2>&1 | sed 's/paper\.ps/$@@/'
+	@@mv paper.ps $@@ || { mv paper.tmp paper.ps 2>/dev/null; false; }
+	@@mv paper.tmp paper.ps 2>/dev/null || true
+.endif
+
+.if !target(print)
+print: paper.ps
+	lpr -P${PRINTER} paper.ps
+.endif
+
+.if !target(manpages)
+manpages:
+.endif
+
+.if !target(obj)
+obj:
+.endif
+
+clean cleandir:
+	rm -f paper.{txt,tmp,ps} [eE]rrs mklog ${CLEANFILES}
+
+install:
+	${INSTALL} ${INSTALL_COPY} -o ${DOCOWN} -g ${DOCGRP} -m ${DOCMODE} \
+	    Makefile ${FILES} ${EXTRA} ${DESTDIR}${DOCDIR}/${DIR}/
+
+spell: paper.spell
+
+paper.spell: ${SRCS}
+	spell ${SRCS} | sort | comm -23 - spell.ok >paper.spell
+
+.endif
+@
+
+
+2.2
+log
+@add trailing slashes to install(1) calls
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.doc.mk,v 2.1 2005/01/03 16:33:53 tg Exp $
+d6 4
+a9 2
+.PATH: ${.CURDIR}
+.ifndef	BSD_OWN_MK
+d13 3
+a55 1
+FILES?=	${SRCS}
+d64 2
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.doc.mk,v 1.16 2004/06/09 21:42:07 tg Stab $
+d54 1
+a54 1
+	    Makefile ${FILES} ${EXTRA} ${DESTDIR}${DOCDIR}/${DIR}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 4
+a4 14
+#	$OpenBSD: bsd.doc.mk,v 1.8 2001/04/03 23:00:09 espie Exp $
+#	$NetBSD: bsd.doc.mk,v 1.20 1994/07/26 19:42:37 mycroft Exp $
+#	@@(#)bsd.doc.mk	8.1 (Berkeley) 8/14/93
+
+BIB?=		bib
+EQN?=		eqn
+GREMLIN?=	grn
+GRIND?=		vgrind -f
+INDXBIB?=	indxbib
+PIC?=		pic
+REFER?=		refer
+ROFF?=		groff -M/usr/share/tmac ${MACROS} ${PAGES}
+SOELIM?=	soelim
+TBL?=		tbl
+d7 3
+d13 7
+a19 1
+all: paper.ps
+d24 9
+a32 1
+	${ROFF} ${SRCS} > ${.TARGET}
+d49 1
+a49 1
+	rm -f paper.* [eE]rrs mklog ${CLEANFILES}
+a57 1
+
+d59 1
+a59 3
+	spell ${SRCS} | sort | comm -23 - spell.ok > paper.spell
+
+.include <bsd.own.mk>
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

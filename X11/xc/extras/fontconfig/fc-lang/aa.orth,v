@@ -1,0 +1,80 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.04.50;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.50;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#
+# $XFree86: xc/extras/fontconfig/fc-lang/aa.orth,v 1.1.1.1 2003/06/04 02:56:38 dawes Exp $
+#
+# Copyright © 2002 Keith Packard, member of The XFree86 Project, Inc.
+#
+# Permission to use, copy, modify, distribute, and sell this software and its
+# documentation for any purpose is hereby granted without fee, provided that
+# the above copyright notice appear in all copies and that both that
+# copyright notice and this permission notice appear in supporting
+# documentation, and that the name of Keith Packard not be used in
+# advertising or publicity pertaining to distribution of the software without
+# specific, written prior permission.  Keith Packard makes no
+# representations about the suitability of this software for any purpose.  It
+# is provided "as is" without express or implied warranty.
+#
+# KEITH PACKARD DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+# INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
+# EVENT SHALL KEITH PACKARD BE LIABLE FOR ANY SPECIAL, INDIRECT OR
+# CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
+# DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+# TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+# PERFORMANCE OF THIS SOFTWARE.
+#
+# Afar (AA)
+#
+# Taken from http://www.arhotaba.com/waldegram.htm
+# and http://www.arhotaba.com/alphabet.htm
+#
+0041-005a	# afar doesn't use J, P, V or Z
+0061-007a	# afar doesn't use j, p, v or z
+00C2 #	LATIN CAPITAL LETTER A WITH CIRCUMFLEX
+00CA #	LATIN CAPITAL LETTER E WITH CIRCUMFLEX
+00CE #	LATIN CAPITAL LETTER I WITH CIRCUMFLEX
+00D4 #	LATIN CAPITAL LETTER O WITH CIRCUMFLEX
+00DB #	LATIN CAPITAL LETTER U WITH CIRCUMFLEX
+00E2 #	LATIN SMALL LETTER A WITH CIRCUMFLEX
+00EA #	LATIN SMALL LETTER E WITH CIRCUMFLEX
+00EE #	LATIN SMALL LETTER I WITH CIRCUMFLEX
+00F4 #	LATIN SMALL LETTER O WITH CIRCUMFLEX
+00FB #	LATIN SMALL LETTER U WITH CIRCUMFLEX
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

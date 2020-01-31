@@ -1,0 +1,109 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.45.44;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.44;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@# Example for use of GNU gettext.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# This file is in the public domain.
+#
+# Makefile configuration - processed by automake.
+
+# General automake options.
+AUTOMAKE_OPTIONS = foreign no-dependencies
+ACLOCAL_AMFLAGS = -I m4 
+
+# The list of subdirectories containing Makefiles.
+SUBDIRS = m4 po
+
+# The list of programs that are built.
+bin_PROGRAMS = hello
+
+# The source files of the 'hello' program.
+hello_SOURCES = hello.cc hellowindow.cc
+
+# Use 'moc' for QObject subclasses.
+METASOURCES = AUTO
+
+# Define a C macro LOCALEDIR indicating where catalogs will be installed.
+localedir = $(datadir)/locale
+DEFS = -DPREFIX=\"$(prefix)\" @@DEFS@@
+
+# Make sure the KDE, Qt, X include file is found.
+AM_CPPFLAGS = $(KDE_INCLUDES) $(QT_INCLUDES) $(X_INCLUDES)
+
+# CXXFLAGS += $(QT_CXXFLAGS) $(PTHREAD_CFLAGS)
+
+# Link time dependencies.
+LDADD = $(KDE_LDFLAGS) $(QT_LDFLAGS)
+LIBS += $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)
+
+# Generic KDE build mechanism.
+
+$(top_srcdir)/configure.in: configure.in.in $(top_srcdir)/subdirs
+	cd $(top_srcdir) && $(MAKE) -f admin/Makefile.common configure.in ;
+
+$(top_srcdir)/subdirs:
+	cd $(top_srcdir) && $(MAKE) -f admin/Makefile.common subdirs
+
+$(top_srcdir)/acinclude.m4: $(top_srcdir)/admin/acinclude.m4.in $(top_srcdir)/admin/libtool.m4.in
+	@@cd $(top_srcdir) && cat admin/acinclude.m4.in admin/libtool.m4.in > acinclude.m4
+
+MAINTAINERCLEANFILES = subdirs configure.in acinclude.m4 configure.files 
+
+package-messages:
+	$(MAKE) -f admin/Makefile.common package-messages
+	$(MAKE) -C po merge
+
+dist-hook:
+	cd $(top_distdir) && perl admin/am_edit -padmin
+	cd $(top_distdir) && $(MAKE) -f admin/Makefile.common subdirs
+
+# Additional files to be distributed.
+EXTRA_DIST = admin/config.rpath  autogen.sh autoclean.sh
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

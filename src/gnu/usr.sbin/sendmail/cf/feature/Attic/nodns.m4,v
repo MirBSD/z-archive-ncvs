@@ -1,0 +1,78 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.05.04;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.11;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@divert(-1)
+#
+# Copyright (c) 1998, 1999 Sendmail, Inc. and its suppliers.
+#	All rights reserved.
+# Copyright (c) 1983 Eric P. Allman.  All rights reserved.
+# Copyright (c) 1988, 1993
+#	The Regents of the University of California.  All rights reserved.
+#
+# By using this file, you agree to the terms and conditions set
+# forth in the LICENSE file which can be found at the top level of
+# the sendmail distribution.
+#
+#
+
+divert(0)
+VERSIONID(`$Sendmail: nodns.m4,v 8.14 1999/07/22 17:55:35 gshapiro Exp $')
+divert(-1)
+
+undefine(`confBIND_OPTS')dnl
+errprint(`FEATURE(nodns) is no-op.
+Use ServiceSwitchFile ('ifdef(`confSERVICE_SWITCH_FILE',confSERVICE_SWITCH_FILE,MAIL_SETTINGS_DIR`service.switch')`) if your OS does not provide its own instead.
+')
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

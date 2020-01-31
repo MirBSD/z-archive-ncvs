@@ -1,0 +1,86 @@
+head	2.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.26.58;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.09;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.09;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/* $RCSfile: EXTERN.h,v $$Revision: 1.1.1.2 $$Date: 2003/12/03 17:58:19 $
+ *
+ *    Copyright (C) 1991, 1992, 1993, 1994, by Larry Wall and others
+ *
+ *    You may distribute under the terms of either the GNU General Public
+ *    License or the Artistic License, as specified in the README file.
+ *
+ * $Log: EXTERN.h,v $
+ * Revision 1.1.1.2  2003/12/03 17:58:19  tg
+ * Import selected parts of the OpenBSD base system:
+ *  * vnd change - you'll have to re-run MAKEDEV after booting a new kernel
+ *  * misc. changes in /etc, mostly user related
+ *  * Perl 5.8.2 (diff to MirPorts will be committed RSN)
+ *  * some changes to binutils
+ *  * Updates in bc and dc
+ *
+ * Revision 1.7  2003/12/03 03:02:53  millert
+ * Resolve conflicts for perl 5.8.2, remove old files, and add OpenBSD-specific scaffolding
+ *
+ */
+
+#undef EXT
+#define EXT extern
+
+#undef INIT
+#define INIT(x)
+
+#undef DOINIT
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+/* $RCSfile: EXTERN.h,v $$Revision: 1.7 $$Date: 2003/12/03 03:02:53 $
+d9 8
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

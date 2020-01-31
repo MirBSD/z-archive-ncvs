@@ -1,0 +1,66 @@
+head	1.2;
+access;
+symbols
+	evilwm-0_99_17:1.1.3.1 tg:1.1.3;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.06.22.13.38;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.06.21.15.24;	author tg;	state Exp;
+branches
+	1.1.3.1;
+next	;
+
+1.1.3.1
+date	2005.01.06.21.15.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@BUILDING EVILWM
+
+1) Edit Makefile to suit what you want.  Instructions are included by any
+   user-editable option.
+
+2) Run 'make'
+
+OR, run 'make allinone' - this will cat all the source files into a
+single file for compilation, which gives the compiler more chance to
+inline some functions (read: faster, probably smaller in this case).
+
+3) Run 'make install'
+
+That's it.  The README file has information on starting evilwm.
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.3.1
+log
+@evilwm 0.99.17 (.orig.tar.gz)
+@
+text
+@@

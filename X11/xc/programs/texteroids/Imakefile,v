@@ -1,0 +1,67 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.17.28;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.17.28;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/texteroids/Imakefile,v 1.4 2003/05/27 17:58:24 tsi Exp $
+
+        DEPLIBS = $(DEPDPSLIB) $(DEPXTOOLLIB) $(DEPXONLYLIB)
+LOCAL_LIBRARIES = $(XTOOLLIB) $(DPSLIB) $(XONLYLIB)
+  SYS_LIBRARIES = MathLibrary
+         PSWRAP = PsWrap
+
+SRCS = twraps.psw texteroids.c
+
+OBJS = twraps.o texteroids.o
+
+DERIVED_FILES = twraps.h twraps.c
+
+.SUFFIXES: .psw .h
+
+.psw.c : ProgramTargetName($(PSWRAP))
+	RunProgram(PSWRAP,-a -o $*.c -h $*.h $<)
+
+.psw.h : ProgramTargetName($(PSWRAP))
+	RunProgram(PSWRAP,-a -h $*.h $< > /dev/null)
+
+depend:: $(DERIVED_FILES)
+
+ComplexProgramTarget(texteroids)
+
+clean ::
+	$(RM) $(DERIVED_FILES)
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

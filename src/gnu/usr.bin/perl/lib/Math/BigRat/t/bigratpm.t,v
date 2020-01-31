@@ -1,0 +1,110 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.2
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.26;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.20;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.20;	author tg;	state Exp;
+branches;
+next	1.1.1.2;
+
+1.1.1.2
+date	2005.01.16.09.57.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/bin/perl -w
+
+use Test;
+use strict;
+
+BEGIN
+  {
+  $| = 1;
+  # to locate the testing files
+  my $location = $0; $location =~ s/bigratpm.t//i;
+  if ($ENV{PERL_CORE})
+    {
+    # testing with the core distribution
+    @@INC = qw(../lib);
+    }
+  unshift @@INC, '../lib';
+  if (-d 't')
+    {
+    chdir 't';
+    require File::Spec;
+    unshift @@INC, File::Spec->catdir(File::Spec->updir, $location);
+    }
+  else
+    {
+    unshift @@INC, $location;
+    }
+  print "# INC = @@INC\n";
+
+  plan tests => 636;
+  }
+
+use Math::BigRat;
+
+use vars qw ($class $try $x $y $f @@args $ans $ans1 $ans1_str $setup $CL);
+$class = "Math::BigRat";
+$CL = "Math::BigInt::Calc";
+ 
+require 'bigratpm.inc';	# all tests here for sharing
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@
+
+
+1.1.1.2
+log
+@Import a series of fixes and minor updates from OpenBSD
+@
+text
+@d29 1
+a29 1
+  plan tests => 659;
+@
+

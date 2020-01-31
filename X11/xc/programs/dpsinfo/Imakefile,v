@@ -1,0 +1,67 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.17.08;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.17.08;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/dpsinfo/Imakefile,v 1.5 2003/05/28 16:02:35 tsi Exp $
+XCOMM XTOOLLIB is currently needed by our version of DPSLIB
+
+        DEPLIBS = $(DEPDPSLIB) $(DEPXTOOLLIB) $(DEPXONLYLIB)
+LOCAL_LIBRARIES = $(DPSLIB) $(XTOOLLIB) $(XONLYLIB)
+         PSWRAP = PsWrap
+
+SRCS = iwraps.psw dpsinfo.c
+
+OBJS = iwraps.o dpsinfo.o
+
+DERIVED_FILES = iwraps.h iwraps.c
+
+.SUFFIXES: .psw .h
+
+.psw.c : ProgramTargetName($(PSWRAP))
+	RunProgram(PSWRAP,-a -o $*.c -h $*.h $<)
+
+.psw.h : ProgramTargetName($(PSWRAP))
+	RunProgram(PSWRAP,-a -h $*.h $< > /dev/null)
+
+depend:: $(DERIVED_FILES)
+
+ComplexProgramTarget(dpsinfo)
+
+clean ::
+	$(RM) $(DERIVED_FILES)
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

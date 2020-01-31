@@ -1,0 +1,91 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041000:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.10.27.52;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.10.06.27;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.10.06.27;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@we basically only want the GNU master files
+@
+text
+@## ------------------------------- ##                    -*- Autoconf -*-
+## Check for function prototypes.  ##
+## From Franc,ois Pinard           ##
+## ------------------------------- ##
+
+# Copyright (C) 1996, 1997, 1998, 2000, 2001, 2002, 2003
+# Free Software Foundation, Inc.
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+# 02111-1307, USA.
+
+# serial 3
+
+AC_DEFUN([AM_C_PROTOTYPES],
+[AC_REQUIRE([AC_C_PROTOTYPES])
+if test "$ac_cv_prog_cc_stdc" != no; then
+  U= ANSI2KNR=
+else
+  U=_ ANSI2KNR=./ansi2knr
+fi
+# Ensure some checks needed by ansi2knr itself.
+AC_REQUIRE([AC_HEADER_STDC])
+AC_CHECK_HEADERS(string.h)
+AC_SUBST(U)dnl
+AC_SUBST(ANSI2KNR)dnl
+])
+
+AU_DEFUN([fp_C_PROTOTYPES], [AM_C_PROTOTYPES])
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU automake CVS-current from anoncvs@@subversions.gnu.org:/cvsroot/automake
+@
+text
+@@

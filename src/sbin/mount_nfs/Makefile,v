@@ -1,0 +1,76 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.32.00;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.32;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.32;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/sbin/mount_nfs/Makefile,v 1.2 2004/10/31 18:39:45 tg Exp $
+# $OpenBSD: Makefile,v 1.8 2001/10/03 18:50:07 hin Exp $
+
+PROG=	mount_nfs
+SRCS=	mount_nfs.c getmntopts.c
+MAN=	mount_nfs.8
+
+# Temporarily removed to use own getmntops.c - fvdl
+#
+#MOUNT=	${.CURDIR}/../mount
+#CPPFLAGS+= -DNFS -I${MOUNT}
+#.PATH:	${MOUNT}
+CPPFLAGS+=-DNFS
+
+.include <bsd.prog.mk>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile,v 1.8 2001/10/03 18:50:07 hin Exp $
+d11 1
+a11 1
+#CFLAGS+= -DNFS -I${MOUNT}
+d13 1
+a13 1
+CFLAGS+=-DNFS
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

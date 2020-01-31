@@ -1,0 +1,671 @@
+head	2.5;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.5
+date	2005.01.21.00.07.36;	author tg;	state Exp;
+branches;
+next	2.4;
+
+2.4
+date	2005.01.16.18.13.34;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.14.14.15.20;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.08.22.23.19;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.33.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.5
+log
+@remove more orphaned gprof stuff
+@
+text
+@# $MirBSD: src/share/mk/bsd.lib.mk,v 2.4 2005/01/16 18:13:34 tg Exp $
+# $OpenBSD: bsd.lib.mk,v 1.43 2004/09/20 18:52:38 espie Exp $
+# $NetBSD: bsd.lib.mk,v 1.67 1996/01/17 20:39:26 mycroft Exp $
+# @@(#)bsd.lib.mk	5.26 (Berkeley) 5/2/91
+
+.if !defined(BSD_LIB_MK)
+BSD_LIB_MK=1
+
+.if !defined(BSD_OWN_MK)
+.  include <bsd.own.mk>
+.endif
+
+.if exists(${.CURDIR}/../Makefile.inc)
+.  include "${.CURDIR}/../Makefile.inc"
+.endif
+
+.if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR) \
+    && defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
+SHLIB_VERSION=	${SHLIB_MAJOR}.${SHLIB_MINOR}
+.elif exists(${.CURDIR}/shlib_version)
+.  include "${.CURDIR}/shlib_version"
+SHLIB_VERSION?=	${major}.${minor}
+.endif
+
+.if defined(SHLIB_VERSION) && ${SHLIB_VERSION} == "."
+.  undef SHLIB_VERSION
+.endif
+
+.MAIN: all
+
+# prefer .S to a .c, remove stuff not used in the BSD libraries.
+# .so used for PIC object files.  .ln used for lint output files.
+# .m for objective c files.
+.SUFFIXES:
+.SUFFIXES: .out .o .go .so .S .s .c .cc .C .cxx .f .y .l .ln .m4 .m
+
+.c.o:
+	@@echo "${COMPILE.c} ${CFLAGS_${.TARGET:C/(g|s)o$/.o/}} " \
+	    "${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.c} ${CFLAGS_${.TARGET:C/\.(g|s)o$/.o/}} ${.IMPSRC} \
+	    -o ${.TARGET}.o
+	@@${LD} -x -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+.c.go:
+	@@echo "${COMPILE.c} ${CFLAGS_${.TARGET:C/\.(g|s)o$/.o/}} " \
+	    "-g ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.c} ${CFLAGS_${.TARGET:C/\.(g|s)o$/.o/}} -g ${.IMPSRC} \
+	    -o ${.TARGET}.o
+	@@${LD} -X -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+.c.so:
+	@@echo "${COMPILE.c} ${CFLAGS_${.TARGET:C/\.(g|s)o$/.o/}} " \
+	    "${PICFLAG} -DPIC ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.c} ${CFLAGS_${.TARGET:C/\.(g|s)o$/.o/}} ${PICFLAG} \
+	    -DPIC ${.IMPSRC} -o ${.TARGET}.o
+	@@${LD} -x -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+.c.ln:
+	${LINT} ${LINTFLAGS} ${CFLAGS:M-[IDU]*} ${CPPFLAGS:M-[IDU]*} -i ${.IMPSRC}
+
+.cc.o .C.o .cxx.o:
+	@@echo "${COMPILE.cc} ${CXXFLAGS_${.TARGET:C/\.(g|s)o$/.o/}} " \
+	    "${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.cc}  ${CXXFLAGS_${.TARGET:C/\.(g|s)o$/.o/}} \
+	    ${.IMPSRC} -o ${.TARGET}.o
+	@@${LD} -x -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+.cc.go .C.go .cxx.go:
+	@@echo "${COMPILE.cc} ${CXXFLAGS_${.TARGET:C/\.(g|s)o$/.o/}} " \
+	    "-g ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.cc}  ${CXXFLAGS_${.TARGET:C/\.(g|s)o$/.o/}} \
+	    -g ${.IMPSRC} -o ${.TARGET}.o
+	@@${LD} -X -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+.cc.so .C.so .cxx.so:
+	@@echo "${COMPILE.cc} ${CXXFLAGS_${.TARGET:C/\.(g|s)o$/.o/}} " \
+	    "${PICFLAG} -DPIC ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.cc}  ${CXXFLAGS_${.TARGET:C/\.(g|s)o$/.o/}} \
+	    ${PICFLAG} -DPIC ${.IMPSRC} -o ${.TARGET}.o
+	@@${LD} -x -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+.S.o .s.o:
+	@@echo "${CPP} ${CPPFLAGS} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} | \
+		${AS} -o ${.TARGET}"
+	@@${CPP} ${CPPFLAGS} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} | \
+	    ${AS} -o ${.TARGET}.o
+	@@${LD} -x -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+.S.go .s.go:
+	@@echo "${CPP} ${CPPFLAGS} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} |\
+	    ${AS} -o ${.TARGET}"
+	@@${CPP} ${CPPFLAGS} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} | \
+	    ${AS} -o ${.TARGET}.o
+	@@${LD} -X -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+.S.so .s.so:
+	@@echo "${CPP} -DPIC ${CPPFLAGS} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} | \
+	    ${AS} ${ASPICFLAG} -o ${.TARGET}"
+	@@${CPP} -DPIC ${CPPFLAGS} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} | \
+	    ${AS} ${ASPICFLAG} -o ${.TARGET}.o
+	@@${LD} -x -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+.if ${WARNINGS:L} == "yes"
+CFLAGS+=	${CDIAGFLAGS}
+CXXFLAGS+=	${CXXDIAGFLAGS}
+.endif
+CFLAGS+=	${COPTS}
+CXXFLAGS+=	${CXXOPTS}
+
+_LIBS=		lib${LIB}.a
+.if ${DEBUGLIBS:L} == "yes"
+_LIBS+=		lib${LIB}_g.a
+.endif
+
+.if ${NOPIC:L} == "no"
+_LIBS+=		lib${LIB}_pic.a
+.  ifdef SHLIB_VERSION
+_LIBS+=		lib${LIB}.so.${SHLIB_VERSION}
+.  endif
+.endif
+
+.if ${NOLINT:L} == "no"
+_LIBS+=		llib-l${LIB}.ln
+.endif
+
+all: ${_LIBS} _SUBDIRUSE
+
+OBJS+=		${SRCS:N*.h:R:S/$/.o/g}
+
+lib${LIB}.a:: ${OBJS}
+	@@echo building standard ${LIB} library
+	@@rm -f lib${LIB}.a
+	@@${AR} cq lib${LIB}.a $$(${LORDER} ${OBJS} | tsort -q)
+	${RANLIB} lib${LIB}.a
+
+GOBJS+=		${OBJS:.o=.go}
+lib${LIB}_g.a:: ${GOBJS}
+	@@echo building debugging ${LIB} library
+	@@rm -f lib${LIB}_g.a
+	@@${AR} cq lib${LIB}_g.a $$(${LORDER} ${GOBJS} | tsort -q)
+	${RANLIB} lib${LIB}_g.a
+
+SOBJS+=		${OBJS:.o=.so}
+lib${LIB}_pic.a:: ${SOBJS}
+	@@echo building shared object ${LIB} library
+	@@rm -f lib${LIB}_pic.a
+	@@${AR} cq lib${LIB}_pic.a $$(${LORDER} ${SOBJS} | tsort -q)
+	${RANLIB} lib${LIB}_pic.a
+
+lib${LIB}.so.${SHLIB_VERSION}: ${SOBJS} ${CRTBEGIN} ${CRTEND} ${CRTI} ${CRTN} ${DPADD}
+	@@echo building shared ${LIB} library \(version ${SHLIB_VERSION}\)
+	@@rm -f lib${LIB}.so.${SHLIB_VERSION}
+	${CC} -shared ${PICFLAG} \
+	    -o lib${LIB}.so.${SHLIB_VERSION} \
+	    $$(${LORDER} ${SOBJS}|tsort -q) ${LDADD}
+
+LOBJS+=		${LSRCS:.c=.ln} ${SRCS:M*.c:.c=.ln}
+# the following looks XXX to me... -- cgd
+LLIBS?=		-lc
+llib-l${LIB}.ln: ${LOBJS}
+	@@echo building llib-l${LIB}.ln
+	@@rm -f llib-l${LIB}.ln
+	@@${LINT} -C${LIB} ${LOBJS} ${LLIBS}
+
+.if !target(clean)
+clean: _SUBDIRUSE
+	rm -f a.out [Ee]rrs mklog core *.core ${CLEANFILES}
+	rm -f lib${LIB}.a ${OBJS}
+	rm -f lib${LIB}_g.a ${GOBJS}
+	rm -f lib${LIB}_pic.a lib${LIB}.so.*.* ${SOBJS}
+	rm -f llib-l${LIB}.ln ${LOBJS}
+.endif
+
+cleandir: _SUBDIRUSE clean
+
+.if defined(SRCS)
+afterdepend: .depend
+	@@(TMP=$$(mktemp -q /tmp/_dependXXXXXXXXXX); \
+	  if [ $$? -ne 0 ]; then \
+		echo "$$0: cannot create temp file, exiting..."; \
+		exit 1; \
+	  fi; \
+	  sed -e 's/^\([^\.]*\).o[ ]*:/\1.o \1.so:/' \
+	    <.depend >$$TMP; mv $$TMP .depend)
+.endif
+
+.if !target(install)
+.  if !target(beforeinstall)
+beforeinstall:
+.  endif
+
+realinstall:
+	${INSTALL} ${INSTALL_COPY} -o ${LIBOWN} -g ${LIBGRP} -m 600 lib${LIB}.a \
+	    ${DESTDIR}${LIBDIR}/
+.  if ${INSTALL_COPY} != "-p"
+	${RANLIB} -t ${DESTDIR}${LIBDIR}/lib${LIB}.a
+.  endif
+	chmod ${LIBMODE} ${DESTDIR}${LIBDIR}/lib${LIB}.a
+.  if ${DEBUGLIBS:L} == "yes"
+	${INSTALL} ${INSTALL_COPY} -o ${LIBOWN} -g ${LIBGRP} -m 600 \
+	    lib${LIB}_g.a ${DESTDIR}${LIBDIR}/debug/lib${LIB}.a
+.    if ${INSTALL_COPY} != "-p"
+	${RANLIB} -t ${DESTDIR}${LIBDIR}/debug/lib${LIB}.a
+.    endif
+	chmod ${LIBMODE} ${DESTDIR}${LIBDIR}/debug/lib${LIB}.a
+.  endif
+.  if ${NOPIC:L} == "no"
+.    if !defined(SHLIB_VERSION)
+	${INSTALL} ${INSTALL_COPY} -o ${LIBOWN} -g ${LIBGRP} -m 600 \
+	    lib${LIB}_pic.a ${DESTDIR}${LIBDIR}/
+.      if ${INSTALL_COPY} != "-p"
+	${RANLIB} -t ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
+.      endif
+	chmod ${LIBMODE} ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
+.    else   # ! ndef SHLIB_VERSION
+	${INSTALL} ${INSTALL_COPY} -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} \
+	    lib${LIB}.so.${SHLIB_VERSION} ${DESTDIR}${LIBDIR}/
+.    endif  # ! ndef SHLIB_VERSION
+.  endif  # not NOPIC
+.  if ${NOLINT:L} == "no"
+	${INSTALL} ${INSTALL_COPY} -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} \
+	    llib-l${LIB}.ln ${DESTDIR}${LINTLIBDIR}/
+.  endif
+.  if defined(LINKS) && !empty(LINKS)
+.    for lnk file in ${LINKS}
+	@@l=${DESTDIR}${lnk}; \
+	 t=${DESTDIR}${file}; \
+	 echo $$t -\> $$l; \
+	 rm -f $$t; ln $$l $$t || cp $$l $$t
+.    endfor
+.  endif
+
+install: maninstall _SUBDIRUSE
+maninstall: afterinstall
+afterinstall: realinstall
+realinstall: beforeinstall
+.endif	# not target install
+
+.if ${NOMAN:L} == "no"
+.  include <bsd.man.mk>
+.endif
+
+.include <bsd.obj.mk>
+.include <bsd.dep.mk>
+.include <bsd.subdir.mk>
+.include <bsd.sys.mk>
+
+.endif
+@
+
+
+2.4
+log
+@shared libraries depend on
+ crti
+ ncrti (only on macppc)
+ crtbeginS
+ crtendS
+ crtn (not on macppc)
+ ncrtn (only on macppc)
+
+(crti,ncrti) (crtbegin,crtbeginS,crtbeginT) (crtend,crtendS) (crtn,ncrtn)
+are one dependency unit.
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.lib.mk,v 2.3 2005/01/14 14:15:20 tg Exp $
+d31 1
+a31 1
+# prefer .S to a .c, add .po, remove stuff not used in the BSD libraries.
+d35 1
+a35 1
+.SUFFIXES: .out .o .go .po .so .S .s .c .cc .C .cxx .f .y .l .ln .m4 .m
+d38 1
+a38 1
+	@@echo "${COMPILE.c} ${CFLAGS_${.TARGET:C/(g|p|s)o$/.o/}} " \
+d40 1
+a40 1
+	@@${COMPILE.c} ${CFLAGS_${.TARGET:C/\.(g|p|s)o$/.o/}} ${.IMPSRC} \
+d46 1
+a46 1
+	@@echo "${COMPILE.c} ${CFLAGS_${.TARGET:C/\.(g|p|s)o$/.o/}} " \
+d48 1
+a48 1
+	@@${COMPILE.c} ${CFLAGS_${.TARGET:C/\.(g|p|s)o$/.o/}} -g ${.IMPSRC} \
+d54 1
+a54 1
+	@@echo "${COMPILE.c} ${CFLAGS_${.TARGET:C/\.(g|p|s)o$/.o/}} " \
+d56 1
+a56 1
+	@@${COMPILE.c} ${CFLAGS_${.TARGET:C/\.(g|p|s)o$/.o/}} ${PICFLAG} \
+d65 1
+a65 1
+	@@echo "${COMPILE.cc} ${CXXFLAGS_${.TARGET:C/\.(g|p|s)o$/.o/}} " \
+d67 1
+a67 1
+	@@${COMPILE.cc}  ${CXXFLAGS_${.TARGET:C/\.(g|p|s)o$/.o/}} \
+d73 1
+a73 1
+	@@echo "${COMPILE.cc} ${CXXFLAGS_${.TARGET:C/\.(g|p|s)o$/.o/}} " \
+d75 1
+a75 1
+	@@${COMPILE.cc}  ${CXXFLAGS_${.TARGET:C/\.(g|p|s)o$/.o/}} \
+d81 1
+a81 1
+	@@echo "${COMPILE.cc} ${CXXFLAGS_${.TARGET:C/\.(g|p|s)o$/.o/}} " \
+d83 1
+a83 1
+	@@${COMPILE.cc}  ${CXXFLAGS_${.TARGET:C/\.(g|p|s)o$/.o/}} \
+d188 1
+a188 1
+	if [ $$? -ne 0 ]; then \
+d191 3
+a193 4
+	fi; \
+	sed -e 's/^\([^\.]*\).o[ ]*:/\1.o \1.po \1.so:/' \
+	      <.depend >$$TMP; \
+	mv $$TMP .depend)
+@
+
+
+2.3
+log
+@* protect from multiple inclusion
+* switch defaults to be suitable for gcc 3.4
+* remove crap
+* unify style a bit
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.lib.mk,v 2.2 2005/01/08 22:23:19 tg Exp $
+d159 1
+a159 1
+lib${LIB}.so.${SHLIB_VERSION}: ${SOBJS} ${DPADD}
+@
+
+
+2.2
+log
+@add trailing slashes to install(1) calls
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.lib.mk,v 2.1 2005/01/03 16:33:53 tg Exp $
+d6 5
+a10 2
+.ifndef	BSD_OWN_MK
+.  include <bsd.own.mk>				# for 'NOPIC' definition
+d257 2
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.lib.mk,v 1.21 2004/12/08 18:42:20 tg Exp $
+d201 1
+a201 1
+	    ${DESTDIR}${LIBDIR}
+d217 1
+a217 1
+	    lib${LIB}_pic.a ${DESTDIR}${LIBDIR}
+d224 1
+a224 1
+	    lib${LIB}.so.${SHLIB_VERSION} ${DESTDIR}${LIBDIR}
+d229 1
+a229 1
+	    llib-l${LIB}.ln ${DESTDIR}${LINTLIBDIR}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 4
+a4 3
+#	$OpenBSD: bsd.lib.mk,v 1.38 2004/06/22 19:50:01 pvalchev Exp $
+#	$NetBSD: bsd.lib.mk,v 1.67 1996/01/17 20:39:26 mycroft Exp $
+#	@@(#)bsd.lib.mk	5.26 (Berkeley) 5/2/91
+d6 3
+a8 1
+.include <bsd.own.mk>				# for 'NOPIC' definition
+d11 9
+a19 1
+.include "${.CURDIR}/../Makefile.inc"
+d22 2
+a23 4
+.if exists(${.CURDIR}/shlib_version)
+.include "${.CURDIR}/shlib_version"
+SHLIB_MAJOR=${major}
+SHLIB_MINOR=${minor}
+d35 4
+a38 2
+	@@echo "${COMPILE.c} ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.c} ${.IMPSRC}  -o ${.TARGET}.o
+d43 4
+a46 8
+	@@echo "${COMPILE.c} -g ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.c} -g ${.IMPSRC} -o ${.TARGET}.o
+	@@${LD} -X -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+.c.po:
+	@@echo "${COMPILE.c} -p ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.c} -p ${.IMPSRC} -o ${.TARGET}.o
+d51 4
+a54 2
+	@@echo "${COMPILE.c} ${PICFLAG} -DPIC ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.c} ${PICFLAG} -DPIC ${.IMPSRC} -o ${.TARGET}.o
+d59 1
+a59 1
+	${LINT} ${LINTFLAGS} ${CFLAGS:M-[IDU]*} -i ${.IMPSRC}
+d62 4
+a65 2
+	@@echo "${COMPILE.cc} ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.cc} ${.IMPSRC} -o ${.TARGET}.o
+d70 4
+a73 8
+	@@echo "${COMPILE.cc} -g ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.cc} -g ${.IMPSRC} -o ${.TARGET}.o
+	@@${LD} -X -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+.cc.po .C.po .cxx.po:
+	@@echo "${COMPILE.cc} -p ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.cc} -p ${.IMPSRC} -o ${.TARGET}.o
+d78 4
+a81 2
+	@@echo "${COMPILE.cc} ${PICFLAG} -DPIC ${.IMPSRC} -o ${.TARGET}"
+	@@${COMPILE.cc} ${PICFLAG} -DPIC ${.IMPSRC} -o ${.TARGET}.o
+a85 4
+.if (${MACHINE_ARCH} == "arm")
+	@@echo ${COMPILE.S:Q} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC}
+	@@${COMPILE.S} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} -o ${.TARGET}.o
+.else
+a89 1
+.endif
+a100 8
+.S.po .s.po:
+	@@echo "${CPP} -DPROF ${CPPFLAGS} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} |\
+	    ${AS} -o ${.TARGET}"
+	@@${CPP} -DPROF ${CPPFLAGS} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} | \
+	    ${AS} -o ${.TARGET}.o
+	@@${LD} -X -r ${.TARGET}.o -o ${.TARGET}
+	@@rm -f ${.TARGET}.o
+
+d116 3
+a118 6
+_LIBS=lib${LIB}.a
+.if (${DEBUGLIBS:L} == "yes")
+_LIBS+=lib${LIB}_g.a
+.endif
+.if !defined(NOPROFILE)
+_LIBS+=lib${LIB}_p.a
+d121 5
+a125 7
+.if !defined(NOPIC)
+.if (${MACHINE_ARCH} != "mips")
+_LIBS+=lib${LIB}_pic.a
+.endif
+.if defined(SHLIB_MAJOR) && defined(SHLIB_MINOR)
+_LIBS+=lib${LIB}.so.${SHLIB_MAJOR}.${SHLIB_MINOR}
+.endif
+d128 2
+a129 2
+.if !defined(NOLINT)
+_LIBS+=llib-l${LIB}.ln
+d134 1
+a134 1
+OBJS+=	${SRCS:N*.h:R:S/$/.o/g}
+d139 1
+a139 1
+	@@${AR} cq lib${LIB}.a `${LORDER} ${OBJS} | tsort -q`
+d142 1
+a142 1
+GOBJS+=	${OBJS:.o=.go}
+d146 1
+a146 1
+	@@${AR} cq lib${LIB}_g.a `${LORDER} ${GOBJS} | tsort -q`
+d149 1
+a149 8
+POBJS+=	${OBJS:.o=.po}
+lib${LIB}_p.a:: ${POBJS}
+	@@echo building profiled ${LIB} library
+	@@rm -f lib${LIB}_p.a
+	@@${AR} cq lib${LIB}_p.a `${LORDER} ${POBJS} | tsort -q`
+	${RANLIB} lib${LIB}_p.a
+
+SOBJS+=	${OBJS:.o=.so}
+d153 1
+a153 1
+	@@${AR} cq lib${LIB}_pic.a `${LORDER} ${SOBJS} | tsort -q`
+d156 3
+a158 3
+lib${LIB}.so.${SHLIB_MAJOR}.${SHLIB_MINOR}: ${SOBJS} ${DPADD}
+	@@echo building shared ${LIB} library \(version ${SHLIB_MAJOR}.${SHLIB_MINOR}\)
+	@@rm -f lib${LIB}.so.${SHLIB_MAJOR}.${SHLIB_MINOR}
+d160 2
+a161 2
+	    -o lib${LIB}.so.${SHLIB_MAJOR}.${SHLIB_MINOR} \
+	    `${LORDER} ${SOBJS}|tsort -q` ${LDADD}
+d163 1
+a163 1
+LOBJS+=	${LSRCS:.c=.ln} ${SRCS:M*.c:.c=.ln}
+d165 1
+a165 1
+LLIBS?=	-lc
+a175 1
+	rm -f lib${LIB}_p.a ${POBJS}
+d184 1
+a184 1
+	@@(TMP=`mktemp -q /tmp/_dependXXXXXXXXXX`; \
+d190 1
+a190 1
+	      < .depend > $$TMP; \
+d195 1
+a195 1
+.if !target(beforeinstall)
+d197 1
+a197 1
+.endif
+a199 1
+#	ranlib lib${LIB}.a
+d202 1
+a202 1
+.if (${INSTALL_COPY} != "-p")
+d204 1
+a204 1
+.endif
+d206 1
+a206 2
+.if (${DEBUGLIBS:L} == "yes")
+#	ranlib lib${LIB}_g.a
+d209 1
+a209 1
+.if (${INSTALL_COPY} != "-p")
+d211 1
+a211 1
+.endif
+d213 3
+a215 12
+.endif
+.if !defined(NOPROFILE)
+#	ranlib lib${LIB}_p.a
+	${INSTALL} ${INSTALL_COPY} -o ${LIBOWN} -g ${LIBGRP} -m 600 \
+	    lib${LIB}_p.a ${DESTDIR}${LIBDIR}
+.if (${INSTALL_COPY} != "-p")
+	${RANLIB} -t ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
+.endif
+	chmod ${LIBMODE} ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
+.endif
+.if !defined(NOPIC) && (${MACHINE_ARCH} != "mips") 
+#	ranlib lib${LIB}_pic.a
+d218 1
+a218 1
+.if (${INSTALL_COPY} != "-p")
+d220 1
+a220 1
+.endif
+d222 1
+a222 2
+.endif
+.if !defined(NOPIC) && defined(SHLIB_MAJOR) && defined(SHLIB_MINOR)
+d224 4
+a227 3
+	    lib${LIB}.so.${SHLIB_MAJOR}.${SHLIB_MINOR} ${DESTDIR}${LIBDIR}
+.endif
+.if !defined(NOLINT)
+d230 3
+a232 3
+.endif
+.if defined(LINKS) && !empty(LINKS)
+.  for lnk file in ${LINKS}
+d236 3
+a238 3
+	 rm -f $$t; ln $$l $$t
+.  endfor
+.endif
+d244 1
+a244 5
+.endif
+
+.if !defined(NOMAN)
+.include <bsd.man.mk>
+.endif
+d246 2
+a247 2
+.if !defined(NONLS)
+.include <bsd.nls.mk>
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

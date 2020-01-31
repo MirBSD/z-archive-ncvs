@@ -1,0 +1,56 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.46.20;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.48;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.48;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@Correct display of characters depends on the JVM and its locale-dependent font
+configuration. For example, on Linux/x86, in
+  Sun JDK 1.3.1  de_DE works - zh_CN doesn't work
+  IBM JDK 1.3.0  de_DE works - ja_JP, sr_YU, zh_CN don't work
+  Sun JDK 1.4.2  de_DE, ja_JP work - sr_YU, zh_CN don't work
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

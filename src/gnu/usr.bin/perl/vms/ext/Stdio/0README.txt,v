@@ -1,0 +1,85 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.47;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@This directory contains the source code for the Perl extension
+VMS::Stdio, which provides access from Perl to VMS-specific
+stdio functions.  For more specific documentation of its
+function, please see the pod section of Stdio.pm.
+
+===> Installation
+
+This extension, like most Perl extensions, should be installed
+by copying the files in this directory to a location *outside*
+the Perl distribution tree, and then saying
+
+    $ perl Makefile.PL  ! Build Descrip.MMS for this extension
+    $ MMK               ! Build the extension
+    $ MMK test          ! Run its regression tests
+    $ MMK install       ! Install required files in public Perl tree
+
+
+===> Revision History
+
+1.0  29-Nov-1994  Charles Bailey  bailey@@genetics.upenn.edu
+     original version - vmsfopen
+1.1  09-Mar-1995  Charles Bailey  bailey@@genetics.upenn.edu
+     changed calling sequence to return FH/undef - like POSIX::open
+     added fgetname and tmpnam
+2.0  28-Feb-1996  Charles Bailey  bailey@@genetics.upenn.edu
+     major rewrite for Perl 5.002: name changed to VMS::Stdio,
+     new functions added, and prototypes incorporated
+2.1  24-Mar-1998  Charles Bailey  bailey@@newman.upenn.edu
+     Added writeof()
+     Removed old VMs::stdio compatibility interface
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

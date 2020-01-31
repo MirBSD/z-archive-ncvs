@@ -1,0 +1,82 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.19.38;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.19.38;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@Tests for xterm:
+
+If system supports window size (i.e., some combination of SIGWINCH,
+TIOCSSIZE, TIOCSWINSZ), start a full-screen program (e.g., Emacs,
+Jove, vi) and resize the xterm window.  The program must immediately
+update its screen image for the new size.
+
+If compiled with -DUTMP, starting a new xterm should create a new utmp
+entry.  ("who" will show this info.)  Exiting xterm should remove the
+entry.  Killing the xterm window (or other unnatural exit) should also
+remove the entry.  When should entries be made in the wtmp file?
+
+Process group stuff should be correct.
+
+Should work without access to /dev/tty, say started from an xdm
+started from a boot-time script.
+
+If "xterm -help" offers the -C option, it should work.
+
+echo "test" > /dev/tty
+
+vi with lines that wrap.
+
+Exec'ing things other than shells.
+
+Another thing that has caused problems in the past is process groups,
+especially w.r.t. signal propagation to the child.
+
+Popup menu signals: running only a shell, click on "Send INT Signal."
+Do you get a new prompt from the shell?  (Same as typing ^C at it.)
+
+Should scroll *fast* with jumpScroll enabled.
+
+While a mouse button is down tracing out a selection, output to the
+screen should be suspended.
+
+Selections more than one screen long.
+
+start xterm running only Tek widget: "xterm -t"
+
+
+Please add to this list if you find xterm failing in some way.
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,254 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.41.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@<?xml version="1.0" encoding="iso-2022-jp"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+
+    <title>DNS$B$H(BApache$B$K$D$$$F$NLdBj(B</title>
+  </head>
+  <!-- Background white, links blue (unvisited), navy (visited), red (active) -->
+  <!-- English Revision: 1.14 -->
+  <body bgcolor="#FFFFFF" text="#000000" link="#0000FF"
+  vlink="#000080" alink="#FF0000">
+        <div align="CENTER">
+      <img src="images/sub.gif" alt="[APACHE DOCUMENTATION]" /> 
+
+      <h3>Apache HTTP Server</h3>
+    </div>
+
+
+
+    <h1 align="center">DNS $B$H(B Apache $B$K$^$D$o$kCm0U;v9`(B</h1>
+
+    <p>$BK\J8=q$NFbMF$O<!$N0l8@@$K?T$-$^$9!#(BApache
+    $B$,@@_Dj%U%!%$%k$rFI$_9~$`$H$-$K(B <em>DNS
+    $B$r;HMQ$9$kI,MW$,$J$$$h$&$K$7$F2<$5$$(B</em>$B!#(BApache
+    $B$,@@_Dj%U%!%$%k$rFI$_9~$`$H$-$K(B DNS
+    $B$r;HMQ$9$kI,MW$,$"$k>l9g!"?.Mj@@-$NLdBj(B($B5/F0$7$J$$$+$b$7$l$^$;$s(B)
+    $B$d%5!<%S%95qH]!"EpMQ%"%?%C%/(B($BB>$N%f!<%6$+$i%R%C%H$rEp$`$3$H$r4^$_$^$9(B)
+    $B$NLdBj$KD>LL$9$k$+$b$7$l$^$;$s!#(B</p>
+
+    <h3>$B4JC1$JNc(B</h3>
+    $B$3$N@@_DjNc$r9M$($F$_$^$9(B:
+
+    <blockquote>
+<pre>
+    &lt;VirtualHost www.abc.dom&gt;
+    ServerAdmin webgirl@@abc.dom
+    DocumentRoot /www/abc
+    &lt;/VirtualHost&gt;
+</pre>
+    </blockquote>
+
+    <p>Apache $B$,@@5>o$K5!G=$9$k$K$O!"%P!<%A%c%k%[%9%H$4$H$KI,$:Fs$D$N(B
+    $B>pJs$,I,MW$K$J$j$^$9!#$=$l$O!"(B
+    <a href="mod/core.html#servername"><code>ServerName</code></a>
+    $B$H!"$=$N%5!<%P$,1~Ez$9$k$?$a$N(B IP $B%"%I%l%9(B($B:GDc0l$D(B) $B$G$9!#(B
+    $B$3$NNc$G$O(B IP $B%"%I%l%9$r4^$s$G$$$^$;$s$N$G!"(BApache $B$O(B DNS
+    $B$r;HMQ$7$F(B <code>www.abc.dom</code> $B$r8+$D$1$J$1$l$P$J$j$^$;$s!#(B
+    $B@@_Dj%U%!%$%k$rFI$_9~$s$G$$$k$H$-$K2?$i$+$NM}M3$G(B DNS
+    $B$,MxMQ$G$-$J$+$C$?>l9g!"(B
+    $B%P!<%A%c%k%[%9%H$O(B<strong>$B@@_Dj$5$l$^$;$s(B</strong>$B!#(B
+    $B$=$7$F!"$=$N%P!<%A%c%k%[%9%H$KBP$9$k%R%C%H$K$O1~Ez$,$J$5$l$^$;$s(B
+    (Apache 1.2 $B0JA0$G$O5/F0$9$i$7$^$;$s(B)$B!#(B</p>
+
+    <p><code>www.abc.dom</code> $B$N%"%I%l%9$,(B 10.0.0.1
+    $B$@@$H$7$^$9!#$G$O!"<!$N@@_Dj$K$D$$$F9M$($F$_$^$7$g$&!#(B</p>
+
+    <blockquote>
+<pre>
+    &lt;VirtualHost 10.0.0.1&gt;
+    ServerAdmin webgirl@@abc.dom
+    DocumentRoot /www/abc
+    &lt;/VirtualHost&gt;
+</pre>
+    </blockquote>
+
+    <p>$B8=:_(B Apache $B$O(B DNS $B5U0z$-$r;HMQ$7$F$3$N%P!<%A%c%k%[%9%H$N(B
+    <code>ServerName</code> $B$r8+$D$1$^$9!#(B
+    $B$=$N5U0z$-$,<:GT$7$?>l9g$OItJ,E*$K%P!<%A%c%k%[%9%H$rL58z$K$7$^$9(B
+    (Apache 1.2 $B$h$jA0$G$O5/F0$9$i$7$^$;$s(B)$B!#(B
+    $B%P!<%A%c%k%[%9%H$,L>A0%Y!<%9$G$"$l$P40A4$KL58z$K$J$j$^$9$,!"(B
+    IP $B%Y!<%9$G$"$l$P35$MF0:n$7$^$9!#$7$+$7$J$,$i!"%5!<%PL>$r4^$`40A4$J(B
+    URL $B$r@@8@@.$7$J$1$l$P$J$i$J$$>l9g$O!"@@5$7$$(B URL $B$N@@8@@.$,$G$-$^$;$s!#(B
+    </p>
+
+    <p>$B<!$NNc$O>e5-$NLdBj$r2r7h$7$F$$$^$9!#(B</p>
+
+    <blockquote>
+<pre>
+    &lt;VirtualHost 10.0.0.1&gt;
+    ServerName www.abc.dom
+    ServerAdmin webgirl@@abc.dom
+    DocumentRoot /www/abc
+    &lt;/VirtualHost&gt;
+</pre>
+    </blockquote>
+
+    <h3>$B%5!<%S%95qH](B</h3>
+
+    <p>$B%5!<%S%95qH]$,5/$3$k>l9g!"(B($B>/$J$/$H$b(B) $BFs$D$N%1!<%9$,$"$j$^$9!#(B
+    Apache 1.2 $B$h$jA0$r<B9T$7$F$$$k>l9g!"%P!<%A%c%k%[%9%H$N$?$a$N(B
+    $B>e5-$NFs$D$N(B DNS $B8!:w$N$&$A0l$D$G$b<:GT$9$l$P5/F0$9$i$7$^$;$s!#(B
+    $B$^$?$3$N(B DNS $B8!:w$,<+J,$N@@)8f2<$K$9$i$J$$>l9g$b$"$j$($^$9!#(B
+    $BNc$($P!"(B<code>abc.dom</code> $B$,8\5R$N%5!<%P$N0l$D$G!"(B
+    DNS $B$O8\5R<+?H$G4IM}$7$F$$$k>l9g!"8\5R$OC1$K(B
+    <code>www.abc.dom</code> $B%l%3!<%I$r:o=|$9$k$@@$1$G!"(B
+    (1.2 $B$h$jA0$N(B) $B%5!<%P$r5/F0ITG=$K$9$k$3$H$,$G$-$^$9!#(B</p>
+
+    <p>$B$b$&0l$D$N%1!<%9$O!"$h$j5$IU$-$K$/$$$b$N$G$9!#(B
+    $B<!$N@@_Dj$K$D$$$F9M$($F$_$^$7$g$&!#(B</p>
+
+    <blockquote>
+<pre>
+    &lt;VirtualHost www.abc.dom&gt;
+    ServerAdmin webgirl@@abc.dom
+    DocumentRoot /www/abc
+    &lt;/VirtualHost&gt;
+</pre>
+    </blockquote>
+
+    <blockquote>
+<pre>
+    &lt;VirtualHost www.def.dom&gt;
+    ServerAdmin webguy@@def.dom
+    DocumentRoot /www/def
+    &lt;/VirtualHost&gt;
+</pre>
+    </blockquote>
+
+    <p>10.0.0.1 $B$r(B <code>www.abc.dom</code> $B$K!"(B10.0.0.2 $B$r(B
+    <code>www.def.dom</code> $B$K3d$jEv$F$F$$$k$H$7$^$9!#$^$?!"(B
+    <code>def.com</code> $B$O8\5R<+?H$N(B DNS
+    $B$N@@)8f2<$K$"$k$H$7$^$9!#$3$N@@_Dj$G!"(B<code>abc.com</code>
+    $B$K8~$1$i$l$?%H%i%U%#%C%/$9$Y$F$rC%$&$3$H$,$G$-$k0LCV$K(B
+    <code>def.com</code> $B$r@@_CV$G$-$F$$$^$9!#8e$OC1$K(B
+    <code>www.def.dom</code> $B$,(B 10.0.0.1
+    $B$r;2>H$9$k$h$&$K@@_Dj$9$k$@@$1$G$9!#(BDNS
+    $B$O8\5RB&$G%3%s%H%m!<%k$5$l$F$$$k$N$G!"(B<code>www.def.com</code>
+    $B%l%3!<%I$,9%$-$J>l=j$r;X$9$h$&$K@@_Dj$9$k$N$r;_$a$k$3$H$,$G$-$^$;$s!#(B
+    </p>
+
+    <p>10.0.0.1 $B$KBP$9$k%j%/%(%9%H(B
+    (<code>http://www.abc.dom/whatever</code> $B7A<0$N(B URL 
+    $B$rF~NO$7$?%f!<%6$+$i$N$b$N$9$Y$F$r4^$_$^$9(B) 
+    $B$O!"(B<code>def.dom</code> $B%P!<%A%c%k%[%9%H$G1~Ez$5$l$^$9!#(B
+    $B$3$N$h$&$J$3$H$,2?8N5/$3$k$+$b$C$H$h$/CN$k$?$a$K$O!"(B
+    $B1~Ez$NI,MW$J%P!<%A%c%k%[%9%H$X$N%j%/%(%9%H$KBP$7$F!"(B
+    Apache $B$,$I$N$h$&$K@@09g@@-$r3NJ]$9$k$+$K$D$$$F!"(B
+    $B?<$$5DO@@$,I,MW$K$J$j$^$9!#$*$*$^$+$J@@bL@@$O(B<a
+    href="vhosts/details.html">$B$3$A$i(B</a>$B$K5-=R$5$l$F$$$^$9!#(B</p>
+
+    <h3>$B!V<gMW$J%5!<%P!W$N%"%I%l%9(B</h3>
+
+    <p>Apache 1.1 $B$GDI2C$5$l$?(B<a href="vhosts/name-based.html">
+    $BL>A0%Y!<%9$N%P!<%A%c%k%[%9%H$N%5%]!<%H(B</a>$B$K$h$j!"(Bhttpd
+    $B$,F0:n$7$F$$$k%[%9%H$N(B IP $B%"%I%l%9$r!"(BApache 
+    $B$,CN$C$F$$$kI,MW$,$"$j$^$9!#$3$N%"%I%l%9$rF@@$k$?$a$K!"(B
+    ($B$b$7$"$l$P(B)$B%0%m!<%P%k$N(B <code>ServerName</code> $B$d(B C $B$N(B
+    <code>gethostname</code> $B%U%!%s%/%7%g%s%3!<%k(B
+    ($B$3$l$O%3%^%s%I%W%m%s%W%H$G(B "hostname"
+    $B$HBG$A9~$`$N$HF1$87k2L$rJV$7$^$9!#(B) $B$r;HMQ$7$^$9!#(B
+    $B$=$l$+$i$3$N%"%I%l%9$N(B DNS $B8!:w$r9T$J$$$^$9!#(B
+    $B8=;~E@@$G$O!"$3$N8!:w$N2sHrJ}K!$O2?$b$"$j$^$;$s!#(B</p>
+
+    <p>DNS $B%5!<%P$N%@@%&%s$,860x$G$3$N%k%C%/%"%C%W$,<:GT$9$k$N$r62$l$k>l9g!"(B
+    <code>/etc/hosts</code> $B$K(B hostname $B$rA^F~$9$k$3$H$,$G$-$^$9!#(B
+    ($B%^%7%s$,@@5>o$K5/F0$G$-$k$h$&$K!"$3$l$O$*$=$i$/4{$KB8:_$7$^$9!#(B)
+    $B$=$l$+$i!"(BDNS $B$,<:GT$7$?$H$-$K3N<B$K(B <code>/etc/hosts</code>
+    $B$r;HMQ$9$k$h$&$K@@_Dj$7$^$9!#$I$s$J(B OS $B$r;H$C$F$$$k$+$K$h$j$^$9$,!"(B
+    <code>/etc/resolv.conf</code> $B$d(B <code>/etc/nsswitch.conf</code>
+    $B$rJT=8$9$k$3$H$K$h$C$F40@@.$G$-$^$9!#(B</p>
+
+    <p>$B$b$7%5!<%P$,B>$NM}M3$K$h$j(B DNS $B$r<B9T$9$kI,MW$,2?$b$J$1$l$P!"(B
+    Apache $B$r(B <code>HOSTRESORDER</code> $B4D6-JQ?t$r(B "local" $B$K@@_Dj$7$F(B
+    $B<B9T$9$k$3$H$GLdBj$rHr$1$k$3$H$,$G$-$k$+$b$7$l$^$;$s!#$3$l$O;HMQ$7$F$$$k(B
+    OS $B$H%j%>%k%P%i%$%V%i%j$K0MB8$7$^$9!#(B
+    $B$3$l$O(B <a href="mod/mod_env.html"><code>mod_env</code></a>
+    $B$r;H$C$F4D6-JQ?t$r@@)8f$7$F$$$J$$8B$j!"(BCGI $B$K$b1F6A$7$^$9!#(B
+    OS $B$N(B man $B%Z!<%8$d(B FAQ $B$r;2>H$9$k$h$&$K$7$F$/$@@$5$$!#(B
+    </p>
+
+    <h3><a id="tips" name="tips">$B$3$l$i$NLdBj$rHr$1$kHk7m(B</a></h3>
+
+
+    <ul>
+      <li><code>&lt;VirtualHost&gt;</code> $BCf$K(B IP $B%"%I%l%9$r;H$&(B</li>
+
+      <li><code>Listen</code> $BCf$K(B IP $B%"%I%l%9$r;H$&(B</li>
+
+      <li><code>BindAddress</code> $BCf$K(B IP $B%"%I%l%9$r;H$&(B</li>
+
+      <li>$B$9$Y$F$N%P!<%A%c%k%[%9%H$KBP$7L@@<(E*$J(B <code>ServerName</code>
+      $B$r3N<B$KM?$($k(B
+      </li>
+
+      <li>$B1~Ez$9$k%Z!<%8$N$J$$(B <code>&lt;VirtualHost _default_:*&gt;</code>
+      $B%5!<%P$r:n@@.$9$k(B</li>
+    </ul>
+
+    <h3>$BIUO?!'(B $B>-MhE*$JJ}8~@@-(B</h3>
+
+    <p>DNS $B$K4X$7$F!"8=>u$OA4$/59$7$/$"$j$^$;$s!#(BApache 1.2 $B$G!"(B DNS 
+    $B$N%$%Y%s%H$,<:GT$7$F$b>/$J$/$H$b5/F0%W%m%;%9$,B3$/$h$&$K$7$^$7$?$,!"(B 
+    $B$3$l$,:G9b$N2r7hJ}K!$G$O$J$$$G$7$g$&!#%"%I%l%9$N:F3d$jEv$F$,(B
+    $BI,MWIT2DHr(B $B$H$J$C$F$$$k:#F|$N%$%s%?!<%M%C%H$K$*$$$F$O!"(B
+    $B@@_Dj%U%!%$%k$NCf$GL@@<(E*$J(B IP $B%"%I%l%9$rMW5a$9$k;EMM$O!"(B
+    $BA4$/59$7$/$"$j$^$;$s!#(B
+    </p>
+
+    <p>$B>e$G@@bL@@$7$?%5!<%S%9EpMQ967b$KBP$7$F2DG=$JBP:v$O!"(B
+    DNS $B$N@@50z$-$K$h$jJV$5$l$?(B IP $B%"%I%l%9$+$i(B DNS $B$N5U0z$-$r<B9T$7!"(B
+    $B$=$NFs$D$NL>A0$rHf3S$9$k$3$H$G$9!#0lCW$7$J$$>l9g%P!<%A%c%k%[%9%H$OL58z$K$5$l$^$9!#(B
+    $B$3$l$K$O!"(BDNS $B$N5U0z$-$,E,@@Z$K@@_Dj$5$l$F$$$kI,MW$,$"$j$^$9!#(B(DNS
+    $B$N!VFs=E$N5U0z$-!W$O(B FTP $B%5!<%P$d(B TCP
+    $B%i%C%Q!<$K$h$j0lHLE*$K;H$o$l$F$$$k$?$a!"(B
+    $B$[$H$s$I$N4IM}<T$K$OFk@@w$_$N$"$k$b$N$G$7$g$&(B)$B!#(B
+    </p>
+
+    <p>IP $B%"%I%l%9$,;HMQ$5$l$F$$$J$/$F(B DNS $B$,<:GT$7$?>l9g$O!"(B
+    $B$I$&$7$F$b%P!<%A%c%k%[%9%H%&%'%V%5!<%P$r?.Mj@@-$r3NJ]$7$F(B
+    $B5/F0$5$;$k$3$H$OIT2DG=$N$h$&$G$9!#@@_Dj$N0lIt$rL58z$K$9$k$H$$$&$h$&$J(B
+    $BItJ,E*$J2r7h$O!"%5!<%P$NL\E*$K$b$h$j$^$9$,(B
+    $B5/F0$7$J$$$h$j$b0-$$$+$b$7$l$^$;$s!#(B</p>
+
+    <p>HTTP/1.1 $B$,3+H/$5$l!"%V%i%&%6$d%W%m%-%7$,(B <code>Host</code>
+    $B%X%C%@@$rH/9T$9$k$h$&$K$J$C$?$N$G!"(BIP $B%Y!<%9$N%P!<%A%c%k%[%9%H$r(B
+    $BA4$/;HMQ$7$J$/$F$b:Q$`$h$&$K$J$k$+$b$7$l$^$;$s!#(B
+    $B$3$N>l9g!"%&%'%V%5!<%P$O@@_DjCf$K(B DNS $B;2>H$r$7$J$/$F$b:Q$_$^$9!#(B
+    $B$7$+$7(B 1997 $BG/(B 3 $B7n;~E@@$N>u67$G$O!"(B
+    $B>&MQ%l%Y%k$N%&%'%V%5!<%P$G;HMQ$G$-$k$[$I$K$O!"(B
+    $B$3$l$i$N5!G=$O9-$/3+H/$,?J$s$G$$$^$;$s!#(B
+        <hr />
+
+    <h3 align="CENTER">Apache HTTP Server</h3>
+    <a href="./"><img src="images/index.gif" alt="Index" /></a>
+
+    </p>
+  </body>
+</html>
+
+@

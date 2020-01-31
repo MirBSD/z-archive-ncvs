@@ -1,0 +1,82 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.23.21;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.21;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.21;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*    form.h
+ *
+ *    Copyright (C) 1991, 1992, 1993, 2000, 2004 by Larry Wall and others
+ *
+ *    You may distribute under the terms of either the GNU General Public
+ *    License or the Artistic License, as specified in the README file.
+ *
+ */
+
+#define FF_END          0
+#define FF_LINEMARK     1
+#define FF_LITERAL      2
+#define FF_SKIP         3
+#define FF_FETCH        4
+#define FF_CHECKNL      5
+#define FF_CHECKCHOP    6
+#define FF_SPACE        7
+#define FF_HALFSPACE    8
+#define FF_ITEM         9
+#define FF_CHOP         10
+#define FF_LINEGLOB     11
+#define FF_DECIMAL      12
+#define FF_NEWLINE      13
+#define FF_BLANK        14
+#define FF_MORE         15
+#define FF_0DECIMAL     16
+#define FF_LINESNGL     17
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

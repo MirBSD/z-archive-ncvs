@@ -1,0 +1,60 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.04.19;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.19;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@This directory contains two files for compiling the FreeType library under
+VMS:
+
+  ft_conf.h     the configuration file for the FreeType library
+  descrip.mms   a makefile to be used with either MMS or MMK
+
+The files are such designed that after unpacking of freetype-1.2 one can
+give the command
+
+  MMS/DESCR=[.LIB.ARCH.VMS]
+
+to build the libraries. (Of course, for MMK use `MMK' on the command line
+instead of `MMS'.) The makefile contains a `clean' target, but no `install'
+target since I'm note sure where to install the library and the include
+files.
+
+I did NOT do the test programs but I tested it with my own programs.
+
+
+  Jouk Jansen <joukj@@hrem.stm.tudelft.nl>
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

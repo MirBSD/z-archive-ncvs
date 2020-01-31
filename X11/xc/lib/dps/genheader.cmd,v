@@ -1,0 +1,54 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @:: @;
+
+
+1.1
+date     2004.12.15.18.10.40;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.40;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@REM 
+/* OS/2 generate header files */
+/* $XFree86: xc/lib/dps/genheader.cmd,v 1.2 2000/05/18 23:46:14 dawes Exp $ */
+cat psclrops.h psctrlops.h psctxtops.h psdataops.h psfontops.h psgsttops.h psioops.h psmathops.h psmtrxops.h psmiscops.h pspntops.h pspathops.h pssysops.h pswinops.h psopstack.h psXops.h psl2ops.h >.ph
+sed -e "/^$$/D" -e "/#/D" -e "/^\//D" -e "/^   gener/D" -e "/^.\//D" .ph | sort >.sort
+awk "/;/ {print;printf(\"\n\");}" .sort >.ttt
+cat psname.txt header.txt psifdef.txt .ttt psendif.txt > psops.h.os2
+rm .ph .sort .ttt
+
+cat dpsclrops.h dpsctrlops.h dpsctxtops.h dpsdataops.h dpsfontops.h dpsgsttops.h dpsioops.h dpsmathops.h dpsmtrxops.h dpsmiscops.h dpspntops.h dpspathops.h dpssysops.h dpswinops.h dpsopstack.h dpsXops.h dpsl2ops.h >.ph
+sed -e "/^$$/D" -e "/#/D" -e "/^\//D" -e "/^   gener/D" -e "/^.\//D" .ph | sort >.sort
+awk "/;/ {print;printf(\"\n\");}" .sort >.ttt
+cat dpsname.txt header.txt dpsifdef.txt .ttt dpsendif.txt > dpsops.h.os2
+rm .ph .sort .ttt
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

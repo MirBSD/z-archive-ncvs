@@ -1,0 +1,85 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.45.47;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.44;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@### Makefile.common
+###
+### Copyright (C) 2002 by the KDE developers
+
+### All the real work is done by the shellscript cvs.sh
+
+SHELL=/bin/sh
+
+cvs dist cvs-clean configure.in configure.files subdirs package-messages package-merge:
+	@@admindir=$(admindir); \
+	if test "x$$admindir" = x; then \
+	  admindir=.; until test -f $$admindir/admin/cvs.sh; do \
+	    admindir=$$admindir/..; \
+	    if test `cd $$admindir && pwd` = / ; then break; fi; \
+	  done; \
+	  admindir=$$admindir/admin; \
+	  if test -f $$admindir/cvs.sh; then :; else \
+	    echo "Can't find the admin/ directory in any parent of the"; \
+	    echo "current directory.  Please set it with admindir=..."; \
+	    exit 1; \
+	  fi; \
+	fi; \
+	if test "$@@" = "package-merge"; then \
+		MAKE=$(MAKE) POFILES="$(POFILES)" PACKAGE="$(PACKAGE)" \
+	  	$(SHELL) $$admindir/cvs.sh package-merge ;\
+	else MAKE=$(MAKE) $(SHELL) $$admindir/cvs.sh $@@ ;\
+	fi
+
+configure.in: configure.files $(shell test -f configure.files && cat configure.files) subdirs
+configure.files: subdirs
+
+.SILENT:
+
+.PHONY: cvs dist cvs-clean package-merge package-messages
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

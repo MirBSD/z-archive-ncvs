@@ -1,0 +1,65 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.18.24;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.18.24;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include "Xditview"
+*Dvi.fontMap:\
+R	-*-charter-medium-r-normal--*-*-*-*-*-*-iso8859-1\n\
+I	-*-charter-medium-i-normal--*-*-*-*-*-*-iso8859-1\n\
+B	-*-charter-bold-r-normal--*-*-*-*-*-*-iso8859-1\n\
+F	-*-charter-bold-i-normal--*-*-*-*-*-*-iso8859-1\n\
+BI	-*-charter-bold-i-normal--*-*-*-*-*-*-iso8859-1\n\
+C	-*-courier-medium-r-normal--*-*-*-*-*-*-iso8859-1\n\
+CO	-*-courier-medium-o-normal--*-*-*-*-*-*-iso8859-1\n\
+CB	-*-courier-bold-r-normal--*-*-*-*-*-*-iso8859-1\n\
+CF	-*-courier-bold-o-normal--*-*-*-*-*-*-iso8859-1\n\
+H	-*-helvetica-medium-r-normal--*-*-*-*-*-*-iso8859-1\n\
+HO	-*-helvetica-medium-o-normal--*-*-*-*-*-*-iso8859-1\n\
+HB	-*-helvetica-bold-r-normal--*-*-*-*-*-*-iso8859-1\n\
+HF	-*-helvetica-bold-o-normal--*-*-*-*-*-*-iso8859-1\n\
+N	-*-new century schoolbook-medium-r-normal--*-*-*-*-*-*-iso8859-1\n\
+NI	-*-new century schoolbook-medium-i-normal--*-*-*-*-*-*-iso8859-1\n\
+NB	-*-new century schoolbook-bold-r-normal--*-*-*-*-*-*-iso8859-1\n\
+NF	-*-new century schoolbook-bold-i-normal--*-*-*-*-*-*-iso8859-1\n\
+A	-*-charter-medium-r-normal--*-*-*-*-*-*-iso8859-1\n\
+AI	-*-charter-medium-i-normal--*-*-*-*-*-*-iso8859-1\n\
+AB	-*-charter-bold-r-normal--*-*-*-*-*-*-iso8859-1\n\
+AF	-*-charter-bold-i-normal--*-*-*-*-*-*-iso8859-1\n\
+S	-*-symbol-medium-r-normal--*-*-*-*-*-*-adobe-fontspecific\n\
+S2	-*-symbol-medium-r-normal--*-*-*-*-*-*-adobe-fontspecific\n
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

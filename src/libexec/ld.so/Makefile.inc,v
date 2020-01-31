@@ -1,0 +1,47 @@
+head	2.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.13.20.36.11;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.31.02;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@further merge and fix double-inclusion-protection
+@
+text
+@# $MirBSD: src/libexec/ld.so/Makefile.inc,v 2.1 2005/01/03 16:31:02 tg Exp $
+
+CFLAGS+= -Wall
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/libexec/ld.so/Makefile.inc,v 1.1 2004/10/14 19:43:05 tg Exp $
+d3 1
+a3 1
+CFLAGS+= -Wall -Werror
+@
+

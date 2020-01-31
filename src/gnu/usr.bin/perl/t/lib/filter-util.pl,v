@@ -1,0 +1,111 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.25;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.55;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@
+use strict ;
+use warnings;
+
+use vars qw( $Perl $Inc);
+
+sub readFile
+{
+    my ($filename) = @@_ ;
+    my ($string) = '' ;
+
+    open (F, "<$filename") 
+	or die "Cannot open $filename: $!\n" ;
+    while (<F>)
+      { $string .= $_ }
+    close F ;
+    $string ;
+}
+
+sub writeFile
+{
+    my($filename, @@strings) = @@_ ;
+    open (F, ">$filename") 
+	or die "Cannot open $filename: $!\n" ;
+    binmode(F) if $filename =~ /bin$/i;
+    foreach (@@strings)
+      { print F }
+    close F or die "Could not close: $!" ;
+}
+
+sub ok
+{
+    my($number, $result, $note) = @@_ ;
+ 
+    $note = "" if ! defined $note ;
+    if ($note) {
+        $note = "# $note" if $note !~ /^\s*#/ ;
+        $note =~ s/^\s*/ / ;
+    }
+
+    print "not " if !$result ;
+    print "ok ${number}${note}\n";
+}
+
+$Inc = '' ;
+foreach (@@INC)
+ { $Inc .= "\"-I$_\" " }
+$Inc = "-I::lib" if $^O eq 'MacOS';
+
+$Perl = '' ;
+$Perl = ($ENV{'FULLPERL'} or $^X or 'perl') ;
+
+$Perl = "$Perl -MMac::err=unix" if $^O eq 'MacOS';
+$Perl = "$Perl -w" ;
+
+1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

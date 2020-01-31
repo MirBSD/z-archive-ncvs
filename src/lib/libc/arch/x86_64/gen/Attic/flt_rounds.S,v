@@ -1,0 +1,86 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.05.08;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.30;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.30;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@/*	$OpenBSD: flt_rounds.S,v 1.1 2004/01/28 01:44:45 mickey Exp $	*/
+/*	$NetBSD: flt_rounds.S,v 1.2 2002/06/06 23:04:35 fvdl Exp $	*/
+
+/*
+ * Written by J.T. Conklin, Apr 4, 1995
+ * Public domain.
+ */
+
+#include <machine/asm.h>
+
+	.text
+	_ALIGN_TEXT
+_map:
+	.byte 1		/* round to nearest */
+	.byte 3		/* round to negative infinity */
+	.byte 2		/* round to positive infinity */
+	.byte 0		/* round to zero */
+
+ENTRY(__flt_rounds)
+	fnstcw -4(%rsp)
+	movl -4(%rsp),%eax
+	shrl $10,%eax
+	andl $3,%eax
+#ifdef PIC
+	leaq PIC_GOT(_map),%rcx
+	movb (%rcx,%rax,1),%al
+#else
+	movb _map(,%rax,1),%al
+#endif
+	ret
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

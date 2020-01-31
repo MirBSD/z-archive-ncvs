@@ -1,0 +1,123 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.19;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl
+
+BEGIN {
+    chdir 't' if -d 't';
+    @@INC = '../lib';
+}
+
+# A modest test: exercises only O_WRONLY, O_CREAT, and O_RDONLY.
+# Have to be modest to be portable: could possibly extend testing
+# also to O_RDWR and O_APPEND, but dunno about the portability of,
+# say, O_TRUNC and O_EXCL, not to mention O_NONBLOCK.
+
+use Fcntl;
+
+print "1..7\n";
+
+print "ok 1\n";
+
+if (sysopen(my $wo, "fcntl$$", O_WRONLY|O_CREAT)) {
+    print "ok 2\n";
+    if (syswrite($wo, "foo") == 3) {
+	print "ok 3\n";
+	close($wo);
+	if (sysopen(my $ro, "fcntl$$", O_RDONLY)) {
+	    print "ok 4\n";
+	    if (sysread($ro, my $read, 3)) {
+		print "ok 5\n";
+		if ($read eq "foo") {
+		    print "ok 6\n";
+		} else {
+		    print "not ok 6 # content '$read' not ok\n";
+		}
+	    } else {
+		print "not ok 5 # sysread failed: $!\n";
+	    }
+	} else {
+	    print "not ok 4 # sysopen O_RDONLY failed: $!\n";
+	}
+	close($ro);
+    } else {
+	print "not ok 3 # syswrite failed: $!\n";
+    }
+    close($wo);
+} else {
+    print "not ok 2 # sysopen O_WRONLY failed: $!\n";
+}
+
+# Opening of character special devices gets special treatment in doio.c
+# Didn't work as of perl-5.8.0-RC2.
+use File::Spec;   # To portably get /dev/null
+
+my $devnull = File::Spec->devnull;
+if (-c $devnull) {
+    if (sysopen(my $wo, $devnull,  O_WRONLY)) {
+	print "ok 7 # open /dev/null O_WRONLY\n";
+	close($wo);
+    }
+    else {
+        print "not ok 7 # open /dev/null O_WRONLY\n";
+    }
+} 
+else {
+    print "ok 7 # Skipping /dev/null sysopen O_WRONLY test\n";
+}
+
+END {
+    1 while unlink "fcntl$$";
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

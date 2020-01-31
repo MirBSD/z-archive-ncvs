@@ -1,0 +1,332 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.21.48.43;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.58;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@# Microsoft Developer Studio Generated Dependency File, included by libcvs.mak
+
+.\asnprintf.c : \
+	"..\windows-NT\config.h"\
+	".\vasnprintf.h"\
+	
+
+.\basename.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\stdbool.h"\
+	".\dirname.h"\
+	
+
+.\dirname.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\stdbool.h"\
+	".\dirname.h"\
+	".\xalloc.h"\
+	
+
+.\exitfail.c : \
+	"..\windows-NT\config.h"\
+	".\exit.h"\
+	".\exitfail.h"\
+	
+
+.\fncase.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\ndir.h"\
+	"..\windows-NT\pwd.h"\
+	"..\windows-NT\stdbool.h"\
+	"..\windows-NT\stdint.h"\
+	"..\windows-NT\unistd.h"\
+	".\fnmatch.h"\
+	".\getopt.h"\
+	".\gettext.h"\
+	".\system.h"\
+	".\timespec.h"\
+	".\unlocked-io.h"\
+	
+
+.\fnmatch.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\stdbool.h"\
+	".\alloca.h"\
+	".\fnmatch.h"\
+	".\fnmatch_loop.c"\
+	
+
+.\fseeko.c : \
+	"..\windows-NT\config.h"\
+	
+
+.\ftello.c : \
+	"..\windows-NT\config.h"\
+	
+
+.\getdate.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\stdbool.h"\
+	".\alloca.h"\
+	".\getdate.h"\
+	".\setenv.h"\
+	".\timespec.h"\
+	".\xalloc.h"\
+	
+
+.\getline.c : \
+	"..\windows-NT\config.h"\
+	".\getline.h"\
+	".\getndelim2.h"\
+	
+
+.\getndelim2.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\stdint.h"\
+	".\getndelim2.h"\
+	
+
+.\getopt.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\unistd.h"\
+	".\getopt.h"\
+	".\getopt_int.h"\
+	".\gettext.h"\
+	
+
+.\getopt1.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\unistd.h"\
+	".\getopt.h"\
+	".\getopt_int.h"\
+	
+
+.\gettime.c : \
+	"..\windows-NT\config.h"\
+	".\timespec.h"\
+	
+
+.\md5.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\stdint.h"\
+	".\md5.h"\
+	
+
+".\printf-args.c" : \
+	"..\windows-NT\config.h"\
+	".\printf-args.h"\
+	
+
+".\printf-parse.c" : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\stdint.h"\
+	".\printf-args.h"\
+	".\printf-parse.h"\
+	".\xsize.h"\
+	
+
+.\readlink.c : \
+	"..\windows-NT\config.h"\
+	
+
+.\realloc.c : \
+	"..\windows-NT\config.h"\
+	
+
+.\regex.c : \
+	"..\windows-NT\config.h"\
+	".\gettext.h"\
+	".\regex.h"\
+	
+
+.\rpmatch.c : \
+	"..\windows-NT\config.h"\
+	
+
+".\save-cwd.c" : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\stdbool.h"\
+	"..\windows-NT\unistd.h"\
+	".\save-cwd.h"\
+	".\xgetcwd.h"\
+	
+
+.\setenv.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\unistd.h"\
+	".\alloca.h"\
+	".\allocsa.h"\
+	
+
+.\sighandle.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\ndir.h"\
+	"..\windows-NT\pwd.h"\
+	"..\windows-NT\stdbool.h"\
+	"..\windows-NT\stdint.h"\
+	"..\windows-NT\unistd.h"\
+	".\fnmatch.h"\
+	".\getopt.h"\
+	".\gettext.h"\
+	".\system.h"\
+	".\timespec.h"\
+	".\unlocked-io.h"\
+	
+
+.\strcasecmp.c : \
+	"..\windows-NT\config.h"\
+	
+
+.\strftime.c : \
+	"..\windows-NT\config.h"\
+	".\time_r.h"\
+	
+
+.\stripslash.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\stdbool.h"\
+	".\dirname.h"\
+	
+
+.\time_r.c : \
+	"..\windows-NT\config.h"\
+	".\time_r.h"\
+	
+
+.\unsetenv.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\unistd.h"\
+	
+
+.\valloc.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\ndir.h"\
+	"..\windows-NT\pwd.h"\
+	"..\windows-NT\stdbool.h"\
+	"..\windows-NT\stdint.h"\
+	"..\windows-NT\unistd.h"\
+	".\fnmatch.h"\
+	".\getopt.h"\
+	".\getpagesize.h"\
+	".\gettext.h"\
+	".\system.h"\
+	".\timespec.h"\
+	".\unlocked-io.h"\
+	
+
+.\vasnprintf.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\stdint.h"\
+	".\alloca.h"\
+	".\printf-args.h"\
+	".\printf-parse.h"\
+	".\vasnprintf.h"\
+	".\xsize.h"\
+	
+
+.\vasprintf.c : \
+	"..\windows-NT\config.h"\
+	".\vasnprintf.h"\
+	".\vasprintf.h"\
+	
+
+".\xalloc-die.c" : \
+	"..\windows-NT\config.h"\
+	".\error.h"\
+	".\exitfail.h"\
+	".\gettext.h"\
+	".\xalloc.h"\
+	
+
+.\xgetcwd.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\unistd.h"\
+	".\xalloc.h"\
+	".\xgetcwd.h"\
+	
+
+.\xgethostname.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\unistd.h"\
+	".\xalloc.h"\
+	".\xgethostname.h"\
+	
+
+.\xmalloc.c : \
+	"..\windows-NT\config.h"\
+	".\xalloc.h"\
+	
+
+.\xreadlink.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\unistd.h"\
+	".\xalloc.h"\
+	".\xreadlink.h"\
+	
+
+.\yesno.c : \
+	"..\windows-NT\config.h"\
+	"..\windows-NT\stdbool.h"\
+	".\yesno.h"\
+	
+
+!IF  "$(CFG)" == "libcvs - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "libcvs - Win32 Debug"
+
+!ENDIF 
+
+!IF  "$(CFG)" == "libcvs - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "libcvs - Win32 Debug"
+
+!ENDIF 
+
+!IF  "$(CFG)" == "libcvs - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "libcvs - Win32 Debug"
+
+!ENDIF 
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

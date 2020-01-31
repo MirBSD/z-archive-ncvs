@@ -1,0 +1,116 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.04.17.22.44;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.22.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* CPP Library.
+   Copyright (C) 1986, 1987, 1989, 1992, 1993, 1994, 1995, 1996, 1997, 1998,
+   1999, 2000, 2003 Free Software Foundation, Inc.
+   Contributed by Per Bothner, 1994-95.
+   Based on CCCP program by Paul Rubin, June 1986
+   Adapted to ANSI C, Richard Stallman, Jan 1987
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 2, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
+
+#ifndef GCC_CPPDEFAULT_H
+#define GCC_CPPDEFAULT_H
+
+/* This is the default list of directories to search for include files.
+   It may be overridden by the various -I and -ixxx options.
+
+   #include "file" looks in the same directory as the current file,
+   then this list.
+   #include <file> just looks in this list.
+
+   All these directories are treated as `system' include directories
+   (they are not subject to pedantic warnings in some cases).  */
+
+struct default_include
+{
+  const char *const fname;	/* The name of the directory.  */
+  const char *const component;	/* The component containing the directory
+				   (see update_path in prefix.c) */
+  const char cplusplus;		/* Only look here if we're compiling C++.  */
+  const char cxx_aware;		/* Includes in this directory don't need to
+				   be wrapped in extern "C" when compiling
+				   C++.  */
+  const char add_sysroot;	/* FNAME should be prefixed by
+				   cpp_SYSROOT.  */
+};
+
+extern const struct default_include cpp_include_defaults[];
+extern const char cpp_GCC_INCLUDE_DIR[];
+extern const size_t cpp_GCC_INCLUDE_DIR_len;
+
+extern const char *cpp_SYSROOT;
+
+#endif /* ! GCC_CPPDEFAULT_H */
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

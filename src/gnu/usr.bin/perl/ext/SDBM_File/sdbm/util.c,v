@@ -1,0 +1,102 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.24.32;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.49;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.49;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#include <stdio.h>
+#ifdef SDBM
+#include "sdbm.h"
+#else
+#include "ndbm.h"
+#endif
+
+void
+oops(register char *s1, register char *s2)
+{
+	extern int errno, sys_nerr;
+	extern char *sys_errlist[];
+	extern char *progname;
+
+	if (progname)
+		fprintf(stderr, "%s: ", progname);
+	fprintf(stderr, s1, s2);
+	if (errno > 0 && errno < sys_nerr)
+		fprintf(stderr, " (%s)", sys_errlist[errno]);
+	fprintf(stderr, "\n");
+	exit(1);
+}
+
+int
+okpage(char *pag)
+{
+	register unsigned n;
+	register off;
+	register short *ino = (short *) pag;
+
+	if ((n = ino[0]) > PBLKSIZ / sizeof(short))
+		return 0;
+
+	if (!n)
+		return 1;
+
+	off = PBLKSIZ;
+	for (ino++; n; ino += 2) {
+		if (ino[0] > off || ino[1] > off ||
+		    ino[1] > ino[0])
+			return 0;
+		off = ino[1];
+		n -= 2;
+	}
+
+	return 1;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

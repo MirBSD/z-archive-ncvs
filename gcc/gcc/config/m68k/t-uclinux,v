@@ -1,0 +1,86 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.24.21;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.21;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@LIB1ASMSRC = m68k/lb1sf68.asm
+LIB1ASMFUNCS = _mulsi3 _udivsi3 _divsi3 _umodsi3 _modsi3 \
+   _double _float _floatex \
+   _eqdf2 _nedf2 _gtdf2 _gedf2 _ltdf2 _ledf2 \
+   _eqsf2 _nesf2 _gtsf2 _gesf2 _ltsf2 _lesf2
+
+LIB2FUNCS_EXTRA = fpgnulib.c xfgnulib.c
+
+fpgnulib.c: $(srcdir)/config/m68k/fpgnulib.c
+	cp $(srcdir)/config/m68k/fpgnulib.c fpgnulib.c
+xfgnulib.c: $(srcdir)/config/m68k/fpgnulib.c
+	echo '#define EXTFLOAT' > xfgnulib.c
+	cat $(srcdir)/config/m68k/fpgnulib.c >> xfgnulib.c
+
+MULTILIB_OPTIONS = m68000/m5200/m5206e/m528x/m5307/m5407/mcpu32 msep-data/mid-shared-library
+MULTILIB_DIRNAMES =
+MULTILIB_MATCHES = m68000=mc68000 m68000=m68302 mcpu32=m68332 m5206e=m5272
+MULTILIB_EXCEPTIONS = m68000/msep-data* m68000/mid-shared-library* msep-data* mid-shared-library*
+
+LIBGCC = stmp-multilib
+INSTALL_LIBGCC = install-multilib
+
+# We don't use crtbegin.o and crtend.o
+EXTRA_PARTS=
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

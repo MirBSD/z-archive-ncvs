@@ -1,0 +1,65 @@
+head	1.2;
+access;
+symbols
+	expat-1_95_8:1.1.16.1 expat:1.1.16;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.31.19;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.28.14;	author tg;	state Exp;
+branches
+	1.1.16.1;
+next	;
+
+1.1.16.1
+date	2005.01.08.20.28.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge
+@
+text
+@This directory contains the (fledgling) test suite for Expat.  The
+tests provide general unit testing and regression coverage.  The tests
+are not expected to be useful examples of Expat usage; see the
+examples/ directory for that.
+
+The Expat tests use the "Check" unit testing framework for C.  More
+information on Check can be found at:
+
+        http://check.sourceforge.net/
+
+Check 0.8 must be installed before the unit tests can be compiled & run.
+
+Since both Check and this test suite are young, it can all change in a
+later version.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.16.1
+log
+@libexpat 1.95.8
+@
+text
+@@

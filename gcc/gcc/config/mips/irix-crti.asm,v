@@ -1,0 +1,95 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@;; @;
+
+
+1.1
+date	2005.01.04.17.24.21;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.21;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@	.abicalls
+	.set	noreorder
+	.set	nomacro
+
+	.section .init,0x1,0x6,4,4
+	jr	$31
+	nop
+
+	.globl	__gcc_init
+__gcc_init:
+#if _MIPS_SIM == _ABIO32
+	addiu	$sp,$sp,-16
+	sw	$31,0($sp)
+#else
+	daddiu	$sp,$sp,-16
+	sd	$31,0($sp)
+	sd	$28,8($sp)
+#endif
+
+	.section .fini,0x1,0x6,4,4
+	jr	$31
+	nop
+
+	.globl	__gcc_fini
+__gcc_fini:
+#if _MIPS_SIM == _ABIO32
+	addiu	$sp,$sp,-16
+	sw	$31,0($sp)
+#else
+	daddiu	$sp,$sp,-16
+	sd	$31,0($sp)
+	sd	$28,8($sp)
+#endif
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

@@ -1,0 +1,350 @@
+head	2.9;
+access;
+symbols
+	mksh-R20:2.1
+	mksh-R19:2.1
+	cvs-200412101800:1.1.15.1
+	mirbsd:1.1.15;
+locks; strict;
+comment	@ * @;
+
+
+2.9
+date	2004.12.31.17.29.28;	author tg;	state Exp;
+branches;
+next	2.8;
+
+2.8
+date	2004.12.28.22.47.04;	author tg;	state Exp;
+branches;
+next	2.7;
+
+2.7
+date	2004.12.28.22.44.39;	author tg;	state Exp;
+branches;
+next	2.6;
+
+2.6
+date	2004.12.18.19.27.21;	author tg;	state Exp;
+branches;
+next	2.5;
+
+2.5
+date	2004.12.18.19.17.10;	author tg;	state Exp;
+branches;
+next	2.4;
+
+2.4
+date	2004.12.18.19.02.29;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2004.12.18.18.58.30;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2004.12.18.18.39.10;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.10.18.09.41;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.10.18.08.08;	author tg;	state Exp;
+branches
+	1.1.15.1;
+next	;
+
+1.1.15.1
+date	2004.12.10.18.08.08;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.9
+log
+@Use the BSD sig_t instead of homegrown handler_t
+Remove KSH_SA_FLAGS
+From: Todd C. Miller <millert@@cvs.openbsd.org>
+
+sanitise signal handling a bit (will be revisited)
+@
+text
+@/**	$MirBSD: src/bin/ksh/conf-end.h,v 2.8 2004/12/28 22:47:04 tg Exp $ */
+/*	$OpenBSD: conf-end.h,v 1.2 1996/08/25 12:37:58 downsj Exp $	*/
+
+#ifndef CONF_END_H
+#define CONF_END_H
+
+/* Include job control? */
+#define JOBS 1
+
+/* Include complex history? */
+#define COMPLEX_HISTORY
+
+/* Specify default $ENV? */
+/* #undef DEFAULT_ENV */
+
+/*
+ * The above are defined for mirbsdksh via external
+ * means, such as this header ;-)
+ * End of configuration stuff for PD ksh.
+ */
+
+#if SIZEOF_INT < 4
+# error "int cannot hold 32 bit"
+#endif
+
+/*
+ * if you don't have mmap() you can't use Peter Collinson's history
+ * mechanism.  If that is the case, then define EASY_HISTORY
+ */
+#if !defined(COMPLEX_HISTORY) || !defined(HAVE_MMAP) || !defined(HAVE_FLOCK)
+# undef COMPLEX_HISTORY
+# define EASY_HISTORY			/* sjg's trivial history file */
+#endif
+
+/* Can we safely catch sigchld and wait for processes? */
+#if defined(HAVE_WAITPID) || defined(HAVE_WAIT3)
+# define JOB_SIGS
+#endif
+
+#if !defined(JOB_SIGS) || !(defined(POSIX_PGRP) || defined(BSD_PGRP))
+# undef JOBS /* if no JOB_SIGS, no job control support */
+#endif
+
+#ifdef HAVE_SYS_PARAM_H
+# include <sys/param.h>
+#else
+# ifdef HAVE_SYS_TYPES_H
+#  include <sys/types.h>
+# endif /* HAVE_SYS_TYPES_H */
+#endif /* HAVE_SYS_PARAM_H */
+
+#ifdef HAVE_STDINT_H
+# include <stdint.h>
+#endif
+
+#ifdef HAVE_GCC_FUNC_ATTR
+# define GCC_FUNC_ATTR(x)	__attribute__((x))
+# define GCC_FUNC_ATTR2(x,y)	__attribute__((x,y))
+#else
+# define GCC_FUNC_ATTR(x)
+# define GCC_FUNC_ATTR2(x,y)
+#endif /* HAVE_GCC_FUNC_ATTR */
+
+#ifdef HAVE_STDBOOL_H
+#include <stdbool.h>
+#else
+#if defined(__GNUC__) && __GNUC__ >= 3
+/* Support for _C99: type _Bool is already built-in. */
+#define false	0
+#define true	1
+#else
+typedef enum {
+	false = 0,
+	true = 1
+} _Bool;
+#define	false	false
+#define	true	true
+#endif
+#define bool _Bool
+#endif
+
+#endif	/* ndef CONF_END_H */
+@
+
+
+2.8
+log
+@oops
+@
+text
+@d1 1
+a1 1
+/**	$MirBSD: src/bin/ksh/conf-end.h,v 2.7 2004/12/28 22:44:39 tg Exp $ */
+d36 1
+a36 2
+#if (defined(HAVE_WAITPID) || defined(HAVE_WAIT3)) \
+    && (defined(POSIX_SIGNALS) || defined(BSD42_SIGNALS))
+a55 12
+/* pdksh assumes system calls return EINTR if a signal happened (this so
+ * the signal handler doesn't have to longjmp()).  I don't know if this
+ * happens (or can be made to happen) with sigset() et. al. (the bsd41 signal
+ * routines), so, the autoconf stuff checks what they do and defines
+ * SIGNALS_DONT_INTERRUPT if signals don't interrupt read().
+ * If SIGNALS_DONT_INTERRUPT isn't defined and your compiler chokes on this,
+ * delete the hash in front of the error (and file a bug report).
+ */
+#ifdef SIGNALS_DONT_INTERRUPT
+  # error pdksh needs interruptable system calls.
+#endif /* SIGNALS_DONT_INTERRUPT */
+
+@
+
+
+2.7
+log
+@stdbool.h
+@
+text
+@d1 1
+a1 1
+/**	$MirBSD: src/bin/ksh/conf-end.h,v 2.6 2004/12/18 19:27:21 tg Exp $ */
+d77 3
+a79 1
+#ifndef HAVE_STDBOOL_H
+@
+
+
+2.6
+log
+@always BRACE_EXPAND
+no binary change
+@
+text
+@d1 1
+a1 1
+/**	$MirBSD: src/bin/ksh/conf-end.h,v 2.5 2004/12/18 19:17:10 tg Exp $ */
+d77 16
+@
+
+
+2.5
+log
+@* unifdef EDIT, VI, EMACS, HISTORY
+* optimise away 0 ||
+no binary changes
+@
+text
+@d1 1
+a1 1
+/**	$MirBSD: src/bin/ksh/conf-end.h,v 2.4 2004/12/18 19:02:29 tg Exp $ */
+a9 3
+/* Include brace-expansion? */
+#define BRACE_EXPAND 1
+
+@
+
+
+2.4
+log
+@optimise away
+@
+text
+@d1 1
+a1 1
+/**	$MirBSD: src/bin/ksh/conf-end.h,v 2.3 2004/12/18 18:58:30 tg Exp $ */
+a6 6
+/* Include emacs editing? */
+#define EMACS 1
+
+/* Include vi editing? */
+#define VI 1
+
+a12 3
+/* Include any history? */
+#define HISTORY 1
+
+a28 18
+#if defined(EMACS) || defined(VI)
+# define	EDIT
+#else
+# undef		EDIT
+#endif
+
+/* Super small configuration-- no editing. */
+#if defined(EDIT) && defined(NOEDIT)
+# undef EDIT
+# undef EMACS
+# undef VI
+#endif
+
+/* Editing implies history */
+#if defined(EDIT) && !defined(HISTORY)
+# define HISTORY
+#endif /* EDIT */
+
+d33 1
+a33 1
+#if defined(HISTORY) && (!defined(COMPLEX_HISTORY) || !defined(HAVE_MMAP) || !defined(HAVE_FLOCK))
+@
+
+
+2.3
+log
+@unifdef: KSH
+no binary change
+@
+text
+@d1 1
+a1 1
+/**	$MirBSD: src/bin/ksh/conf-end.h,v 2.2 2004/12/18 18:39:10 tg Exp $ */
+a24 3
+/* Strict POSIX behaviour? */
+#undef POSIXLY_CORRECT
+
+@
+
+
+2.2
+log
+@make array_index_calc static and don't limit
+array indices (well, to 2^31-1, but that's
+for integer reasons only)
+@
+text
+@d1 1
+a1 1
+/**	$MirBSD: src/bin/ksh/conf-end.h,v 2.1 2004/12/10 18:09:41 tg Exp $ */
+a6 3
+/* Include ksh features? */
+/* #define KSH 1 */
+
+a25 1
+#ifdef KSH
+a26 3
+#else
+#define POSIXLY_CORRECT 1
+#endif
+@
+
+
+2.1
+log
+@bump to mksh R19
+@
+text
+@d1 1
+a1 1
+/**	$MirBSD: src/bin/ksh/conf-end.h,v 1.1.15.1 2004/12/10 18:08:08 tg Exp $ */
+d44 4
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+/**	$MirBSD: src/bin/ksh/conf-end.h,v 1.9 2004/10/28 16:35:01 tg Exp $ */
+@
+
+
+1.1.15.1
+log
+@Import mirbsdksh-HEAD into new CVS
+@
+text
+@@

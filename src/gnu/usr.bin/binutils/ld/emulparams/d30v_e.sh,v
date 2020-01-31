@@ -1,0 +1,75 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.23.03.58;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.03.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@MACHINE=
+SCRIPT_NAME=elfd30v
+OUTPUT_FORMAT="elf32-d30v"
+TEXT_START_ADDR=0x00000000
+DATA_START_ADDR=0x20000000
+EMEM_START_ADDR=0x80000000
+STACK_START_ADDR=0x20008000
+EIT_START_ADDR=0xfffff020
+TEXT_SIZE=64K
+DATA_SIZE=32K
+EMEM_SIZE=8M
+EIT_SIZE=320
+TEXT_MEMORY=emem
+DATA_MEMORY=emem
+BSS_MEMORY=emem
+TEXT_DEF_SECTION=""
+DATA_DEF_SECTION=""
+EMEM_DEF_SECTION="(rwx)"
+ARCH=d30v
+EMBEDDED=t
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

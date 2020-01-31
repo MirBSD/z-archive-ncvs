@@ -1,0 +1,37 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.21.48.42;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@fastmerge
+@
+text
+@# $MirBSD: src/gnu/usr.bin/cvs/doc/paper/Makefile,v 1.2 2004/12/02 12:39:57 tg Exp $
+
+DIR=	papers/cvs-paper
+SRCS=	cvs-paper.ms
+MACROS=	-ms
+
+.if !exists(cvs-paper.ms) && exists(${.CURDIR}/../cvs-paper.ms)
+FILES=	${.CURDIR}/../cvs-paper.ms
+.endif
+
+paper.ps: ${SRCS}
+	${SOELIM} ${SRCS} | ${PIC} | ${TBL} | ${ROFF} >$@@
+
+.include <bsd.doc.mk>
+@

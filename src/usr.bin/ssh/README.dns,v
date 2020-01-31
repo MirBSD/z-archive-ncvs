@@ -1,0 +1,106 @@
+head	2.1;
+access;
+symbols
+	cvs-200501262100:1.1.1.1
+	cvs-200501201820:1.1.1.1
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.39.54;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.29;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@How to verify host keys using OpenSSH and DNS
+---------------------------------------------
+
+OpenSSH contains support for verifying host keys using DNS as described in
+draft-ietf-secsh-dns-05.txt. The document contains very brief instructions
+on how to use this feature. Configuring DNS is out of the scope of this
+document.
+
+
+(1) Server: Generate and publish the DNS RR
+
+To create a DNS resource record (RR) containing a fingerprint of the
+public host key, use the following command:
+
+	ssh-keygen -r hostname -f keyfile -g
+
+where "hostname" is your fully qualified hostname and "keyfile" is the
+file containing the public host key file. If you have multiple keys,
+you should generate one RR for each key.
+
+In the example above, ssh-keygen will print the fingerprint in a
+generic DNS RR format parsable by most modern name server
+implementations. If your nameserver has support for the SSHFP RR
+you can omit the -g flag and ssh-keygen will print a standard SSHFP RR.
+
+To publish the fingerprint using the DNS you must add the generated RR
+to your DNS zone file and sign your zone.
+
+
+(2) Client: Enable ssh to verify host keys using DNS
+
+To enable the ssh client to verify host keys using DNS, you have to
+add the following option to the ssh configuration file
+($HOME/.etc/ssh/config or /etc/ssh/ssh_config):
+
+    VerifyHostKeyDNS yes
+
+Upon connection the client will try to look up the fingerprint RR
+using DNS. If the fingerprint received from the DNS server matches
+the remote host key, the user will be notified.
+
+
+	Jakob Schlyter
+	Wesley Griffin
+
+
+$OpenBSD: README.dns,v 1.2 2003/10/14 19:43:23 jakob Exp $
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d34 1
+a34 1
+($HOME/.ssh/config or /etc/ssh/ssh_config):
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

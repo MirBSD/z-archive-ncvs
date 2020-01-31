@@ -1,0 +1,147 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.41.43;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.18;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.18;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@<?xml version="1.0" encoding="iso-2022-jp"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+
+    <title>Apache $B%P!<%A%c%k%[%9%H@@bL@@=q(B</title>
+    <!-- English revision: 1.8 -->
+  </head>
+
+  <!-- Background white, links blue (unvisited), navy (visited), red (active) -->
+  <body bgcolor="#ffffff" text="#000000" link="#0000ff"
+  vlink="#000080" alink="#ff0000">
+        <div align="CENTER">
+      <img src="../images/sub.gif" alt="[APACHE DOCUMENTATION]" /> 
+
+      <h3>Apache HTTP Server Version 1.3</h3>
+    </div>
+
+
+    <h1 align="center">Apache $B%P!<%A%c%k%[%9%H@@bL@@=q(B</h1>
+
+    <p><cite>$B%P!<%A%c%k%[%9%H(B</cite>$B$H$$$&MQ8l$O!"(B1 $BBf$N%^%7%s>e$G(B
+    $B0l$D0J>e$N%5!<%P$r!"(B
+    $B$=$l$>$lJL$N0c$&%[%9%HL>$G8+$;$k1?MQJ}K!$N$3$H$r;X$7$^$9!#(B
+    $B$?$H$($P!"0l$D$N%5!<%P$r6&M-$9$kJ#?t$N2q<R$,!"(B
+    $B%f!<%6$KM>7W$J%Q%9L>$rMW5a$;$:$K!"(B<samp>www.company1.com</samp>
+    $B$d(B <samp>www.company2.com</samp> $B$H$$$C$?$=$l$>$l$K8GM-$N(B
+    $B%I%a%$%sL>$G%&%'%V%5!<%P$K%"%/%;%9$G$-$k$h$&$K$7$?$$!"(B
+    $B$H$$$C$?$3$H$O$7$P$7$P$"$j$^$9!#(B</p>
+
+    <p>Apache $B$O!"FC$K<j$rF~$l$J$$>uBV$G(B IP $B%Y!<%9$N%P!<%A%c%k%[%9%H(B
+    $B$r%5%]!<%H$7$?:G=i$N%5!<%P$N0l$D$G$9!#%P!<%8%g%s(B 1.1 $B0J9_$N(B Apache
+    $B$G$O!"(BIP $B%Y!<%9$H%M!<%`%Y!<%9$N%P!<%A%c%k%[%9%H$NN>J}$r%5%]!<%H(B
+    $B$7$F$$$^$9!#%M!<%`%Y!<%9$N%P!<%A%c%k%[%9%H$O!"%[%9%H%Y!<%9$"$k$$$OHs(B
+    IP $B%Y!<%9$N%P!<%A%c%k%[%9%H$H8F$P$l$k$3$H$b$"$j$^$9!#(B</p>
+
+    <p>$B0J2<$N%Z!<%8$G$O!"(BApache $B%P!<%8%g%s(B 1.3
+    $B0J9_$G$N%P!<%A%c%k%[%9%H$N%5%]!<%H$K$D$$$F$N>\:Y$r@@bL@@$7$^$9!#(B</p>
+
+    <hr />
+
+    <h2>$B%P!<%A%c%k%[%9%H$N%5%]!<%H(B</h2>
+
+    <ul>
+      <li><a
+     href="name-based.html">$B%M!<%`%Y!<%9$N%P!<%A%c%k%[%9%H(B</a></li>
+
+      <li><a href="ip-based.html">IP $B%Y!<%9$N%P!<%A%c%k%[%9%H(B</a></li>
+
+      <li><a
+     href="examples.html">$B%P!<%A%c%k%[%9%H$N0lHLE*$J@@_DjNc(B</a></li>
+
+      <li><a
+     href="details.html">$B%P!<%A%c%k%[%9%H$N%^%C%A%s%0$K$D$$$F$N>\:Y(B</a></li>
+
+      <li><a href="fd-limits.html">$B%U%!%$%k5-=R;R$N8B3&(B</a></li>
+
+      <li><a
+     href="mass.html">$BBgNL$N%P!<%A%c%k%[%9%H$NF0E*$J@@_Dj(B</a></li>
+    </ul>
+
+    <h2>$B@@_Dj%G%#%l%/%F%#%V(B</h2>
+
+    <ul>
+      <li><a
+      href="../mod/core.html#virtualhost">&lt;VirtualHost&gt;</a></li>
+
+      <li><a
+      href="../mod/core.html#namevirtualhost">NameVirtualHost</a></li>
+
+      <li><a href="../mod/core.html#servername">ServerName</a></li>
+
+      <li><a href="../mod/core.html#serveralias">ServerAlias</a></li>
+
+      <li><a href="../mod/core.html#serverpath">ServerPath</a></li>
+    </ul>
+
+
+    <p>$B%P!<%A%c%k%[%9%H$N@@_Dj$N%G%P%C%0$r$9$k$K$O(B
+    Apache $B$N%3%^%s%I%i%$%s%9%$%C%A(B <code>-S</code> $B$,JXMx$G$9!#(B
+    Apache $B$,@@_Dj%U%!%$%k$r$I$&2r@@O$7$?$+$K$D$$$F=PNO$7$^$9!#(B
+    IP $B%"%I%l%9$H%5!<%PL>$rCm0U?<$/D4$Y$l$P!"(B
+    $B@@_Dj$N4V0c$$$r8+$D$1$k=u$1$K$J$k$G$7$g$&!#(B</p>
+        <hr />
+
+    <h3 align="CENTER">Apache HTTP Server Version 1.3</h3>
+    <a href="./"><img src="../images/index.gif" alt="Index" /></a>
+    <a href="../"><img src="../images/home.gif" alt="Home" /></a>
+
+  </body>
+</html>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

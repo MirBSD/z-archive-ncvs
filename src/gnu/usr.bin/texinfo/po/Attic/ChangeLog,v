@@ -1,0 +1,65 @@
+head	1.2;
+access;
+symbols
+	texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.07.00.21.48;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.06.23.31.18;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.06.23.31.18;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke unneeded files
+@
+text
+@2004-02-05  gettextize  <bug-gnu-gettext@@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.14.1.
+	* ORIG: New file, from gettext-0.14.1.
+	* Rules-quot: Upgrade to gettext-0.14.1.
+
+2003-12-20  gettextize  <bug-gnu-gettext@@gnu.org>
+
+	* ORIG: New file, from gettext-0.13.1.
+
+2003-12-13  gettextize  <bug-gnu-gettext@@gnu.org>
+
+	* ORIG: New file, from gettext-0.13.
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

@@ -1,0 +1,83 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.45.32;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.43;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.43;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@# -*- Makefile -*- for gettext-tools/projects on VMS using the MMS utility
+
+#### Start of system configuration section. ####
+
+#### End of system configuration section. ####
+
+all :
+	write sys$output "Nothing to be done for 'all'."
+
+install : all
+	write sys$output "Nothing else to be done for 'install'."
+
+installdirs :
+	write sys$output "Nothing to be done for 'installdirs'."
+
+uninstall :
+	write sys$output "Nothing to be done for 'uninstall'."
+
+check :
+	write sys$output "Nothing to be done for 'check'."
+
+mostlyclean : clean
+	write sys$output "Nothing else to be done for 'mostlyclean'."
+
+clean :
+	write sys$output "Nothing to be done for 'clean'."
+
+distclean : clean
+	write sys$output "Nothing else to be done for 'distclean'."
+
+maintainer-clean : distclean
+	write sys$output "Nothing else to be done for 'maintainer-clean'."
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

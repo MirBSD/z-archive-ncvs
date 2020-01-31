@@ -1,0 +1,107 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.43.16;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@2004-07-13  Robert Millan  <robertmh@@gnu.org>
+
+	* lib-link.m4 (AC_LIB_LINKFLAGS_BODY): Same /usr/local/include handling
+	on Hurd and on GNU/k*BSD as on Linux.
+	* lib-prefix.m4 (AC_LIB_PREFIX): Likewise.
+
+2004-01-29  Bruno Haible  <bruno@@clisp.org>
+
+	* gettext-0.14.1 released.
+
+2004-01-28  Bruno Haible  <bruno@@clisp.org>
+
+	* gettext-0.14 released.
+
+2003-12-17  Bruno Haible  <bruno@@clisp.org>
+
+	* gettext-0.13.1 released.
+
+2003-11-30  Bruno Haible  <bruno@@clisp.org>
+
+	* gettext-0.13 released.
+
+2003-07-01  Bruno Haible  <bruno@@clisp.org>
+
+	* lib-prefix.m4 (AC_LIB_ARG_WITH): Avoid "duplicated macro" error from
+	aclocal-1.4-p4.
+	Reported by Luke Schierer <lschiere@@rackspace.com> and
+	Michael C. Toren <mct@@toren.net>.
+
+2003-06-17  Paul Eggert  <eggert@@twinsun.com>
+
+	* lib-ld.m4 (AC_LIB_PROG_LD_GNU, AC_LIB_PROG_LD): Don't use egrep, for
+	portability to POSIX 1003.1-2001.  Backported from libtool-1.5.
+
+2003-05-22  Bruno Haible  <bruno@@clisp.org>
+
+	* gettext-0.12.1 released.
+
+2003-05-17  Bruno Haible  <bruno@@clisp.org>
+
+	* gettext-0.12 released.
+
+2003-04-24  Bruno Haible  <bruno@@clisp.org>
+
+	* lib-link.m4 (AC_LIB_RPATH): Don't set sys_lib_search_path_spec and
+	sys_lib_dlsearch_path_spec.
+
+2003-02-16  Bruno Haible  <bruno@@clisp.org>
+
+	Workaround autoconf >= 2.52 breakage.
+	* lib-prefix.m4 (AC_LIB_ARG_WITH): New macro.
+	(AC_LIB_PREFIX): Use it instead of AC_ARG_WITH.
+	* lib-link.m4 (AC_LIB_LINKFLAGS_BODY): Likewise.
+
+
+See ../../gettext-tools/m4/ChangeLog.0 for earlier changes.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

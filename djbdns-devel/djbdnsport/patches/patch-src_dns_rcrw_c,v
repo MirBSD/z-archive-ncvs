@@ -1,0 +1,36 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.12.14.00.12.00;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f635f9066f8a;
+
+
+desc
+@@
+
+
+1.1
+log
+@honour ${SYSCONFDIR} throughout the port
+@
+text
+@$MirOS$
+--- src/dns_rcrw.c.orig	Sun Feb 11 21:11:23 2001
++++ src/dns_rcrw.c	Wed Dec 14 00:11:05 2005
+@@@@ -19,7 +19,7 @@@@ static int init(stralloc *rules)
+   if (!stralloc_copys(rules,"")) return -1;
+ 
+   x = env_get("DNSREWRITEFILE");
+-  if (!x) x = "/etc/dnsrewrite";
++  if (!x) x = _SYSCONFDIR "/dnsrewrite";
+ 
+   i = openreadclose(x,&data,64);
+   if (i == -1) return -1;
+@

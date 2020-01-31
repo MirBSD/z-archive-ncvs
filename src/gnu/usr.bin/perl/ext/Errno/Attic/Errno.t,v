@@ -1,0 +1,110 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.04.32;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.44;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@#!./perl
+
+BEGIN {
+    unless(grep /blib/, @@INC) {
+	chdir 't' if -d 't';
+	if ($^O eq 'MacOS') { 
+	    @@INC = qw(: ::lib ::macos:lib); 
+	} else { 
+	    @@INC = '../lib'; 
+	}
+    }
+}
+
+use Errno;
+
+print "1..5\n";
+
+print "not " unless @@Errno::EXPORT_OK;
+print "ok 1\n";
+die unless @@Errno::EXPORT_OK;
+
+$err = $Errno::EXPORT_OK[0];
+$num = &{"Errno::$err"};
+
+print "not " unless &{"Errno::$err"} == $num;
+print "ok 2\n";
+
+$! = $num;
+print "not " unless $!{$err};
+print "ok 3\n";
+
+$! = 0;
+print "not " if $!{$err};
+print "ok 4\n";
+
+$s1 = join(",",sort keys(%!));
+$s2 = join(",",sort @@Errno::EXPORT_OK);
+
+if($s1 ne $s2) {
+    my @@s1 = keys(%!);
+    my @@s2 = @@Errno::EXPORT_OK;
+    my(%s1,%s2);
+    @@s1{@@s1} = ();
+    @@s2{@@s2} = ();
+    delete @@s2{@@s1};
+    delete @@s1{@@s2};
+    print "# These are only in \%!\n";
+    print "# ",join(" ",map { "'$_'" } keys %s1),"\n";
+    print "# These are only in \@@EXPORT_OK\n";
+    print "# ",join(" ",map { "'$_'" } keys %s2),"\n";
+    print "not ";
+}
+
+print "ok 5\n";
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

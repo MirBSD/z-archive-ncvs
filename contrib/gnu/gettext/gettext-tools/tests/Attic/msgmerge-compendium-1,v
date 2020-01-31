@@ -1,0 +1,104 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.49.13;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.12;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.12;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@#! /bin/sh
+
+# Test compendium option.
+
+tmpfiles=""
+trap 'rm -fr $tmpfiles' 1 2 3 15
+
+tmpfiles="$tmpfiles mm-c-1.in1 mm-c-1.com mm-c-1.pot"
+cat <<EOF > mm-c-1.in1
+#: file.c:123
+msgid "1"
+msgstr "1x"
+EOF
+
+cat <<EOF > mm-c-1.com
+#: file.c:345
+msgid "2"
+msgstr "2x"
+EOF
+
+cat <<EOF > mm-c-1.pot
+#: file.c:123
+msgid "1"
+msgstr ""
+
+#: file.c:345
+msgid "2"
+msgstr ""
+EOF
+
+tmpfiles="$tmpfiles mm-c-1.out"
+: ${MSGMERGE=msgmerge}
+${MSGMERGE} -q -C mm-c-1.com mm-c-1.in1 mm-c-1.pot -o mm-c-1.out
+test $? = 0 || { rm -fr $tmpfiles; exit 1; }
+
+tmpfiles="$tmpfiles mm-c-1.ok"
+cat << EOF > mm-c-1.ok
+#: file.c:123
+msgid "1"
+msgstr "1x"
+
+#: file.c:345
+msgid "2"
+msgstr "2x"
+EOF
+
+: ${DIFF=diff}
+${DIFF} mm-c-1.ok mm-c-1.out
+result=$?
+
+rm -fr $tmpfiles
+
+exit $result
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

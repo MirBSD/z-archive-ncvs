@@ -1,0 +1,83 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.21.49.04;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.53;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.53;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@#include <windows.h>
+
+#define IDR_VERSION1  1
+IDR_VERSION1	VERSIONINFO	MOVEABLE IMPURE LOADONCALL DISCARDABLE
+  FILEVERSION	 1,2,1,0
+  PRODUCTVERSION 1,2,1,0
+  FILEFLAGSMASK	VS_FFI_FILEFLAGSMASK
+  FILEFLAGS	0
+  FILEOS	VOS_DOS_WINDOWS32
+  FILETYPE	VFT_DLL
+  FILESUBTYPE	0	// not used
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904E4"
+    //language ID = U.S. English, char set = Windows, Multilingual
+
+    BEGIN
+      VALUE "FileDescription", "zlib data compression library\0"
+      VALUE "FileVersion",	"1.2.1.0\0"
+      VALUE "InternalName",	"zlib\0"
+      VALUE "OriginalFilename",	"zlib.dll\0"
+      VALUE "ProductName",	"ZLib.DLL\0"
+      VALUE "Comments","DLL support by Alessandro Iacopetti & Gilles Vollant\0"
+      VALUE "LegalCopyright", "(C) 1995-2003 Jean-loup Gailly & Mark Adler\0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x0409, 1252
+  END
+END
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

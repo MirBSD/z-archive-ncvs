@@ -1,0 +1,59 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.40.56;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.52;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@./"sgttyb:"8t"ispeed"8t"ospeed"8t"erase"8t"kill"8t"flags"n8tbbC8tC8tx
++/"tchars:"8t"intrc"8t"quitc"8t"startc"8t"stopc"8t"eofc"8t"brkc"
++/8tC8tC8tC8tC8tC8tC
++/"ltchars:suspc"8t"dsuspc"8t"rprntc"8t"flushc"8t"werasc"8t"lnextc"
++/8tC8tC8tC8tC8tC8tC2+
++/"lmode"16t"ldisc"16t"fflags"nXDX
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

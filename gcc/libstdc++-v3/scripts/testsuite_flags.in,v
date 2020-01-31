@@ -1,0 +1,124 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.26.24;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.26.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+
+#
+# This script computes the various flags needed to run GNU C++ testsuites
+# (compiler specific as well as library specific). 
+#
+# Written by Benjamin Kosnik <bkoz@@redhat.com>
+#            Gabriel Dos Reis <gdr@@codesourcery.com>
+#
+
+# Print a message saying how this script is intended to be invoked
+print_usage() {
+    cat <<EOF
+Usage: 
+    testsuite_flags --install-includes
+		    --build-includes
+		    --build-cxx
+		    --install-cxx
+		    --cxxflags
+		    --cxxpchflags
+EOF
+}
+
+# Establish configure-generated directory structure.
+BUILD_DIR=@@glibcxx_builddir@@
+SRC_DIR=@@glibcxx_srcdir@@
+PREFIX_DIR=@@glibcxx_prefixdir@@
+query=$1
+
+case ${query} in
+    --install-includes)
+      INCLUDES="-I${SRC_DIR}/testsuite"
+      echo ${INCLUDES}
+      ;;
+    --build-includes)
+      INCLUDES="-nostdinc++ @@GLIBCXX_INCLUDES@@ -I${SRC_DIR}/libsupc++ 
+                -I${SRC_DIR}/include/backward -I${SRC_DIR}/testsuite"
+      echo ${INCLUDES}
+      ;;
+    --install-cxx)
+      CXX=${PREFIX_DIR}/bin/g++
+      echo ${CXX}
+      ;;
+    --build-cxx)
+      CXX_build="@@CXX@@"
+      CXX=`echo "$CXX_build" | sed 's,gcc/xgcc ,gcc/g++ ,'`
+      echo ${CXX}
+      ;;
+    --cxxflags)
+      CXXFLAGS_save="-g -O2 -D_GLIBCXX_ASSERT"
+      CXXFLAGS_config='@@SECTION_FLAGS@@ @@SECTION_LDFLAGS@@ -fmessage-length=0 
+ 		      @@EXTRA_CXX_FLAGS@@ -DLOCALEDIR="@@glibcxx_localedir@@" '
+      echo ${CXXFLAGS_save} ${CXXFLAGS_config}
+      ;;
+    --cxxpchflags)
+      PCHFLAGS="@@glibcxx_PCHFLAGS@@"
+      echo ${PCHFLAGS}
+      ;;
+    *)
+      print_usagex
+      ;;
+esac
+
+exit 0
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

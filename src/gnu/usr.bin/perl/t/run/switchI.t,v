@@ -1,0 +1,88 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.40;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.00;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.00;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl -IFoo::Bar -IBla
+
+BEGIN {
+    chdir 't' if -d 't';
+    unshift @@INC, '../lib';
+    require './test.pl';	# for which_perl() etc
+}
+
+BEGIN {
+    plan(4);
+}
+
+my $Is_MacOS = $^O eq 'MacOS';
+my $Is_VMS   = $^O eq 'VMS';
+my $lib;
+
+$lib = $Is_MacOS ? ':Bla:' : 'Bla';
+ok(grep { $_ eq $lib } @@INC);
+SKIP: {
+  skip 'Double colons not allowed in dir spec', 1 if $Is_VMS;
+  $lib = $Is_MacOS ? 'Foo::Bar:' : 'Foo::Bar';
+  ok(grep { $_ eq $lib } @@INC);
+}
+
+$lib = $Is_MacOS ? ':Bla2:' : 'Bla2';
+fresh_perl_is("print grep { \$_ eq '$lib' } \@@INC", $lib,
+	      { switches => ['-IBla2'] }, '-I');
+SKIP: {
+  skip 'Double colons not allowed in dir spec', 1 if $Is_VMS;
+  $lib = $Is_MacOS ? 'Foo::Bar2:' : 'Foo::Bar2';
+  fresh_perl_is("print grep { \$_ eq '$lib' } \@@INC", $lib,
+	        { switches => ['-IFoo::Bar2'] }, '-I with colons');
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

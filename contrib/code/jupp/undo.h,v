@@ -1,0 +1,69 @@
+head     1.1;
+branch   1.1.3;
+access   ;
+symbols  joe-3_1:1.1.3.1 tg:1.1.3;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.19.15.24.17;  author tg;  state Exp;
+branches 1.1.3.1;
+next     ;
+
+1.1.3.1
+date     2004.12.19.15.24.17;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ *	UNDO system
+ *	Copyright
+ *		(C) 1992 Joseph H. Allen
+ *
+ *	This file is part of JOE (Joe's Own Editor)
+ */
+#ifndef _JOE_UNDO_H
+#define _JOE_UNDO_H 1
+
+#include "config.h"
+#include "types.h"
+
+extern int inundo;
+extern int justkilled;
+
+UNDO *undomk PARAMS((B *b));
+void undorm PARAMS((UNDO *undo));
+int uundo PARAMS((BW *bw));
+int uredo PARAMS((BW *bw));
+void umclear PARAMS((void));
+void undomark PARAMS((void));
+void undoins PARAMS((UNDO *undo, P *p, long int size));
+void undodel PARAMS((UNDO *undo, long int where, B *b));
+int uyank PARAMS((BW *bw));
+int uyankpop PARAMS((BW *bw));
+int uyapp PARAMS((BW *bw));
+int unotmod PARAMS((BW *bw));
+int ucopy PARAMS((BW *bw));
+
+#endif
+@
+
+
+1.1.3.1
+log
+@JOE's Own Editor 3.1 (released package)
+@
+text
+@@

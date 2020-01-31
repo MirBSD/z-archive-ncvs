@@ -1,0 +1,112 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.12.50;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.12.50;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@//
+//  XServer.h
+//
+//  Created by Andreas Monitzer on January 6, 2001.
+//
+/* $XFree86: xc/programs/Xserver/hw/darwin/quartz_1.3/XServer.h,v 1.2 2002/06/19 18:12:02 torrey Exp $ */
+
+#import <Cocoa/Cocoa.h>
+
+#include <drivers/event_status_driver.h>	// for NXEvent
+
+@@interface XServer : NSObject {
+    // server state
+    NSRecursiveLock *serverLock;
+    NSPort *signalPort;
+    BOOL serverVisible;
+    BOOL rootlessMenuBarVisible;
+    BOOL appQuitting;
+    UInt32 mouseState;
+    Class windowClass;
+
+    // server event queue
+    BOOL sendServerEvents;
+    int eventWriteFD;
+
+    // Aqua interface
+    IBOutlet NSWindow *modeWindow;
+    IBOutlet NSButton *startupModeButton;
+    IBOutlet NSButton *startFullScreenButton;
+    IBOutlet NSButton *startRootlessButton;
+    IBOutlet NSWindow *helpWindow;
+    IBOutlet NSButton *startupHelpButton;
+    IBOutlet NSPanel *switchWindow;
+}
+
+- (id)init;
+
+- (BOOL)translateEvent:(NSEvent *)anEvent;
+- (BOOL)getNXMouse:(NXEvent*)ev;
+
++ (void)append:(NSString*)value toEnv:(NSString*)name;
+
+- (void)startX;
+- (BOOL)startXClients;
+- (void)run;
+- (void)toggle;
+- (void)show;
+- (void)hide;
+- (void)killServer;
+- (void)readPasteboard;
+- (void)writePasteboard;
+- (void)sendNXEvent:(NXEvent*)ev;
+- (void)sendShowHide:(BOOL)show;
+
+// Aqua interface actions
+- (IBAction)startFullScreen:(id)sender;
+- (IBAction)startRootless:(id)sender;
+- (IBAction)closeHelpAndShow:(id)sender;
+- (IBAction)showAction:(id)sender;
+
+// NSApplication delegate
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender;
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification;
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag;
+- (void)applicationWillResignActive:(NSNotification *)aNotification;
+- (void)applicationWillBecomeActive:(NSNotification *)aNotification;
+
+// NSPort delegate
+- (void)handlePortMessage:(NSPortMessage *)portMessage;
+
+@@end
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

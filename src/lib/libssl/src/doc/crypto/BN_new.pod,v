@@ -1,0 +1,106 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.30.40;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.58;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@=pod
+
+=head1 NAME
+
+BN_new, BN_init, BN_clear, BN_free, BN_clear_free - allocate and free BIGNUMs
+
+=head1 SYNOPSIS
+
+ #include <openssl/bn.h>
+
+ BIGNUM *BN_new(void);
+
+ void BN_init(BIGNUM *);
+
+ void BN_clear(BIGNUM *a);
+
+ void BN_free(BIGNUM *a);
+
+ void BN_clear_free(BIGNUM *a);
+
+=head1 DESCRIPTION
+
+BN_new() allocated and initializes a B<BIGNUM> structure. BN_init()
+initializes an existing uninitialized B<BIGNUM>.
+
+BN_clear() is used to destroy sensitive data such as keys when they
+are no longer needed. It erases the memory used by B<a> and sets it
+to the value 0.
+
+BN_free() frees the components of the B<BIGNUM>, and if it was created
+by BN_new(), also the structure itself. BN_clear_free() additionally
+overwrites the data before the memory is returned to the system.
+
+=head1 RETURN VALUES
+
+BN_new() returns a pointer to the B<BIGNUM>. If the allocation fails,
+it returns B<NULL> and sets an error code that can be obtained
+by L<ERR_get_error(3)|ERR_get_error(3)>.
+
+BN_init(), BN_clear(), BN_free() and BN_clear_free() have no return
+values.
+
+=head1 SEE ALSO
+
+L<bn(3)|bn(3)>, L<ERR_get_error(3)|ERR_get_error(3)>
+
+=head1 HISTORY
+
+BN_new(), BN_clear(), BN_free() and BN_clear_free() are available in
+all versions on SSLeay and OpenSSL.  BN_init() was added in SSLeay
+0.9.1b.
+
+=cut
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

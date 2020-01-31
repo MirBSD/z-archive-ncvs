@@ -1,0 +1,92 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@.\" @;
+
+
+2.1
+date	2005.01.03.16.33.38;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.55;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.55;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@.\"	$OpenBSD: motd.5,v 1.7 2003/06/06 13:28:13 jmc Exp $
+.\"	$NetBSD: motd.5,v 1.2 1994/12/28 18:58:53 glass Exp $
+.\"
+.\" This file is in the public domain.
+.\"
+.Dd December 28, 1994
+.Dt MOTD 5
+.Os
+.Sh NAME
+.Nm motd
+.Nd message of the day
+.Sh DESCRIPTION
+The
+.Pa /etc/motd
+file is normally displayed by
+.Xr login 1
+after a user has logged in but before the shell is run.
+It is generally used for important system-wide announcements.
+During system startup, a line containing the kernel version string
+replaces all lines up to (but not including) the first blank line of
+this file.
+.Pp
+Individual users may suppress the display of this file by creating a file named
+.Pa .hushlogin
+in their home directories.
+.Sh FILES
+.Bl -tag -width /etc/motd -compact
+.It Pa /etc/motd
+.El
+.Sh EXAMPLES
+.Bd -literal
+OpenBSD 3.0 (GENERIC) #5: Sat Jan 26 20:13:07 MST 2002
+
+Make sure you have a .forward file...
+
+4/17	Machine will be down for backups all day Saturday.
+.Ed
+.Sh SEE ALSO
+.Xr login 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

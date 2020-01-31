@@ -1,0 +1,95 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.19;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#define PERL_NO_GET_CONTEXT
+#include "EXTERN.h"
+#include "perl.h"
+#include "XSUB.h"
+
+#ifdef VMS
+#  include <file.h>
+#else
+#if defined(__GNUC__) && defined(__cplusplus) && defined(WIN32)
+#define _NO_OLDNAMES
+#endif 
+#  include <fcntl.h>
+#if defined(__GNUC__) && defined(__cplusplus) && defined(WIN32)
+#undef _NO_OLDNAMES
+#endif 
+#endif
+
+#ifdef I_UNISTD
+#include <unistd.h>
+#endif
+
+/* This comment is a kludge to get metaconfig to see the symbols
+    VAL_O_NONBLOCK
+    VAL_EAGAIN
+    RD_NODATA
+    EOF_NONBLOCK
+   and include the appropriate metaconfig unit
+   so that Configure will test how to turn on non-blocking I/O
+   for a file descriptor.  See config.h for how to use these
+   in your extension. 
+   
+   While I'm at it, I'll have metaconfig look for HAS_POLL too.
+   --AD  October 16, 1995
+*/
+
+#include "const-c.inc"
+
+MODULE = Fcntl		PACKAGE = Fcntl
+
+INCLUDE: const-xs.inc
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

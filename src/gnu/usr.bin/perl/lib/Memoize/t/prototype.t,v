@@ -1,0 +1,91 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.27;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.21;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.21;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/bin/perl
+
+use lib '..';
+use Memoize;
+$EXPECTED_WARNING = '(no warning expected)';
+
+
+print "1..4\n";
+
+sub q1 ($) { $_[0] + 1 }
+sub q2 ()  { time }
+sub q3     { join "--", @@_ }
+
+$SIG{__WARN__} = \&handle_warnings;
+
+$RES = 'ok';
+memoize 'q1';
+print "$RES 1\n";
+
+$RES = 'ok';
+memoize 'q2';
+print "$RES 2\n";
+
+$RES = 'ok';
+memoize 'q3';
+print "$RES 3\n";
+
+# Let's see if the prototype is actually honored
+@@q = (1..5);
+$r = q1(@@q); 
+print (($r == 6) ? '' : 'not ', "ok 4\n");
+
+sub handle_warnings {
+  print $_[0];
+  $RES = 'not ok' unless $_[0] eq $EXPECTED_WARNING;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

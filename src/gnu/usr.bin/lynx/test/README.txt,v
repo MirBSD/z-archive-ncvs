@@ -1,0 +1,46 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.03.00.23.46;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.46;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ISO_LATIN1_test.html and iso8859-1.html are for testing the translation of
+HTML entities with the character sets that are selectable via the 'o'ptions
+menu.
+
+TestComment.html and tabtest.html are for testing comment and TAB handling.
+
+Any other files in this directory do not represent a test suite.  They
+are used during program testing to track down odd and mysterious bugs.
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

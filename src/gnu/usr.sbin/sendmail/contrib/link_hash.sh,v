@@ -1,0 +1,91 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.09;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.14;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/bin/sh
+##
+## Copyright (c) 2000 Sendmail, Inc. and its suppliers.
+##       All rights reserved.
+##
+## $Sendmail: link_hash.sh,v 1.2 2000/04/25 00:12:28 ca Exp $
+##
+#
+# ln a certificate to its hash
+#
+SSL=openssl
+if test $# -ge 1
+then
+  for i in $@@
+  do
+  C=$i.pem
+  test -f $C || C=$i
+  if test -f $C
+  then
+    H=`$SSL x509 -noout -hash < $C`.0
+    if test -h $H -o -f $H
+    then
+      echo link $H to $C exists
+    else
+      ln -s $C $H
+    fi
+  else
+    echo "$0: cannot open $C"
+    exit 2
+  fi
+  done
+else
+  echo "$0: missing name"
+  exit 1
+fi
+exit 0
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,109 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.37.29;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.33.32;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.33.32;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$MirBSD: src/sys/lib/libkern/Makefile.inc,v 1.2 2004/12/11 16:50:15 tg Exp $
+#	$OpenBSD: Makefile.inc,v 1.11 2000/06/29 16:28:29 mickey Exp $
+#	$NetBSD: Makefile.inc,v 1.22 1996/09/30 15:54:35 ws Exp $
+#
+#	NOTE: $S must correspond to the top of the 'sys' tree
+
+KERNDIR=	$S/lib/libkern
+
+KERNDST?=	${.OBJDIR}/lib/kern
+KERN_AS?=	obj
+
+.if (${KERN_AS} == "library")
+KERNLIB=	${KERNDST}/libkern.a
+.else
+KERNLIB=	${KERNDST}/libkern.o
+.endif
+
+KERNMAKE= \
+	cd ${KERNDIR} && MAKEOBJDIR=${KERNDST} ${MAKE} \
+	    CC='${CC}' CFLAGS='${CFLAGS}' AS='${AS}' AFLAGS='${AFLAGS}' \
+	    LD='${LD}' STRIP='${STRIP}' CPP='${CPP}' STRIP='${STRIP}' \
+	    AR='${AR}' NM='${NM}' LORDER='${LORDER}' XMACHINE='${MACHINE}' \
+	    XMACHINE_ARCH='${MACHINE_ARCH}' KERNDIR=${KERNDIR} \
+	    KERNCPPFLAGS='${CPPFLAGS:S@@^-I.@@-I../../.@@g}'
+
+${KERNLIB}:		.NOTMAIN __always_make_kernlib
+	@@echo making sure the kern library is up to date...
+.if (${KERN_AS} == "library")
+	@@${KERNMAKE} libkern.a
+.else
+	@@${KERNMAKE} libkern.o
+.endif
+
+clean::			.NOTMAIN __always_make_kernlib
+	@@echo cleaning the kern library objects
+	@@${KERNMAKE} clean
+
+depend:: 		.NOTMAIN __always_make_kernlib
+	@@echo depending the kern library objects
+	@@${KERNMAKE} depend
+
+__always_make_kernlib:	.NOTMAIN
+	-mkdir -p ${KERNDST}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a13 1
+KERNLIB_PROF=	${KERNDST}/libkern_p.a
+a15 1
+KERNLIB_PROF=	${KERNDST}/libkern.po
+a33 8
+${KERNLIB_PROF}:	.NOTMAIN __always_make_kernlib
+	@@echo making sure the profiled kern library is up to date...
+.if (${KERN_AS} == "library")
+	@@${KERNMAKE} libkern_p.a
+.else
+	@@${KERNMAKE} libkern.po
+.endif
+
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

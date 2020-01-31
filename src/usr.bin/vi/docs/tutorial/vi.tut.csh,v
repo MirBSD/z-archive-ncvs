@@ -1,0 +1,81 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.40.46;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.51;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.51;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/bin/csh -f
+#	$OpenBSD: vi.tut.csh,v 1.2 2001/01/29 01:58:40 niklas Exp $
+
+#
+# This makes the user's EXINIT variable set to the 'correct' things.
+# I don't know what will happen if they also have a .exrc file!
+#
+# XXX
+# Make sure that user is using a 24 line window!!!
+#
+if ($1 != "beginner" && $1 != "advanced") then
+	echo Usage: $0 beginner or $0 advanced
+	exit
+endif
+
+if ($?EXINIT) then
+	set oexinit="$EXINIT"
+	setenv EXINIT 'se ts=4 wm=8 sw=4'
+endif
+
+vi vi.{$1}
+
+onintr:
+	if ($?oexinit) then
+		setenv EXINIT "$oexinit"
+endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

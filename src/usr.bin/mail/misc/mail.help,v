@@ -1,0 +1,90 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.39.26;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.16;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.16;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@Mail Command			Description
+-------------------------	--------------------------------------------
+t [message list]		type message(s).
+n				goto and type next message.
+e [message list]		edit message(s).
+f [message list]		give head lines of messages.
+d [message list]		delete message(s).
+s [message list] <file>		append message(s) to file.
+u [message list]		undelete message(s).
+R [message list]		reply to message sender(s).
+r [message list]		reply to message sender(s) and all recipients.
+p [message list]		print message list (pipe to lpr).
+pre [message list]		make messages go back to /var/mail.
+m <recipient list>		mail to specific recipient(s).
+q				quit, saving unresolved messages in mbox.
+x				quit, do not remove system mailbox.
+h				print out active message headers.
+!				shell escape.
+| [msglist] command		pipe message(s) to shell command.
+pi [msglist] command		pipe message(s) to shell command.
+cd [directory]			chdir to directory or home if none given
+fi <file>			switch to file (%=system inbox, %user=user's
+				system inbox).  + searches in your folder
+				directory for the file.
+set variable[=value]		set Mail variable.
+
+A [message list] consists of integers, ranges of same, :status, /subject, or
+user names separated by spaces.  If omitted, Mail uses the current message.
+The pipe command doesn't accept user names or subject message list, since
+that might conflict with the command string.
+
+A <recipient list> consists of recipient addresses or aliases separated by
+spaces.  Aliases are defined in .mailrc in your home directory.
+
+<file> is a full or relative pathname, +folder, % (system inbox), %user
+(specified user's system inbox), # (previous file), & (mbox file), or an
+expression understood by ${SHELL:-/bin/sh} -c 'echo ...'.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,64 @@
+head	1.2;
+access;
+symbols
+	cvs-200501070130:1.1.5.1 TNF:1.1.5;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.07.01.45.30;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.07.01.32.13;	author tg;	state Exp;
+branches
+	1.1.5.1;
+next	;
+
+1.1.5.1
+date	2005.01.07.01.32.13;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge and style
+@
+text
+@# $MirBSD: src/lib/csu/sparc_elf/Makefile,v 1.6 2004/11/13 02:24:42 tg Exp $
+# $NetBSD: Makefile,v 1.5 2001/07/17 18:25:12 mrg Exp $
+
+# Uncomment the next line to enable the new .init fallthru
+CPPFLAGS+=	-I- -I${.CURDIR}
+
+.include "${.CURDIR}/../common_elf/Makefile.inc"
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$NetBSD: Makefile,v 1.5 2001/07/17 18:25:12 mrg Exp $
+d4 1
+a4 1
+#Uncomment the next line to enable the new .init fallthru
+@
+
+
+1.1.5.1
+log
+@tnf's csu
+@
+text
+@@

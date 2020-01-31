@@ -1,0 +1,76 @@
+head     1.1;
+branch   1.1.3;
+access   ;
+symbols  joe-3_1:1.1.3.1 tg:1.1.3;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.19.15.24.17;  author tg;  state Exp;
+branches 1.1.3.1;
+next     ;
+
+1.1.3.1
+date     2004.12.19.15.24.17;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ *	Menu selection window
+ *	Copyright
+ *		(C) 1992 Joseph H. Allen
+ *
+ *	This file is part of JOE (Joe's Own Editor)
+ */
+#ifndef _JOE_MENU_H
+#define _JOE_MENU_H 1
+
+#include "config.h"
+#include "types.h"
+
+/* Create a menu */
+/* FIXME: ??? ---> */
+MENU *mkmenu PARAMS((W *w, unsigned char **s, int (*func) (/* ??? */), int (*abrt) (/* ??? */), int (*backs) (/* ??? */), int cursor, void *object, int *notify));
+
+/* Menu user functions */
+
+int umuparw PARAMS((MENU *m));
+int umdnarw PARAMS((MENU *m));
+int umpgup PARAMS((MENU *m));
+int umpgdn PARAMS((MENU *m));
+int umltarw PARAMS((MENU *m));
+int umrtarw PARAMS((MENU *m));
+int umtab PARAMS((MENU *m));
+int umbof PARAMS((MENU *m));
+int umeof PARAMS((MENU *m));
+int umbol PARAMS((MENU *m));
+int umeol PARAMS((MENU *m));
+int umbacks PARAMS((MENU *m));
+
+void ldmenu PARAMS((MENU *m, unsigned char **s, int cursor));
+
+unsigned char *mcomplete PARAMS((MENU *m));
+unsigned char *find_longest PARAMS((unsigned char **lst));
+
+#endif
+@
+
+
+1.1.3.1
+log
+@JOE's Own Editor 3.1 (released package)
+@
+text
+@@

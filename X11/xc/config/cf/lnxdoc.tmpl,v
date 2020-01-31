@@ -1,0 +1,113 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.03.18;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.03.18;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/config/cf/lnxdoc.tmpl,v 3.12 2003/04/23 15:43:29 tsi Exp $
+XCOMM
+
+#ifndef HasSgmlFmt
+#define HasSgmlFmt	  NO
+#endif
+
+#ifndef HasLinuxDoc
+#define HasLinuxDoc	  NO
+#endif
+
+#ifndef DoSgmlDocs
+#define DoSgmlDocs	  (HasLinuxDoc || HasSgmlFmt)
+#endif
+
+#ifndef XFree86IdentFix
+#define XFree86IdentFix	  sed -e '/\$$\XFree86:/s/....\/..\/.. ..:..:.. *//' \
+			      -e '/\$$\XFree86:/s/\$$/Generated from /'
+#endif
+
+#ifndef HasLatex
+#define HasLatex	  NO
+#endif
+
+#ifndef SgmlFmtCmd
+#define SgmlFmtCmd	  sgmlfmt
+#endif
+
+#ifndef HasDvips
+#define HasDvips	  NO
+#endif
+
+#ifndef DvipsOptions
+#define DvipsOptions	  /**/
+#endif
+
+#ifndef DvipsCmd
+#define DvipsCmd	  dvips
+#endif
+
+#ifndef BuildLinuxDocText
+#define BuildLinuxDocText DoSgmlDocs
+#endif
+
+#ifndef BuildLinuxDocHtml
+#define BuildLinuxDocHtml DoSgmlDocs
+#endif
+
+#ifndef BuildLinuxDocPS
+#define BuildLinuxDocPS	  DoSgmlDocs
+#endif
+
+#ifndef BuildSgmlDocs
+#define BuildSgmlDocs	  DoSgmlDocs
+#endif
+
+#ifndef ReadmeFile
+#define ReadmeFile(base)  README.base     
+#endif
+
+
+  XFREE86IDENTFIX = XFree86IdentFix
+            DVIPS = DvipsCmd
+     DVIPSOPTIONS = DvipsOptions
+       SGMLFMTCMD = SgmlFmtCmd
+
+XCOMM Some extra things to clean
+
+#ifdef ExtraFilesToClean
+#undef ExtraFilesToClean
+#endif
+#define ExtraFilesToClean *.aux *.dvi *.log *.tex *.toc *.html *.ps *.latin1
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

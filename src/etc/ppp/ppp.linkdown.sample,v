@@ -1,0 +1,93 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.11;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.07;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.07;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $Id: ppp.linkdown.sample,v 1.4 2004/09/18 13:07:30 tg Exp $
+
+MYADDR:
+ !bg /bin/ksh /etc/ppp/ip-down tun0 vtty sync MYADDR HISADDR
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 17
+#########################################################################
+#
+#          Example of ppp.linkdown file
+#
+#  This file is checked when ppp closes a connection.
+#  ppp searches the labels in this file as follows:
+#
+#  1) The label that matches the IP number assigned to our side.
+#
+#  2) The label specified on the command line to ppp.
+#
+#  3) If no label has been found, use MYADDR if it exists.
+#
+#
+# $OpenBSD: ppp.linkdown.sample,v 1.5 2002/06/09 06:15:15 todd Exp $
+#
+#########################################################################
+a2 6
+# We don't really need to do much here.  If we have notified a DNS
+# of our temporary IP number, we may want to ``un-notify'' them.
+#
+# If you're into sound effects when the link goes down, you can run
+# ``auplay'' (assuming NAS is installed and configured).
+#
+d4 1
+a4 9
+ !bg /usr/X11R6/bin/auplay /etc/ppp/linkdown.au
+
+# If you're running ``ppp -auto -alias dynamic-alias-auto'', and are
+# assigned a dynamic IP number by the peer, this may be worth while
+# to keep the interface aliases to a minimum (see ``enable iface-alias''
+# in the man page):
+#
+dynamic-alias-auto:
+ iface clear
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

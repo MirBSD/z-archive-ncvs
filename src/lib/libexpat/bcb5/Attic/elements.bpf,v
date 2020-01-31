@@ -1,0 +1,55 @@
+head	1.2;
+access;
+symbols
+	expat-1_95_8:1.1.16.1 expat:1.1.16;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.31.17;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.28.13;	author tg;	state Exp;
+branches
+	1.1.16.1;
+next	;
+
+1.1.16.1
+date	2005.01.08.20.28.13;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge
+@
+text
+@USEUNIT("..\examples\elements.c");
+USELIB("Release\libexpats_mtd.lib");
+//---------------------------------------------------------------------------
+main
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.16.1
+log
+@libexpat 1.95.8
+@
+text
+@@

@@ -1,0 +1,96 @@
+head     1.1;
+branch   1.1.16;
+access   ;
+symbols  expat-1_95_8:1.1.16.1 expat:1.1.16;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.20.28.14;  author tg;  state Exp;
+branches 1.1.16.1;
+next     ;
+
+1.1.16.1
+date     2005.01.08.20.28.14;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Copyright (c) 1998, 1999 Thai Open Source Software Center Ltd
+   See the file COPYING for copying permission.
+*/
+
+#include <sys/types.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <string.h>
+#include <stdio.h>
+#include <unistd.h>
+
+#ifndef MAP_FILE
+#define MAP_FILE 0
+#endif
+
+#include "filemap.h"
+
+int
+filemap(const char *name,
+        void (*processor)(const void *, size_t, const char *, void *arg),
+        void *arg)
+{
+  int fd;
+  size_t nbytes;
+  struct stat sb;
+  void *p;
+
+  fd = open(name, O_RDONLY);
+  if (fd < 0) {
+    perror(name);
+    return 0;
+  }
+  if (fstat(fd, &sb) < 0) {
+    perror(name);
+    close(fd);
+    return 0;
+  }
+  if (!S_ISREG(sb.st_mode)) {
+    close(fd);
+    fprintf(stderr, "%s: not a regular file\n", name);
+    return 0;
+  }
+
+  nbytes = sb.st_size;
+  p = (void *)mmap((caddr_t)0, (size_t)nbytes, PROT_READ,
+                   MAP_FILE|MAP_PRIVATE, fd, (off_t)0);
+  if (p == (void *)-1) {
+    perror(name);
+    close(fd);
+    return 0;
+  }
+  processor(p, nbytes, name, arg);
+  munmap((caddr_t)p, nbytes);
+  close(fd);
+  return 1;
+}
+@
+
+
+1.1.16.1
+log
+@libexpat 1.95.8
+@
+text
+@@

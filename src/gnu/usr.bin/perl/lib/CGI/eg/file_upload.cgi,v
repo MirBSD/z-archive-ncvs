@@ -1,0 +1,126 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.03;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.07;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.07;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/local/bin/perl -w
+
+use strict 'refs';
+use lib '..';
+use CGI qw(:standard);
+use CGI::Carp qw/fatalsToBrowser/;
+
+print header();
+print start_html("File Upload Example");
+print strong("Version "),$CGI::VERSION,p;
+
+print h1("File Upload Example"),
+    'This example demonstrates how to prompt the remote user to
+    select a remote file for uploading. ',
+    strong("This feature only works with Netscape 2.0 or greater, or IE 4.0 or greater."),
+    p,
+    'Select the ',cite('browser'),' button to choose a text file
+    to upload.  When you press the submit button, this script
+    will count the number of lines, words, and characters in
+    the file.';
+
+my @@types = ('count lines','count words','count characters');
+
+# Start a multipart form.
+print start_multipart_form(),
+    "Enter the file to process:",
+    filefield('filename','',45),
+    br,
+    checkbox_group('count',\@@types,\@@types),
+    p,
+    reset,submit('submit','Process File'),
+    endform;
+
+# Process the form if there is a file name entered
+if (my $file = param('filename')) {
+    my %stats;
+    my $tmpfile=tmpFileName($file);
+    my $mimetype = uploadInfo($file)->{'Content-Type'} || '';
+    print hr(),
+          h2($file),
+          h3($tmpfile),
+          h4("MIME Type:",em($mimetype));
+
+    my($lines,$words,$characters,@@words) = (0,0,0,0);
+    while (<$file>) {
+	$lines++;
+	$words += @@words=split(/\s+/);
+	$characters += length($_);
+    }
+    close $file;
+    grep($stats{$_}++,param('count'));
+    if (%stats) {
+	print strong("Lines: "),$lines,br if $stats{'count lines'};
+	print strong("Words: "),$words,br if $stats{'count words'};
+	print strong("Characters: "),$characters,br if $stats{'count characters'};
+    } else {
+	print strong("No statistics selected.");
+    }
+}
+
+# print cite("URL parameters: "),url_param();
+
+print hr(),
+    a({href=>"../cgi_docs.html"},"CGI documentation"),
+    hr,
+    address(
+	    a({href=>'/~lstein'},"Lincoln D. Stein")),
+    br,
+    'Last modified July 17, 1996',
+    end_html;
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,115 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.29.52;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.44;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.44;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <openssl/objects.h>
+#include <openssl/comp.h>
+
+static int rle_compress_block(COMP_CTX *ctx, unsigned char *out,
+	unsigned int olen, unsigned char *in, unsigned int ilen);
+static int rle_expand_block(COMP_CTX *ctx, unsigned char *out,
+	unsigned int olen, unsigned char *in, unsigned int ilen);
+
+static COMP_METHOD rle_method={
+	NID_rle_compression,
+	LN_rle_compression,
+	NULL,
+	NULL,
+	rle_compress_block,
+	rle_expand_block,
+	NULL,
+	NULL,
+	};
+
+COMP_METHOD *COMP_rle(void)
+	{
+	return(&rle_method);
+	}
+
+static int rle_compress_block(COMP_CTX *ctx, unsigned char *out,
+	     unsigned int olen, unsigned char *in, unsigned int ilen)
+	{
+	/* int i; */
+
+	if (olen < (ilen+1))
+		{
+		/* ZZZZZZZZZZZZZZZZZZZZZZ */
+		return(-1);
+		}
+
+	*(out++)=0;
+	memcpy(out,in,ilen);
+	return(ilen+1);
+	}
+
+static int rle_expand_block(COMP_CTX *ctx, unsigned char *out,
+	     unsigned int olen, unsigned char *in, unsigned int ilen)
+	{
+	int i;
+
+	if (olen < (ilen-1))
+		{
+		/* ZZZZZZZZZZZZZZZZZZZZZZ */
+		return(-1);
+		}
+
+	i= *(in++);
+	if (i == 0)
+		{
+		memcpy(out,in,ilen-1);
+		}
+	return(ilen-1);
+	}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

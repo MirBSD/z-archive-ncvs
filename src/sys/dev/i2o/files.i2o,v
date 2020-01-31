@@ -1,0 +1,67 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.35.22;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.43;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.43;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: files.i2o,v 1.6 2001/07/04 04:36:43 mickey Exp $
+
+device	iop {tid = -1}: scsi
+file	dev/i2o/iop.c			iop & iop_pci	needs-flag
+
+# SCSI peripheral
+device	iopsp: scsi
+attach	iopsp at iop
+file	dev/i2o/iopsp.c			iopsp
+
+# Random block storage
+device	ioprbs: scsi
+attach	ioprbs at iop
+file	dev/i2o/ioprbs.c		ioprbs
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

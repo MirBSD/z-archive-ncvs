@@ -1,0 +1,109 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.27;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.21;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.21;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@use Test::More tests => 7;
+
+BEGIN {
+    if ($ENV{PERL_CORE}) {
+        chdir('t') if -d 't';
+        @@INC = qw(../lib);
+    }
+}
+
+BEGIN { use_ok('NEXT') };
+my $order = 0;
+
+package A;
+@@ISA = qw/B C D/;
+
+sub test { ::ok(++$order==1,"test A"); $_[0]->NEXT::UNSEEN::test; 1}
+
+package B;
+@@ISA = qw/D C/;
+sub test { ::ok(++$order==2,"test B"); $_[0]->NEXT::UNSEEN::test; 1}
+
+package C;
+@@ISA = qw/D/;
+sub test { ::ok(++$order==4,"test C"); $_[0]->NEXT::UNSEEN::test; 1}
+
+package D;
+
+sub test { ::ok(++$order==3,"test D"); $_[0]->NEXT::UNSEEN::test; 1}
+
+package main;
+
+my $foo = {};
+
+bless($foo,"A");
+
+eval{ $foo->test }
+	? pass("Correctly survives after C")
+	: fail("Shouldn't die on missing ancestor");
+
+package Diamond::Base;
+my $seen;
+sub test {
+	$seen++ ? ::fail("Can't visit inherited test twice")
+		: ::pass("First diamond is okay");
+	shift->NEXT::UNSEEN::test;
+}
+
+package Diamond::Left;  @@ISA = qw[Diamond::Base];
+package Diamond::Right; @@ISA = qw[Diamond::Base];
+package Diamond::Top;   @@ISA = qw[Diamond::Left Diamond::Right];
+
+package main;
+
+Diamond::Top->test;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

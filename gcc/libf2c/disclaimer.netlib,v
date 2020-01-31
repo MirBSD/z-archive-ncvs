@@ -1,0 +1,75 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.24.52;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@f2c is a Fortran to C converter under development since 1990 by
+	David M. Gay (then AT&T Bell Labs, now Bell Labs, Lucent Technologies)
+	Stu Feldman (then at Bellcore, now at IBM)
+	Mark Maimone (Carnegie-Mellon University)
+	Norm Schryer (then AT&T Bell Labs, now AT&T Labs)
+Please send bug reports to dmg@@research.bell-labs.com .
+
+AT&T, Bellcore and Lucent disclaim all warranties with regard to this
+software, including all implied warranties of merchantability
+and fitness.  In no event shall AT&T, Bellcore or Lucent be liable for
+any special, indirect or consequential damages or any damages
+whatsoever resulting from loss of use, data or profits, whether
+in an action of contract, negligence or other tortious action,
+arising out of or in connection with the use or performance of
+this software.
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

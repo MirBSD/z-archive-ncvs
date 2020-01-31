@@ -1,0 +1,99 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.13.21.56.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.02.41;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.41;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@start merging
+* without generated files
+* docs are going to be built
+* untested ("minimal change" concept)
+* with assignment back to the FSF
+@
+text
+@dnl $MirBSD: src/gnu/usr.bin/binutils/src/opcodes/acinclude.m4,v 1.4 2004/09/16 22:28:20 tg Exp $
+
+sinclude(../bfd/acinclude.m4)
+
+dnl sinclude(../libtool.m4) already included in bfd/acinclude.m4
+dnl The lines below arrange for aclocal not to bring libtool.m4
+dnl AM_PROG_LIBTOOL into aclocal.m4, while still arranging for automake
+dnl to add a definition of LIBTOOL to Makefile.in.
+ifelse(yes,no,[
+AC_DEFUN([AM_PROG_LIBTOOL],)
+AC_DEFUN([AM_DISABLE_SHARED],)
+AC_SUBST(LIBTOOL)
+])
+
+dnl AM_INSTALL_LIBBFD already included in bfd/acinclude.m4
+ifelse(yes,no,[
+AC_DEFUN([AM_INSTALL_LIBBFD],)
+AC_SUBST(bfdlibdir)
+AC_SUBST(bfdincludedir)
+])
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a14 6
+dnl sinclude(../gettext.m4) already included in bfd/acinclude.m4
+ifelse(yes,no,[
+AC_DEFUN([CY_WITH_NLS],)
+AC_SUBST(INTLLIBS)
+])
+
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

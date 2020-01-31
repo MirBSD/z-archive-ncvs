@@ -1,0 +1,92 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@:: @;
+
+
+2.1
+date	2005.01.03.16.23.37;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@@@echo off
+set CONFIG=
+set PATH_SEPARATOR=;
+set PATH_EXPAND=y
+sh -c 'if test $PATH_SEPARATOR = ";"; then exit 1; fi'
+if ERRORLEVEL 1 goto path_sep_ok
+echo Error:
+echo Make sure the environment variable PATH_SEPARATOR=; while building perl!
+echo Please check your DJGPP.ENV!
+goto end
+
+:path_sep_ok
+sh -c 'if test $PATH_EXPAND = "Y" -o $PATH_EXPAND = "y"; then exit 1; fi'
+if ERRORLEVEL 1 goto path_exp_ok
+echo Error:
+echo Make sure the environment variable PATH_EXPAND=Y while building perl!
+echo Please check your DJGPP.ENV!
+goto end
+
+:path_exp_ok
+sh -c '$SHELL -c "exit 128"'
+if ERRORLEVEL 128 goto shell_ok
+
+echo Error:
+echo The SHELL environment variable must be set to the full path of your sh.exe!
+goto end
+
+:shell_ok
+sh -c 'if test ! -d /tmp; then mkdir /tmp; fi'
+cp djgpp.[hc] config.over ..
+cd ..
+echo Running sed...
+sh djgpp/djgppsed.sh
+
+echo Running Configure...
+sh Configure %1 %2 %3 %4 %5 %6 %7 %8 %9
+:end
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

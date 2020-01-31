@@ -1,0 +1,62 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+# Test encoded accent info output.
+
+unset TEXINFO_OUTPUT
+: ${srcdir=.}
+input=`basename $0`.txi
+output=`basename $0`.info
+
+# we expect two invalid encoded characters:
+# accent-text.txi:45: warning: invalid encoded character `#156'.
+# accent-text.txi:45: warning: invalid encoded character `#140'.
+# These are oe and OE, and they are not supported in Latin 1.
+../makeinfo --enable-encoding --no-split -I$srcdir $srcdir/$input 2>/dev/null
+exit_status=$?
+if test $exit_status = 0; then
+  grep 'ì' $output >/dev/null \
+  && grep 'ï' $output >/dev/null \
+  && grep '/L' $output >/dev/null
+  exit_status=$?
+fi
+
+rm -f $output
+
+exit $exit_status
+@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

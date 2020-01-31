@@ -1,0 +1,70 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.57;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@<small class="rcsid">$MirBSD: www/content/c3R5bGU_.inc,v 1.1 2004/12/13 00:13:24 tg Exp $</small>
+<h1>Stylesheet Selector</h1>
+<p>The MirOS project website has a number of CSS style sheets to
+ offer in order to improve usability and readability on web browsers
+ other than <a href="http://lynx.isc.org/">Lynx</a>, our preferred
+ web browser. Please choose one of the following style sheets;
+ this selection needs cookies enabled in order to work.</p>
+<form method="get" action="/setcss.php"><p>
+ <input type="radio" name="sheet" value="XXXX" /> Default<br />
+ <input type="radio" name="sheet" value="konq" /> Old (better in Konqueror, worse in Bloatzilla)<br />
+ <input type="radio" name="sheet" value="root" /> Admin (shows additional info)<br />
+ <input type="radio" name="sheet" value="bare" /> bare (no colours)<br />
+ <input type="radio" name="sheet" value="mini" /> mini (no fonts either)<br />
+ <br /><input type="submit" value="OK" />
+</p></form>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+<small class="rcsid">$MirBSD: www/content/c3R5bGU_.inc,v 1.5 2004/05/04 19:56:09 tg Exp $</small>
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

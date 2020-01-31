@@ -1,0 +1,109 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.04.17.24.52;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include "f2c.h"
+#undef abs
+#include <stdlib.h>
+#include <string.h>
+extern char *F77_aloc (ftnlen, char *);
+
+/*
+ * getenv - f77 subroutine to return environment variables
+ *
+ * called by:
+ *	call getenv (ENV_NAME, char_var)
+ * where:
+ *	ENV_NAME is the name of an environment variable
+ *	char_var is a character variable which will receive
+ *		the current value of ENV_NAME, or all blanks
+ *		if ENV_NAME is not defined
+ */
+
+void
+G77_getenv_0 (char *fname, char *value, ftnlen flen, ftnlen vlen)
+{
+  char buf[256], *ep, *fp;
+  integer i;
+
+  if (flen <= 0)
+    goto add_blanks;
+  for (i = 0; i < (integer) sizeof (buf); i++)
+    {
+      if (i == flen || (buf[i] = fname[i]) == ' ')
+	{
+	  buf[i] = 0;
+	  ep = getenv (buf);
+	  goto have_ep;
+	}
+    }
+  while (i < flen && fname[i] != ' ')
+    i++;
+  strncpy (fp = F77_aloc (i + 1, "getenv_"), fname, (int) i);
+  fp[i] = 0;
+  ep = getenv (fp);
+  free (fp);
+have_ep:
+  if (ep)
+    while (*ep && vlen-- > 0)
+      *value++ = *ep++;
+add_blanks:
+  while (vlen-- > 0)
+    *value++ = ' ';
+}
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

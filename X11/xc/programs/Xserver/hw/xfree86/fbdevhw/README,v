@@ -1,0 +1,56 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.15.07;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.15.07;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@
+This is a submodule to access linux framebuffer devices.
+It is supported to work as helper module (like vgahw)
+for the chipset drivers.  There are functions for
+saving/restoring/setting video modes, set palette entries,
+and a few more helper functions.  Some of them can be
+hooked directly into ScrnInfoRec.
+
+In ../drivers/fbdev is a "chipset" driver.  It is a simple,
+non-accelerated and hardware-independent driver which works
+on top of this fbdevhw submodule.
+
+  Gerd
+
+--
+Gerd Knorr <kraxel@@goldbach.in-berlin.de>
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

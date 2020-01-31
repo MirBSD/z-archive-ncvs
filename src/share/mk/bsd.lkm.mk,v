@@ -1,0 +1,281 @@
+head	2.2;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.08.22.23.19;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.33.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.04;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@add trailing slashes to install(1) calls
+@
+text
+@# $MirBSD: src/share/mk/bsd.lkm.mk,v 2.1 2005/01/03 16:33:53 tg Exp $
+# $OpenBSD: bsd.lkm.mk,v 1.19 2003/05/20 22:49:13 millert Exp $
+
+.if exists(${.CURDIR}/../Makefile.inc)
+.  include "${.CURDIR}/../Makefile.inc"
+.endif
+
+.ifndef	BSD_OWN_MK
+.  include <bsd.own.mk>
+.endif
+
+.SUFFIXES: .out .o .c .cc .C .y .l .s .8 .7 .6 .5 .4 .3 .2 .1 .0
+
+CFLAGS+=	${COPTS} -D_KERNEL -D_LKM \
+		-I${BSDSRCDIR}/sys -I${BSDSRCDIR}/sys/arch
+.if ${WARNINGS:L} == "yes"
+CFLAGS+=	${CDIAGFLAGS}
+.endif
+
+LDFLAGS+=	-r
+.if defined(LKM) && !empty(LKM)
+SRCS?=		${LKM}.c
+.  if !empty(SRCS:N*.h:N*.sh)
+OBJS+=		${SRCS:N*.h:N*.sh:R:S/$/.o/g}
+LOBJS+=		${LSRCS:.c=.ln} ${SRCS:M*.c:.c=.ln}
+.  endif
+COMBINED?=	combined.o
+.  ifndef POSTINSTALL
+POSTINSTALL=	${LKM}install
+.  endif
+
+.  if defined(OBJS) && !empty(OBJS)
+${COMBINED}: ${OBJS} ${DPADD}
+	${LD} ${LDFLAGS} -o ${.TARGET} ${OBJS} ${LDADD}
+.  endif
+
+.  ifndef MAN
+MAN=		${LKM}.1
+.  endif
+.endif	# def/not empty LKM
+
+.MAIN: all
+all: ${COMBINED} _SUBDIRUSE
+
+.if !target(clean)
+clean: _SUBDIRUSE
+	rm -f a.out [Ee]rrs mklog core *.core \
+	    ${LKM} ${COMBINED} ${OBJS} ${LOBJS} ${CLEANFILES}
+.endif
+
+cleandir: _SUBDIRUSE clean
+
+.if !target(install)
+.  if !target(beforeinstall)
+beforeinstall:
+.  endif
+.  if !target(afterinstall)
+afterinstall:
+.  endif
+
+.  if !target(realinstall)
+realinstall:
+.    if defined(LKM) && !empty(LKM)
+	${INSTALL} ${INSTALL_COPY} -o ${LKMOWN} -g ${LKMGRP} -m ${LKMMODE} \
+	    ${COMBINED} ${DESTDIR}${LKMDIR}/${LKM}.o
+.      if exists(${.CURDIR}/${POSTINSTALL})
+	${INSTALL} ${INSTALL_COPY} -o ${LKMOWN} -g ${LKMGRP} -m 555 \
+	    ${.CURDIR}/${POSTINSTALL} ${DESTDIR}${LKMDIR}/
+.      endif
+.    endif
+.  endif
+
+load:	${COMBINED}
+	if [ -x ${.CURDIR}/${POSTINSTALL} ]; then \
+		modload -d -o $(LKM) -e$(LKM) -p${.CURDIR}/${POSTINSTALL} $(COMBINED); \
+	else \
+		modload -d -o $(LKM) -e$(LKM) $(COMBINED); \
+	fi
+
+unload:
+	modunload -n $(LKM)
+
+install: maninstall _SUBDIRUSE
+.  if defined(LINKS) && !empty(LINKS)
+	@@set ${LINKS}; \
+	while test $$# -ge 2; do \
+		l=${DESTDIR}${LKMDIR}/$$1; \
+		shift; \
+		t=${DESTDIR}${LKMDIR}/$$1; \
+		shift; \
+		echo $$t -\> $$l; \
+		rm -f $$t; \
+		ln $$l $$t || cp $$l $$t; \
+	done; true
+.  endif
+
+maninstall: afterinstall
+afterinstall: realinstall
+realinstall: beforeinstall
+.endif
+
+.if !target(lint)
+lint: ${LOBJS}
+.  if defined(LOBJS) && !empty(LOBJS)
+	@@${LINT} ${LINTFLAGS} ${LDFLAGS:M-L*} ${LOBJS} ${LDADD}
+.  endif
+.endif
+
+.if ${NOMAN:L} == "no"
+.  include <bsd.man.mk>
+.endif
+
+.include <bsd.obj.mk>
+.include <bsd.dep.mk>
+.include <bsd.subdir.mk>
+.include <bsd.sys.mk>
+
+.PHONY: load unload
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/share/mk/bsd.lkm.mk,v 1.9 2004/12/08 18:42:20 tg Exp $
+d68 1
+a68 1
+	    ${.CURDIR}/${POSTINSTALL} ${DESTDIR}${LKMDIR}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: bsd.lkm.mk,v 1.19 2003/05/20 22:49:13 millert Exp $
+d5 1
+a5 1
+.include "${.CURDIR}/../Makefile.inc"
+d8 3
+a10 1
+.include <bsd.own.mk>
+d14 2
+a15 8
+# XXX In order to at least diminish the brokenness of trusting /sys to point
+# to the tree we're actually belonging to we check BSDSRCDIR.  On multi-tree
+# machines /sys isn't always a link to the correct tree.
+.if defined(BSDSRCDIR)
+CFLAGS+=	${COPTS} -D_KERNEL -D_LKM -I${BSDSRCDIR}/sys -I${BSDSRCDIR}/sys/arch
+.else
+CFLAGS+=	${COPTS} -D_KERNEL -D_LKM -I/sys -I/sys/arch
+.endif
+d20 11
+a30 13
+LDFLAGS+= -r
+.if defined(LKM)
+SRCS?=	${LKM}.c
+.if !empty(SRCS:N*.h:N*.sh)
+OBJS+=	${SRCS:N*.h:N*.sh:R:S/$/.o/g}
+LOBJS+=	${LSRCS:.c=.ln} ${SRCS:M*.c:.c=.ln}
+.endif
+COMBINED?=combined.o
+.if !defined(POSTINSTALL)
+POSTINSTALL= ${LKM}install
+.endif
+
+.if defined(OBJS) && !empty(OBJS)
+d32 1
+d35 1
+d37 4
+a40 6
+.endif	# defined(OBJS) && !empty(OBJS)
+
+.if	!defined(MAN)
+MAN=	${LKM}.1
+.endif	# !defined(MAN)
+.endif	# defined(LKM)
+d54 1
+a54 1
+.if !target(beforeinstall)
+d56 2
+a57 2
+.endif
+.if !target(afterinstall)
+d59 1
+a59 1
+.endif
+d61 1
+a61 1
+.if !target(realinstall)
+d63 1
+a63 1
+.if defined(LKM)
+d66 1
+a66 1
+.if exists(${.CURDIR}/${POSTINSTALL})
+d69 3
+a71 4
+.endif
+.endif
+.endif
+
+d84 1
+a84 1
+.if defined(LINKS) && !empty(LINKS)
+d93 1
+a93 1
+		ln $$l $$t; \
+d95 1
+a95 1
+.endif
+d104 1
+a104 1
+.if defined(LOBJS) && !empty(LOBJS)
+d106 1
+a106 5
+.endif
+.endif
+
+.if !defined(NOMAN)
+.include <bsd.man.mk>
+d109 2
+a110 2
+.if !defined(NONLS)
+.include <bsd.nls.mk>
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

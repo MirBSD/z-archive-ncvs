@@ -1,0 +1,71 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.38.53;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.03;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$OpenBSD: asterix,v 1.2 2004/06/03 03:14:19 tedu Exp $
+
+#------------------------------------------------------------------------------
+# asterix:  file(1) magic for Aster*x; SunOS 5.5.1 gave the 4-character
+# strings as "long" - we assume they're just strings:
+# From: guy@@netapp.com (Guy Harris)
+#
+0	string		*STA		Aster*x
+>7	string		WORD			Words Document
+>7	string		GRAP			Graphic
+>7	string		SPRE			Spreadsheet
+>7	string		MACR			Macro
+0	string		2278		Aster*x Version 2
+>29	byte		0x36			Words Document
+>29	byte		0x35			Graphic
+>29	byte		0x32			Spreadsheet
+>29	byte		0x38			Macro
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

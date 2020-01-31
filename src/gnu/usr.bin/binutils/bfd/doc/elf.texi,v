@@ -1,0 +1,79 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.23.02.19;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.19;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@@section 
+ELF backends
+
+BFD support for ELF formats is being worked on.
+Currently, the best supported back ends are for sparc and i386
+(running svr4 or Solaris 2).
+
+Documentation of the internals of the support code still needs
+to be written.  The code is changing quickly enough that we
+haven't bothered yet.
+
+@@findex bfd_elf_find_section
+@@subsubsection @@code{bfd_elf_find_section}
+@@strong{Synopsis}
+@@example
+struct elf_internal_shdr *bfd_elf_find_section (bfd *abfd, char *name);
+@@end example
+@@strong{Description}@@*
+Helper functions for GDB to locate the string tables.
+Since BFD hides string tables from callers, GDB needs to use an
+internal hook to find them.  Sun's .stabstr, in particular,
+isn't even pointed to by the .stab section, so ordinary
+mechanisms wouldn't work to find it, even if we had some.
+
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

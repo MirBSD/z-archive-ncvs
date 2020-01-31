@@ -1,0 +1,148 @@
+head	1.7;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.7
+date	2005.01.09.19.14.21;	author tg;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2005.01.09.19.14.04;	author tg;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2005.01.09.18.57.12;	author tg;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2005.01.05.21.08.55;	author tg;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2005.01.05.18.52.19;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2005.01.05.18.49.56;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.05.18.36.42;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.7
+log
+@no need to hack -Wno-error any more
+@
+text
+@# $MirBSD: gcc/boehm-gc/Makefile.bsd-wrapper,v 1.6 2005/01/09 19:14:04 tg Exp $
+
+NOMAN=		yes
+CFARGS+=	--enable-static ${CF_PIC} --disable-libtool-lock
+
+CLEANFILES+=	boehm-cflags
+
+# this doesn't (need to) install.
+do-install:
+
+.include <bsd.cfwrap.mk>
+@
+
+
+1.6
+log
+@regen
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/boehm-gc/Makefile.bsd-wrapper,v 1.5 2005/01/09 18:57:12 tg Exp $
+a7 5
+.include "../Makefile.inc"
+
+# sigh. boehm-gc is a piece of shit.
+#CFLAGS+=	-Wno-error
+
+@
+
+
+1.5
+log
+@build libgcjgc_convenience.la with -fPIC (and a .so, but we ignore that one)
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/boehm-gc/Makefile.bsd-wrapper,v 1.4 2005/01/05 21:08:55 tg Exp $
+d11 1
+a11 1
+CFLAGS+=	-Wno-error
+@
+
+
+1.4
+log
+@say hello to Objective-C
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/boehm-gc/Makefile.bsd-wrapper,v 1.3 2005/01/05 18:52:19 tg Exp $
+d4 1
+a4 1
+CFARGS+=	--enable-static --disable-shared --disable-libtool-lock
+@
+
+
+1.3
+log
+@let it build
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/boehm-gc/Makefile.bsd-wrapper,v 1.2 2005/01/05 18:49:56 tg Exp $
+d4 1
+a4 1
+CFARGS=		--enable-static --disable-shared --disable-libtool-lock
+@
+
+
+1.2
+log
+@regen; adjust
+@
+text
+@d1 1
+a1 1
+# $MirBSD: gcc/boehm-gc/Makefile.bsd-wrapper,v 1.1 2005/01/05 18:36:42 tg Exp $
+d13 3
+@
+
+
+1.1
+log
+@regen and basic Makefile
+@
+text
+@d1 1
+a1 1
+# $MirBSD$
+d6 7
+@
+

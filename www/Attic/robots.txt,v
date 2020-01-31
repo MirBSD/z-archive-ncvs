@@ -1,0 +1,88 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.52;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@# $MirBSD: www/robots.txt,v 1.1 2004/12/13 00:13:24 tg Exp $
+
+
+# Disallow the W3C Linkchecker
+
+User-Agent: W3C-checklink
+# dynamically generated content
+Disallow: /cman/
+Disallow: /man1/
+Disallow: /man2/
+Disallow: /man3/
+Disallow: /man4/
+Disallow: /man5/
+Disallow: /man6/
+Disallow: /man7/
+Disallow: /man8/
+Disallow: /man9/
+Disallow: /r7man/
+Disallow: /r8man/
+# content which is out of date
+Disallow: /mbsd7/
+Disallow: /MirOS/
+Disallow: /?wlog-1
+Disallow: /?wlog-2
+Disallow: /?wlog-3
+Disallow: /?wlog-4
+Disallow: /?wlog-5
+Disallow: /?wlog-6
+# other not-to-be-listed content
+Disallow: /clogs/
+Disallow: /content/
+Disallow: /GBG/
+Disallow: /wikidir/
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+# $MirBSD: www/robots.txt,v 1.1 2004/08/22 04:17:54 tg Exp $
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

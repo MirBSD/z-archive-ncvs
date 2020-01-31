@@ -1,0 +1,48 @@
+head     1.1;
+branch   1.1.10;
+access   ;
+symbols  cvs-200407162200:1.1.10.1 ekkobsd:1.1.10;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.07.01.54.21;  author tg;  state Exp;
+branches 1.1.10.1;
+next     ;
+
+1.1.10.1
+date     2005.01.07.01.54.21;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@These are quickie test templates.  Run them by doing:
+
+cat <desired_test>
+[copy with your mouse]
+fdialog [paste]
+
+fdialog relies on the proper grouping of arguments based on quotes that the shell provides.  We'd like to get this
+to behave somewhat normally in the near future.
+
+More later on this...
+@
+
+
+1.1.10.1
+log
+@fdialog heritage
+@
+text
+@@

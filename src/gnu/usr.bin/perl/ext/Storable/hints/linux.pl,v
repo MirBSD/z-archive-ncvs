@@ -1,0 +1,70 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.36;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.51;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.51;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# gcc -O3 (and higher) can cause code produced from Storable.xs that
+# dumps core immediately in recurse.t and retrieve.t, in is_storing()
+# and last_op_in_netorder(), respectively.  In both cases the cxt is
+# full of junk (and according to valgrind the cxt was never stack'd,
+# malloc'd or free'd).  Observed in Debian 3.0 x86, with gccs 2.95.4
+# 20011002 and 3.3, and in Redhat 7.1 with gcc 3.3.1. The failures
+# happen only for unthreaded builds, threaded builds work okay.
+use Config;
+if ($Config{gccversion}) {
+    my $optimize = $Config{optimize};
+    if ($optimize =~ s/(^| )-O[3-9]( |$)/$1-O2$2/) {
+	$self->{OPTIMIZE} = $optimize;
+    }
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

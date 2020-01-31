@@ -1,0 +1,123 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.25.27;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.25.27;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@// EcosProcess.java - Subclass of Process for eCos systems.
+
+/* Copyright (C) 1998, 1999  Free Software Foundation
+
+   This file is part of libgcj.
+
+This software is copyrighted work licensed under the terms of the
+Libgcj License.  Please consult the file "LIBGCJ_LICENSE" for
+details.  */
+
+package java.lang;
+
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.IOException;
+
+/**
+ * @@author Tom Tromey <tromey@@cygnus.com>
+ * @@date May 11, 1999
+ */
+
+// This is entirely internal to our implementation.
+
+// This file is copied to `ConcreteProcess.java' before compilation.
+// Hence the class name apparently does not match the file name.
+final class ConcreteProcess extends Process
+{
+  // See natEcosProcess.cc to understand why this is native.
+  public native void destroy ();
+
+  public int exitValue ()
+  {
+    return 0;
+  }
+  public InputStream getErrorStream ()
+  {
+    return null;
+  }
+
+  public InputStream getInputStream ()
+  {
+    return null;
+  }
+
+  public OutputStream getOutputStream ()
+  {
+    return null;
+  }
+
+  public int waitFor () throws InterruptedException
+  {
+    return 0;
+  }
+
+  public ConcreteProcess (String[] progarray,
+                          String[] envp,
+                          File dir)
+    throws IOException
+  {
+    throw new IOException ("eCos processes unimplemented");
+  }
+}
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

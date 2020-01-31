@@ -1,0 +1,70 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.41.50;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.22;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.22;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/bin/sh
+# This script tries to find out whether the native codeset of this machine
+# is ASCII or EBCDIC. On EBCDIC based machines, it is used to activate
+# the mod_ebcdic EBCDIC conversion module.
+#
+# Note: This script will break if you use an ebcdic cross-compiler!
+#
+case `${AWK-awk} 'BEGIN {printf("%c%c%c%c%c<->%c%c%c%c%c%c\n",97,115,99,105,105,133,130,131,132,137,131);}' /dev/null` in
+    ascii*)     echo ASCII;;
+    *ebcdic)    echo EBCDIC;;
+    *)          echo >&2 "ERROR: Your platform codeset could not be detected correctly."
+		echo >&2 "Assuming ASCII. Please send an EMail to <martin@@apache.org>"
+		echo >&2 "describing the platform in use. Is your AWK broken?"
+		echo ASCII;;
+esac
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

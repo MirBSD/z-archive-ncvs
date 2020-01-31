@@ -1,0 +1,86 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.03.00.23.33;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.33;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+# Translate the lynx_cfg.h and config.cache data into a table, useful for
+# display at runtime.
+
+TOP="${1-.}"
+OUT=cfg_defs.h
+
+# just in case we want to run this outside the makefile
+: ${SHELL:=/bin/sh}
+
+cat >$OUT <<EOF
+#ifndef CFG_DEFS_H
+#define CFG_DEFS_H 1
+
+static const struct {
+	const char *name;
+	const char *value;
+} config_cache[] = {
+EOF
+
+sed \
+	-e '/^#/d'     \
+	-e 's/^.[^=]*_cv_//' \
+	-e 's/=\${.*=/=/'  \
+	-e 's/}$//'          \
+	config.cache | $SHELL $TOP/cfg_edit.sh >>$OUT
+
+cat >>$OUT <<EOF
+};
+
+static const struct {
+	const char *name;
+	const char *value;
+} config_defines[] = {
+EOF
+fgrep	'#define' lynx_cfg.h |
+sed	-e 's@@	@@ @@g' \
+	-e 's@@  @@ @@g' \
+	-e 's@@^[ 	]*#define[ 	]*@@@@' \
+	-e 's@@[ ]*/\*.*\*/@@@@' \
+	-e 's@@[ 	][ 	]*@@=@@' \
+    | $SHELL $TOP/cfg_edit.sh >>$OUT
+
+cat >>$OUT <<EOF
+};
+
+#endif /* CFG_DEFS_H */
+EOF
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

@@ -1,0 +1,75 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.46.12;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.47;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.47;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@# zh_CN translation for hello-csharp-forms.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# This file is distributed under the same license as the hello-csharp-forms package.
+# Funda Wang <fundawang@@linux.net.cn>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hello-csharp-forms 0.13.1\n"
+"Report-Msgid-Bugs-To: bug-gnu-gettext@@gnu.org\n"
+"PO-Revision-Date: 2003-12-18 19:07+0800\n"
+"Last-Translator: Funda Wang <fundawang@@linux.net.cn>\n"
+"Language-Team: Chinese (simplified) <i18n-translation@@lists.linux.net.cn>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: hello.cs:30
+msgid "Hello, world!"
+msgstr "世界你好！"
+
+#: hello.cs:37
+#, csharp-format
+msgid "This program is running as process number {0}."
+msgstr "此程序正以进程号 {0} 运行。"
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

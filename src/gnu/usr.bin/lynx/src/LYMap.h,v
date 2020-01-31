@@ -1,0 +1,65 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.03.00.23.43;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.43;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef LYMAP_H
+#define LYMAP_H
+
+#ifndef HTUTILS_H
+#include <HTUtils.h>
+#endif
+
+#include <HTList.h>
+#include <HTAnchor.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    extern BOOL LYMapsOnly;
+
+    extern void ImageMapList_free(HTList *list);
+    extern BOOL LYAddImageMap(char *address, char *title,
+			      HTParentAnchor *node_anchor);
+    extern BOOL LYAddMapElement(char *map, char *address, char *title,
+				HTParentAnchor *node_anchor,
+				BOOL intern_flag);
+    extern BOOL LYHaveImageMap(char *address);
+
+#ifdef __cplusplus
+}
+#endif
+#endif				/* LYMAP_H */
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

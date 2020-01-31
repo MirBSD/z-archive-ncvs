@@ -1,0 +1,98 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  cdk-4_9_11-20041224:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.08.20.08.04;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.20.08.04;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#! /bin/sh
+# $Id: gen-scale.sh,v 1.4 2004/08/29 01:15:01 tom Exp $
+#
+# This script generates source variations from scale.c for different datatypes.
+
+UPPER="$1"
+MIXED="$2"
+DTYPE="$3"
+CTYPE="$4"
+
+# The widget provides for setting the digits.  Turn on/off the corresponding
+# ifdef.
+case $CTYPE in
+float|*double)
+	float=1
+	print=f
+	;;
+long*long)
+	float=0
+	print=ll
+	;;
+unsigned*long)
+	float=0
+	print=lu
+	;;
+unsigned)
+	float=0
+	print=u
+	;;
+long)
+	float=0
+	print=l
+	;;
+*)
+	float=0
+	print=d
+	;;
+esac
+
+if test $float = 0 ; then
+sed	-e '/^#if <FLOAT>/,/^#endif <FLOAT>/d' \
+	-e '/^#if <INT>/d' \
+	-e '/^#endif <INT>/d' \
+	-e 's/<UPPER>/'"$UPPER"'/g' \
+	-e 's/<MIXED>/'"$MIXED"'/g' \
+	-e 's/<DTYPE>/'"$DTYPE"'/g' \
+	-e 's/<CTYPE>/'"$CTYPE"'/g' \
+	-e 's/<PRINT>/'"$print"'/g' \
+	$5
+else
+sed	-e '/^#if <INT>/,/^#endif <INT>/d' \
+	-e '/^#if <FLOAT>/d' \
+	-e '/^#endif <FLOAT>/d' \
+	-e 's/<UPPER>/'"$UPPER"'/g' \
+	-e 's/<MIXED>/'"$MIXED"'/g' \
+	-e 's/<DTYPE>/'"$DTYPE"'/g' \
+	-e 's/<CTYPE>/'"$CTYPE"'/g' \
+	-e 's/<PRINT>/'"$print"'/g' \
+	$5
+fi
+@
+
+
+1.1.2.1
+log
+@Tom Dickey's libcdk
+@
+text
+@@

@@ -1,0 +1,88 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.23;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@
+BEGIN {
+    unless(grep /blib/, @@INC) {
+	chdir 't' if -d 't';
+	@@INC = '../lib';
+    }
+}
+
+use Config;
+
+BEGIN {
+    if($ENV{PERL_CORE}) {
+        if ($Config{'extensions'} !~ /\bIO\b/) {
+            print "1..0 # Skip: IO extension not compiled\n";
+            exit 0;
+        }
+    }
+}
+
+use IO::Handle;
+
+print "1..6\n";
+my $i = 1;
+foreach (qw(SEEK_SET SEEK_CUR SEEK_END     _IOFBF    _IOLBF    _IONBF)) {
+    my $d1 = defined(&{"IO::Handle::" . $_}) ? 1 : 0;
+    my $v1 = $d1 ? &{"IO::Handle::" . $_}() : undef;
+    my $v2 = IO::Handle::constant($_);
+    my $d2 = defined($v2);
+
+    print "not "
+	if($d1 != $d2 || ($d1 && ($v1 != $v2)));
+    print "ok ",$i++,"\n";
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

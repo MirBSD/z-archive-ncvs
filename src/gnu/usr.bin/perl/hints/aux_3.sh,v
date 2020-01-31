@@ -1,0 +1,77 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.45;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# hints/aux_3.sh
+#
+# Improved by Jake Hamby <jehamby@@lightside.com> to support both Apple CC
+# and GNU CC.  Tested on A/UX 3.1.1 with GCC 2.6.3.
+# Now notifies of problem with version of dbm shipped with A/UX
+# Last modified 
+# Sun Jan  5 11:16:41 WET 1997
+
+case "$cc" in
+*gcc*)	optimize='-O2'
+	ccflags="$ccflags -D_POSIX_SOURCE"
+	echo "Setting hints for GNU CC."
+	;;
+*)	optimize='-O'
+	ccflags="$ccflags -B/usr/lib/big/ -DPARAM_NEEDS_TYPES -D_POSIX_SOURCE"
+	POSIX_cflags='ccflags="$ccflags -ZP -Du_long=U32"'
+	echo "Setting hints for Apple's CC.  If you plan to use"
+	echo "GNU CC, please rerun this Configure script as:"
+	echo "./Configure -Dcc=gcc"
+	;;
+esac
+test -r ./broken-db.msg && . ./broken-db.msg
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

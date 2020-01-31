@@ -1,0 +1,238 @@
+head	2.10;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.10
+date	2005.02.01.21.32.13;	author tg;	state Exp;
+branches;
+next	2.9;
+
+2.9
+date	2005.02.01.17.12.56;	author tg;	state Exp;
+branches;
+next	2.8;
+
+2.8
+date	2005.01.26.19.52.24;	author tg;	state Exp;
+branches;
+next	2.7;
+
+2.7
+date	2005.01.18.00.30.06;	author tg;	state Exp;
+branches;
+next	2.6;
+
+2.6
+date	2005.01.18.00.20.49;	author tg;	state Exp;
+branches;
+next	2.5;
+
+2.5
+date	2005.01.17.01.41.19;	author tg;	state Exp;
+branches;
+next	2.4;
+
+2.4
+date	2005.01.16.15.32.53;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.14.13.28.27;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.05.04.26.58;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.23.10;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.10
+log
+@don't -freorder-blocks twice
+also, don't -funswitch-loops which probably duplicates code
+@
+text
+@# $MirBSD: src/etc/etc.i386/mk.conf.md,v 2.9 2005/02/01 17:12:56 tg Exp $
+#
+# machdep part of mk.conf for i386
+
+DEFCOPTS=	-Os -fno-strict-aliasing -fno-strength-reduce -Wformat \
+		-fno-unit-at-a-time -fno-align-functions -fno-align-labels \
+		-falign-loops=4 -falign-jumps=4 -mieee-fp -mpush-args \
+		-march=pentium -mtune=athlon-xp -mpreferred-stack-boundary=2 \
+		-fweb -freorder-blocks -fmove-all-movables -frename-registers
+
+# try this for recompiling with 80486 support: (untested)
+#DEFCOPTS+=	-march=i486 -mtune=pentium
+#CSYS+=		-DI486_CPU
+@
+
+
+2.9
+log
+@reliability update: IEEE floating point, please.
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.i386/mk.conf.md,v 2.8 2005/01/26 19:52:24 tg Exp $
+d9 1
+a9 2
+		-fweb -freorder-blocks -fmove-all-movables -freorder-blocks \
+		-frename-registers -funswitch-loops
+@
+
+
+2.8
+log
+@global -fno-unit-at-a-time
+can be switched back on by individual arches _iff_ it works
+
+still -Os, reason see my previous mail
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.i386/mk.conf.md,v 2.7 2005/01/18 00:30:06 tg Exp $
+d7 1
+a7 1
+		-falign-loops=4 -falign-jumps=4 -mno-ieee-fp -mpush-args \
+@
+
+
+2.7
+log
+@don't break the ABI
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.i386/mk.conf.md,v 2.6 2005/01/18 00:20:49 tg Exp $
+d6 1
+a6 1
+		-funit-at-a-time -fno-align-functions -fno-align-labels \
+@
+
+
+2.6
+log
+@some more optimizing options, so that we get the best out
+of -O2 but with the "fixed" scheduling of -Os
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.i386/mk.conf.md,v 2.5 2005/01/17 01:41:19 tg Exp $
+d7 1
+a7 1
+		-falign-loops=4 -falign-jumps=4 -malign-double -mpush-args \
+@
+
+
+2.5
+log
+@switch from -O2 to -Os until the bugs are found
+reproducible in zic.o
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.i386/mk.conf.md,v 2.4 2005/01/16 15:32:53 tg Exp $
+d5 6
+a10 3
+DEFCOPTS=	-Os -march=pentium -mtune=athlon-xp -mpush-args \
+		-mpreferred-stack-boundary=2 -fno-align-functions \
+		-fno-align-labels -falign-jumps=4
+d13 1
+a13 1
+#DEFCOPTS+=	-Os -march=i486 -mtune=pentium
+@
+
+
+2.4
+log
+@shrink, but don't lose too much speed
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.i386/mk.conf.md,v 2.3 2005/01/14 13:28:27 tg Exp $
+d5 1
+a5 1
+DEFCOPTS=	-O2 -march=pentium -mtune=athlon-xp -mpush-args \
+@
+
+
+2.3
+log
+@use a calling sequence like the traditional
+| push arg2
+| push arg1
+| call foo
+| add esp,8
+instead of sub'ing esp and mov'ing stuff onto
+the stack, as in (taken from disassembling gcc)
+| mov    eax,DWORD PTR [ebp-28]
+| mov    DWORD PTR [esp],0x3c003fee
+| mov    DWORD PTR [esp+4],eax
+| call   1c000d5c <__stack_smash_handler@@plt>
+
+The latter produces faster code and is on by default on P3 and K7,
+but according to Ian Lance Taylor <ian@@airs.com> pushing is default
+for -Os, and I'm going to fight further code size increases hard.
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.i386/mk.conf.md,v 2.2 2005/01/05 04:26:58 tg Exp $
+d6 2
+a7 1
+		-mpreferred-stack-boundary=2 -fno-align-functions
+@
+
+
+2.2
+log
+@gcc 3.4 uses -mtune instead of -mcpu, like for sparc
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.i386/mk.conf.md,v 2.1 2005/01/03 16:23:10 tg Exp $
+d5 1
+a5 1
+DEFCOPTS=	-O2 -march=pentium -mtune=athlon-xp \
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/etc/etc.i386/mk.conf.md,v 1.6 2004/10/08 04:28:25 tg Exp $
+d5 1
+a5 1
+DEFCOPTS=	-O2 -march=pentium -mcpu=athlon-xp \
+d9 1
+a9 1
+#DEFCOPTS+=	-Os -march=i486 -mcpu=pentium
+@
+

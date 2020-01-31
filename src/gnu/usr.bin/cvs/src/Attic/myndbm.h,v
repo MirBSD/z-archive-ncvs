@@ -1,0 +1,96 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.21.48.48;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.45;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.45;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@#ifdef MY_NDBM
+
+#define	DBLKSIZ	4096
+
+typedef struct
+{
+    List *dbm_list;			/* cached database */
+    Node *dbm_next;			/* next key to return for nextkey() */
+
+    /* Name of the file to write to if modified is set.  malloc'd.  */
+    char *name;
+
+    /* Nonzero if the database has been modified and dbm_close needs to
+       write it out to disk.  */
+    int modified;
+} DBM;
+
+typedef struct
+{
+    char *dptr;
+    int dsize;
+} datum;
+
+/*
+ * So as not to conflict with other dbm_open, etc., routines that may
+ * be included by someone's libc, all of my emulation routines are prefixed
+ * by "my" and we define the "standard" ones to be "my" ones here.
+ */
+#define	dbm_open	mydbm_open
+#define	dbm_close	mydbm_close
+#define	dbm_fetch	mydbm_fetch
+#define	dbm_firstkey	mydbm_firstkey
+#define	dbm_nextkey	mydbm_nextkey
+#define dbm_store	mydbm_store
+#define  DBM_INSERT  0
+#define  DBM_REPLACE 1
+
+DBM *mydbm_open (char *file, int flags, int mode);
+void mydbm_close (DBM * db);
+datum mydbm_fetch (DBM * db, datum key);
+datum mydbm_firstkey (DBM * db);
+datum mydbm_nextkey (DBM * db);
+extern int mydbm_store (DBM *, datum, datum, int);
+
+#endif				/* MY_NDBM */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

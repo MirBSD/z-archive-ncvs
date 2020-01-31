@@ -1,0 +1,80 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.06.22.13.52;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.05.31;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.05.31;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@/* infcodes.h -- header to use infcodes.c
+ * Copyright (C) 1995-2002 Mark Adler
+ * For conditions of distribution and use, see copyright notice in zlib.h 
+ */
+
+/* WARNING: this file should *not* be used by applications. It is
+   part of the implementation of the compression library and is
+   subject to change. Applications should only use zlib.h.
+ */
+
+struct inflate_codes_state;
+typedef struct inflate_codes_state FAR inflate_codes_statef;
+
+extern inflate_codes_statef *inflate_codes_new OF((
+    uInt, uInt,
+    inflate_huft *, inflate_huft *,
+    z_streamp ));
+
+extern int inflate_codes OF((
+    inflate_blocks_statef *,
+    z_streamp ,
+    int));
+
+extern void inflate_codes_free OF((
+    inflate_codes_statef *,
+    z_streamp ));
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

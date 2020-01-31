@@ -1,0 +1,99 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.30.47;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.02;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.02;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@=pod
+
+=head1 NAME
+
+SSL_get_version - get the protocol version of a connection.
+
+=head1 SYNOPSIS
+
+ #include <openssl/ssl.h>
+
+ const char *SSL_get_version(SSL *ssl);
+
+=head1 DESCRIPTION
+
+SSL_get_cipher_version() returns the name of the protocol used for the
+connection B<ssl>.
+
+=head1 RETURN VALUES
+
+The following strings can occur:
+
+=over 4
+
+=item SSLv2
+
+The connection uses the SSLv2 protocol.
+
+=item SSLv3
+
+The connection uses the SSLv3 protocol.
+
+=item TLSv1
+
+The connection uses the TLSv1 protocol.
+
+=item unknown
+
+This indicates that no version has been set (no connection established).
+
+=back
+
+=head1 SEE ALSO
+
+L<ssl(3)|ssl(3)>
+
+=cut
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

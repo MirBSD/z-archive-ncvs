@@ -1,0 +1,117 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@-- @;
+
+
+1.1
+date	2005.01.04.17.23.08;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.23.08;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@------------------------------------------------------------------------------
+--                                                                          --
+--                         GNAT RUNTIME COMPONENTS                          --
+--                                                                          --
+--            ADA.NUMERICS.GENERIC_COMPLEX_ELEMENTARY_FUNCTIONS             --
+--                                                                          --
+--                                 S p e c                                  --
+--                                                                          --
+-- This specification is adapted from the Ada Reference Manual for use with --
+-- GNAT.  In accordance with the copyright of that document, you can freely --
+-- copy and modify this specification,  provided that if you redistribute a --
+-- modified version,  any changes that you have made are clearly indicated. --
+--                                                                          --
+------------------------------------------------------------------------------
+
+with Ada.Numerics.Generic_Complex_Types;
+generic
+   with package Complex_Types is new Ada.Numerics.Generic_Complex_Types (<>);
+   use Complex_Types;
+
+package Ada.Numerics.Generic_Complex_Elementary_Functions is
+   pragma Pure (Ada.Numerics.Generic_Complex_Elementary_Functions);
+
+   function Sqrt (X : Complex)   return Complex;
+
+   function Log  (X : Complex)   return Complex;
+
+   function Exp  (X : Complex)   return Complex;
+   function Exp  (X : Imaginary) return Complex;
+
+   function "**" (Left : Complex;   Right : Complex)   return Complex;
+   function "**" (Left : Complex;   Right : Real'Base) return Complex;
+   function "**" (Left : Real'Base; Right : Complex)   return Complex;
+
+   function Sin (X : Complex) return Complex;
+   function Cos (X : Complex) return Complex;
+   function Tan (X : Complex) return Complex;
+   function Cot (X : Complex) return Complex;
+
+   function Arcsin (X : Complex) return Complex;
+   function Arccos (X : Complex) return Complex;
+   function Arctan (X : Complex) return Complex;
+   function Arccot (X : Complex) return Complex;
+
+   function Sinh (X : Complex) return Complex;
+   function Cosh (X : Complex) return Complex;
+   function Tanh (X : Complex) return Complex;
+   function Coth (X : Complex) return Complex;
+
+   function Arcsinh (X : Complex) return Complex;
+   function Arccosh (X : Complex) return Complex;
+   function Arctanh (X : Complex) return Complex;
+   function Arccoth (X : Complex) return Complex;
+
+end Ada.Numerics.Generic_Complex_Elementary_Functions;
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

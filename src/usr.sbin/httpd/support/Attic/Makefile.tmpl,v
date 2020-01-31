@@ -1,0 +1,91 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.07.12;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.35.33;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.35.33;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@# Apache makefile template (well, suffix).
+
+# This is combined with the information in the "Configuration" file
+# by the configure script to make the actual Makefile.
+
+CFLAGS=$(OPTIM) $(CFLAGS1) $(EXTRA_CFLAGS)
+LIBS=$(EXTRA_LIBS) $(LIBS1)
+INCLUDES=-I../src -I../src/regex $(INCLUDES1) $(EXTRA_INCLUDES)
+LFLAGS=$(LFLAGS1) $(EXTRA_LFLAGS)
+
+.c.o: 
+	$(CC) -c $(CFLAGS) $(INCLUDES) $<
+
+TARGETS=htpasswd htdigest httpd_monitor rotatelogs logresolve
+
+all: $(TARGETS)
+
+htpasswd: htpasswd.c
+	$(CC) $(CFLAGS) htpasswd.c -o htpasswd $(LIBS)
+
+htdigest: htdigest.c
+	$(CC) $(CFLAGS) htdigest.c -o htdigest
+
+httpd_monitor: httpd_monitor.c
+	$(CC) $(INCLUDES) $(CFLAGS) httpd_monitor.c -o httpd_monitor
+
+rotatelogs: rotatelogs.c
+	$(CC) $(INCLUDES) $(CFLAGS) rotatelogs.c -o rotatelogs
+
+logresolve: logresolve.c
+	$(CC) $(INCLUDES) $(CFLAGS) logresolve.c -o logresolve $(LIBS)
+
+clean:
+	rm -f $(TARGETS)
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

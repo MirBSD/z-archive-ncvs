@@ -1,0 +1,86 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.58;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# From: asherman@@fmrco.com (Aaron Sherman)
+#
+# This library is no longer being maintained, and is included for backward
+# compatibility with Perl 4 programs which may require it.
+#
+# In particular, this should not be used as an example of modern Perl
+# programming techniques.
+#
+# Suggested alternative: Sys::Hostname
+#
+sub hostname
+{
+	local(*P,@@tmp,$hostname,$_);
+	if (open(P,"hostname 2>&1 |") && (@@tmp = <P>) && close(P))
+	{
+		chop($hostname = $tmp[$#tmp]);
+	}
+	elsif (open(P,"uname -n 2>&1 |") && (@@tmp = <P>) && close(P))
+	{
+		chop($hostname = $tmp[$#tmp]);
+	}
+	else
+	{
+		die "$0: Cannot get hostname from 'hostname' or 'uname -n'\n";
+	}
+	@@tmp = ();
+	close P; # Just in case we failed in an odd spot....
+	$hostname;
+}
+
+1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

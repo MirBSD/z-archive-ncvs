@@ -1,0 +1,72 @@
+head	1.2;
+access;
+symbols
+	libpng-1_2_8:1.1.17.1 libpng:1.1.17;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.20.37.35;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches
+	1.1.17.1;
+next	;
+
+1.1.17.1
+date	2005.01.08.20.35.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@nuke junk
+@
+text
+@#! /bin/sh
+
+# libpng-config
+# provides configuration info for libpng.
+
+# Copyright (C) 2002 Glenn Randers-Pehrson
+# For conditions of distribution and use, see copyright notice in png.h
+
+# Modeled after libxml-config.
+
+version=1.2.8
+prefix=""
+libdir=""
+libs=""
+I_opts=""
+L_opts=""
+R_opts=""
+cppflags=""
+ccopts=""
+ldopts=""
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.17.1
+log
+@libpng-1.2.8.tar.bz2
+@
+text
+@@

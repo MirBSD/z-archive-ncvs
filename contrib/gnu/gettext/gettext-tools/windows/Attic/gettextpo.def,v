@@ -1,0 +1,68 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.49.24;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.14;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@LIBRARY gettextpo
+EXPORTS
+po_file_domains
+po_file_domain_header
+po_file_free
+po_file_read
+po_header_field
+po_message_is_format
+po_message_is_fuzzy
+po_message_is_obsolete
+po_message_iterator
+po_message_iterator_free
+po_message_msgid
+po_message_msgid_plural
+po_message_msgstr
+po_message_msgstr_plural
+po_next_message
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

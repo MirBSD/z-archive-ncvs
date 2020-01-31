@@ -1,0 +1,61 @@
+head	1.2;
+access;
+symbols
+	cvs-200501081900:1.1.6.1 freebsd:1.1.6;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.19.26.48;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.19.05.41;	author tg;	state Exp;
+branches
+	1.1.6.1;
+next	;
+
+1.1.6.1
+date	2005.01.08.19.05.41;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge CTM
+@
+text
+@# $MirBSD$
+# $FreeBSD: src/usr.sbin/ctm/Makefile.inc,v 1.4 1999/08/28 01:15:58 peter Exp $
+
+.if exists(${.CURDIR}/../../Makefile.inc)
+.  include "${.CURDIR}/../../Makefile.inc"
+.endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d5 1
+a5 1
+.include "${.CURDIR}/../../Makefile.inc"
+@
+
+
+1.1.6.1
+log
+@CTM from FreeBSD
+@
+text
+@@

@@ -1,0 +1,101 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.04;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.07;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.07;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@package CPAN::Nox;
+use strict;
+use vars qw($VERSION @@EXPORT);
+
+BEGIN{
+  $CPAN::Suppress_readline=1 unless defined $CPAN::term;
+}
+
+use base 'Exporter';
+use CPAN;
+
+$VERSION = "1.03";
+$CPAN::META->has_inst('Digest::MD5','no');
+$CPAN::META->has_inst('LWP','no');
+$CPAN::META->has_inst('Compress::Zlib','no');
+@@EXPORT = @@CPAN::EXPORT;
+
+*AUTOLOAD = \&CPAN::AUTOLOAD;
+
+1;
+
+__END__
+
+=head1 NAME
+
+CPAN::Nox - Wrapper around CPAN.pm without using any XS module
+
+=head1 SYNOPSIS
+
+Interactive mode:
+
+  perl -MCPAN::Nox -e shell;
+
+=head1 DESCRIPTION
+
+This package has the same functionality as CPAN.pm, but tries to
+prevent the usage of compiled extensions during its own
+execution. Its primary purpose is a rescue in case you upgraded perl
+and broke binary compatibility somehow.
+
+=head1  SEE ALSO
+
+CPAN(3)
+
+=cut
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

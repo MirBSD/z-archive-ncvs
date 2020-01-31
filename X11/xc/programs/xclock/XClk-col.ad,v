@@ -1,0 +1,51 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.17.38;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.17.38;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@! $XFree86: xc/programs/xclock/XClk-col.ad,v 1.2 2003/10/24 20:38:15 tsi Exp $
+
+#include "XClock"
+
+#ifdef RENDER
+XClock.Clock.hourColor:		rgba:7f/00/00/c0
+XClock.Clock.minuteColor:	rgba:00/7f/7f/c0
+XClock.Clock.secondColor:	rgba:00/00/ff/80
+XClock.Clock.majorColor:	rgba:7f/00/00/c0
+XClock.Clock.minorColor:	rgba:00/7f/7f/c0
+#endif
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,93 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.48;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@& This command macro builds and tests full perl using
+& the native perl build scripts.  The prerequsites for
+& using this macro are a VOS Continuum system running
+& VOS Release 14.5.0 and VOS GNU C/C++ and GNU Tools 2.0.1.
+& 
+& Written 02-05-05 by Paul Green (Paul.Green@@stratus.com)
+&
+&begin_parameters
+     debug_sw       switch(-debug)
+&end_parameters
+&echo command_lines
+&
+!add_library_path command (master_disk)>system>gnu_library>bin &+
+     -after '(current_dir)'
+&
+&if (process_type) = interactive
+&then !set_terminal_parameters -pause_lines 0
+&
+&set_string release (before (after (module_info system_release) 'VOS Release ') ' ')
+&if &release& < '14.5'
+&then &do
+ &display_line You must be running VOS Release 14.5.0 or later to use this macro.
+ &return e$wrong_version
+&end
+&
+&if ^ (exists -directory (master_disk)>system>gnu_library>lib>perl5)
+&then &do
+ &display_line You must have S877 - GNU C/C++ and GNU Tools Release 2.0.1 to use this macro.
+ &return e$wrong_version
+&end
+&
+!change_current_dir <
+&
+&if &debug_sw&
+&then !bash vos/configure_full_perl.sh -DDEBUGGING -Doptimize=-g
+&else !bash vos/configure_full_perl.sh
+&
+!bash vos/make_full_perl.sh
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

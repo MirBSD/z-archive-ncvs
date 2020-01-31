@@ -1,0 +1,86 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.07.01.26.59;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.07.01.19.56;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2005.01.07.01.19.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge MirOS
+add -W -pedantic
+@
+text
+@#!/bin/ksh
+# $MirBSD: src/usr.bin/crunch/mkskel.sh,v 1.2 2004/05/22 00:19:29 tg Stab $
+# $OpenBSD: mkskel.sh,v 1.2 2000/03/01 22:10:03 todd Exp $
+#
+# idea from flex; sed optimized by MirOS
+
+print '/* File created via $MirBSD: src/usr.bin/crunch/mkskel.sh,v 1.2 2004/05/22 00:19:29 tg Stab $ */\n'
+print 'const char *crunched_skel[] = {'
+
+sed -e 's/\\/&&/g' -e 's/"/\\"/g' -e 's/.*/	"&",/' "$@@"
+
+print '	0\n};'
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 5
+a5 2
+#! /bin/sh
+#	$OpenBSD: mkskel.sh,v 1.2 2000/03/01 22:10:03 todd Exp $
+d7 2
+a8 1
+# idea and sed lines taken straight from flex
+d10 1
+a10 2
+cat <<!EOF
+/* File created via mkskel.sh */
+d12 1
+a12 9
+char *crunched_skel[] = {
+!EOF
+
+sed 's/\\/&&/g' $* | sed 's/"/\\"/g' | sed 's/.*/  "&",/'
+
+cat <<!EOF
+  0
+};
+!EOF
+@
+
+
+1.1.1.1
+log
+@crunchgen(1) and crunchide(1) from OpenBSD, cobbled together, no changes yet
+@
+text
+@@

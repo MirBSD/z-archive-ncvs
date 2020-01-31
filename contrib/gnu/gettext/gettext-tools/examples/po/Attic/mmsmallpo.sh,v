@@ -1,0 +1,75 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.47.14;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.53;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.53;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@#!/bin/sh
+# Usage: mmsmallpo.sh hello-foo ll
+
+set -e
+
+test $# = 2  || { echo "Usage: mmsmallpo.sh hello-foo ll" 1>&2; exit 1; }
+directory=$1
+language=$2
+
+msgmerge --force-po $language.po $directory.pot -o - | \
+msgattrib --no-obsolete | \
+sed -e "s, $directory/, ,g" | sed -e "s,gettext-examples,$directory," | \
+sed -e '/^"POT-Creation-Date: .*"$/{
+x
+s/P/P/
+ta
+g
+d
+bb
+:a
+x
+:b
+}' \
+  > ../$directory/po/$language.po
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

@@ -1,0 +1,94 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.11;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.12;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.12;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@package ExtUtils::MakeMaker::bytes;
+
+use vars qw($VERSION);
+$VERSION = 0.01;
+
+my $Have_Bytes = eval q{require bytes; 1;};
+
+sub import {
+    return unless $Have_Bytes;
+
+    shift;
+    unshift @@_, 'bytes';
+
+    goto &bytes::import;
+}
+
+1;
+
+
+=head1 NAME
+
+ExtUtils::MakeMaker::bytes - Version agnostic bytes.pm
+
+=head1 SYNOPSIS
+
+  use just like bytes.pm
+
+=head1 DESCRIPTION
+
+bytes.pm was introduced with 5.6.  This means any code which has 'use
+bytes' in it won't even compile on 5.5.X.  Since bytes is a lexical
+pragma and must be used at compile time we can't simply wrap it in
+a BEGIN { eval 'use bytes' } block.
+
+ExtUtils::MakeMaker::bytes is just a very thin wrapper around bytes
+which works just like it when bytes.pm exists and everywhere else it
+does nothing.
+
+=cut
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

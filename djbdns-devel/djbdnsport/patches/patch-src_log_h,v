@@ -1,0 +1,35 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.12.13.23.14.44;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f55f4c26936c;
+
+
+desc
+@@
+
+
+1.1
+log
+@apply dnscache-strict-forwardonly.patch w/ IPv6 tweak
+@
+text
+@$MirOS$
+--- src/log.h.orig	Sun Feb 11 21:11:23 2001
++++ src/log.h	Tue Dec 13 23:13:33 2005
+@@@@ -23,6 +23,7 @@@@ extern void log_nxdomain(const char *,co
+ extern void log_nodata(const char *,const char *,const char *,unsigned int);
+ extern void log_servfail(const char *);
+ extern void log_lame(const char *,const char *,const char *);
++extern void log_ignore_referral(const char *,const char *,const char *);
+ 
+ extern void log_rr(const char *,const char *,const char *,const char *,unsigned int,unsigned int);
+ extern void log_rrns(const char *,const char *,const char *,unsigned int);
+@

@@ -1,0 +1,57 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  start:1.1.1.1 openbsd:1.1.1;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.21.52.19;  author tg;  state Exp;
+branches 1.1.1.1;
+next     ;
+
+1.1.1.1
+date     2005.01.06.21.52.19;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@typedef struct LockStruct_s
+{
+	char *cmdline_arg;          /* mode name */
+	/* Maybe other things should be added here from xlock? */
+	/* Should read in XLock as well to set defaults */
+	char *desc;                 /* text description of mode */
+} LockStruct;
+
+static LockStruct LockProcs[] =
+{
+$%LISTMOTIF#ifdef USE_BOMB
+{(char *) "bomb", (char *) "Shows a bomb and will autologout after a time"},
+{(char *) "random", (char *) "Shows a random mode (except blank and bomb)"}
+#else
+{(char *) "random", (char *) "Shows a random mode (except blank)"}
+#endif
+};
+
+#define numprocs (sizeof(LockProcs) /sizeof(LockProcs[0]))
+@
+
+
+1.1.1.1
+log
+@Import programmes new to OpenBSD's X-Window subsystem
+@
+text
+@@

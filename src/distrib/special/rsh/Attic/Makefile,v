@@ -1,0 +1,71 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.04.05;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@#	$OpenBSD: Makefile,v 1.2 1999/06/17 20:42:31 deraadt Exp $
+#	$NetBSD: Makefile,v 1.13 1996/12/18 16:54:57 christos Exp $
+
+PROG=	rsh
+SRCS=	rsh.c
+COPTS+=-Os
+
+KERBEROS=no
+
+.PATH:	${.CURDIR}/../../../usr.bin/rsh
+MAN=
+BINMODE=4555
+BINOWN=	root
+
+.include <bsd.prog.mk>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

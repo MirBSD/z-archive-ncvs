@@ -1,0 +1,253 @@
+head	2.4;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.4
+date	2005.01.09.19.36.59;	author tg;	state Exp;
+branches;
+next	2.3;
+
+2.3
+date	2005.01.08.19.26.48;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.03.18.15.30;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.41.08;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.59;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.59;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.4
+log
+@merge over most userland fixes from ocvs
+@
+text
+@# $MirBSD: src/usr.sbin/Makefile,v 2.3 2005/01/08 19:26:48 tg Exp $
+# $OpenBSD: Makefile,v 1.110 2004/05/04 23:27:21 deraadt Exp $
+
+.include <bsd.own.mk>
+
+  SUBDIR+= ac
+  SUBDIR+= accton
+  SUBDIR+= adduser
+  SUBDIR+= apm
+  SUBDIR+= apmd
+  SUBDIR+= arp
+  SUBDIR+= authpf
+  SUBDIR+= bad144
+  SUBDIR+= bgpctl
+  SUBDIR+= bgpd
+  SUBDIR+= chroot
+  SUBDIR+= config
+  SUBDIR+= cron
+  SUBDIR+= ctm
+  SUBDIR+= dev_mkdb
+  SUBDIR+= dhcpd
+  SUBDIR+= dhcrelay
+  SUBDIR+= edquota
+  SUBDIR+= eeprom
+  SUBDIR+= extattrctl
+  SUBDIR+= faithd
+.if ${CROSS_MODE:L} != "yes"
+  SUBDIR+= fdformat
+.endif
+  SUBDIR+= getextattr
+.if ${CROSS_MODE:L} != "yes"
+  SUBDIR+= httpd
+.endif
+  SUBDIR+= ifwatchd
+  SUBDIR+= inetd
+  SUBDIR+= iostat
+.if ${MACHINE} == "i386"
+  SUBDIR+= isdn
+.endif
+  SUBDIR+= kvm_mkdb
+  SUBDIR+= lpr
+  SUBDIR+= mailwrapper
+  SUBDIR+= map-mbone
+  SUBDIR+= memconfig
+  SUBDIR+= mrinfo
+  SUBDIR+= mrouted
+  SUBDIR+= mtrace
+  SUBDIR+= mtree
+  SUBDIR+= ndp
+  SUBDIR+= netgroup_mkdb
+  SUBDIR+= ntpd
+  SUBDIR+= openssl
+  SUBDIR+= popa3d
+  SUBDIR+= portmap
+  SUBDIR+= ppp
+  SUBDIR+= pppd
+  SUBDIR+= pppoe
+  SUBDIR+= procmap
+  SUBDIR+= pstat
+  SUBDIR+= pwd_mkdb
+  SUBDIR+= quot
+  SUBDIR+= quotaon
+  SUBDIR+= rarpd
+  SUBDIR+= rbootd
+  SUBDIR+= rdate
+  SUBDIR+= rdconfig
+  SUBDIR+= repquota
+  SUBDIR+= rip6query
+  SUBDIR+= rmt
+  SUBDIR+= route6d
+  SUBDIR+= rpc.bootparamd
+  SUBDIR+= rpc.lockd
+  SUBDIR+= rtadvd
+  SUBDIR+= rtsold
+  SUBDIR+= rwhod
+  SUBDIR+= sa
+  SUBDIR+= sensorsd
+  SUBDIR+= sesd
+  SUBDIR+= setextattr
+  SUBDIR+= sliplogin
+  SUBDIR+= slstats
+  SUBDIR+= spamdb
+  SUBDIR+= spppcontrol
+  SUBDIR+= spray
+  SUBDIR+= syslogc
+  SUBDIR+= syslogd
+  SUBDIR+= tcpdrop
+  SUBDIR+= tcpdump
+  SUBDIR+= timed
+  SUBDIR+= tokenadm
+  SUBDIR+= tokeninit
+  SUBDIR+= traceroute
+  SUBDIR+= traceroute6
+  SUBDIR+= trpt
+  SUBDIR+= usbdevs
+  SUBDIR+= user
+  SUBDIR+= vipw
+  SUBDIR+= vnconfig
+  SUBDIR+= wsconscfg
+  SUBDIR+= wsfontload
+  SUBDIR+= wsmoused
+  SUBDIR+= wssetfont
+  SUBDIR+= zdump
+  SUBDIR+= zic
+
+.include <bsd.subdir.mk>
+@
+
+
+2.3
+log
+@merge CTM
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/usr.sbin/Makefile,v 2.2 2005/01/03 18:15:30 tg Exp $
+d27 1
+d29 1
+d31 1
+d33 1
+d37 1
+d39 1
+@
+
+
+2.2
+log
+@with these, it at least compiles; testing is up to
+the MirOS users who've got ISDN.
+
+also, NO_CURSES -> _SMALL
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/usr.sbin/Makefile,v 2.1 2005/01/03 16:41:08 tg Exp $
+d19 1
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/usr.sbin/Makefile,v 1.25 2004/12/11 15:30:59 tg Exp $
+d32 1
+a32 1
+  SUBDIR+= isdnd
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile,v 1.110 2004/05/04 23:27:21 deraadt Exp $
+d6 92
+a97 29
+SUBDIR=	ac accton adduser amd arp authpf bgpctl bgpd bind chroot \
+	config cron dev_mkdb dhcpd dhcrelay edquota httpd inetd \
+	iostat kgmon kvm_mkdb lpr mailwrapper mopd mtree mrouted \
+	mrinfo mtrace map-mbone netgroup_mkdb openssl pkg_add popa3d \
+	portmap ppp pppd pppoe procmap pstat pwd_mkdb quot quotaon \
+	rarpd rbootd rdconfig rdate repquota rmt rpc.bootparamd \
+	rpc.lockd rwhod sa sensorsd sesd sliplogin slstats spamdb \
+	spppcontrol spray syslogc syslogd tcpdrop tcpdump timed \
+	tokenadm tokeninit traceroute trpt usbdevs user vipw vnconfig \
+	wsmoused zdump zic
+
+# IPv6
+SUBDIR+=faithd ndp rip6query route6d rtadvd rtsold traceroute6
+
+# Arch dependent tools, with manpages
+SUBDIR+=bad144 apm apmd fdformat memconfig
+SUBDIR+=eeprom grfinfo hilinfo
+SUBDIR+=wsconscfg wsfontload
+
+# Extended Attribute tools
+SUBDIR+=extattrctl setextattr getextattr
+
+.if (${AFS:L} == "yes")
+SUBDIR+=afs
+.endif
+
+.if (${YP:L} == "yes")
+SUBDIR+=ypbind yppoll ypset ypserv
+.endif
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

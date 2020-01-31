@@ -1,0 +1,66 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.43.21;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.26;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.26;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@#!/bin/sh
+
+# Test config.rpath and AC_LIB_LINKFLAGS macro.
+# With dependencies: a static library depending on a static library,
+# and a static library depending on both.
+# Each library installed with a different prefix.
+
+rp=rp3aba
+build1_configure_flags=--disable-shared
+build2_configure_flags=--disable-shared
+build3_configure_flags=--disable-shared
+build4_package=rpathlz
+remove_la=no
+
+. $srcdir/rpath-3_b
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

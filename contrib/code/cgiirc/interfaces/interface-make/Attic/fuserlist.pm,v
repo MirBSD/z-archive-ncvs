@@ -1,0 +1,201 @@
+head	2.3;
+access;
+symbols
+	cgiirc-0_5_5:1.1.3.2
+	cgiirc-0_5_4:1.1.3.1
+	tg:1.1.3;
+locks; strict;
+comment	@# @;
+
+
+2.3
+date	2005.01.18.20.26.31;	author tg;	state dead;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.18.20.12.41;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.19.14.29.16;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches
+	1.1.3.1;
+next	;
+
+1.1.3.1
+date	2004.12.19.14.26.30;	author tg;	state Exp;
+branches;
+next	1.1.3.2;
+
+1.1.3.2
+date	2005.01.18.20.03.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@nah, doesnt work like I would
+@
+text
+@   my($self, $cgi, $config) = @@_;
+print <<EOF;
+$standardheader
+<html>
+<head>
+<script language="JavaScript">
+<!--
+var selected;
+
+function fsubmit(form) {
+   var action = form.action.options[form.action.selectedIndex].value;
+   var user = form.user.value;
+
+   if(!user || !action) {
+      alert("No user or action selected");
+      return false;
+   }
+   user = user.replace(/^[@@%+ ]/, '');
+   parent.fwindowlist.sendcmd_userlist(action, user);
+   return false;
+}
+
+function deselect() {
+   if(!selected) return;
+   selected.className = 'userlist-item';
+}
+
+function userlist(users) {
+   var tmp = '<table class="userlist-table">';
+   for(var i = 0;i < users.length; i++) {
+      var status = users[i].substr(0, 1);
+      var user = users[i].substr(1);
+
+      tmp += '<tr><td class="userlist-status"> ' + statushtml(status) + ' </td>'
+          + '<td class="userlist-item" ' +
+        (user != 'No channel' ?
+          ' onmouseout="this.className=(this == selected ?'
+          + '\\'userlist-selected\\':\\'userlist-item\\')"'
+          + ' onmouseover="this.className=\\'userlist-hover\\'"'
+          + ' onclick="' + 'this.className=\\'userlist-selected\\';'
+          + 'deselect();selected = this;document.mform.user.value = \\''
+          + parent.fwindowlist.escapejs(user) + '\\';return false;" ondblclick="fsubmit(document.mform);"'
+          : '') + '>' + user + '</td></tr>';
+   }
+   tmp += '</table>';
+   document.getElementById('usertable').innerHTML = tmp;
+   document.mform.user.value = '';
+}
+
+function statushtml(status) {
+   if(status == "@@") {
+      return '<div class="userlist-op">@@</div>';
+   }else if(status == "+") {
+      return '<div class="userlist-voice">+</div>';
+   }else if(status == "%") {
+      return '<div class="userlist-halfop">%</div>';
+   }else if(status == ' ') {
+      return '';
+   }else{
+      return '<div class="userlist-other">' + status + '</div>';
+   }
+}
+
+.$just ie
+document.onselectstart = function() { return false; }
+.$end
+// -->
+</script>
+<link rel="stylesheet" href="$config->{script_login}?interface=**BROWSER&item=style&style=$cgi->{style}" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" /></head>
+
+<body class="userlist-body" onkeydown="if((event && event.keyCode && ((event.keyCode < 30 || event.keyCode > 40) && (event.keyCode < 112 || event.keyCode > 123) && !event.ctrlKey)) && parent.fform.location) { parent.fform.fns(); return false; }">
+
+<div class="userlist-div" id="usertable">
+
+<table class="userlist-table">
+<tr><td class="userlist-status"></td>
+<td class="userlist-item">No channel</td></tr>
+</table>
+
+</div>
+
+<form name="mform" onsubmit="return fsubmit(this)" class="userlist-form">
+<input type="hidden" name="user">
+<select name="action" class="userlist-select">
+<option value="query">Query</option>
+<option value="whois">Whois</option>
+<option value="kick">Kick</option>
+</select>
+<input type="submit" class="userlist-btn" value="&gt;&gt;">
+</form>
+
+</body>
+</html>
+EOF
+@
+
+
+2.2
+log
+@merge
+@
+text
+@@
+
+
+2.1
+log
+@*sigh* update to MirCGIIRC
+@
+text
+@d72 1
+a72 1
+<body class="userlist-body">
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d35 2
+a36 2
+          + '<td class="userlist-item" ' + 
+        (user != 'No channel' ? 
+d70 1
+a70 1
+</head>
+@
+
+
+1.1.3.1
+log
+@Import cgiirc 0.5.4 (pristine) again
+@
+text
+@@
+
+
+1.1.3.2
+log
+@there's a new CGI::IRC out, with utf-8 supposedly, and fireschrott bugfixes
+@
+text
+@d72 1
+a72 1
+<body class="userlist-body" onkeydown="if((event && event.keyCode && ((event.keyCode < 30 || event.keyCode > 40) && (event.keyCode < 112 || event.keyCode > 123) && !event.ctrlKey)) && parent.fform.location) { parent.fform.fns(); return false; }">
+@
+

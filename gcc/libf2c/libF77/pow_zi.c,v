@@ -1,0 +1,110 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.04.17.24.52;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include "f2c.h"
+
+extern void z_div (doublecomplex *, doublecomplex *, doublecomplex *);
+void
+pow_zi (doublecomplex * p, doublecomplex * a, integer * b)	/* p = a**b  */
+{
+  integer n;
+  unsigned long u;
+  double t;
+  doublecomplex q, x;
+  static doublecomplex one = { 1.0, 0.0 };
+
+  n = *b;
+  q.r = 1;
+  q.i = 0;
+
+  if (n == 0)
+    goto done;
+  if (n < 0)
+    {
+      n = -n;
+      z_div (&x, &one, a);
+    }
+  else
+    {
+      x.r = a->r;
+      x.i = a->i;
+    }
+
+  for (u = n;;)
+    {
+      if (u & 01)
+	{
+	  t = q.r * x.r - q.i * x.i;
+	  q.i = q.r * x.i + q.i * x.r;
+	  q.r = t;
+	}
+      if (u >>= 1)
+	{
+	  t = x.r * x.r - x.i * x.i;
+	  x.i = 2 * x.r * x.i;
+	  x.r = t;
+	}
+      else
+	break;
+    }
+done:
+  p->i = q.i;
+  p->r = q.r;
+}
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

@@ -1,0 +1,91 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2004.08.04.11.48.01;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.33.01;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.33.01;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@/* Enable a variable CVSUSER for cvs.  */
+/* See cvs/subr.c: getcaller().  */
+
+#include <stdlib.h>
+#include <string.h>
+#include <pwd.h>
+
+int getuid (void)
+{
+  return 0;
+}
+
+char * getlogin (void)
+{
+  char *s;
+
+  s = getenv ("CVSUSER");
+  if (s && *s)
+    return s;
+  s = getenv ("USER");
+  if (s && *s)
+    return s;
+  return NULL;
+}
+
+struct passwd * getpwnam (const char *name)
+{
+  static struct passwd pw;
+  static char namebuf[100];
+
+  pw.pw_name = strcpy (namebuf, name);
+  pw.pw_passwd = "*";
+  pw.pw_uid = 100;
+  pw.pw_gid = 100;
+  pw.pw_gecos = "";
+  pw.pw_dir = "/";
+  pw.pw_shell = "/bin/sh";
+
+  return &pw;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

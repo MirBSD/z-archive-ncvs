@@ -1,0 +1,120 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.23.10.18;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.02.32;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.32;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@basic cleanup, more to follow
+@
+text
+@/* insque(3C) routines
+   This file is in the public domain.  */
+
+/*
+
+@@deftypefn Supplemental void insque (struct qelem *@@var{elem}, struct qelem *@@var{pred})
+@@deftypefnx Supplemental void remque (struct qelem *@@var{elem})
+
+Routines to manipulate queues built from doubly linked lists.  The
+@@code{insque} routine inserts @@var{elem} in the queue immediately
+after @@var{pred}.  The @@code{remque} routine removes @@var{elem} from
+its containing queue.  These routines expect to be passed pointers to
+structures which have as their first members a forward pointer and a
+back pointer, like this prototype (although no prototype is provided):
+
+@@example
+struct qelem @@{
+  struct qelem *q_forw;
+  struct qelem *q_back;
+  char q_data[];
+@@};
+@@end example
+
+@@end deftypefn
+
+*/
+
+
+struct qelem {
+  struct qelem *q_forw;
+  struct qelem *q_back;
+};
+
+
+void
+insque (elem, pred)
+  struct qelem *elem;
+  struct qelem *pred;
+{
+  elem -> q_forw = pred -> q_forw;
+  pred -> q_forw -> q_back = elem;
+  elem -> q_back = pred;
+  pred -> q_forw = elem;
+}
+
+
+void
+remque (elem)
+  struct qelem *elem;
+{
+  elem -> q_forw -> q_back = elem -> q_back;
+  elem -> q_back -> q_forw = elem -> q_forw;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

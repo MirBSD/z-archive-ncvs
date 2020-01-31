@@ -1,0 +1,90 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.06.22.13.48;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.05.26;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.05.26;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge most stuff additions and deletions from ocvs:src/X-Window
+@
+text
+@#include <sys/types.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <regex.h>
+
+#include "utils.h"
+#include "regex2.h"
+
+/*
+ - regfree - free everything
+ = extern void regfree(regex_t *);
+ */
+void
+regfree(preg)
+regex_t *preg;
+{
+	register struct re_guts *g;
+
+	if (preg->re_magic != MAGIC1)	/* oops */
+		return;			/* nice to complain, but hard */
+
+	g = preg->re_g;
+	if (g == NULL || g->magic != MAGIC2)	/* oops again */
+		return;
+	preg->re_magic = 0;		/* mark it invalid */
+	g->magic = 0;			/* mark it invalid */
+
+	if (g->strip != NULL)
+		free((char *)g->strip);
+	if (g->sets != NULL)
+		free((char *)g->sets);
+	if (g->setbits != NULL)
+		free((char *)g->setbits);
+	if (g->must != NULL)
+		free(g->must);
+	free((char *)g);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,144 @@
+head	1.2;
+access;
+symbols
+	cvs-200501070130:1.1.5.1 TNF:1.1.5;
+locks; strict;
+comment	@.\" @;
+
+
+1.2
+date	2005.01.07.01.49.10;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.07.01.31.22;	author tg;	state Exp;
+branches
+	1.1.5.1;
+next	;
+
+1.1.5.1
+date	2005.01.07.01.31.22;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge
+@
+text
+@.\"	$MirBSD: src/usr.bin/wtf/wtf.1,v 1.1 2003/03/23 22:50:13 tg Stab $
+.\"	$NetBSD: wtf.6,v 1.4 2001/04/02 22:42:40 wiz Exp $
+.\"
+.\" Public Domain
+.\"
+.Dd July 21, 1999
+.Dt WTF 1
+.Os
+.Sh NAME
+.Nm wtf
+.Nd translates acronyms for you
+.Sh SYNOPSIS
+.Nm
+.Op Ar is
+.Ar acronym Ar ...
+.Sh DESCRIPTION
+The
+.Nm
+utility displays the expansion of the acronyms
+specified on the command line.
+If the acronym is unknown,
+.Nm
+will check to see if the acronym is known by the
+.Xr whatis 1
+command.
+If the acronym is still not found, the "dict" (online
+dictionary client) is tried if it exists.
+.Pp
+If
+.Dq is
+is specified on the command line, it will be ignored,
+allowing the fairly natural
+.Sy wtf\ is\ WTF
+and, for German users,
+.Sy wtf\ ist\ Windows
+usage.
+.Sh ENVIRONMENT
+.Bl -tag -width ACRONYMDB
+.It Ev ACRONYMDB
+The default acronym database may be overridden by setting the
+environment variable
+.Ev ACRONYMDB
+to the name of a file in the proper format (acronym[tab]meaning).
+.El
+.Sh FILES
+.Bl -tag -width /usr/share/misc/acronyms -compact
+.It Pa /usr/share/misc/acronyms
+default acronym database.
+.El
+.Sh SEE ALSO
+.Xr whatis 1
+.Sh HISTORY
+.Nm
+first appeared in
+.Nx 1.5 .
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+.\"	$NetBSD: wtf.6,v 1.8 2003/04/25 19:08:31 jmmv Exp $
+d6 2
+a7 2
+.Dd April 25, 2003
+.Dt WTF 6
+a13 2
+.Op Fl f Ar dbfile
+.Op Fl t Ar type
+d26 2
+d31 5
+a35 3
+is specified on the command line, it will be ignored, allowing the
+fairly natural
+.Dq wtf is WTF
+a36 15
+.Pp
+The following options are available:
+.Bl -tag -width flag
+.It Fl f Ar dbfile
+Overrides the default acronym database, bypassing the value of the
+.Ev ACRONYMDB
+variable.
+.It Fl t Ar type
+Specifies the acronym's type.
+Simply put, it makes the program use the acronyms database named
+.Pa /usr/share/misc/acronyms.type ,
+where
+.Ar type
+is given by the argument.
+.El
+d46 1
+a46 1
+.Bl -tag -width /usr/share/misc/acronyms.XXXX -compact
+a48 2
+.It Pa /usr/share/misc/acronyms.comp
+computer-related acronym database.
+@
+
+
+1.1.5.1
+log
+@the "original" wtf
+@
+text
+@@

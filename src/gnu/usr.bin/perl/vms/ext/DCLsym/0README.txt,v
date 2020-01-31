@@ -1,0 +1,76 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.44;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@VMS::DCLsym is an extension to Perl 5 which allows it to manipulate DCL symbols
+via an object-oriented or tied-hash interface.
+
+In order to build the extension, just say
+
+$ Perl Makefile.PL
+$ MMK
+
+in the directory containing the source files.  Once it's built, you can run the
+test script by saying
+
+$ Perl "-Iblib" test.pl
+
+Finally, if you want to make it part of your regular Perl library, you can say
+$ MMK install
+
+If you have any problems or suggestions, please feel free to let me know.
+
+Regards,
+Charles Bailey  bailey@@newman.upenn.edu
+17-Aug-1995
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

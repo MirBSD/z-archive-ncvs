@@ -1,0 +1,74 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2005.01.08.23.02.20;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.20;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* Core file stuff.  At least some, perhaps all, of the following
+   defines work on many more systems than just SCO.  */
+
+#define NBPG NBPC
+#define UPAGES USIZE
+#define HOST_DATA_START_ADDR u.u_exdata.ux_datorg
+#define HOST_STACK_START_ADDR u.u_sub
+#define TRAD_UNIX_CORE_FILE_FAILING_SIGNAL(abfd) \
+  ((core_upage(abfd)->u_sysabort != 0) \
+   ? core_upage(abfd)->u_sysabort \
+   : -1)
+
+/* According to the manpage, a version 2 SCO corefile can contain
+   various additional sections (it is cleverly arranged so the u area,
+   data, and stack are first where we can find them).  So without
+   writing lots of code to parse all their headers and stuff, we can't
+   know whether a corefile is bigger than it should be.  */
+
+#define TRAD_CORE_ALLOW_ANY_EXTRA_SIZE 1
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

@@ -1,0 +1,192 @@
+head	1.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200507211800:1.1.1.1
+	tg-mergetmp-3:1.1.1.1
+	cvs-200504170300:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.02.05.17.30.38;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2005.02.05.17.30.38;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@<?xml version="1.0" encoding="iso-2022-jp"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+
+    <title>Apache module mod_userdir</title>
+  </head>
+  <!-- English revision: 1.20 --> 
+  <!-- Background white, links blue (unvisited), navy (visited), red (active) -->
+
+  <body bgcolor="#FFFFFF" text="#000000" link="#0000FF"
+  vlink="#000080" alink="#FF0000">
+        <div align="CENTER">
+      <img src="../images/sub.gif" alt="[APACHE DOCUMENTATION]" /> 
+
+      <h3>Apache HTTP Server Version 1.3</h3>
+    </div>
+
+
+    <h1 align="center">mod_userdir $B%b%8%e!<%k(B</h1>
+
+    <p>$B$3$N%b%8%e!<%k$O!"%f!<%6$N%[!<%`%G%#%l%/%H%j$K%"%/%;%9$9$k5!G=$rDs6!$7$^$9(B</p>
+
+    <p><a href="module-dict.html#Status"
+    rel="Help"><strong>$B%9%F!<%?%9(B:</strong></a> Base<br />
+     <a href="module-dict.html#SourceFile"
+    rel="Help"><strong>$B%=!<%9%U%!%$%k(B:</strong></a>
+    mod_userdir.c<br />
+     <a href="module-dict.html#ModuleIdentifier"
+    rel="Help"><strong>$B%b%8%e!<%k<1JL;R(B:</strong></a>
+    userdir_module</p>
+
+    <h2>$B%G%#%l%/%F%#%V(B</h2>
+
+    <ul>
+      <li><a href="#userdir">UserDir</a></li>
+    </ul>
+    <hr />
+
+    <h2><a id="userdir" name="userdir">UserDir</a> $B%G%#%l%/%F%#%V(B</h2>
+
+    <a href="directive-dict.html#Syntax"
+    rel="Help"><strong>Syntax:</strong></a> UserDir
+    <em>directory-filename</em><br />
+     <a href="directive-dict.html#Default"
+    rel="Help"><strong>Default:</strong></a> <code>UserDir
+    public_html</code><br />
+     <a href="directive-dict.html#Context"
+    rel="Help"><strong>Context:</strong></a> $B%5!<%P@@_Dj%U%!%$%k!"(B $B%P!<%A%c%k%[%9%H(B<br />
+     <a href="directive-dict.html#Status"
+    rel="Help"><strong>Status:</strong></a> Base<br />
+     <a href="directive-dict.html#Module"
+    rel="Help"><strong>Module:</strong></a> mod_userdir<br />
+     <a href="directive-dict.html#Compatibility"
+    rel="Help"><strong>Compatibility:</strong></a> <code>UserDir public_html</code>
+    $B$H$$$C$?7A<00J30$O!"(BApache 1.1 $B0J9_$G$N$_M-8z$G$9!#(B
+    <samp>enabled</samp> $B$d(B <samp>disabled</samp> $B$H$$$&%-!<%o!<%I$N5-=R5Z$S!"(B
+    $B%f!<%6L>$NNs5s$K4X$7$F$O!"(BApache 1.3 $B0J9_$G$N$_BP1~$7$F$$$^$9!#(B
+
+    <p>UserDir $B%G%#%l%/%F%#%V$O!"(B
+    $B%f!<%6$N%I%-%e%a%s%H$KBP$9$kMW5a$,$"$C$?:]$K;HMQ$9$k!"(B
+    $B%f!<%6$N%[!<%`%G%#%l%/%H%j$NCf$N<B:]$N%G%#%l%/%H%j$NL>A0$r;XDj$7$^$9!#(B
+    <em>directory-filename</em> $B$K$O!"0J2<$N$I$l$+$r;XDj$7$^$9!#(B</p>
+
+    <ul>
+      <li>$B%G%#%l%/%H%jL>$+!"0J2<$K=R$Y$k7A<0$N%Q%?!<%s!#(B</li>
+
+      <li><samp>disabled</samp> $B$H$$$&%-!<%o!<%I!#(B<br />
+      $B$3$N@@_Dj$O!"(B<samp>enabled</samp> $B%-!<%o!<%I(B ($B0J2<;2>H(B)
+      $B$K$*$$$F;XDj$5$l$?%f!<%60J30!"(B
+      <em>$B$9$Y$F(B</em>$B$N%f!<%6L>$r%G%#%l%/%H%j$KJQ49$7$J$$$h$&$K$7$^$9!#(B</li>
+
+      <li><samp>disabled</samp> $B$H$$$&%-!<%o!<%I$H!"(B
+      $B$=$N8e$K%9%Z!<%96h@@Z$j$G%f!<%6L>$rNs5s!#(B<br />
+      $B;XDj$5$l$?%f!<%6$O!"(B<samp>enabled</samp>
+      $B$K$*$$$F5-=R$,$5$l$F$$$?$H$7$F$b!"(B
+      $B%G%#%l%/%H%j$X$NJQ49$,(B<em>$B$5$l$J$/(B</em>$B$J$j$^$9!#(B</li>
+
+      <li><samp>enabled</samp>
+      $B$H$$$&%-!<%o!<%I$H!"%9%Z!<%96h@@Z$j$G%f!<%6L>$rNs5s(B<br />
+      $B;XDj$5$l$?%f!<%6$O!"JQ49$,$5$l$J$$$h$&$K@@_Dj$5$l$F$$$?$H$7$F$b!"(B
+      $B%G%#%l%/%H%j$X$NJQ49$r9T$$$^$9!#(B
+      $B$?$@@$7!"(B<samp>disabled</samp>
+      $B$K$*$$$FL@@5-$5$l$F$$$k>l9g$K$O!"JQ49$,$J$5$l$^$;$s!#(B</li>
+    </ul>
+
+    <p><samp>enabled</samp> $B$d(B <samp>disabled</samp>
+    $B$H$$$C$?%-!<%o!<%I$G$J$$>l9g$K$O!"(B
+    $B%U%!%$%kL>$N%Q%?!<%s$H$7$F07$o$l!"(B
+    $BL>A0$+$i%G%#%l%/%H%j$X$NJQ49$r;XDj$9$k$3$H$,$G$-$^$9!#(B
+    <code>http://www.foo.com/~bob/one/two.html</code> $B$X$N(B URL
+    $B$N>l9g$NJQ49$K$D$$$F8+$F$_$^$9!#(B</p>
+
+<pre>
+UserDir public_html     -&gt; ~bob/public_html/one/two.html
+UserDir /usr/web        -&gt; /usr/web/bob/one/two.html
+UserDir /home/*/www     -&gt; /home/bob/www/one/two.html
+</pre>
+
+    <p>$B0J2<$N$h$&$K%G%#%l%/%F%#%V$r@@_Dj$9$k$H!"(B
+    $B%/%i%$%"%s%H$X$O%j%@@%$%l%/%H$,Aw=P$5$l$^$9!#(B</p>
+<pre>
+UserDir http://www.foo.com/users -&gt; http://www.foo.com/users/bob/one/two.html
+UserDir http://www.foo.com/*/usr -&gt; http://www.foo.com/bob/usr/one/two.html
+UserDir http://www.foo.com/~*/   -&gt; http://www.foo.com/~bob/one/two.html
+</pre>
+
+    <blockquote>
+      <strong>
+      $B$3$N%G%#%l%/%F%#%V$rMxMQ$9$k:]!"(B<samp>"UserDir&nbsp;./"</samp>
+      $B$H$$$C$?@@_Dj$r$9$k$H!"(B<samp>"/~root"</samp> $B$O(B <samp>"/"</samp>
+      $B$K%^%C%T%s%0$5$l$k$3$H$K5$$r$D$1$F$/$@@$5$$!#(B
+      $B$3$l$OHs>o$KK>$^$7$/$"$j$^$;$s!#(B
+      Apache 1.3 $B0J9_$rMxMQ$7$F$$$k$N$G$"$l$P!"(B"UserDir disabled root"
+      $B$H$$$&5-=R$r@@_Dj%U%!%$%kCf$K4^$a$k$3$H$r6/$/?d>)$7$^$9!#(B
+      <a
+      href="core.html#directory">&lt;Directory&gt;</a> $B%G%#%l%/%F%#%V$d!"(B
+      <a href="../misc/security_tips.html">$B%;%-%e%j%F%#$K4X$9$k3P=q(B</a>
+      $B$b;2>H$7$F$/$@@$5$$!#(B</strong>
+    </blockquote>
+
+<p>$B$=$NB>$N@@_DjNc(B:</p>
+
+<p>$B>.?t$N%f!<%6$K$O(B <code>UserDir</code>
+$B%G%#%l%/%H%j$rMxMQ$5$;$k$b$N$N!";D$j$N%f!<%6$K$O$5$;$?$/$J$$>l9g(B:</p>
+
+<pre>
+UserDir disabled
+UserDir enabled user1 user2 user3
+</pre>
+
+<p>$BBgItJ,$N%f!<%6$K$O(B <code>UserDir</code>
+$B%G%#%l%/%H%j$rMxMQ$5$;!"0lIt$N%f!<%6$N$_L58z$K$9$k>l9g(B:</p>
+
+<pre>
+UserDir enabled
+UserDir disabled user4 user5 user6
+</pre>
+
+        <hr />
+
+    <h3 align="CENTER">Apache HTTP Server Version 1.3</h3>
+    <a href="./"><img src="../images/index.gif" alt="Index" /></a>
+    <a href="../"><img src="../images/home.gif" alt="Home" /></a>
+
+  </body>
+</html>
+@
+
+
+1.1.1.1
+log
+@Import the OpenBSD foundation of MirOS BSD
+@
+text
+@@

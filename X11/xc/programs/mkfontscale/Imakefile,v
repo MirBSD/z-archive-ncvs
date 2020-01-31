@@ -1,0 +1,80 @@
+head	1.2;
+access;
+symbols
+	XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.06.23.21.49;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.15.18.17.22;	author tg;	state Exp;
+branches
+	1.1.9.1;
+next	;
+
+1.1.9.1
+date	2004.12.15.18.17.22;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@merge X11 out of my feet
+@
+text
+@XCOMM $XFree86: xc/programs/mkfontscale/Imakefile,v 1.8 2003/11/17 15:18:06 tsi Exp $
+
+LOCAL_LIBRARIES = $(XFONTENCLIB) $(FREETYPE2LIB)
+        DEPLIBS = $(DEPXFONTENCLIB) $(DEPFREETYPE2LIB)
+
+SYS_LIBRARIES = GzipLibrary
+
+SRCS = mkfontscale.c list.c hash.c ident.c
+
+OBJS = mkfontscale.o list.o hash.o ident.o
+
+#if !HasSnprintf
+SNPRINTF_DEFINES  = -DNEED_SNPRINTF
+SNPRINTF_INCLUDES = -I$(LIBSRC)/misc
+#endif
+
+INCLUDES = $(FREETYPE2INCLUDES) $(SNPRINTF_INCLUDES) -I$(XBUILDINCDIR)
+DEFINES = $(FREETYPE2DEFINES) $(SNPRINTF_DEFINES) -DXFREE86_FT2
+
+#ifdef SGIArchitecture
+EXTRA_LOAD_FLAGS = -static
+#endif
+
+ComplexProgramTarget(mkfontscale)
+LinkBuildBinary(ProgramTargetName(mkfontscale))
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d20 4
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

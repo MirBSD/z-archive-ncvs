@@ -1,0 +1,76 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.04.50;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.50;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+#
+# $XFree86: xc/extras/fontconfig/setfontdirs,v 1.2 2003/06/04 16:29:38 dawes Exp $
+#
+LC_ALL=C
+export LC_ALL
+FONTDIRS=fontdirs$$
+trap "rm $FONTDIRS" 0
+sh ./findfonts ${1+"$@@"} > $FONTDIRS
+cp fonts.conf.in fonts.conf
+chmod +w fonts.conf
+EDITOR=ed
+(echo q | ed) > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+	EDITOR=ex
+	(echo q | ex) > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		echo "$0: *** Error: Cannot find 'ed' or 'ex' editor"
+		exit 1
+	fi
+fi
+$EDITOR fonts.conf << EOF
+/FONTPATH_END/a
+<!-- Font directory list configured on `date` -->
+.
++r $FONTDIRS
+a
+	<dir>~/.fonts</dir>
+
+.
+/FONTPATH_START/,/FONTPATH_END/d
+
+w
+q
+EOF
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

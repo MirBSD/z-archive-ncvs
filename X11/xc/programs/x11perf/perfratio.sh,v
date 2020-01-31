@@ -1,0 +1,80 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.17.35;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.17.35;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+awk '
+/^     1/ && READY == 0 {	printf ("     1  ");
+		for (i = 2; i < NF; i++)
+			printf ("     %2d ", i);
+		printf ("   Operation\n");
+		next;
+	}
+/^---/	{ 	printf ("--------");
+		for (i = 2; i < NF; i++)
+			printf ("  ------");
+		printf ("   ---------\n");
+		READY=1; next;
+ 	}
+READY==1 {
+		base=$1;
+		printf ("%8.1f", base);
+		for (i = 2; i < '$1'; i++) {
+			if (base == 0)
+				printf ("   lots ", $i);
+			else {
+				rate=$i/base;
+				if (rate < .1)
+					printf ("  %6.3f", rate);
+				else if (rate < 1000)
+					printf ("  %6.2f", rate);
+				else
+					printf ("  %6.0f", rate);
+			}
+		}
+		printf ("   ");
+		for (; i <= NF; i++)
+		{
+			printf ("%s ", $i);
+		}
+		printf ("\n");
+		next;
+	   }
+	   { print $0; }
+'
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

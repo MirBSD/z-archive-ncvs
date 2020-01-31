@@ -1,0 +1,62 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.30.22;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.51;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.51;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@-----BEGIN RSA PRIVATE KEY-----
+MIIBOgIBAAJBAK3nI4nuDYe3nDJES5WBc90igEstxWC4/h4YY+/ciYki35U8ets9
+mgaoCNYp/e9BCZHtvK2Y+fYokGJv5+cMTQsCAwEAAQJBAIHpvXvqEcOEoDRRHuIG
+fkcB4jPHcr9KE9TpxabH6xs9beN6OJnkePXAHwaz5MnUgSnbpOKq+cw8miKjXwe/
+zVECIQDVLwncT2lRmXarEYHzb+q/0uaSvKhWKKt3kJasLNTrAwIhANDUc/ghut29
+p3jJYjurzUKuG774/5eLjPLsxPPIZzNZAiA/10hSq41UnGqHLEUIS9m2/EeEZe7b
+bm567dfRU9OnVQIgDo8ROrZXSchEGbaog5J5r/Fle83uO8l93R3GqVxKXZkCIFfk
+IPD5PIYQAyyod3hyKKza7ZP4CGY4oOfZetbkSGGG
+-----END RSA PRIVATE KEY-----
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

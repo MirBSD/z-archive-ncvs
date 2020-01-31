@@ -1,0 +1,126 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.25.02;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.25.02;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@// SimpleSHSStream.java
+
+/* Copyright (C) 2000  Free Software Foundation
+
+   This file is part of libgcj.
+
+This software is copyrighted work licensed under the terms of the
+Libgcj License.  Please consult the file "LIBGCJ_LICENSE" for
+details.  */
+
+package gnu.gcj.io;
+import java.io.Serializable;
+import java.io.*;
+import java.lang.reflect.*;
+
+public class SimpleSHSStream extends java.io.DataOutputStream
+{
+  int counter;
+ 
+  final int SHS_BLOCKSIZE = 64;
+  final int SHS_DIGESTSIZE = 20;
+
+  byte buf[];
+  byte shs_info[];
+
+  native static byte [] shsFinal (byte info[]);
+  native static void shsUpdate (byte info[], byte buf[], int count);
+  native static byte [] shsInit ();
+
+  private void update (byte b)
+  {
+    buf [counter++] = b;
+    if (counter % SHS_BLOCKSIZE == 0)
+      {
+	counter = 0;
+	shsUpdate (shs_info, buf, SHS_BLOCKSIZE);
+      }
+  }    
+  
+  public void write (int b) throws IOException
+  {
+    update ((byte)b);
+    super.write (b);
+  }
+
+  public void write (byte[] b, int off, int len) throws IOException
+  {
+    for (int i = 0; i < len; i++)
+      write (b[i+off]);
+  }
+
+  public byte[] digest()
+  {
+    shsUpdate (shs_info, buf, counter);
+    return shsFinal (shs_info);
+  }
+
+  public SimpleSHSStream (OutputStream out)
+  {
+    super (out);
+    buf = new byte[SHS_BLOCKSIZE];
+    shs_info = shsInit ();
+    counter = 0;
+  }
+}
+
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

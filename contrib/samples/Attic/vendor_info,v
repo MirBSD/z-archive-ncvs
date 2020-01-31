@@ -1,0 +1,76 @@
+head	1.2;
+access;
+symbols
+	start:1.1.15.1 mirbsd:1.1.15;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.23.01.32;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.19.14.25.08;	author tg;	state Exp;
+branches
+	1.1.15.1;
+next	;
+
+1.1.15.1
+date	2004.12.19.14.25.08;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@move description of vendor branches to the import script,
+which is now the masterpiece
+@
+text
+@                      Information about vendor branches
+                      =================================
+
+The following branches are allocated:
+
+1.1.1		openbsd		The OpenBSD project
+1.1.2		FSF		The Free Software Foundation
+1.1.3		tg		MirOS: Thorsten Glaser
+1.1.4		bsiegert	MirOS: Benny Siegert
+1.1.5		netbsd		The NetBSD(TM) foundation
+1.1.6		freebsd		The FreeBSD uhm...
+1.1.7		wbx		MirOS: Waldemar Brodkorb (inactive)
+1.1.8		ASF		The Apache(TM) Software Foundation
+1.1.9		xc		The X Consortium, or XFree86 people, etc.
+1.1.10		ekkobsd		The ekkoBSD project
+1.1.11		dave		MirOS: Dave Steinberg
+1.1.12		sap		MirOS: Stephen Paskaluk
+1.1.13		cnuke		MirOS: Jupp (Josef) "cnuke" Söntgen
+1.1.14		tyler		MirOS: R. Tyler Ballance
+1.1.15		mirbsd		Move from /ocvs to /ncvs (temp.)
+
+These branches are to be used with 'cvs import' according to
+the CVS texinfo manual, with the -b option.
+Better yet, use src/scripts/cvsim-generic for the task.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.15.1
+log
+@Import "most" of the old "contrib" module
+@
+text
+@@

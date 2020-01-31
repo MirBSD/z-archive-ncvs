@@ -1,0 +1,94 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.18;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.16;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.16;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl -w
+
+BEGIN {
+    if ($ENV{PERL_CORE}) {
+	@@INC = '../lib';
+	chdir 't';
+    }
+}
+
+use Getopt::Long;
+
+print "1..18\n";
+
+@@ARGV = qw(-Foo -baR --foo bar);
+Getopt::Long::Configure ("no_ignore_case");
+%lnk = ();
+print "ok 1\n" if GetOptions (\%lnk, "foo", "Foo=s");
+print ((defined $lnk{foo})   ? "" : "not ", "ok 2\n");
+print (($lnk{foo} == 1)      ? "" : "not ", "ok 3\n");
+print ((defined $lnk{Foo})   ? "" : "not ", "ok 4\n");
+print (($lnk{Foo} eq "-baR") ? "" : "not ", "ok 5\n");
+print ((@@ARGV == 1)          ? "" : "not ", "ok 6\n");
+print (($ARGV[0] eq "bar")   ? "" : "not ", "ok 7\n");
+print (!(exists $lnk{baR})   ? "" : "not ", "ok 8\n");
+
+@@ARGV = qw(-Foo -baR --foo bar);
+Getopt::Long::Configure ("default","no_ignore_case");
+%lnk = ();
+my $foo;
+print "ok 9\n" if GetOptions (\%lnk, "foo" => \$foo, "Foo=s");
+print ((defined $foo)        ? "" : "not ", "ok 10\n");
+print (($foo == 1)           ? "" : "not ", "ok 11\n");
+print ((defined $lnk{Foo})   ? "" : "not ", "ok 12\n");
+print (($lnk{Foo} eq "-baR") ? "" : "not ", "ok 13\n");
+print ((@@ARGV == 1)          ? "" : "not ", "ok 14\n");
+print (($ARGV[0] eq "bar")   ? "" : "not ", "ok 15\n");
+print (!(exists $lnk{foo})   ? "" : "not ", "ok 16\n");
+print (!(exists $lnk{baR})   ? "" : "not ", "ok 17\n");
+print (!(exists $lnk{bar})   ? "" : "not ", "ok 18\n");
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

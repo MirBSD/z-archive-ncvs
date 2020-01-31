@@ -1,0 +1,33 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.32.47;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@program digits(output);
+var r: real;
+begin
+r := 0.;
+r := .0;
+r := 1.e10;
+r := .05e-10;
+writeln(r)
+end.
+@

@@ -1,0 +1,57 @@
+# $MirBSD: cvswrappers,v 1.2 2004/12/10 17:52:37 tg Exp $
+#-
+# This file affects handling of files based on their names.
+#
+# The -m option specifies whether CVS attempts to merge files.
+#
+# The -k option specifies keyword expansion (e.g. -kb for binary).
+#
+# Format of wrapper file ($CVSROOT/CVSROOT/cvswrappers or .cvswrappers)
+#
+#  wildcard	[option value][option value]...
+#
+#  where option is one of
+#  -f		from cvs filter		value: path to filter
+#  -t		to cvs filter		value: path to filter
+#  -m		update methodology	value: MERGE or COPY
+#  -k		expansion mode		value: b, o, kkv, &c
+#
+#  and value is a single-quote delimited value.
+# For example:
+#*.gif -k 'b'
+
+*.avi -k 'b'
+*.bin -k 'b'
+*.bmp -k 'b'
+*.bz2 -k 'b'
+*.cbz -k 'b'
+*.cgz -k 'b'
+*.cpio -k 'b'
+*.eps -k 'b'
+*.exe -k 'b'
+*.fon -k 'b'
+*.gif -k 'b'
+*.gz -k 'b'
+*.ima -k 'b'
+*.iso -k 'b'
+*.jpeg -k 'b'
+*.jpg -k 'b'
+*.lzh -k 'b'
+*.mp3 -k 'b'
+*.mpeg -k 'b'
+*.nbz -k 'b'
+*.ngz -k 'b'
+*.nrg -k 'b'
+*.otf -k 'b'
+*.pdf -k 'b'
+*.png -k 'b'
+*.ps -k 'b'
+*.psf -k 'b'
+*.psfu -k 'b'
+*.swf -k 'b'
+*.tbz -k 'b'
+*.tbz2 -k 'b'
+*.tgz -k 'b'
+*.ttf -k 'b'
+*.wav -k 'b'
+*.zip -k 'b'

@@ -1,0 +1,70 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @.\" @;
+
+
+1.1
+date     2004.12.15.18.17.13;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.17.13;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@.\" $XFree86: xc/programs/glxgears/glxgears.man,v 1.1 2001/04/02 21:12:11 dawes Exp $
+.\"
+.TH GLXGEARS 1 __vendorversion__
+.SH NAME
+glxgears \- GLX version of the infamous "gears" GL demo.
+.SH SYNOPSIS
+.B "glxgears"
+[\-info]
+[\-display \fIdisplayname\fP]
+.SH DESCRIPTION
+.PP
+.I glxgears
+is a GLX demo that draws three rotating gears, and prints out framerate
+information to stdout.
+Command line options include:
+.TP 8
+.B \-info
+Print out GL implementation information before running the demo.
+.TP 8
+.BI "\-display " displayname
+Specify the display to query.
+.SH ENVIRONMENT
+.PP
+.TP 8
+.B DISPLAY
+To get the default host, display number, and screen.
+.SH "SEE ALSO"
+glxinfo(1)
+.SH AUTHOR
+Ported to straight GLX by Brian Paul.
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

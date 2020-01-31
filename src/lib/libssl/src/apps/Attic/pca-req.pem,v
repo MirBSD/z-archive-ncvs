@@ -1,0 +1,67 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.05.34;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.30;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.30;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@-----BEGIN CERTIFICATE REQUEST-----
+MIIBmjCCAQMCAQAwXDELMAkGA1UEBhMCQVUxEzARBgNVBAgTClF1ZWVuc2xhbmQx
+GjAYBgNVBAoTEUNyeXB0U29mdCBQdHkgTHRkMRwwGgYDVQQDExNUZXN0IFBDQSAo
+MTAyNCBiaXQpMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCdoWk/3+WcMlfj
+Irkg40ketmnQaEogQe1LLcuOJV6rKfUSAsPgwgsabJ/wn8TxA1yy3eKJbFl3OiUX
+MRsp22Jp85PmemiDzyUIStwk72qhp1imbANZvlmlCFKiQrjUyuDfu4TABmn+kkt3
+vR1YBEOGt+IFye1UBVSATVdRJ2UVhwIDAQABMA0GCSqGSIb3DQEBBAUAA4GBAEzz
+IG8NnfpnPTQSCN5zJhOfy6p9AcDyQzuJirYv1HR/qoYWalPh/U2uiK0lAim7qMcv
+wOlK3I7A8B7/4dLqvIqgtUj9b1WT8zIrnwdvJI4osLI2BY+c1pVlp174DHLMol1L
+Cl1e3N5BTm7lCitTYjuUhsw6hiA8IcdNKDo6sktV
+-----END CERTIFICATE REQUEST-----
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

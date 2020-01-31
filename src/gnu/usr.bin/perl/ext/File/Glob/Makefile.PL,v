@@ -1,0 +1,87 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.20;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.45;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@use ExtUtils::MakeMaker;
+use ExtUtils::Constant 0.11 'WriteConstants';
+WriteMakefile(
+    NAME		=> 'File::Glob',
+    VERSION_FROM	=> 'Glob.pm',
+    MAN3PODS		=> {},     # Pods will be built by installman.
+    OBJECT		=> 'bsd_glob$(OBJ_EXT) Glob$(OBJ_EXT)',
+    realclean => {FILES=> 'const-c.inc const-xs.inc'},
+
+## uncomment for glob debugging (will cause make test to fail)
+#   DEFINE		=> '-DGLOB_DEBUG',
+#   OPTIMIZE		=> '-g',
+);
+use Config;
+sub MY::cflags {
+  package MY;
+  my $inherited = shift->SUPER::cflags(@@_);
+  if ($Config::Config{archname} =~ /^aix/ and 
+      $Config::Config{use64bitall} eq 'define') {
+    $inherited =~ s/\s-O\d?//m;
+  }
+  $inherited;
+}
+
+WriteConstants(
+    NAME => 'File::Glob',
+    NAMES => [qw(GLOB_ABEND GLOB_ALPHASORT GLOB_ALTDIRFUNC GLOB_BRACE GLOB_ERR
+                 GLOB_LIMIT GLOB_MARK GLOB_NOCASE GLOB_NOCHECK GLOB_NOMAGIC
+                 GLOB_NOSORT GLOB_NOSPACE GLOB_QUOTE GLOB_TILDE),
+              {name=>"GLOB_ERROR", macro=>["#ifdef GLOB_ERROR\n\tdMY_CXT;\n\n","#endif\n"]}],
+    BREAKOUT_AT => 8,
+);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

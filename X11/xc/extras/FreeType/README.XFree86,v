@@ -1,0 +1,60 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.04.07;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.07;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@A few files in this directory and all the files in the `lib/'
+subdirectory come from the FreeType 1.3.1 distribution.  Please consult
+
+  <URL:http://www.freetype.org>
+  <URL:ftp://ftp.freetype.org>
+
+for more information.
+
+Those files have been slightly modified.  All the changes are marked
+with a comment saying `Xserver-specific'.
+
+
+When importing version A.B of FreeType, use:
+
+ cvs import -m "FreeType version A.B" xc/extras/FreeType FreeType FreeType-A_B
+
+
+Files that are modified relative to the most recent import should have
+the ident text: $XFree86: xc/extras/FreeType/README.XFree86,v 1.3 2000/02/13 06:15:21 dawes Exp $ added in a comment.
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

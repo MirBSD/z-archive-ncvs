@@ -1,0 +1,96 @@
+head	1.3;
+access;
+symbols
+	cvs-200501031800:1.1.5.1 TNF:1.1.5;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	2005.01.13.20.36.45;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2005.01.03.18.15.32;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.03.18.04.37;	author tg;	state Exp;
+branches
+	1.1.5.1;
+next	;
+
+1.1.5.1
+date	2005.01.03.18.04.37;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@further merge and fix double-inclusion-protection
+@
+text
+@# $MirBSD: src/usr.sbin/isdn/Makefile.inc,v 1.2 2005/01/03 18:15:32 tg Exp $
+# $NetBSD: Makefile.inc,v 1.1.1.1 2001/01/06 13:00:10 martin Exp $
+
+.ifndef _MODSRC_USR_SBIN_ISDN_MAKEFILE_INC
+_MODSRC_USR_SBIN_ISDN_MAKEFILE_INC=1
+
+.if exists(${.CURDIR}/../../Makefile.inc)
+.  include "${.CURDIR}/../../Makefile.inc"
+.endif
+
+# optional build configuration:
+# I4B_WITHOUT_CURSES=1	# don't compile curses into the daemon
+I4B_EXTERNAL_MONITOR=1	# enable local and remote monitoring of the daemon
+# I4B_NOTCPIP_MONITOR=1	# for the security concious: isdn monitoring only via
+#			# local domain socket, no TCP socket supported
+
+.endif
+@
+
+
+1.2
+log
+@with these, it at least compiles; testing is up to
+the MirOS users who've got ISDN.
+
+also, NO_CURSES -> _SMALL
+@
+text
+@d1 1
+a1 1
+# $MirBSD$
+d4 3
+d16 2
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$NetBSD: Makefile.inc,v 1.1.1.1 2001/01/06 13:00:10 martin Exp $
+d5 1
+a5 1
+.include "${.CURDIR}/../../Makefile.inc"
+@
+
+
+1.1.5.1
+log
+@ISDN userland support code from TNF, NetBSD(TM)-current
+this will eventually replace our dated isdnd(8) port
+@
+text
+@@

@@ -1,0 +1,76 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  texinfo-4_8:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.06.23.31.22;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@\input texinfo @@c -*- texinfo -*-
+@@setfilename macro-at.info
+@@settitle AUTHORS -- who did what on GNU LilyPond
+
+@@macro foo
+foo-expansion
+@@end macro
+
+@@macro bar
+bar-expansion
+@@end macro
+
+@@node Top, , AUTHORS -- who did what on GNU LilyPond, (dir)
+@@top
+@@menu
+* AUTHORS -- who did what on GNU LilyPond:: AUTHORS -- who did what.
+@@end menu
+
+@@node AUTHORS -- who did what on GNU LilyPond, Top, , Top
+@@chapter AUTHORS -- who did what on GNU LilyPond?
+
+This file lists authors of GNU LilyPond, and what they wrote.
+It also uses foobar@@{.
+
+@@itemize @@bullet
+@@item @@email{pinard@@@@iro.montreal.ca, Fran@@,{c}ois Pinard},
+  parts of Documentation.
+@@item @@email{foobar@@@@baz@@@@, The Foobar},
+  the usual foobarical thing.
+@@item @@email{another@@@@foobar@@{, Buzzer},
+  buzzed all the way.
+@@item @@email{@@foo{}@@@@@@bar{}},
+  also helped.
+@@item @@email{tomcato@@@@xoommail.com, Tom Cato Amundsen},
+  cembalo-partita in mundela.
+@@end itemize
+
+@@bye
+@
+
+
+1.1.2.1
+log
+@GNU Texinfo 4.8 (2005-01-03)
+@
+text
+@@

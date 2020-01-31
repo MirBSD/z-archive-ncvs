@@ -1,0 +1,128 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.26.43;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./miniperl
+#
+# Create perlmain.c from miniperlmain.c, adding code to boot the
+# extensions listed on the command line.  In addition, create a
+# linker options file which causes the bootstrap routines for
+# these extension to be universal symbols in PerlShr.Exe.
+#
+# Last modified 29-Nov-1994 by Charles Bailey  bailey@@newman.upenn.edu
+#
+
+if (-f 'miniperlmain.c') { $dir = ''; }
+elsif (-f '../miniperlmain.c') { $dir = '../'; }
+else { die "$0: Can't find miniperlmain.c\n"; }
+
+open (IN,"${dir}miniperlmain.c")
+  || die "$0: Can't open ${dir}miniperlmain.c: $!\n";
+open (OUT,">${dir}perlmain.c")
+  || die "$0: Can't open ${dir}perlmain.c: $!\n";
+
+while (<IN>) {
+  print OUT;
+  last if /Do not delete this line--writemain depends on it/;
+}
+$ok = !eof(IN);
+close IN;
+
+if (!$ok) {
+  close OUT;
+  unlink "${dir}perlmain.c";
+  die "$0: Can't find marker line in ${dir}miniperlmain.c - aborting\n";
+}
+
+
+print OUT <<'EOH';
+
+static void
+xs_init(pTHX)
+{
+EOH
+
+if (@@ARGV) {
+  $names = join(' ',@@ARGV);
+  $names =~ tr/"//d;  # Plan9 doesn't remove "" on command line
+  # Allow for multiple names in one quoted group
+  @@exts = split(/\s+/,$names);
+}
+
+if (@@exts) {
+  print OUT "    char *file = __FILE__;\n";
+  foreach $ext (@@exts) {
+    my($subname) = $ext;
+    $subname =~ s/::/__/g;
+    print OUT "extern void	boot_${subname} (pTHX_ CV* cv);\n"
+  }
+  # May not actually be a declaration, so put after other declarations
+  print OUT "  dXSUB_SYS;\n";
+  foreach $ext (@@exts) {
+    my($subname) = $ext;
+    $subname =~ s/::/__/g;
+    print "Adding $ext . . .\n";
+    if ($ext eq 'DynaLoader') {
+      # Must NOT install 'DynaLoader::boot_DynaLoader' as 'bootstrap'!
+      # boot_DynaLoader is called directly in DynaLoader.pm
+      print OUT "    newXS(\"${ext}::boot_${ext}\", boot_${subname}, file);\n"
+    }
+    else {
+      print OUT "    newXS(\"${ext}::bootstrap\", boot_${subname}, file);\n"
+    }
+  }
+}
+
+print OUT "}\n";
+close OUT;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

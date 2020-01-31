@@ -1,0 +1,129 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.10.41;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.10.41;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/lib/dpstk/Imakefile,v 1.6 2000/06/07 22:03:00 tsi Exp $
+
+#define DoNormalLib NormalLibDpsTk
+#define DoSharedLib SharedLibDpsTk
+#define DoExtraLib SharedLibDpsTk
+#define DoDebugLib DebugLibDpsTk
+#define DoProfileLib ProfileLibDpsTk
+#define LibName dpstk
+#define SoRev SODPSTKREV
+#define LibHeaders NO
+
+#ifdef SharedDPSTKReqs
+REQUIREDLIBS = SharedDPSTKReqs
+#endif
+
+        PSWRAP = PsWrap
+
+#if HasMotif
+MOTIFSRCS = FSBwraps.c FontSample.c FontSB.c FontCreato.c \
+	CSBwraps.c ColorSB.c DSWwraps.c DPSScrollW.c
+MOTIFOBJS = FSBwraps.o FontSample.o FontSB.o FontCreato.o \
+	CSBwraps.o ColorSB.o DSWwraps.o DPSScrollW.o
+#endif
+
+#ifndef DefaultResourcePath
+#define DefaultResourcePath NULL
+#endif
+RESPATH = DefaultResourcePath
+
+#if NoStrstr
+       DEFINES = -DNO_STRSTR_AVAILABLE -DDEFAULT_RESOURCE_PATH=\"${RESPATH}\"
+#else
+       DEFINES = -DDEFAULT_RESOURCE_PATH=\"${RESPATH}\"
+#endif
+
+
+DERIVED_FILES = FSBwraps.c FSBwraps.h XDPSpwraps.c XDPSpwraps.h \
+	XDPSswraps.c XDPSswraps.h CSBwraps.c CSBwraps.h \
+	DSWwraps.c DSWwraps.h
+
+SRCS =  XDPSpwraps.c XDPSswraps.c XDPSshare.c XDPSpreview.c \
+	XDPSuserpath.c
+
+OBJS = 	XDPSpwraps.o XDPSswraps.o XDPSshare.o XDPSpreview.o \
+	XDPSuserpath.o
+
+#include <Library.tmpl>
+
+.SUFFIXES: .psw
+
+.psw.c :
+	RunProgram(PSWRAP,-o $*.c -a -f $*.h -h $*.h $<)
+
+includes:: $(SRCS)
+
+#if HasMotif
+
+includes:: $(MOTIFSRCS)
+
+#if DoSharedLib
+SharedLibraryTarget(dpstkXm,$(SODPSREV),$(MOTIFOBJS),.,.)
+InstallSharedLibrary(dpstkXm,$(SODPSREV),$(USRLIBDIR))
+#endif
+#if DoNormalLib
+#if DoSharedLib
+UnsharedLibraryTarget(dpstkXm,$(MOTIFOBJS),unshared,..)
+#else
+NormalLibraryTarget(dpstkXm,$(MOTIFOBJS))
+#endif
+InstallLibrary(dpstkXm,$(USRLIBDIR))
+#endif
+#if DebugLibDps
+DebuggedLibraryTarget(dpstkXm,$(MOTIFOBJS))
+InstallLibrary(dpstkXm_d,$(USRLIBDIR))
+#endif
+#if ProfileLibDps
+ProfiledLibraryTarget(dpstkXm,$(MOTIFOBJS))
+InstallDpsProfiledLibrary(dpstkXm_p,$(USRLIBDIR))
+#endif
+
+InstallAppDefaults(FontSelect)
+InstallAppDefaults(ColorSelect)
+#endif
+
+clean ::
+	${RM} $(DERIVED_FILES) $(MOTIFOBJS)
+
+DependTarget()
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,877 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.2
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.31.02;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.11;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.11;	author tg;	state Exp;
+branches;
+next	1.1.1.2;
+
+1.1.1.2
+date	2005.01.16.09.59.11;	author tg;	state Exp;
+branches;
+next	1.1.1.3;
+
+1.1.1.3
+date	2005.01.18.16.45.47;	author tg;	state Exp;
+branches;
+next	1.1.1.4;
+
+1.1.1.4
+date	2005.01.18.16.46.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: identd.c,v 1.37 2004/04/07 14:09:35 aaron Exp $	*/
+
+/*
+ * This program is in the public domain and may be used freely by anyone
+ * who wants to.
+ *
+ * Please send bug fixes/bug reports to: Peter Eriksson <pen@@lysator.liu.se>
+ */
+
+#include <sys/types.h>
+#include <sys/param.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <sys/file.h>
+#include <sys/time.h>
+#include <sys/wait.h>
+
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <poll.h>
+#include <string.h>
+#include <ctype.h>
+#include <errno.h>
+#include <netdb.h>
+#include <syslog.h>
+#include <signal.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <pwd.h>
+#include <grp.h>
+
+#include "identd.h"
+#include "error.h"
+
+extern char *__progname;
+
+int     verbose_flag;
+int     debug_flag;
+int     syslog_flag;
+int     multi_flag;
+int     unknown_flag;
+int     number_flag;
+int     noident_flag;
+int	userident_flag;
+int	token_flag;
+int	no_user_token_flag;
+
+int     lport;
+int     fport;
+
+const  char *opsys_name = "UNIX";
+const  char *charset_sep = "";
+char   *charset_name = "";
+
+static pid_t child_pid;
+
+void		usage(void);
+char *		gethost(struct sockaddr_storage *ss);
+
+void
+usage(void)
+{
+	syslog(LOG_ERR,
+	    "%s [-i | -w | -b] [-t seconds] [-u uid] [-g gid] [-p port] "
+	    "[-a address] [-c charset] [-noelvmNUdh]", __progname);
+	exit(2);
+}
+
+/*
+ * Return the name of the connecting host, or the IP number as a string.
+ */
+char *
+gethost4_addr(struct in_addr *addr)
+{
+	struct hostent *hp;
+
+	hp = gethostbyaddr((char *) addr, sizeof(struct in_addr), AF_INET);
+	if (hp)
+		return hp->h_name;
+	return inet_ntoa(*addr);
+}
+
+char *
+gethost(struct sockaddr_storage *ss)
+{
+	if (ss->ss_family == AF_INET6)
+		return (gethost6((struct sockaddr_in6 *)ss));
+	return (gethost4((struct sockaddr_in *)ss));
+}
+
+char *
+gethost4(struct sockaddr_in *sin)
+{
+	struct hostent *hp;
+
+	hp = gethostbyaddr((char *)&sin->sin_addr, sizeof(struct in_addr), AF_INET);
+	if (hp)
+		return hp->h_name;
+	return inet_ntoa(sin->sin_addr);
+}
+
+/*
+ * Return the name of the connecting host, or the IP number as a string.
+ */
+char *
+gethost6(struct sockaddr_in6 *addr)
+{
+	static char hbuf[2][NI_MAXHOST];
+#ifdef NI_WITHSCOPEID
+	const int niflags = NI_NUMERICHOST | NI_WITHSCOPEID;
+#else
+	const int niflags = NI_NUMERICHOST;
+#endif
+	static int bb = 0;
+	int error;
+
+	bb = (bb+1)%2;
+	error = getnameinfo((struct sockaddr *)addr, addr->sin6_len,
+	    hbuf[bb], sizeof(hbuf[bb]), NULL, 0, niflags);
+	if (error != 0) {
+		syslog(LOG_ERR, "getnameinfo failed (%s)", gai_strerror(error));
+		strlcpy(hbuf[bb], "UNKNOWN", sizeof(hbuf[bb]));
+	}
+	return(hbuf[bb]);
+}
+
+volatile sig_atomic_t alarm_fired;
+
+/*
+ * Exit cleanly after our time's up.
+ */
+static void
+alarm_handler(int notused)
+{
+	alarm_fired = 1;
+}
+
+/*
+ * Main entry point into this daemon
+ */
+int
+main(int argc, char *argv[])
+{
+	struct sockaddr_storage sa, sa2;
+	/* struct sockaddr_in sin;*/
+	struct sockaddr_in *sin;
+	struct sockaddr_in6 *sin6;
+	struct in_addr laddr, faddr;
+	struct in6_addr laddr6, faddr6;
+	struct passwd *pwd;
+	struct group *grp;
+	int     background_flag = 0, timeout = 0, ch;
+	char   *portno = "auth";
+	char   *bind_address = NULL;
+	uid_t   set_uid = 0;
+	gid_t   set_gid = 0;
+	extern char *optarg;
+	socklen_t len;
+
+	openlog(__progname, LOG_PID, LOG_DAEMON);
+
+	/* runs as _identd if possible, fallback to "nobody" */
+	if (getuid() == 0) {
+		if ((pwd = getpwnam(DEFAULT_UID)) == NULL)
+			pwd = getpwnam("nobody");
+		if (pwd == NULL)
+			ERROR1("no such user: neither %s nor nobody",
+			    DEFAULT_UID);
+		set_uid = pwd->pw_uid;
+		set_gid = pwd->pw_gid;
+	}
+
+	/*
+	 * Parse the command line arguments
+	 */
+	while ((ch = getopt(argc, argv, "hHbwit:p:a:u:g:c:loenvdmNU")) != -1) {
+		switch (ch) {
+		case 'h':
+			token_flag = 1;
+			break;
+		case 'H':
+			no_user_token_flag = token_flag = 1;
+			break;
+		case 'b':	/* Start as standalone daemon */
+			background_flag = 1;
+			break;
+		case 'w':	/* Start from Inetd, wait mode */
+			background_flag = 2;
+			break;
+		case 'i':	/* Start from Inetd, nowait mode */
+			background_flag = 0;
+			break;
+		case 't':
+			timeout = atoi(optarg);
+			break;
+		case 'p':
+			portno = optarg;
+			break;
+		case 'a':
+			bind_address = optarg;
+			break;
+		case 'u':
+			pwd = getpwnam(optarg);
+			if (pwd == NULL && isdigit(optarg[0])) {
+				set_uid = atoi(optarg);
+				if ((pwd = getpwuid(set_uid)) == NULL)
+					break;
+			}
+			if (pwd == NULL)
+				ERROR1("no such user (%s) for -u option",
+				    optarg);
+			else {
+				set_uid = pwd->pw_uid;
+				if (set_gid == 0)
+					set_gid = pwd->pw_gid;
+			}
+			break;
+		case 'g':
+			grp = getgrnam(optarg);
+			if (grp == NULL && isdigit(optarg[0])) {
+				set_gid = atoi(optarg);
+				break;
+			}
+			grp = getgrnam(optarg);
+			if (!grp)
+				ERROR1("no such group (%s) for -g option", optarg);
+			else
+				set_gid = grp->gr_gid;
+			break;
+		case 'c':
+			charset_name = optarg;
+			charset_sep = " , ";
+			break;
+		case 'l':	/* Use the Syslog daemon for logging */
+			syslog_flag++;
+			break;
+		case 'o':
+			opsys_name = "OTHER";
+			break;
+		case 'e':
+			unknown_flag = 1;
+			break;
+		case 'n':
+			number_flag = 1;
+			break;
+		case 'v':	/* Be verbose */
+			verbose_flag++;
+			break;
+		case 'd':	/* Enable debugging */
+			debug_flag++;
+			break;
+		case 'm':	/* Enable multiline queries */
+			multi_flag++;
+			break;
+		case 'N':	/* Enable users ".noident" files */
+			noident_flag++;
+			break;
+		case 'U':	/* Enable user ".ident" files */
+			userident_flag++;
+			break;
+		default:
+			usage();
+		}
+	}
+
+	/*
+	 * Do the special handling needed for the "-b" flag
+	 */
+	if (background_flag == 1) {
+		struct sockaddr_in addr;
+		struct servent *sp;
+		int     fd;
+
+		if (fork())
+			exit(0);
+
+		close(0);
+		close(1);
+		close(2);
+
+		if (fork())
+			exit(0);
+
+		fd = socket(AF_INET, SOCK_STREAM, 0);
+		if (fd == -1)
+			ERROR("main: socket");
+
+		if (fd != 0)
+			dup2(fd, 0);
+
+		memset(&addr, 0, sizeof(addr));
+
+		addr.sin_len = sizeof(struct sockaddr_in);
+		addr.sin_family = AF_INET;
+		if (bind_address == NULL)
+			addr.sin_addr.s_addr = htonl(INADDR_ANY);
+		else {
+			if (inet_aton(bind_address, &addr.sin_addr) == 0) {
+				struct hostent *hp;
+
+				hp = gethostbyname(bind_address);
+				if (!hp)
+					ERROR1("no such address (%s) for -a switch",
+					    bind_address);
+				memcpy(&addr.sin_addr, hp->h_addr,
+				    sizeof(addr.sin_addr));
+			}
+		}
+
+		if (isdigit(portno[0]))
+			addr.sin_port = htons(atoi(portno));
+		else {
+			sp = getservbyname(portno, "tcp");
+			if (sp == NULL)
+				ERROR1("main: getservbyname: %s", portno);
+			addr.sin_port = sp->s_port;
+		}
+
+		if (bind(0, (struct sockaddr *) &addr, sizeof(addr)) < 0)
+			ERROR("main: bind");
+
+		if (listen(0, 3) < 0)
+			ERROR("main: listen");
+	}
+	if (set_gid) {
+		if (setegid(set_gid) == -1)
+			ERROR("main: setgid");
+		if (setgid(set_gid) == -1)
+			ERROR("main: setgid");
+	}
+	if (set_uid) {
+		if (seteuid(set_uid) == -1)
+			ERROR("main: setuid");
+		if (setuid(set_uid) == -1)
+			ERROR("main: setuid");
+	}
+	/*
+	 * Do some special handling if the "-b" or "-w" flags are used
+	 */
+	if (background_flag) {
+		int     nfds, fd;
+		struct	pollfd pfd[1];
+
+		/*
+		 * Loop and dispatch client handling processes
+		 */
+		do {
+			/*
+			 * Terminate if we've been idle for 'timeout' seconds
+			 */
+			if (background_flag == 2 && timeout) {
+				signal(SIGALRM, alarm_handler);
+				alarm(timeout);
+			}
+
+			/*
+			 * Wait for a connection request to occur.
+			 * Ignore EINTR (Interrupted System Call).
+			 */
+			do {
+				if (alarm_fired) {
+					if (syslog_flag)
+						syslog(LOG_DEBUG,
+						    "SIGALRM triggered, exiting");
+					exit(0);
+				}
+
+				pfd[0].fd = 0;
+				pfd[0].events = POLLIN;
+
+				if (timeout)
+					nfds = poll(pfd, 1, timeout * 1000);
+				else
+					nfds = poll(pfd, 1, INFTIM);
+			} while (nfds < 0 && errno == EINTR);
+
+			/*
+			 * An error occurred in select? Just die
+			 */
+			if (nfds < 0)
+				ERROR("main: select");
+
+			/*
+			 * Timeout limit reached. Exit nicely
+			 */
+			if (nfds == 0)
+				exit(0);
+
+			/*
+			 * Disable the alarm timeout
+			 */
+			alarm(0);
+
+			/*
+			 * Accept the new client
+			 */
+			fd = accept(0, NULL, NULL);
+			if (fd == -1)
+				ERROR1("main: accept. errno = %d", errno);
+
+			/*
+			 * And fork, then close the fd if we are the parent.
+			 */
+			child_pid = fork();
+			while (waitpid(-1, NULL, WNOHANG) > 0)
+				;
+		} while (child_pid && (close(fd), 1));
+
+		/*
+		 * We are now in child, the parent has returned to "do" above.
+		 */
+		if (dup2(fd, 0) == -1)
+			ERROR("main: dup2: failed fd 0");
+
+		if (dup2(fd, 1) == -1)
+			ERROR("main: dup2: failed fd 1");
+
+		if (dup2(fd, 2) == -1)
+			ERROR("main: dup2: failed fd 2");
+	}
+	/*
+	 * Get foreign internet address
+	 */
+	len = sizeof(sa);
+	if (getpeername(0, (struct sockaddr *) &sa, &len) == -1) {
+		/*
+		 * A user has tried to start us from the command line or
+		 * the network link died, in which case this message won't
+		 * reach to other end anyway, so lets give the poor user some
+		 * errors.
+		 */
+		perror("in.identd: getpeername()");
+		exit(1);
+	}
+	if (sa.ss_family == AF_INET6) {
+		sin6 = (struct sockaddr_in6 *)&sa;
+		faddr6 = sin6->sin6_addr;
+	} else {
+		sin = (struct sockaddr_in *)&sa;
+		faddr = sin->sin_addr;
+	}
+
+	/*
+	 * Open the connection to the Syslog daemon if requested
+	 */
+	if (syslog_flag)
+		syslog(LOG_INFO, "Connection from %s", gethost(&sa));
+
+	/*
+	 * Get local internet address
+	 */
+	len = sizeof(sa2);
+	if (getsockname(0, (struct sockaddr *) &sa2, &len) == -1) {
+		/*
+		 * We can just die here, because if this fails then the
+		 * network has died and we haven't got anyone to return
+		 * errors to.
+		 */
+		exit(1);
+	}
+	/* are we V4 or V6? */
+	if (sa2.ss_family == AF_INET6) {
+		sin6 = (struct sockaddr_in6 *)&sa2;
+		laddr6 = sin6->sin6_addr;
+		/*
+		 * Get the local/foreign port pair from the luser
+		 */
+		parse6(STDIN_FILENO, (struct sockaddr_in6 *)&sa2,
+		    (struct sockaddr_in6 *)&sa);
+	} else {
+		sin = (struct sockaddr_in *)&sa2;
+		laddr = sin->sin_addr;
+		/*
+		 * Get the local/foreign port pair from the luser
+		 */
+		parse(STDIN_FILENO, &laddr, &faddr);
+	}
+
+	exit(0);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@
+
+
+1.1.1.2
+log
+@Import a series of fixes and minor updates from OpenBSD
+@
+text
+@d1 1
+a1 1
+/*	$OpenBSD: identd.c,v 1.41 2004/11/17 01:47:20 itojun Exp $	*/
+a24 1
+#include <stdarg.h>
+d36 1
+d40 7
+a46 7
+int	verbose_flag;
+int	debug_flag;
+int	syslog_flag;
+int	multi_flag;
+int	unknown_flag;
+int	number_flag;
+int	noident_flag;
+d51 2
+a52 2
+int	lport;
+int	fport;
+d112 3
+d116 1
+a134 1
+/* ARGSUSED */
+d155 1
+a155 1
+	int	background_flag = 0, timeout = 0, ch;
+d170 1
+a170 1
+			error("no such user: neither %s nor nobody",
+d213 1
+a213 1
+				error("no such user (%s) for -u option",
+d229 1
+a229 1
+				error("no such group (%s) for -g option", optarg);
+d275 1
+a275 1
+		int	fd;
+d289 1
+a289 1
+			error("main: socket");
+d306 1
+a306 1
+					error("no such address (%s) for -a switch",
+d318 1
+a318 1
+				error("main: getservbyname: %s", portno);
+d323 1
+a323 1
+			error("main: bind");
+d326 1
+a326 1
+			error("main: listen");
+d330 1
+a330 1
+			error("main: setgid");
+d332 1
+a332 1
+			error("main: setgid");
+d336 1
+a336 1
+			error("main: setuid");
+d338 1
+a338 1
+			error("main: setuid");
+d344 1
+a344 1
+		int	nfds, fd;
+d384 1
+a384 1
+				error("main: select");
+d402 1
+a402 1
+				error("main: accept. errno = %d", errno);
+d416 1
+a416 1
+			error("main: dup2: failed fd 0");
+d419 1
+a419 1
+			error("main: dup2: failed fd 1");
+d422 1
+a422 1
+			error("main: dup2: failed fd 2");
+a483 22
+
+void
+error(char *fmt, ...)
+{
+	va_list ap, ap2;
+
+	va_start(ap, fmt);
+	
+	if (syslog_flag) {
+		va_copy(ap2, ap);
+		syslog(LOG_ERR, fmt, ap2);
+		va_end(ap2);
+	}
+	if (debug_flag) {
+		fprintf(stderr, "%d , %d : ERROR : X-DBG : ", lport, fport);
+		fprintf(stderr, fmt, ap);
+		perror(": ");
+	} else
+		printf("%d , %d : ERROR : UNKNOWN-ERROR\r\n", lport, fport);
+	va_end(ap);
+	exit(1);
+}
+@
+
+
+1.1.1.3
+log
+@back out part of the fix: we still have got NI_WITHSCOPEID
+(we probably shouldn't)
+@
+text
+@d1 1
+a1 1
+/*	$OpenBSD: identd.c,v 1.37 2004/04/07 14:09:35 aaron Exp $	*/
+d25 1
+a36 1
+#include "error.h"
+d40 7
+a46 7
+int     verbose_flag;
+int     debug_flag;
+int     syslog_flag;
+int     multi_flag;
+int     unknown_flag;
+int     number_flag;
+int     noident_flag;
+d51 2
+a52 2
+int     lport;
+int     fport;
+d131 1
+d152 1
+a152 1
+	int     background_flag = 0, timeout = 0, ch;
+d167 1
+a167 1
+			ERROR1("no such user: neither %s nor nobody",
+d210 1
+a210 1
+				ERROR1("no such user (%s) for -u option",
+d226 1
+a226 1
+				ERROR1("no such group (%s) for -g option", optarg);
+d272 1
+a272 1
+		int     fd;
+d286 1
+a286 1
+			ERROR("main: socket");
+d303 1
+a303 1
+					ERROR1("no such address (%s) for -a switch",
+d315 1
+a315 1
+				ERROR1("main: getservbyname: %s", portno);
+d320 1
+a320 1
+			ERROR("main: bind");
+d323 1
+a323 1
+			ERROR("main: listen");
+d327 1
+a327 1
+			ERROR("main: setgid");
+d329 1
+a329 1
+			ERROR("main: setgid");
+d333 1
+a333 1
+			ERROR("main: setuid");
+d335 1
+a335 1
+			ERROR("main: setuid");
+d341 1
+a341 1
+		int     nfds, fd;
+d381 1
+a381 1
+				ERROR("main: select");
+d399 1
+a399 1
+				ERROR1("main: accept. errno = %d", errno);
+d413 1
+a413 1
+			ERROR("main: dup2: failed fd 0");
+d416 1
+a416 1
+			ERROR("main: dup2: failed fd 1");
+d419 1
+a419 1
+			ERROR("main: dup2: failed fd 2");
+d481 22
+@
+
+
+1.1.1.4
+log
+@whoops, did it wrong way
+@
+text
+@d1 1
+a1 1
+/*	$OpenBSD: identd.c,v 1.41 2004/11/17 01:47:20 itojun Exp $	*/
+a24 1
+#include <stdarg.h>
+d36 1
+d40 7
+a46 7
+int	verbose_flag;
+int	debug_flag;
+int	syslog_flag;
+int	multi_flag;
+int	unknown_flag;
+int	number_flag;
+int	noident_flag;
+d51 2
+a52 2
+int	lport;
+int	fport;
+a111 3
+#ifdef NI_WITHSCOPEID
+	const int niflags = NI_NUMERICHOST | NI_WITHSCOPEID;
+#else
+a112 1
+#endif
+a130 1
+/* ARGSUSED */
+d151 1
+a151 1
+	int	background_flag = 0, timeout = 0, ch;
+d166 1
+a166 1
+			error("no such user: neither %s nor nobody",
+d209 1
+a209 1
+				error("no such user (%s) for -u option",
+d225 1
+a225 1
+				error("no such group (%s) for -g option", optarg);
+d271 1
+a271 1
+		int	fd;
+d285 1
+a285 1
+			error("main: socket");
+d302 1
+a302 1
+					error("no such address (%s) for -a switch",
+d314 1
+a314 1
+				error("main: getservbyname: %s", portno);
+d319 1
+a319 1
+			error("main: bind");
+d322 1
+a322 1
+			error("main: listen");
+d326 1
+a326 1
+			error("main: setgid");
+d328 1
+a328 1
+			error("main: setgid");
+d332 1
+a332 1
+			error("main: setuid");
+d334 1
+a334 1
+			error("main: setuid");
+d340 1
+a340 1
+		int	nfds, fd;
+d380 1
+a380 1
+				error("main: select");
+d398 1
+a398 1
+				error("main: accept. errno = %d", errno);
+d412 1
+a412 1
+			error("main: dup2: failed fd 0");
+d415 1
+a415 1
+			error("main: dup2: failed fd 1");
+d418 1
+a418 1
+			error("main: dup2: failed fd 2");
+a479 22
+
+void
+error(char *fmt, ...)
+{
+	va_list ap, ap2;
+
+	va_start(ap, fmt);
+	
+	if (syslog_flag) {
+		va_copy(ap2, ap);
+		syslog(LOG_ERR, fmt, ap2);
+		va_end(ap2);
+	}
+	if (debug_flag) {
+		fprintf(stderr, "%d , %d : ERROR : X-DBG : ", lport, fport);
+		fprintf(stderr, fmt, ap);
+		perror(": ");
+	} else
+		printf("%d , %d : ERROR : UNKNOWN-ERROR\r\n", lport, fport);
+	va_end(ap);
+	exit(1);
+}
+@
+
+

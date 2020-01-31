@@ -1,0 +1,99 @@
+head     1.1;
+branch   1.1.3;
+access   ;
+symbols  joe-3_1:1.1.3.1 tg:1.1.3;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.19.15.24.17;  author tg;  state Exp;
+branches 1.1.3.1;
+next     ;
+
+1.1.3.1
+date     2004.12.19.15.24.17;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# JOE syntax highlight file for typical UNIX mail files
+# 2004-04-25 Tomas Szepe <szepe@@pinerecords.com>
+
+=Idle
+=Quot1	green
+=Quot2	cyan
+=Sign	magenta
+
+:newline Idle
+	*		knocolor
+	"\n"		newline
+	" "		newline
+	"\t"		newline
+	">"		q1trans		noeat
+	"-"		maybesign1
+
+:maybesign1 Idle
+	*		knocolor
+	"\n"		newline
+	"-"		maybesign2
+
+:maybesign2 Idle
+	*		knocolor
+	"\n"		newline
+	" "		maybesign3
+
+:maybesign3 Idle
+	*		knocolor
+	"\n"		sign
+
+:sign Sign
+	*		sign
+
+:q1trans Quot1
+	*		q1		recolor=-1
+
+:q1 Quot1
+	*		kq1
+	"\n"		newline
+	" "		q1
+	"\t"		q1
+	">"		q2		recolor=-1
+
+:q2 Quot2
+	*		kq2
+	"\n"		newline
+	" "		q2
+	"\t"		q2
+	">"		q1		recolor=-1
+
+:knocolor Idle
+	*		knocolor
+	"\n"		newline
+
+:kq1 Quot1
+	*		kq1
+	"\n"		newline
+
+:kq2 Quot2
+	*		kq2
+	"\n"		newline
+@
+
+
+1.1.3.1
+log
+@JOE's Own Editor 3.1 (released package)
+@
+text
+@@

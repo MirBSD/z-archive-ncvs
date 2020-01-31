@@ -1,0 +1,80 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.48;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.58;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#  isc_2.sh
+#  Interactive Unix Version 2.2
+#  Compile perl entirely in posix mode. 
+#  Andy Dougherty		doughera@@lafayette.edu
+#  Wed Oct  5 15:57:37 EDT 1994
+#
+# Use Configure -Dcc=gcc to use gcc
+#
+set `echo X "$libswanted "| sed -e 's/ c / /'`
+shift
+libswanted="$*"
+case "$cc" in
+*gcc*)	ccflags="$ccflags -posix"
+	ldflags="$ldflags -posix"
+	;;
+*)	ccflags="$ccflags -Xp -D_POSIX_SOURCE"
+	ldflags="$ldflags -Xp"
+    	;;
+esac
+# Compensate for conflicts in <net/errno.h>
+doio_cflags='ccflags="$ccflags -DENOTSOCK=103"'
+pp_sys_cflags='ccflags="$ccflags -DENOTSOCK=103"'
+
+# for ext/IPC/SysV/SysV.xs
+ccflags="$ccflags -DPERL_ISC"
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

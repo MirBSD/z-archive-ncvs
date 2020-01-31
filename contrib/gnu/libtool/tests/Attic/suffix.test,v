@@ -1,0 +1,99 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.1
+	libtool-1_5_8:1.1.2.1
+	libtool-1_5-20040215:1.1.2.1
+	libtool-1_4_3:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.03.19.42.39;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.17.55.48;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.03.17.55.48;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@* MirOSify
+* bootstrap
+* nuke unneeded stuff
+@
+text
+@#! /bin/sh
+# suffix.test - check that libtool knows how to transform source suffices.
+
+# Extensions taken from the ones that Automake recognizes, plus Objective C,
+# and GNU Ada.
+extensions="C F S ada adb ads asm c c++ cc cpp cxx f f90 for m s"
+bad_names="foo."
+
+# Test script header.
+need_prefix=no
+if test -z "$srcdir"; then
+  srcdir=`echo "$0" | sed 's%/[^/]*$%%'`
+  test "$srcdir" = "$0" && srcdir=.
+  test "${VERBOSE+set}" != "set" && VERBOSE=yes
+fi
+. $srcdir/defs || exit 1
+
+status=0
+for ext in $extensions; do
+  # Try a sample compile command.
+  if ($libtool -n --mode=compile compiler -c foo.$ext 2>&1; exit 0) | grep 'cannot'; then
+    status=1
+  else
+    echo "recognized foo.$ext as a valid source file"
+  fi
+done
+
+# Make sure that invalid suffixes are not recognized.
+for name in $bad_names; do
+  if ($libtool -n --mode=compile compiler -c $name 2>&1; exit 0) | grep 'cannot'; then :
+  else
+    echo "incorrectly recognized $name as a valid source file"
+    status=1
+  fi
+done
+
+exit $status
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Libtool 1.4.3 (last of the 1.4 series)
+
+Requires to bootstrap:
+* autoconf 2.13-o
+* automake 1.4-p5
+or later.
+@
+text
+@@

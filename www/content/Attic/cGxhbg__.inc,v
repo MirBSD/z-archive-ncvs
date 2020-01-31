@@ -1,0 +1,115 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.57;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@<small class="rcsid">$MirBSD: www/content/cGxhbg__.inc,v 1.1 2004/12/13 00:13:24 tg Exp $</small>
+<h1>MirOS Development plan</h1>
+
+<p>This is ridiculously out of date, and outdated in a way, too.</p>
+
+<ul>
+ <li>Ensure the base system builds correctly on i386/gcc3 and
+	sparc/pgcc (make(1) infrastructure complete, stuff not ported yet).
+	Sparc will be a pgcc-only release again.</li>
+ <li>Throw out snapshots regularily.</li>
+ <li><em>(started)</em> Fix installation process, manual pages, documentation and
+	website as much as possible.</li>
+ <li>Fix "extended partition" issue - deep scan first?</li>
+ <li>Fix installboot. Enable using the MBR space for the PBR again.
+	different fix -&gt; use same code for MBR/PBR?</li>
+ <li>Sync ISDN (NetBSD), *roff (4.4BSD).</li>
+ <li>Look why libf2c stopped building.</li>
+ <li><em>(started)</em> Remove rough edges found everywhere.</li>
+ <li><em>(started)</em> Fix all the ports (Libtool comes to mind).</li>
+ <li>Enable multiple-server support in rdate(8).</li>
+ <li>Bring out snapshots as if they were releases, if possible.</li>
+ <li>Do bulk builds of MirPorts.</li>
+ <li>(huh? probably not. why is this here?) Release MirOS #8 BSD i386/sparc32.</li>
+ <li>Complete the website. *gah*</li>
+ <li>Check if we can update gcc to 3.3.3 or 3.4.0 (productively usable?
+	compatibility with gpc?)</li>
+ <li>Rewrite boot loader so it handles being loaded at any address,
+	having its stack and realmode-exchange-address everywhere.</li>
+ <li>Document fcfs(5), the FAT&reg;-compatible filesystem.
+	Write support for that into the bootloader, so we can eventually boot
+	the kernel off a FAT formatted floppy or hard disc.</li>
+ <li>Synchronize code with upstream: gcc, NetBSD ISDN, ...</li>
+ <li>Write a depinguinator.</li>
+ <li>Rewrite the installation process and some of the stuff in /etc,
+	as well as many documentation.</li>
+ <li>Enable gcc3 on sparc32.</li>
+ <li>Synchronize with OpenBSD. Go to MirOS #8 (prerelease).</li>
+ <li>Test, throw snapshots, etc.</li>
+ <li>Release MirOS #8.</li>
+ <li>Port MirOS #8 to Linux/i386.</li>
+ <li>Release MirOS #9.</li>
+ <li>Port MirOS BSD #9 to AMD64 and macppc, if possible.
+	Port MirOS Linux #9 to AMD64 if possible.</li>
+ <li>Release MirOS X<br />Just kidding. Release MirOS #10.</li>
+</ul><p>(to be continued...)</p>
+
+<p><b>Finished Projects</b></p>
+
+<ul>
+ <li><em>(done)</em> Finish merging OpenBSD ports tree into MirPorts Framework.</li>
+ <li><em>(done)</em> Merge OpenBSD base system into MirOS base system.</li>
+ <li><em>(done)</em> Enable basic support for all the "new" features of gcc3
+	on the i386 architecture (including csu).</li>
+ <li><em>(done)</em> Bring all the kernel configs in sync.</li>
+ <li><em>(done)</em> Bring MirPorts framework infrastructure in shape.</li>
+ <li><em>(done)</em> Update to latest OpenSSL, Lynx.</li>
+ <li><em>(OpenBSD's already done it)</em> Port pxeboot from NetBSD.</li>
+ <li><em>(done)</em> Enable the gpc, f77, objc, proto, gcov front-ends and libs.</li>
+ <li><em>(done)</em> Try to bootstrap gcc3-Ada using a Linux binary.</li>
+</ul>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+<small class="rcsid">$MirBSD: www/content/cGxhbg__.inc,v 1.25 2004/08/28 14:28:50 tg Exp $</small>
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

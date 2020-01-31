@@ -1,0 +1,127 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.35;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.57;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!/usr/bin/perl -w
+my $file = pop(@@ARGV);
+my %meta;
+$ENV{'P4PORT'} ||= 'bactrian:1667';
+$ENV{'P4CLIENT'} ||= 'ni-s';
+open(FILE,$file) || die "Cannot open $file:$!";
+while (<FILE>)
+ {
+  if (/^(From|Subject|Date|Message-ID):(.*)$/i)
+   {
+    $meta{lc($1)} = $2;
+   }
+ }
+my @@results = `patch @@ARGV <$file 2>&1`;
+warn @@results;
+my $code = $?;
+warn "$code from patch\n";
+foreach (@@results)
+ {
+  if (/[Pp]atching\s+file\s*(\S+)/)
+   {
+    push(@@edit,$1);
+   }
+ }
+my @@have = `p4 have @@edit`;
+
+if ($code == 0)
+ {
+  System("p4 edit @@edit");
+  open(PIPE,"|p4 change -i") || die "Cannot open pipe to p4:$!";
+  print PIPE "Change: new\n";
+  print PIPE "Description:\n";
+  foreach my $key (qw(Subject From Date Message-Id))
+   {
+    if (exists $meta{lc($key)})
+     {
+      print PIPE "\t$key: ",$meta{lc($key)},"\n";
+      print "$key: ",$meta{lc($key)},"\n";
+     }
+   }
+  print PIPE "Files:\n";
+  foreach (@@have)
+   {
+    if (m,^(.*)#,)
+     {
+      print PIPE "\t$1\n"
+     }
+   }
+  close(PIPE);
+ }
+else
+ {
+  if (@@edit)
+   {
+    System("p4 refresh @@edit");
+   }
+ }
+
+sub System
+{
+ my $cmd = join(' ',@@_);
+ warn "$cmd\n";
+ if (fork)
+  {
+   wait;
+  }
+ else
+  {
+   _exit(exec $cmd);
+  }
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

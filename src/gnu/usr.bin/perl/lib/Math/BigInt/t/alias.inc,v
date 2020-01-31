@@ -1,0 +1,67 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.24;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.17;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.17;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@
+# alias subroutine testing, included by sub_ali.t and mbi_ali.t
+
+my $x = $CL->new(123);
+
+is ($x->is_pos(), 1, '123 is positive');
+is ($x->is_neg(), 0, '123 is not negative');
+is ($x->as_int(), 123, '123 is 123 as int');
+is (ref($x->as_int()), $CL, "as_int(123) is of class '$CL'");
+$x->bneg();
+is ($x->is_pos(), 0, '-123 is not positive');
+is ($x->is_neg(), 1, '-123 is negative');
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

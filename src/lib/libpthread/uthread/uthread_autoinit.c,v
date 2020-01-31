@@ -1,0 +1,98 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.29.24;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.25;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * David Leonard, 1998. Public Domain. <david.leonard@@csee.uq.edu.au>
+ *
+ * $OpenBSD: uthread_autoinit.c,v 1.12 2003/01/31 18:48:03 marc Exp $
+ */
+
+
+#include <stdio.h>
+#include <pthread.h>
+#include "pthread_private.h"
+
+/*
+ * Use C++'s static instance constructor to initialise threads.
+ */
+#ifdef __cplusplus
+class Init {
+public:
+	Init() { 
+		_thread_init();
+	}
+};
+Init _thread_initialiser;
+#endif /* C++ */
+
+/*
+ * This construct places the function in the __CTOR_LIST__ entry in the
+ * object, and later the collect2 stage of linkage will inform __main (from
+ * libgcc.a) to call it.
+ */
+#if defined(__GNUC__)
+extern void _thread_init_constructor(void) __attribute__((constructor));
+
+void
+_thread_init_constructor()
+{
+	_thread_init();
+}
+#endif /* GNU C */
+
+/*
+ * Dummy symbol referenced by uthread_init.o so this compilation unit 
+ * is always loaded from archives.
+ */
+int _thread_autoinit_dummy_decl = 0;
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,38 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.05;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/etc/ntpd.conf,v 1.1 2004/10/14 19:50:23 tg Exp $
+# Sample configuration file for OpenNTPD, see ntpd.conf(5)
+
+# From where do we get the time? (multiple lines allowed)
+
+# a) single server
+#server ntp.example.invalid
+
+# b) pool of servers
+servers pool.ntp.org
+
+
+# Whom do we give the time? (multiple lines allowed)
+listen on *
+@

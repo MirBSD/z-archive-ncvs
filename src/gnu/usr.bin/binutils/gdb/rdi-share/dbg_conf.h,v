@@ -1,0 +1,98 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  gdb-20050107:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.23.04.31;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.23.04.31;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* 
+ * Copyright (C) 1995 Advanced RISC Machines Limited. All rights reserved.
+ * 
+ * This software may be freely used, copied, modified, and distributed
+ * provided that the above copyright notice is preserved in all copies of the
+ * software.
+ */
+
+/*
+ * ARM symbolic debugger toolbox: dbg_conf.h
+ */
+
+/*
+ * RCS $Revision: 1.2 $
+ * Checkin $Date: 1998/01/08 11:11:48 $
+ */
+
+#ifndef Dbg_Conf__h
+
+#define Dbg_Conf__h
+
+typedef struct Dbg_ConfigBlock {
+    int bytesex;
+    int fpe;               /* Target should initialise FPE */
+    long memorysize;
+    unsigned long cpu_speed;/* Cpu speed (HZ) */
+    int serialport;        /*) remote connection parameters */
+    int seriallinespeed;   /*) (serial connection) */
+    int parallelport;      /*) ditto */
+    int parallellinespeed; /*) (parallel connection) */
+    char *ethernettarget;  /* name of remote ethernet target */
+    int processor;         /* processor the armulator is to emulate (eg ARM60) */
+    int rditype;           /* armulator / remote processor */
+    int heartbeat_on;  /* angel heartbeat */
+    int drivertype;        /* parallel / serial / etc */
+    char const *configtoload;
+    char const *memconfigtoload;
+    int flags;
+} Dbg_ConfigBlock;
+
+#define Dbg_ConfigFlag_Reset 1
+#define Dbg_ConfigFlag_LLSymsNeedPrefix 2
+
+typedef struct Dbg_HostosInterface Dbg_HostosInterface;
+/* This structure allows access by the (host-independent) C-library support
+   module of armulator or pisd (armos.c) to host-dependent functions for
+   which there is no host-independent interface.  Its contents are unknown
+   to the debugger toolbox.
+   The assumption is that, in a windowed system, fputc(stderr) for example
+   may not achieve the desired effect of the character appearing in some
+   window.
+ */
+
+#endif
+@
+
+
+1.1.2.1
+log
+@The GNU Debugger 6.3.50-current, from
+ ftp://sources.redhat.com/pub/gdb/snapshots/current/gdb-weekly-6.3.50.20050107.tar.bz2
+
+only the gdb/ subdirectory, gdb/testsuite/ removed.
+
+Luckily, this time it doesn't depend on a different libbfd than
+the one we deliver with GNU binutils...
+@
+text
+@@

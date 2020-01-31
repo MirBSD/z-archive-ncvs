@@ -1,0 +1,85 @@
+head	1.2;
+access;
+symbols
+	prone-for-deletion:1.1
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.03.15.04.41;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.16;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.16;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@remove some orphanes:
+- stuff which was (wrongly) contained within the -bopenbsd import,
+  because it happened to have existed earlier in openbsd
+- stuff which was (correctly) contained within the -bopenbsd
+  import, and we removed in -bmirbsd
+@
+text
+@
+require 5;
+use Test;
+BEGIN { plan tests => 1; }
+use Locale::Maketext 1.01;
+
+print "#\n#\n",
+ "# Locale::Maketext v$Locale::Maketext::VERSION\n",
+ "# I18N::LangTags v", $I18N::LangTags::VERSION || "?", "\n",
+ "#\n#\n",
+;
+
+print "# Running under perl version $] for $^O",
+      (chr(65) eq 'A') ? "\n" : " in a non-ASCII world\n";
+
+print "# Win32::BuildNumber ", &Win32::BuildNumber(), "\n"
+ if defined(&Win32::BuildNumber) and defined &Win32::BuildNumber();
+
+print "# MacPerl verison $MacPerl::Version\n"
+ if defined $MacPerl::Version;
+
+printf
+ "# Current time local: %s\n# Current time GMT:   %s\n",
+ scalar(   gmtime($^T)), scalar(localtime($^T));
+      
+print "# Using Test.pm v", $Test::VERSION || "?", "\n";
+
+ok 1;
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

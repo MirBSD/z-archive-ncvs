@@ -1,0 +1,103 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.23.10.19;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.02.38;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.38;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@basic cleanup, more to follow
+@
+text
+@/*
+
+@@deftypefn Supplemental int waitpid (int @@var{pid}, int *@@var{status}, int)
+
+This is a wrapper around the @@code{wait} function.  Any ``special''
+values of @@var{pid} depend on your implementation of @@code{wait}, as
+does the return value.  The third argument is unused in @@libib{}.
+
+@@end deftypefn
+
+*/
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+/* On some systems (such as WindISS), you must include <sys/types.h>
+   to get the definition of "pid_t" before you include <sys/wait.h>.  */
+#include <sys/types.h>
+
+#ifdef HAVE_SYS_WAIT_H
+#include <sys/wait.h>
+#endif
+
+pid_t
+waitpid (pid, stat_loc, options)
+     pid_t pid;
+     int *stat_loc, options;
+{
+  for (;;)
+    {
+      int wpid = wait(stat_loc);
+      if (wpid == pid || wpid == -1)
+	return wpid;
+    }
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

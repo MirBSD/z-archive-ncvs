@@ -1,0 +1,121 @@
+head	1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.04.18.05.43;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.04.17.26.03;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.26.03;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@The usual removal of dupes and unused stuff
+@
+text
+@==============================================================================
+README.threads - Wed Nov 29 15:16:24 EST 1995
+------------------------------------------------------------------------------
+
+Limited documentation is available in the THREADS file.
+
+This version has been tested on Sun Solaris, SGI Irix, and Windows NT.
+It should also work on any single threaded system.
+
+Thanks go to the following people for help test and debug the library:
+
+	Scott Christley, scottc@@ocbi.com
+	Andrew McCallum, mccallum@@cs.rochester.edu
+
+galen
+gchunt@@cs.rochester.edu
+
+Any questions, bug reports, etc should be directed to:
+
+Scott Christley, scottc@@ocbi.com
+
+Please do not bug Galen with email as he no longer supports the code.
+
+==============================================================================
+Changes from prior releases (in revered chronological order):
+------------------------------------------------------------------------------
+
+* Fixed bug in copy part of sarray_realloc.  I had an < which should
+  have been <=. (Bug report from Scott).
+
+------------------------------------------------------------------------------
+
+* Support for DEC OSF/1 is definitely broken.  My programs always
+  seg-fault when I link with libpthreads.a.
+
+* Thread id's are no longer int's, but are instead of type
+  _objc_thread_t which is typedef'ed from a void *.  An invalid thread
+  id is denoted by NULL and not -1 as before.
+
+------------------------------------------------------------------------------
+
+* Renamed thread-winnt.c to thread-win32.c to better reflect support
+  for the API on both Windows NT and Windows 95 platforms.  
+  (Who knows, maybe even Win32s :-).
+
+* Fixed bugs in Win32 support as per report from Scott Christley.
+
+* Fixed bug in sarray_get as per report from Scott Christley.
+
+	
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

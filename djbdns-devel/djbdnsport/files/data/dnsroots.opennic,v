@@ -1,0 +1,63 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 tg:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.12.13.22.53.06;	author tg;	state Exp;
+branches;
+next	1.1;
+commitid	0439f50e503cb809;
+
+1.1
+date	2005.12.13.20.44.46;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+commitid	0439f32c6884c25e;
+
+1.1.1.1
+date	2005.12.13.20.44.46;	author tg;	state Exp;
+branches;
+next	;
+commitid	0439f32c6884c25e;
+
+
+desc
+@@
+
+
+1.2
+log
+@sync OpenNIC too
+@
+text
+@208.185.249.250
+208.185.249.251
+65.243.92.254
+66.227.42.140
+66.227.42.149
+64.81.44.251
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d6 1
+a6 1
+64.81.44.19
+@
+
+
+1.1.1.1
+log
+@Import ports/net/djbdns of snapshot
+@
+text
+@@

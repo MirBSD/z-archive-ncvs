@@ -1,0 +1,121 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.2
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.31.02;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.11;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.11;	author tg;	state Exp;
+branches;
+next	1.1.1.2;
+
+1.1.1.2
+date	2005.01.16.09.59.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: identd.h,v 1.16 2004/01/04 04:18:11 deraadt Exp $*/
+
+/*
+**
+** identd.h		    Common variables for the Pidentd daemon
+**
+** This program is in the public domain and may be used freely by anyone
+** who wants to.
+**
+** Last update: 6 Dec 1992
+**
+** Please send bug fixes/bug reports to: Peter Eriksson <pen@@lysator.liu.se>
+*/
+
+#ifndef __IDENTD_H__
+#define __IDENTD_H__
+
+#define DEFAULT_UID	"_identd"
+
+extern int verbose_flag;
+extern int debug_flag;
+extern int syslog_flag;
+extern int multi_flag;
+extern int unknown_flag;
+extern int number_flag;
+extern int noident_flag;
+extern int token_flag;
+extern int no_user_token_flag;
+extern int userident_flag;
+
+extern const char *opsys_name;
+extern const char *charset_sep;
+extern char *charset_name;
+
+extern int lport;
+extern int fport;
+
+int	parse(int, struct in_addr *, struct in_addr *);
+int	parse6(int, struct sockaddr_in6 *, struct sockaddr_in6 *);
+char	*gethost4(struct sockaddr_in *);
+char	*gethost4_addr(struct in_addr *);
+char	*gethost6(struct sockaddr_in6 *);
+int	k_getuid(struct in_addr *, int, struct in_addr *, int, uid_t *);
+int	k_getuid6(struct sockaddr_in6 *, int, struct sockaddr_in6 *,
+	    int, uid_t *);
+
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@
+
+
+1.1.1.2
+log
+@Import a series of fixes and minor updates from OpenBSD
+@
+text
+@d1 1
+a1 1
+/*	$OpenBSD: identd.h,v 1.17 2004/09/16 08:25:05 deraadt Exp $*/
+a45 1
+void	error(char *fmt, ...);
+@
+

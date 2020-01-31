@@ -1,0 +1,93 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.39.12;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.13;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.13;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*
+ * Copyright (C) 1984-2002  Mark Nudelman
+ *
+ * You may distribute under the terms of either the GNU General Public
+ * License or the Less License, as specified in the README file.
+ *
+ * For more information about less, or for information on how to 
+ * contact the author, see the README file.
+ */
+
+
+/*
+ * Format of a lesskey file:
+ *
+ *	LESSKEY_MAGIC (4 bytes)
+ *	 sections...
+ *	END_LESSKEY_MAGIC (4 bytes)
+ *
+ * Each section is:
+ *
+ *	section_MAGIC (1 byte)
+ *	section_length (2 bytes)
+ *	key table (section_length bytes)
+ */
+#define	C0_LESSKEY_MAGIC	'\0'
+#define	C1_LESSKEY_MAGIC	'M'
+#define	C2_LESSKEY_MAGIC	'+'
+#define	C3_LESSKEY_MAGIC	'G'
+
+#define	CMD_SECTION		'c'
+#define	EDIT_SECTION		'e'
+#define	VAR_SECTION		'v'
+#define	END_SECTION		'x'
+
+#define	C0_END_LESSKEY_MAGIC	'E'
+#define	C1_END_LESSKEY_MAGIC	'n'
+#define	C2_END_LESSKEY_MAGIC	'd'
+
+/* */
+#define	KRADIX		64
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

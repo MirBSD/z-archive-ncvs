@@ -1,0 +1,94 @@
+head	1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2005.01.08.23.10.18;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.23.02.31;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.02.31;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@basic cleanup, more to follow
+@
+text
+@/* ffs -- Find the first bit set in the parameter
+
+@@deftypefn Supplemental int ffs (int @@var{valu})
+
+Find the first (least significant) bit set in @@var{valu}.  Bits are
+numbered from right to left, starting with bit 1 (corresponding to the
+value 1).  If @@var{valu} is zero, zero is returned.
+
+@@end deftypefn
+
+*/
+
+int
+ffs (valu)
+  register int valu;
+{
+  register int bit;
+
+  if (valu == 0)
+    return 0;
+
+  for (bit = 1; !(valu & 1); bit++)
+  	valu >>= 1;
+
+  return bit;
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

@@ -1,0 +1,246 @@
+head	1.8;
+access;
+symbols
+	MIRLIBTOOL_I:1.7
+	LIBTOOL_1_5:1.6.0.4
+	LIBTOOL_1_4:1.6.0.2
+	libtool-1_4_3:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.8
+date	2004.08.09.23.07.00;	author tg;	state dead;
+branches;
+next	1.7;
+
+1.7
+date	2004.02.16.12.26.19;	author tg;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2004.02.15.00.24.30;	author tg;	state Exp;
+branches
+	1.6.4.1;
+next	1.5;
+
+1.5
+date	2004.02.15.00.10.12;	author tg;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2004.02.07.23.20.44;	author tg;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2004.02.07.23.04.26;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2004.02.03.19.41.27;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.17.55.36;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.03.17.55.36;	author tg;	state Exp;
+branches;
+next	;
+
+1.6.4.1
+date	2004.02.15.13.30.26;	author tg;	state dead;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.8
+log
+@bring everything to (stock) libtool 1.5.8
+@
+text
+@## Process this file with autoconf to create configure.
+
+AC_INIT(ltmain.in)
+
+AM_INIT_AUTOMAKE(libtool, 1.4.3)
+
+# Use the specified CC and LD
+AC_PROG_CC
+AC_PROG_LN_S
+
+# Declare win32 dll support
+AC_LIBTOOL_WIN32_DLL
+
+# Check for dlopen support
+AC_LIBTOOL_DLOPEN
+AC_PROG_LIBTOOL
+
+ACINCLUDE_M4_LIST="${srcdir}/acinclude.m4"
+AC_SUBST(ACINCLUDE_M4_LIST)
+
+AC_OUTPUT([Makefile])
+@
+
+
+1.7
+log
+@simplify and correct
+nuke junk
+nuke generated junk
+@
+text
+@@
+
+
+1.6
+log
+@give libtoolize a chance to have a different location for libtool.m4
+@
+text
+@a6 20
+# This is a sanity check so we can see which version is used in bug reports.
+# It is assumed that we only want to see the date extension for cvs libtool
+# versions (i.e. "odd" letters) and not actual alpha releases.
+TIMESTAMP=
+case "$VERSION" in
+  [*[acegikmoqsuwy])]
+    TIMESTAMP=`${CONFIG_SHELL} ${srcdir}/mkstamp < ${srcdir}/ChangeLog`
+    banner="Configuring $PACKAGE $VERSION$TIMESTAMP"
+    dashes=`echo "$banner" | sed 's/./-/g'`
+
+    # Display an obvious version banner
+    echo
+    echo $dashes
+    echo "$banner"
+    echo $dashes
+    echo
+    ;;
+esac
+AC_SUBST(TIMESTAMP)
+
+a18 5
+DIST_MAKEFILE_LIST=
+for dir in $CONF_SUBDIRS; do
+  ACINCLUDE_M4_LIST="$ACINCLUDE_M4_LIST ${srcdir}/$dir/acinclude.m4"
+  DIST_MAKEFILE_LIST="$DIST_MAKEFILE_LIST$dir/Makefile "
+done
+a19 1
+AC_SUBST(DIST_MAKEFILE_LIST)
+@
+
+
+1.6.4.1
+log
+@"automatic" merge
+
+this is broken. we don't want this.
+libtool.m4 isn't even similar to that from 1.4
+
+so use 1.4 instead for mirlibtool, for now
+@
+text
+@@
+
+
+1.5
+log
+@<benz> mirlibtoolify
+@
+text
+@a26 5
+pkgdatadir='${datadir}'"/${PACKAGE}"
+AC_SUBST(pkgdatadir) # automake does not need this, but libtoolize does
+aclocaldir='${datadir}/aclocal'
+AC_SUBST(aclocaldir)
+
+@
+
+
+1.4
+log
+@even better
+@
+text
+@a42 5
+# all subdirectories that are configured on demand, but that must be
+# included in the distribution
+CONF_SUBDIRS=""
+AC_SUBST(CONF_SUBDIRS)
+
+@
+
+
+1.3
+log
+@who needs documentation, dupes (from GNUSYSTEM_AUX_DIR), ltdl anyways?
+@
+text
+@a33 4
+AM_PROG_LD
+AC_SUBST(LD)
+AM_PROG_NM
+AC_SUBST(NM)
+@
+
+
+1.2
+log
+@* MirOSify
+* bootstrap
+* nuke unneeded stuff
+@
+text
+@a46 8
+AC_ARG_ENABLE(ltdl-install,
+[  --disable-ltdl-install  do not install libltdl])
+if test x"${enable_ltdl_install+set}" != xset; then
+  enable_ltdl_install=yes
+  ac_configure_args="$ac_configure_args --enable-ltdl-install"
+fi
+AC_CONFIG_SUBDIRS(libltdl)
+
+d61 1
+a61 1
+AC_OUTPUT([Makefile doc/Makefile])
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d57 1
+a57 1
+CONF_SUBDIRS="cdemo demo depdemo mdemo"
+d69 1
+a69 1
+AC_OUTPUT([Makefile doc/Makefile tests/Makefile])
+@
+
+
+1.1.2.1
+log
+@GNU Libtool 1.4.3 (last of the 1.4 series)
+
+Requires to bootstrap:
+* autoconf 2.13-o
+* automake 1.4-p5
+or later.
+@
+text
+@@

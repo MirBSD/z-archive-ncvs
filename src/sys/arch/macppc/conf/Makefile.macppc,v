@@ -1,0 +1,344 @@
+head	2.2;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.2
+date	2005.01.09.15.02.22;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.34.34;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.32.18;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.32.18;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@unfold the kernel part of ocvs:mergefixes into the new master tree,
+effectively switching src/ over
+@
+text
+@#	$MirBSD: src/sys/arch/macppc/conf/Makefile.macppc,v 1.4.4.1 2005/01/09 14:27:55 tg Exp $
+#	$OpenBSD: Makefile.macppc,v 1.18 2004/01/20 03:32:44 brad Exp $
+#
+# Makefile for MirOS BSD PowerPC
+#
+# This makefile is constructed from a machine description:
+#	config machineid
+# Most changes should be made in the machine description
+#	/sys/arch/macppc/conf/``machineid''
+# after which you should do
+#	config machineid
+# Machine generic makefile changes should be made in
+#	/sys/arch/macppc/conf/Makefile.macppc
+# after which config should be rerun for all machines of that type.
+#
+# N.B.: NO DEPENDENCIES ON FOLLOWING FLAGS ARE VISIBLE TO MAKEFILE
+#	IF YOU CHANGE THE DEFINITION OF ANY OF THESE RECOMPILE EVERYTHING
+#
+# -DTRACE	compile in kernel tracing hooks
+# -DQUOTA	compile in file system quotas
+#
+.SUFFIXES:	.S .c .o
+
+# DEBUG is set to -g if debugging.
+
+.include <bsd.own.mk>
+
+MKDEP?=	mkdep
+STRIP?=	strip
+SIZE?=	size
+
+# source tree is located via $S relative to the compilation directory
+.ifndef	S
+S!=	cd ../../../..; pwd
+.endif
+MACPPC=	$S/arch/macppc
+
+INCLUDES=	-I. -I$S/arch -I$S -nostdinc -L${DESTDIR}/usr/include
+CPPFLAGS=	${INCLUDES} ${IDENT} -D_KERNEL \
+		-D__macppc__
+CWARNFLAGS=	-Werror -Wall -Wstrict-prototypes -Wmissing-prototypes \
+		-Wno-uninitialized -Wno-format -Wno-main
+CMACHFLAGS=	-msoft-float -Wa,-m7400 -fno-builtin-printf -fno-builtin-log
+.if ${IDENT:M-DNO_PROPOLICE}
+CMACHFLAGS+=	-fno-stack-protector
+.endif
+COPTS?=		-O2
+CFLAGS=		${DEBUG} ${CWARNFLAGS} ${CMACHFLAGS} ${COPTS:S/-g//} ${PIPE}
+AFLAGS=		-D_LOCORE
+LINKFLAGS=	-N -Ttext 100114 -e start --warn-common
+STRIPFLAGS=	-g -X -x
+
+HOSTCC?=	${CC}
+HOSTED_CPPFLAGS=${CPPFLAGS:S/^-nostdinc$//}
+HOSTED_CFLAGS=	${CFLAGS}
+
+### find out what to use for libkern
+.include "$S/lib/libkern/Makefile.inc"
+LIBKERN=	${KERNLIB}
+
+### find out what to use for libcompat
+.include "$S/compat/common/Makefile.inc"
+LIBCOMPAT=	${COMPATLIB}
+
+# compile rules: rules are named ${TYPE}_${SUFFIX}${CONFIG_DEP}
+# where TYPE is NORMAL or DRIVER; SUFFIX is the file suffix,
+# capitalized (e.g. C for a .c file), and CONFIG_DEP is _C if the file
+# is marked as config-dependent.
+
+USRLAND_C=	${CC} ${CFLAGS} ${CPPFLAGS} -c $<
+USRLAND_C_C=	${CC} ${CFLAGS} ${CPPFLAGS} ${PARAM} -c $<
+
+NORMAL_C=	${CC} ${CFLAGS} ${CPPFLAGS} -c $<
+NORMAL_C_C=	${CC} ${CFLAGS} ${CPPFLAGS} ${PARAM} -c $<
+
+DRIVER_C=	${CC} ${CFLAGS} ${CPPFLAGS} -c $<
+DRIVER_C_C=	${CC} ${CFLAGS} ${CPPFLAGS} ${PARAM} -c $<
+
+NORMAL_S=	${CC} ${AFLAGS} ${CPPFLAGS} -c $<
+NORMAL_S_C=	${AS}  ${COPTS} ${PARAM} $< -o $@@
+
+HOSTED_C=	${HOSTCC} ${HOSTED_CFLAGS} ${HOSTED_CPPFLAGS} -c $<
+
+%OBJS
+
+%CFILES
+
+%SFILES
+
+# load lines for config "xxx" will be emitted as:
+# xxx: ${SYSTEM_DEP} swapxxx.o
+#	${SYSTEM_LD_HEAD}
+#	${SYSTEM_LD} swapxxx.o
+#	${SYSTEM_LD_TAIL}
+SYSTEM_OBJ=	locore.o tai_leaps.o init_ssp.o \
+		param.o ioconf.o ${OBJS} ${LIBKERN} ${LIBCOMPAT}
+SYSTEM_DEP=	Makefile ${SYSTEM_OBJ}
+SYSTEM_LD_HEAD=	rm -f $@@
+SYSTEM_LD=	@@echo ${LD} ${LINKFLAGS} -o $@@ '$${SYSTEM_OBJ}' vers.o; \
+		${LD} ${LINKFLAGS} -o $@@ ${SYSTEM_OBJ} vers.o
+SYSTEM_LD_TAIL=	@@${SIZE} $@@; chmod 755 $@@
+
+DEBUG?=
+.if ${DEBUG} == "-g"
+LINKFLAGS+=	-X
+SYSTEM_LD_TAIL+=; \
+		echo cp $@@ $@@.gdb; rm -f $@@.gdb; cp $@@ $@@.gdb; \
+		echo ${STRIP} ${STRIPFLAGS} $@@; ${STRIP} ${STRIPFLAGS} $@@
+.else
+LINKFLAGS+=	-S
+.endif
+
+%LOAD
+
+assym.h: ${SHELL} $S/kern/genassym.sh ${MACPPC}/macppc/genassym.cf Makefile
+	${SHELL} $S/kern/genassym.sh ${CC} ${CFLAGS} ${CPPFLAGS} \
+	    < ${MACPPC}/macppc/genassym.cf > assym.h.tmp && \
+	    mv -f assym.h.tmp assym.h
+
+# Propolice init
+init_ssp.o: $S/kern/init_ssp.c
+	${NORMAL_C} -fno-stack-protector
+
+param.c: $S/conf/param.c
+	rm -f param.c
+	cp $S/conf/param.c .
+
+param.o: param.c Makefile
+	${NORMAL_C_C}
+
+ioconf.o: ioconf.c
+	${NORMAL_C}
+
+tai_leaps.o: tai_leaps.c
+	${NORMAL_C}
+
+tai_leaps.c: tai_make
+	./tai_make >$@@ || (rm -f $@@; false)
+
+tai_make: tai_make.o
+	${HOSTCC} ${HOSTED_CFLAGS} -o $@@ $>
+
+tai_make.o: $S/lib/libkern/tai_make.c
+	${HOSTED_C}
+
+newvers: ${SYSTEM_DEP} ${SYSTEM_SWAP_DEP}
+	${SHELL} $S/conf/newvers.sh "${OSrev}" "${OSrpl}" \
+	    "${OSREV:C/^${OSrev}.//}" "${OScompat}"
+	${CC} ${CFLAGS} ${CPPFLAGS} -c vers.c
+
+clean::
+	rm -f eddep *bsd bsd.gdb tags *.[io] [a-z]*.s \
+		[Ee]rrs linterrs makelinks genassym genassym.o assym.h
+
+lint:
+	@@lint -hbxncez -DGENERIC -Dvolatile= ${CPPFLAGS} -UKGDB ${CFILES} \
+		ioconf.c param.c | \
+		grep -v 'static function .* unused'
+
+tags:
+	@@echo "see $S/kern/Makefile for tags"
+
+links:
+	egrep '#if' ${CFILES} | sed -f $S/conf/defines | \
+	  sed -e 's/:.*//' -e 's/\.c/.o/' | sort -u > dontlink
+	echo ${CFILES} | tr -s ' ' '\12' | sed 's/\.c/.o/' | \
+	  sort -u | comm -23 - dontlink | \
+	  sed 's,../.*/\(.*.o\),rm -f \1; ln -s ../GENERIC/\1 \1,' > makelinks
+	${SHELL} makelinks && rm -f dontlink
+
+SRCS=	${MACPPC}/macppc/locore.S \
+	param.c ioconf.c ${CFILES} ${SFILES}
+depend:: .depend
+.depend: ${SRCS} assym.h param.c
+	CC="${CC}" ${MKDEP} ${AFLAGS} ${CPPFLAGS} ${MACPPC}/macppc/locore.S
+	CC="${CC}" ${MKDEP} -a ${CFLAGS} ${CPPFLAGS} param.c ioconf.c ${CFILES}
+.if ${SFILES} != ""
+	CC="${CC}" ${MKDEP} -a ${AFLAGS} ${CPPFLAGS} ${SFILES}
+.endif
+	CC="${CC}" ${SHELL} $S/kern/genassym.sh ${MKDEP} -f assym.dep ${CFLAGS} \
+	    ${CPPFLAGS} < ${MACPPC}/macppc/genassym.cf
+	@@sed -e 's/.*\.o:.* /assym.h: /' < assym.dep >> .depend
+	@@rm -f assym.dep
+
+# depend on root or device configuration
+autoconf.o conf.o: Makefile
+
+# depend on network or filesystem configuration
+uipc_proto.o vfs_conf.o: Makefile
+
+# depend on maxusers
+genassym.o machdep.o: Makefile
+
+# depend on CPU configuration
+locore.o machdep.o: Makefile
+
+
+locore.o: ${MACPPC}/macppc/locore.S assym.h
+	${NORMAL_S}
+
+# The install target can be redefined by putting a
+# install-kernel-${MACHINE_NAME} target into /etc/mk.conf
+MACHINE_NAME!=  uname -n
+install: install-kernel-${MACHINE_NAME}
+.if !target(install-kernel-${MACHINE_NAME}})
+install-kernel-${MACHINE_NAME}:
+	rm -f /obsd
+	ln /bsd /obsd
+	cp bsd /nbsd
+	mv /nbsd /bsd
+.endif
+
+%RULES
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 1
+d4 1
+a4 1
+# Makefile for OpenBSD PowerPC
+d48 1
+a48 1
+CFLAGS=		${DEBUG} ${CWARNFLAGS} ${CMACHFLAGS} ${COPTS} ${PIPE}
+d82 1
+d95 2
+a96 1
+SYSTEM_OBJ=	locore.o param.o ioconf.o ${OBJS} ${LIBKERN} ${LIBCOMPAT}
+d115 2
+a116 2
+assym.h: $S/kern/genassym.sh ${MACPPC}/macppc/genassym.cf Makefile
+	sh $S/kern/genassym.sh ${CC} ${CFLAGS} ${CPPFLAGS} \
+d120 4
+d134 12
+d147 2
+a148 1
+	sh $S/conf/newvers.sh
+d169 1
+a169 1
+	sh makelinks && rm -f dontlink
+d175 2
+a176 2
+	${MKDEP} ${AFLAGS} ${CPPFLAGS} ${MACPPC}/macppc/locore.S
+	${MKDEP} -a ${CFLAGS} ${CPPFLAGS} param.c ioconf.c ${CFILES}
+d178 1
+a178 1
+	${MKDEP} -a ${AFLAGS} ${CPPFLAGS} ${SFILES}
+d180 1
+a180 1
+	sh $S/kern/genassym.sh ${MKDEP} -f assym.dep ${CFLAGS} \
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a23 1
+# PROF is set to -pg if profiling.
+a57 1
+.ifndef PROF
+a58 3
+.else
+LIBKERN=	${KERNLIB_PROF}
+.endif
+a61 1
+.ifndef PROF
+a62 3
+.else
+LIBCOMPAT=	${COMPATLIB_PROF}
+.endif
+d65 1
+a65 1
+# where TYPE is NORMAL, DRIVER, or PROFILE}; SUFFIX is the file suffix,
+d69 2
+a70 2
+USRLAND_C=	${CC} ${CFLAGS} ${CPPFLAGS} ${PROF} -c $<
+USRLAND_C_C=	${CC} ${CFLAGS} ${CPPFLAGS} ${PROF} ${PARAM} -c $<
+d72 2
+a73 2
+NORMAL_C=	${CC} ${CFLAGS} ${CPPFLAGS} ${PROF} -c $<
+NORMAL_C_C=	${CC} ${CFLAGS} ${CPPFLAGS} ${PROF} ${PARAM} -c $<
+d75 2
+a76 2
+DRIVER_C=	${CC} ${CFLAGS} ${CPPFLAGS} ${PROF} -c $<
+DRIVER_C_C=	${CC} ${CFLAGS} ${CPPFLAGS} ${PROF} ${PARAM} -c $<
+d129 1
+a129 1
+	${CC} ${CFLAGS} ${CPPFLAGS} ${PROF} -c vers.c
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

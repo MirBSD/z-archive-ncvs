@@ -1,0 +1,94 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc_20041231-propolice-3_4_1-1:1.1.2.1
+	gcc_propolice:1.1.2.1.0.2
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.04.17.23.56;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.23.56;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@@c Copyright (C) 1988, 1989, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001 Free Software Foundation, Inc.
+@@c This is part of the GCC manual.
+@@c For copying conditions, see the file gcc.texi.
+
+@@node Header Dirs
+@@chapter Standard Header File Directories
+
+@@code{GCC_INCLUDE_DIR} means the same thing for native and cross.  It is
+where GCC stores its private include files, and also where GCC
+stores the fixed include files.  A cross compiled GCC runs
+@@code{fixincludes} on the header files in @@file{$(tooldir)/include}.
+(If the cross compilation header files need to be fixed, they must be
+installed before GCC is built.  If the cross compilation header files
+are already suitable for GCC, nothing special need be done).
+
+@@code{GPLUSPLUS_INCLUDE_DIR} means the same thing for native and cross.  It
+is where @@command{g++} looks first for header files.  The C++ library
+installs only target independent header files in that directory.
+
+@@code{LOCAL_INCLUDE_DIR} is used only by native compilers.  GCC
+doesn't install anything there.  It is normally
+@@file{/usr/local/include}.  This is where local additions to a packaged
+system should place header files.
+
+@@code{CROSS_INCLUDE_DIR} is used only by cross compilers.  GCC
+doesn't install anything there.
+
+@@code{TOOL_INCLUDE_DIR} is used for both native and cross compilers.  It
+is the place for other packages to install header files that GCC will
+use.  For a cross-compiler, this is the equivalent of
+@@file{/usr/include}.  When you build a cross-compiler,
+@@code{fixincludes} processes any header files in this directory.
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

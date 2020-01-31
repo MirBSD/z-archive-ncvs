@@ -1,0 +1,47 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.32.47;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@program kat(input, output);
+var
+    ch: char;
+    i: integer;
+    name: packed array [1..100] of char;
+begin
+    i := 1;
+    repeat
+        if i < argc then begin
+            argv(i, name);
+            reset(input, name);
+            i := i + 1
+        end;
+        while not eof do begin
+            while not eoln do begin
+                read(ch);
+                write(ch)
+            end;
+            readln;
+            writeln
+        end
+    until i >= argc
+end { kat }.
+@

@@ -1,0 +1,95 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.08.21.13.45;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.21.13.45;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* CVS socket client stuff.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.  */
+
+#ifndef SOCKET_CLIENT_H__
+#define SOCKET_CLIENT_H__ 1
+
+#include <config.h>
+
+struct buffer *socket_buffer_initialize
+  (int, int, void (*) (struct buffer *));
+
+# if defined(AUTH_CLIENT_SUPPORT) || defined(HAVE_KERBEROS) || defined(HAVE_GSSAPI) || defined(SOCK_ERRNO) || defined(SOCK_STRERROR)
+#   ifdef HAVE_WINSOCK_H
+#     include <winsock.h>
+#   else /* No winsock.h */
+#     include <sys/socket.h>
+#     include <netinet/in.h>
+#     include <arpa/inet.h>
+#     include <netdb.h>
+#   endif /* No winsock.h */
+# endif
+
+/* If SOCK_ERRNO is defined, then send()/recv() and other socket calls
+   do not set errno, but that this macro should be used to obtain an
+   error code.  This probably doesn't make sense unless
+   NO_SOCKET_TO_FD is also defined. */
+# ifndef SOCK_ERRNO
+#   define SOCK_ERRNO errno
+# endif
+
+/* If SOCK_STRERROR is defined, then the error codes returned by
+   socket operations are not known to strerror, and this macro must be
+   used instead to convert those error codes to strings. */
+# ifndef SOCK_STRERROR
+#   define SOCK_STRERROR strerror
+
+#   if STDC_HEADERS
+#     include <string.h>
+#   endif
+
+#   ifndef strerror
+extern char *strerror (int);
+#   endif
+# endif /* ! SOCK_STRERROR */
+
+struct hostent *init_sockaddr (struct sockaddr_in *, char *, unsigned int);
+
+#endif /* SOCKET_CLIENT_H__ */
+@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

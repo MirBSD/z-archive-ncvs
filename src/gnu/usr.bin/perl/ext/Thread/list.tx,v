@@ -1,0 +1,93 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.24.38;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.52;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@BEGIN {
+    eval { require Config; import Config };
+    if ($@@) {
+	print "1..0 # Skip: no Config\n";
+	exit(0);
+    }
+}
+
+use Thread qw(async);
+use Thread::Semaphore;
+
+my $sem = Thread::Semaphore->new(0);
+
+$nthreads = 4;
+
+for (my $i = 0; $i < $nthreads; $i++) {
+    async {
+     	my $tid = Thread->self->tid;
+	print "thread $tid started...\n";
+	$sem->down;
+	print "thread $tid finishing\n";
+    };
+}
+
+print "main: started $nthreads threads\n";
+sleep 2;
+
+my @@list = Thread->list;
+printf "main: Thread->list returned %d threads\n", scalar(@@list);
+
+foreach my $t (@@list) {
+    print "inspecting thread $t...\n";
+    print "...deref is $$t\n";
+    print "...flags = ", $t->flags, "\n";
+    print "...tid = ", $t->tid, "\n";
+}
+print "main thread telling workers to finish off...\n";
+$sem->up($nthreads);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

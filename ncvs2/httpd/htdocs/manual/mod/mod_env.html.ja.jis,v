@@ -1,0 +1,185 @@
+head	1.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200507211800:1.1.1.1
+	tg-mergetmp-3:1.1.1.1
+	cvs-200504170300:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.02.05.17.30.38;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2005.02.05.17.30.38;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@<?xml version="1.0" encoding="iso-2022-jp"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+
+    <title>Apache module mod_env</title>
+
+  </head>
+  <!-- English revision: 1.22 -->
+  <!-- Background white, links blue (unvisited), navy (visited), red (active) -->
+  <body bgcolor="#ffffff" text="#000000" link="#0000ff"
+  vlink="#000080" alink="#ff0000">
+        <div align="CENTER">
+      <img src="../images/sub.gif" alt="[APACHE DOCUMENTATION]" /> 
+
+      <h3>Apache HTTP Server Version 1.3</h3>
+    </div>
+
+
+    <h1 align="center">mod_env $B%b%8%e!<%k(B</h1>
+
+    <p>$B$3$N%b%8%e!<%k$O(B CGI $B%9%/%j%W%H5Z$S(B SSI
+    $B%Z!<%8$KEO$5$l$k4D6-JQ?t$rJQ99$9$k5!G=$rDs6!$7$^$9!#(B</p>
+
+    <p><a href="module-dict.html#status"
+    rel="help"><strong>$B%9%F!<%?%9(B:</strong></a> Base<br />
+     <a href="module-dict.html#sourcefile"
+    rel="help"><strong>$B%=!<%9%U%!%$%k(B:</strong></a> mod_env.c<br />
+     <a href="module-dict.html#moduleidentifier"
+    rel="help"><strong>$B%b%8%e!<%k<1JL;R(B:</strong></a>
+    env_module<br />
+     <a href="module-dict.html#Compatibility"
+    rel="help"><strong>$B8_49@@-(B:</strong></a>
+    Apache 1.1 $B0J9_$G;HMQ2DG=!#(B</p>
+
+    <h2>$B35MW(B</h2>
+
+    <p>$B$3$N%b%8%e!<%k$K$h$j(B CGI $B%9%/%j%W%H$H(B SSI
+    $B%Z!<%8$KE,MQ$5$l$k4D6-JQ?t$r@@)8f$9$k$3$H$,$G$-$k$h$&$K$J$j$^$9!#(B
+    $B4D6-JQ?t$O(B httpd $B%W%m%;%9$r5/F0$7$?%7%'%k$+$iEO$5$l$^$9!#$^$?!"(B
+    $B@@_Dj%U%!%$%k$G4D6-JQ?t$r@@_Dj$7$?$j!":o=|$7$?$j$9$k$3$H$,$G$-$^$9!#(B
+    </p>
+
+    <p>$B>\:Y$O!"(B<a href="../env.html">Apache
+    $B$N4D6-JQ?t(B</a>$B$r;2>H$7$F$/$@@$5$$!#(B</p>
+
+    <h2>$B%G%#%l%/%F%#%V(B</h2>
+
+    <ul>
+      <li><a href="#passenv">PassEnv</a></li>
+
+      <li><a href="#setenv">SetEnv</a></li>
+
+      <li><a href="#unsetenv">UnsetEnv</a></li>
+    </ul>
+    <hr />
+
+    <h2><a id="passenv" name="passenv">PassEnv</a> $B%G%#%l%/%F%#%V(B</h2>
+
+     <a href="directive-dict.html#syntax"
+    rel="help"><strong>$B9=J8(B:</strong></a> PassEnv
+    <em>env-variable</em> [<em>env-variable</em>] ...<br />
+     <a href="directive-dict.html#context"
+    rel="help"><strong>$B%3%s%F%-%9%H(B:</strong></a>$B%5!<%P@@_Dj%U%!%$%k!"(B
+    $B%P!<%A%c%k%[%9%H!"%G%#%l%/%H%j!"(B.htaccess<br />
+     <a href="directive-dict.html#Override"
+    rel="Help"><strong>$B>e=q$-(B:</strong></a> FileInfo<br />
+     <a href="directive-dict.html#status"
+    rel="help"><strong>$B%9%F!<%?%9(B:</strong></a> Base<br />
+     <a href="directive-dict.html#module"
+    rel="help"><strong>$B%b%8%e!<%k(B:</strong></a> mod_env<br />
+     <a href="directive-dict.html#Compatibility"
+    rel="help"><strong>$B8_49@@-(B:</strong></a> PassEnv $B$O(B Apache 1.1
+    $B0J9_$G$N$_;HMQ2DG=!#%G%#%l%/%H%j!"(B.htaccess $B$G$N;HMQ$O(B
+    Apache 1.3.7 $B0J9_$G;HMQ2DG=!#(B<br />
+
+    <p>httpd $B%W%m%;%9$r5/F0$7$?%7%'%k$N4D6-$+$i(B CGI $B%9%/%j%W%H$H(B
+    SSI $B%Z!<%8$KEO$94D6-JQ?t$r0l$D0J>e;XDj$7$^$9!#Nc(B:
+    </p>
+<pre>
+    PassEnv LD_LIBRARY_PATH
+</pre>
+    <hr />
+
+    <h2><a id="setenv" name="setenv">SetEnv</a> $B%G%#%l%/%F%#%V(B</h2>
+     <a href="directive-dict.html#syntax"
+    rel="help"><strong>$B9=J8(B:</strong></a> SetEnv <em>variable
+    value</em><br />
+     <a href="directive-dict.html#context"
+    rel="help"><strong>$B%3%s%F%-%9%H(B:</strong></a>$B%5!<%P@@_Dj%U%!%$%k!"(B
+    $B%P!<%A%c%k%[%9%H!"%G%#%l%/%H%j!"(B.htaccess<br />
+     <a href="directive-dict.html#Override"
+    rel="Help"><strong>$B>e=q$-(B:</strong></a> FileInfo<br />
+     <a href="directive-dict.html#status"
+    rel="help"><strong>$B%9%F!<%?%9(B:</strong></a> Base<br />
+     <a href="directive-dict.html#module"
+    rel="help"><strong>$B%b%8%e!<%k(B:</strong></a> mod_env<br />
+     <a href="directive-dict.html#Compatibility"
+    rel="help"><strong>$B8_49@@-(B:</strong></a> SetEnv $B$O(B Apache 1.1
+    $B0J9_$G$N$_;HMQ2DG=!#%G%#%l%/%H%j!"(B.htaccess $B$G$N;HMQ$O(B
+    Apache 1.3.7 $B0J9_$G;HMQ2DG=!#(B<br />
+
+    <p>$B4D6-JQ?t$r@@_Dj$7!"$=$l$r(B CGI $B%9%/%j%W%H$H(B SSI
+    $B%Z!<%8$KEO$9$h$&$K$7$^$9!#Nc(B:</p>
+<pre>
+    SetEnv SPECIAL_PATH /foo/bin
+</pre>
+    <hr />
+
+    <h2><a id="unsetenv" name="unsetenv">UnsetEnv</a>
+    $B%G%#%l%/%F%#%V(B</h2>
+     <a href="directive-dict.html#syntax"
+    rel="help"><strong>$B9=J8(B:</strong></a> UnsetEnv
+    <em>env-variable</em> [<em>env-variable</em>] ...<br />
+     <a href="directive-dict.html#context"
+    rel="help"><strong>$B%3%s%F%-%9%H(B:</strong></a>$B%5!<%P@@_Dj%U%!%$%k!"(B
+    $B%P!<%A%c%k%[%9%H!"%G%#%l%/%H%j!"(B.htaccess<br />
+     <a href="directive-dict.html#Override"
+    rel="Help"><strong>$B>e=q$-(B:</strong></a> FileInfo<br />
+     <a href="directive-dict.html#status"
+    rel="help"><strong>$B%9%F!<%?%9(B:</strong></a> Base<br />
+     <a href="directive-dict.html#module"
+    rel="help"><strong>$B%b%8%e!<%k(B:</strong></a> mod_env<br />
+     <a href="directive-dict.html#Compatibility"
+    rel="help"><strong>$B8_49@@-(B:</strong></a> UnsetEnv $B$O(B Apache 1.1
+    $B0J9_$G$N$_;HMQ2DG=!#%G%#%l%/%H%j!"(B.htaccess $B$G$N;HMQ$O(B
+    Apache 1.3.7 $B0J9_$G;HMQ2DG=!#(B<br />
+
+    <p>CGI $B%9%/%j%W%H$H(B SSI
+    $B%Z!<%8$KEO$5$l$k4D6-JQ?t$+$i;XDj$5$l$?4D6-JQ?t$r<h$j=|$-$^$9!#Nc(B:</p>
+<pre>
+    UnsetEnv LD_LIBRARY_PATH
+</pre>
+        <hr />
+
+    <h3 align="CENTER">Apache HTTP Server Version 1.3</h3>
+    <a href="./"><img src="../images/index.gif" alt="Index" /></a>
+    <a href="../"><img src="../images/home.gif" alt="Home" /></a>
+
+  </body>
+</html>
+@
+
+
+1.1.1.1
+log
+@Import the OpenBSD foundation of MirOS BSD
+@
+text
+@@

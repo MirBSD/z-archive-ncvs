@@ -1,0 +1,170 @@
+head	2.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.41.26;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@<?xml version="1.0" encoding="iso-2022-jp"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+
+    <title>Apache $B$N3+;O(B</title>
+
+  </head>
+  <!-- English Revision: 1.2 -->
+  <!-- Background white, links blue (unvisited), navy (visited), red (active) -->
+  <body bgcolor="#ffffff" text="#000000" link="#0000ff"
+  vlink="#000080" alink="#ff0000">
+        <div align="CENTER">
+      <img src="images/sub.gif" alt="[APACHE DOCUMENTATION]" /> 
+
+      <h3>Apache HTTP Server</h3>
+    </div>
+
+
+
+    <h1 align="center">Apache $B$N3+;O(B</h1>
+
+    <ul>
+      <li><a href="#windows">Apache $B$r(B Windows $B$G3+;O$9$k(B</a></li>
+
+      <li>
+        <a href="#unix">Apache $B$r(B Unix $B$G3+;O$9$k(B</a>
+
+        <ul>
+          <li><a href="#errors">$B3+;O;~$N%(%i!<(B</a></li>
+
+          <li><a href="#boot">$B%V!<%H;~$N3+;O(B</a></li>
+
+          <li><a href="#info">$BDI2C$N>pJs(B</a></li>
+        </ul>
+      </li>
+    </ul>
+    <hr />
+
+    <h2><a id="windows" name="windows">Apache $B$r(B
+    Windows $B$G3+;O$9$k(B</a></h2>
+
+    <p>Windows $B>e$G$O!"(BApache $B$ODL>o!"(B Windows NT, 2000, XP
+    $B$G$O%5!<%S%9$H$7$F!"(BWindows 95, ME 
+    $B$G$O%3%s%=!<%k%"%W%j%1!<%7%g%s$H$7$F<B9T$5$l$^$9!#$3$N$3$H$O!"(B
+    Cygwin $B%W%i%C%H%U%)!<%`$K$D$$$F$O40A4$K$O$"$F$O$^$j$^$;$s!#(B
+    $B>\:Y$O(B <a href="windows.html#run">Windows $BMQ$N(B Apache $B$r<B9T$9$k(B</a>
+    $B$r8+$F$/$@@$5$$!#(B</p>
+
+    <h2><a id="unix" name="unix">Apache $B$r(B Unix $B$G3+;O$9$k(B</a></h2>
+
+    <p>Unix $B$G$O(B <a href="programs/httpd.html">httpd</a>
+    $B%W%m%0%i%`$O%P%C%/%0%i%&%s%I$G7QB3E*$KF0:n$7$F%j%/%(%9%H$r=hM}$9$k(B
+    $B%G!<%b%s$H$7$F<B9T$5$l$^$9!#(BApache $B$O(B <a
+    href="mod/core.html#servertype">ServerType</a>
+    $B%G%#%l%/%F%#%V$K$h$C$F(BHTTP $B%5!<%S%9$X$N@@\B3$N$?$S$K(B
+    $B%$%s%?!<%M%C%H%G!<%b%s(B <code>inetd</code> $B$+$i5/F0$9$k;v$b(B
+    $B2DG=$G$9$,$3$l$O?d>)$5$l$^$;$s!#(B</p>
+
+    <p>$B$b$7@@_Dj%U%!%$%k$G;XDj$7$?(B<a href="mod/core.html#port">$B%]!<%H(B</a>$B$,(B
+    $B%G%U%)%k%H$N(B 80 ($B$b$7$/$O(B 1024 $BL$K~$N%]!<%H$N$I$l$+(B) $B$G$"$k$J$i!"(B
+    $B$3$NFC8"%]!<%H$K%P%$%s%I$G$-$k$h$&$K!"(BApache $B$N5/F0$K$O(B root
+    $B8"8B$,I,MW$G$9!#%5!<%P$,!"%m%0%U%!%$%k$r3+$/$J$I$$$/$D$+=`Hw$NF0:n$r=*$($k$H!"(B
+    $BBT$A<u$1$F%/%i%$%"%s%H$N%j%/%(%9%H$K1~Ez$9$k(B<em>$B;R(B</em>$B%W%m%;%9$r$$$/$D$+(B
+    $B%9%?!<%H$7$^$9!#%a%$%s$N(B <code>httpd</code> $B%W%m%;%9$O(B root
+    $B%f!<%6$H$7$FF0$-B3$1$^$9$,!";R%W%m%;%9$O$h$jDc$$8"8B$N%f!<%6$H$7$FF0$-$^$9!#(B
+    $B$3$l$O(B Apache $B$N(B<a
+    href="server-wide.html#process">$B%W%m%;%9@@8@@.%G%#%l%/%F%#%V(B</a>
+    $B$K$h$j@@)8f$5$l$^$9!#(B</p>
+
+    <p><code>httpd</code> $B$N5/F0;~$K:G=i$K$9$k$3$H$O(B<a
+    href="configuring.html">$B@@_Dj%U%!%$%k(B</a> <code>httpd.conf</code>
+    $B$r8+$D$1$FFI$_9~$`$3$H$G$9!#$3$N%U%!%$%k$N0LCV$O%3%s%Q%$%k;~$K@@_Dj$5$l$^$9$,!"(B
+    $B%3%^%s%I%i%$%s%*%W%7%g%s(B <code>-f</code> $B$r;H$C$F<B9T;~$K(B
+    $B$=$N0LCV$r;XDj$9$k$3$H$,2DG=$G$9!#(B</p>
+
+    <blockquote>
+      <code>/usr/local/apache/bin/httpd -f
+      /usr/local/apache/conf/httpd.conf</code>
+    </blockquote>
+
+    <p><code>httpd</code> $B%P%$%J%j$rD>@@\5/F0$9$kBe$o$j$K(B <a
+    href="programs/apachectl.html">apachectl</a>
+    $B$H8F$P$l$k%7%'%k%9%/%j%W%H$r;H$&$3$H$b=PMh$^$9!#$3$l$K$h$j%G!<%b%s%W%m%;%9$r(B
+    <code>apachectl start</code> $B$d(B <code>apachectl stop</code>
+    $B$J$I$N4JC1$J%3%^%s%I$K$h$C$F@@)8f$9$k$3$H$,$G$-$^$9!#(B</p>
+
+    <p>$B3+;O$NCJ3,$,$9$Y$F$&$^$/9T$1$P!"%5!<%P$O%?!<%_%J%k$r@@Z$jN%$7!"(B
+    $B%3%^%s%I%W%m%s%W%H$,$[$\0l=V$GLa$C$FMh$^$9!#$3$l$O!"(B
+    $B%5!<%P$,F0:n$7$F$$$k$3$H$r<($7$F$$$^$9!#$=$N8e$G!"%V%i%&%6$r;HMQ$7$F(B
+    $B%5!<%P$K@@\B3$7!"(B<a href="mod/core.html#documentroot">DocumentRoot</a>
+    $B%G%#%l%/%H%j$N%F%9%H%Z!<%8$d$=$N%Z!<%8$+$i%j%s%/$5$l$?J8=q$N(B
+    $B%m!<%+%k%3%T!<$r8+$k$3$H$,$G$-$^$9!#(B</p>
+
+    <h3><a id="errors" name="errors">$B3+;O;~$N%(%i!<(B</a></h3>
+
+    <p>$B$b$7(B Apache $B$,3+;O;~$KCWL?E*$JLdBj$KAx$&$H!"(B
+    $B=*N;$9$kA0$KLdBj$r@@bL@@$9$k%a%C%;!<%8$r%3%s%=!<%k$^$?$O(B
+    <a href="mod/core.html#errorlog">ErrorLog</a> $B$K=q$-$@@$7$^$9!#(B
+    $B:G$b$h$/$"$k%(%i!<%a%C%;!<%8$N0l$D$O(B
+    &quot;<code>Unable to bind to Port ...</code>&quot;
+    $B$G$9!#$3$N%a%C%;!<%8$ODL>o$3$l$i$N860x$,$"$j$^$9(B:</p>
+
+    <ul>
+      <li>root $B%f!<%6$H$7$F%m%0%$%s$7$F$$$J$$;~$KFC8"%]!<%H$G(B
+      $B%5!<%P$r;O$a$h$&$H$7$?(B;</li>
+
+      <li>$BB>$N(B Apache $B$^$?$OB>$N%&%'%V%5!<%P$,4{$KF1$8%]!<%H$K(B
+      $B%P%$%s%I$7$F$$$k;~$K%5!<%P$r;O$a$h$&$H$7$?!#(B</li>
+    </ul>
+
+    <p>$B%H%i%V%k%7%e!<%F%#%s%0$N<j=g$O!"(BApache
+    <a href="misc/FAQ.html">FAQ</a> $B$r;2>H$7$F$/$@@$5$$!#(B</p>
+
+    <h3><a id="boot" name="boot">$B%V!<%H;~$N5/F0(B</a></h3>
+
+    <p>$B%7%9%F%`$N%j%V!<%H8e$K$b%5!<%P$r<B9T$7B3$1$5$;$?$$>l9g$O!"(B
+    <code>httpd</code> $B$^$?$O(B <code>apachectl</code>
+    $B$N8F$S=P$7$r%7%9%F%`$N%9%?!<%H%"%C%W%U%!%$%k(B($BI8=`$G$O(B
+    <code>rc.local</code> $B$^$?$O!"(B<code>rc.N</code>
+    $B%G%#%l%/%H%j$N%U%!%$%k(B)$B$KDI2C$7$F2<$5$$!#$3$l$O(B root $B$G(B Apache
+    $B$r3+;O$7$^$9!#$3$N@@_Dj$r$9$kA0$K%;%-%e%j%F%#$d%"%/%;%9@@)8B$,(B
+    $B%5!<%P$KBP$7$FE,@@Z$K@@_Dj$5$l$k$h$&$K$7$F$/$@@$5$$!#(B
+    <code>apachectl</code> $B%9%/%j%W%H$O(B init
+    $B%9%/%j%W%H$H$7$FD>@@\%j%s%/$G$-$k$h$&$K@@_7W$5$l$F$$$^$9$,!"(B
+    $B%7%9%F%`$N@@53N$J;EMM$rGD0.$7$F$+$i;HMQ$7$F$/$@@$5$$!#(B</p>
+
+    <h3><a id="info" name="info">$BDI2C$N>pJs(B</a></h3>
+
+    <p>$B%5!<%P$K4^$^$l$F$$$kB>$N%5%]!<%H%W%m%0%i%`$HF1MM$K(B
+    <a href="programs/httpd.html">httpd</a> $B$H(B
+    <a href="programs/apachectl.html">apachectl</a>
+    $B$N%3%^%s%I%i%$%s%*%W%7%g%s$K$D$$$F$NDI2C$N>pJs$O!"(B
+    <a href="programs/">$B%5!<%P$H%5%]!<%H%W%m%0%i%`(B</a>
+    $B%Z!<%8$GF~<j2DG=$G$9!#(BApache $BG[I[$K4^$^$l$F$$$k$9$Y$F$N(B
+    <a href="mod/">$B%b%8%e!<%k(B</a> $B$d$=$l$K$h$jDs6!$5$l$k(B
+    <a href="mod/directives.html">$B%G%#%l%/%F%#%V(B</a>
+    $B$NJ8=q$b$"$j$^$9!#(B</p>
+        <hr />
+
+    <h3 align="CENTER">Apache HTTP Server</h3>
+    <a href="./"><img src="images/index.gif" alt="Index" /></a>
+
+  </body>
+</html>
+@

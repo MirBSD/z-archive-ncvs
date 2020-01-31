@@ -1,0 +1,124 @@
+head	1.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200507211800:1.1.1.1
+	tg-mergetmp-3:1.1.1.1
+	cvs-200504170300:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.02.05.17.30.41;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2005.02.05.17.30.41;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@<?xml version="1.0" encoding="iso-2022-jp"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+
+    <title>Apache HTTP Server and Supporting Programs</title>
+
+  </head>
+  <!-- Background white, links blue (unvisited), navy (visited), red (active) -->
+  <!-- English revision: 1.3 -->
+  <body bgcolor="#ffffff" text="#000000" link="#0000ff"
+  vlink="#000080" alink="#ff0000">
+        <div align="CENTER">
+      <img src="../images/sub.gif" alt="[APACHE DOCUMENTATION]" /> 
+
+      <h3>Apache HTTP Server Version 1.3</h3>
+    </div>
+
+
+    <h1 align="center">$B%5!<%P$H%5%]!<%H%W%m%0%i%`(B</h1>
+
+    <p>$B$3$N%Z!<%8$G$O!"(BApache HTTP $B%5!<%P$H$H$b$KDs6!$5$l$F$$$k<B9T(B
+    $B%W%m%0%i%`$rA4$F:\$;$F$$$^$9!#(B</p>
+
+    <dl>
+      <dt><a href="httpd.html">httpd</a></dt>
+
+      <dd>Apache $B%O%$%Q!<%F%-%9%HE>Aw%W%m%H%3%k%5!<%P(B</dd>
+
+      <dt><a href="apachectl.html">apachectl</a></dt>
+
+      <dd>Apache HTTP $B%5!<%P%3%s%H%m!<%k%$%s%?!<%U%'!<%9(B</dd>
+
+      <dt><a href="ab.html">ab</a></dt>
+
+      <dd>Apache HTTP $B%5!<%P%Y%s%A%^!<%/%D!<%k(B</dd>
+
+      <dt><a href="apxs.html">apxs</a></dt>
+
+      <dd>Apache $B3HD%%D!<%k(B</dd>
+
+      <dt><a href="dbmmanage.html">dbmmanage</a></dt>
+
+      <dd>Basic $BG'>Z$K$*$$$FMxMQ$9$k(B DBM $B=q<0$G$N%f!<%6G'>ZMQ%U%!%$%k$N(B
+      $B:n@@.$H99?7(B</dd>
+
+      <dt><a href="htdigest.html">htdigest</a></dt>
+
+
+      <dd>Digest $BG'>Z$K$*$$$FMxMQ$9$k%f!<%6G'>ZMQ%U%!%$%k$N:n@@.$H99?7(B</dd>
+
+      <dt><a href="htpasswd.html">htpasswd</a></dt>
+
+      <dd>Basic $BG'>Z$K$*$$$FMxMQ$9$k%f!<%6G'>ZMQ%U%!%$%k$N:n@@.$H99?7(B</dd>
+
+
+      <dt><a href="logresolve.html">logresolve</a></dt>
+
+      <dd>Apache $B%m%0%U%!%$%kFb$K$*$1$k(B IP $B%"%I%l%9$N%[%9%HL>2r7h(B</dd>
+
+
+      <dt><a href="rotatelogs.html">rotatelogs</a></dt>
+
+      <dd>$B%5!<%P$r!!(Bkill $B$7$J$$$G(B Apache $B%m%0$r%m!<%F!<%H$9$k(B</dd>
+
+      <dt><a href="suexec.html">suexec</a></dt>
+
+      <dd>Apache $B$,(B Exec $B$9$k:]$N%f!<%6@@ZBX(B</dd>
+
+      <dt><a href="other.html">$B$=$NB>$N%W%m%0%i%`(B</a></dt>
+    </dl>
+        <hr />
+
+    <h3 align="CENTER">Apache HTTP Server Version 1.3</h3>
+    <a href="./"><img src="../images/index.gif" alt="Index" /></a>
+    <a href="../"><img src="../images/home.gif" alt="Home" /></a>
+
+
+  </body>
+</html>
+@
+
+
+1.1.1.1
+log
+@Import the OpenBSD foundation of MirOS BSD
+@
+text
+@@

@@ -1,0 +1,158 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.05;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.07;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.07;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#!./perl -w
+
+BEGIN {
+	chdir 't' if -d 't';
+	@@INC = '../lib';
+}
+
+#
+# A couple of simple classes to use as struct elements.
+#
+package aClass;
+sub new { bless {}, shift }
+sub meth { 42 }
+
+package RecClass;
+sub new { bless {}, shift }
+
+#
+# The first of our Class::Struct based objects.
+#
+package MyObj;
+use Class::Struct;
+use Class::Struct 'struct'; # test out both forms
+use Class::Struct SomeClass => { SomeElem => '$' };
+
+struct( s => '$', a => '@@', h => '%', c => 'aClass' );
+
+#
+# The second Class::Struct objects:
+# test the 'compile-time without package name' feature.
+#
+package MyOther;
+use Class::Struct s => '$', a => '@@', h => '%', c => 'aClass';
+
+#
+# back to main...
+#
+package main;
+
+use Test::More tests => 24;
+
+my $obj = MyObj->new;
+isa_ok $obj, 'MyObj';
+
+$obj->s('foo');
+is $obj->s(), 'foo';
+
+isa_ok $obj->a, 'ARRAY';
+$obj->a(2, 'secundus');
+is $obj->a(2), 'secundus';
+
+$obj->a([4,5,6]);
+is $obj->a(1), 5;
+
+isa_ok $obj->h, 'HASH';
+$obj->h('x', 10);
+is $obj->h('x'), 10;
+
+$obj->h({h=>7,r=>8,f=>9});
+is $obj->h('r'), 8;
+
+is $obj->c, undef;
+
+$obj = MyObj->new( c => aClass->new );
+isa_ok $obj->c, 'aClass';
+is $obj->c->meth(), 42;
+
+
+$obj = MyOther->new;
+isa_ok $obj, 'MyOther';
+
+$obj->s('foo');
+is $obj->s(), 'foo';
+
+isa_ok $obj->a, 'ARRAY';
+$obj->a(2, 'secundus');
+is $obj->a(2), 'secundus';
+
+$obj->a([4,5,6]);
+is $obj->a(1), 5;
+
+isa_ok $obj->h, 'HASH';
+$obj->h('x', 10);
+is $obj->h('x'), 10;
+
+$obj->h({h=>7,r=>8,f=>9});
+is $obj->h('r'), 8;
+
+is $obj->c, undef;
+
+$obj = MyOther->new( c => aClass->new );
+isa_ok $obj->c, 'aClass';
+is $obj->c->meth(), 42;
+
+
+
+my $obk = SomeClass->new();
+$obk->SomeElem(123);
+is $obk->SomeElem(), 123;
+
+my $recobj = RecClass->new();
+isa_ok $recobj, 'RecClass';
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

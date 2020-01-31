@@ -1,0 +1,124 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2004.12.15.18.04.20;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.04.20;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@Unit Common;
+
+interface
+
+const
+  Max_Arguments = 1024;
+
+var
+  num_arguments  : integer;
+  (* the number of arguments contained in the 'arguments' array *)
+
+  arguments      : array[0..Max_Arguments-1] of ^string;
+  (* This array will hold all arguments after wildcard expansion *)
+  (* note that it will not contain the original arguments that   *)
+  (* were before 'first_argument' of Expand_Wildcards            *)
+
+  procedure Expand_WildCards( first_argument    : integer;
+                              default_extension : string );
+  (* expand all wildcards into filenames *)
+
+implementation
+
+uses Dos;
+
+  procedure Split( Original : String;
+                   var Base : String;
+                   var Name : String );
+  var
+    n : integer;
+  begin
+    n := length(Original);
+
+    while ( n > 0 ) do
+      if ( Original[n] = '\' ) or
+         ( Original[n] = '/' ) then
+        begin
+          Base := Copy( Original, 1, n-1 );
+          Name := Copy( Original, n+1, length(Original) );
+          exit;
+        end
+      else
+        dec(n);
+
+    Base := '';
+    Name := Original;
+  end;
+
+
+  procedure Expand_WildCards( first_argument    : integer;
+                              default_extension : string );
+  var
+    i, n       : integer;
+    base, name : string;
+    SRec       : SearchRec;
+  begin
+    num_arguments := 0;
+    i             := first_argument;
+
+    while ( i <= ParamCount ) do
+    begin
+      Split( ParamStr(i), base, name );
+      if base <> '' then
+        base := base + '\';
+
+      FindFirst( base+name, Archive+ReadOnly+Hidden, SRec );
+      if DosError <> 0 then
+        FindFirst( base+name+default_extension, AnyFile, SRec );
+
+      while (DosError = 0) and (num_arguments < Max_Arguments) do
+      begin
+        GetMem( arguments[num_arguments], length(base)+length(SRec.Name)+1 );
+        arguments[num_arguments]^ := base + SRec.Name;
+        inc( num_arguments );
+        FindNext( SRec );
+      end;
+
+      {$IFDEF OS2}
+      FindClose( SRec );
+      {$ENDIF}
+      inc( i );
+    end;
+  end;
+
+end.
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

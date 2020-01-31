@@ -1,0 +1,70 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.31.06;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.14;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.14;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/libexec/makewhatis/Makefile,v 1.2 2004/11/30 16:47:21 tg Exp $
+# $OpenBSD: Makefile,v 1.6 2000/02/03 18:10:48 espie Exp $
+
+MAN=	makewhatis.8
+NOPROG=	yes
+
+afterinstall:
+	${INSTALL} ${INSTALL_COPY} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
+		${.CURDIR}/makewhatis.pl ${DESTDIR}${BINDIR}/makewhatis
+
+.include <bsd.prog.mk>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile,v 1.6 2000/02/03 18:10:48 espie Exp $
+d4 2
+a5 2
+MAN=makewhatis.8
+NOPROG=
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

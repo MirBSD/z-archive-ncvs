@@ -1,0 +1,85 @@
+head	1.2;
+access;
+symbols
+	cvs-1_12_11:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.08.21.49.01;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.08.21.13.52;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.21.13.52;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@fastmerge
+@
+text
+@This is a patched version of zlib, modified to use
+Pentium-Pro-optimized assembly code in the deflation algorithm. The
+files changed/added by this patch are:
+
+README.686
+match.S
+
+The speedup that this patch provides varies, depending on whether the
+compiler used to build the original version of zlib falls afoul of the
+PPro's speed traps. My own tests show a speedup of around 10-20% at
+the default compression level, and 20-30% using -9, against a version
+compiled using gcc 2.7.2.3. Your mileage may vary.
+
+Note that this code has been tailored for the PPro/PII in particular,
+and will not perform particuarly well on a Pentium.
+
+If you are using an assembler other than GNU as, you will have to
+translate match.S to use your assembler's syntax. (Have fun.)
+
+Brian Raiter
+breadbox@@muppetlabs.com
+April, 1998
+
+
+Added for zlib 1.1.3:
+
+The patches come from
+http://www.muppetlabs.com/~breadbox/software/assembly.html
+
+To compile zlib with this asm file, copy match.S to the zlib directory
+then do:
+
+CFLAGS="-O3 -DASMV" ./configure
+make OBJA=match.o
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU CVS 1.12.11
+@
+text
+@@

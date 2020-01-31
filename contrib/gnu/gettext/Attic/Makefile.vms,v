@@ -1,0 +1,129 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.43.01;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@# -*- Makefile -*- for gettext on VMS using the MMS utility
+# Usage: $ mms /description=Makefile.vms
+
+#### Start of system configuration section. ####
+
+#### End of system configuration section. ####
+
+all :
+	set default [.gettext-runtime]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms all
+	set default [-]
+	set default [.gettext-tools]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms all
+	set default [-]
+
+install :
+	set default [.gettext-runtime]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms install
+	set default [-]
+	set default [.gettext-tools]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms install
+	set default [-]
+
+installdirs :
+	set default [.gettext-runtime]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms installdirs
+	set default [-]
+	set default [.gettext-tools]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms installdirs
+	set default [-]
+
+uninstall :
+	set default [.gettext-runtime]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms uninstall
+	set default [-]
+	set default [.gettext-tools]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms uninstall
+	set default [-]
+
+check : all
+	set default [.gettext-runtime]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms check
+	set default [-]
+	set default [.gettext-tools]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms check
+	set default [-]
+
+mostlyclean :
+	set default [.gettext-runtime]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms mostlyclean
+	set default [-]
+	set default [.gettext-tools]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms mostlyclean
+	set default [-]
+
+clean :
+	set default [.gettext-runtime]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms clean
+	set default [-]
+	set default [.gettext-tools]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms clean
+	set default [-]
+
+distclean :
+	set default [.gettext-runtime]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms distclean
+	set default [-]
+	set default [.gettext-tools]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms distclean
+	set default [-]
+
+maintainer-clean :
+	set default [.gettext-runtime]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms maintainer-clean
+	set default [-]
+	set default [.gettext-tools]
+	$(MMS) $(MMSQUALIFIERS) /description=Makefile.vms maintainer-clean
+	set default [-]
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

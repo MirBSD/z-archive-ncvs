@@ -1,0 +1,79 @@
+head	1.2;
+access;
+symbols
+	cvs-200408041120:1.1.2.1 FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.08.04.11.47.09;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.08.04.11.32.53;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.08.04.11.32.53;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@die baby die
+@
+text
+@dnl Example for use of GNU gettext.
+dnl Copyright (C) 2003 Free Software Foundation, Inc.
+dnl This file is in the public domain.
+dnl
+dnl Configuration file - processed by autoconf.
+
+AC_INIT
+AC_CONFIG_SRCDIR(hello.ycp)
+AM_INIT_AUTOMAKE(hello-ycp, 0)
+
+dnl Check for availability of YaST's engine.
+test -f /usr/lib/YaST2/bin/y2base || {
+  echo "*** Essential program y2base not found" 1>&2
+  exit 1
+}
+
+dnl The installed program must know where to find its message catalogs.
+dnl Unfortunately, YaST hard codes the message catalog directory.
+localedir=/usr/share/YaST2/locale
+AC_SUBST(localedir)
+
+dnl Support for the po directory.
+AM_PO_SUBDIRS
+
+AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([m4/Makefile])
+AC_CONFIG_FILES([po/Makefile], [AM_POSTPROCESS_PO_MAKEFILE])
+AC_OUTPUT
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU gettext from :pserver:anoncvs@@sources.redhat.com:/cvs/gettext pass anoncvs
+@
+text
+@@

@@ -1,0 +1,110 @@
+head	1.2;
+access;
+symbols
+	start:1.1.1.1 mirbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.23.00.30.52;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.13.00.13.24;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@these were never used
+@
+text
+@<?php
+/* $MirBSD: www/vhead.inc,v 1.1 2004/12/13 00:13:24 tg Exp $
+ *-
+ * Copyright (c) 1999, 2002, 2003, 2004
+ *	Thorsten Glaser <tg@@66h.42h.de>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above
+ *    copyright notice, this list of conditions and the following
+ *    disclaimer in the documentation and/or other materials provided
+ *    with the distribution.
+ * 3. All marketing or advertising materials mentioning features or
+ *    use of this product must display the following acknowledgement:
+ *    * This product includes material provided by Thorsten Glaser.
+ * 4. Neither the name of Thorsten Glaser or the MirOS project nor
+ *    the names of their contributors may be used to endorse or pro-
+ *    mote products derived from this software without specific prior
+ *    written permission.
+ * 5. If this work is used on world wide web pages, the authors must
+ *    be given due credits in the site's imprint.
+ * 6. This licence automatically ends if the site of licensee is not
+ *    easily distinguishable from Thorsten Glaser's personal homepage
+ *    or the MirOS project's site.
+ * 7. This licence does not cover usage of the pictures used on the
+ *    pages, especially not the BSD Dæmon or the MirOS/MirAbile logo.
+ *
+ * This work is provided "as is" with no explicit or implicit warran-
+ * ties whatsoever to the maximum extend permitted by applicable law;
+ * in no event may an author or contributor be held liable for damage
+ * that is, directly or indirectly, caused by the work, even if advi-
+ * sed of the possibility of such damage.
+ *-
+ * This is the header and logo space of the web page.
+ * Be aware that modifying this file may be necessary and not always
+ * allowed for trademark / logo / identifying reasons.
+ */ ?>
+
+<img class="hdrlnks" src="pics/daemon.png"
+ alt="stylish BSD Daemon protecting..." />
+<pre class="hdrflf">     ___                                                  __
+    -   ---___- ,,                  /\\,/\\,            ,-||-,     -_-/
+       (' ||    ||                 /| || ||   '        ('|||  )   (_ /
+      ((  ||    ||/\\  _-_         || || ||  \\ ,._-_ (( |||--)) (_ --_
+     ((   ||    || || || \\        ||=|= ||  ||  ||   (( |||--))   --_ )
+      (( //     || || ||/         ~|| || ||  ||  ||    ( / |  )   _/  ))
+        -____-  \\ |/ \\,/         |, \\,\\, \\  \\,    -____-   (_-_-
+                  _/              _-</pre>
+<img class="hdrrhts" src="pics/pinguin.png"
+ alt="... and that mentally impaired grinning 'Tux' penguin" />
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+/* $MirBSD: vhead.inc,v 1.9 2003/11/30 20:43:47 tg Exp $
+@
+
+
+1.1.1.1
+log
+@Since I've got to import something now to test the ^E#(&^ perl script,
+transfer a checkout of the website to ncvs now.
+@
+text
+@@

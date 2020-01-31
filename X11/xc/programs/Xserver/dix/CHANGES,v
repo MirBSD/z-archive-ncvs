@@ -1,0 +1,57 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.12.36;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.12.36;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@The following changes have been made to this directory since R3 (for
+a full description, see doc/Server/r4.tbl.ms):
+
+     o  Windows restructured (memory reduction, devPrivates and speedups)
+     o  GCs restructured (memory reduction, devPrivates and wrappers)
+     o  Screens restructured (window ops merged in, devPrivates)
+     o  Pixmaps restructured (drawable changes mostly)
+     o  Cursors restructured (shares glyph bits now)
+     o  Visuals restructured (screen index removed, fields rearranged)
+     o  Devices restructured (input extension changes)
+     o  Out of memory changes.  Many interfaces now return OutOfMemory
+     	status.
+     o  Synchronous grab code rewritten.  Should conform to our
+     	understanding of the protocol now.  Be careful when time
+	stamping events (don't allow time to run backwards).
+     o  Resource types redesigned and rewritten.
+     o  Internal fake color allocation routine for software cursors.
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

@@ -1,0 +1,105 @@
+head	1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2005.01.04.18.05.34;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.04.17.24.58;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.24.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@The usual removal of dupes and unused stuff
+@
+text
+@New in libgcj X.XX:
+
+* libgcj now includes a bytecode interpreter. If a compiled version of a class 
+is not found in the application binary or linked shared libraries, the
+class loader will search for a bytecode version in the CLASSPATH and execute
+it using the interpreter. A new front end that behaves like the traditional
+`java' command is also provided: `gij'.
+
+* Support for specifying java system properties. Properties can either be set 
+at runtime via the GCJ_PROPERTIES environment variable in the format 
+"<name>=<value> ..."'; or can be compiled into an application binary using 
+-D<name>=<value>.
+
+* Support for setjmp/longjmp (sjlj) exception handling has been added, as an
+alternative to the existing range-table based mechanism. sjlj is the default
+on non-sparc, non-x86 targets, or can be specified with the 
+`--enable-sjlj-exceptions' configure parameter.
+
+* Complete JDK 1.1 reflection support, including invocation.
+
+* Throwable.printStackTrace() has been implemented.
+
+* Runtime.loadLibrary() has been implemented.
+
+* Class.forName() will now try to load a series of shared objects in order 
+to find the requested class.  If a class `gnu.quux.whatever' is requested, 
+libgcj will search the system shared library path (eg LD_LIBRARY_PATH) for 
+`gnu-quux-whatever.so', then `gnu-quux.so', and finally `gnu.so'.
+
+* A pure-java implementation of java.math.BigInteger.
+
+New in libgcj 2.95:
+
+* First public release
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

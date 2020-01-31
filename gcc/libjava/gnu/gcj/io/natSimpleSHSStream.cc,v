@@ -1,0 +1,115 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	gcc-3_4-20050121:1.1.2.1
+	gcc-3_4-20050114:1.1.2.1
+	gcc-3_4-20041231:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@// @;
+
+
+1.1
+date	2005.01.04.17.25.02;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.04.17.25.02;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@// natSimpleSHSStream.cc
+
+/* Copyright (C) 2000  Free Software Foundation
+
+   This file is part of libgcj.
+
+This software is copyrighted work licensed under the terms of the
+Libgcj License.  Please consult the file "LIBGCJ_LICENSE" for
+details.  */
+
+#include <config.h>
+
+#include <string.h>
+#include <stdlib.h>
+
+#include <gnu/gcj/io/SimpleSHSStream.h>
+
+#include <gcj/cni.h>
+#include <jvm.h>
+
+#define PROTO
+#include "shs.h"
+
+
+jbyteArray 
+gnu::gcj::io::SimpleSHSStream::shsFinal (jbyteArray shs_info)
+{
+  SHS_INFO *info = (SHS_INFO *)elements(shs_info);
+  ::shsFinal (info);
+
+  jbyteArray buffer = JvNewByteArray (SHS_DIGESTSIZE);
+  memcpy (elements (buffer), (jbyte *)&info->digest, SHS_DIGESTSIZE);
+  return buffer;
+}
+    
+void 
+gnu::gcj::io::SimpleSHSStream::shsUpdate (jbyteArray shs_info, jbyteArray buf, jint count)
+{
+  SHS_INFO *info = (SHS_INFO *)elements(shs_info);
+  uint8_t *buffer = (uint8_t *)elements(buf);
+  
+  ::shsUpdate (info, buffer, count);
+}
+
+jbyteArray 
+gnu::gcj::io::SimpleSHSStream::shsInit ()
+{
+  jbyteArray result = JvNewByteArray (sizeof (SHS_INFO));
+  SHS_INFO *info = (SHS_INFO *)elements(result);
+
+  ::shsInit (info);
+  return result;
+}
+
+
+@
+
+
+1.1.2.1
+log
+@Import GCC 3.4-stable, FSF tag -rgcc-ss-3_4-20041231
+with all top-level non-directories (files) and these
+directories removed:
+- INSTALL
+- contrib
+- gcc/po
+- gcc/testsuite
+- gcc/treelang
+- include
+- intl
+- libffi/testsuite
+- libiberty
+- libjava/testsuite
+- libstdc++-v3/docs
+- libstdc++-v3/po
+- libstdc++-v3/testsuite
+- maintainer-scripts
+- zlib
+@
+text
+@@

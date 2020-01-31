@@ -1,0 +1,77 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.29.01;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.11;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#
+# SSLeay example configuration file.
+#
+
+RANDFILE                = $ENV::HOME/.rnd
+
+[ req ]
+default_bits            = 1024
+default_keyfile         = privkey.pem
+distinguished_name      = req_distinguished_name
+
+[ req_distinguished_name ]
+countryName                     = Country Name (2 letter code)
+countryName_value               = GB
+
+organizationName                = Organization Name (eg, company; recommended)
+organizationName_value          = BenCo
+
+commonName                      = server name (eg. ssl.domain.tld; required!!!)
+commonName_value                = BenCo CA
+
+emailAddress                    = Email Address
+emailAddress_value              = ben@@algroup.co.uk
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

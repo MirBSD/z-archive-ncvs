@@ -1,0 +1,238 @@
+head	2.3;
+access;
+symbols
+	cvs-200501160850:1.1.1.2
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.3
+date	2005.01.20.17.38.55;	author tg;	state Exp;
+branches;
+next	2.2;
+
+2.2
+date	2005.01.17.02.18.06;	author tg;	state Exp;
+branches;
+next	2.1;
+
+2.1
+date	2005.01.03.16.31.02;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.11;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.11;	author tg;	state Exp;
+branches;
+next	1.1.1.2;
+
+1.1.1.2
+date	2005.01.16.09.59.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.3
+log
+@our struct sockaddr_storage is 256 bytes
+so remove the safety checks which cause gcc to whine
+
+man this sucks, can't it just quietly optimise them away?
+@
+text
+@/* $MirBSD: src/libexec/identd/openbsd.c,v 2.2 2005/01/17 02:18:06 tg Exp $ */
+/* $OpenBSD: openbsd.c,v 1.19 2004/09/16 08:25:05 deraadt Exp $ */
+
+/*
+ * This program is in the public domain and may be used freely by anyone
+ * who wants to.
+ *
+ * Please send bug fixes/bug reports to: Peter Eriksson <pen@@lysator.liu.se>
+ *
+ * This version elminates the kmem search in favour of a kernel sysctl to
+ * get the user id associated with a connection - Bob Beck <beck@@obtuse.com>
+ */
+
+#include <sys/param.h>
+#include <sys/socket.h>
+#include <sys/socketvar.h>
+#include <sys/sysctl.h>
+
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
+#include <syslog.h>
+
+#include <netinet/in.h>
+#include <netinet/in_systm.h>
+#include <netinet/tcp.h>
+#include <netinet/ip_var.h>
+#include <netinet/tcp_timer.h>
+#include <netinet/tcp_var.h>
+
+#include <arpa/inet.h>
+
+#include "identd.h"
+
+__RCSID("$MirBSD: src/libexec/identd/openbsd.c,v 2.2 2005/01/17 02:18:06 tg Exp $");
+
+/*
+ * Return the user number for the connection owner
+ */
+int
+k_getuid(struct in_addr *faddr, int fport, struct in_addr *laddr,
+    int lport, uid_t *uid)
+{
+	int mib[] = { CTL_NET, PF_INET, IPPROTO_TCP, TCPCTL_IDENT };
+	struct sockaddr_in *fin, *lin;
+	struct tcp_ident_mapping tir;
+	int error = 0;
+	size_t i;
+
+	memset(&tir, 0, sizeof (tir));
+	tir.faddr.ss_len = (sizeof (struct sockaddr_storage) & 0xff);
+	tir.laddr.ss_len = (sizeof (struct sockaddr_storage) &0xff);
+	tir.faddr.ss_family = AF_INET;
+	tir.laddr.ss_family = AF_INET;
+	fin = (struct sockaddr_in *) &tir.faddr;
+	lin = (struct sockaddr_in *) &tir.laddr;
+
+	memcpy(&fin->sin_addr, faddr, sizeof (struct in_addr));
+	memcpy(&lin->sin_addr, laddr, sizeof (struct in_addr));
+	fin->sin_port = fport;
+	lin->sin_port = lport;
+	i = sizeof (tir);
+	error = sysctl(mib, sizeof (mib) / sizeof (int), &tir, &i, NULL, 0);
+	if (!error && tir.ruid != -1) {
+		*uid = tir.ruid;
+		return (0);
+	}
+	if (error == -1)
+		syslog(LOG_DEBUG, "sysctl failed (%m)");
+
+	return (-1);
+}
+
+/*
+ * Return the user number for the connection owner
+ * New minty IPv6 version.
+ */
+int
+k_getuid6(struct sockaddr_in6 *faddr, int fport, struct sockaddr_in6 *laddr,
+    int lport, uid_t *uid)
+{
+	int mib[] = { CTL_NET, PF_INET, IPPROTO_TCP, TCPCTL_IDENT };
+	struct sockaddr_in6 *fin, *lin;
+	struct tcp_ident_mapping tir;
+	int error = 0;
+	size_t i;
+
+	memset(&tir, 0, sizeof (tir));
+	fin = (struct sockaddr_in6 *) &tir.faddr;
+	lin = (struct sockaddr_in6 *) &tir.laddr;
+
+	memcpy(fin, faddr, faddr->sin6_len);
+	memcpy(lin, laddr, laddr->sin6_len);
+	fin->sin6_port = fport;
+	lin->sin6_port = lport;
+	i = sizeof (tir);
+	error = sysctl(mib, sizeof (mib) / sizeof (int), &tir, &i, NULL, 0);
+	if (!error && tir.ruid != -1) {
+		*uid = tir.ruid;
+		return (0);
+	}
+	if (error == -1)
+		syslog(LOG_DEBUG, "sysctl failed (%m)");
+
+	return (-1);
+}
+@
+
+
+2.2
+log
+@make this thing survive the better part of a make build
+a plethora of weird protos, missing includes, undefined
+behaviour (real bugs though not the hard ones) and some
+cosmetics here which gcc 3.4 needs
+good for a start
+@
+text
+@d1 1
+a1 1
+/* $MirBSD$ */
+d35 1
+a35 1
+__RCSID("$MirBSD$");
+a91 2
+	if (faddr->sin6_len > (uint8_t)sizeof(tir.faddr))
+		return -1;
+a92 2
+	if (laddr->sin6_len > (uint8_t)sizeof(tir.laddr))
+		return -1;
+@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@d1 2
+a2 1
+/* $OpenBSD: openbsd.c,v 1.18 2002/07/16 10:32:37 deraadt Exp $ */
+d22 1
+d34 2
+a35 1
+#include "error.h"
+d92 1
+a92 1
+	if (faddr->sin6_len > sizeof(tir.faddr))
+d95 1
+a95 1
+	if (laddr->sin6_len > sizeof(tir.laddr))
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@
+
+
+1.1.1.2
+log
+@Import a series of fixes and minor updates from OpenBSD
+@
+text
+@d1 1
+a1 1
+/* $OpenBSD: openbsd.c,v 1.19 2004/09/16 08:25:05 deraadt Exp $ */
+a20 1
+#include <syslog.h>
+d32 1
+@
+

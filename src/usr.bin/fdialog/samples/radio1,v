@@ -1,0 +1,48 @@
+head     1.1;
+branch   1.1.10;
+access   ;
+symbols  cvs-200407162200:1.1.10.1 ekkobsd:1.1.10;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.07.01.54.21;  author tg;  state Exp;
+branches 1.1.10.1;
+next     ;
+
+1.1.10.1
+date     2005.01.07.01.54.21;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/sh
+# $ekkoBSD: radio1,v 1.4 2004/03/19 18:07:26 dave Exp $
+FDIALOG=${FDIALOG=fdialog}
+
+$FDIALOG --radio "Pick a command:" \
+	--item "ls /tmp" \
+	--item "ls /" \
+	--item "id" \
+	20 20 \
+	--ptitle "Radio sample 1" 
+@
+
+
+1.1.10.1
+log
+@fdialog heritage
+@
+text
+@@

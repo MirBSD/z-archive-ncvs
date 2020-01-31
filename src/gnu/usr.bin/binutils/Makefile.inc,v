@@ -1,0 +1,110 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.4
+date	2005.01.16.10.19.17;	author tg;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2005.01.16.09.35.13;	author tg;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2005.01.15.20.09.34;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2005.01.13.20.13.16;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@build shlibs, too - stake II
+@
+text
+@# $MirBSD: src/gnu/usr.bin/binutils/Makefile.inc,v 1.3 2005/01/16 09:35:13 tg Exp $
+
+.ifndef _MODSRC_GNU_USR_BIN_BINUTILS_MAKEFILE_INC
+_MODSRC_GNU_USR_BIN_BINUTILS_MAKEFILE_INC=1
+
+.include <bsd.own.mk>
+.include "${GNUSYSTEM_AUX_DIR}/locations.mk"
+
+CFARGS+=	--prefix=/usr --infodir=/usr/share/info --disable-nls \
+		--mandir=/usr/share/man --disable-generated-files-in-srcdir \
+		--enable-build-warnings --with-mmap --with-system-zlib \
+		--enable-targets=all --enable-64-bit-bfd \
+		--enable-static ${CF_PIC} --enable-install-libbfd
+
+XARGS+=		BISON=yacc LIBIBERTY_HDRS="${GNU_LIBIBERTY_INC}"
+
+CFLAGS+=	-Wall
+
+.if exists(../Makefile.inc)
+.  include "../Makefile.inc"
+.endif
+
+.endif
+@
+
+
+1.3
+log
+@build bfd
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/Makefile.inc,v 1.2 2005/01/15 20:09:34 tg Exp $
+d13 1
+a13 1
+		--enable-static ${CFPIC} --enable-install-libbfd
+@
+
+
+1.2
+log
+@save to cvs :) what I've already got, trying to compile bfd
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/Makefile.inc,v 1.1 2005/01/13 20:13:16 tg Exp $
+d9 1
+a9 1
+CFARGS+=	--prefix=/usr --mandir=/usr/share/man --disable-nls \
+@
+
+
+1.1
+log
+@start merging binutils
+@
+text
+@d1 1
+a1 1
+# $MirBSD: src/gnu/usr.bin/binutils/Makefile.inc,v 1.8 2005/01/08 22:46:03 tg Exp $
+d9 5
+a13 4
+CFARGS+=	--prefix=/usr --target=${GCCTARGET} --enable-static \
+		--with-mmap --enable-build-warnings --disable-nls \
+		--enable-targets=all --enable-64-bit-bfd ${CFPIC} \
+		--enable-install-libbfd
+d15 1
+a15 1
+XARGS+=		GNU_LIBIBERTY_INC="${GNU_LIBIBERTY_INC}"
+@
+

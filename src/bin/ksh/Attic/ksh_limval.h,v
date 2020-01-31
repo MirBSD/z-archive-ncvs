@@ -1,0 +1,103 @@
+head	2.2;
+access;
+symbols
+	mksh-R20:2.1
+	mksh-R19:2.1
+	cvs-200412101800:1.1.15.1
+	mirbsd:1.1.15;
+locks; strict;
+comment	@ * @;
+
+
+2.2
+date	2004.12.31.19.37.03;	author tg;	state dead;
+branches;
+next	2.1;
+
+2.1
+date	2004.12.10.18.09.41;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.10.18.08.08;	author tg;	state Exp;
+branches
+	1.1.15.1;
+next	;
+
+1.1.15.1
+date	2004.12.10.18.08.08;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.2
+log
+@further cleanup
+@
+text
+@/**	$MirBSD: src/bin/ksh/ksh_limval.h,v 2.1 2004/12/10 18:09:41 tg Exp $ */
+/*	$OpenBSD: ksh_limval.h,v 1.1.1.1 1996/08/14 06:19:11 downsj Exp $	*/
+
+#ifndef KSH_LIMVAL_H
+#define KSH_LIMVAL_H
+
+/* Wrapper around the values.h/limits.h includes/ifdefs */
+
+#ifdef HAVE_VALUES_H
+# include <values.h>
+#endif /* HAVE_VALUES_H */
+/* limits.h is included in sh.h */
+
+#ifndef DMAXEXP
+# define DMAXEXP	128	/* should be big enough */
+#endif
+
+#ifndef BITSPERBYTE
+# ifdef CHAR_BIT
+#  define BITSPERBYTE	CHAR_BIT
+# else
+#  define BITSPERBYTE	8	/* probably true.. */
+# endif
+#endif
+
+#ifndef BITS
+# define BITS(t)	(BITSPERBYTE * sizeof(t))
+#endif
+
+#endif	/* ndef KSH_LIMVAL_H */
+@
+
+
+2.1
+log
+@bump to mksh R19
+@
+text
+@d1 1
+a1 1
+/**	$MirBSD: src/bin/ksh/ksh_limval.h,v 1.1.15.1 2004/12/10 18:08:08 tg Exp $ */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+/**	$MirBSD: src/bin/ksh/ksh_limval.h,v 1.4 2004/10/28 11:53:42 tg Exp $ */
+@
+
+
+1.1.15.1
+log
+@Import mirbsdksh-HEAD into new CVS
+@
+text
+@@

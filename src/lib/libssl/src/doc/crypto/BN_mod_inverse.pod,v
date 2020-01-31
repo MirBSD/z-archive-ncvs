@@ -1,0 +1,89 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.30.40;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.58;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.58;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@=pod
+
+=head1 NAME
+
+BN_mod_inverse - compute inverse modulo n
+
+=head1 SYNOPSIS
+
+ #include <openssl/bn.h>
+
+ BIGNUM *BN_mod_inverse(BIGNUM *r, BIGNUM *a, const BIGNUM *n,
+           BN_CTX *ctx);
+
+=head1 DESCRIPTION
+
+BN_mod_inverse() computes the inverse of B<a> modulo B<n>
+places the result in B<r> (C<(a*r)%n==1>). If B<r> is NULL,
+a new B<BIGNUM> is created.
+
+B<ctx> is a previously allocated B<BN_CTX> used for temporary
+variables. B<r> may be the same B<BIGNUM> as B<a> or B<n>.
+
+=head1 RETURN VALUES
+
+BN_mod_inverse() returns the B<BIGNUM> containing the inverse, and
+NULL on error. The error codes can be obtained by L<ERR_get_error(3)|ERR_get_error(3)>.
+
+=head1 SEE ALSO
+
+L<bn(3)|bn(3)>, L<ERR_get_error(3)|ERR_get_error(3)>, L<BN_add(3)|BN_add(3)>
+
+=head1 HISTORY
+
+BN_mod_inverse() is available in all versions of SSLeay and OpenSSL.
+
+=cut
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

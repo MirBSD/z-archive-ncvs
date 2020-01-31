@@ -1,0 +1,66 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  lynx-2_8_6dev10:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @ * @;
+
+
+1.1
+date     2005.01.03.00.23.35;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.03.00.23.35;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*                 /Net/dxcern/userd/timbl/hypertext/WWW/Library/Implementation/HTTelnet.html
+                            TELNET AND SIMILAR ACCESS METHODS
+                                             
+ */
+
+#ifndef HTTELNET_H
+#define HTTELNET_H
+
+#include <HTAccess.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+#ifdef GLOBALREF_IS_MACRO
+    extern GLOBALREF (HTProtocol, HTTelnet);
+    extern GLOBALREF (HTProtocol, HTRlogin);
+    extern GLOBALREF (HTProtocol, HTTn3270);
+
+#else
+    GLOBALREF HTProtocol HTTelnet;
+    GLOBALREF HTProtocol HTRlogin;
+    GLOBALREF HTProtocol HTTn3270;
+#endif				/* GLOBALREF_IS_MACRO */
+
+#ifdef __cplusplus
+}
+#endif
+#endif				/* HTTELNET_H */
+@
+
+
+1.1.2.1
+log
+@Lynx 2.8.6dev.10 announced not even half an hour ago
+@
+text
+@@

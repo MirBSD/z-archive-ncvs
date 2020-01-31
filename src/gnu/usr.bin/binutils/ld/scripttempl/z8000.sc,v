@@ -1,0 +1,112 @@
+head	1.1;
+branch	1.1.2;
+access;
+symbols
+	binutils-20050118:1.1.2.1
+	binutils-050108:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2005.01.08.23.04.15;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2005.01.08.23.04.15;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@cat <<EOF
+OUTPUT_FORMAT("${OUTPUT_FORMAT}")
+OUTPUT_ARCH("${OUTPUT_ARCH}")
+ENTRY(_start)
+
+SECTIONS 				
+{ 					
+.text ${BIG+ ${RELOCATING+ 0x0000000}} :
+	{ 
+	  *(.text) 				
+	  *(.strings)
+	  *(.rdata)
+	}
+
+.ctors ${BIG+ ${RELOCATING+ 0x2000000}}  : 
+	{
+	  ${CONSTRUCTING+ ___ctors = . ;  }
+	  *(.ctors);
+	  ${CONSTRUCTING+ ___ctors_end = . ; }
+	  ___dtors = . ;
+	  *(.dtors);
+	  ${CONSTRUCTING+ ___dtors_end = . ; }
+	} 
+
+.data ${BIG+ ${RELOCATING+ 0x3000000}} :
+	{
+	   *(.data)
+	}
+
+.bss ${BIG+ ${RELOCATING+ 0x4000000}} : 
+	{
+	  ${RELOCATING+ __start_bss = . ; }
+	  *(.bss);
+	  *(COMMON);
+	  ${RELOCATING+ __end_bss = . ; }
+	}
+
+.heap ${BIG+ ${RELOCATING+ 0x5000000}} :
+	{
+	  ${RELOCATING+ __start_heap = . ; }
+	  ${RELOCATING+ . = . + 20k  ; }
+	  ${RELOCATING+ __end_heap = . ; }
+	} 
+
+.stack ${RELOCATING+ 0xf000 }  : 
+	{
+	  ${RELOCATING+ _stack = . ; }
+	  *(.stack)
+	  ${RELOCATING+ __stack_top = . ; }
+	}
+
+}
+EOF
+
+
+
+
+@
+
+
+1.1.2.1
+log
+@GNU binutils 2.15-current, from
+ ftp://sources.redhat.com/pub/binutils/snapshots/binutils-050108.tar.bz2
+with the following directories removed:
+ bfd/po
+ binutils/po
+ binutils/testsuite
+ gas/po
+ gas/testsuite
+ gprof
+ intl
+ ld/po
+ ld/testsuite
+ opcodes/po
+ texinfo
+and all top-level non-directory files.
+@
+text
+@@

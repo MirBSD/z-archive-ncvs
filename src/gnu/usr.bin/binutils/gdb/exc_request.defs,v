@@ -1,0 +1,95 @@
+head     1.1;
+branch   1.1.2;
+access   ;
+symbols  gdb-20050107:1.1.2.1 FSF:1.1.2;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.01.08.23.03.19;  author tg;  state Exp;
+branches 1.1.2.1;
+next     ;
+
+1.1.2.1
+date     2005.01.08.23.03.19;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* 
+ * Mach Operating System
+ * Copyright (c) 1993,1991,1990,1989,1988,1987 Carnegie Mellon University
+ * All Rights Reserved.
+ * 
+ * Permission to use, copy, modify and distribute this software and its
+ * documentation is hereby granted, provided that both the copyright
+ * notice and this permission notice appear in all copies of the
+ * software, derivative works or modified versions, and any portions
+ * thereof, and that both notices appear in supporting documentation.
+ * 
+ * CARNEGIE MELLON ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
+ * CONDITION.  CARNEGIE MELLON DISCLAIMS ANY LIABILITY OF ANY KIND FOR
+ * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE.
+ * 
+ * Carnegie Mellon requests users of this software to return to
+ * 
+ *  Software Distribution Coordinator  or  Software.Distribution@@CS.CMU.EDU
+ *  School of Computer Science
+ *  Carnegie Mellon University
+ *  Pittsburgh PA 15213-3890
+ * 
+ * any improvements or extensions that they make and grant Carnegie Mellon
+ * the rights to redistribute these changes.
+ */
+
+/*
+ * Abstract:
+ *	MiG definitions file for Mach exception interface (request half).
+ */
+
+subsystem exc 2400;
+
+#include <mach/std_types.defs>
+
+#ifdef USERPREFIX
+userprefix USERPREFIX;
+#endif
+
+#ifdef SERVERPREFIX
+serverprefix SERVERPREFIX;
+#endif
+
+simpleroutine exception_raise_request (
+	exception_port	: mach_port_t;
+	replyport reply : mach_port_send_once_t;
+	thread		: mach_port_t;
+	task		: mach_port_t;
+	exception	: integer_t;
+	code		: integer_t;
+	subcode		: integer_t);
+@
+
+
+1.1.2.1
+log
+@The GNU Debugger 6.3.50-current, from
+ ftp://sources.redhat.com/pub/gdb/snapshots/current/gdb-weekly-6.3.50.20050107.tar.bz2
+
+only the gdb/ subdirectory, gdb/testsuite/ removed.
+
+Luckily, this time it doesn't depend on a different libbfd than
+the one we deliver with GNU binutils...
+@
+text
+@@

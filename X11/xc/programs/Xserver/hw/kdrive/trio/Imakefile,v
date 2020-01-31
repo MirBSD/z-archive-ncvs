@@ -1,0 +1,60 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.12.58;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.12.58;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XConsortium: Imakefile /main/10 1996/12/02 10:20:33 lehors $
+XCOMM $XFree86: xc/programs/Xserver/hw/kdrive/trio/Imakefile,v 1.2 2000/09/03 05:11:20 keithp Exp $
+KDRIVE=..
+#include "../Kdrive.tmpl"
+
+SRCS = 	s3.c s3clock.c s3cmap.c s3curs.c s3draw.c s3gc.c s3stub.c
+
+OBJS = 	s3.o s3clock.o s3cmap.o s3curs.o s3draw.o s3gc.o s3stub.o
+
+INCLUDES = -I. $(KDINCS)
+
+DEFINES = -DS3_TRIO
+
+NormalLibraryObjectRule()
+NormalLibraryTarget(trio,$(OBJS))
+DependTarget()
+
+LinkSourceFile(s3draw.h,../savage)
+LinkSourceFile(s3draw.c,../savage)
+LinkSourceFile(s3gc.c,../savage)
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

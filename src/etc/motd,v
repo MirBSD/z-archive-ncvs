@@ -1,0 +1,70 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.23.05;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.27.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@4.4BSD ?.?-mirabile (UNKNOWN)
+
+Welcome to the free, advanced operating system: MirOS BSD     *
+===>  Openly, Functional, Secure.  Choose any three. <===      *
+Just type "lynx" or "lynx mirbsd.de" to see the homepage.    ***
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+OpenBSD ?.? (UNKNOWN)
+d3 3
+a5 7
+Welcome to OpenBSD: The proactively secure Unix-like operating system.
+
+Please use the sendbug(1) utility to report bugs in the system.
+Before reporting a bug, please try to reproduce it with the latest
+version of the code.  With bug reports, please try to ensure that
+enough information to reproduce the problem is enclosed, and if a
+known fix for it exists, include that as well.
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

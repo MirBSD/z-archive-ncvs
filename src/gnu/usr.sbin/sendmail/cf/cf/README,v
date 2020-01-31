@@ -1,0 +1,92 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.27.01;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.29.11;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.29.11;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@
+	SENDMAIL CONFIGURATION FILES INSTALLATION
+
+This document describes how to install the sendmail configuration files.
+Please see ../README about the sendmail configuration files themselves.
+
+By default you need two .mc files: sendmail.mc and submit.mc.  The
+latter is an OS independent configuration file for the mail submission
+program (MSP).  See ../README for details about both files.
+
+Installation of these two files can be done via:
+
+	make install-cf
+
+If you use a different name than "sendmail" for your main .mc file"
+then you should use
+
+	make install-cf CF=config
+
+where "config" is the name of your main .mc file.
+
+The default installation directory is /etc/mail and can be changed
+by specifying
+
+	MAILDIR=/other/dir
+
+The name of the source file for "submit.cf" can be overridden by
+
+	SUBMIT=msp
+
+For more details see Makefile.
+
+
+$Revision: 1.1.1.1 $, Last updated $Date: 2003/03/22 17:44:29 $
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d34 1
+a34 1
+$Revision: 1.2 $, Last updated $Date: 2002/02/22 00:33:54 $
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

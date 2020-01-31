@@ -1,0 +1,107 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.25.05;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.28.07;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.28.07;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@package DBM_Filter::utf8 ;
+
+use strict;
+use warnings;
+use Carp;
+
+our $VERSION = '0.01';
+
+BEGIN
+{
+    eval { require Encode; };
+
+    croak "Encode module not found.\n"
+        if $@@;
+}
+
+sub Store { $_ = Encode::encode_utf8($_) if defined $_ }
+
+sub Fetch { $_ = Encode::decode_utf8($_) if defined $_ }
+
+1;
+
+__END__
+
+=head1 NAME
+
+DBM_Filter::utf8 -- UTF-8 DBM Filter
+
+=head1 SYNOPSIS
+
+    use SDBM_File; # or DB_File, or GDBM_File, or NDBM_File, or ODBM_File
+    use DBM_Filter ;
+    
+
+    $db = tie %hash, ...
+    $db->Filter_Push('utf8');
+    
+=head1 DESCRIPTION
+
+This Filter will ensure that all data written to the DBM will be encoded
+in UTF-8.
+
+This module uses the Encode module.
+
+=head1 SEE ALSO
+
+L<DBM_Filter>, L<perldbmfilter>, L<Encode>
+
+=head1 AUTHOR
+
+Paul Marquess pmqs@@cpan.org
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

@@ -1,0 +1,72 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @.\" @;
+
+
+1.1
+date     2004.12.15.18.08.54;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.08.54;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@.TH bdftruncate 1 __vendorversion__ XFree86
+.SH NAME
+bdftruncate \- generate truncated BDF font from ISO 10646-1-encoded BDF font
+.SH SYNOPSIS
+.B bdftruncate
+.I threshold
+.B <
+.I source.bdf
+.B >
+.I destination.bdf
+.SH DESCRIPTION
+.B bdftruncate
+allows one to generate from an ISO10646-1 encoded BDF font other ISO10646-1
+BDF fonts in which all characters above a threshold code value are stored
+unencoded.  This is often desirable because the Xlib API and X11 protocol
+data structures used for representing font metric information are extremely
+inefficient when handling sparsely populated fonts.
+.SH EXAMPLE
+The command
+.RS
+bdftruncate 0x3200 < 6x13.bdf > 6x13t.bdf
+.RE
+will generate the file 6x13t.bdf in which all glyphs with codes
+>= 0x3200 will only be stored unencoded (i.e., they are encoded at
+codepoint -1).
+.SH "SEE ALSO"
+.BR ucs2any (1)
+.SH AUTHOR
+.B bdftruncate
+was written by Markus Kuhn.
+.PP
+Branden Robinson wrote this manual page, originally for the Debian Project.
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

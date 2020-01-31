@@ -1,0 +1,107 @@
+head	2.1;
+access;
+symbols
+	cvs-200501262100:1.1.1.1
+	cvs-200501201820:1.1.1.1
+	cvs-200501160850:1.1.1.1
+	start:1.1.1.1
+	openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.39.54;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.34.29;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.34.29;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@# $MirBSD: src/usr.bin/ssh/Makefile.inc,v 1.4 2004/11/28 02:02:03 tg Exp $
+# $OpenBSD: Makefile.inc,v 1.29 2004/06/21 18:34:51 avsm Exp $
+
+CPPFLAGS+=	-I${.CURDIR}/..
+
+CFLAGS+=	-Wall
+CFLAGS+=	-Werror
+CFLAGS+=	-Wpointer-arith
+CFLAGS+=	-Wno-uninitialized
+#CFLAGS+=	-Wstrict-prototypes
+CFLAGS+=	-Wmissing-prototypes
+CFLAGS+=	-Wunused
+#CFLAGS+=	-Wsign-compare
+CFLAGS+=	-Wbounded
+#CFLAGS+=	-Wshadow
+
+#DEBUG=-g
+
+#CPPFLAGS+=	-DSMARTCARD
+#LDADD+=	-lsectok
+
+.include <bsd.obj.mk>
+
+.if exists(${.CURDIR}/../lib/${__objdir})
+LDADD+=         -L${.CURDIR}/../lib/${__objdir} -lssh
+DPADD+=         ${.CURDIR}/../lib/${__objdir}/libssh.a
+.else
+LDADD+=         -L${.CURDIR}/../lib -lssh
+DPADD+=         ${.CURDIR}/../lib/libssh.a
+.endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+a2 1
+#	$OpenBSD: Makefile.inc,v 1.29 2004/06/21 18:34:51 avsm Exp $
+d4 1
+a4 1
+CFLAGS+=	-I${.CURDIR}/..
+d6 10
+a15 10
+CDIAGFLAGS=	-Wall
+#CDIAGFLAGS+=	-Werror
+CDIAGFLAGS+=	-Wpointer-arith
+CDIAGFLAGS+=	-Wno-uninitialized
+#CDIAGFLAGS+=	-Wstrict-prototypes
+CDIAGFLAGS+=	-Wmissing-prototypes
+CDIAGFLAGS+=	-Wunused
+#CDIAGFLAGS+=	-Wsign-compare
+CDIAGFLAGS+=	-Wbounded
+#CDIAGFLAGS+=	-Wshadow
+d19 1
+a19 1
+#CFLAGS+=	-DSMARTCARD
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

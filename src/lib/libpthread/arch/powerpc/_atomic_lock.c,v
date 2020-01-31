@@ -1,0 +1,90 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.29.22;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.30.25;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.30.25;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: _atomic_lock.c,v 1.5 2002/11/12 18:56:28 drahn Exp $	*/
+/*
+ * Atomic lock for powerpc
+ */
+
+#include "spinlock.h"
+
+int
+_atomic_lock(volatile _spinlock_lock_t *lock)
+{
+	_spinlock_lock_t old;
+
+	__asm__("1: lwarx 0,0,%1   \n"
+		"   stwcx. %2,0,%1 \n"
+		"   bne- 1b        \n"
+		"   mr %0, 0	   \n"
+		: "=r" (old), "=r" (lock)
+		: "r" (_SPINLOCK_LOCKED), "1" (lock) : "0"
+	);
+
+	return (old != _SPINLOCK_UNLOCKED);
+
+	/*
+	 * Dale <rahnds@@openbsd.org> says:
+	 *   Side note. to prevent two processes from accessing
+	 *   the same address with the lwarx in one instrution
+	 *   and the stwcx in another process, the current powerpc
+	 *   kernel uses a stwcx instruction without the corresponding
+	 *   lwarx which causes any reservation of a process
+	 *   to be removed.  if a context switch occurs
+	 *   between the two accesses the store will not occur
+	 *   and the condition code will cause it to loop. If on
+	 *   a dual processor machine, the reserve will cause
+	 *   appropriate bus cycle accesses to notify other
+	 *   processors.
+	 */
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

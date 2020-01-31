@@ -1,0 +1,180 @@
+head	1.2;
+access;
+symbols
+	libtool-1_5_10:1.1.2.2
+	libtool-1_5_8:1.1.2.2
+	libtool-1_5-20040215:1.1.2.2
+	libtool-1_4_3:1.1.2.1
+	FSF:1.1.2;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2004.02.03.19.42.39;	author tg;	state dead;
+branches;
+next	1.1;
+
+1.1
+date	2004.02.03.17.55.46;	author tg;	state Exp;
+branches
+	1.1.2.1;
+next	;
+
+1.1.2.1
+date	2004.02.03.17.55.46;	author tg;	state Exp;
+branches;
+next	1.1.2.2;
+
+1.1.2.2
+date	2004.02.15.13.09.50;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@* MirOSify
+* bootstrap
+* nuke unneeded stuff
+@
+text
+@#! /bin/sh
+# sh.test - check that we haven't forgotten a `test' command
+
+# Test script header.
+need_prefix=no
+if test -z "$srcdir"; then
+  srcdir=`echo "$0" | sed 's%/[^/]*$%%'`
+  test "$srcdir" = "$0" && srcdir=.
+  test "${VERBOSE+set}" != "set" && VERBOSE=yes
+fi
+. $srcdir/defs || exit 1
+
+# Check all the "portable" shell scripts.
+status=0
+scripts="$srcdir/../ltmain.sh"
+
+# Check for bad binary operators.
+if egrep -n -e "if[ 	]+[\"']?\\$.*(=|-[lg][te]|-eq|-ne)" $scripts; then
+  echo "use \`if test \$something =' instead of \`if \$something ='"
+  status=1
+fi
+
+# Check for bad unary operators.
+if egrep -n -e 'if[ 	]+-' $scripts; then
+  echo "use \`if test -X' instead of \`if -X'"
+  status=1
+fi
+
+# Check for using `[' instead of `test'.
+if egrep -n -e 'if[ 	]+\[' $scripts; then
+  echo "use \`if test' instead of \`if ['"
+  status=1
+fi
+
+# Check for using test X... instead of test "X...
+if egrep -n -e 'test[ 	]+X' $scripts; then
+  echo "use \`test \"X...\"' instead of \`test X'"
+  status=1
+fi
+
+# Never use test -e.
+if egrep -n -e 'test[ 	]+-e' $scripts; then
+  echo "use \`test -f' instead of \`test -e'"
+  status=1
+fi
+
+# Check for problems with variable assignments.
+if egrep -n -e '[^	 ]=[^	 ].*(break|continue)' $scripts; then
+  echo "assignments on the same line as a \`break' or \`continue' may have no effect"
+  status=1
+fi
+
+# Check for uses of Xsed without corresponding echo "X
+if egrep -n -e '\$Xsed' $scripts | egrep -v -n -e '\$echo \\*"X'; then
+  echo "occurrences of \`\$Xsed\' without \`echo \"X\' on the same line"
+  status=1
+fi
+
+# Check for quotes within backquotes within quotes "`"bar"`"
+if egrep -n -e '"[^`"]*`[^"`]*"[^"`]*".*`[^`"]*"' $scripts | \
+   egrep -v "### testsuite: skip nested quoting test$"; then
+  echo "nested quotes are dangerous"
+  status=1
+fi
+
+exit $status
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.2.1
+log
+@GNU Libtool 1.4.3 (last of the 1.4 series)
+
+Requires to bootstrap:
+* autoconf 2.13-o
+* automake 1.4-p5
+or later.
+@
+text
+@@
+
+
+1.1.2.2
+log
+@libtool 1.5 branch from today
+@
+text
+@d18 1
+a18 1
+if $EGREP -n -e "if[ 	]+[\"']?\\$.*(=|-[lg][te]|-eq|-ne)" $scripts; then
+d24 1
+a24 1
+if $EGREP -n -e 'if[ 	]+-' $scripts; then
+d30 1
+a30 1
+if $EGREP -n -e 'if[ 	]+\[' $scripts; then
+a34 5
+if $EGREP -n -e 'test[ 	]+(![ 	])?(-.[ 	]+)?"?[.,_x]' $scripts; then
+  echo "use \`test \"X...\"' instead of \`test \"x...\"'"
+  status=1
+fi
+
+d36 1
+a36 1
+if $EGREP -n -e 'test[ 	]+(![ 	])?(-.[ 	]+)?X' $scripts; then
+a40 6
+# Check for using test $... instead of test "$...
+if $EGREP -n -e 'test[ 	]+(![ 	])?(-.[ 	]+)?X?\$' $scripts; then
+  echo "use \`test \"\$...\"' instead of \`test \$'"
+  status=1
+fi
+
+d42 1
+a42 1
+if $EGREP -n -e 'test[ 	]+(![ 	])?-e' $scripts; then
+d48 1
+a48 1
+if $EGREP -n -e '[^	 ]=[^	 ].*(break|continue)' $scripts; then
+d54 1
+a54 1
+if $EGREP -n -e '\$Xsed' $scripts | $EGREP -v -n -e '\$echo \\*"X'; then
+d60 2
+a61 2
+if $EGREP -n -e '"[^`"]*`[^"`]*"[^"`]*".*`[^`"]*"' $scripts | \
+   $EGREP -v "### testsuite: skip nested quoting test$"; then
+@
+

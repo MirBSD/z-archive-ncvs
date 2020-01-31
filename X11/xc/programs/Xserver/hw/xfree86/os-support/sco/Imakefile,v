@@ -1,0 +1,83 @@
+head     1.1;
+branch   1.1.9;
+access   ;
+symbols  XFree86-4_4_0:1.1.9.1 xc:1.1.9;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2004.12.15.18.15.49;  author tg;  state Exp;
+branches 1.1.9.1;
+next     ;
+
+1.1.9.1
+date     2004.12.15.18.15.49;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@XCOMM $XFree86: xc/programs/Xserver/hw/xfree86/os-support/sco/Imakefile,v 3.16 2002/11/20 23:00:44 dawes Exp $
+
+
+
+
+XCOMM $XConsortium: Imakefile /main/4 1996/09/28 17:24:25 rws $
+
+#include <Server.tmpl>
+
+SRCS = sco_init.c sco_video.c sco_io.c sco_iop.c sco_mouse.c VTsw_sco.c \
+       std_kbdEv.c posix_tty.c bios_mmap.c vidmem.c \
+       libc_wrapper.c stdResource.c stdPci.c sigiostubs.c pm_noop.c \
+       kmod_noop.c agp_noop.c
+
+OBJS = sco_init.o sco_video.o sco_io.o sco_iop.o sco_mouse.o VTsw_sco.o \
+       std_kbdEv.o posix_tty.o bios_mmap.o vidmem.o \
+       libc_wrapper.o stdResource.o stdPci.o sigiostubs.o pm_noop.o \
+       kmod_noop.o agp_noop.o
+
+INCLUDES = -I$(XF86COMSRC) -I$(XF86OSSRC) -I. -I$(SERVERSRC)/include \
+           -I$(SERVERSRC)/mi -I$(XINCLUDESRC) -I$(EXTINCSRC)
+
+RESDEFINES = -DUSESTDRES
+
+DEFINES = $(RESDEFINES)
+
+SubdirLibraryRule($(OBJS))
+NormalLibraryObjectRule()
+
+LinkSourceFile(bios_mmap.c,../shared)
+LinkSourceFile(std_kbdEv.c,../shared)
+LinkSourceFile(posix_tty.c,../shared)
+LinkSourceFile(libc_wrapper.c,../shared)
+LinkSourceFile(stdResource.c,../shared)
+LinkSourceFile(stdPci.c,../shared)
+LinkSourceFile(sigiostubs.c,../shared)
+LinkSourceFile(pm_noop.c,../shared)
+LinkSourceFile(kmod_noop.c,../shared)
+LinkSourceFile(agp_noop.c,../shared)
+LinkSourceFile(vidmem.c,../shared)
+
+DependTarget()
+
+@
+
+
+1.1.9.1
+log
+@Import of XFree86(TM) 4.4.0, the exactly same as was imported
+into ocvs under tag XFree86_4_4_0 path src/X-Window, as "X11"
+module (for MirOS #8, probably MirOS #7 and maybe OpenBSD).
+@
+text
+@@

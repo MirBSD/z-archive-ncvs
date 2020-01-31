@@ -1,0 +1,104 @@
+head	2.1;
+branch	1.1.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+2.1
+date	2005.01.03.16.30.57;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.31.06;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.31.06;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@/*	$OpenBSD: percent_m.c,v 1.2 2001/11/07 18:48:48 deraadt Exp $	*/
+
+ /*
+  * Replace %m by system error message.
+  * 
+  * Author: Wietse Venema, Eindhoven University of Technology, The Netherlands.
+  */
+
+#ifndef lint
+#if 0
+static char sccsid[] = "@@(#) percent_m.c 1.1 94/12/28 17:42:37";
+#else
+static char rcsid[] = "$OpenBSD: percent_m.c,v 1.2 2001/11/07 18:48:48 deraadt Exp $";
+#endif
+#endif
+
+#include <stdio.h>
+#include <stdarg.h>
+#include <errno.h>
+#include <string.h>
+
+extern int errno;
+#ifndef SYS_ERRLIST_DEFINED
+extern char *sys_errlist[];
+extern int sys_nerr;
+#endif
+
+char   *percent_m(obuf, ibuf)
+char   *obuf;
+char   *ibuf;
+{
+    char   *bp = obuf;
+    char   *cp = ibuf;
+    int len = BUFSIZ;
+
+    while ((*bp = *cp)) {
+	if (*cp == '%' && cp[1] == 'm') {
+	    len = BUFSIZ - (bp - obuf);
+	    if (errno < sys_nerr && errno > 0) {
+		strlcpy(bp, sys_errlist[errno], len);
+	    } else {
+		snprintf(bp, len, "Unknown error %d", errno);
+	    }
+	    bp += strlen(bp);
+	    cp += 2;
+	} else {
+	    bp++, cp++;
+	}
+    }
+    return (obuf);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@

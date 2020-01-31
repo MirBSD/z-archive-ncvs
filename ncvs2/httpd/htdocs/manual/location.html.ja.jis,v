@@ -1,0 +1,111 @@
+head     1.1;
+branch   1.1.7;
+access   ;
+symbols  start:1.1.7.1 mirbsd:1.1.7;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2005.03.06.16.46.48;  author tg;  state Exp;
+branches 1.1.7.1;
+next     ;
+
+1.1.7.1
+date     2005.03.06.16.46.48;  author tg;  state Exp;
+branches ;
+next     ;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@<?xml version="1.0" encoding="iso-2022-jp"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <title>URL $B$G$N%"%/%;%9@@)8f(B</title>
+  </head>
+  <!-- English revision: 1.15 -->
+  <!-- Background white, links blue (unvisited), navy (visited), red (active) -->
+
+  <body bgcolor="#FFFFFF" text="#000000" link="#0000FF"
+  vlink="#000080" alink="#FF0000">
+        <div align="CENTER">
+      <img src="images/sub.gif" alt="[APACHE DOCUMENTATION]" />
+
+      <h3>Apache HTTP Server</h3>
+    </div>
+
+
+
+    <h1 align="center">URL $B$G$N%"%/%;%9@@)8f(B</h1>
+
+    <h2><a id="location" name="location">
+    <code>&lt;Location&gt;</code> $B%G%#%l%/%F%#%V(B</a></h2>
+    <a href="mod/directive-dict.html#Syntax"
+    rel="Help"><strong>$B9=J8(B:</strong></a> &lt;Location
+    <em>URL $B%W%l%U%#%/%9(B</em>&gt;<br />
+     <a href="mod/directive-dict.html#Context"
+    rel="Help"><strong>$B%3%s%F%-%9%H(B:</strong></a>
+    $B%5!<%P@@_Dj%U%!%$%k!"%P!<%A%c%k%[%9%H(B<br />
+     <a href="mod/directive-dict.html#Status"
+    rel="Help"><strong>$B%9%F!<%?%9(B:</strong></a> $B%3%"(B<br />
+
+    <p>&lt;Location&gt; $B%G%#%l%/%F%#%V$O(B URL
+    $B$G$N%"%/%;%9@@)8f$rDs6!$7$^$9!#$3$l$O(B<a
+    href="mod/core.html#directory">&lt;Directory&gt;</a>
+    $B%G%#%l%/%F%#%V$HI$E($7!"(B&lt;/Location&gt; $B$HJ;$;$F;H$$$^$9!#(B
+    $B;XDj$5$l$?(B URL
+    $B$KBP$7$FE,MQ$5$;$k%G%#%l%/%F%#%V$O!"$=$l$i$N4V$KNs5s$7$^$9!#(B
+    <code>&lt;Location&gt;</code> $B%;%/%7%g%s$O(B &lt;Directory&gt;
+    $B%;%/%7%g%s5Z$S(B <code>.htaccess</code>
+    $B%U%!%$%k$,FI$^$l$?8e!"@@_Dj%U%!%$%k$K8=$l$?=g$K=hM}$5$l$^$9!#(B</p>
+
+    <p>HTTP $B$NF0:nJ}K!$N$?$a!"(B<em>URL
+    $B@@\F,<-(B</em>$B$O!"%W%m%-%7%j%/%(%9%H$r=|$$$F!"(B<code>/path/</code> $B$H$$$&(B
+    $B7A<0$K$J$C$F$$$k$Y$-$G!"(B<code>http://servername</code> $B$r4^$a$F$$$O(B
+    $B$$$1$J$$$3$H$KCm0U$7$F$/$@@$5$$!#$^$?!"I,$:$7$b%G%#%l%/%H%j(B
+    $B$rJ]8n$9$kI,MW$,$"$k$o$1$G$O$J$/(B ($B8D!9$N%U%!%$%k!"(B
+    $B$^$?$OB?$/$N%U%!%$%k$G$b9=$$$^$;$s(B)$B!"(B
+    $B%o%$%k%I%+!<%I$r4^$`$3$H$b$G$-$^$9!#%o%$%k%I%+!<%I$K$D$$$F$O!"(B
+    `?' $B$O2?$+0lJ8;z!"(B`*' $B$O$9$Y$F$NJ8;zNs$K%^%C%A$7$^$9!#(B</p>
+
+    <p>$B$3$N5!G=$O!"(B<code><a
+    href="mod/mod_mime.html#sethandler">SetHandler</a></code>
+    $B%G%#%l%/%F%#%V$HAH$_9g$o$;$F;H$&$HFC$KM-1W$G$9!#(B
+    $BNc$($P!"%9%F!<%?%9MW5a$r2DG=$K$9$k$1$l$I$b!"(Bfoo.com
+    $B$+$iMh$?%V%i%&%6$@@$1$K5v2D$r8BDj$7$?$$>l9g$O0J2<$r;H$&$3$H$,$G$-$^$9(B:</p>
+<pre>
+    &lt;Location /status&gt;
+    SetHandler server-status
+    Order Deny,Allow
+    Deny from all
+    Allow from .foo.com
+    &lt;/Location&gt;
+</pre>
+        <hr />
+
+    <h3 align="CENTER">Apache HTTP Server</h3>
+    <a href="./"><img src="images/index.gif" alt="Index" /></a>
+
+  </body>
+</html>
+@
+
+
+1.1.7.1
+log
+@Add another couple of software they didn't have
+@
+text
+@@

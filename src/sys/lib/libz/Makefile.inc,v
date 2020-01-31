@@ -1,0 +1,130 @@
+head	2.1;
+access;
+symbols
+	start:1.1.1.1 openbsd:1.1.1;
+locks; strict;
+comment	@# @;
+
+
+2.1
+date	2005.01.03.16.37.38;	author tg;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2004.12.12.21.33.36;	author tg;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2004.12.12.21.33.36;	author tg;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+2.1
+log
+@work over most of the changes MirOS has done, and add
+the new or copied/moved files
+@
+text
+@#	$MirBSD: src/sys/lib/libz/Makefile.inc,v 1.2 2004/12/11 16:50:16 tg Exp $
+#	$OpenBSD: Makefile.inc,v 1.7 2002/04/29 01:02:28 hugh Exp $
+#	$NetBSD: Makefile.inc,v 1.2 1997/01/23 22:29:09 cgd Exp $
+#
+#	Configuration variables (default values are below):
+#
+#	S	must be set to the top of the 'sys' tree.
+#	ZDST	may be set to the location of the directory where library
+#		objects are to be built.  Defaults to ${.OBJDIR}/lib/z.
+#	Z_AS	may be set to 'obj' to build a object from the library's
+#		object files.  (Otherwise, a library will be built.)
+#		Defaults to 'library'.
+#	ZMISCMAKEFLAGS
+#		Miscellaneous flags to be passed to the library's Makefile when
+#		building.  See library's Makefile for more details about
+#		supported flags and their default values.
+
+# Default values:
+ZDST?=		${.OBJDIR}/lib/z
+Z_AS?=		library
+
+ZDIR=		$S/lib/libz
+.if (${Z_AS} == "obj")
+ZLIB=		${ZDST}/libz.o
+.else
+ZLIB=		${ZDST}/libz.a
+.endif
+
+ZMAKE= \
+	cd ${ZDIR} && MAKEOBJDIR=${ZDST} ${MAKE} \
+	    CC="${CC}" CFLAGS="${CFLAGS}" \
+	    AS=${AS} AFLAGS="${AFLAGS}" \
+	    LD=${LD} STRIP=${STRIP} \
+	    MACHINE=${MACHINE} MACHINE_ARCH=${MACHINE_ARCH} \
+	    ZCPPFLAGS="${CPPFLAGS:S@@^-I.@@-I../../.@@g}" \
+	    ${ZMISCMAKEFLAGS}
+
+${ZLIB}:		.NOTMAIN __always_make_zlib
+	@@echo making sure the z library is up to date...
+.if (${Z_AS} == "library")
+	${ZMAKE} libz.a
+.else
+	@@${ZMAKE} libz.o
+.endif
+
+clean::			.NOTMAIN cleanzlib
+cleanzlib:		.NOTMAIN __always_make_zlib
+	@@echo cleaning the z library objects
+	@@${ZMAKE} clean
+	-rmdir -p ${ZDST}
+
+cleandir:		.NOTMAIN cleandirzlib
+cleandirzlib:		.NOTMAIN __always_make_zlib
+	@@echo cleandiring the z library objects
+	@@${ZMAKE} cleandir
+	-rmdir -p ${ZDST}
+
+depend::		.NOTMAIN dependzlib
+dependzlib:		.NOTMAIN __always_make_zlib
+	@@echo depending the z library objects
+	@@${ZMAKE} depend
+
+__always_make_zlib:	.NOTMAIN
+	-mkdir -p ${ZDST}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a24 1
+ZLIB_PROF=	${ZDST}/libz.po
+a26 1
+ZLIB_PROF=	${ZDST}/libz_p.a
+a45 8
+${ZLIB_PROF}:		.NOTMAIN __always_make_zlib
+	@@echo making sure the profiled z library is up to date...
+.if (${Z_AS} == "library")
+	@@${ZMAKE} libz_p.a
+.else
+	@@${ZMAKE} libz.po
+.endif
+
+@
+
+
+1.1.1.1
+log
+@Import base OpenBSD repository of MirOS ocvs:HEAD
+@
+text
+@@
